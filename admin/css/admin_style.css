@@ -1,0 +1,71 @@
+.zdm-welcome-notice {
+    padding: 16px;
+}
+
+.zdm-welcome-icon-holder {
+    width: 150px;
+    height: 150px;
+    float: left;
+    margin: 0 38px 38px 0;
+}
+
+.zdm-welcome-icon {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.zdm-help-text {
+    color: #777;
+    margin-top: 4px;
+}
+.zdm-help-text a {
+    opacity: 0.7;
+}
+
+.zdm-select-50 {
+    width: 50%;
+    float: left;
+}
+
+.zdm-table-list tr td {
+    padding: 0px 10px 0px 0px;
+}
+
+.zdm-postbox-100 {
+    min-width: 300px;
+    width: 100%;
+}
+
+@media screen and (min-width: 200px) {
+    .zdm-postbox-50 {
+        min-width: 200px;
+        width: 100%;
+        padding: 0 10px;
+    }
+}
+@media screen and (min-width: 300px) {
+    .zdm-postbox-50 {
+        min-width: 300px;
+        width: 65%;
+        padding: 0 10px;
+    }
+}
+
+.zdm-table-tr-warning {
+    border: solid 5px #FFCD19 !important;
+}
+
+.zdm-btn-danger {
+    color: #fff !important;
+    background: #fa3e3e !important;
+    border-color: #7A1E1E !important;
+    box-shadow: none !important;
+}
+.zdm-btn-danger:hover {
+    background: #FF6D63 !important;
+}
+
+.zdm-color-primary {
+    color: #00caff;
+}
