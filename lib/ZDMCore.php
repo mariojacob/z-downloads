@@ -155,6 +155,27 @@ class ZDMCore
     }
 
     /**
+     * Gibt die jeweiligen CSS Klassen zurück für Download Button
+     * @return string CSS class
+     */
+    public function download_button_class()
+    {
+
+        $options = get_option('zdm_options');
+
+        // Standard CSS Klassen
+        $class = 'button zdm-btn';
+
+        $class .= ' zdm-btn-style-' . $options['download-btn-style'];
+
+        if ($options['download-btn-border-radius'] != 'none') {
+            $class .= ' zdm-btn-radius' . $options['download-btn-border-radius'];
+        }
+
+        return $class;
+    }
+
+    /**
      * Shortcode für Downloads: [zdownload zip="123"] oder [zdownload file="123"]
      * @return string
      */
@@ -206,9 +227,7 @@ class ZDMCore
                     }
                 }
 
-                //return '<a href="?zdownload=' . base64_encode($db_archive[0]->id) . '" class="button zdm-btn" target="_blank">' . $download_text . '</a>';
-                
-                return '<a href="?zdownload=' . base64_encode($db_archive[0]->id) . '" class="button zdm-btn" target="_blank">' . $download_text . '</a>';
+                return '<a href="?zdownload=' . base64_encode($db_archive[0]->id) . '" class="' . $this->download_button_class() . '" target="_blank">' . $download_text . '</a>';
             }
         }
 
@@ -242,7 +261,7 @@ class ZDMCore
                 }
             }
 
-            return '<a href="?zdownload_f=' . base64_encode($db_files[0]->id) . '" class="button zdm-btn" target="_blank">' . $download_text . '</a>';
+            return '<a href="?zdownload_f=' . base64_encode($db_files[0]->id) . '" class="' . $this->download_button_class() . '" target="_blank">' . $download_text . '</a>';
         }
     }
 
@@ -594,7 +613,7 @@ class ZDMCore
     public function enqueue_admin_css()
     {
         // Admin CSS
-        wp_register_style('zdm_admin_styles', plugins_url('../admin/css/admin_style.css', __FILE__));
+        wp_register_style('zdm_admin_styles', plugins_url('../admin/css/admin_style.css?v=' . ZDM__VERSION, __FILE__));
         wp_enqueue_style('zdm_admin_styles');
 
         wp_register_style('zdm_admin_styles_ionic', 'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
@@ -607,7 +626,7 @@ class ZDMCore
     public function enqueue_css()
     {
         // Admin CSS
-        wp_register_style('zdm_styles', plugins_url('../public/css/zdm_style.css', __FILE__));
+        wp_register_style('zdm_styles', plugins_url('../public/css/zdm_style.css?v=' . ZDM__VERSION, __FILE__));
         wp_enqueue_style('zdm_styles');
     }
 

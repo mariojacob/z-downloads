@@ -1,4 +1,221 @@
+/********************
+ Button
+********************/
+
 .zdm-btn {
     color: #fff !important;
     background: #555 !important;
+    border: 2px solid #555 !important;
+    cursor: pointer !important;
+    -webkit-transition-duration: 0.4s !important; /* Safari */
+    transition-duration: 0.4s !important;
+}
+.zdm-btn:hover {
+    background: #fff !important;
+    color: #555 !important;
+}
+
+/********************
+ Button Background
+********************/
+
+.zdm-btn-bg-grey3 {
+    background: #333 !important;
+}
+.zdm-btn-bg-grey5 {
+    background: #555 !important;
+}
+.zdm-btn-bg-grey7 {
+    background: #777 !important;
+}
+.zdm-btn-bg-grey9 {
+    background: #999 !important;
+}
+
+/********************
+ Button Color
+********************/
+
+.zdm-btn-color-white {
+    color: #fff !important;
+}
+
+/********************
+ Button Border radius
+********************/
+
+.zdm-btn-radius1 {
+    border-radius: 1px !important;
+}
+
+.zdm-btn-radius2 {
+    border-radius: 2px !important;
+}
+
+.zdm-btn-radius3 {
+    border-radius: 3px !important;
+}
+
+.zdm-btn-radius4 {
+    border-radius: 4px !important;
+}
+
+.zdm-btn-radius5 {
+    border-radius: 5px !important;
+}
+
+.zdm-btn-radius6 {
+    border-radius: 6px !important;
+}
+
+.zdm-btn-radius7 {
+    border-radius: 7px !important;
+}
+
+.zdm-btn-radius8 {
+    border-radius: 8px !important;
+}
+
+.zdm-btn-radius9 {
+    border-radius: 9px !important;
+}
+
+.zdm-btn-radius10 {
+    border-radius: 10px !important;
+}
+
+/********************
+ Button Style
+********************/
+
+/* black */
+.zdm-btn-style-black {
+    color: #fff !important;
+    background: #000 !important;
+    border: 2px solid #000 !important;
+}
+.zdm-btn-style-black:hover {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+/* grey 5 */
+.zdm-btn-style-grey5 {
+    color: #fff !important;
+    background: #555 !important;
+    border: 2px solid #555 !important;
+}
+.zdm-btn-style-grey5:hover {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+/* grey 7 */
+.zdm-btn-style-grey7 {
+    color: #fff !important;
+    background: #777 !important;
+    border: 2px solid #777 !important;
+}
+.zdm-btn-style-grey7:hover {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+/* grey 9 */
+.zdm-btn-style-grey9 {
+    color: #fff !important;
+    background: #999 !important;
+    border: 2px solid #999 !important;
+}
+.zdm-btn-style-grey9:hover {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+/* grey 11 */
+.zdm-btn-style-grey11 {
+    color: #000 !important;
+    background: #bbb !important;
+    border: 2px solid #bbb !important;
+}
+.zdm-btn-style-grey11:hover {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+/* grey 13 */
+.zdm-btn-style-grey13 {
+    color: #000 !important;
+    background: #ddd !important;
+    border: 2px solid #ddd !important;
+}
+.zdm-btn-style-grey13:hover {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+/* purple */
+.zdm-btn-style-purple {
+    color: #fff !important;
+    background: #CB28CC  !important;
+    border: 2px solid #CB28CC  !important;
+}
+.zdm-btn-style-purple:hover {
+    color: #CB28CC  !important;
+    background: #fff !important;
+}
+
+/* blue */
+.zdm-btn-style-blue {
+    color: #fff !important;
+    background: #0C80E8  !important;
+    border: 2px solid #0C80E8  !important;
+}
+.zdm-btn-style-blue:hover {
+    color: #0C80E8  !important;
+    background: #fff !important;
+}
+
+/* green */
+.zdm-btn-style-green {
+    color: #fff !important;
+    background: #59C71D  !important;
+    border: 2px solid #59C71D  !important;
+}
+.zdm-btn-style-green:hover {
+    color: #000  !important;
+    background: #fff !important;
+}
+
+/* yellow */
+.zdm-btn-style-yellow {
+    color: #fff !important;
+    background: #FFCD19  !important;
+    border: 2px solid #FFCD19  !important;
+}
+.zdm-btn-style-yellow:hover {
+    color: #000  !important;
+    background: #fff !important;
+}
+
+/* orange */
+.zdm-btn-style-orange {
+    color: #fff !important;
+    background: #FF7C00  !important;
+    border: 2px solid #FF7C00  !important;
+}
+.zdm-btn-style-orange:hover {
+    color: #FF7C00  !important;
+    background: #fff !important;
+}
+
+/* red */
+.zdm-btn-style-red {
+    color: #fff !important;
+    background: #FA3E3E  !important;
+    border: 2px solid #FA3E3E  !important;
+}
+.zdm-btn-style-red:hover {
+    color: #FA3E3E  !important;
+    background: #fff !important;
 }

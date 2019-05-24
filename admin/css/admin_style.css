@@ -66,6 +66,58 @@
     background: #FF6D63 !important;
 }
 
+/********************
+ Colors
+********************/
+
 .zdm-color-primary {
-    color: #00caff;
+    color: #00caff !important;
+}
+
+.zdm-color-bg-black {
+    background: #000 !important;
+}
+
+.zdm-color-bg-grey5 {
+    background: #555 !important;
+}
+
+.zdm-color-bg-grey7 {
+    background: #777 !important;
+}
+
+.zdm-color-bg-grey9 {
+    background: #999 !important;
+}
+
+.zdm-color-bg-grey11 {
+    background: #bbb !important;
+}
+
+.zdm-color-bg-grey13 {
+    background: #ddd !important;
+}
+
+.zdm-color-bg-purple {
+    background: #CB28CC !important;
+}
+
+.zdm-color-bg-blue {
+    background: #0C80E8 !important;
+}
+
+.zdm-color-bg-green {
+    background: #59C71D !important;
+}
+
+.zdm-color-bg-yellow {
+    background: #FFCD19 !important;
+}
+
+.zdm-color-bg-orange {
+    background: #FF7C00 !important;
+}
+
+.zdm-color-bg-red {
+    background: #FA3E3E !important;
 }

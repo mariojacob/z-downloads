@@ -311,12 +311,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <th scope="row"><?=esc_html__('Shortcode:', 'zdm')?></th>
                                     <td valign="middle">
                                         <?php
-                                        echo '<b>[zdownload zip="' . $zdm_archive_id . '"]</b>';
+                                        echo '<code>[zdownload zip="' . $zdm_archive_id . '"]</code>';
                                         echo '<br>';
-                                        echo '<b>[zdownload_count zip="' . $zdm_archive_id . '"]</b>';
+                                        echo '<code>[zdownload_count zip="' . $zdm_archive_id . '"]</code>';
                                         if ($zdm_licence != 1) { echo ' <div class="zdm-help-text">Gibt die Anzahl an Downloads aus (nur in <a href="' . ZDM__PRO_URL . '" target="_blank">' . ZDM__PRO . '</a> verfügbar)</div>'; }
                                         echo '<br>';
-                                        echo '<b>[zdownload_size zip="' . $zdm_archive_id . '"]</b>';
+                                        echo '<code>[zdownload_size zip="' . $zdm_archive_id . '"]</code>';
                                         if ($zdm_licence != 1) { echo ' <div class="zdm-help-text">Gibt die Dateigröße aus (nur in <a href="' . ZDM__PRO_URL . '" target="_blank">' . ZDM__PRO . '</a> verfügbar)</div>'; }
                                         ?>
                                     </td>
@@ -486,8 +486,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <thead>
                         <tr>
                             <th scope="col" width="30%"><b><?=esc_html__('Name', 'zdm')?></b></th>
-                            <th scope="col" width="15%"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
-                            <th scope="col" width="15%"><b><?=esc_html__('Downloads', 'zdm')?></b></th>
+                            <th scope="col" width="20%"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
+                            <th scope="col" width="10%"><b><?=esc_html__('Downloads', 'zdm')?></b></th>
                             <th scope="col" width="10%"><b><?=esc_html__('Dateien', 'zdm')?></b></th>
                             <th scope="col" width="10%"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col" width="10%"><b><?=esc_html__('Datum', 'zdm')?></b></th>
@@ -519,7 +519,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     echo '<b><a href="?page=' . ZDM__SLUG . '-ziparchive&id=' . $zdm_db_archives[$i]->id . '">' . $zdm_db_archives[$i]->name . '</a></b>';
                                 echo '</td>';
                                 echo '<td>';
-                                    echo '<b>[zdownload zip="' . $zdm_db_archives[$i]->id . '"]</b>';
+                                    echo '<code>[zdownload zip="' . $zdm_db_archives[$i]->id . '"]</code>';
                                 echo '</td>';
                                 echo '<td>';
                                     echo ZDMCore::number_format($zdm_db_archives[$i]->count);

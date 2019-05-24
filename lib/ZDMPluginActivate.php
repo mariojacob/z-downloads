@@ -18,16 +18,18 @@ class ZDMPluginActivate
 
         // Grundeinstellungen festlegen
         $options = array(
-            'version'               => ZDM__VERSION,
-            'licence-key'           => '',
-            'licence-email'         => '',
-            'licence-purchase'      => '',
-            'licence-product-name'  => '',
-            'licence-time'          => 0,
-            'db-version'            => 1,
-            'download-btn-text'     => 'Download',
-            'download-btn-css'      => '',
-            'secure-ip'             => 'on',
+            'version'                       => ZDM__VERSION,
+            'licence-key'                   => '',
+            'licence-email'                 => '',
+            'licence-purchase'              => '',
+            'licence-product-name'          => '',
+            'licence-time'                  => 0,
+            'db-version'                    => 1,
+            'download-btn-text'             => 'Download',
+            'download-btn-style'            => 'black',
+            'download-btn-border-radius'    => 'none',
+            'download-btn-css'              => '',
+            'secure-ip'                     => 'on',
         );
 
         if (get_option('zdm_options')) {

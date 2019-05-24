@@ -259,13 +259,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <th scope="row"><?=esc_html__('Shortcodes:', 'zdm')?></th>
                                     <td valign="middle">
                                         <?php
-                                        echo '<b>[zdownload file="' . $zdm_db_file->id . '"]</b>';
+                                        echo '<code>[zdownload file="' . $zdm_db_file->id . '"]</code>';
                                         echo '<br>';
-                                        echo '<b>[zdownload_count file="' . $zdm_db_file->id . '"]</b>';
-                                        if ($zdm_licence != 1) { echo ' <div class="zdm-help-text">' . esc_html__('Gibt die Anzahl an Downloads aus (nur in', 'zdm') .  '<a href="' . ZDM__PRO_URL . '" target="_blank">' . ZDM__PRO . '</a> ' . esc_html__('verfügbar', 'zdm') . ')</div>'; }
+                                        echo '<code>[zdownload_count file="' . $zdm_db_file->id . '"]</code>';
+                                        if ($zdm_licence != 1) { echo ' <div class="zdm-help-text">' . esc_html__('Gibt die Anzahl an Downloads aus (nur in', 'zdm') .  ' <a href="' . ZDM__PRO_URL . '" target="_blank">' . ZDM__PRO . '</a> ' . esc_html__('verfügbar', 'zdm') . ')</div>'; }
                                         echo '<br>';
-                                        echo '<b>[zdownload_size file="' . $zdm_db_file->id . '"]</b>';
-                                        if ($zdm_licence != 1) { echo ' <div class="zdm-help-text">' . esc_html__('Gibt die Dateigröße aus (nur in', 'zdm') .  '<a href="' . ZDM__PRO_URL . '" target="_blank">' . ZDM__PRO . '</a> ' . esc_html__('verfügbar', 'zdm') . ')</div>'; }
+                                        echo '<code>[zdownload_size file="' . $zdm_db_file->id . '"]</code>';
+                                        if ($zdm_licence != 1) { echo ' <div class="zdm-help-text">' . esc_html__('Gibt die Dateigröße aus (nur in', 'zdm') .  ' <a href="' . ZDM__PRO_URL . '" target="_blank">' . ZDM__PRO . '</a> ' . esc_html__('verfügbar', 'zdm') . ')</div>'; }
                                         ?>
                                     </td>
                                 </tr>
@@ -302,7 +302,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <tr valign="top">
                                     <th scope="row"><?=esc_html__('Datei:', 'zdm')?></th>
                                     <td valign="middle">
-                                        <input type="text" name="name" size="50%" value="<?=$zdm_db_file->file_name?>" placeholder="" disabled>
+                                        <input type="text" size="50%" value="<?=$zdm_db_file->file_name?>" placeholder="" disabled>
                                     </td>
                                 </tr>
                                 <tr valign="top">
@@ -410,7 +410,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     echo '<b><a href="?page=' . ZDM__SLUG . '-files&id=' . $zdm_db_files[$i]->id . '">' . $zdm_db_files[$i]->name . '</a></b>';
                                 echo '</td>';
                                 echo '<td>';
-                                    echo '<b>[zdownload file="' . $zdm_db_files[$i]->id . '"]</b>';
+                                    echo '<code>[zdownload file="' . $zdm_db_files[$i]->id . '"]</code>';
                                 echo '</td>';
                                 echo '<td>';
                                     echo ZDMCore::number_format($zdm_db_files[$i]->count);

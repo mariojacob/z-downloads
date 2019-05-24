@@ -1,4 +1,4 @@
-﻿=== Z-Downloads ===
+=== Z-Downloads ===
 
 Contributors: urbanbase
 Tags: Download Manager, Downloads, ZIP Archiv, workflow, shortcodes, statistik, download button, md5, sha1
