@@ -7,7 +7,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
 Tested up to: 5.1
-Stable tag: 0.2.0
+Stable tag: 0.2.1
 
 Download Verwaltung und automatische ZIP-Archiv Erstellung
 
@@ -25,33 +25,33 @@ Ein und dieselbe Datei befindet sich in mehreren Downloads, wie zum Beispiel Pro
 
 = Vorteile =
 
-* Zeitersparnis
-* Arbeitserleichterung
-* Bessere Übersicht
+- Zeitersparnis
+- Arbeitserleichterung
+- Bessere Übersicht
 
 = Top Features =
 
-* Multilingual - Deutsch und Englisch.
-* DSGVO konform - Die IP-Adresse wird standardmäßig anonymisiert.
-* Download Statistik
-* Shortcodes
-* Informationen ausgeben
-* Benutzerdefinierte Download-Buttons
-* Hash anzeigen - Zeige im Frontend den MD5 und SHA1 Hash an.
-* Sichere Downloads
-* Zentrale Dateiverwaltung
-* Automatische ZIP-Archiv Erstellung
-* PHP 7 optimiert
-* Vorbereitet für Internationalisierung
+- Multilingual - Deutsch und Englisch.
+- DSGVO konform - Die IP-Adresse wird standardmäßig anonymisiert.
+- Download Statistik
+- Shortcodes
+- Informationen ausgeben
+- Benutzerdefinierte Download-Buttons
+- Hash anzeigen - Zeige im Frontend den MD5 und SHA1 Hash an.
+- Sichere Downloads
+- Zentrale Dateiverwaltung
+- Automatische ZIP-Archiv Erstellung
+- PHP 7 optimiert
+- Vorbereitet für Internationalisierung
 
 = Anforderungen =
 
-* WordPress 4.9+ -- latest version 5.1.x
+- WordPress 4.9+ -- latest version 5.1.x
 
 = Übersetzung =
 
-* Deutsch - de_DE = in /language inkludiert
-* Englisch (US) - en_US = in /language inkludiert
+- Deutsch - de_DE = in /language inkludiert
+- Englisch (US) - en_US = in /language inkludiert
 
 == Installation ==
 
@@ -95,14 +95,20 @@ Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können ein
 
 == Changelog ==
 
+= 0.2.1 =
+- Update: Sicherheitsupdates
+
 = 0.2.0 =
-* New: Mehr Button Farben
-* Update: UI verbesserungen
+- New: Mehr Button Farben
+- Update: UI verbesserungen
 
 = 0.1.0 =
-* Initial Public Release
+- Initial Public Release
 
 == Upgrade Notice ==
 
+= 0.2.1 =
+- Sicherheitsupdate
+
 = 0.2.0 =
-* Mehr Button Farben
+- Mehr Button Farben

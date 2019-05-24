@@ -62,7 +62,7 @@ class ZDMCore
 
             $zdownload_url = base64_decode(filter_input(INPUT_GET, 'zdownload', FILTER_SANITIZE_URL));
 
-            if ($zdownload_url != '') {
+            if ($zdownload_url != '' && is_numeric($zdownload_url)) {
 
                 if ($this->check_if_archive_exists($zdownload_url) === true) {
 
@@ -106,7 +106,7 @@ class ZDMCore
 
             $zdownload_url = base64_decode(filter_input(INPUT_GET, 'zdownload_f', FILTER_SANITIZE_URL));
 
-            if ($zdownload_url != '') {
+            if ($zdownload_url != '' && is_numeric($zdownload_url)) {
 
                 if ($this->check_if_file_exists($zdownload_url) === true) {
 
@@ -613,7 +613,7 @@ class ZDMCore
     public function enqueue_admin_css()
     {
         // Admin CSS
-        wp_register_style('zdm_admin_styles', plugins_url('../admin/css/admin_style.css?v=' . ZDM__VERSION, __FILE__));
+        wp_register_style('zdm_admin_styles', plugins_url('../admin/css/admin_style.css?v=' . ZDM__VERSION . time(), __FILE__));
         wp_enqueue_style('zdm_admin_styles');
 
         wp_register_style('zdm_admin_styles_ionic', 'https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css');
