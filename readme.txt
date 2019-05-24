@@ -6,8 +6,8 @@ License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
-Tested up to: 5.1
-Stable tag: 0.2.1
+Tested up to: 5.2
+Stable tag: 0.2.2
 
 Download Verwaltung und automatische ZIP-Archiv Erstellung
 
@@ -46,7 +46,7 @@ Ein und dieselbe Datei befindet sich in mehreren Downloads, wie zum Beispiel Pro
 
 = Anforderungen =
 
-- WordPress 4.9+ -- latest version 5.1.x
+- WordPress 4.9+ -- latest version 5.2.x
 
 = Übersetzung =
 
@@ -95,6 +95,9 @@ Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können ein
 
 == Changelog ==
 
+= 0.2.2 =
+- Update: Kompatibilität mit WordPress 5.2.x
+
 = 0.2.1 =
 - Update: Sicherheitsupdates
 
@@ -106,6 +109,9 @@ Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können ein
 - Initial Public Release
 
 == Upgrade Notice ==
+
+= 0.2.2 =
+- Kompatibilität mit WordPress 5.2.x
 
 = 0.2.1 =
 - Sicherheitsupdate
