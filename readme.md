@@ -7,7 +7,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
 Tested up to: 5.2
-Stable tag: 0.2.2
+Stable tag: 0.2.3
 
 Download Verwaltung und automatische ZIP-Archiv Erstellung
 
@@ -94,6 +94,9 @@ Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können ein
 06. Archiv Übersicht in einer Tabelle
 
 == Changelog ==
+
+= 0.2.3 =
+- Fix: Bug-Behebung der einen syntax error verursachen kann
 
 = 0.2.2 =
 - Update: Kompatibilität mit WordPress 5.2.x

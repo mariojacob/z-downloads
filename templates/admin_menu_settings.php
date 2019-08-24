@@ -244,7 +244,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <tr valign="top">
                                 <th scope="row"><?=esc_html__('IP-Adresse zensieren:', 'zdm')?></th>
                                 <td valign="middle">
-                                    <input type="checkbox" name="secure-ip" <?php if($zdm_options['secure-ip'] == 'on'){ echo 'checked="checked"'; }?>>
+                                    <input type="checkbox" name="secure-ip" <?php if($zdm_options['secure-ip'] == 'on'){ echo 'checked="checked"'; } ?> >
                                     <?=esc_html__('Zensiert die IP-Adresse beim Download.', 'zdm')?>
                                 </td>
                             </tr>
