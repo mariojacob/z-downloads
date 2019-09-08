@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-03-07 16:34+0100\n"
-"PO-Revision-Date: 2019-03-07 16:34+0100\n"
+"POT-Creation-Date: 2019-09-08 13:05+0200\n"
+"PO-Revision-Date: 2019-09-08 13:08+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;esc_html__\n"
@@ -17,14 +17,14 @@ msgstr ""
 
 #: lib/ZDMCore.php:527 lib/ZDMCore.php:528
 #: templates/admin_menu_dashboard.php:92 templates/admin_menu_dashboard.php:193
-#: templates/admin_menu_files.php:387 templates/admin_menu_ziparchive.php:491
+#: templates/admin_menu_files.php:407 templates/admin_menu_ziparchive.php:491
 #: templates/admin_menu_ziparchive.php:556
 msgid "Dateien"
 msgstr "Files"
 
 #: lib/ZDMCore.php:534 lib/ZDMCore.php:535
 #: templates/admin_menu_add_file.php:131 templates/admin_menu_add_file.php:182
-#: templates/admin_menu_add_file.php:196 templates/admin_menu_files.php:387
+#: templates/admin_menu_add_file.php:196 templates/admin_menu_files.php:407
 msgid "Datei hinzufügen"
 msgstr "Add file"
 
@@ -44,95 +44,95 @@ msgstr "Create archive"
 msgid "Einstellungen"
 msgstr "Settings"
 
-#: lib/constants.php:52
+#: lib/constants.php:61
 msgid "Schwarz"
 msgstr "Black"
 
-#: lib/constants.php:53
+#: lib/constants.php:62
 msgid "Grau 5"
 msgstr "Grey 5"
 
-#: lib/constants.php:54
+#: lib/constants.php:63
 msgid "Grau 7"
 msgstr "Grey 7"
 
-#: lib/constants.php:55
+#: lib/constants.php:64
 msgid "Grau 9"
 msgstr "Grey 9"
 
-#: lib/constants.php:56
+#: lib/constants.php:65
 msgid "Grau 11"
 msgstr "Grey 11"
 
-#: lib/constants.php:57
+#: lib/constants.php:66
 msgid "Grau 13"
 msgstr "Grey 13"
 
-#: lib/constants.php:58
+#: lib/constants.php:67
 msgid "Lila"
 msgstr "Purple"
 
-#: lib/constants.php:59
+#: lib/constants.php:68
 msgid "Blau"
 msgstr "Blue"
 
-#: lib/constants.php:60
+#: lib/constants.php:69
 msgid "Grün"
 msgstr "Green"
 
-#: lib/constants.php:61
+#: lib/constants.php:70
 msgid "Gelb"
 msgstr "Yellow"
 
-#: lib/constants.php:62
+#: lib/constants.php:71
 msgid "Orange"
 msgstr "Orange"
 
-#: lib/constants.php:63
+#: lib/constants.php:72
 msgid "Rot"
 msgstr "Red"
 
-#: lib/constants.php:81
+#: lib/constants.php:90
 msgid "keine"
 msgstr "None"
 
-#: lib/constants.php:82
+#: lib/constants.php:91
 msgid "1 Pixel"
 msgstr "1 pixel"
 
-#: lib/constants.php:83
+#: lib/constants.php:92
 msgid "2 Pixel"
 msgstr "2 pixel"
 
-#: lib/constants.php:84
+#: lib/constants.php:93
 msgid "3 Pixel"
 msgstr "3 pixel"
 
-#: lib/constants.php:85
+#: lib/constants.php:94
 msgid "4 Pixel"
 msgstr "4 pixel"
 
-#: lib/constants.php:86
+#: lib/constants.php:95
 msgid "5 Pixel"
 msgstr "5 pixel"
 
-#: lib/constants.php:87
+#: lib/constants.php:96
 msgid "6 Pixel"
 msgstr "6 pixel"
 
-#: lib/constants.php:88
+#: lib/constants.php:97
 msgid "7 Pixel"
 msgstr "7 pixel"
 
-#: lib/constants.php:89
+#: lib/constants.php:98
 msgid "8 Pixel"
 msgstr "8 pixel"
 
-#: lib/constants.php:90
+#: lib/constants.php:99
 msgid "9 Pixel"
 msgstr "9 pixel"
 
-#: lib/constants.php:91
+#: lib/constants.php:100
 msgid "10 Pixel"
 msgstr "10 pixel"
 
@@ -144,8 +144,8 @@ msgstr "Create new ZIP archive"
 msgid "Archiv erfolgreich erstellt!"
 msgstr "Archive successfully created!"
 
-#: templates/admin_menu_add_archive.php:151 templates/admin_menu_files.php:396
-#: templates/admin_menu_files.php:432 templates/admin_menu_ziparchive.php:488
+#: templates/admin_menu_add_archive.php:151 templates/admin_menu_files.php:416
+#: templates/admin_menu_files.php:452 templates/admin_menu_ziparchive.php:488
 #: templates/admin_menu_ziparchive.php:553
 msgid "Name"
 msgstr "Name"
@@ -182,7 +182,7 @@ msgstr "or"
 msgid "mein_neuer_download"
 msgstr "mein_neuer_download"
 
-#: templates/admin_menu_add_archive.php:166 templates/admin_menu_files.php:315
+#: templates/admin_menu_add_archive.php:166 templates/admin_menu_files.php:335
 #: templates/admin_menu_settings.php:179
 #: templates/admin_menu_ziparchive.php:337
 msgid "Download-Button Text:"
@@ -228,12 +228,12 @@ msgstr "activate"
 msgid "Beschreibung:"
 msgstr "Description:"
 
-#: templates/admin_menu_add_archive.php:186 templates/admin_menu_files.php:326
+#: templates/admin_menu_add_archive.php:186 templates/admin_menu_files.php:346
 #: templates/admin_menu_ziparchive.php:354
 msgid "Count:"
 msgstr "Count:"
 
-#: templates/admin_menu_add_archive.php:189 templates/admin_menu_files.php:329
+#: templates/admin_menu_add_archive.php:189 templates/admin_menu_files.php:349
 #: templates/admin_menu_ziparchive.php:357
 msgid "Anzahl an bisherigen Downloads."
 msgstr "Number of previous downloads."
@@ -254,7 +254,7 @@ msgid "Mehr erfahren"
 msgstr "More info"
 
 #: templates/admin_menu_add_archive.php:228
-#: templates/admin_menu_settings.php:285
+#: templates/admin_menu_settings.php:288
 msgid "Speichern"
 msgstr "Save"
 
@@ -279,7 +279,7 @@ msgstr "Status:"
 msgid "erfolgreich hochgeladen."
 msgstr "successfully uploaded."
 
-#: templates/admin_menu_add_file.php:156 templates/admin_menu_files.php:309
+#: templates/admin_menu_add_file.php:156 templates/admin_menu_files.php:329
 #: templates/admin_menu_ziparchive.php:325
 msgid "Name:"
 msgstr "Name:"
@@ -289,12 +289,12 @@ msgid ""
 "Wenn kein Name eingegeben wird, wird automatisch der Dateiname verwendet."
 msgstr "If no name is entered, the file name will be used automatically."
 
-#: templates/admin_menu_add_file.php:170 templates/admin_menu_files.php:368
+#: templates/admin_menu_add_file.php:170 templates/admin_menu_files.php:388
 #: templates/admin_menu_ziparchive.php:460
 msgid "Aktualisieren"
 msgstr "Update"
 
-#: templates/admin_menu_add_file.php:171 templates/admin_menu_files.php:369
+#: templates/admin_menu_add_file.php:171 templates/admin_menu_files.php:389
 #: templates/admin_menu_ziparchive.php:461
 msgid "Löschen"
 msgstr "Delete"
@@ -342,7 +342,7 @@ msgid "Letzte Downloads"
 msgstr "Last downloads"
 
 #: templates/admin_menu_dashboard.php:52 templates/admin_menu_dashboard.php:93
-#: templates/admin_menu_files.php:400 templates/admin_menu_files.php:436
+#: templates/admin_menu_files.php:420 templates/admin_menu_files.php:456
 #: templates/admin_menu_ziparchive.php:493
 #: templates/admin_menu_ziparchive.php:558
 msgid "Datum"
@@ -361,8 +361,8 @@ msgid "Beliebte Downloads"
 msgstr "Popular Downloads"
 
 #: templates/admin_menu_dashboard.php:153
-#: templates/admin_menu_dashboard.php:194 templates/admin_menu_files.php:398
-#: templates/admin_menu_files.php:434 templates/admin_menu_ziparchive.php:490
+#: templates/admin_menu_dashboard.php:194 templates/admin_menu_files.php:418
+#: templates/admin_menu_files.php:454 templates/admin_menu_ziparchive.php:490
 #: templates/admin_menu_ziparchive.php:555
 msgid "Downloads"
 msgstr "Downloads"
@@ -415,7 +415,7 @@ msgstr " you can find on the website:"
 msgid " Webseite"
 msgstr " website"
 
-#: templates/admin_menu_dashboard.php:295 templates/admin_menu_files.php:446
+#: templates/admin_menu_dashboard.php:295 templates/admin_menu_files.php:466
 msgid "Nach oben"
 msgstr "Up"
 
@@ -459,41 +459,46 @@ msgstr "available"
 msgid "Gibt die Dateigröße aus (nur in"
 msgstr "Returns the file size (only in"
 
-#: templates/admin_menu_files.php:278 templates/admin_menu_files.php:292
+#: templates/admin_menu_files.php:277 templates/admin_menu_files.php:290
+#: templates/admin_menu_files.php:303
 msgid "Vorschau:"
 msgstr "Preview:"
 
-#: templates/admin_menu_files.php:303
+#: templates/admin_menu_files.php:314
+msgid "Datei Download:"
+msgstr "Download file:"
+
+#: templates/admin_menu_files.php:323
 msgid "Datei:"
 msgstr "File:"
 
-#: templates/admin_menu_files.php:333 templates/admin_menu_ziparchive.php:361
+#: templates/admin_menu_files.php:353 templates/admin_menu_ziparchive.php:361
 msgid "Dateigröße:"
 msgstr "File size:"
 
-#: templates/admin_menu_files.php:342
+#: templates/admin_menu_files.php:362
 msgid "Hash MD5:"
 msgstr "Hash MD5:"
 
-#: templates/admin_menu_files.php:348
+#: templates/admin_menu_files.php:368
 msgid "Hash SHA1:"
 msgstr "Hash SHA1:"
 
-#: templates/admin_menu_files.php:358
+#: templates/admin_menu_files.php:378
 msgid "Weitere Infos nur für"
 msgstr "More info only for"
 
-#: templates/admin_menu_files.php:358
+#: templates/admin_menu_files.php:378
 msgid ": Hash MD5, Hash SHA1"
 msgstr ": Hash MD5, Hash SHA1"
 
-#: templates/admin_menu_files.php:397 templates/admin_menu_files.php:433
+#: templates/admin_menu_files.php:417 templates/admin_menu_files.php:453
 #: templates/admin_menu_ziparchive.php:489
 #: templates/admin_menu_ziparchive.php:554
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: templates/admin_menu_files.php:399 templates/admin_menu_files.php:435
+#: templates/admin_menu_files.php:419 templates/admin_menu_files.php:455
 #: templates/admin_menu_ziparchive.php:492
 #: templates/admin_menu_ziparchive.php:557
 msgid "Dateigröße"
@@ -571,27 +576,38 @@ msgid "Zensiert die IP-Adresse beim Download."
 msgstr "Censored the IP address during the download."
 
 #: templates/admin_menu_settings.php:254
-msgid "Vor dem deinstallieren des Plugins"
-msgstr "Before uninstalling the plugin"
+msgid "Pfad von Z-Downloads-Upload-Ordner für Dateien, ZIP-Archive und Cache:"
+msgstr "Path of Z-Downloads upload folder for Files, ZIP archives, and cache:"
 
-#: templates/admin_menu_settings.php:255
-msgid "Du kannst alle Dateien und Archive die du erstellt hast löschen."
-msgstr "You can delete all files and archives you have created."
+#: templates/admin_menu_settings.php:257
+msgid "Achtung vor dem deinstallieren des Plugins"
+msgstr "Attention before uninstalling the plugin"
 
-#: templates/admin_menu_settings.php:256
+#: templates/admin_menu_settings.php:258
+msgid ""
+"Wenn du das Z-Downloads-Plugin deinstallierst bleiben alle Dateien und ZIP-"
+"Archive im oben genannten Pfad bestehen, wenn du alle Dateien und ZIP-"
+"Archive die du erstellt hast löschen willst, dann klicke unten auf \"LÖSCHEN!"
+"\""
+msgstr ""
+"If you uninstall the Z-Downloads plugin all files and ZIP-archives remain in "
+"the path mentioned above, if you want to delete all files and ZIP archives "
+"that you have created, then click on \"DELETE!\" Below."
+
+#: templates/admin_menu_settings.php:259
 msgid ""
 "Dieser Vorgang ist unwiederuflich und kann nicht rückgängig gemacht werden."
 msgstr "This process is irreplaceable and can not be undone."
 
-#: templates/admin_menu_settings.php:259
+#: templates/admin_menu_settings.php:262
 msgid "LÖSCHEN!"
 msgstr "DELETE!"
 
-#: templates/admin_menu_settings.php:269
+#: templates/admin_menu_settings.php:272
 msgid "Info"
 msgstr "Info"
 
-#: templates/admin_menu_settings.php:274
+#: templates/admin_menu_settings.php:277
 msgid "Version:"
 msgstr "Version:"
 
@@ -651,6 +667,9 @@ msgstr "ZIP archives"
 #: templates/admin_menu_ziparchive.php:559
 msgid "Cache"
 msgstr "Cache"
+
+#~ msgid "Du kannst alle Dateien und Archive die du erstellt hast löschen."
+#~ msgstr "You can delete all files and archives you have created."
 
 #~ msgid ""
 #~ "Beispiel:</b> <code>mein-neuer-download</code> oder "

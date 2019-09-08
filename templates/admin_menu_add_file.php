@@ -20,7 +20,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         
         $zdm_file = array();
         $zdm_file['name'] = sanitize_file_name($_FILES['file']['name']);
-        $zdm_file['type'] = sanitize_file_name($_FILES['file']['type']);
+        $zdm_file['type'] = $_FILES['file']['type'];
         $zdm_file['size'] = ZDMCore::file_size_convert(sanitize_file_name($_FILES['file']['size']));
 
         // Ordnername erstellen

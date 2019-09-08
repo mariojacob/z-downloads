@@ -32,6 +32,15 @@ define('ZDM__MIME_TYPES_VIDEO', [
     'video/ogg',
     'video/webm'
 ]);
+define('ZDM__MIME_TYPES_IMAGE', [
+    'image/bmp',
+    'image/x-bmp',
+    'image/x-ms-bmp',
+    'image/gif',
+    'image/jpeg',
+    'image/png',
+    'image/tiff'
+]);
 
 // Download-Button Style
 define('ZDM__DOWNLOAD_BTN_STYLE_VAL', [

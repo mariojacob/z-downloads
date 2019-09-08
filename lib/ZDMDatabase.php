@@ -6,7 +6,7 @@ if( !defined( 'ABSPATH' ) ) {
 }
 
 /**
- *
+ * Datenbank Klasse
  */
 class ZDMDatabase
 {

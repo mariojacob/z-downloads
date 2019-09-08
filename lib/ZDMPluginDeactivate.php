@@ -6,7 +6,7 @@ if( !defined( 'ABSPATH' ) ) {
 }
 
 /**
- *
+ * Plugin deaktivierung
  */
 class ZDMPluginDeactivate
 {

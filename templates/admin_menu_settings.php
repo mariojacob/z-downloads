@@ -251,8 +251,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <tr valign="top" class="zdm-table-tr-warning">
                                 <th scope="row"></th>
                                 <td valign="middle">
-                                    <h3><?=esc_html__('Vor dem deinstallieren des Plugins', 'zdm')?></h3>
-                                    <p><?=esc_html__('Du kannst alle Dateien und Archive die du erstellt hast löschen.', 'zdm')?></p>
+                                    <p><?=esc_html__('Pfad von Z-Downloads-Upload-Ordner für Dateien, ZIP-Archive und Cache:', 'zdm')?><br>
+                                    <b><pre><?=ZDM__DOWNLOADS_PATH . '/'?></pre></b></p>
+                                    <hr>
+                                    <h3><?=esc_html__('Achtung vor dem deinstallieren des Plugins', 'zdm')?></h3>
+                                    <p><?=esc_html__('Wenn du das Z-Downloads-Plugin deinstallierst bleiben alle Dateien und ZIP-Archive im oben genannten Pfad bestehen, wenn du alle Dateien und ZIP-Archive die du erstellt hast löschen willst, dann klicke unten auf "LÖSCHEN!"', 'zdm')?></p>
                                     <p><?=esc_html__('Dieser Vorgang ist unwiederuflich und kann nicht rückgängig gemacht werden.', 'zdm')?></p>
 
                                     <br>

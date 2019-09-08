@@ -1,13 +1,13 @@
 === Z-Downloads ===
 
 Contributors: urbanbase
-Tags: Download Manager, Downloads, ZIP Archiv, workflow, shortcodes, statistik, download button, md5, sha1
+Tags: download manager, downloads, zip, zip archiv, workflow, shortcodes, statistik, download button, button, md5, sha1
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
 Tested up to: 5.2
-Stable tag: 0.2.3
+Stable tag: 0.3.0
 
 Download Verwaltung und automatische ZIP-Archiv Erstellung
 
@@ -50,8 +50,8 @@ Ein und dieselbe Datei befindet sich in mehreren Downloads, wie zum Beispiel Pro
 
 = Übersetzung =
 
-- Deutsch - de_DE = in /language inkludiert
-- Englisch (US) - en_US = in /language inkludiert
+- Deutsch - de_DE, de_AT, de_CH = in /language inkludiert
+- Englisch - en_US, en_BG, en_CA = in /language inkludiert
 
 == Installation ==
 
@@ -81,43 +81,38 @@ Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können ein
 
 == Screenshots ==
 
-01. Übersicht aller hochgeladenen Dateien
+1.  Übersicht aller hochgeladenen Dateien
 
-02. Detailansicht ZIP-Archiv
+2.  Detailansicht ZIP-Archiv
 
-03. Detailansicht Datei mit Audioplayer
+3.  Detailansicht Datei mit Audioplayer
 
-04. Dashboard mit Download Statistik
+4.  Dashboard mit Download Statistik
 
-05. Neues Archiv erstellen
+5.  Neues Archiv erstellen
 
-06. Archiv Übersicht in einer Tabelle
+6.  Archiv Übersicht in einer Tabelle
 
 == Changelog ==
+
+= 0.3.0 =
+- New: Vorschau für Bilder
+- New: Anzeige von Upload-Ordner-Pfad für Dateien, ZIP-Archive und Cache in "Einstellungen"
+- New: Sprachdateien (de_AT, de_CH, en_GB, en_CA)
+- Update: Datei Download im Backend
+- Fix: File MIME-Types aktualisiert
 
 = 0.2.3 =
 - Fix: Bug-Behebung der einen syntax error verursachen kann
 
-= 0.2.2 =
-- Update: Kompatibilität mit WordPress 5.2.x
-
-= 0.2.1 =
-- Update: Sicherheitsupdates
-
-= 0.2.0 =
-- New: Mehr Button Farben
-- Update: UI verbesserungen
-
-= 0.1.0 =
-- Initial Public Release
+= Frühere Versionen =
+- Den Änderungsverlauf von früheren Versionen findest du hier: [Z-Downloads Release Notes](https://code.urban-base.net/z-downloads/release-notes/?utm_source=wporg)
 
 == Upgrade Notice ==
 
-= 0.2.2 =
-- Kompatibilität mit WordPress 5.2.x
-
-= 0.2.1 =
-- Sicherheitsupdate
-
-= 0.2.0 =
-- Mehr Button Farben
+= 0.3.0 =
+- New: Vorschau für Bilder
+- New: Anzeige von Upload-Ordner-Pfad für Dateien, ZIP-Archive und Cache in "Einstellungen"
+- New: Sprachdateien (de_AT, de_CH, en_GB, en_CA)
+- Update: Datei Download im Backend
+- Fix: File MIME-Types aktualisiert
