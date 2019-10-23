@@ -134,10 +134,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <h1 class="wp-heading-inline"><?=esc_html__('Neues ZIP-Archiv erstellen', 'zdm')?></h1>
         <hr class="wp-header-end">
 
+        <p><a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-ziparchive"><?=esc_html__('zurück zur Übersicht', 'zdm')?></a></p>
+
     <?php if ($zdm_status === 1) { ?>
 
         <div class="notice notice-success">
-        <p><?=esc_html__('Archiv erfolgreich erstellt!', 'zdm')?></p>
+        <p><i class="ion-checkmark-circled zdm-color-green"></i> <?=esc_html__('Archiv erfolgreich erstellt!', 'zdm')?></p>
+        <p><a href="admin.php?page=<?=ZDM__SLUG?>-add-archive" class="button-primary"><?=esc_html__('Neues Archiv erstellen', 'zdm')?></a></p>
         </div>
 
     <?php } else { ?>
@@ -165,15 +168,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <tr valign="top">
                                 <th scope="row"><?=esc_html__('Download-Button Text:', 'zdm')?></th>
                                 <td valign="middle">
-                                <?php if ($zdm_licence === 1) { ?>
                                     <input type="text" name="button-text" size="50%" value="<?=esc_attr($zdm_options['download-btn-text'])?>" spellcheck="true" autocomplete="off" placeholder="">
                                     <div class="zdm-help-text"><?=esc_html__('Standardtext für den Download-Button ist "', 'zdm')?><?=esc_attr($zdm_options['download-btn-text'])?>", <?=esc_html__('dieser Text kann in den', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-settings"><?=esc_html__('Einstellungen', 'zdm')?></a> <?=esc_html__('geändert werden.', 'zdm')?></div>
-                                <?php } else { ?>
-                                    <input type="text" name="button-text-prev" size="50%" value="<?=esc_attr($zdm_options['download-btn-text'])?>" placeholder="" disabled>
-                                    <input type="hidden" name="button-text" value="<?=esc_attr($zdm_options['download-btn-text'])?>">
-                                    <div class="zdm-help-text"><?=esc_html__('Dieser Text wird nur für diesen Download angezeigt, für alle anderen wird der Standardtext verwendet.', 'zdm')?></div>
-                                    <div class="zdm-help-text"><?=esc_html__('Standardtext für den Download-Button ist', 'zdm')?> "<?=esc_attr($zdm_options['download-btn-text'])?>", <?=esc_html__('für einen Benutzerdefinierten Text', 'zdm')?> <a href="<?=ZDM__PRO_URL?>" target="_blank"><?=esc_html__('aktiviere', 'zdm')?> <?=ZDM__PRO?>.</a></div>
-                                    <?php } ?>
                                 </td>
                             </tr>
                             <tr valign="top">
@@ -186,7 +182,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <th scope="row"><?=esc_html__('Count:', 'zdm')?></th>
                                 <td valign="middle">
                                     <input type="text" name="count" size="10%" value="0" spellcheck="true" autocomplete="off" placeholder=""> 
-                                    <?=esc_html__('Anzahl an bisherigen Downloads.', 'zdm')?>
+                                    <div class="zdm-help-text"><?=esc_html__('Anzahl an bisherigen Downloads.', 'zdm')?></div>
                                 </td>
                             </tr>
                             <tr valign="top">
@@ -208,21 +204,18 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <?php }
                                     } else {
                                         ?>
-                                        <p><?=esc_html__('Für mehr Datei-Verknüpfungen aktiviere', 'zdm')?> <?=ZDM__PRO?>.</p>
-                                        <br>
-                                        <a href="<?=ZDM__PRO_URL?>" target="_blank" class="button button-secondary"><?=esc_html__('Mehr erfahren', 'zdm')?></a>
+                                        <p><?=esc_html__('Für mehr Datei-Verknüpfungen aktiviere', 'zdm')?> <a href="<?=ZDM__PRO_URL?>" target="_blank" title="code.urban-base.net"><?=ZDM__PRO?></a>.</p>
                                         <?php
                                     } ?>
                                     </div>
                                 </td>
                             </tr>
-                            <tr valign="top">
-                                <th scope="row" colspan="2"><hr></th>
-                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+
+            <?php require_once (plugin_dir_path(__FILE__) . '../inc/postbox_info_archive.php'); ?>
 
             <input type="hidden" name="nonce" value="<?=wp_create_nonce('daten-speichern')?>">
             <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Speichern', 'zdm')?>">

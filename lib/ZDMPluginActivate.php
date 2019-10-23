@@ -27,6 +27,7 @@ class ZDMPluginActivate
             'db-version'                    => 1,
             'download-btn-text'             => 'Download',
             'download-btn-style'            => 'black',
+            'download-btn-outline'          => '',
             'download-btn-border-radius'    => 'none',
             'download-btn-css'              => '',
             'secure-ip'                     => 'on',

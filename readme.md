@@ -1,13 +1,13 @@
 === Z-Downloads ===
 
 Contributors: urbanbase
-Tags: download manager, downloads, zip, zip archiv, workflow, shortcodes, statistik, download button, button, md5, sha1
+Tags: download manager, downloads, zip, zip archiv, workflow, shortcodes, statistik, download count, download button, button, md5, sha1
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
 Tested up to: 5.2
-Stable tag: 0.3.0
+Stable tag: 1.0.0
 
 Download Verwaltung und automatische ZIP-Archiv Erstellung
 
@@ -65,7 +65,7 @@ Suche in deinem WordPress Plugin-Verzeichnis nach "Z-Downloads" und installiere 
 
 Ja! Die Grundlegenden Funktionen sind kostenlos.
 
-Für erweiterte Funktionen gibt es [Z-Downloads Premium](https://code.urban-base.net/z-downloads?utm_source=wporg), das beinhaltet zum Beispiel: Hashwerte, Download-Anzahl, Dateigröße im Frontend anzeigen oder benutzerdefinierte Download-Button-Texte.
+Für erweiterte Funktionen gibt es [Z-Downloads Premium](https://code.urban-base.net/z-downloads?utm_source=wporg), das beinhaltet zum Beispiel die Ausgabe von MD5 und SHA1 Hashwerten oder unbegrenzte Dateien je ZIP-Archiv.
 
 = Für wen ist dieses Plugin? =
 
@@ -95,15 +95,29 @@ Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können ein
 
 == Changelog ==
 
+= 1.0.0 =
+- New: Mehr Button-Styles: alle bisherigen Buttons können jetzt auch als Outline-Button angezeigt werden
+- New: Shortcode HTML5 Audioplayer Ausgabe mit mehreren Optionen
+- New: Shortcode HTML5 Videoplayer Ausgabe mit mehreren Optionen
+- New: Audio-und Videoplayer besitzen eine id im HTML-Tag für die Steuerung über JavaScript
+- New: Icons in der Datei-Übersicht
+- New: Eigener Download-Button Text
+- New: Shortcode Dateiname anzeigen
+- New: Shortcode Dateigröße anzeigen
+- New: Shortcode Download-Anzahl anzeigen
+- New: ZIP-Archiv im Backend herunterladen
+- New: Dateien in Übersicht herunterladen
+- New: Download-Schutz vor Crawler Bots
+- New: Dokumentation für [Shortcodes](https://code.urban-base.net/z-downloads/shortcodes/?utm_source=wporg) und [Farben](https://code.urban-base.net/z-downloads/farben/?utm_source=wporg)
+- Update: UI und UX überarbeitet und stark verbessert
+- Fix: Kleinere Bugs wurden beseitigt
+
 = 0.3.0 =
 - New: Vorschau für Bilder
 - New: Anzeige von Upload-Ordner-Pfad für Dateien, ZIP-Archive und Cache in "Einstellungen"
 - New: Sprachdateien (de_AT, de_CH, en_GB, en_CA)
 - Update: Datei Download im Backend
 - Fix: File MIME-Types aktualisiert
-
-= 0.2.3 =
-- Fix: Bug-Behebung der einen syntax error verursachen kann
 
 = Frühere Versionen =
 - Den Änderungsverlauf von früheren Versionen findest du hier: [Z-Downloads Release Notes](https://code.urban-base.net/z-downloads/release-notes/?utm_source=wporg)

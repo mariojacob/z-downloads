@@ -133,7 +133,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         <p><a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-files"><?=esc_html__('zurück zur Übersicht', 'zdm')?></a></p>
 
-    <?php if ($zdm_status === 1) { ?>
+        <?php if ($zdm_status === 1) { ?>
 
         <form action="" method="post">
             <div class="postbox">
@@ -143,7 +143,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <tr valign="top">
                                 <th scope="row"><?=esc_html__('Status:', 'zdm')?></th>
                                 <td valign="middle">
-                                    <b>"<?=$zdm_file['name']?>"</b> <?=esc_html__('erfolgreich hochgeladen.', 'zdm')?>
+                                    <i class="ion-checkmark-circled zdm-color-green"></i> <b>"<?=$zdm_file['name']?>"</b> <?=esc_html__('erfolgreich hochgeladen.', 'zdm')?>
                                 </td>
                             </tr>
                             <?php
@@ -171,51 +171,55 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <input class="button-secondary" type="submit" name="delete" value="<?=esc_html__('Löschen', 'zdm')?>">
         </form>
 
-    <?php } elseif ($zdm_status === 2) { ?>
+        <?php } elseif ($zdm_status === 2) { ?>
 
-    <div class="postbox">
-        <div class="inside" align="center">
-            <br>
-            <b>"<?=sanitize_file_name($_POST['filename'])?>"</b> <?=esc_html__('wurde gelöscht.', 'zdm')?>
-            <br><br>
-            <p>
-                <a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-add-file"><?=esc_html__('Datei hinzufügen', 'zdm')?></a> 
-                <a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-files"><?=esc_html__('zurück zur Übersicht', 'zdm')?></a>
-            </p>
-        </div>
-    </div>
-
-    <?php } elseif ($zdm_status === 3) { ?>
-
-        <div class="postbox">
-        <div class="inside" align="center">
-            <br>
-            <?=esc_html__('Datei wurde erfolgreich aktualisiert.', 'zdm')?>
-            <br><br>
-            <p>
-                <a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-add-file"><?=esc_html__('Datei hinzufügen', 'zdm')?></a> 
-                <a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-files"><?=esc_html__('zurück zur Übersicht', 'zdm')?></a>
-            </p>
-        </div>
-    </div>
-
-    <?php } else { ?>
-
-    <form action="" method="post" enctype="multipart/form-data">
         <div class="postbox">
             <div class="inside" align="center">
                 <br>
-                <input type="file" name="file">
+                <b>"<?=sanitize_file_name($_POST['filename'])?>"</b> <?=esc_html__('wurde gelöscht.', 'zdm')?>
                 <br><br>
-                <input type="hidden" name="nonce" value="<?=wp_create_nonce('datei-hochladen')?>">
-                <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Hochladen', 'zdm')?>">
-                <br><br><hr>
-                <p><?=esc_html__('Maximale Dateigröße für Uploads:', 'zdm')?> <?= ZDMCore::file_size_convert(ZDMCore::file_size_convert_str2bytes(ini_get('upload_max_filesize')))?></p>
+                <p>
+                    <a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-add-file"><?=esc_html__('Datei hinzufügen', 'zdm')?></a> 
+                    <a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-files"><?=esc_html__('zurück zur Übersicht', 'zdm')?></a>
+                </p>
             </div>
         </div>
-    </form>
 
-    <?php } ?>
+        <?php } elseif ($zdm_status === 3) { ?>
+
+            <div class="postbox">
+            <div class="inside" align="center">
+                <br>
+                <?=esc_html__('Datei wurde erfolgreich aktualisiert.', 'zdm')?>
+                <br><br>
+                <p>
+                    <a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-add-file"><?=esc_html__('Datei hinzufügen', 'zdm')?></a> 
+                    <a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-files"><?=esc_html__('zurück zur Übersicht', 'zdm')?></a>
+                </p>
+            </div>
+        </div>
+
+        <?php } else { ?>
+
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="postbox">
+                <div class="inside" align="center">
+                    <br>
+                    <input type="file" name="file">
+                    <br><br>
+                    <input type="hidden" name="nonce" value="<?=wp_create_nonce('datei-hochladen')?>">
+                    <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Hochladen', 'zdm')?>">
+                    <br><br><hr>
+                    <p><?=esc_html__('Maximale Dateigröße für Uploads:', 'zdm')?> <?= ZDMCore::file_size_convert(ZDMCore::file_size_convert_str2bytes(ini_get('upload_max_filesize')))?></p>
+                </div>
+            </div>
+        </form>
+
+        <br>
+
+        <?php require_once (plugin_dir_path(__FILE__) . '../inc/postbox_info_files.php'); ?>
+
+        <?php } ?>
 
     </div>
 

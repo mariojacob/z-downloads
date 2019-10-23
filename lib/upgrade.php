@@ -70,4 +70,15 @@ if ($zdm_options['version'] < ZDM__VERSION) {
         }
     }
     //////////////////////////////
+    
+    // Neue Optionen in v1.0.0
+    if ($zdm_options['version'] <= '1.0.0') {
+
+        if (!$zdm_options['download-btn-outline']) {
+            $zdm_options['download-btn-outline'] = '';
+        }
+    }
+
+    update_option('zdm_options', $zdm_options);
+    //////////////////////////////
 }

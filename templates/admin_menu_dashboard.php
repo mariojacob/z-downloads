@@ -7,14 +7,16 @@ if( !defined( 'ABSPATH' ) ) {
 
 if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
+    $zdm_options = get_option('zdm_options');
+
     if (ZDMCore::licence() != true) { ?>
     <div class="zdm-welcome-notice notice notice-info">
             <div class="zdm-welcome-icon-holder">
                 <img class="zdm-welcome-icon" src="<?=ZDM__PLUGIN_URL?>assets/icon-256x256.png" alt="ZIP Download Master Logo">
             </div>
-            <h1><?=esc_html__('Willkommen bei ', 'zdm')?><?=ZDM__TITLE?></h1>
+            <h1><?=esc_html__('Willkommen bei', 'zdm')?> <?=ZDM__TITLE?></h1>
             <h3><?=esc_html__('Bringe mehr Struktur in deine Downloads und aktualisiere diese effizienter.', 'zdm')?></h3>
-            <h3><?=esc_html__('Um das volle Potential dieses Plugins zu Nutzen aktiviere jetzt die ', 'zdm')?><?=ZDM__PRO?><?=esc_html__('-Funktionen.', 'zdm')?></h3>
+            <h3><?=esc_html__('Um das volle Potential dieses Plugins zu Nutzen aktiviere jetzt die', 'zdm')?> <?=ZDM__PRO?>-<?=esc_html__('Funktionen.', 'zdm')?></h3>
             <br>
             <a href="<?=ZDM__PRO_URL?>" target="_blank" class="button button-primary"><?=esc_html__('Mehr erfahren', 'zdm')?></a>
     </div>
@@ -166,7 +168,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         $zdm_download_id_link = '<b><a href="?page=' . ZDM__SLUG . '-ziparchive&id=' . $zdm_best_downloads[$i]->id . '">' . $zdm_download_name . '</a></b>';
 
                                     } else {
-                                        $zdm_download_id_link = 'Gelöschter Download';
+                                        $zdm_download_id_link = esc_html__('Gelöschter Download', 'zdm');
                                     }
 
                                     echo '<tr>';
@@ -244,9 +246,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <table class="wp-list-table widefat">
                     <tr valign="top">
                         <th scope="row">
-                            <b><?=esc_html__('Gesamt:', 'zdm')?></b><br>
-                            <b><?=esc_html__('Archive:', 'zdm')?></b><br>
-                            <b><?=esc_html__('Dateien:', 'zdm')?></b>
+                            <b><?=esc_html__('Gesamt', 'zdm')?>:</b><br>
+                            <b><?=esc_html__('Archive', 'zdm')?>:</b><br>
+                            <b><?=esc_html__('Dateien', 'zdm')?>:</b>
                         </th>
                         <td valign="middle">
                             <?=ZDMCore::number_format(ZDMStat::get_downloads_count('all'))?><br>
@@ -258,19 +260,19 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <th colspan="2"><hr></th>
                     </tr>
                     <tr valign="top">
-                        <th scope="row"><b><?=esc_html__('Letzten 30 Tage:', 'zdm')?></b></th>
+                        <th scope="row"><b><?=esc_html__('Letzten 30 Tage', 'zdm')?>:</b></th>
                         <td valign="middle">
                             <?=ZDMCore::number_format(ZDMStat::get_downloads_count_time('all', 86400*30))?>
                         </td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row"><b><?=esc_html__('Letzten 7 Tage:', 'zdm')?></b></th>
+                        <th scope="row"><b><?=esc_html__('Letzten 7 Tage', 'zdm')?>:</b></th>
                         <td valign="middle">
                             <?=ZDMCore::number_format(ZDMStat::get_downloads_count_time('all', 86400*7))?>
                         </td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row"><b><?=esc_html__('Letzten 24 Stunden:', 'zdm')?></b></th>
+                        <th scope="row"><b><?=esc_html__('Letzten 24 Stunden', 'zdm')?>:</b></th>
                         <td valign="middle">
                             <?=ZDMCore::number_format(ZDMStat::get_downloads_count_time('all', 86400))?>
                         </td>
@@ -282,14 +284,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         </div>
 
         <div class="postbox-container zdm-postbox-100">
-            <div class="postbox">
-                <div class="inside">
-                    <h3><?=esc_html__('Hilfe', 'zdm')?></h3>
-                    <hr>
-                    <p><?=esc_html__('Alle Informationen und Hilfeseiten über', 'zdm')?> <?=ZDM__TITLE?><?=esc_html__(' findest du auf der Webseite:', 'zdm')?></p>
-                    <a href="<?=ZDM__URL?>" target="_blank" class="button button-secondary"><?=ZDM__TITLE?><?=esc_html__(' Webseite', 'zdm')?></a>
-                </div>
-            </div>
+            <?php require_once (plugin_dir_path(__FILE__) . '../inc/postbox_info.php'); ?>
         </div>
 
         <a class="alignright button" href="javascript:void(0);" onclick="window.scrollTo(0,0);" style="margin:3px 0 0 30px;"><?=esc_html__('Nach oben', 'zdm')?></a>

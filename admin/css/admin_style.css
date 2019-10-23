@@ -66,12 +66,39 @@
     background: #FF6D63 !important;
 }
 
+.zdm-btn-danger-outline {
+    color: #fa3e3e !important;
+    background: #fff !important;
+    border-color: #fa3e3e !important;
+    box-shadow: none !important;
+}
+.zdm-btn-danger-outline:hover {
+    color: #7A1E1E !important;
+    border-color: #7A1E1E !important;
+}
+
 /********************
  Colors
 ********************/
 
 .zdm-color-primary {
     color: #00caff !important;
+}
+
+.zdm-color-green {
+    color: #59C71D !important;
+}
+
+.zdm-color-yellow {
+    color: #FFCD19 !important;
+}
+
+.zdm-color-orange {
+    color: #FF7C00 !important;
+}
+
+.zdm-color-red {
+    color: #FA3E3E !important;
 }
 
 .zdm-color-bg-black {

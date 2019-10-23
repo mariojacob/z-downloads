@@ -66,6 +66,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         $zdm_options['download-btn-text'] = trim(sanitize_text_field($_POST['download-btn-text']));
         // Download-Button Style
         $zdm_options['download-btn-style'] = trim(sanitize_text_field($_POST['download-btn-style']));
+        // Download-Button Outline
+        $zdm_options['download-btn-outline'] = trim(sanitize_text_field($_POST['download-btn-outline']));
         // Download-Button runde Ecken
         $zdm_options['download-btn-border-radius'] = trim(sanitize_text_field($_POST['download-btn-border-radius']));
 
@@ -139,23 +141,23 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <table class="form-table">
                         <tbody>
                             <tr valign="top">
-                                <th scope="row"><?=ZDM__PRO?> <?=esc_html__('Schlüssel:', 'zdm')?></th>
+                                <th scope="row"><?=ZDM__PRO?> <?=esc_html__('Schlüssel', 'zdm')?>:</th>
                                 <td valign="middle">
                                     <input type="text" name="licence-key" size="50%" value="<?= esc_attr($zdm_options['licence-key']); ?>"> <input class="button-secondary" type="submit" name="licence_submit" value="<?=esc_html__('Lizenz aktualisieren', 'zdm')?>">
                                     <?php if ($zdm_licence === 0) { ?>
-                                        <div class="zdm-help-text"><?=esc_html__('Profitiere von den', 'zdm')?> <?=ZDM__PRO?><?=esc_html__('-Funktionen, mehr Infos:', 'zdm')?> <a href="<?=ZDM__PRO_URL?>" target="_blank" title="code.urban-base.net"><?=ZDM__TITLE;?> <?=ZDM__PRO?></a></div>
+                                        <div class="zdm-help-text"><?=esc_html__('Profitiere von den', 'zdm')?> <?=ZDM__PRO?>-<?=esc_html__('Funktionen und schalte alle Möglichkeiten von', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('frei, mehr Infos', 'zdm')?>: <a href="<?=ZDM__PRO_URL?>" target="_blank" title="code.urban-base.net"><?=ZDM__TITLE;?> <?=ZDM__PRO?></a></div>
                                     <?php } ?>
                                 </td>
                             </tr>
                             <?php if ($zdm_licence === 1) { ?>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('Lizensiert für:', 'zdm')?></th>
+                                <th scope="row"><?=esc_html__('Lizensiert für', 'zdm')?>:</th>
                                 <td valign="middle">
                                     <?=$zdm_options['licence-email'];?>
                                 </td>
                             </tr>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('Erworben:', 'zdm')?></th>
+                                <th scope="row"><?=esc_html__('Erworben', 'zdm')?>:</th>
                                 <td valign="middle">
                                     <?=date("d.m.Y", strtotime($zdm_options['licence-purchase']))?>
                                 </td>
@@ -176,19 +178,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <table class="form-table">
                         <tbody>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('Download-Button Text:', 'zdm')?></th>
+                                <th scope="row"><?=esc_html__('Download-Button Standardtext', 'zdm')?>:</th>
                                 <td valign="middle">
-                                <?php if ($zdm_licence === 1) { ?>
-                                    <input type="text" name="download-btn-text" size="15" value="<?=esc_attr($zdm_options['download-btn-text'])?>">
-                                <?php } else { ?>
-                                    <input type="text" size="50%" value="<?=esc_attr($zdm_options['download-btn-text'])?>" placeholder="" disabled>
-                                    <input type="hidden" name="download-btn-text" value="<?=esc_attr($zdm_options['download-btn-text'])?>">
-                                    <div class="zdm-help-text"><?=esc_html__('Standardtext für den Download-Button ist', 'zdm')?> "<?=esc_attr($zdm_options['download-btn-text'])?>", <?=esc_html__('für einen Benutzerdefinierten Text', 'zdm')?> <a href="<?=ZDM__PRO_URL?>" target="_blank"><?=esc_html__('aktiviere', 'zdm')?> <?=ZDM__PRO?>.</a></div>
-                                <? } ?>
+                                <input type="text" name="download-btn-text" size="15" value="<?=esc_attr($zdm_options['download-btn-text'])?>">
+                                <br>
+                                <div class="zdm-help-text"><?=esc_html__('Das ist der Standardtext, dieser kann aber je Download individuell geändert werden.', 'zdm')?>
                                 </td>
                             </tr>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('Download-Button Style:', 'zdm')?></th>
+                                <th scope="row"><?=esc_html__('Download-Button Style', 'zdm')?>:</th>
                                 <td valign="middle">
                                     <select name="download-btn-style">
                                         <?php
@@ -207,7 +205,16 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     &nbsp;&nbsp;&nbsp;
                                     <span class="zdm-color-bg-<?=$zdm_options['download-btn-style']?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                     <br>
-                                    <div class="zdm-help-text"><?=esc_html__('Wähle aus verschiedenen Button-Styles den Standardwert für Buttons.', 'zdm')?>
+                                    <div class="zdm-help-text"><?=esc_html__('Wähle aus verschiedenen Button-Farben den Standardwert für Buttons.', 'zdm')?>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th scope="row"></th>
+                                <td valign="middle">
+                                    <input type="checkbox" name="download-btn-outline" <?php if($zdm_options['download-btn-outline'] == 'on'){ echo 'checked="checked"'; } ?> >
+                                    <?=esc_html__('Outline', 'zdm')?>
+                                    <br>
+                                    <div class="zdm-help-text"><?=esc_html__('Diese Option zeigt den Button als Rahmen.', 'zdm')?>
                                 </td>
                             </tr>
                             <tr valign="top">
@@ -227,7 +234,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         echo $zdm_btn_style;
                                         ?>
                                     </select><br>
-                                    <div class="zdm-help-text"><?=esc_html__('Wenn "keine" ausgewählt ist, dann wird der Standardwert deines Themes verwendet.', 'zdm')?>
+                                    <div class="zdm-help-text"><?=esc_html__('Wenn "keine" ausgewählt ist, dann wird der Standardwert deines Themes verwendet, der Button bleibt eckig.', 'zdm')?>
                                 </td>
                             </tr>
                         </tbody>
@@ -242,24 +249,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <table class="form-table">
                         <tbody>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('IP-Adresse zensieren:', 'zdm')?></th>
+                                <th scope="row"><?=esc_html__('IP-Adresse zensieren', 'zdm')?>:</th>
                                 <td valign="middle">
                                     <input type="checkbox" name="secure-ip" <?php if($zdm_options['secure-ip'] == 'on'){ echo 'checked="checked"'; } ?> >
                                     <?=esc_html__('Zensiert die IP-Adresse beim Download.', 'zdm')?>
-                                </td>
-                            </tr>
-                            <tr valign="top" class="zdm-table-tr-warning">
-                                <th scope="row"></th>
-                                <td valign="middle">
-                                    <p><?=esc_html__('Pfad von Z-Downloads-Upload-Ordner für Dateien, ZIP-Archive und Cache:', 'zdm')?><br>
-                                    <b><pre><?=ZDM__DOWNLOADS_PATH . '/'?></pre></b></p>
-                                    <hr>
-                                    <h3><?=esc_html__('Achtung vor dem deinstallieren des Plugins', 'zdm')?></h3>
-                                    <p><?=esc_html__('Wenn du das Z-Downloads-Plugin deinstallierst bleiben alle Dateien und ZIP-Archive im oben genannten Pfad bestehen, wenn du alle Dateien und ZIP-Archive die du erstellt hast löschen willst, dann klicke unten auf "LÖSCHEN!"', 'zdm')?></p>
-                                    <p><?=esc_html__('Dieser Vorgang ist unwiederuflich und kann nicht rückgängig gemacht werden.', 'zdm')?></p>
-
-                                    <br>
-                                    <a href="admin.php?page=<?=ZDM__SLUG?>-settings&delete_data=true&nonce=<?=wp_create_nonce('alle-daten-löschen')?>" class="button button-secondary zdm-btn-danger"><?=esc_html__('LÖSCHEN!', 'zdm')?></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -269,20 +262,21 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             <div class="postbox">
                 <div class="inside">
-                    <h3><?=esc_html__('Info', 'zdm')?></h3>
+                    <h3><?=ZDM__TITLE?> <?=esc_html__('deinstallieren', 'zdm')?></h3>
                     <hr>
-                    <table class="form-table">
-                        <tbody>
-                            <tr valign="top">
-                                <th scope="row"><?=ZDM__TITLE?> <?=esc_html__('Version:', 'zdm')?></th>
-                                <td valign="middle">
-                                    <?=esc_attr($zdm_options['version'])?>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <p><?=esc_html__('Pfad von Z-Downloads-Upload-Ordner für Dateien, ZIP-Archive und Cache:', 'zdm')?><br>
+                    <b><pre><?=ZDM__DOWNLOADS_PATH . '/'?></pre></b></p>
+                    <hr>
+                    <h3 class="zdm-color-red"><?=esc_html__('Achtung vor dem deinstallieren des Plugins', 'zdm')?></h3>
+                    <p class="zdm-color-red"><?=esc_html__('Wenn du das Z-Downloads-Plugin deinstallierst bleiben alle Dateien und ZIP-Archive im oben genannten Pfad bestehen, wenn du alle Dateien und ZIP-Archive die du erstellt hast löschen willst, dann klicke unten auf "LÖSCHEN"', 'zdm')?></p>
+                    <p class="zdm-color-red"><?=esc_html__('Dieser Vorgang ist unwiederuflich und kann nicht rückgängig gemacht werden.', 'zdm')?></p>
+
+                    <br>
+                    <a href="admin.php?page=<?=ZDM__SLUG?>-settings&delete_data=true&nonce=<?=wp_create_nonce('alle-daten-löschen')?>" class="button button-secondary zdm-btn-danger-outline"><?=esc_html__('LÖSCHEN', 'zdm')?></a>
                 </div>
             </div>
+
+            <?php require_once (plugin_dir_path(__FILE__) . '../inc/postbox_info.php'); ?>
 
             <input type="hidden" name="nonce" value="<?=wp_create_nonce('einstellungen-speichern')?>">
             <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Speichern', 'zdm')?>">
