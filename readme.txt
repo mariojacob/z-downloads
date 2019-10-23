@@ -50,8 +50,8 @@ Ein und dieselbe Datei befindet sich in mehreren Downloads, wie zum Beispiel Pro
 
 = Übersetzung =
 
-- Deutsch - de_DE, de_AT, de_CH = in /language inkludiert
-- Englisch - en_US, en_BG, en_CA = in /language inkludiert
+- Deutsch - de_DE = in /language inkludiert
+- Englisch - en_US, en_BG = in /language inkludiert
 
 == Installation ==
 
