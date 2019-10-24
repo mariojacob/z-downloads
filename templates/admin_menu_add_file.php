@@ -73,9 +73,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         $zdm_folder_path = ZDM__DOWNLOADS_FILES_PATH . '/' . sanitize_file_name($_POST['folder']);
         $zdm_file_path = $zdm_folder_path . '/' . sanitize_file_name($_POST['filename']);
         $zdm_file_path_index = $zdm_folder_path . '/' . 'index.php';
-        var_dump($zdm_folder_path);
-        echo '<br><br>';
-        var_dump($zdm_file_path);
+
         if (file_exists($zdm_file_path)) {
             unlink($zdm_file_path);
         }
@@ -147,10 +145,55 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 </td>
                             </tr>
                             <?php
-                            /**
-                             * TODO: Dateivorschau: Audioplayer
-                             */
-                            ?>
+
+                                    if (in_array($zdm_file['type'], ZDM__MIME_TYPES_AUDIO)) { // Audio
+                                        ?>
+                                        <tr valign="top">
+                                            <th scope="row"><?=esc_html__('Vorschau', 'zdm')?>:</th>
+                                            <td valign="middle">
+                                                <audio controls preload="none">
+                                                    <source src="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" type="<?=$zdm_file['type']?>">
+                                                </audio>
+                                                <br>
+                                                Download: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" target="_blank" download><?=$zdm_file['name']?></a>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    } elseif (in_array($zdm_file['type'], ZDM__MIME_TYPES_VIDEO)) { // Video
+                                        ?>
+                                        <tr valign="top">
+                                            <th scope="row"><?=esc_html__('Vorschau', 'zdm')?>:</th>
+                                            <td valign="middle">
+                                                <video width="400px" controls>
+                                                    <source src="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" type="<?=$zdm_file['type']?>">
+                                                </video>
+                                                <br>
+                                                Download: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" target="_blank" download><?=$zdm_file['name']?></a>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    } elseif (in_array($zdm_file['type'], ZDM__MIME_TYPES_IMAGE)) { // Image
+                                        ?>
+                                        <tr valign="top">
+                                            <th scope="row"><?=esc_html__('Vorschau', 'zdm')?>:</th>
+                                            <td valign="middle">
+                                                <img src="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" width="400px" height="auto">
+                                                <br>
+                                                Download: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" target="_blank" download><?=$zdm_file['name']?></a>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    } else { // Sonstige Dateien
+                                        ?>
+                                        <tr valign="top">
+                                            <th scope="row"><?=esc_html__('Datei Download', 'zdm')?>:</th>
+                                            <td valign="middle">
+                                                <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" target="_blank" download><?=$zdm_file['name']?></a>
+                                            </td>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
                             <tr valign="top">
                                 <th scope="row"><?=esc_html__('Name:', 'zdm')?></th>
                                 <td valign="middle">
@@ -175,7 +218,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <div class="postbox">
             <div class="inside" align="center">
                 <br>
-                <b>"<?=sanitize_file_name($_POST['filename'])?>"</b> <?=esc_html__('wurde gelöscht.', 'zdm')?>
+                <i class="ion-checkmark-circled zdm-color-green"></i>&nbsp;&nbsp;<b>"<?=sanitize_file_name($_POST['filename'])?>"</b> <?=esc_html__('wurde gelöscht.', 'zdm')?>
                 <br><br>
                 <p>
                     <a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-add-file"><?=esc_html__('Datei hinzufügen', 'zdm')?></a> 
@@ -189,7 +232,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <div class="postbox">
             <div class="inside" align="center">
                 <br>
-                <?=esc_html__('Datei wurde erfolgreich aktualisiert.', 'zdm')?>
+                <i class="ion-checkmark-circled zdm-color-green"></i>&nbsp;&nbsp;<?=esc_html__('Datei wurde erfolgreich aktualisiert.', 'zdm')?>
                 <br><br>
                 <p>
                     <a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-add-file"><?=esc_html__('Datei hinzufügen', 'zdm')?></a> 
