@@ -34,10 +34,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         ////////////////////
         if (isset($_POST['update']) && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) {
 
-            if ($_POST['name'] == '') {
-                $name = sanitize_text_field($_POST['filename']);
-            } else {
+            if ($_POST['name'] != '') {
                 $name = sanitize_text_field($_POST['name']);
+            } else {
+                $name = sanitize_text_field($_POST['filename']);
             }
 
             if ($_POST['button-text']) {

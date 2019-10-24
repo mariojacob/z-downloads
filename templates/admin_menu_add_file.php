@@ -103,10 +103,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     ////////////////////
     if (isset($_POST['update']) && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) {
 
-        if ($_POST['name'] == '') {
-            $name = sanitize_file_name($_POST['filename']);
+        if ($_POST['name'] != '') {
+            $name = sanitize_text_field($_POST['name']);
         } else {
-            $name = sanitize_file_name($_POST['name']);
+            $name = sanitize_text_field($_POST['filename']);
         }
         
         $wpdb->update(
@@ -143,13 +143,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <tr valign="top">
                                 <th scope="row"><?=esc_html__('Status:', 'zdm')?></th>
                                 <td valign="middle">
-                                    <i class="ion-checkmark-circled zdm-color-green"></i> <b>"<?=$zdm_file['name']?>"</b> <?=esc_html__('erfolgreich hochgeladen.', 'zdm')?>
+                                    <i class="ion-checkmark-circled zdm-color-green"></i>&nbsp;&nbsp;<b>"<?=$zdm_file['name']?>"</b> <?=esc_html__('erfolgreich hochgeladen.', 'zdm')?>
                                 </td>
                             </tr>
                             <?php
                             /**
-                             * TODO:
-                             * - Dateivorschau: Audioplayer
+                             * TODO: Dateivorschau: Audioplayer
                              */
                             ?>
                             <tr valign="top">
