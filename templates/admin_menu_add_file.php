@@ -31,17 +31,19 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             wp_mkdir_p(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder']);
         }
 
+        $zdm_file_path = ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . $zdm_file['name'];
+
         // Datei abspeichern
-        move_uploaded_file($_FILES['file']['tmp_name'], ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']);
+        move_uploaded_file($_FILES['file']['tmp_name'], $zdm_file_path);
 
         // index.php in Ordner kopieren
         copy('index.php', ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . 'index.php');
 
         // MD5 aus Datei
-        $zdm_file['md5'] = md5_file(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']);
+        $zdm_file['md5'] = md5_file($zdm_file_path);
 
         // SHA1 aus Datei
-        $zdm_file['sha1'] = sha1_file(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']);
+        $zdm_file['sha1'] = sha1_file($zdm_file_path);
 
         // Dateipfad in DB speichern
         $wpdb->insert(
@@ -59,7 +61,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         );
 
         // Log
-        ZDMCore::log('add file', $zdm_file['name']);
+        ZDMCore::log('add file', $zdm_file_path);
 
         $zdm_status = 1;
     }
@@ -91,7 +93,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             ));
 
         // Log
-        ZDMCore::log('delete file', sanitize_file_name($_POST['folder']));
+        ZDMCore::log('delete file', $zdm_file_path);
 
         $zdm_status = 2;
     }
@@ -118,7 +120,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             ));
 
         // Log
-        ZDMCore::log('update file', sanitize_file_name($_POST['folder']));
+        ZDMCore::log('update file', ZDM__DOWNLOADS_FILES_PATH . '/' . sanitize_file_name($_POST['folder']) . '/' . sanitize_text_field($_POST['name']));
 
         $zdm_status = 3;
     }
