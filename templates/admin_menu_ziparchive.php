@@ -294,27 +294,34 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <table class="form-table">
                             <tbody>
                                 <tr valign="top">
-                                    <th scope="row"><?=esc_html__('Shortcode', 'zdm')?>:</th>
-                                    <td valign="middle">
-                                        <?php
-                                        if ($zdm_licence === 0) {
-                                            $premium_text_link = esc_html__('Hashwert ausgeben, nur für ', 'zdm') . '<a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__TITLE . ' ' . ZDM__PRO . '</a>';
-                                        } else {
-                                            $premium_text_link = esc_html__('Hashwert ausgeben', 'zdm');
-                                        }
-                                        echo '<code>[zdownload zip="' . $zdm_archive_id . '"]</code> - ' . esc_html__('Download', 'zdm');
-                                        echo '<br><br>';
-                                        echo '<code>[zdownload_count zip="' . $zdm_archive_id . '"]</code> - ' . esc_html__('Download-Anzahl', 'zdm');
-                                        echo '<br><br>';
-                                        echo '<code>[zdownload_size zip="' . $zdm_archive_id . '"]</code> - ' . esc_html__('Dateigröße', 'zdm');
-                                        echo '<br><br>';
-                                        echo '<code>[zdownload_name zip="' . $zdm_archive_id . '"]</code> - ' . esc_html__('Name ausgeben', 'zdm');
-                                        echo '<br><br>';
-                                        echo '<code>[zdownload_hash zip="' . $zdm_archive_id->id . '" type="md5"]</code> - ' . $premium_text_link;
-                                        echo '<br><br>';
-                                        echo '<code>[zdownload_hash zip="' . $zdm_archive_id->id . '" type="sha1"]</code> - ' . $premium_text_link;
-                                        ?>
-                                    </td>
+                                    <th scope="row"><?=esc_html__('Download-Button', 'zdm')?></th>
+                                    <td valign="middle"><code>[zdownload zip="<?=$zdm_db_archive->id?>"]</code></td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?=esc_html__('Download-Anzahl', 'zdm')?></th>
+                                    <td valign="middle"><code>[zdownload_meta zip="<?=$zdm_db_archive->id?>" type="count"]</code></td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?=esc_html__('Dateigröße', 'zdm')?></th>
+                                    <td valign="middle"><code>[zdownload_meta zip="<?=$zdm_db_archive->id?>" type="size"]</code></td>
+                                </tr>
+                                <?php
+                                
+                                if ($zdm_licence === 0) {
+                                    $text_hash_md5 = esc_html__('MD5 Hashwert ausgeben', 'zdm') . '<br><a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('Funktion', 'zdm') . ' </a>';
+                                    $text_hash_sha1 = esc_html__('SHA1 Hashwert ausgeben', 'zdm') . '<br><a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('Funktion', 'zdm') . '</a>';
+                                } else {
+                                    $text_hash_md5 = esc_html__('MD5 Hashwert ausgeben', 'zdm');
+                                    $text_hash_sha1 = esc_html__('SHA1 Hashwert ausgeben', 'zdm');
+                                }
+                                ?>
+                                <tr valign="top">
+                                    <th scope="row"><?=$text_hash_md5?></th>
+                                    <td valign="middle"><code>[zdownload_meta zip="<?=$zdm_db_archive->id?>" type="hash-md5"]</code></td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?=$text_hash_sha1?></th>
+                                    <td valign="middle"><code>[zdownload_meta zip="<?=$zdm_db_archive->id?>" type="hash-sha1"]</code></td>
                                 </tr>
                             </tbody>
                         </table>

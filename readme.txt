@@ -7,7 +7,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
 Tested up to: 5.2
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 
 Download Verwaltung und automatische ZIP-Archiv Erstellung
 
@@ -50,8 +50,8 @@ Ein und dieselbe Datei befindet sich in mehreren Downloads, wie zum Beispiel Pro
 
 = Übersetzung =
 
-- Deutsch - de_DE = in /language inkludiert
-- Englisch - en_US, en_BG = in /language inkludiert
+- Deutsch - de_DE, de_AT, de_CH = in /language inkludiert
+- Englisch - en_US, en_BG, en_CA = in /language inkludiert
 
 == Installation ==
 
@@ -95,6 +95,9 @@ Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können ein
 
 == Changelog ==
 
+= 1.0.1 =
+- Fix: Ausbesserung im UI
+
 = 1.0.0 =
 - New: Mehr Button-Styles: alle bisherigen Buttons können jetzt auch als Outline-Button angezeigt werden
 - New: Shortcode HTML5 Audioplayer Ausgabe mit mehreren Optionen
@@ -112,21 +115,27 @@ Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können ein
 - Update: UI und UX überarbeitet und stark verbessert
 - Fix: Kleinere Bugs wurden beseitigt
 
-= 0.3.0 =
-- New: Vorschau für Bilder
-- New: Anzeige von Upload-Ordner-Pfad für Dateien, ZIP-Archive und Cache in "Einstellungen"
-- New: Sprachdateien (de_AT, de_CH, en_GB, en_CA)
-- Update: Datei Download im Backend
-- Fix: File MIME-Types aktualisiert
-
 = Frühere Versionen =
 - Den Änderungsverlauf von früheren Versionen findest du hier: [Z-Downloads Release Notes](https://code.urban-base.net/z-downloads/release-notes/?utm_source=wporg)
 
 == Upgrade Notice ==
 
-= 0.3.0 =
-- New: Vorschau für Bilder
-- New: Anzeige von Upload-Ordner-Pfad für Dateien, ZIP-Archive und Cache in "Einstellungen"
-- New: Sprachdateien (de_AT, de_CH, en_GB, en_CA)
-- Update: Datei Download im Backend
-- Fix: File MIME-Types aktualisiert
+= 1.0.1 =
+- Fix: Ausbesserung im UI
+
+= 1.0.0 =
+- New: Mehr Button-Styles: alle bisherigen Buttons können jetzt auch als Outline-Button angezeigt werden
+- New: Shortcode HTML5 Audioplayer Ausgabe mit mehreren Optionen
+- New: Shortcode HTML5 Videoplayer Ausgabe mit mehreren Optionen
+- New: Audio-und Videoplayer besitzen eine id im HTML-Tag für die Steuerung über JavaScript
+- New: Icons in der Datei-Übersicht
+- New: Eigener Download-Button Text
+- New: Shortcode Dateiname anzeigen
+- New: Shortcode Dateigröße anzeigen
+- New: Shortcode Download-Anzahl anzeigen
+- New: ZIP-Archiv im Backend herunterladen
+- New: Dateien in Übersicht herunterladen
+- New: Download-Schutz vor Crawler Bots
+- New: Dokumentation für [Shortcodes](https://code.urban-base.net/z-downloads/shortcodes/?utm_source=wporg) und [Farben](https://code.urban-base.net/z-downloads/farben/?utm_source=wporg)
+- Update: UI und UX überarbeitet und stark verbessert
+- Fix: Kleinere Bugs wurden beseitigt
