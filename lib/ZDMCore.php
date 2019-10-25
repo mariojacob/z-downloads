@@ -1300,7 +1300,7 @@ class ZDMCore
             $zip->close();
         } else {
             // Log
-            $this->log('error create zip');
+            $this->log('error create zip', $file_path);
         }
 
         // Dateigröße bestimmen
@@ -1357,7 +1357,7 @@ class ZDMCore
         }
 
         // Log
-        $this->log('create archive cache' , $archive_id);
+        $this->log('create archive cache' , $file_path);
     }
 
     /**
