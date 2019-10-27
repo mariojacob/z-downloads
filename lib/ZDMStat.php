@@ -191,7 +191,7 @@ class ZDMStat
 
             $db = $wpdb->get_results(
                 "
-                SELECT id, name, count 
+                SELECT id, name, count, archive_cache_path, zip_name 
                 FROM $tablename_archives 
                 WHERE count > 0 
                 ORDER by count DESC 
@@ -205,7 +205,7 @@ class ZDMStat
 
             $db = $wpdb->get_results(
                 "
-                SELECT id, name, count 
+                SELECT id, name, count, folder_path, file_name, file_type 
                 FROM $tablename_files 
                 WHERE count > 0 
                 ORDER by count DESC 
@@ -220,16 +220,17 @@ class ZDMStat
 
     public function get_last_downloads($type = 'archive', $number = 5)
     {
-        $type = 'download ' . $type;
+        $type_log = 'download ' . $type;
 
         global $wpdb;
+
         $tablename_log = $wpdb->prefix . "zdm_log";
 
         $db_log = $wpdb->get_results(
             "
             SELECT message, time_create 
             FROM $tablename_log 
-            WHERE type = '$type' 
+            WHERE type = '$type_log' 
             ORDER by id DESC 
             Limit $number
             "

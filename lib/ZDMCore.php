@@ -1051,6 +1051,35 @@ class ZDMCore
     }
 
     /**
+     * Prüft ob eine spezielle Datei zu einem Archiv verknüpft ist
+     * @param int $file_id ID der Datei
+     * @param int $archive_id ID des Archives
+     * @return bool
+     */
+    public function check_file_rel_to_archive($files_id, $archive_id)
+    {
+        global $wpdb;
+
+        $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
+
+        // Daten aus DB files_rel holen
+        $db_file_rel = $wpdb->get_results(
+            "
+            SELECT id 
+            FROM $tablename_files_rel 
+            WHERE id_file = '$files_id' 
+            AND id_archive = '$archive_id'
+            "
+            );
+
+        if ($db_file_rel[0] === NULL) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    /**
      * Prüft ob ein Archiv existiert
      */
     public function check_if_archive_exists($archive_id)
@@ -1124,35 +1153,6 @@ class ZDMCore
             return true;
         } else {
             return false;
-        }
-    }
-
-    /**
-     * Prüft ob eine spezielle Datei zu einem Archiv verknüpft ist
-     * @param int $file_id ID der Datei
-     * @param int $archive_id ID des Archives
-     * @return bool
-     */
-    public function check_file_rel_to_archive($files_id, $archive_id)
-    {
-        global $wpdb;
-
-        $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
-
-        // Daten aus DB files_rel holen
-        $db_file_rel = $wpdb->get_results(
-            "
-            SELECT id 
-            FROM $tablename_files_rel 
-            WHERE id_file = '$files_id' 
-            AND id_archive = '$archive_id'
-            "
-            );
-
-        if ($db_file_rel[0] === NULL) {
-            return false;
-        } else {
-            return true;
         }
     }
 
@@ -1358,6 +1358,50 @@ class ZDMCore
 
         // Log
         $this->log('create archive cache' , $file_path);
+    }
+
+    /**
+     * Prüft Hashwert einer Datei
+     *
+     * @param string $type
+     * @param string $hash
+     * @return int Anzahl an gefundenen Hashes
+     */
+    public function get_count_of_files_by_hash($type, $hash)
+    {
+        global $wpdb;
+
+        $tablename_files = $wpdb->prefix . "zdm_files";
+
+        if ($type == 'md5') {
+
+            // Daten aus DB files holen
+            $db_file = $wpdb->get_results(
+                "
+                SELECT id 
+                FROM $tablename_files 
+                WHERE hash_md5 = '$hash'
+                "
+                );
+        }
+
+        if ($type == 'sha1') {
+
+            // Daten aus DB files holen
+            $db_file = $wpdb->get_results(
+                "
+                SELECT id 
+                FROM $tablename_files 
+                WHERE hash_sha1 = '$hash'
+                "
+                );
+        }
+
+        if ($db_file[0] === NULL) {
+            return count($db_file);
+        } else {
+            return count($db_file);
+        }
     }
 
     /**

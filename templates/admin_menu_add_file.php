@@ -144,6 +144,16 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <th scope="row"><?=esc_html__('Status:', 'zdm')?></th>
                                 <td valign="middle">
                                     <i class="ion-checkmark-circled zdm-color-green"></i>&nbsp;&nbsp;<b>"<?=$zdm_file['name']?>"</b> <?=esc_html__('erfolgreich hochgeladen.', 'zdm')?>
+                                    <?php
+                                    // Check ob selbe Datei schon hochgeladen wurde
+                                    $zdm_file_hash_count = ZDMCore::get_count_of_files_by_hash('md5', $zdm_file['md5']);
+                                    if ($zdm_file_hash_count > 1) {
+                                        ?>
+                                        <br>
+                                        <i class="ion-information-circled zdm-color-yellow"></i>&nbsp;&nbsp;<b><?=esc_html__('Info', 'zdm')?>:</b> <?=esc_html__('Diese Datei wurde schon einmal hochgeladen und existiert jetzt', 'zdm')?> <?=$zdm_file_hash_count?> <?=esc_html__('mal', 'zdm')?>.
+                                        <?php
+                                    }
+                                    ?>
                                 </td>
                             </tr>
                             <?php

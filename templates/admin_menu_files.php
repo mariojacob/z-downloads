@@ -461,8 +461,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <table class="wp-list-table widefat striped tags">
                     <thead>
                         <tr>
-                            <th scope="col" width="3%"></th>
-                            <th scope="col" width="37%"><b><?=esc_html__('Name', 'zdm')?></b></th>
+                            <th scope="col" width="2%"></th>
+                            <th scope="col" width="38%"><b><?=esc_html__('Name', 'zdm')?></b></th>
                             <th scope="col" width="20%"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
                             <th scope="col" width="15%"><b><?=esc_html__('Downloads', 'zdm')?></b></th>
                             <th scope="col" width="15%"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
