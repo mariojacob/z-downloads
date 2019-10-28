@@ -95,50 +95,17 @@ Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können ein
 
 == Changelog ==
 
+= 1.x.x =
+- New: Dateien direkt in der Übersichtsliste löschen
+- New: Hinweis wenn eine Datei schon hochgeladen wurde
+
 = 1.0.1 =
 - Fix: Ausbesserung im UI
-
-= 1.0.0 =
-- New: Mehr Button-Styles: alle bisherigen Buttons können jetzt auch als Outline-Button angezeigt werden
-- New: Shortcode HTML5 Audioplayer Ausgabe mit mehreren Optionen
-- New: Shortcode HTML5 Videoplayer Ausgabe mit mehreren Optionen
-- New: Audio-und Videoplayer besitzen eine id im HTML-Tag für die Steuerung über JavaScript
-- New: Icons in der Datei-Übersicht
-- New: Eigener Download-Button Text
-- New: Shortcode Dateiname anzeigen
-- New: Shortcode Dateigröße anzeigen
-- New: Shortcode Download-Anzahl anzeigen
-- New: ZIP-Archiv im Backend herunterladen
-- New: Dateien in Übersicht herunterladen
-- New: Download-Schutz vor Crawler Bots
-- New: Dokumentation für [Shortcodes](https://code.urban-base.net/z-downloads/shortcodes/?utm_source=wporg) und [Farben](https://code.urban-base.net/z-downloads/farben/?utm_source=wporg)
-- Update: UI und UX überarbeitet und stark verbessert
-- Fix: Kleinere Bugs wurden beseitigt
 
 = Frühere Versionen =
 - Den Änderungsverlauf von früheren Versionen findest du hier: [Z-Downloads Release Notes](https://code.urban-base.net/z-downloads/release-notes/?utm_source=wporg)
 
 == Upgrade Notice ==
 
-= 1.x.x =
-- New: Hinweis wenn eine Datei schon hochgeladen wurde
-
 = 1.0.1 =
 - Fix: Ausbesserung im UI
-
-= 1.0.0 =
-- New: Mehr Button-Styles: alle bisherigen Buttons können jetzt auch als Outline-Button angezeigt werden
-- New: Shortcode HTML5 Audioplayer Ausgabe mit mehreren Optionen
-- New: Shortcode HTML5 Videoplayer Ausgabe mit mehreren Optionen
-- New: Audio-und Videoplayer besitzen eine id im HTML-Tag für die Steuerung über JavaScript
-- New: Icons in der Datei-Übersicht
-- New: Eigener Download-Button Text
-- New: Shortcode Dateiname anzeigen
-- New: Shortcode Dateigröße anzeigen
-- New: Shortcode Download-Anzahl anzeigen
-- New: ZIP-Archiv im Backend herunterladen
-- New: Dateien in Übersicht herunterladen
-- New: Download-Schutz vor Crawler Bots
-- New: Dokumentation für [Shortcodes](https://code.urban-base.net/z-downloads/shortcodes/?utm_source=wporg) und [Farben](https://code.urban-base.net/z-downloads/farben/?utm_source=wporg)
-- Update: UI und UX überarbeitet und stark verbessert
-- Fix: Kleinere Bugs wurden beseitigt

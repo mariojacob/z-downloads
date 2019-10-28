@@ -42,7 +42,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         // Check ob Felder ausgefüllt sind
         if ($_POST['name'] != '' && $_POST['zip-name'] != '') {
 
-            $zdm_post_name = sanitize_file_name($_POST['name']);
+            $zdm_post_name = sanitize_text_field($_POST['name']);
             $zdm_post_description = sanitize_textarea_field($_POST['description']);
             $zdm_post_count = sanitize_file_name($_POST['count']);
             $zdm_post_button_text = sanitize_text_field($_POST['button-text']);

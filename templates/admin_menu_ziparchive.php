@@ -204,7 +204,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         ////////////////////
         // Archiv löschen
         ////////////////////
-        if ($_POST['delete'] && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) {
+        if (($_POST['delete'] && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) OR ($_GET['delete'] && wp_verify_nonce($_GET['nonce'], 'archiv-loeschen'))) {
 
             // Daten aus DB holen
             $zdm_db_archives = $wpdb->get_results( 
@@ -516,6 +516,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Cache', 'zdm')?></b></th>
+                            <th scope="col" width="2%"><div align="center"><i class="ion-trash-b" title="<?=esc_html__('Archiv löschen', 'zdm')?>"></i></div></th>
                         </tr>
                     </thead>
 
@@ -578,6 +579,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     }
                                     ?>
                                 </td>
+                                <td>
+                                    <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_db_archives[$i]->id?>&delete=true&nonce=<?=wp_create_nonce('archiv-loeschen')?>" class="button button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Archiv löschen', 'zdm')?>"><i class="ion-trash-b"></i></a>
+                                </td>
                             </tr>
                             <?php
                         }
@@ -594,6 +598,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Cache', 'zdm')?></b></th>
+                            <th scope="col"><div align="center"><i class="ion-trash-b" title="<?=esc_html__('Archiv löschen', 'zdm')?>"></i></div></th>
                         </tr>
                     </tfoot>
 
