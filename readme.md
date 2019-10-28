@@ -120,6 +120,9 @@ Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können ein
 
 == Upgrade Notice ==
 
+= 1.x.x =
+- New: Hinweis wenn eine Datei schon hochgeladen wurde
+
 = 1.0.1 =
 - Fix: Ausbesserung im UI
 

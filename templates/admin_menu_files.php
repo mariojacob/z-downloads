@@ -72,7 +72,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         ////////////////////
         // Datei löschen
         ////////////////////
-        if ($_POST['delete'] && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) {
+        if (($_POST['delete'] && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) OR ($_GET['delete'] && wp_verify_nonce($_GET['nonce'], 'datei-loeschen'))) {
 
             // Daten aus DB holen
             $zdm_db_file = $wpdb->get_results( 
@@ -461,12 +461,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <table class="wp-list-table widefat striped tags">
                     <thead>
                         <tr>
-                            <th scope="col" width="2%"></th>
-                            <th scope="col" width="38%"><b><?=esc_html__('Name', 'zdm')?></b></th>
-                            <th scope="col" width="20%"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
-                            <th scope="col" width="15%"><b><?=esc_html__('Downloads', 'zdm')?></b></th>
-                            <th scope="col" width="15%"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
-                            <th scope="col" width="10%"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
+                            <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
+                            <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
+                            <th scope="col"><i class="ion-android-download" title="<?=esc_html__('Downloads', 'zdm')?>"></i></th>
+                            <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
+                            <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
+                            <th scope="col" width="2%"><div align="center"><i class="ion-trash-b" title="<?=esc_html__('Datei löschen', 'zdm')?>"></i></div></th>
                         </tr>
                     </thead>
 
@@ -506,6 +506,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <td>
                                     <?=date("d.m.Y", $zdm_db_files[$i]->time_create)?>
                                 </td>
+                                <td>
+                                    <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_db_files[$i]->id?>&delete=true&nonce=<?=wp_create_nonce('datei-loeschen')?>" class="button button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Datei löschen', 'zdm')?>"><i class="ion-trash-b"></i></a>
+                                </td>
                             </tr>
                             <?php
                         }
@@ -515,12 +518,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                     <tfoot>
                         <tr>
-                            <th scope="col"></th>
-                            <th scope="col"><b><?=esc_html__('Name', 'zdm')?></b></th>
+                            <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
-                            <th scope="col"><b><?=esc_html__('Downloads', 'zdm')?></b></th>
+                            <th scope="col"><i class="ion-android-download" title="<?=esc_html__('Downloads', 'zdm')?>"></i></th>
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
+                            <th scope="col"><div align="center"><i class="ion-trash-b" title="<?=esc_html__('Datei löschen', 'zdm')?>"></i></div></th>
                         </tr>
                     </tfoot>
 

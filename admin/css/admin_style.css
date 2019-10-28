@@ -52,9 +52,9 @@
     }
 }
 
-.zdm-table-tr-warning {
-    border: solid 5px #FFCD19 !important;
-}
+/********************
+ Buttons
+********************/
 
 .zdm-btn-danger {
     color: #fff !important;
@@ -74,6 +74,16 @@
 }
 .zdm-btn-danger-outline:hover {
     color: #7A1E1E !important;
+    border-color: #7A1E1E !important;
+}
+
+.zdm-btn-danger-2-outline {
+    color: #7A1E1E !important;
+    background: #fff !important;
+    box-shadow: none !important;
+}
+.zdm-btn-danger-2-outline:hover {
+    color: #fa3e3e !important;
     border-color: #7A1E1E !important;
 }
 
