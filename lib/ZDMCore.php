@@ -311,6 +311,9 @@ class ZDMCore
 
                 $type = 'zdownload';
                 $id = base64_encode($db_archive[0]->id);
+            } else {
+                // Leerer Rückgabewert wenn keine Datei verknüpft ist
+                return '';
             }
         }
 
@@ -345,7 +348,7 @@ class ZDMCore
         }
 
         ////////////////////
-        // Ausgabe <button formaction="http://stackoverflow.com">Go to Stack Overflow!</button>
+        // Ausgabe
         ////////////////////
         return '<a href="?' . $type . '=' . $id . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $download_text . '</a>';
     }
