@@ -98,6 +98,7 @@ Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können ein
 = 1.x.x =
 - New: Dateien direkt in der Übersichtsliste löschen
 - New: Hinweis wenn eine Datei schon hochgeladen wurde
+- Update: UI Verbesserungen
 
 = 1.0.1 =
 - Fix: Ausbesserung im UI

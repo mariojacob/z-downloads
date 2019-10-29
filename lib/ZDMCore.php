@@ -1178,10 +1178,26 @@ class ZDMCore
             "
             );
 
-        if (count($db_files_rel) > 0) {
+        // Daten aus DB files_rel holen
+        $db_files_rel_check_archive = $wpdb->get_results(
+            "
+            SELECT id 
+            FROM $tablename_files_rel 
+            WHERE id_archive = '$archive_id'
+            "
+            );
+        
+        // Check ob das Archiv eine Datei enthält
+        if (count($db_files_rel_check_archive) < 1) {
             return false;
         } else {
-            return true;
+
+            // Check ob eine Datei verändert wurde
+            if (count($db_files_rel) > 0) {
+                return false;
+            } else {
+                return true;
+            }
         }
     }
 
