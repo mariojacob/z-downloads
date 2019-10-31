@@ -81,4 +81,19 @@ if ($zdm_options['version'] < ZDM__VERSION) {
 
     update_option('zdm_options', $zdm_options);
     //////////////////////////////
+    
+    // Neue Optionen in v1.1.0
+    if ($zdm_options['version'] <= '1.1.0') {
+
+        if (!$zdm_options['download-btn-icon']) {
+            $zdm_options['download-btn-icon'] = 'none';
+        }
+
+        if (!$zdm_options['download-btn-icon-only']) {
+            $zdm_options['download-btn-icon-only'] = '';
+        }
+    }
+
+    update_option('zdm_options', $zdm_options);
+    //////////////////////////////
 }

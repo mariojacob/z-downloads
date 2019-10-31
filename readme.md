@@ -95,7 +95,8 @@ Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können ein
 
 == Changelog ==
 
-= 1.x.x =
+= 1.1.0 =
+- New: Download Buttons mit Icons
 - New: Dateien direkt in der Übersichtsliste löschen
 - New: Hinweis wenn eine Datei schon hochgeladen wurde
 - Update: UI Verbesserungen

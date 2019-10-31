@@ -11,6 +11,43 @@ if( !defined( 'ABSPATH' ) ) {
 class ZDMStat
 {
 
+    // NOTE: Doc
+    public function get_best_downloads($type = 'archive', $number = 5)
+    {
+        global $wpdb;
+
+        if ($type == 'archive') {
+            $tablename_archives = $wpdb->prefix . "zdm_archives";
+
+            $db = $wpdb->get_results(
+                "
+                SELECT id, name, count 
+                FROM $tablename_archives 
+                WHERE count > 0 
+                ORDER by count DESC 
+                Limit $number
+                "
+                );
+        }
+
+        if ($type == 'file') {
+            $tablename_files = $wpdb->prefix . "zdm_files";
+
+            $db = $wpdb->get_results(
+                "
+                SELECT id, name, count, file_type 
+                FROM $tablename_files 
+                WHERE count > 0 
+                ORDER by count DESC 
+                Limit $number
+                "
+                );
+        }
+        
+
+        return $db;
+    }
+
     /**
      * Gibt Anzahl der Downloads zurück
      * @return int
@@ -86,6 +123,7 @@ class ZDMStat
         
     }
 
+    // NOTE: Doc
     public function get_downloads_count_time($type = 'all', $period)
     {
 
@@ -182,42 +220,7 @@ class ZDMStat
         }
     }
 
-    public function get_best_downloads($type = 'archive', $number = 5)
-    {
-        global $wpdb;
-
-        if ($type == 'archive') {
-            $tablename_archives = $wpdb->prefix . "zdm_archives";
-
-            $db = $wpdb->get_results(
-                "
-                SELECT id, name, count, archive_cache_path, zip_name 
-                FROM $tablename_archives 
-                WHERE count > 0 
-                ORDER by count DESC 
-                Limit $number
-                "
-                );
-        }
-
-        if ($type == 'file') {
-            $tablename_files = $wpdb->prefix . "zdm_files";
-
-            $db = $wpdb->get_results(
-                "
-                SELECT id, name, count, folder_path, file_name, file_type 
-                FROM $tablename_files 
-                WHERE count > 0 
-                ORDER by count DESC 
-                Limit $number
-                "
-                );
-        }
-        
-
-        return $db;
-    }
-
+    // NOTE: Doc
     public function get_last_downloads($type = 'archive', $number = 5)
     {
         $type_log = 'download ' . $type;

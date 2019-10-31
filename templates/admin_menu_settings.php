@@ -70,6 +70,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         $zdm_options['download-btn-outline'] = trim(sanitize_text_field($_POST['download-btn-outline']));
         // Download-Button runde Ecken
         $zdm_options['download-btn-border-radius'] = trim(sanitize_text_field($_POST['download-btn-border-radius']));
+        // Download-Button Icon
+        $zdm_options['download-btn-icon'] = trim(sanitize_text_field($_POST['download-btn-icon']));
+        // Download-Button Icon only
+        $zdm_options['download-btn-icon-only'] = trim(sanitize_text_field($_POST['download-btn-icon-only']));
 
         // Erweitert
 
@@ -173,20 +177,20 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             <div class="postbox">
                 <div class="inside">
-                    <h3><?=esc_html__('Allgemein', 'zdm')?></h3>
+                    <h3><?=esc_html__('Download-Button', 'zdm')?></h3>
                     <hr>
                     <table class="form-table">
                         <tbody>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('Download-Button Standardtext', 'zdm')?>:</th>
+                                <th scope="row"><?=esc_html__('Standardtext', 'zdm')?>:</th>
                                 <td valign="middle">
                                 <input type="text" name="download-btn-text" size="15" value="<?=esc_attr($zdm_options['download-btn-text'])?>">
                                 <br>
-                                <div class="zdm-help-text"><?=esc_html__('Das ist der Standardtext, dieser kann aber je Download individuell geändert werden.', 'zdm')?>
+                                <div class="zdm-help-text"><?=esc_html__('Das ist der Standardtext, dieser kann aber je Download individuell geändert werden.', 'zdm')?></div>
                                 </td>
                             </tr>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('Download-Button Style', 'zdm')?>:</th>
+                                <th scope="row"><?=esc_html__('Style', 'zdm')?>:</th>
                                 <td valign="middle">
                                     <select name="download-btn-style">
                                         <?php
@@ -205,7 +209,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     &nbsp;&nbsp;&nbsp;
                                     <span class="zdm-color-bg-<?=$zdm_options['download-btn-style']?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                     <br>
-                                    <div class="zdm-help-text"><?=esc_html__('Wähle aus verschiedenen Button-Farben den Standardwert für Buttons.', 'zdm')?>
+                                    <div class="zdm-help-text"><?=esc_html__('Wähle aus verschiedenen Button-Farben den Standardwert für Buttons.', 'zdm')?></div>
                                 </td>
                             </tr>
                             <tr valign="top">
@@ -214,27 +218,66 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <input type="checkbox" name="download-btn-outline" <?php if($zdm_options['download-btn-outline'] == 'on'){ echo 'checked="checked"'; } ?> >
                                     <?=esc_html__('Outline', 'zdm')?>
                                     <br>
-                                    <div class="zdm-help-text"><?=esc_html__('Diese Option zeigt den Button als Rahmen.', 'zdm')?>
+                                    <div class="zdm-help-text"><?=esc_html__('Diese Option zeigt den Button als Rahmen.', 'zdm')?></div>
                                 </td>
                             </tr>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('Download-Button runde Ecken:', 'zdm')?></th>
+                                <th scope="row"><?=esc_html__('Runde Ecken', 'zdm')?>:</th>
                                 <td valign="middle">
                                     <select name="download-btn-border-radius">
                                     <?php
-                                        $zdm_btn_style = '';
+                                        $zdm_btn_border = '';
 
                                         for( $i = 0; $i < count(ZDM__DOWNLOAD_BTN_BORDER_RADIUS); $i++ ) {
-                                          $zdm_btn_style    .= '<option value="' . ZDM__DOWNLOAD_BTN_BORDER_RADIUS_VAL[$i] . '" ' 
+                                            $zdm_btn_border .= '<option value="' . ZDM__DOWNLOAD_BTN_BORDER_RADIUS_VAL[$i] . '" ' 
                                                             . ( $zdm_options['download-btn-border-radius'] == ZDM__DOWNLOAD_BTN_BORDER_RADIUS_VAL[$i] ? 'selected="selected"' : '' ) . '>' 
                                                             . ZDM__DOWNLOAD_BTN_BORDER_RADIUS[$i] 
                                                             . '</option>';
                                         }
                                         
-                                        echo $zdm_btn_style;
+                                        echo $zdm_btn_border;
                                         ?>
                                     </select><br>
-                                    <div class="zdm-help-text"><?=esc_html__('Wenn "keine" ausgewählt ist, dann wird der Standardwert deines Themes verwendet, der Button bleibt eckig.', 'zdm')?>
+                                    <div class="zdm-help-text"><?=esc_html__('Wenn "keine" ausgewählt ist, dann wird der Standardwert deines Themes verwendet, der Button bleibt eckig.', 'zdm')?></div>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th scope="row"><?=esc_html__('Icon', 'zdm')?>:</th>
+                                <td valign="middle">
+                                    <select name="download-btn-icon">
+                                    <?php
+                                        $zdm_btn_icon = '';
+
+                                        for( $i = 0; $i < count(ZDM__DOWNLOAD_BTN_ICON); $i++ ) {
+                                            $zdm_btn_icon   .= '<option value="' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '" ' 
+                                                            . ( $zdm_options['download-btn-icon'] == ZDM__DOWNLOAD_BTN_ICON_VAL[$i] ? 'selected="selected"' : '' ) . '>' 
+                                                            . ZDM__DOWNLOAD_BTN_ICON[$i] 
+                                                            . '</option>';
+                                        }
+                                        
+                                        echo $zdm_btn_icon;
+                                    ?>
+                                    </select><br>
+                                    <div class="zdm-help-text"><?=esc_html__('Hier sind die verfügbaren Icons:', 'zdm')?></div>
+                                    <?php
+                                        $zdm_btn_icon_example = '';
+
+                                        for( $i = 1; $i < count(ZDM__DOWNLOAD_BTN_ICON); $i++ ) {
+                                            $zdm_btn_icon_example   .= ZDM__DOWNLOAD_BTN_ICON[$i] . ':' 
+                                                                    . '<ion-icon name="' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '" class="zdm-icon zdm-color-primary"></ion-icon>';
+                                        }
+                                        
+                                        echo $zdm_btn_icon_example;
+                                    ?>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th scope="row"></th>
+                                <td valign="middle">
+                                    <input type="checkbox" name="download-btn-icon-only" <?php if($zdm_options['download-btn-icon-only'] == 'on'){ echo 'checked="checked"'; } ?> >
+                                    <?=esc_html__('Nur Icon', 'zdm')?>
+                                    <br>
+                                    <div class="zdm-help-text"><?=esc_html__('Diese Option zeigt nur das Icon ohne Text an.', 'zdm')?></div>
                                 </td>
                             </tr>
                         </tbody>

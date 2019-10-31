@@ -29,6 +29,8 @@ class ZDMPluginActivate
             'download-btn-style'            => 'black',
             'download-btn-outline'          => '',
             'download-btn-border-radius'    => 'none',
+            'download-btn-icon'             => 'none',
+            'download-btn-icon-only'        => '',
             'download-btn-css'              => '',
             'secure-ip'                     => 'on',
         );

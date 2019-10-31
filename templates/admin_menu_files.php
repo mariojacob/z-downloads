@@ -463,10 +463,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <tr>
                             <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
-                            <th scope="col"><i class="ion-android-download" title="<?=esc_html__('Downloads', 'zdm')?>"></i></th>
+                            <th scope="col"><ion-icon name="cloud-download" title="<?=esc_html__('Downloads', 'zdm')?>"></ion-icon></th>
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
-                            <th scope="col" width="2%"><div align="center"><i class="ion-trash-b" title="<?=esc_html__('Datei löschen', 'zdm')?>"></i></div></th>
+                            <th scope="col" width="2%"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Datei löschen', 'zdm')?>"></ion-icon></div></th>
                         </tr>
                     </thead>
 
@@ -476,13 +476,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         for ($i = 0; $i < count($zdm_db_files); $i++) {
 
                             if (in_array($zdm_db_files[$i]->file_type, ZDM__MIME_TYPES_AUDIO)) { // Audio
-                                $icon = '<i class="ion-music-note"></i>';
+                                $icon = '<ion-icon name="musical-notes"></ion-icon>';
                             } elseif (in_array($zdm_db_files[$i]->file_type, ZDM__MIME_TYPES_VIDEO)) { // Video
-                                $icon = '<i class="ion-ios-videocam"></i>';
+                                $icon = '<ion-icon name="videocam"></ion-icon>';
                             } elseif (in_array($zdm_db_files[$i]->file_type, ZDM__MIME_TYPES_IMAGE)) { // Bild
-                                $icon = '<i class="ion-image"></i>';
+                                $icon = '<ion-icon name="images"></ion-icon>';
                             } else {
-                                $icon = '<i class="ion-document"></i>';
+                                $icon = '<ion-icon name="document"></ion-icon>';
                             }
 
                             ?>
@@ -491,7 +491,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <div align="center"><?=$icon?></div>
                                 </td>
                                 <td>
-                                    <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_db_files[$i]->folder_path . '/' . $zdm_db_files[$i]->file_name?>" title="<?=esc_html__('Download', 'zdm')?>" target="_blank" download><i class="ion-android-download"></i></a> | 
+                                    <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_db_files[$i]->folder_path . '/' . $zdm_db_files[$i]->file_name?>" title="<?=esc_html__('Download', 'zdm')?>" target="_blank" download><ion-icon name="cloud-download"></ion-icon></a> | 
                                     <b><a href="?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_db_files[$i]->id?>"><?=$zdm_db_files[$i]->name?></a></b>
                                 </td>
                                 <td>
@@ -507,7 +507,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <?=date("d.m.Y", $zdm_db_files[$i]->time_create)?>
                                 </td>
                                 <td>
-                                    <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_db_files[$i]->id?>&delete=true&nonce=<?=wp_create_nonce('datei-loeschen')?>" class="button button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Datei löschen', 'zdm')?>"><i class="ion-trash-b"></i></a>
+                                    <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_db_files[$i]->id?>&delete=true&nonce=<?=wp_create_nonce('datei-loeschen')?>" class="button button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Datei löschen', 'zdm')?>"><ion-icon name="trash"></ion-icon></a>
                                 </td>
                             </tr>
                             <?php
@@ -520,10 +520,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <tr>
                             <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
-                            <th scope="col"><i class="ion-android-download" title="<?=esc_html__('Downloads', 'zdm')?>"></i></th>
+                            <th scope="col"><ion-icon name="cloud-download" title="<?=esc_html__('Downloads', 'zdm')?>"></ion-icon></th>
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
-                            <th scope="col"><div align="center"><i class="ion-trash-b" title="<?=esc_html__('Datei löschen', 'zdm')?>"></i></div></th>
+                            <th scope="col"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Datei löschen', 'zdm')?>"></ion-icon></div></th>
                         </tr>
                     </tfoot>
 

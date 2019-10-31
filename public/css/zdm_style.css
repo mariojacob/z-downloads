@@ -1,3 +1,9 @@
+ion-icon {
+    position: relative;
+    /* Adjust these values accordingly */
+    top: 3px;
+}
+
 /********************
  Button
 ********************/
@@ -18,6 +24,20 @@
 .zdm-btn:hover {
     background: #fff !important;
     color: #555 !important;
+}
+
+/********************
+ Button Icon
+********************/
+
+.zdm-btn-icon {
+    font-size: 1.2em;
+    margin-right: 8px;
+}
+
+.zdm-btn-icon-only {
+    font-size: 1.2em;
+    margin: 0 4px;
 }
 
 /********************

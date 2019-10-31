@@ -415,7 +415,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <td valign="middle">
                                         <?php
                                         if (ZDMCore::check_if_archive_cache_ok($zdm_archive_id)) {
-                                            echo '<i class="ion-checkmark-circled zdm-color-green"></i>&nbsp;&nbsp;' . esc_html__('Cache ist aktuell', 'zdm') . '.';
+                                            echo '<ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon>&nbsp;&nbsp;' . esc_html__('Cache ist aktuell', 'zdm') . '.';
                                         } else {
                                             ?>
                                             <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_archive_id?>&archive-cache=<?=$zdm_archive_id?>&nonce=<?=wp_create_nonce('cache-aktualisieren')?>" class="button button-primary" title="<?=esc_html__('Cache aktualisieren', 'zdm')?>"><?=esc_html__('Cache aktualisieren', 'zdm')?></a>
@@ -445,7 +445,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                                     <?=ZDMCore::get_file_name($zdm_db_files_rel_array[$i]->id_file)?>
                                                 </td>
                                                 <td>
-                                                    <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_archive_id?>&file_delete_id=<?=$zdm_db_files_rel_array[$i]->id?>&nonce=<?=wp_create_nonce('datei-entfernen')?>" class="button button-small">&nbsp;<i class="ion-close-round zdm-color-warning"></i>&nbsp;</a>
+                                                    <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_archive_id?>&file_delete_id=<?=$zdm_db_files_rel_array[$i]->id?>&nonce=<?=wp_create_nonce('datei-entfernen')?>" class="button button-small button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Datei aus Archiv entfernen', 'zdm')?>">&nbsp;<ion-icon name="close"></ion-icon>&nbsp;</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -511,12 +511,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <tr>
                             <th scope="col"><b><?=esc_html__('Name', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
-                            <th scope="col"><i class="ion-android-download" title="<?=esc_html__('Downloads', 'zdm')?>"></i></th>
+                            <th scope="col"><ion-icon name="cloud-download" title="<?=esc_html__('Downloads', 'zdm')?>"></ion-icon></th>
                             <th scope="col"><b><?=esc_html__('Dateien', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
                             <th scope="col"><div align="center"><b><?=esc_html__('Cache', 'zdm')?></b></div></th>
-                            <th scope="col" width="2%"><div align="center"><i class="ion-trash-b" title="<?=esc_html__('Archiv löschen', 'zdm')?>"></i></div></th>
+                            <th scope="col" width="2%"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Archiv löschen', 'zdm')?>"></ion-icon></div></th>
                         </tr>
                     </thead>
 
@@ -546,12 +546,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     if ($zdm_db_files_rel_count != 0) {
                                         
                                         if (ZDMCore::check_if_archive_cache_ok($zdm_db_archives[$i]->id)) {
-                                            ?> <a href="<?=ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . $zdm_db_archives[$i]->archive_cache_path . '/' . $zdm_db_archives[$i]->zip_name?>.zip" title="<?=esc_html__('Download', 'zdm')?>" target="_blank" download><i class="ion-android-download"></i></a> |  <?php
+                                            ?> <a href="<?=ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . $zdm_db_archives[$i]->archive_cache_path . '/' . $zdm_db_archives[$i]->zip_name?>.zip" title="<?=esc_html__('Download', 'zdm')?>" target="_blank" download><ion-icon name="cloud-download"></ion-icon></a> |  <?php
                                         } else {
-                                            ?> <i class="ion-android-download" title="<?=esc_html__('Aktualisiere den Cache der Datei um diese herunterzuladen', 'zdm')?>"></i></a> |  <?php
+                                            ?> <ion-icon name="cloud-download" title="<?=esc_html__('Aktualisiere den Cache der Datei um diese herunterzuladen', 'zdm')?>"></ion-icon></a> |  <?php
                                         }
                                     } else {
-                                        ?> <i class="ion-alert-circled zdm-color-yellow" title="<?=esc_html__('Es sind keine Dateien mit dem Archiv verknüpft.', 'zdm')?>"></i> |  <?php
+                                        ?> <ion-icon name="warning" title="<?=esc_html__('Es sind keine Dateien mit dem Archiv verknüpft.', 'zdm')?>"></ion-icon> |  <?php
                                     }
                                     ?>
                                     <b><a href="?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_db_archives[$i]->id?>"><?=$zdm_db_archives[$i]->name?></a></b>
@@ -567,7 +567,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     if ($zdm_db_files_rel_count != 0) {
                                         echo ZDMCore::number_format($zdm_db_files_rel_count);
                                     } else {
-                                        ?> <i class="ion-alert-circled zdm-color-yellow" title="<?=esc_html__('Es sind keine Dateien mit dem Archiv verknüpft.', 'zdm')?>"></i> <?php
+                                        ?> <ion-icon name="warning" class="zdm-color-yellow" title="<?=esc_html__('Es sind keine Dateien mit dem Archiv verknüpft.', 'zdm')?>"></ion-icon> <?php
                                     }
                                     ?>
                                 </td>
@@ -586,17 +586,17 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     if ($zdm_db_files_rel_count != 0) {
 
                                         if (ZDMCore::check_if_archive_cache_ok($zdm_db_archives[$i]->id)) {
-                                            ?> <i class="ion-checkmark-circled zdm-color-green"></i> <?php
+                                            ?> <ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon> <?php
                                         } else {
-                                            ?> <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&archive-cache=<?=$zdm_db_archives[$i]->id?>&nonce=<?=wp_create_nonce('cache-aktualisieren')?>" class="button button-primary" title="<?=esc_html__('Cache aktualisieren', 'zdm')?>"><i class="icon ion-refresh"></i></a> <?php
+                                            ?> <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&archive-cache=<?=$zdm_db_archives[$i]->id?>&nonce=<?=wp_create_nonce('cache-aktualisieren')?>" class="button button-primary" title="<?=esc_html__('Cache aktualisieren', 'zdm')?>"><ion-icon name="refresh"></ion-icon></a> <?php
                                         }
                                     } else {
-                                        ?> <i class="ion-alert-circled zdm-color-yellow" title="<?=esc_html__('Es sind keine Dateien mit dem Archiv verknüpft.', 'zdm')?>"></i> <?php
+                                        ?> <ion-icon name="warning" class="zdm-color-yellow" title="<?=esc_html__('Es sind keine Dateien mit dem Archiv verknüpft.', 'zdm')?>"></ion-icon> <?php
                                     }
                                     ?>
                                 </td>
                                 <td>
-                                    <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_db_archives[$i]->id?>&delete=true&nonce=<?=wp_create_nonce('archiv-loeschen')?>" class="button button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Archiv löschen', 'zdm')?>"><i class="ion-trash-b"></i></a>
+                                    <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_db_archives[$i]->id?>&delete=true&nonce=<?=wp_create_nonce('archiv-loeschen')?>" class="button button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Archiv löschen', 'zdm')?>"><ion-icon name="trash"></ion-icon></a>
                                 </td>
                             </tr>
                             <?php
@@ -609,12 +609,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <tr>
                             <th scope="col"><b><?=esc_html__('Name', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
-                            <th scope="col"><i class="ion-android-download" title="<?=esc_html__('Downloads', 'zdm')?>"></i></th>
+                            <th scope="col"><ion-icon name="cloud-download" title="<?=esc_html__('Downloads', 'zdm')?>"></ion-icon></th>
                             <th scope="col"><b><?=esc_html__('Dateien', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
                             <th scope="col"><div align="center"><b><?=esc_html__('Cache', 'zdm')?></b></div></th>
-                            <th scope="col"><div align="center"><i class="ion-trash-b" title="<?=esc_html__('Archiv löschen', 'zdm')?>"></i></div></th>
+                            <th scope="col"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Archiv löschen', 'zdm')?>"></ion-icon></div></th>
                         </tr>
                     </tfoot>
 

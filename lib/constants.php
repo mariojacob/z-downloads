@@ -99,3 +99,39 @@ define('ZDM__DOWNLOAD_BTN_BORDER_RADIUS', [
     __('9 Pixel', 'zdm'),
     __('10 Pixel', 'zdm')
 ]);
+
+// Download-Button Icons
+define('ZDM__DOWNLOAD_BTN_ICON_VAL', [
+    'none',
+    'download',
+    'arrow-round-down',
+    'code-download',
+    'cloud-download',
+    'cloud',
+    'cloud-done',
+    'checkmark',
+    'checkmark-circle',
+    'checkmark-circle-outline',
+    'heart',
+    'heart-empty',
+    'star',
+    'star-outline',
+    'trophy'
+]);
+define('ZDM__DOWNLOAD_BTN_ICON', [
+    __('keines', 'zdm'),
+    __('Pfeil 1', 'zdm'),
+    __('Pfeil 2', 'zdm'),
+    __('Download Code', 'zdm'),
+    __('Cloud Download', 'zdm'),
+    __('Cloud', 'zdm'),
+    __('Cloud Check', 'zdm'),
+    __('Check 1', 'zdm'),
+    __('Check 2', 'zdm'),
+    __('Check 3', 'zdm'),
+    __('Herz 1', 'zdm'),
+    __('Herz 2', 'zdm'),
+    __('Stern 1', 'zdm'),
+    __('Stern 2', 'zdm'),
+    __('Trophäe', 'zdm')
+]);

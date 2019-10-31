@@ -42,7 +42,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <div class="postbox">
 
                     <div class="inside">
-                        <h3><i class="ion-clock"></i> <?=esc_html__('Letzte Downloads', 'zdm')?></h3>
+                        <h3><ion-icon name="time"></ion-icon> <?=esc_html__('Letzte Downloads', 'zdm')?></h3>
                     </div>
 
                     <?php if ($zdm_last_downloads != false) { ?>
@@ -145,7 +145,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <div class="postbox">
 
                     <div class="inside">
-                        <h3><i class="ion-arrow-graph-up-right"></i> <?=esc_html__('Beliebte Downloads', 'zdm')?></h3>
+                        <h3><ion-icon name="trending-up"></ion-icon> <?=esc_html__('Beliebte Downloads', 'zdm')?></h3>
                     </div>
 
                     <?php if ($zdm_best_downloads != false) { ?>
@@ -176,13 +176,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     ?>
                                     <tr>
                                         <td>
-                                            <?php
-                                            if (ZDMCore::check_if_archive_cache_ok($zdm_best_downloads[$i]->id)) {
-                                                ?> <a href="<?=ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . $zdm_best_downloads[$i]->archive_cache_path . '/' . $zdm_best_downloads[$i]->zip_name?>.zip" title="<?=esc_html__('Download', 'zdm')?>" target="_blank" download><i class="ion-android-download"></i></a> |  <?php
-                                            } else {
-                                                ?> <i class="ion-android-download" title="<?=esc_html__('Aktualisiere den Cache der Datei um diese herunterzuladen', 'zdm')?>"></i></a> |  <?php
-                                            }
-                                            ?>
                                             <?=$zdm_download_id_link?>
                                         </td>
                                         <td>
@@ -228,19 +221,18 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <td width="2%">
                                             <?php
                                             if (in_array($zdm_best_downloads_files[$i]->file_type, ZDM__MIME_TYPES_AUDIO)) { // Audio
-                                                $icon = '<i class="ion-music-note"></i>';
+                                                $icon = '<ion-icon name="musical-notes"></ion-icon>';
                                             } elseif (in_array($zdm_best_downloads_files[$i]->file_type, ZDM__MIME_TYPES_VIDEO)) { // Video
-                                                $icon = '<i class="ion-ios-videocam"></i>';
+                                                $icon = '<ion-icon name="videocam"></ion-icon>';
                                             } elseif (in_array($zdm_best_downloads_files[$i]->file_type, ZDM__MIME_TYPES_IMAGE)) { // Bild
-                                                $icon = '<i class="ion-image"></i>';
+                                                $icon = '<ion-icon name="images"></ion-icon>';
                                             } else {
-                                                $icon = '<i class="ion-document"></i>';
+                                                $icon = '<ion-icon name="document"></ion-icon>';
                                             }
                                             echo $icon;
                                             ?>
                                         </td>
                                         <td width="78%">
-                                            <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_best_downloads_files[$i]->folder_path . '/' . $zdm_best_downloads_files[$i]->file_name?>" title="<?=esc_html__('Download', 'zdm')?>" target="_blank" download><i class="ion-android-download"></i></a> | 
                                             <?=$zdm_download_id_link?>
                                         </td>
                                         <td width="20%">

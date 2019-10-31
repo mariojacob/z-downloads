@@ -143,14 +143,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <tr valign="top">
                                 <th scope="row"><?=esc_html__('Status:', 'zdm')?></th>
                                 <td valign="middle">
-                                    <i class="ion-checkmark-circled zdm-color-green"></i>&nbsp;&nbsp;<b>"<?=$zdm_file['name']?>"</b> <?=esc_html__('erfolgreich hochgeladen.', 'zdm')?>
+                                    <ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon>&nbsp;&nbsp;<b>"<?=$zdm_file['name']?>"</b> <?=esc_html__('erfolgreich hochgeladen.', 'zdm')?>
                                     <?php
                                     // Check ob selbe Datei schon hochgeladen wurde
                                     $zdm_file_hash_count = ZDMCore::get_count_of_files_by_hash('md5', $zdm_file['md5']);
                                     if ($zdm_file_hash_count > 1) {
                                         ?>
                                         <br>
-                                        <i class="ion-information-circled zdm-color-yellow"></i>&nbsp;&nbsp;<b><?=esc_html__('Info', 'zdm')?>:</b> <?=esc_html__('Diese Datei wurde schon einmal hochgeladen und existiert jetzt', 'zdm')?> <?=$zdm_file_hash_count?> <?=esc_html__('mal', 'zdm')?>.
+                                        <ion-icon name="information-circle-outline" class="zdm-color-yellow"></ion-icon>&nbsp;&nbsp;<b><?=esc_html__('Info', 'zdm')?>:</b> <?=esc_html__('Diese Datei wurde schon einmal hochgeladen und existiert jetzt', 'zdm')?> <?=$zdm_file_hash_count?> <?=esc_html__('mal', 'zdm')?>.
                                         <?php
                                     }
                                     ?>
@@ -230,7 +230,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <div class="postbox">
             <div class="inside" align="center">
                 <br>
-                <i class="ion-checkmark-circled zdm-color-green"></i>&nbsp;&nbsp;<b>"<?=sanitize_file_name($_POST['filename'])?>"</b> <?=esc_html__('wurde gelöscht.', 'zdm')?>
+                <ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon>&nbsp;&nbsp;<b>"<?=sanitize_file_name($_POST['filename'])?>"</b> <?=esc_html__('wurde gelöscht.', 'zdm')?>
                 <br><br>
                 <p>
                     <a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-add-file"><?=esc_html__('Datei hinzufügen', 'zdm')?></a> 
@@ -244,7 +244,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <div class="postbox">
             <div class="inside" align="center">
                 <br>
-                <i class="ion-checkmark-circled zdm-color-green"></i>&nbsp;&nbsp;<?=esc_html__('Datei wurde erfolgreich aktualisiert.', 'zdm')?>
+                <ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon>&nbsp;&nbsp;<?=esc_html__('Datei wurde erfolgreich aktualisiert.', 'zdm')?>
                 <br><br>
                 <p>
                     <a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-add-file"><?=esc_html__('Datei hinzufügen', 'zdm')?></a> 
