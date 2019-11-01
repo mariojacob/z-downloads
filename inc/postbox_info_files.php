@@ -7,5 +7,6 @@
             <?=esc_html__('als Download-Button angezeigt werden oder zu einem Archiv verknüpft und in Form einer ZIP-Datei als Download-Button angezeigt werden.', 'zdm')?>
         </p>
         <p><?=esc_html__('Wenn du eine Datei aktualisierst oder löscht, dann aktualisiert sich der Inhalt aller ZIP-Dateien in der sich diese Datei befindet oder befand automatisch.', 'zdm')?></p>
+        <p><?php require_once (plugin_dir_path(__FILE__) . '../inc/template_help_text.php'); ?></p>
     </div>
 </div>

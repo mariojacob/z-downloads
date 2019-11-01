@@ -4,20 +4,15 @@
         <table class="form-table">
             <tbody>
                 <tr valign="top">
-                    <th scope="row"><?=esc_html__('Hilfe', 'zdm')?>:</th>
-                    <td valign="middle">
-                    <a href="admin.php?page=<?=ZDM__SLUG?>-help"><?=esc_html__('Hilfe', 'zdm')?></a>
-                    </td>
-                </tr>
-                <tr valign="top">
                     <th scope="row"><?=ZDM__TITLE?> <?=esc_html__('Version', 'zdm')?>:</th>
                     <td valign="middle">
                         <?=esc_attr($zdm_options['version'])?> <a href="https://code.urban-base.net/z-downloads/release-notes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Release notes', 'zdm')?>"><?=esc_html__('release notes', 'zdm')?></a>
                     </td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row"><?=esc_html__('Dokumentation (deutsch)', 'zdm')?>:</th>
+                    <th scope="row"><?=esc_html__('Dokumentation und Hilfe', 'zdm')?>:</th>
                     <td valign="middle">
+                        <a href="admin.php?page=<?=ZDM__SLUG?>-help"><?=esc_html__('Hilfeseiten für den Einstieg', 'zdm')?></a>, 
                         <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=esc_html__('Shortcodes', 'zdm')?></a>, 
                         <a href="https://code.urban-base.net/z-downloads/farben/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Farben', 'zdm')?>"><?=esc_html__('Farben', 'zdm')?></a>, 
                         <a href="https://wordpress.org/plugins/z-downloads/#faq" target="_blank" title="<?=esc_html__('FAQ', 'zdm')?>"><?=esc_html__('FAQ', 'zdm')?></a>
