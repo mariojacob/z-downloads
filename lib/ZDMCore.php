@@ -382,9 +382,7 @@ class ZDMCore
         $zip = new ZipArchive;
 
         // Zip-Archiv erstellen
-        $status = $zip->open($file_path, ZipArchive::CREATE);
-
-        if ($status === TRUE) {
+        if ($zip->open($file_path, ZipArchive::CREATE) === TRUE) {
 
             // Dateien ins Zip-Archiv einfügen
             for ($i = 0; $i < count($db_files_rel); $i++) {
