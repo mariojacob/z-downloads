@@ -101,9 +101,6 @@ Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können ein
 - New: Hinweis wenn eine Datei schon hochgeladen wurde
 - Update: UI Verbesserungen
 
-= 1.0.1 =
-- Fix: Ausbesserung im UI
-
 = Frühere Versionen =
 - Den Änderungsverlauf von früheren Versionen findest du hier: [Z-Downloads Release Notes](https://code.urban-base.net/z-downloads/release-notes/?utm_source=wporg)
 
