@@ -5,13 +5,21 @@ if( !defined( 'ABSPATH' ) ) {
     die;
 }
 
-if( isset($_GET['tab'])) {
-    $active_tab = htmlspecialchars($_GET['tab']);
-} else {
-    $active_tab = 'beginner';
-}
-
 if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
+
+    // Aktiven Tab bestimmen
+    if( isset($_GET['tab'])) {
+        $active_tab = htmlspecialchars($_GET['tab']);
+    } else {
+        $active_tab = 'beginner';
+    }
+
+    // Text für Premium Funktionen
+    if (!ZDMCore::licence()) {
+        $zdm_premium_text = '(<a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('Funktion', 'zdm') . ' </a>)';
+    } else {
+        $zdm_premium_text = '';
+    }
 
     ?>
 
@@ -28,6 +36,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     <?php
 
+    // Tabs
     if ($active_tab == 'beginner') { // Tab: Erste Schritte
         ?>
         <br>
@@ -85,6 +94,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             </div>
         </div>
         <?php
+    // end if ($active_tab == 'beginner')
     } elseif ($active_tab == 'advanced') { // Tab: Fortgeschritten
         ?>
         <br>
@@ -107,9 +117,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <h3><?=esc_html__('Metadaten ausgeben', 'zdm')?></h3>
                 <hr>
                 <p><?=esc_html__('Du kannst eine Datei oder Archiv nicht nur als Button ausgeben sonder auch weitere Informationen zu diesem Download.', 'zdm')?></p>
-                <h4><?=esc_html__('Die Download-Anzahl', 'zdm')?></h4>
+                <h4><?=esc_html__('Download-Anzahl', 'zdm')?></h4>
                 <p><code>[zdownload_meta file="123" type="count"]</code> <?=esc_html__('oder', 'zdm')?> <code>[zdownload_meta zip="123" type="count"]</code></p>
-                <h4><?=esc_html__('Die Dateigröße', 'zdm')?></h4>
+                <h4><?=esc_html__('Dateigröße', 'zdm')?></h4>
                 <p><code>[zdownload_meta file="123" type="size"]</code> <?=esc_html__('oder', 'zdm')?> <code>[zdownload_meta zip="123" type="size"]</code></p>
                 <h4><?=esc_html__('Weitere Shortcodes', 'zdm')?></h4>
                 <p><?=esc_html__('Weitere Shortcode Optionen für die ausgabe erweiterter Metadaten findest du im Tab', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Experte', 'zdm')?></a> 
@@ -141,14 +151,39 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             </div>
         </div>
         <?php
+    // end elseif ($active_tab == 'advanced')
     } elseif ($active_tab == 'expert') { // Tab: Experte
         ?>
         <br>
         <div class="postbox">
             <div class="inside">
+                <h3><?=esc_html__('Hashwert von Datei mit Shortcode ausgeben', 'zdm')?></h3>
+                <hr>
+                <h4><?=esc_html__('MD5', 'zdm')?> <?=$zdm_premium_text?></h4>
+                <p><?=esc_html__('Du kannst den MD5 Hashwert einer Datei oder eines ZIP-Archives ausgeben.', 'zdm')?></p>
+                <p><code>[zdownload_meta file="123" type="hash-md5"]</code> <?=esc_html__('oder', 'zdm')?> <code>[zdownload_meta zip="123" type="hash-md5"]</code></p>
+                <h4><?=esc_html__('SHA1', 'zdm')?> <?=$zdm_premium_text?></h4>
+                <p><?=esc_html__('Du kannst den SHA1 Hashwert einer Datei oder eines ZIP-Archives ausgeben.', 'zdm')?></p>
+                <p><code>[zdownload_meta file="123" type="hash-sha1"]</code> <?=esc_html__('oder', 'zdm')?> <code>[zdownload_meta zip="123" type="hash-sha1"]</code></p>
+            </div>
+        </div>
+
+        <div class="postbox">
+            <div class="inside">
                 <h3><?=esc_html__('Alle Optionen des Audioplayer', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Text...', 'zdm')?></p>
+                <h4><?=esc_html__('Autoplay', 'zdm')?></h4>
+                <p><code>[zdownload_audio file="123" autoplay="on"]</code></p>
+                <p><?=esc_html__('Die Option "autoplay" gibt an ob der Audioplayer beim Aufruf der Seite automatisch starten soll oder nicht. Standardmäßig ist diese Funktion deaktiviert wenn die Option "autoplay" nicht angegeben wird.', 'zdm')?></p>
+                <h4><?=esc_html__('Dauerschleife', 'zdm')?></h4>
+                <p><code>[zdownload_audio file="123" loop="on"]</code></p>
+                <p><?=esc_html__('Wenn die Option "loop" auf "on" gestellt wird, dann läuft die Audiodatei in einer Dauerschleife ab. Standardmäßig ist diese Option deaktiviert.', 'zdm')?></p>
+                <h4><?=esc_html__('Kontrollen deaktivieren', 'zdm')?></h4>
+                <p><code>[zdownload_audio file="123" controls="off"]</code></p>
+                <p><?=esc_html__('Die Option "controls" ist standardmäßig aktiviert, wenn diese Option auf "off" gestellt wird, dann wird kein Player angezeigt. In Verbindung mit der Option "autoplay" kann so eine Audiodatei automatisch abgespielt werden ohne einen sichtbaren Player, das ist aber für die Benutzerfreundlichkeit nicht zu empfehlen.', 'zdm')?></p>
+                <h4><?=esc_html__('Info', 'zdm')?></h4>
+                <p><?=esc_html__('Natürlich können alle Optionen auch kombiniert werden, das sieht dann so aus:', 'zdm')?></p>
+                <p><code>[zdownload_audio file="123" autoplay="on" loop="on" controls="off"]</code></p>
             </div>
         </div>
         
@@ -156,7 +191,21 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <div class="inside">
                 <h3><?=esc_html__('Alle Optionen des Videoplayer', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Text...', 'zdm')?></p>
+                <h4><?=esc_html__('Breite angeben', 'zdm')?></h4>
+                <p><code>[zdownload_video file="123" w="50%"]</code> <?=esc_html__('oder', 'zdm')?> <code>[zdownload_video file="123" w="720px"]</code></p>
+                <p><?=esc_html__('Die Option "w" ist optional mit der du die Breite des Videos in Form von "%" oder "px" angeben kannst. Standardmäßig ist eine Breite von "100%" eingestellt wenn die Option "w" nicht angegeben wird.', 'zdm')?></p>
+                <h4><?=esc_html__('Autoplay', 'zdm')?></h4>
+                <p><code>[zdownload_video file="123" autoplay="on"]</code></p>
+                <p><?=esc_html__('Die Option "autoplay" gibt an ob das Video beim Aufruf der Seite automatisch starten soll oder nicht. Standardmäßig ist diese Funktion deaktiviert wenn die Option "autoplay" nicht angegeben wird.', 'zdm')?></p>
+                <h4><?=esc_html__('Dauerschleife', 'zdm')?></h4>
+                <p><code>[zdownload_video file="123" loop="on"]</code></p>
+                <p><?=esc_html__('Wenn die Option "loop" auf "on" gestellt wird, dann läuft das Video in einer Dauerschleife ab. Standardmäßig ist diese Option deaktiviert.', 'zdm')?></p>
+                <h4><?=esc_html__('Kontrollen deaktivieren', 'zdm')?></h4>
+                <p><code>[zdownload_video file="123" controls="off"]</code></p>
+                <p><?=esc_html__('Die Option "controls" ist standardmäßig aktiviert, wenn diese Option auf "off" gestellt wird, dann werden keine Kontrollelemente wie Play, Pause, Lautstärke, Vollbild, Zeitleiste oder weitere Optionen beim Video angezeigt. In Verbindung mit der Option autoplay kann so eine Videodatei automatisch abgespielt werden ohne eine Möglichkeit das Video zu stoppen, das ist aber für die Benutzerfreundlichkeit nicht zu empfehlen.', 'zdm')?></p>
+                <h4><?=esc_html__('Info', 'zdm')?></h4>
+                <p><?=esc_html__('Natürlich können alle Optionen auch kombiniert werden, das sieht dann so aus:', 'zdm')?></p>
+                <p><code>[zdownload_video file="123" w="720px" autoplay="on" loop="on" controls="off"]</code></p>
             </div>
         </div>
         
@@ -164,7 +213,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <div class="inside">
                 <h3><?=esc_html__('Audioplayer und Videoplayer mit JavaScript steuern', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Text...', 'zdm')?></p>
+                <p><?=esc_html__('Um den Audioplayer mit Hilfe von JavaScript zu steuern besitzt jedes HTML Audio-Element eine individuelle id, diese setzt sich aus zdmAudio und der ID der Datei zusammen.', 'zdm')?></p>
+                <p><code>id="zdmAudio123"</code></p>
+                <p><?=esc_html__('Um den Videoplayer mit Hilfe von JavaScript zu steuern besitzt jedes HTML Video-Element eine individuelle id, diese setzt sich aus zdmVideo und der ID der Datei zusammen.', 'zdm')?></p>
+                <p><code>id="zdmVideo123"</code></p>
             </div>
         </div>
         
@@ -173,16 +225,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <h3><?=esc_html__('IP Adresse Anonymität', 'zdm')?></h3>
                 <hr>
                 <p><?=esc_html__('Die IP Adresse der Webseitenbesucher die über dieses Plugin etwas herunterladen ist standardmäßig anonymisiert.', 'zdm')?></p>
-                <p><?=esc_html__('Um diese Einstellung zu ändern und die IP Adresse vollständig zu tracken klicke im', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('Menü auf "Einstellungen".', 'zdm')?></p>
+                <p><?=esc_html__('Um diese Einstellung zu ändern und die IP Adresse vollständig zu tracken klicke im', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('Menü auf', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-settings"><?=esc_html__('Einstellungen', 'zdm')?></a>".</p>
             </div>
         </div>
         <?php
-    }
-
+    } // end elseif ($active_tab == 'expert')
     ?>
 
-    
+    </div><!-- end class="wrap" -->
 
-    </div>
-
-<?php }
+<?php
+} // end if (current_user_can(ZDM__STANDARD_USER_ROLE))
