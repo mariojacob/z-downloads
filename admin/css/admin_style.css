@@ -37,19 +37,15 @@
     width: 100%;
 }
 
-@media screen and (min-width: 200px) {
-    .zdm-postbox-50 {
-        min-width: 200px;
-        width: 100%;
-        padding: 0 10px;
-    }
+.zdm-postbox-col-md {
+    min-width: 300px;
+    width: 60%;
+    padding: 0 1% 0 0;
 }
-@media screen and (min-width: 300px) {
-    .zdm-postbox-50 {
-        min-width: 300px;
-        width: 65%;
-        padding: 0 10px;
-    }
+
+.zdm-postbox-col-sm {
+    min-width: 300px;
+    width: 39%;
 }
 
 .zdm-icon {

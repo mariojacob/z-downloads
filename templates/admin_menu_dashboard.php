@@ -27,7 +27,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         <hr class="wp-header-end">
 
-        <div class="postbox-container zdm-postbox-50">
+        <div class="postbox-container zdm-postbox-col-md">
 
             <?php
             ////////////////////
@@ -97,33 +97,31 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             </thead>
 
                             <tbody>
-                            <?php
-
-                            for ($i = 0; $i < count($zdm_last_downloads_files); $i++) {
-
-                                $zdm_download_name = ZDMCore::get_file_name($zdm_last_downloads_files[$i]->message);
-
-                                if ($zdm_download_name != '') {
-
-                                    $zdm_download_id_link = '<b><a href="?page=' . ZDM__SLUG . '-files&id=' . $zdm_last_downloads_files[$i]->message . '">' . $zdm_download_name . '</a></b>';
-
-                                } else {
-                                    $zdm_download_id_link = esc_html__('Gelöschte Datei', 'zdm');
-                                }
-
-                                ?>
-                                <tr>
-                                    <td>
-                                        <?=$zdm_download_id_link?>
-                                    </td>
-                                    <td>
-                                        <?=date("d.m.Y - h:i:s", $zdm_last_downloads_files[$i]->time_create)?>
-                                    </td>
-                                </tr>
                                 <?php
-                            }
+                                for ($i = 0; $i < count($zdm_last_downloads_files); $i++) {
 
-                            ?>
+                                    $zdm_download_name = ZDMCore::get_file_name($zdm_last_downloads_files[$i]->message);
+
+                                    if ($zdm_download_name != '') {
+
+                                        $zdm_download_id_link = '<b><a href="?page=' . ZDM__SLUG . '-files&id=' . $zdm_last_downloads_files[$i]->message . '">' . $zdm_download_name . '</a></b>';
+
+                                    } else {
+                                        $zdm_download_id_link = esc_html__('Gelöschte Datei', 'zdm');
+                                    }
+
+                                    ?>
+                                    <tr>
+                                        <td>
+                                            <?=$zdm_download_id_link?>
+                                        </td>
+                                        <td>
+                                            <?=date("d.m.Y - h:i:s", $zdm_last_downloads_files[$i]->time_create)?>
+                                        </td>
+                                    </tr>
+                                    <?php
+                                }
+                                ?>
                             </tbody>
                         </table>
 
@@ -148,7 +146,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <h3><ion-icon name="trending-up"></ion-icon> <?=esc_html__('Beliebte Downloads', 'zdm')?></h3>
                     </div>
 
-                    <?php if ($zdm_best_downloads != false) { ?>
+                    <?php
+                    if ($zdm_best_downloads != false) { ?>
 
                         <table class="wp-list-table widefat striped tags">
                             <thead>
@@ -183,13 +182,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         </td>
                                     </tr>
                                     <?php
-                                }
-
+                                } // end for ($i = 0; $i < count($zdm_best_downloads); $i++)
                                 ?>
+                            </tbody>
                         </table>
 
                     <?php
-                    }
+                    } // end if ($zdm_best_downloads != false)
 
                     if ($zdm_best_downloads_files != false) { ?>
 
@@ -202,8 +201,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             </thead>
 
                             <tbody>
-                            <?php
-
+                                <?php
                                 for ($i = 0; $i < count($zdm_best_downloads_files); $i++) {
 
                                     $zdm_download_name = $zdm_best_downloads_files[$i]->name;
@@ -239,28 +237,36 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             <?=ZDMCore::number_format($zdm_best_downloads_files[$i]->count)?>
                                         </td>
                                     </tr>
-                                    <?php
-                                }
-
+                                <?php
+                                } // end for ($i = 0; $i < count($zdm_best_downloads_files); $i++)
                                 ?>
+                            </tbody>
                         </table>
 
-                    <?php } ?>
+                    <?php
+                    } // end if ($zdm_best_downloads_files != false)
+                    ?>
                     
                 </div>
                 
-            <?php } ?>
-            
-            
+            <?php
+            } // end if ($zdm_best_downloads != false OR $zdm_best_downloads_files != false)
+            ?>
 
-        </div>
+        </div><!-- end class="postbox-container zdm-postbox-col-md" -->
 
-        <div class="postbox-container">
+        <?php
+        ////////////////////
+        // Download Statistik
+        ////////////////////
+        ?>
+
+        <div class="postbox-container zdm-postbox-col-sm">
 
             <div class="postbox">
 
                 <div class="inside">
-                    <h3><?=esc_html__('Download Statistik', 'zdm')?></h3>
+                    <h3><ion-icon name="stats"></ion-icon> <?=esc_html__('Download Statistik', 'zdm')?></h3>
                 </div>
 
                 <table class="wp-list-table widefat">
@@ -299,9 +305,24 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     </tr>
                 </table>
 
-            </div>
+            </div><!-- end class="postbox" -->
 
-        </div>
+            <div class="postbox">
+
+                <div class="inside" align="center">
+                    <br>
+                    <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="button button-primary"><?=esc_html__('Neue Datei hochladen', 'zdm')?></a>
+                    &nbsp;&nbsp;
+                    <a href="admin.php?page=<?=ZDM__SLUG?>-files" class="button button-secondary"><?=esc_html__('Dateien Übersicht', 'zdm')?></a>
+                    <br><br>
+                    <a href="admin.php?page=<?=ZDM__SLUG?>-add-archive" class="button button-primary"><?=esc_html__('Neues Archiv erstellen', 'zdm')?></a>
+                    &nbsp;&nbsp;
+                    <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive" class="button button-secondary"><?=esc_html__('Archive Übersicht', 'zdm')?></a>
+                </div>
+
+            </div><!-- end class="postbox" -->
+
+        </div><!-- end class="postbox-container" -->
 
         <div class="postbox-container zdm-postbox-100">
             <?php require_once (plugin_dir_path(__FILE__) . '../inc/postbox_info.php'); ?>
@@ -309,6 +330,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         <a class="alignright button" href="javascript:void(0);" onclick="window.scrollTo(0,0);" style="margin:3px 0 0 30px;"><?=esc_html__('Nach oben', 'zdm')?></a>
 
-    </div>
+    </div><!-- end class="wrap" -->
 
-<?php }
+<?php
+} // end if (current_user_can(ZDM__STANDARD_USER_ROLE))
