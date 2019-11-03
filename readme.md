@@ -7,7 +7,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
 Tested up to: 5.2
-Stable tag: 1.0.1
+Stable tag: 1.1.0
 
 Download Verwaltung und automatische ZIP-Archiv Erstellung
 
@@ -36,9 +36,10 @@ Ein und dieselbe Datei befindet sich in mehreren Downloads, wie zum Beispiel Pro
 - Download Statistik
 - Shortcodes
 - Informationen ausgeben
-- Benutzerdefinierte Download-Buttons
-- Hash anzeigen - Zeige im Frontend den MD5 und SHA1 Hash an.
-- Sichere Downloads
+- Download-Buttons
+- Download-Buttons mit Icons
+- MD5 und SHA1 Hash im Frontend anzeigen
+- Sicherheit: der direkte Pfad zur Download-Datei ist nicht sichtbar
 - Zentrale Dateiverwaltung
 - Automatische ZIP-Archiv Erstellung
 - PHP 7 optimiert
@@ -50,8 +51,8 @@ Ein und dieselbe Datei befindet sich in mehreren Downloads, wie zum Beispiel Pro
 
 = Übersetzung =
 
-- Deutsch - de_DE, de_AT, de_CH = in /language inkludiert
-- Englisch - en_US, en_BG, en_CA = in /language inkludiert
+- Deutsch - de_DE = in /language inkludiert
+- Englisch - en_US, en_BG = in /language inkludiert
 
 == Installation ==
 
@@ -96,7 +97,8 @@ Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können ein
 == Changelog ==
 
 = 1.1.0 =
-- New: Download Buttons mit Icons
+- New: Download Buttons mit Text und Icons
+- New: Download Buttons nur mit Icons
 - New: Dateien direkt in der Übersichtsliste löschen
 - New: Hinweis wenn eine Datei schon hochgeladen wurde
 - Update: UI Verbesserungen
