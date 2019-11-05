@@ -71,6 +71,13 @@ class ZDMCore
             'manage_options',
             ZDM__SLUG . '-help',
             array($this, 'admin_hidden_help'));
+        add_submenu_page(
+            null,
+            esc_html__('Hilfe', 'zdm'),
+            esc_html__('Hilfe', 'zdm'),
+            'manage_options',
+            ZDM__SLUG . '-log',
+            array($this, 'admin_hidden_log'));
     }
 
     /**
@@ -122,11 +129,19 @@ class ZDMCore
     }
 
     /**
-     * Versteckte Admin Hilfe
+     * Versteckt Admin Hilfe
      */
     public function admin_hidden_help()
     {
         require_once (plugin_dir_path(__FILE__) . '../templates/admin_hidden_help.php');
+    }
+
+    /**
+     * Versteckt Admin Log
+     */
+    public function admin_hidden_log()
+    {
+        require_once (plugin_dir_path(__FILE__) . '../templates/admin_hidden_log.php');
     }
 
     /**
@@ -450,7 +465,7 @@ class ZDMCore
         }
 
         // Log
-        $this->log('create archive cache' , $file_path);
+        $this->log('create archive cache' , 'ID: ' . $archive_id . ', path: ' . $file_path);
     }
 
     public function delete_all_data()

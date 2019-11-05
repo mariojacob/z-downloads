@@ -1,7 +1,7 @@
 <?php
 
 // Abbruch bei direktem Zugriff
-if( !defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
     die;
 }
 
@@ -35,9 +35,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         if (isset($_POST['update']) && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) {
 
             if ($_POST['name'] != '') {
-                $name = sanitize_text_field($_POST['name']);
+                $zdm_name = sanitize_text_field($_POST['name']);
             } else {
-                $name = sanitize_text_field($_POST['filename']);
+                $zdm_name = sanitize_text_field($_POST['filename']);
             }
 
             if ($_POST['button-text']) {
@@ -53,7 +53,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             $wpdb->update(
                 $zdm_tablename_files, 
                 array(
-                    'name'          => $name,
+                    'name'          => $zdm_name,
                     'description'   => sanitize_textarea_field($_POST['description']),
                     'count'         => sanitize_text_field($_POST['count']),
                     'button_text'   => $zdm_button_text,
@@ -120,8 +120,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             ZDMCore::log('delete file', $zdm_file_id);
         
             $zdm_note = esc_html__('Datei gelöscht!', 'zdm');
-
-            $zdm_status = 3;
         }
 
         ////////////////////
@@ -196,7 +194,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     <?php }
 
-    if ($zdm_status === 1) {
+    if ($zdm_status === 1) { // Datei Detailseite
 
         // Daten aus DB holen
         $zdm_db_file = $wpdb->get_results( 
@@ -438,7 +436,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 </form>
         </div>
 
-    <?php } else {
+    <?php } else { // Datei Liste
         
         $zdm_db_files = $wpdb->get_results( 
             "

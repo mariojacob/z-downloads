@@ -47,6 +47,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         ZDMCore::licence();
 
         $zdm_options = get_option('zdm_options');
+
+        // Log
+        ZDMCore::log('update licence');
     }
 
     if (ZDMCore::licence()) {
@@ -89,7 +92,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         $zdm_options = get_option('zdm_options');
 
         // Log
-        ZDMCore::log('update settings', sanitize_text_field($_POST));
+        ZDMCore::log('update settings');
     }
 
     ////////////////////
@@ -225,7 +228,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <th scope="row"><?=esc_html__('Runde Ecken', 'zdm')?>:</th>
                                 <td valign="middle">
                                     <select name="download-btn-border-radius">
-                                    <?php
+                                        <?php
                                         $zdm_btn_border = '';
 
                                         for( $i = 0; $i < count(ZDM__DOWNLOAD_BTN_BORDER_RADIUS); $i++ ) {
@@ -296,6 +299,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <td valign="middle">
                                     <input type="checkbox" name="secure-ip" <?php if($zdm_options['secure-ip'] == 'on'){ echo 'checked="checked"'; } ?> >
                                     <?=esc_html__('Zensiert die IP-Adresse beim Download.', 'zdm')?>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th scope="row"><?=esc_html__('Log', 'zdm')?>:</th>
+                                <td valign="middle">
+                                    <a href="admin.php?page=<?=ZDM__SLUG?>-log"><?=esc_html__('Log anzeigen', 'zdm')?></a>
                                 </td>
                             </tr>
                         </tbody>

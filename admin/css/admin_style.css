@@ -54,6 +54,10 @@
     margin-right: 18px;
 }
 
+.zdm-icon-in-table {
+    font-size: 18px !important;
+}
+
 ion-icon {
     position: relative;
     /* Adjust these values accordingly */
@@ -98,6 +102,30 @@ ion-icon {
 /********************
  Colors
 ********************/
+
+.zdm-color-black {
+    color: #000 !important;
+}
+
+.zdm-color-grey5 {
+    color: #555 !important;
+}
+
+.zdm-color-grey7 {
+    color: #777 !important;
+}
+
+.zdm-color-grey9 {
+    color: #999 !important;
+}
+
+.zdm-color-grey11 {
+    color: #bbb !important;
+}
+
+.zdm-color-grey13 {
+    color: #ddd !important;
+}
 
 .zdm-color-primary {
     color: #00caff !important;
