@@ -66,7 +66,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <h3><?=esc_html__('ZIP-Archiv anlegen', 'zdm')?></h3>
                 <hr>
                 <p><?=esc_html__('Um ein ZIP-Archiv zu erstellen klicke im', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('Menü auf', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-add-archive"><?=esc_html__('Archiv erstellen', 'zdm')?></a>".</p>
-                <p><?=esc_html__('Hier kannst du einen Namen, einen Namen und sonstige Infos zum Archiv eintragen.', 'zdm')?></p>
+                <p><?=esc_html__('Hier kannst du einen Namen, einen ZIP-Namen und sonstige Infos zum Archiv eintragen.', 'zdm')?></p>
                 <p><?=esc_html__('Um Dateien zum ZIP-Archiv hinzuzufügen wählst du im unteren Bereich bei "Dateien verknüpfen" aus deinen bereits hochgeladenen Dateien aus und klickst auf "Speichern".', 'zdm')?></p>
             </div>
         </div>
@@ -88,7 +88,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <h3><?=esc_html__('Button Farbe und Styles', 'zdm')?></h3>
                 <hr>
                 <p><?=esc_html__('Um die Farbe oder sonstige Button-Einstellungen vorzunehmen klicke im', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('Menü auf', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-settings"><?=esc_html__('Einstellungen', 'zdm')?></a>".</p>
-                <p><?=esc_html__('Hier skannst du im Bereich "Download-Button" folgendes ändern:', 'zdm')?></p>
+                <p><?=esc_html__('Hier kannst du im Bereich "Download-Button" folgendes ändern:', 'zdm')?></p>
                 <p><?=esc_html__('Den Standardtext, den Style (Farbe des Buttons), Outline, Runde Ecken oder ein Icon.', 'zdm')?></p>
                 <p><?=esc_html__('Alle verfügbaren Farben findest du auf der', 'zdm')?> <?=ZDM__TITLE?> <a href="https://code.urban-base.net/z-downloads/farben/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Farben', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('Webseite', 'zdm')?></a></p>
             </div>

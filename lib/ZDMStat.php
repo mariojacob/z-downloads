@@ -11,7 +11,13 @@ if( !defined( 'ABSPATH' ) ) {
 class ZDMStat
 {
 
-    // NOTE: Doc
+    /**
+     * Gibt Array mit den meisten Downloads zurück
+     *
+     * @param string $type [Optional] Typ der Abfrage
+     * @param integer $number [Optional] Anzahl an Einträgen
+     * @return array
+     */
     public function get_best_downloads($type = 'archive', $number = 5)
     {
         global $wpdb;
@@ -50,6 +56,8 @@ class ZDMStat
 
     /**
      * Gibt Anzahl der Downloads zurück
+     *
+     * @param string $type [Optional] Typ
      * @return int
      */
     public function get_downloads_count($type = 'all')
@@ -123,7 +131,13 @@ class ZDMStat
         
     }
 
-    // NOTE: Doc
+    /**
+     * Gibt Download Anzahl für einen bestimmten Zeitraum zurück
+     *
+     * @param string $type [Optional] Typ
+     * @param int $period Zeitangabe
+     * @return int
+     */
     public function get_downloads_count_time($type = 'all', $period)
     {
 
@@ -220,7 +234,13 @@ class ZDMStat
         }
     }
 
-    // NOTE: Doc
+    /**
+     * Gibt die letzten Downloads als Array zurück
+     *
+     * @param string $type [Optional] Typ
+     * @param integer $number [Optional] Anzahl der Einträge
+     * @return array
+     */
     public function get_last_downloads($type = 'archive', $number = 5)
     {
         $type_log = 'download ' . $type;

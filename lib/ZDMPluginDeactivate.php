@@ -11,8 +11,14 @@ if( !defined( 'ABSPATH' ) ) {
 class ZDMPluginDeactivate
 {
 
+    /**
+     * Methode wenn Plugin deaktiviert wird
+     *
+     * @return void
+     */
     public static function deactivate()
     {
-        // code...
+        // Log
+        ZDMCore::log('plugin deactivate');
     }
 }

@@ -156,56 +156,61 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     ?>
                                 </td>
                             </tr>
+                            <tr valign="top">
+                                <th scope="row"><?=esc_html__('Dateigröße', 'zdm')?>:</th>
+                                <td valign="middle">
+                                    <?=$zdm_file['size']?>
+                                </td>
+                            </tr>
                             <?php
-
-                                    if (in_array($zdm_file['type'], ZDM__MIME_TYPES_AUDIO)) { // Audio
-                                        ?>
-                                        <tr valign="top">
-                                            <th scope="row"><?=esc_html__('Vorschau', 'zdm')?>:</th>
-                                            <td valign="middle">
-                                                <audio controls preload="none">
-                                                    <source src="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" type="<?=$zdm_file['type']?>">
-                                                </audio>
-                                                <br>
-                                                Download: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" target="_blank" download><?=$zdm_file['name']?></a>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                    } elseif (in_array($zdm_file['type'], ZDM__MIME_TYPES_VIDEO)) { // Video
-                                        ?>
-                                        <tr valign="top">
-                                            <th scope="row"><?=esc_html__('Vorschau', 'zdm')?>:</th>
-                                            <td valign="middle">
-                                                <video width="400px" controls>
-                                                    <source src="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" type="<?=$zdm_file['type']?>">
-                                                </video>
-                                                <br>
-                                                Download: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" target="_blank" download><?=$zdm_file['name']?></a>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                    } elseif (in_array($zdm_file['type'], ZDM__MIME_TYPES_IMAGE)) { // Image
-                                        ?>
-                                        <tr valign="top">
-                                            <th scope="row"><?=esc_html__('Vorschau', 'zdm')?>:</th>
-                                            <td valign="middle">
-                                                <img src="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" width="400px" height="auto">
-                                                <br>
-                                                Download: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" target="_blank" download><?=$zdm_file['name']?></a>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                    } else { // Sonstige Dateien
-                                        ?>
-                                        <tr valign="top">
-                                            <th scope="row"><?=esc_html__('Datei Download', 'zdm')?>:</th>
-                                            <td valign="middle">
-                                                <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" target="_blank" download><?=$zdm_file['name']?></a>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                    }
-                                    ?>
+                            if (in_array($zdm_file['type'], ZDM__MIME_TYPES_AUDIO)) { // Audio
+                                ?>
+                                <tr valign="top">
+                                    <th scope="row"><?=esc_html__('Vorschau', 'zdm')?>:</th>
+                                    <td valign="middle">
+                                        <audio controls preload="none">
+                                            <source src="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" type="<?=$zdm_file['type']?>">
+                                        </audio>
+                                        <br>
+                                        Download: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" target="_blank" download><?=$zdm_file['name']?></a>
+                                    </td>
+                                </tr>
+                                <?php
+                            } elseif (in_array($zdm_file['type'], ZDM__MIME_TYPES_VIDEO)) { // Video
+                                ?>
+                                <tr valign="top">
+                                    <th scope="row"><?=esc_html__('Vorschau', 'zdm')?>:</th>
+                                    <td valign="middle">
+                                        <video width="400px" controls>
+                                            <source src="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" type="<?=$zdm_file['type']?>">
+                                        </video>
+                                        <br>
+                                        Download: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" target="_blank" download><?=$zdm_file['name']?></a>
+                                    </td>
+                                </tr>
+                                <?php
+                            } elseif (in_array($zdm_file['type'], ZDM__MIME_TYPES_IMAGE)) { // Image
+                                ?>
+                                <tr valign="top">
+                                    <th scope="row"><?=esc_html__('Vorschau', 'zdm')?>:</th>
+                                    <td valign="middle">
+                                        <img src="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" width="400px" height="auto">
+                                        <br>
+                                        Download: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" target="_blank" download><?=$zdm_file['name']?></a>
+                                    </td>
+                                </tr>
+                                <?php
+                            } else { // Sonstige Dateien
+                                ?>
+                                <tr valign="top">
+                                    <th scope="row"><?=esc_html__('Datei Download', 'zdm')?>:</th>
+                                    <td valign="middle">
+                                        <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_file['folder'] . '/' . $zdm_file['name']?>" target="_blank" download><?=$zdm_file['name']?></a>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+                            ?>
                             <tr valign="top">
                                 <th scope="row"><?=esc_html__('Name:', 'zdm')?></th>
                                 <td valign="middle">

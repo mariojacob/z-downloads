@@ -7,31 +7,14 @@ if( !defined( 'ABSPATH' ) ) {
 
 $zdm_options = get_option('zdm_options');
 
-if ($zdm_options['download-btn-text'] == '') {
-    $zdm_options['download-btn-text'] = 'Download';
-    update_option('zdm_options', $zdm_options);
-}
-
 if ($zdm_options['version'] < ZDM__VERSION) {
 
     $zdm_options['version'] = ZDM__VERSION;
 
-    // Neue Optionen in v0.2.0
-    if ($zdm_options['version'] <= '0.2.0') {
+    // Log
+    ZDMCore::log('plugin upgrade', ZDM__VERSION);
 
-        if (!$zdm_options['download-btn-style']) {
-            $zdm_options['download-btn-style'] = 'black';
-        }
-
-        if (!$zdm_options['download-btn-border-radius']) {
-            $zdm_options['download-btn-border-radius'] = 'none';
-        }
-    }
-
-    update_option('zdm_options', $zdm_options);
-    //////////////////////////////
-
-    // Fix ab v0.3.0
+    // v0.3.0 MIME Type Fix
     if ($zdm_options['version'] <= '0.3.0') {
 
         global $wpdb;
@@ -71,19 +54,24 @@ if ($zdm_options['version'] < ZDM__VERSION) {
     }
     //////////////////////////////
     
-    // Neue Optionen in v1.0.0
-    if ($zdm_options['version'] <= '1.0.0') {
+    // Neue Optionen
+    if ($zdm_options['version'] <= '1.1.0') {
 
+        if ($zdm_options['download-btn-text'] == '') {
+            $zdm_options['download-btn-text'] = 'Download';
+        }
+
+        if (!$zdm_options['download-btn-style']) {
+            $zdm_options['download-btn-style'] = 'black';
+        }
+
+        if (!$zdm_options['download-btn-border-radius']) {
+            $zdm_options['download-btn-border-radius'] = 'none';
+        }
+        
         if (!$zdm_options['download-btn-outline']) {
             $zdm_options['download-btn-outline'] = '';
         }
-    }
-
-    update_option('zdm_options', $zdm_options);
-    //////////////////////////////
-    
-    // Neue Optionen in v1.1.0
-    if ($zdm_options['version'] <= '1.1.0') {
 
         if (!$zdm_options['download-btn-icon']) {
             $zdm_options['download-btn-icon'] = 'none';

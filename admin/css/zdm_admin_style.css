@@ -92,11 +92,12 @@ ion-icon {
 .zdm-btn-danger-2-outline {
     color: #7A1E1E !important;
     background: #fff !important;
+    border-color: #ddd !important;
     box-shadow: none !important;
 }
 .zdm-btn-danger-2-outline:hover {
     color: #fa3e3e !important;
-    border-color: #7A1E1E !important;
+    border-color: #fa3e3e !important;
 }
 
 /********************

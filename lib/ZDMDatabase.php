@@ -11,10 +11,14 @@ if( !defined( 'ABSPATH' ) ) {
 class ZDMDatabase
 {
 
+    /**
+     * Erstellt die Datenbankstruktur
+     *
+     * @return void
+     */
     public function create_db()
     {
         global $wpdb;
-
         $table_name = $wpdb->prefix . 'zdm_archives';
 
         if ($wpdb->get_var('SHOW TABLES LIKE ' . $table_name) != $table_name) {

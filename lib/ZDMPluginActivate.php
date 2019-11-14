@@ -6,11 +6,16 @@ if( !defined( 'ABSPATH' ) ) {
 }
 
 /**
- *
+ * Plugin Aktivierung
  */
 class ZDMPluginActivate
 {
 
+    /**
+     * Methode wenn Plugin aktiviert wird
+     *
+     * @return void
+     */
     public static function activate()
     {
 
@@ -32,7 +37,7 @@ class ZDMPluginActivate
             'download-btn-icon'             => 'none',
             'download-btn-icon-only'        => '',
             'download-btn-css'              => '',
-            'secure-ip'                     => 'on',
+            'secure-ip'                     => 'on'
         );
 
         if (get_option('zdm_options')) {
@@ -45,5 +50,8 @@ class ZDMPluginActivate
         require_once (plugin_dir_path(__FILE__) . 'ZDMDatabase.php');
         $db = new ZDMDatabase();
         $db->create_db();
+
+        // Log
+        ZDMCore::log('plugin aktivate');
     }
 }

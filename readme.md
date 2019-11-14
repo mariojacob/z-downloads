@@ -47,7 +47,7 @@ Ein und dieselbe Datei befindet sich in mehreren Downloads, wie zum Beispiel Pro
 
 = Anforderungen =
 
-- WordPress 4.9+ -- latest version 5.2.x
+- WordPress 4.9+ -- latest version 5.3.x
 
 = Übersetzung =
 
@@ -102,6 +102,7 @@ Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können ein
 - New: Dateien direkt in der Übersichtsliste löschen
 - New: Hinweis wenn eine Datei schon hochgeladen wurde
 - New: Log anzeigen
+- New: Hilfe und erste Schritte für Einsteiger
 - Update: Kompatibel mit WordPress 5.3
 - Update: UI Verbesserungen
 
@@ -110,5 +111,12 @@ Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können ein
 
 == Upgrade Notice ==
 
-= 1.0.1 =
-- Fix: Ausbesserung im UI
+= 1.1.0 =
+- New: Download Buttons mit Text und Icons
+- New: Download Buttons nur mit Icons
+- New: Dateien direkt in der Übersichtsliste löschen
+- New: Hinweis wenn eine Datei schon hochgeladen wurde
+- New: Log anzeigen
+- New: Hilfe und erste Schritte für Einsteiger
+- Update: Kompatibel mit WordPress 5.3
+- Update: UI Verbesserungen

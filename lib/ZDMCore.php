@@ -273,6 +273,9 @@ class ZDMCore
 
     /**
      * Prüft ob ein Archiv existiert
+     *
+     * @param [type] $archive_id
+     * @return bool
      */
     public function check_if_archive_exists($archive_id)
     {
@@ -298,6 +301,9 @@ class ZDMCore
 
     /**
      * Prüft ob eine Datei existiert
+     *
+     * @param [type] $file_id
+     * @return bool
      */
     public function check_if_file_exists($file_id)
     {
@@ -314,7 +320,7 @@ class ZDMCore
             "
             );
 
-        if (count($db_files) > 0) {
+        if (count($db_files) >= 1) {
             return true;
         } else {
             return false;
@@ -468,6 +474,9 @@ class ZDMCore
         $this->log('create archive cache' , 'ID: ' . $archive_id . ', path: ' . $file_path);
     }
 
+    /**
+     * Löscht alle Daten
+     */
     public function delete_all_data()
     {
 
@@ -579,15 +588,15 @@ class ZDMCore
         ////////////////////
 
         if (is_dir(ZDM__DOWNLOADS_CACHE_PATH)) {
-            rmdir(ZDM__DOWNLOADS_CACHE_PATH);
+            @rmdir(ZDM__DOWNLOADS_CACHE_PATH);
         }
 
         if (is_dir(ZDM__DOWNLOADS_FILES_PATH)) {
-            rmdir(ZDM__DOWNLOADS_FILES_PATH);
+            @rmdir(ZDM__DOWNLOADS_FILES_PATH);
         }
 
         if (is_dir(ZDM__DOWNLOADS_PATH)) {
-            rmdir(ZDM__DOWNLOADS_PATH);
+            @rmdir(ZDM__DOWNLOADS_PATH);
         }
 
         // Log
@@ -650,9 +659,9 @@ class ZDMCore
                         // Pfad für ZIP-Datei
                         $zip_file = ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . $db_archive[0]->archive_cache_path . '/' . $db_archive[0]->zip_name . '.zip';
                         header("Location: $zip_file");
-                    }
-                }
-            }
+                    } // end if ($this->check_if_archive_exists($zdownload_url) === true)
+                } // end if ($zdownload_url != '' && is_numeric($zdownload_url))
+            } // end if (isset($_GET['zdownload']))
 
             ////////////////////
             // file
@@ -703,12 +712,10 @@ class ZDMCore
                         header('Content-Length: ' . $file_size);
                         header('Content-type: ' . $db_files[0]->file_type . '; charset=utf-8');
                         readfile($file);
-                    }
-                }
-            }
-    
-        }
-        
+                    } // end if ($this->check_if_file_exists($zdownload_url) === true)
+                } // end if ($zdownload_url != '' && is_numeric($zdownload_url))
+            } // end if (isset($_GET['zdownload_f']))
+        } // end else (in_array($http_user_agent, ZDM__BOT_USER_AGENTS))
     }
 
     /**
@@ -744,7 +751,7 @@ class ZDMCore
     public function enqueue_admin_scripts()
     {
         // Admin CSS
-        wp_register_style('zdm_admin_styles', plugins_url('../admin/css/admin_style.css?v=' . ZDM__VERSION . time(), __FILE__));
+        wp_register_style('zdm_admin_styles', plugins_url('../admin/css/zdm_admin_style.css?v=' . ZDM__VERSION . time(), __FILE__));
         wp_enqueue_style('zdm_admin_styles');
 
         // Ionicons CSS
@@ -853,6 +860,12 @@ class ZDMCore
         return FALSE;
     }
 
+    /**
+     * Gibt Archivname zurück
+     *
+     * @param [type] $archive_id
+     * @return string
+     */
     public function get_archive_name($archive_id)
     {
         global $wpdb;
@@ -1121,7 +1134,7 @@ class ZDMCore
                 'message'       => htmlspecialchars($message),
                 'user_agent'    => $http_user_agent,
                 'user_ip'       => $user_ip,
-                'user_id'       => $this->get_current_user_id(),
+                'user_id'       => ZDMCore::get_current_user_id(),
                 'time_create'   => time()
             )
         );
@@ -1170,6 +1183,9 @@ class ZDMCore
 
     /**
      * Fügt Links in der Plugin-Übersicht ein
+     *
+     * @param [type] $links
+     * @return string
      */
     public function settings_link($links)
     {
@@ -1180,7 +1196,10 @@ class ZDMCore
 
     /**
      * Shortcode für HTML5 Audioplayer: [zdownload_audio file="123"]
-     * @return string HTML5 Audioplayer
+     *
+     * @param [type] $atts
+     * @param [type] $content
+     * @return void HTML5 Audioplayer
      */
     public function shortcode_audio($atts, $content = null)
     {
@@ -1295,61 +1314,70 @@ class ZDMCore
 
                 $type = 'zdownload';
                 $id = base64_encode($db_archive[0]->id);
+
+                // Ausgabe
+                if ($options['download-btn-icon'] != 'none') {
+                    $icon = '<ion-icon name="' . $options['download-btn-icon'] . '" class="' . $icon_class . '"></ion-icon>';
+                } else {
+                    $icon = '';
+                }
+
+                return '<a href="?' . $type . '=' . $id . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
             } else {
                 // Leerer Rückgabewert wenn keine Datei verknüpft ist
                 return '';
             }
-        }
+        } // end if ($zip != '')
 
         ////////////////////
         // file
         ////////////////////
         if ($file != '') {
 
-            $options = get_option('zdm_options');
+            if ($this->check_if_file_exists($file) === true) {
 
-            global $wpdb;
-            $tablename_files = $wpdb->prefix . "zdm_files";
+                $options = get_option('zdm_options');
 
-            // Daten aus DB files holen
-            $db_files = $wpdb->get_results(
-                "
-                SELECT * 
-                FROM $tablename_files 
-                WHERE id = '$file'
-                "
-                );
+                global $wpdb;
+                $tablename_files = $wpdb->prefix . "zdm_files";
 
-            // Button Text bestimmen
-            if ($options['download-btn-icon-only'] != '') {
-                $download_text = '';
-                $icon_class = '  zdm-btn-icon-only';
-            } else {
+                // Daten aus DB files holen
+                $db_files = $wpdb->get_results(
+                    "
+                    SELECT * 
+                    FROM $tablename_files 
+                    WHERE id = '$file'
+                    "
+                    );
 
-                if ($db_files[0]->button_text != '') {
-                    $download_text = $db_files[0]->button_text;
+                // Button Text bestimmen
+                if ($options['download-btn-icon-only'] != '') {
+                    $download_text = '';
+                    $icon_class = '  zdm-btn-icon-only';
                 } else {
-                    $download_text = $options['download-btn-text'];
+
+                    if ($db_files[0]->button_text != '') {
+                        $download_text = $db_files[0]->button_text;
+                    } else {
+                        $download_text = $options['download-btn-text'];
+                    }
+
+                    $icon_class = ' zdm-btn-icon';
                 }
 
-                $icon_class = ' zdm-btn-icon';
+                $type = 'zdownload_f';
+                $id = base64_encode($db_files[0]->id);
+
+                // Ausgabe
+                if ($options['download-btn-icon'] != 'none') {
+                    $icon = '<ion-icon name="' . $options['download-btn-icon'] . '" class="' . $icon_class . '"></ion-icon>';
+                } else {
+                    $icon = '';
+                }
+
+                return '<a href="?' . $type . '=' . $id . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
             }
-
-            $type = 'zdownload_f';
-            $id = base64_encode($db_files[0]->id);
-        }
-
-        ////////////////////
-        // Ausgabe
-        ////////////////////
-
-        if ($options['download-btn-icon'] != 'none') {
-            $icon = '<ion-icon name="' . $options['download-btn-icon'] . '" class="' . $icon_class . '"></ion-icon>';
-        } else {
-            $icon = '';
-        }
-
-        return '<a href="?' . $type . '=' . $id . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+        } // end if ($file != '')
     }
 
     /**
@@ -1609,9 +1637,9 @@ class ZDMCore
                         }
                     }
                 }
-            } // end $file != ''
+            } // end if ($file != '')
             
-        } // end $type != ''
+        } // end if ($type != '')
     }
 
     /**

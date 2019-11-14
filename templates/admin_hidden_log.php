@@ -7,11 +7,10 @@ if (!defined('ABSPATH')) {
 
 if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
-    $zdm_status = '';
-
     global $wpdb;
     $zdm_tablename_log = $wpdb->prefix . "zdm_log";
-
+    $zdm_status = '';
+    
     if (isset($_GET['id'])) { // Log Detailseite
 
         $zdm_status = 1;
@@ -286,5 +285,4 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     }
 
-    
 }
