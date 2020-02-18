@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:     Z-Downloads
- * Version:         1.1.0
+ * Version:         1.2.0
  * Plugin URI:      https://code.urban-base.net/z-downloads?utm_source=zdm_plugin_uri
  * Description:     Download Manager.
  * Author:          URBAN BASE
@@ -23,7 +23,7 @@ define('ZDM__PATH', plugin_dir_path(__FILE__));
 define('ZDM__PLUGIN_URL', plugin_dir_url(__FILE__));
 define('ZDM__SLUG', 'z-downloads');
 define('ZDM__TITLE', 'Z-Downloads');
-define('ZDM__VERSION', '1.1.0');
+define('ZDM__VERSION', '1.2.0');
 define('ZDM__URL', 'https://code.urban-base.net/z-downloads?utm_source=zdm_backend');
 define('ZDM__PRO', 'Premium');
 define('ZDM__PRO_URL', 'https://code.urban-base.net/z-downloads?utm_source=zdm_backend_premium');

@@ -52,9 +52,8 @@ if ($zdm_options['version'] < ZDM__VERSION) {
             }
         }
     }
-    //////////////////////////////
     
-    // Neue Optionen
+    // v1.1.0 Download Buttons
     if ($zdm_options['version'] <= '1.1.0') {
 
         if ($zdm_options['download-btn-text'] == '') {
@@ -79,6 +78,14 @@ if ($zdm_options['version'] < ZDM__VERSION) {
 
         if (!$zdm_options['download-btn-icon-only']) {
             $zdm_options['download-btn-icon-only'] = '';
+        }
+    }
+
+    // v1.2.0
+    if ($zdm_options['version'] <= '1.2.0') {
+
+        if ($zdm_options['file-open-in-browser-pdf'] == '') {
+            $zdm_options['file-open-in-browser-pdf'] = '';
         }
     }
 

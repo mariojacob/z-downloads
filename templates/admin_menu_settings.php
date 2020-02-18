@@ -80,6 +80,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         // Erweitert
 
+        // Direkte URL zu PDF
+        $zdm_options['file-open-in-browser-pdf'] = trim(sanitize_text_field($_POST['file-open-in-browser-pdf']));
         // IP-Adresse zensieren
         $zdm_options['secure-ip'] = trim(sanitize_text_field($_POST['secure-ip']));
 
@@ -294,6 +296,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <hr>
                     <table class="form-table">
                         <tbody>
+                            <tr valign="top">
+                                <th scope="row"><?=esc_html__('Direkte URL zu PDF', 'zdm')?>:</th>
+                                <td valign="middle">
+                                    <input type="checkbox" name="file-open-in-browser-pdf" <?php if($zdm_options['file-open-in-browser-pdf'] == 'on'){ echo 'checked="checked"'; } ?> >
+                                    <?=esc_html__('Öffnet PDF-Dateien direkt im Browser.', 'zdm')?>
+                                </td>
+                            </tr>
                             <tr valign="top">
                                 <th scope="row"><?=esc_html__('IP-Adresse zensieren', 'zdm')?>:</th>
                                 <td valign="middle">

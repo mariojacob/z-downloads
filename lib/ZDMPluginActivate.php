@@ -37,7 +37,8 @@ class ZDMPluginActivate
             'download-btn-icon'             => 'none',
             'download-btn-icon-only'        => '',
             'download-btn-css'              => '',
-            'secure-ip'                     => 'on'
+            'secure-ip'                     => 'on',
+            'file-open-in-browser-pdf'      => ''
         );
 
         if (get_option('zdm_options')) {

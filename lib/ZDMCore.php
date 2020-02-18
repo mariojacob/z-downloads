@@ -636,7 +636,7 @@ class ZDMCore
                         // Daten aus DB archives holen
                         $db_archive = $wpdb->get_results(
                             "
-                            SELECT * 
+                            SELECT zip_name, archive_cache_path 
                             FROM $tablename_archives 
                             WHERE id = '$zdownload_url'
                             "
@@ -680,7 +680,7 @@ class ZDMCore
                         // Daten aus DB files holen
                         $db_files = $wpdb->get_results(
                             "
-                            SELECT * 
+                            SELECT folder_path, file_name, file_type 
                             FROM $tablename_files 
                             WHERE id = '$zdownload_url'
                             "
@@ -700,18 +700,18 @@ class ZDMCore
 
                         $this->log('download file', $zdownload_url);
 
-                        // Pfad für Datei
-                        $file = ZDM__DOWNLOADS_FILES_PATH . '/' . $db_files[0]->folder_path . '/' . $db_files[0]->file_name;
+                        // Interner Pfad für Datei
+                        $file_path = ZDM__DOWNLOADS_FILES_PATH . '/' . $db_files[0]->folder_path . '/' . $db_files[0]->file_name;
 
                         // Dateigröße
-                        $file_size = filesize($file);
+                        $file_size = filesize($file_path);
 
                         // Datei bereitstellen
                         header('Content-Disposition: attachment; filename=' . $db_files[0]->file_name);
                         header('Content-type: application/force-download');
                         header('Content-Length: ' . $file_size);
                         header('Content-type: ' . $db_files[0]->file_type . '; charset=utf-8');
-                        readfile($file);
+                        readfile($file_path);
                     } // end if ($this->check_if_file_exists($zdownload_url) === true)
                 } // end if ($zdownload_url != '' && is_numeric($zdownload_url))
             } // end if (isset($_GET['zdownload_f']))
@@ -1344,7 +1344,7 @@ class ZDMCore
                 // Daten aus DB files holen
                 $db_files = $wpdb->get_results(
                     "
-                    SELECT * 
+                    SELECT id, button_text, folder_path, file_name, file_type 
                     FROM $tablename_files 
                     WHERE id = '$file'
                     "
@@ -1375,7 +1375,15 @@ class ZDMCore
                     $icon = '';
                 }
 
-                return '<a href="?' . $type . '=' . $id . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+                if ($options['file-open-in-browser-pdf'] == 'on' && $db_files[0]->file_type == 'application/pdf') {
+
+                    // Externer Pfad für Datei
+                    $file_path_url = ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_files[0]->folder_path . '/' . $db_files[0]->file_name;
+
+                    return '<a href="' . $file_path_url . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+                } else {
+                    return '<a href="?' . $type . '=' . $id . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+                }
             }
         } // end if ($file != '')
     }
