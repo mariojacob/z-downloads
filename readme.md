@@ -1,122 +1,113 @@
 === Z-Downloads ===
 
 Contributors: urbanbase
-Tags: download manager, downloads, zip, zip archiv, workflow, shortcodes, statistik, download count, download button, button, md5, sha1
+Tags: download manager, downloads, zip, zip archiv, workflow, shortcodes, statistics, statistik, download count, download button, button, md5, sha1
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
 Tested up to: 5.3
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 
-Download Verwaltung und automatische ZIP-Archiv Erstellung
+Download management and automatic ZIP archive creation
 
 == Description ==
 
-Der komfortable Download-Manager für WordPress.
+The convenient download manager for WordPress.
 
 https://www.youtube.com/watch?v=x0wn-sf6g9w
 
-Ein Hauptmerkmal sind die automatisierten Abläufe:
+The main features are the automated processes:
 
-Ein und dieselbe Datei befindet sich in mehreren Downloads, wie zum Beispiel Promo-Material. Bei einer Änderung muss nur die eine Datei ersetzt werden und wird auf alle vorhandenen Downloads übernommen.
+The same file is in multiple downloads, such as promotional material. In the event of a change, only one file has to be replaced and is applied to all existing downloads.
 
 [Z-Downloads Webseite](https://code.urban-base.net/z-downloads?utm_source=wporg)
 
-= Vorteile =
+= Benefits =
 
-- Zeitersparnis
-- Arbeitserleichterung
-- Bessere Übersicht
+-   Time savings
+-   Workload
+-   Better overview
 
-= Top Features =
+= Top features =
 
-- Multilingual - Deutsch und Englisch.
-- DSGVO konform - Die IP-Adresse wird standardmäßig anonymisiert.
-- Download Statistik
-- Shortcodes
-- Informationen ausgeben
-- Download-Buttons
-- Download-Buttons mit Icons
-- MD5 und SHA1 Hash im Frontend anzeigen
-- Sicherheit: der direkte Pfad zur Download-Datei ist nicht sichtbar
-- Zentrale Dateiverwaltung
-- Automatische ZIP-Archiv Erstellung
-- PHP 7 optimiert
-- Vorbereitet für Internationalisierung
+-   Multilingual - German and English
+-   GDPR (DSGVO) compliant - By default, the IP address is anonymized
+-   Download statistics
+-   Shortcodes
+-   Output information
+-   Download button
+-   Download button with icons
+-   Show MD5 and SHA1 hash in the frontend
+-   Security: the direct path to the download file is not visible
+-   You can activate the direct URL path for PDF files
+-   Central file management
+-   Automatic ZIP archive creation
+-   PHP 7 optimized
+-   Prepared for internationalization
 
-= Anforderungen =
+= Conditions =
 
-- WordPress 4.9+ -- latest version 5.3.x
+-   WordPress 4.9+ -- latest version 5.3.x
 
-= Übersetzung =
+= Translation =
 
-- Deutsch - de_DE = in /language inkludiert
-- Englisch - en_US, en_BG = in /language inkludiert
+-   English - en_US, en_BG = in /language
+-   German - de_DE = in /language
 
 == Installation ==
 
-= Im WordPress Plugin-Verzeichnis =
+= In the WordPress plugin directory =
 
-Suche in deinem WordPress Plugin-Verzeichnis nach "Z-Downloads" und installiere dieses, anschließend aktiviere es.
+Search for "Z-Downloads" in your WordPress plugin directory and install it, then activate it.
 
 == Frequently Asked Questions ==
 
-= Ist Z-Downloads kostenlos? =
+= Is Z-Downloads free? =
 
-Ja! Die Grundlegenden Funktionen sind kostenlos.
+Yes! The basic functions are free.
 
-Für erweiterte Funktionen gibt es [Z-Downloads Premium](https://code.urban-base.net/z-downloads?utm_source=wporg), das beinhaltet zum Beispiel die Ausgabe von MD5 und SHA1 Hashwerten oder unbegrenzte Dateien je ZIP-Archiv.
+For advanced functions there is [Z-Downloads Premium](https://code.urban-base.net/z-downloads?utm_source=wporg), this includes for example the output of MD5 and SHA1 hash values or unlimited files per ZIP archive.
 
-= Für wen ist dieses Plugin? =
+= Who is this plugin for? =
 
-Blogger und Webseitenbetreiber, die verschiedene Downloads anbieten.
+Bloggers and website operators who offer various downloads.
 
-= Ist dieses Plugin DSGVO konform? =
+= Is this plugin GDPR (DSGVO) compliant? =
 
-Ja, es werden keine Personenbezogene Daten von Besuchern gespeichert. Die IP-Adresse wird standardmäßig anonymisiert, in den Einstellungen kann dies aber geändert werden.
+Yes, no personal data of visitors is saved. By default, the IP address is anonymized, but this can be changed in the settings.
 
-= In welcher Sprache ist das Plugin? =
+= What language is the plugin in? =
 
-Z-Downloads ist in Deutsch und Englisch übersetzt, weitere Sprachen können einfach hinzugefügt werden.
+Z-Downloads is translated into German and English, other languages can easily be added.
 
 == Screenshots ==
 
-1.  Übersicht aller hochgeladenen Dateien
+1.  Overview of all uploaded files
 
-2.  Detailansicht ZIP-Archiv
+2.  Detailed view ZIP archive
 
-3.  Detailansicht Datei mit Audioplayer
+3.  Detail view file with audio player
 
-4.  Dashboard mit Download Statistik
+4.  Dashboard with download statistics
 
-5.  Neues Archiv erstellen
+5.  Create a new archive
 
-6.  Archiv Übersicht in einer Tabelle
+6.  Archive overview in a table
 
 == Changelog ==
 
-= 1.1.0 =
-- New: Download Buttons mit Text und Icons
-- New: Download Buttons nur mit Icons
-- New: Dateien direkt in der Übersichtsliste löschen
-- New: Hinweis wenn eine Datei schon hochgeladen wurde
-- New: Log anzeigen
-- New: Hilfe und erste Schritte für Einsteiger
-- Update: Kompatibel mit WordPress 5.3
-- Update: UI Verbesserungen
+= 1.2.0 =
 
-= Frühere Versionen =
-- Den Änderungsverlauf von früheren Versionen findest du hier: [Z-Downloads Release Notes](https://code.urban-base.net/z-downloads/release-notes/?utm_source=wporg)
+-   New: you can activate the direct URL path for PDF files
+-   Update: Various bug fixes
+
+= Earlier versions =
+
+-   You can find the change history from previous versions here: [Z-Downloads release notes](https://code.urban-base.net/z-downloads/release-notes/?utm_source=wporg)
 
 == Upgrade Notice ==
 
-= 1.1.0 =
-- New: Download Buttons mit Text und Icons
-- New: Download Buttons nur mit Icons
-- New: Dateien direkt in der Übersichtsliste löschen
-- New: Hinweis wenn eine Datei schon hochgeladen wurde
-- New: Log anzeigen
-- New: Hilfe und erste Schritte für Einsteiger
-- Update: Kompatibel mit WordPress 5.3
-- Update: UI Verbesserungen
+= 1.2.0 =
+
+-   You can activate the direct URL path for PDF files.
