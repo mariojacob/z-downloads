@@ -19,7 +19,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         $zdm_db_log_details = $wpdb->get_results( 
             "
-            SELECT * 
+            SELECT id, type, message, user_agent, user_ip, user_id, time_create 
             FROM $zdm_tablename_log 
             WHERE id = '$zdm_log_id'
             "
@@ -170,7 +170,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                     <div class="postbox">
                         <div class="inside">
-                            <p><?=esc_html__('Hier ist Ausgabe des Logs der aktuellsten 100 Einträge.', 'zdm')?></p>
+                            <p><?=esc_html__('Hier ist die Ausgabe der Logs der aktuellsten 100 Einträge.', 'zdm')?></p>
                             <p>
                                 <form action="" method="post">
                                 <?=esc_html__('Logs filtern nach Typ', 'zdm')?>: 
@@ -273,6 +273,40 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     </table>
 
                 </div>
+                <?php
+            } else {
+                ?>
+
+                <div class="col-wrap">
+
+                    <div class="postbox">
+                        <div class="inside">
+                            <p><?=esc_html__('Es gibt keine Log-Einträge zu diesem Typ.', 'zdm')?></p>
+                            <p>
+                                <form action="" method="post">
+                                <?=esc_html__('Logs filtern nach Typ', 'zdm')?>: 
+                                    <select name="log-filter-type">
+                                        <?php
+                                        $zdm_log_filter_option = '';
+
+                                        for( $i = 0; $i < count($zdm_log_filter_array); $i++ ) {
+                                            $zdm_log_filter_option .= '<option value="' . $zdm_log_filter_array_val[$i] . '" ' 
+                                                                    . ( $zdm_lof_filter_type == $zdm_log_filter_array_val[$i] ? 'selected="selected"' : '' ) . '>' 
+                                                                    . $zdm_log_filter_array[$i] 
+                                                                    . '</option>';
+                                        }
+                                        
+                                        echo $zdm_log_filter_option;
+                                        ?>
+                                    </select> 
+                                    <input type="hidden" name="nonce" value="<?=wp_create_nonce('log-types')?>">
+                                    <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Aktualisieren', 'zdm')?>">
+                                </form>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
                 <?php
             }
             ?>
