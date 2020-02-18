@@ -16,7 +16,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     ////////////////////
     // Datei hinzufügen
     ////////////////////
-    if (isset($_FILES['file']) && wp_verify_nonce($_POST['nonce'], 'datei-hochladen')) {
+    if (isset($_FILES['file']) && wp_verify_nonce($_POST['nonce'], 'datei-hochladen') && $_FILES['file']['name'] != '') {
         
         $zdm_file = array();
         $zdm_file['name'] = sanitize_file_name($_FILES['file']['name']);

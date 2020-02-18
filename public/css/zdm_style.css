@@ -182,66 +182,66 @@ ion-icon {
 /* purple */
 .zdm-btn-style-purple {
     color: #fff !important;
-    background: #CB28CC  !important;
-    border: 2px solid #CB28CC  !important;
+    background: #cb28cc !important;
+    border: 2px solid #cb28cc !important;
 }
 .zdm-btn-style-purple:hover {
-    color: #CB28CC  !important;
+    color: #cb28cc !important;
     background: #fff !important;
 }
 
 /* blue */
 .zdm-btn-style-blue {
     color: #fff !important;
-    background: #0C80E8  !important;
-    border: 2px solid #0C80E8  !important;
+    background: #0c80e8 !important;
+    border: 2px solid #0c80e8 !important;
 }
 .zdm-btn-style-blue:hover {
-    color: #0C80E8  !important;
+    color: #0c80e8 !important;
     background: #fff !important;
 }
 
 /* green */
 .zdm-btn-style-green {
     color: #fff !important;
-    background: #59C71D  !important;
-    border: 2px solid #59C71D  !important;
+    background: #59c71d !important;
+    border: 2px solid #59c71d !important;
 }
 .zdm-btn-style-green:hover {
-    color: #000  !important;
+    color: #000 !important;
     background: #fff !important;
 }
 
 /* yellow */
 .zdm-btn-style-yellow {
     color: #fff !important;
-    background: #FFCD19  !important;
-    border: 2px solid #FFCD19  !important;
+    background: #ffcd19 !important;
+    border: 2px solid #ffcd19 !important;
 }
 .zdm-btn-style-yellow:hover {
-    color: #000  !important;
+    color: #000 !important;
     background: #fff !important;
 }
 
 /* orange */
 .zdm-btn-style-orange {
     color: #fff !important;
-    background: #FF7C00  !important;
-    border: 2px solid #FF7C00  !important;
+    background: #ff7c00 !important;
+    border: 2px solid #ff7c00 !important;
 }
 .zdm-btn-style-orange:hover {
-    color: #FF7C00  !important;
+    color: #ff7c00 !important;
     background: #fff !important;
 }
 
 /* red */
 .zdm-btn-style-red {
     color: #fff !important;
-    background: #FA3E3E  !important;
-    border: 2px solid #FA3E3E  !important;
+    background: #fa3e3e !important;
+    border: 2px solid #fa3e3e !important;
 }
 .zdm-btn-style-red:hover {
-    color: #FA3E3E  !important;
+    color: #fa3e3e !important;
     background: #fff !important;
 }
 
@@ -317,66 +317,66 @@ ion-icon {
 
 /* purple */
 .zdm-btn-style-purple-outline {
-    color: #CB28CC  !important;
+    color: #cb28cc !important;
     background: #fff !important;
-    border: 2px solid #CB28CC  !important;
+    border: 2px solid #cb28cc !important;
 }
 .zdm-btn-style-purple-outline:hover {
     color: #fff !important;
-    background: #CB28CC  !important;
+    background: #cb28cc !important;
 }
 
 /* blue */
 .zdm-btn-style-blue-outline {
-    color: #0C80E8  !important;
+    color: #0c80e8 !important;
     background: #fff !important;
-    border: 2px solid #0C80E8  !important;
+    border: 2px solid #0c80e8 !important;
 }
 .zdm-btn-style-blue-outline:hover {
     color: #fff !important;
-    background: #0C80E8  !important;
+    background: #0c80e8 !important;
 }
 
 /* green */
 .zdm-btn-style-green-outline {
-    color: #000  !important;
+    color: #000 !important;
     background: #fff !important;
-    border: 2px solid #59C71D  !important;
+    border: 2px solid #59c71d !important;
 }
 .zdm-btn-style-green-outline:hover {
     color: #fff !important;
-    background: #59C71D  !important;
+    background: #59c71d !important;
 }
 
 /* yellow */
 .zdm-btn-style-yellow-outline {
-    color: #000  !important;
+    color: #000 !important;
     background: #fff !important;
-    border: 2px solid #FFCD19  !important;
+    border: 2px solid #ffcd19 !important;
 }
 .zdm-btn-style-yellow-outline:hover {
     color: #fff !important;
-    background: #FFCD19  !important;
+    background: #ffcd19 !important;
 }
 
 /* orange */
 .zdm-btn-style-orange-outline {
-    color: #FF7C00  !important;
+    color: #ff7c00 !important;
     background: #fff !important;
-    border: 2px solid #FF7C00  !important;
+    border: 2px solid #ff7c00 !important;
 }
 .zdm-btn-style-orange-outline:hover {
     color: #fff !important;
-    background: #FF7C00  !important;
+    background: #ff7c00 !important;
 }
 
 /* red */
 .zdm-btn-style-red-outline {
-    color: #FA3E3E  !important;
+    color: #fa3e3e !important;
     background: #fff !important;
-    border: 2px solid #FA3E3E  !important;
+    border: 2px solid #fa3e3e !important;
 }
 .zdm-btn-style-red-outline:hover {
     color: #fff !important;
-    background: #FA3E3E  !important;
+    background: #fa3e3e !important;
 }

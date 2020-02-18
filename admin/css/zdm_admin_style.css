@@ -71,11 +71,11 @@ ion-icon {
 .zdm-btn-danger {
     color: #fff !important;
     background: #fa3e3e !important;
-    border-color: #7A1E1E !important;
+    border-color: #7a1e1e !important;
     box-shadow: none !important;
 }
 .zdm-btn-danger:hover {
-    background: #FF6D63 !important;
+    background: #ff6d63 !important;
 }
 
 .zdm-btn-danger-outline {
@@ -85,12 +85,12 @@ ion-icon {
     box-shadow: none !important;
 }
 .zdm-btn-danger-outline:hover {
-    color: #7A1E1E !important;
-    border-color: #7A1E1E !important;
+    color: #7a1e1e !important;
+    border-color: #7a1e1e !important;
 }
 
 .zdm-btn-danger-2-outline {
-    color: #7A1E1E !important;
+    color: #7a1e1e !important;
     background: #fff !important;
     border-color: #ddd !important;
     box-shadow: none !important;
@@ -133,19 +133,19 @@ ion-icon {
 }
 
 .zdm-color-green {
-    color: #59C71D !important;
+    color: #59c71d !important;
 }
 
 .zdm-color-yellow {
-    color: #FFCD19 !important;
+    color: #ffcd19 !important;
 }
 
 .zdm-color-orange {
-    color: #FF7C00 !important;
+    color: #ff7c00 !important;
 }
 
 .zdm-color-red {
-    color: #FA3E3E !important;
+    color: #fa3e3e !important;
 }
 
 .zdm-color-bg-black {
@@ -173,25 +173,25 @@ ion-icon {
 }
 
 .zdm-color-bg-purple {
-    background: #CB28CC !important;
+    background: #cb28cc !important;
 }
 
 .zdm-color-bg-blue {
-    background: #0C80E8 !important;
+    background: #0c80e8 !important;
 }
 
 .zdm-color-bg-green {
-    background: #59C71D !important;
+    background: #59c71d !important;
 }
 
 .zdm-color-bg-yellow {
-    background: #FFCD19 !important;
+    background: #ffcd19 !important;
 }
 
 .zdm-color-bg-orange {
-    background: #FF7C00 !important;
+    background: #ff7c00 !important;
 }
 
 .zdm-color-bg-red {
-    background: #FA3E3E !important;
+    background: #fa3e3e !important;
 }
