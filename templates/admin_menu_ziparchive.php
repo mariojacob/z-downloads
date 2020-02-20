@@ -511,7 +511,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <tr>
                             <th scope="col"><b><?=esc_html__('Name', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
-                            <th scope="col"><ion-icon name="cloud-download" title="<?=esc_html__('Downloads', 'zdm')?>"></ion-icon></th>
+                            <th scope="col"><div align="center"><ion-icon name="cloud-download" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></div></th>
                             <th scope="col"><b><?=esc_html__('Dateien', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
@@ -560,7 +560,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <code>[zdownload zip="<?=$zdm_db_archives[$i]->id?>"]</code>
                                 </td>
                                 <td>
-                                    <?=ZDMCore::number_format($zdm_db_archives[$i]->count)?>
+                                    <div align="center"><?=ZDMCore::number_format($zdm_db_archives[$i]->count)?></div>
                                 </td>
                                 <td>
                                     <?php
@@ -609,7 +609,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <tr>
                             <th scope="col"><b><?=esc_html__('Name', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
-                            <th scope="col"><ion-icon name="cloud-download" title="<?=esc_html__('Downloads', 'zdm')?>"></ion-icon></th>
+                            <th scope="col"><div align="center"><ion-icon name="cloud-download" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></div></th>
                             <th scope="col"><b><?=esc_html__('Dateien', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>

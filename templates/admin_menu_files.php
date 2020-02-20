@@ -518,7 +518,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <code>[zdownload file="<?=$zdm_db_files[$i]->id?>"]</code>
                                 </td>
                                 <td>
-                                <div align="center"><?=ZDMCore::number_format($zdm_db_files[$i]->count)?></div>
+                                    <div align="center"><?=ZDMCore::number_format($zdm_db_files[$i]->count)?></div>
                                 </td>
                                 <td>
                                     <?=$zdm_db_files[$i]->file_size?>
