@@ -403,6 +403,21 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             ?>
                                         </td>
                                     </tr>
+                                    <tr valign="top">
+                                        <th scope="row"><?=esc_html__('In Archiven', 'zdm')?>:</th>
+                                        <td valign="middle">
+                                            <?php
+                                            $zdm_db_file_in_archive = ZDMCore::check_if_file_is_in_archive($zdm_db_file->id);
+                                            if ($zdm_db_file_in_archive == 1) {
+                                                echo esc_html__('Die Datei ist in', 'zdm') . ' ' . $zdm_db_file_in_archive . ' ' . esc_html__('Archiv verknüpft.', 'zdm');
+                                            } elseif ($zdm_db_file_in_archive > 1) {
+                                                echo esc_html__('Die Datei ist in', 'zdm') . ' ' . $zdm_db_file_in_archive . ' Archiven verknüpft.';
+                                            } else {
+                                                echo esc_html__('Die Datei ist in keinem Archiv verknüpft.', 'zdm');
+                                            }
+                                            ?>
+                                        </td>
+                                    </tr>
                                     <?php if ($zdm_licence === 1) { ?>
                                     <tr valign="top">
                                         <th scope="row"><?=esc_html__('Hash MD5', 'zdm')?>:</th>
