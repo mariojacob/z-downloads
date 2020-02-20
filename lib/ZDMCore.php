@@ -654,6 +654,7 @@ class ZDMCore
                                 'id' => $zdownload_url
                             ));
 
+                        // Statistik
                         $this->log('download archive', $zdownload_url);
 
                         // Pfad für ZIP-Datei
@@ -698,6 +699,7 @@ class ZDMCore
                                 'id' => $zdownload_url
                             ));
 
+                        // Statistik
                         $this->log('download file', $zdownload_url);
 
                         // Interner Pfad für Datei
@@ -755,7 +757,7 @@ class ZDMCore
         wp_enqueue_style('zdm_admin_styles');
 
         // Ionicons CSS
-        wp_register_style('zdm_admin_styles_ionic', 'https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css');
+        wp_register_style('zdm_admin_styles_ionic', 'https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.0.0/css/ionicons.min.css');
         wp_enqueue_style('zdm_admin_styles_ionic');
 
         // Ionicons JS
@@ -1375,14 +1377,25 @@ class ZDMCore
                     $icon = '';
                 }
 
-                if ($options['file-open-in-browser-pdf'] == 'on' && $db_files[0]->file_type == 'application/pdf') {
+                // HTTP user agent
+                $http_user_agent = @filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
 
-                    // Externer Pfad für Datei
-                    $file_path_url = ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_files[0]->folder_path . '/' . $db_files[0]->file_name;
+                require_once(ZDM__PATH . '/lib/bot_user_agents.php');
 
-                    return '<a href="' . $file_path_url . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+                if (in_array($http_user_agent, ZDM__BOT_USER_AGENTS)) {
+                    // Zugriff von Bot
                 } else {
-                    return '<a href="?' . $type . '=' . $id . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+                    // Zugriff von Benutzer
+
+                    if ($options['file-open-in-browser-pdf'] == 'on' && $db_files[0]->file_type == 'application/pdf') {
+
+                        // Externer Pfad für Datei
+                        $file_path_url = ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_files[0]->folder_path . '/' . $db_files[0]->file_name;
+
+                        return '<a href="' . $file_path_url . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+                    } else {
+                        return '<a href="?' . $type . '=' . $id . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+                    }
                 }
             }
         } // end if ($file != '')

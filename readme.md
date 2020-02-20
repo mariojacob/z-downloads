@@ -97,17 +97,10 @@ Z-Downloads is translated into German and English, other languages can easily be
 
 == Changelog ==
 
-= 1.2.0 =
-
--   New: you can activate the direct URL path for PDF files
--   Update: Various bug fixes
-
-= Earlier versions =
-
--   You can find the change history from previous versions here: [Z-Downloads release notes](https://code.urban-base.net/z-downloads/release-notes/?utm_source=wporg)
+-   You can find the versions here: [Z-Downloads release notes](https://code.urban-base.net/z-downloads/release-notes/?utm_source=wporg)
 
 == Upgrade Notice ==
 
-= 1.2.0 =
+= 1.x.x =
 
--   You can activate the direct URL path for PDF files.
+-
