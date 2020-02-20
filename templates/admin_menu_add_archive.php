@@ -153,13 +153,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <tr valign="top">
                                 <th scope="row"><?=esc_html__('Name', 'zdm')?>:</th>
                                 <td valign="middle">
-                                    <input type="text" name="name" size="50%" value="" spellcheck="true" autocomplete="off" placeholder="">
+                                    <input type="text" name="name" size="50%" value="<?=@htmlspecialchars($_POST['name'])?>" spellcheck="true" autocomplete="off" placeholder="">
                                 </td>
                             </tr>
                             <tr valign="top">
                                 <th scope="row"><?=esc_html__('ZIP-Datei Name:', 'zdm')?></th>
                                 <td valign="middle">
-                                    <input type="text" name="zip-name" size="50%" value="" spellcheck="true" autocomplete="off" placeholder="">
+                                    <input type="text" name="zip-name" size="50%" value="<?=@htmlspecialchars($_POST['zip-name'])?>" spellcheck="true" autocomplete="off" placeholder="">
                                     <div class="zdm-help-text"><?=esc_html__('Name für die ZIP-Datei die der Besucher herunterladet.', 'zdm')?></div>
                                     <div class="zdm-help-text"><?=esc_html__('Für maximale kompatibilität verwende Bindestriche oder Unterstriche anstatt Leerzeichen.', 'zdm')?></div>
                                     <div class="zdm-help-text"><b><?=esc_html__('Beispiel:', 'zdm')?></b> <code><?=esc_html__('mein-neuer-download', 'zdm')?></code> <?=esc_html__('oder', 'zdm')?> <code><?=esc_html__('mein_neuer_download', 'zdm')?></code></div>
@@ -175,7 +175,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <tr valign="top">
                                 <th scope="row"><?=esc_html__('Beschreibung:', 'zdm')?></th>
                                 <td valign="middle">
-                                    <textarea name="description" id="" cols="100%" rows="5"></textarea>
+                                    <textarea name="description" id="" cols="100%" rows="5"><?=@htmlspecialchars($_POST['description'])?></textarea>
                                 </td>
                             </tr>
                             <tr valign="top">

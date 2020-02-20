@@ -461,9 +461,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <tr>
                             <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
-                            <th scope="col"><ion-icon name="cloud-download" title="<?=esc_html__('Downloads', 'zdm')?>"></ion-icon></th>
+                            <th scope="col"><div align="center"><ion-icon name="cloud-download" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></div></th>
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
+                            <th scope="col" title="<?=esc_html__('Zeigt an in wie vielen Archiven die Datei verknüpft ist.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
                             <th scope="col" width="2%"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Datei löschen', 'zdm')?>"></ion-icon></div></th>
                         </tr>
                     </thead>
@@ -474,19 +475,25 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         for ($i = 0; $i < count($zdm_db_files); $i++) {
 
                             if (in_array($zdm_db_files[$i]->file_type, ZDM__MIME_TYPES_AUDIO)) { // Audio
-                                $icon = '<ion-icon name="musical-notes"></ion-icon>';
+                                $zdm_icon = '<ion-icon name="musical-notes"></ion-icon>';
                             } elseif (in_array($zdm_db_files[$i]->file_type, ZDM__MIME_TYPES_VIDEO)) { // Video
-                                $icon = '<ion-icon name="videocam"></ion-icon>';
+                                $zdm_icon = '<ion-icon name="videocam"></ion-icon>';
                             } elseif (in_array($zdm_db_files[$i]->file_type, ZDM__MIME_TYPES_IMAGE)) { // Bild
-                                $icon = '<ion-icon name="images"></ion-icon>';
+                                $zdm_icon = '<ion-icon name="images"></ion-icon>';
                             } else {
-                                $icon = '<ion-icon name="document"></ion-icon>';
+                                $zdm_icon = '<ion-icon name="document"></ion-icon>';
+                            }
+
+                            $zdm_db_file_in_archive = ZDMCore::check_if_file_is_in_archive($zdm_db_files[$i]->id);
+                            $zdm_db_file_in_archive_icon = '';
+                            if ($zdm_db_file_in_archive != false) {
+                                $zdm_db_file_in_archive_icon = $zdm_db_file_in_archive;
                             }
 
                             ?>
                             <tr>
                                 <td>
-                                    <div align="center"><?=$icon?></div>
+                                    <div align="center"><?=$zdm_icon?></div>
                                 </td>
                                 <td>
                                     <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $zdm_db_files[$i]->folder_path . '/' . $zdm_db_files[$i]->file_name?>" title="<?=esc_html__('Download', 'zdm')?>" target="_blank" download><ion-icon name="cloud-download"></ion-icon></a> | 
@@ -496,13 +503,16 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <code>[zdownload file="<?=$zdm_db_files[$i]->id?>"]</code>
                                 </td>
                                 <td>
-                                    <?=ZDMCore::number_format($zdm_db_files[$i]->count)?>
+                                <div align="center"><?=ZDMCore::number_format($zdm_db_files[$i]->count)?></div>
                                 </td>
                                 <td>
                                     <?=$zdm_db_files[$i]->file_size?>
                                 </td>
                                 <td>
                                     <?=date("d.m.Y", $zdm_db_files[$i]->time_create)?>
+                                </td>
+                                <td>
+                                    <div align="center"><?=$zdm_db_file_in_archive_icon?></div>
                                 </td>
                                 <td>
                                     <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_db_files[$i]->id?>&delete=true&nonce=<?=wp_create_nonce('datei-loeschen')?>" class="button button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Datei löschen', 'zdm')?>"><ion-icon name="trash"></ion-icon></a>
@@ -518,9 +528,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <tr>
                             <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
-                            <th scope="col"><ion-icon name="cloud-download" title="<?=esc_html__('Downloads', 'zdm')?>"></ion-icon></th>
+                            <th scope="col"><div align="center"><ion-icon name="cloud-download" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></div></th>
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
+                            <th scope="col" title="<?=esc_html__('Zeigt an in wie vielen Archiven die Datei verknüpft ist.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
                             <th scope="col"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Datei löschen', 'zdm')?>"></ion-icon></div></th>
                         </tr>
                     </tfoot>

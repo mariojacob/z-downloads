@@ -227,8 +227,39 @@ class ZDMCore
     }
 
     /**
+     * Prüft ob die Datei in einem Archiv verknüpft ist
+     *
+     * @param int $files_id
+     * @return mixed
+     */
+    public function check_if_file_is_in_archive($files_id)
+    {
+        global $wpdb;
+
+        $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
+
+        // Daten aus DB files_rel holen
+        $db_file_rel = $wpdb->get_results(
+            "
+            SELECT id 
+            FROM $tablename_files_rel 
+            WHERE id_file = '$files_id'
+            "
+            );
+
+        $db_count = count($db_file_rel);
+
+        if ($db_count > 0) {
+            return $db_count;
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * Prüft ob alle Dateien zu einem Archiv aktuell sind
-     * @param int $archive_id ID des Archives
+     *
+     * @param int $archive_id
      * @return bool
      */
     public function check_if_archive_cache_ok($archive_id)
@@ -757,11 +788,11 @@ class ZDMCore
         wp_enqueue_style('zdm_admin_styles');
 
         // Ionicons CSS
-        wp_register_style('zdm_admin_styles_ionic', 'https://cdnjs.cloudflare.com/ajax/libs/ionicons/5.0.0/css/ionicons.min.css');
+        wp_register_style('zdm_admin_styles_ionic', 'https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css');
         wp_enqueue_style('zdm_admin_styles_ionic');
 
         // Ionicons JS
-        wp_register_script('zdm_admin_ionic_js', 'https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/ionicons.js');
+        wp_register_script('zdm_admin_ionic_js', 'https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js');
         wp_enqueue_script('zdm_admin_ionic_js');
     }
 
