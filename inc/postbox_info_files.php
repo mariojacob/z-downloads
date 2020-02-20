@@ -1,3 +1,9 @@
+<?php
+// Abbruch bei direktem Zugriff
+if (!defined('ABSPATH')) {
+    die;
+}
+?>
 <div class="postbox">
     <div class="inside">
         <?php require_once (plugin_dir_path(__FILE__) . '../inc/template_header_info.php'); ?>

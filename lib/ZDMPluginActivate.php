@@ -1,23 +1,21 @@
 <?php
 
 // Abbruch bei direktem Zugriff
-if( !defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
     die;
 }
 
 /**
  * Plugin Aktivierung
  */
-class ZDMPluginActivate
-{
+class ZDMPluginActivate {
 
     /**
      * Methode wenn Plugin aktiviert wird
      *
      * @return void
      */
-    public static function activate()
-    {
+    public static function activate() {
 
         flush_rewrite_rules();
 

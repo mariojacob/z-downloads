@@ -1,25 +1,28 @@
 <?php
 
 // Abbruch bei direktem Zugriff
-if( !defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
     die;
 }
 
 /**
  * ZDM-Core
  */
-class ZDMCore
-{
+class ZDMCore {
 
     protected $plugin_basename;
 
-    function __construct()
-    {
+    /**
+     * Konstruktor
+     */
+    function __construct() {
         $this->plugin_basename = plugin_basename(ZDM__PATH . ZDM__SLUG . '.php');
     }
 
     /**
      * Erzeugt im Backend einen Eintrag mit mehreren Seiten im Menü
+     *
+     * @return void
      */
     public function admin_menu() {
         add_menu_page(
@@ -82,76 +85,84 @@ class ZDMCore
 
     /**
      * Admin Menü neues Archiv
+     *
+     * @return void
      */
-    public function admin_menu_add_archive()
-    {
+    public function admin_menu_add_archive() {
         require_once (plugin_dir_path(__FILE__) . '../templates/admin_menu_add_archive.php');
     }
 
     /**
      * Admin Menü Datei hinzufügen
+     *
+     * @return void
      */
-    public function admin_menu_add_file()
-    {
+    public function admin_menu_add_file() {
         require_once (plugin_dir_path(__FILE__) . '../templates/admin_menu_add_file.php');
     }
 
     /**
      * Admin Menü Dashboard
+     *
+     * @return void
      */
-    public function admin_menu_dashboard()
-    {
+    public function admin_menu_dashboard() {
         require_once (plugin_dir_path(__FILE__) . '../templates/admin_menu_dashboard.php');
     }
 
     /**
      * Admin Menü Dateien
+     *
+     * @return void
      */
-    public function admin_menu_files()
-    {
+    public function admin_menu_files() {
         require_once (plugin_dir_path(__FILE__) . '../templates/admin_menu_files.php');
     }
 
     /**
      * Admin Menü Einstellungen
+     *
+     * @return void
      */
-    public function admin_menu_settings()
-    {
+    public function admin_menu_settings() {
         require_once (plugin_dir_path(__FILE__) . '../templates/admin_menu_settings.php');
     }
 
     /**
      * Admin Menü Archive
+     *
+     * @return void
      */
-    public function admin_menu_ziparchive()
-    {
+    public function admin_menu_ziparchive() {
         require_once (plugin_dir_path(__FILE__) . '../templates/admin_menu_ziparchive.php');
     }
 
     /**
      * Versteckt Admin Hilfe
+     *
+     * @return void
      */
-    public function admin_hidden_help()
-    {
+    public function admin_hidden_help() {
         require_once (plugin_dir_path(__FILE__) . '../templates/admin_hidden_help.php');
     }
 
     /**
      * Versteckt Admin Log
+     *
+     * @return void
      */
-    public function admin_hidden_log()
-    {
+    public function admin_hidden_log() {
         require_once (plugin_dir_path(__FILE__) . '../templates/admin_hidden_log.php');
     }
 
     /**
      * Prüft ob eine spezielle Datei zu einem Archiv verknüpft ist
-     * @param int $file_id ID der Datei
-     * @param int $archive_id ID des Archives
+     * 
+     * @param int $file_id
+     * @param int $archive_id
      * @return bool
      */
-    public function check_file_rel_to_archive($files_id, $archive_id)
-    {
+    public function check_file_rel_to_archive($files_id, $archive_id) {
         global $wpdb;
 
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -175,10 +186,11 @@ class ZDMCore
 
     /**
      * Prüft Dateiverknüpfungen und aktualisiert den Cache
-     * @param int $archive_id ID des Archives
+     *
+     * @param int $archive_id
+     * @return void
      */
-    public function check_files_from_archive($archive_id)
-    {
+    public function check_files_from_archive($archive_id) {
 
         global $wpdb;
         
@@ -201,11 +213,11 @@ class ZDMCore
 
     /**
      * Prüft ob eine Datei zu einem Archiv verknüpft ist
-     * @param int $archive_id ID des Archives
+     * 
+     * @param int $archive_id
      * @return bool
      */
-    public function check_if_any_file_rel_to_archive($archive_id)
-    {
+    public function check_if_any_file_rel_to_archive($archive_id) {
         global $wpdb;
         
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -232,8 +244,7 @@ class ZDMCore
      * @param int $files_id
      * @return mixed
      */
-    public function check_if_file_is_in_archive($files_id)
-    {
+    public function check_if_file_is_in_archive($files_id) {
         global $wpdb;
 
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -262,8 +273,7 @@ class ZDMCore
      * @param int $archive_id
      * @return bool
      */
-    public function check_if_archive_cache_ok($archive_id)
-    {
+    public function check_if_archive_cache_ok($archive_id) {
 
         global $wpdb;
         
@@ -305,11 +315,10 @@ class ZDMCore
     /**
      * Prüft ob ein Archiv existiert
      *
-     * @param [type] $archive_id
+     * @param int $archive_id
      * @return bool
      */
-    public function check_if_archive_exists($archive_id)
-    {
+    public function check_if_archive_exists($archive_id) {
         global $wpdb;
         
         $tablename_archives = $wpdb->prefix . "zdm_archives";
@@ -333,11 +342,10 @@ class ZDMCore
     /**
      * Prüft ob eine Datei existiert
      *
-     * @param [type] $file_id
+     * @param int $file_id
      * @return bool
      */
-    public function check_if_file_exists($file_id)
-    {
+    public function check_if_file_exists($file_id) {
         global $wpdb;
         
         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -360,10 +368,11 @@ class ZDMCore
 
     /**
      * Erzeugt Cache-Datei von Archiv
-     * @param int $archive_id ID des Archives
+     *
+     * @param int $archive_id
+     * @return void
      */
-    public function create_archive_cache($archive_id)
-    {
+    public function create_archive_cache($archive_id) {
 
         $time = time();
 
@@ -507,9 +516,10 @@ class ZDMCore
 
     /**
      * Löscht alle Daten
+     *
+     * @return void
      */
-    public function delete_all_data()
-    {
+    public function delete_all_data() {
 
         global $wpdb;
 
@@ -636,9 +646,10 @@ class ZDMCore
 
     /**
      * Download Steuerung
+     *
+     * @return void
      */
-    public function download()
-    {
+    public function download() {
 
         // HTTP user agent
         $http_user_agent = @filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
@@ -753,10 +764,10 @@ class ZDMCore
 
     /**
      * Gibt die jeweiligen CSS Klassen zurück für Download Button
-     * @return string CSS class
+     *
+     * @return CSS class
      */
-    public function download_button_class()
-    {
+    public function download_button_class() {
 
         $options = get_option('zdm_options');
 
@@ -780,9 +791,10 @@ class ZDMCore
 
     /**
      * Bindet Admin Skripte ein
+     *
+     * @return void
      */
-    public function enqueue_admin_scripts()
-    {
+    public function enqueue_admin_scripts() {
         // Admin CSS
         wp_register_style('zdm_admin_styles', plugins_url('../admin/css/zdm_admin_style.css?v=' . ZDM__VERSION . time(), __FILE__));
         wp_enqueue_style('zdm_admin_styles');
@@ -798,9 +810,10 @@ class ZDMCore
 
     /**
      * Bindet Frontend Skripte ein
+     *
+     * @return void
      */
-    public function enqueue_frontend_scripts()
-    {
+    public function enqueue_frontend_scripts() {
         // Frontend CSS
         wp_register_style('zdm_styles', plugins_url('../public/css/zdm_style.css?v=' . ZDM__VERSION, __FILE__));
         wp_enqueue_style('zdm_styles');
@@ -816,11 +829,11 @@ class ZDMCore
 
     /**
      * Konvertiert Bytes in B, KB, MB, GB, TB
+     * 
      * @param int $bytes Bytes als Input
      * @return string
      */
-    public function file_size_convert($bytes)
-    {
+    public function file_size_convert($bytes) {
         $bytes = floatval($bytes);
         $arBytes = array(
             0 => array(
@@ -845,10 +858,8 @@ class ZDMCore
             ),
         );
 
-        foreach($arBytes as $arItem)
-        {
-            if($bytes >= $arItem["VALUE"])
-            {
+        foreach($arBytes as $arItem) {
+            if ($bytes >= $arItem["VALUE"]) {
                 $result = $bytes / $arItem["VALUE"];
                 $result = str_replace(".", "," , strval(round($result, 2)))." ".$arItem["UNIT"];
                 break;
@@ -859,6 +870,7 @@ class ZDMCore
 
     /**
      * Konvertiert Strings zu Bytes
+     * 
      * @param string $str String wie von ini_get('upload_max_filesize')
      * @return mixed
      */
@@ -896,11 +908,10 @@ class ZDMCore
     /**
      * Gibt Archivname zurück
      *
-     * @param [type] $archive_id
+     * @param int $archive_id
      * @return string
      */
-    public function get_archive_name($archive_id)
-    {
+    public function get_archive_name($archive_id) {
         global $wpdb;
 
         $tablename_archives = $wpdb->prefix . "zdm_archives";
@@ -924,8 +935,7 @@ class ZDMCore
      * @param string $hash
      * @return int Anzahl an gefundenen Hashes
      */
-    public function get_count_of_files_by_hash($type, $hash)
-    {
+    public function get_count_of_files_by_hash($type, $hash) {
         global $wpdb;
 
         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -963,10 +973,10 @@ class ZDMCore
 
     /**
      * Gibt die ID des aktuell eingeloggten Benutzers zurück
+     * 
      * @return int WordPress Benutzer ID
      */
-    public function get_current_user_id()
-    {
+    public function get_current_user_id() {
         if (!function_exists('wp_get_current_user'))
             return 0;
         $user = wp_get_current_user();
@@ -975,11 +985,11 @@ class ZDMCore
 
     /**
      * Gibt Objekt mit allen Daten von files aus DB zurück
+     * 
      * @param int $file_id ID der Datei
      * @return object
      */
-    public function get_file_data($file_id)
-    {
+    public function get_file_data($file_id) {
         global $wpdb;
 
         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -998,11 +1008,11 @@ class ZDMCore
 
     /**
      * Gibt Name von Datei zurück
+     * 
      * @param int $file_id ID der Datei
      * @return object
      */
-    public function get_file_name($file_id)
-    {
+    public function get_file_name($file_id) {
         global $wpdb;
 
         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -1021,10 +1031,10 @@ class ZDMCore
 
     /**
      * Prüft den Lizenzschlüssel
+     * 
      * @return bool Gibt true zurück wenn gültig und false wenn nicht
      */
-    public function licence()
-    {
+    public function licence() {
         $options = get_option('zdm_options');
 
         if ($options['licence-key'] != '') {
@@ -1087,11 +1097,11 @@ class ZDMCore
 
     /**
      * Gibt Daten von Gumroad in Array zurück
+     * 
      * @param string $licence_key Lizenzschlüssel
      * @return mixed Array wenn gültig, false wenn nicht
      */
-    public static function licence_array($licence_key = '')
-    {
+    public static function licence_array($licence_key = '') {
         if ($licence_key == '') {
             $options = get_option('zdm_options');
             $licence_key = $options['licence-key'];
@@ -1126,11 +1136,12 @@ class ZDMCore
 
     /**
      * Log
+     * 
      * @param string $type Typ des Logs
      * @param string $message Sonstige Informationen
+     * @return void
      */
-    public function log($type, $message = '---')
-    {
+    public function log($type, $message = '---') {
         // user IP-Adresse
         if (filter_input(INPUT_SERVER, 'REMOTE_ADDR')) {
 
@@ -1175,19 +1186,20 @@ class ZDMCore
 
     /**
      * Formatiert Zahlen und macht einen Punkt bei jedem tausender Schritt
+     * 
      * @param int $number Zahl Eingabe
      * @return string Formatierte Zahl
      */
-    public function number_format($number)
-    {
+    public function number_format($number) {
         return number_format($number, 0, ',', '.');
     }
 
     /**
      * Registriert grundlegende Komponenten in WP
+     *
+     * @return void
      */
-    public function register()
-    {
+    public function register() {
 
         // Admin Scripte einbinden
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
@@ -1217,11 +1229,10 @@ class ZDMCore
     /**
      * Fügt Links in der Plugin-Übersicht ein
      *
-     * @param [type] $links
+     * @param string $links
      * @return string
      */
-    public function settings_link($links)
-    {
+    public function settings_link($links) {
         $settings_link = '<a href="admin.php?page=z-downloads-settings">Einstellungen</a>';
         array_push($links, $settings_link);
         return $links;
@@ -1230,12 +1241,11 @@ class ZDMCore
     /**
      * Shortcode für HTML5 Audioplayer: [zdownload_audio file="123"]
      *
-     * @param [type] $atts
-     * @param [type] $content
+     * @param string $atts
+     * @param string $content
      * @return void HTML5 Audioplayer
      */
-    public function shortcode_audio($atts, $content = null)
-    {
+    public function shortcode_audio($atts, $content = null) {
 
         $atts = shortcode_atts(
             array(
@@ -1291,10 +1301,10 @@ class ZDMCore
 
     /**
      * Shortcode für Downloads: [zdownload zip="123"] oder [zdownload file="123"]
+     * 
      * @return string
      */
-    public function shortcode_download($atts, $content = null)
-    {
+    public function shortcode_download($atts, $content = null) {
 
         $atts = shortcode_atts(
             array(
@@ -1434,10 +1444,10 @@ class ZDMCore
 
     /**
      * Shortcode für Metadaten Ausgabe: [zdownload_meta zip="123" type="count"]
+     * 
      * @return string Metadaten Ausgabe
      */
-    public function shortcode_meta($atts, $content = null)
-    {
+    public function shortcode_meta($atts, $content = null) {
 
         $atts = shortcode_atts(
             array(
@@ -1696,10 +1706,10 @@ class ZDMCore
 
     /**
      * Shortcode für HTML5 Videooplayer: [zdownload_video file="123"]
+     * 
      * @return string HTML5 Videooplayer
      */
-    public function shortcode_video($atts, $content = null)
-    {
+    public function shortcode_video($atts, $content = null) {
 
         $atts = shortcode_atts(
             array(

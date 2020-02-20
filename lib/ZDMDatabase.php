@@ -1,23 +1,21 @@
 <?php
 
 // Abbruch bei direktem Zugriff
-if( !defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
     die;
 }
 
 /**
  * Datenbank Klasse
  */
-class ZDMDatabase
-{
+class ZDMDatabase {
 
     /**
      * Erstellt die Datenbankstruktur
      *
      * @return void
      */
-    public function create_db()
-    {
+    public function create_db() {
         global $wpdb;
         $table_name = $wpdb->prefix . 'zdm_archives';
 

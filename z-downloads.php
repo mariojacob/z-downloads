@@ -14,7 +14,7 @@
  */
 
 // Abbruch bei direktem Zugriff
-if( !defined( 'ABSPATH' ) ) {
+if (!defined('ABSPATH')) {
     die;
 }
 
