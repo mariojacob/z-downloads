@@ -390,7 +390,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     </td>
                                 </tr>
                                 <tr valign="top">
-                                    <th scope="row"><?=esc_html__('Count', 'zdm')?>:</th>
+                                    <th scope="row"><?=esc_html__('Download Anzahl', 'zdm')?>:</th>
                                     <td valign="middle">
                                         <input type="text" name="count" size="10%" value="<?=esc_attr($zdm_db_archive->count)?>" spellcheck="true" autocomplete="off" placeholder=""> 
                                         <?=esc_html__('Anzahl an bisherigen Downloads.', 'zdm')?>

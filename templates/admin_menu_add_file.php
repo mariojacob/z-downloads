@@ -104,15 +104,16 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     if (isset($_POST['update']) && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) {
 
         if ($_POST['name'] != '') {
-            $name = sanitize_text_field($_POST['name']);
+            $zdm_name = sanitize_text_field($_POST['name']);
         } else {
-            $name = sanitize_text_field($_POST['filename']);
+            $zdm_name = sanitize_text_field($_POST['filename']);
         }
         
         $wpdb->update(
             $zdm_tablename_files, 
             array(
-                'name'          => $name,
+                'name'          => $zdm_name,
+                'count'         => sanitize_text_field($_POST['count']),
                 'time_update'   => $zdm_time
             ), 
             array(
@@ -216,6 +217,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <td valign="middle">
                                     <input type="text" name="name" size="50%" value="" spellcheck="true" autocomplete="off" placeholder="<?=$zdm_file['name']?>">
                                     <div class="zdm-help-text"><?=esc_html__('Wenn kein Name eingegeben wird, wird automatisch der Dateiname verwendet.', 'zdm')?></div>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th scope="row"><?=esc_html__('Download Anzahl', 'zdm')?>:</th>
+                                <td valign="middle">
+                                    <input type="text" name="count" size="10%" value="0" spellcheck="true" autocomplete="off" placeholder=""> 
+                                    <div class="zdm-help-text"><?=esc_html__('Anzahl an bisherigen Downloads.', 'zdm')?></div>
                                 </td>
                             </tr>
                         </tbody>
