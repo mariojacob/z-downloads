@@ -294,8 +294,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         ?>
         
         <div class="wrap">
-            <h1 class="wp-heading-inline"><?=esc_html__('Archiv bearbeiten', 'zdm')?><a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive" class="page-title-action"><?=esc_html__('Zurück zur Übersicht', 'zdm')?></a></h1>
+            <h1 class="wp-heading-inline"><?=esc_html__('Archiv bearbeiten', 'zdm')?></h1>
             <hr class="wp-header-end">
+            <p><a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive" class="page-title-action"><?=esc_html__('Zurück zur Übersicht', 'zdm')?></a></p>
 
                 <div class="postbox">
                     <div class="inside">
@@ -500,8 +501,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         <div class="wrap">
 
-            <h1 class="wp-heading-inline"><?=esc_html__('ZIP-Archive', 'zdm')?><a href="admin.php?page=<?=ZDM__SLUG?>-add-archive" class="page-title-action"><?=esc_html__('Archiv erstellen', 'zdm')?></a></h1>
+            <h1 class="wp-heading-inline"><?=esc_html__('ZIP-Archive', 'zdm')?></h1>
             <hr class="wp-header-end">
+            <p><a href="admin.php?page=<?=ZDM__SLUG?>-add-archive" class="page-title-action"><?=esc_html__('Archiv erstellen', 'zdm')?></a></p>
 
             <?php if (count($zdm_db_archives) > 0) { ?>
 

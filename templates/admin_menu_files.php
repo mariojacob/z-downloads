@@ -23,15 +23,86 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     $zdm_tablename_files = $wpdb->prefix . "zdm_files";
     $zdm_tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
 
-    if (isset($_GET['id'])) {
+    //////////////////////////////////////////////////
+    // Datei hinzufügen
+    //////////////////////////////////////////////////
+    if (isset($_FILES['file']) && wp_verify_nonce($_POST['nonce'], 'datei-hochladen') && $_FILES['file']['name'] != '') {
+        
+        $zdm_file = array();
+        $zdm_file['name'] = sanitize_file_name($_FILES['file']['name']);
+        $zdm_file['type'] = $_FILES['file']['type'];
+        $zdm_file['size'] = ZDMCore::file_size_convert(sanitize_file_name($_FILES['file']['size']));
+
+        // Ordnername erstellen
+        $zdm_file['folder'] = md5(time() . $zdm_file['name']);
+
+        // Ordner erstellen
+        if (!is_dir($zdm_file['folder'])) {
+            wp_mkdir_p(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder']);
+        }
+
+        $zdm_file_path = ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . $zdm_file['name'];
+
+        // Datei abspeichern
+        move_uploaded_file($_FILES['file']['tmp_name'], $zdm_file_path);
+
+        // index.php in Ordner kopieren
+        copy('index.php', ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . 'index.php');
+
+        // MD5 aus Datei
+        $zdm_file['md5'] = md5_file($zdm_file_path);
+
+        // SHA1 aus Datei
+        $zdm_file['sha1'] = sha1_file($zdm_file_path);
+
+        // Dateipfad in DB speichern
+        $wpdb->insert(
+            $zdm_tablename_files, 
+            array(
+                'name'          => $zdm_file['name'],
+                'hash_md5'      => $zdm_file['md5'],
+                'hash_sha1'     => $zdm_file['sha1'],
+                'folder_path'   => $zdm_file['folder'],
+                'file_name'     => $zdm_file['name'],
+                'file_type'     => $zdm_file['type'],
+                'file_size'     => $zdm_file['size'],
+                'time_create'   => $zdm_time
+            )
+        );
+
+        // Log
+        ZDMCore::log('add file', $zdm_file_path);
+
+        $zdm_folder_path = $zdm_file['folder'];
+
+        // ID aus DB holen
+        $zdm_db_file = $wpdb->get_results( 
+            "
+            SELECT id 
+            FROM $zdm_tablename_files 
+            WHERE folder_path = '$zdm_folder_path'
+            "
+        );
+
+        // Datei ID festlegen
+        $zdm_file_id = $zdm_db_file[0]->id;
+
+        $zdm_status = 1;
+    } elseif (isset($_GET['id']) OR isset($_POST['update']) OR isset($_POST['delete'])) {
 
         $zdm_status = 1;
 
-        $zdm_file_id = sanitize_text_field($_GET['id']);
+        if (isset($_GET['id'])) {
+            // Datei ID festlegen wenn ID in URL Parameter steht
+            $zdm_file_id = sanitize_text_field($_GET['id']);
+        } else {
+            // Datei ID festlegen wenn Datei hochgeladen wurde
+            $zdm_file_id = sanitize_text_field($_POST['file_id']);
+        }
 
-        ////////////////////
+        //////////////////////////////////////////////////
         // Daten aktualisieren
-        ////////////////////
+        //////////////////////////////////////////////////
         if (isset($_POST['update']) && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) {
 
             if ($_POST['name'] != '') {
@@ -69,9 +140,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             $zdm_note = esc_html__('Aktualisiert', 'zdm');
         }
 
-        ////////////////////
+        //////////////////////////////////////////////////
         // Datei löschen
-        ////////////////////
+        //////////////////////////////////////////////////
         if (($_POST['delete'] && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) OR ($_GET['delete'] && wp_verify_nonce($_GET['nonce'], 'datei-loeschen'))) {
 
             // Daten aus DB holen
@@ -120,12 +191,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             ZDMCore::log('delete file', $zdm_file_id);
         
             $zdm_note = esc_html__('Datei gelöscht!', 'zdm');
+
+            $zdm_status = 2;
         }
 
-        ////////////////////
+        //////////////////////////////////////////////////
         // Datei ersetzen
-        ////////////////////
-        if (isset($_FILES['file']) && wp_verify_nonce($_POST['nonce'], 'datei-hochladen')) {
+        //////////////////////////////////////////////////
+        if (isset($_FILES['file']) && wp_verify_nonce($_POST['nonce'], 'datei-ersetzen') && $_FILES['file']['name'] != '') {
 
             // Daten aus DB holen
             $zdm_db_file = $wpdb->get_results( 
@@ -141,6 +214,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             $zdm_file['name'] = $_FILES['file']['name'];
             $zdm_file['type'] = $_FILES['file']['type'];
             $zdm_file['size'] = ZDMCore::file_size_convert($_FILES['file']['size']);
+
+            if ($_POST['name'] != '') {
+                $zdm_name = sanitize_text_field($_POST['name']);
+            } else {
+                $zdm_name = $zdm_file['name'];
+            }
 
             // Alte Datei löschen
             unlink(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_db_file->folder_path . '/' . $zdm_db_file->file_name);
@@ -158,6 +237,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             $wpdb->update(
                 $zdm_tablename_files, 
                 array(
+                    'name'          => $zdm_name,
                     'hash_md5'      => $zdm_file['md5'],
                     'hash_sha1'     => $zdm_file['sha1'],
                     'file_name'     => $zdm_file['name'],
@@ -216,8 +296,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         ?>
         
         <div class="wrap">
-            <h1 class="wp-heading-inline"><?=esc_html__('Datei bearbeiten', 'zdm')?><a href="admin.php?page=<?=ZDM__SLUG?>-files" class="page-title-action"><?=esc_html__('Zurück zur Übersicht', 'zdm')?></a></h1>
+            <h1 class="wp-heading-inline"><?=esc_html__('Datei bearbeiten', 'zdm')?></h1>
             <hr class="wp-header-end">
+            <p><a href="admin.php?page=<?=ZDM__SLUG?>-files" class="page-title-action"><?=esc_html__('Zurück zur Übersicht', 'zdm')?></a> <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="page-title-action"><?=esc_html__('Datei hinzufügen', 'zdm')?></a></p>
             
                 <div class="postbox">
                     <div class="inside">
@@ -294,7 +375,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <tr valign="top">
                                         <th scope="row"><?=esc_html__('Datei ersetzen', 'zdm')?>:</th>
                                         <td valign="middle">
-                                        <input type="hidden" name="nonce" value="<?=wp_create_nonce('datei-hochladen')?>">
+                                        <input type="hidden" name="nonce" value="<?=wp_create_nonce('datei-ersetzen')?>">
+                                        <input type="hidden" name="name" value="<?=$zdm_db_file->name?>">
                                         <input type="file" name="file"> <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Hochladen und ersetzen', 'zdm')?>">
                                         <div class="zdm-help-text"><?=esc_html__('Maximale Dateigröße für Uploads', 'zdm')?>: <?=ini_get('upload_max_filesize')?></div>
                                         </td>
@@ -446,12 +528,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 </div>
 
                                     <input type="hidden" name="nonce" value="<?=wp_create_nonce('daten-aktualisieren')?>">
+                                    <input type="hidden" name="file_id" value="<?=$zdm_file_id?>">
                                     <input class="button-primary" type="submit" name="update" value="<?=esc_html__('Aktualisieren', 'zdm')?>">
                                     <input class="button-secondary" type="submit" name="delete" value="<?=esc_html__('Löschen', 'zdm')?>">
                                 </form>
         </div>
 
-    <?php } else { // Datei Liste
+    <?php } elseif ($zdm_status === '' OR $zdm_status === 2) { // Datei Liste
         
         $zdm_db_files = $wpdb->get_results( 
             "
@@ -465,8 +548,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         <div class="wrap">
 
-            <h1 class="wp-heading-inline"><?=esc_html__('Dateien', 'zdm')?><a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="page-title-action"><?=esc_html__('Datei hinzufügen', 'zdm')?></a></h1>
+            <h1 class="wp-heading-inline"><?=esc_html__('Dateien', 'zdm')?></h1>
             <hr class="wp-header-end">
+            <p><a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="page-title-action"><?=esc_html__('Datei hinzufügen', 'zdm')?></a></p>
 
             <?php if (count($zdm_db_files) > 0) { ?>
 
