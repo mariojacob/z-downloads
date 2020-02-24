@@ -64,6 +64,20 @@ ion-icon {
     top: 3px;
 }
 
+.zdm-copy-to-clipboard-list {
+    background-color: #fff !important;
+    border: 1px solid #ccc !important;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.zdm-copy-to-clipboard-detail {
+    width: 50%;
+    background-color: #fff !important;
+    border: 1px solid #ccc !important;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
 /********************
  Buttons
 ********************/

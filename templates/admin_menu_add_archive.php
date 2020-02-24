@@ -40,7 +40,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     if (isset($_POST['submit']) && wp_verify_nonce($_POST['nonce'], 'daten-speichern')) {
 
         // Check ob Felder ausgefüllt sind
-        if ($_POST['name'] != '' && $_POST['zip-name'] != '') {
+        if ($_POST['name'] != '') {
 
             $zdm_post_name = sanitize_text_field($_POST['name']);
             $zdm_post_description = sanitize_textarea_field($_POST['description']);
@@ -50,7 +50,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             // id_temp erstellen
             $zdm_archive_id_temp = md5($zdm_time . $zdm_post_name);
             // ZIP-Name
-            $zdm_zip_name = str_replace(' ', '-', trim(sanitize_file_name($_POST['zip-name'])));
+            if ($_POST['zip-name'] != '') {
+                $zdm_zip_name = str_replace(' ', '-', trim(sanitize_file_name($_POST['zip-name'])));
+            } else {
+                $zdm_zip_name = str_replace(' ', '-', trim($zdm_post_name));
+            }
 
             // DB Tabellenname
             $zdm_tablename_archives = $wpdb->prefix . "zdm_archives";
@@ -154,6 +158,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <th scope="row"><?=esc_html__('Name', 'zdm')?>:</th>
                                 <td valign="middle">
                                     <input type="text" name="name" size="50%" value="<?=@htmlspecialchars($_POST['name'])?>" spellcheck="true" autocomplete="off" placeholder="">
+                                    <div class="zdm-help-text"><?=esc_html__('Dieser Name wird in der Archiv-Liste angezeigt und dient dir als Orientierung.', 'zdm')?></div>
                                 </td>
                             </tr>
                             <tr valign="top">

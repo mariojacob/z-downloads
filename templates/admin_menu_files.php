@@ -311,22 +311,34 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <tbody>
                                 <tr valign="top">
                                     <th scope="row"><?=esc_html__('Download-Button', 'zdm')?></th>
-                                    <td valign="middle"><code>[zdownload file="<?=$zdm_db_file->id?>"]</code></td>
+                                    <td valign="middle">
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload file=&quot;<?=$zdm_db_file->id?>&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
+                                    </td>
                                 </tr>
                                 <tr valign="top">
                                     <th scope="row"><?=esc_html__('Download-Anzahl', 'zdm')?></th>
-                                    <td valign="middle"><code>[zdownload_meta file="<?=$zdm_db_file->id?>" type="count"]</code></td>
+                                    <td valign="middle">
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?=$zdm_db_file->id?>&quot; type=&quot;count&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
+                                    </td>
                                 </tr>
                                 <tr valign="top">
                                     <th scope="row"><?=esc_html__('Dateigröße', 'zdm')?></th>
-                                    <td valign="middle"><code>[zdownload_meta file="<?=$zdm_db_file->id?>" type="size"]</code></td>
+                                    <td valign="middle">
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?=$zdm_db_file->id?>&quot; type=&quot;size&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
+                                    </td>
                                 </tr>
                                 <?php
                                 if (in_array($zdm_db_file->file_type, ZDM__MIME_TYPES_AUDIO)) { // Audio
                                     ?>
                                     <tr valign="top">
                                         <th scope="row"><?=esc_html__('Audioplayer', 'zdm')?></th>
-                                        <td valign="middle"><code>[zdownload_audio file="<?=$zdm_db_file->id?>"]</code></td>
+                                        <td valign="middle">
+                                            <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_audio file=&quot;<?=$zdm_db_file->id?>&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
+                                            <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
+                                        </td>
                                     </tr>
                                     <?php
                                 } elseif (in_array($zdm_db_file->file_type, ZDM__MIME_TYPES_VIDEO)) { // Video
@@ -334,7 +346,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <tr valign="top">
                                         <th scope="row"><?=esc_html__('Videoplayer', 'zdm')?></th>
                                         <td valign="middle">
-                                            <code>[zdownload_video file="<?=$zdm_db_file->id?>"]</code> 
+                                            <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_video file=&quot;<?=$zdm_db_file->id?>&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
+                                            <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
                                             <div class="zdm-help-text"><a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=esc_html__('Alle Optionen', 'zdm')?></a> <?=esc_html__('für den Videoplayer', 'zdm')?></div>
                                         </td>
                                     </tr>
@@ -351,11 +364,17 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 ?>
                                 <tr valign="top">
                                     <th scope="row"><?=$text_hash_md5?></th>
-                                    <td valign="middle"><code>[zdownload_meta file="<?=$zdm_db_file->id?>" type="hash-md5"]</code></td>
+                                    <td valign="middle">
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?=$zdm_db_file->id?>&quot; type=&quot;hash-md5&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
+                                    </td>
                                 </tr>
                                 <tr valign="top">
                                     <th scope="row"><?=$text_hash_sha1?></th>
-                                    <td valign="middle"><code>[zdownload_meta file="<?=$zdm_db_file->id?>" type="hash-sha1"]</code></td>
+                                    <td valign="middle">
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?=$zdm_db_file->id?>&quot; type=&quot;hash-sha1&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -458,6 +477,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <th scope="row"><?=esc_html__('Name', 'zdm')?>:</th>
                                         <td valign="middle">
                                             <input type="text" name="name" size="50%" value="<?=$zdm_db_file->name?>" spellcheck="true" autocomplete="off" placeholder="">
+                                            <div class="zdm-help-text"><?=esc_html__('Dieser Name wird in der Datei-Liste angezeigt und dient dir als Orientierung.', 'zdm')?></div>
                                         </td>
                                     </tr>
                                     <tr valign="top">
@@ -533,8 +553,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <input class="button-secondary" type="submit" name="delete" value="<?=esc_html__('Löschen', 'zdm')?>">
                                 </form>
         </div>
-
-    <?php } elseif ($zdm_status === '' OR $zdm_status === 2) { // Datei Liste
+        <?php
+    } elseif ($zdm_status === '' OR $zdm_status === 2) { // Datei Liste
         
         $zdm_db_files = $wpdb->get_results( 
             "
@@ -599,7 +619,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <b><a href="?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_db_files[$i]->id?>"><?=$zdm_db_files[$i]->name?></a></b>
                                 </td>
                                 <td>
-                                    <code>[zdownload file="<?=$zdm_db_files[$i]->id?>"]</code>
+                                    <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-list" value="[zdownload file=&quot;<?=$zdm_db_files[$i]->id?>&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
+                                    <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
                                 </td>
                                 <td>
                                     <div align="center"><?=ZDMCore::number_format($zdm_db_files[$i]->count)?></div>
