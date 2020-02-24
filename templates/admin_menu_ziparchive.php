@@ -381,7 +381,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <th scope="row"><?=esc_html__('Name', 'zdm')?>:</th>
                                     <td valign="middle">
                                         <input type="text" name="name" size="50%" value="<?=esc_attr($zdm_db_archive->name)?>" spellcheck="true" autocomplete="off" placeholder="">
-                                        <div class="zdm-help-text"><?=esc_html__('Dieser Name wird in der Archiv-Liste angezeigt und dient dir als Orientierung.', 'zdm')?></div>
+                                        <div class="zdm-help-text"><?=esc_html__('Dieser Name wird in der Archivliste angezeigt und dient dir als Orientierung.', 'zdm')?></div>
                                     </td>
                                 </tr>
                                 <tr valign="top">
