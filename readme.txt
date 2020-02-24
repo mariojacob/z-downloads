@@ -7,7 +7,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
 Tested up to: 5.3
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 
 Download management and automatic ZIP archive creation
 
@@ -52,7 +52,7 @@ The same file is in multiple downloads, such as promotional material. In the eve
 
 = Translation =
 
--   English - en_US, en_BG = in /language
+-   English - en_US = in /language
 -   German - de_DE = in /language
 
 == Installation ==
@@ -97,17 +97,10 @@ Z-Downloads is translated into German and English, other languages can easily be
 
 == Changelog ==
 
-= 1.2.0 =
-
--   New: you can activate the direct URL path for PDF files
--   Update: Various bug fixes
-
-= Earlier versions =
-
--   You can find the change history from previous versions here: [Z-Downloads release notes](https://code.urban-base.net/z-downloads/release-notes/?utm_source=wporg)
+-   You can find the versions here: [Z-Downloads release notes](https://code.urban-base.net/z-downloads/release-notes/?utm_source=wporg)
 
 == Upgrade Notice ==
 
-= 1.2.0 =
+= 1.3.0 =
 
--   You can activate the direct URL path for PDF files.
+-   UI/UX updated

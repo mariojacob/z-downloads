@@ -7,7 +7,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
 Tested up to: 5.3
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 
 Download management and automatic ZIP archive creation
 
@@ -52,7 +52,7 @@ The same file is in multiple downloads, such as promotional material. In the eve
 
 = Translation =
 
--   English - en_US, en_BG = in /language
+-   English - en_US = in /language
 -   German - de_DE = in /language
 
 == Installation ==
@@ -101,6 +101,6 @@ Z-Downloads is translated into German and English, other languages can easily be
 
 == Upgrade Notice ==
 
-= 1.x.x =
+= 1.3.0 =
 
--
+-   UI/UX updated
