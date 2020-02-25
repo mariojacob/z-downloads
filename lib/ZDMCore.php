@@ -806,10 +806,6 @@ class ZDMCore {
         // Ionicons JS
         wp_register_script('zdm_admin_ionic_js', 'https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js');
         wp_enqueue_script('zdm_admin_ionic_js');
-
-        // Main JS
-        wp_register_script('zdm_admin_main_js', plugins_url('../admin/js/zdm_admin.js?v=' . ZDM__VERSION, __FILE__));
-        wp_enqueue_script('zdm_admin_main_js');
     }
 
     /**
