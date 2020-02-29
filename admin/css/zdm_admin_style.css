@@ -78,6 +78,52 @@ ion-icon {
     cursor: pointer;
 }
 
+.zdm-box {
+    margin: 10px 0 15px;
+    border-radius: 4px;
+    padding: 0 0 0 1em;
+    line-height: 20px;
+}
+
+.zdm-box-success {
+    background-color: #edfff1;
+    border-color: #97e891;
+    color: #000;
+    border: 1px solid #97e891;
+}
+
+.zdm-box-info {
+    background-color: #edf8ff;
+    border-color: #0c80e8;
+    color: #0a6cc2;
+    border: 1px solid #0c80e8;
+}
+
+.zdm-box-warning {
+    background-color: #ffffed;
+    border-color: #ffd871;
+    color: #000;
+    border: 1px solid #ffd871;
+}
+
+.zdm-box-grey {
+    background-color: #eee;
+    border-color: #aaa;
+    color: #555;
+    border: 1px solid #aaa;
+}
+
+.zdm-box-danger {
+    background-color: #ffedee;
+    border-color: #ff6771;
+    color: #bf4d54;
+    border: 1px solid #ff6771;
+}
+
+.zdm-nav-tabs a {
+    border-radius: 4px 4px 0 0;
+}
+
 /********************
  Buttons
 ********************/

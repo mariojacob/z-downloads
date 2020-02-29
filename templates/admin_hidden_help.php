@@ -28,7 +28,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         <hr class="wp-header-end">
 
-        <nav class="nav-tab-wrapper wp-clearfix">
+        <nav class="nav-tab-wrapper wp-clearfix zdm-nav-tabs">
 		    <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=beginner" class="nav-tab <?php echo $active_tab == 'beginner' ? 'nav-tab-active' : ''; ?>" aria-current="page"><?=esc_html__('Erste Schritte', 'zdm')?></a>
 		    <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=advanced" class="nav-tab <?php echo $active_tab == 'advanced' ? 'nav-tab-active' : ''; ?>"><?=esc_html__('Fortgeschritten', 'zdm')?></a>
 		    <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert" class="nav-tab <?php echo $active_tab == 'expert' ? 'nav-tab-active' : ''; ?>"><?=esc_html__('Experte', 'zdm')?></a>
@@ -46,6 +46,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <hr>
                 <p><?=esc_html__('Um eine Datei hochzuladen klicke im', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('Menü auf', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-add-file"><?=esc_html__('Datei hinzufügen', 'zdm')?></a>".</p>
                 <p><?=esc_html__('Wähle eine Datei aus und klicke auf "Hochladen".', 'zdm')?></p>
+            </div>
+        </div>
+
+        <div class="postbox">
+            <div class="inside">
+                <h3><?=esc_html__('Dateien ersetzen', 'zdm')?></h3>
+                <hr>
+                <p><?=esc_html__('Wenn du die Datei ersetzt, dann wird nur die Datei ersetzt, die ID für die Shortcodes erhalten.', 'zdm')?></p>
+                <p><?=esc_html__('Der Cache aller Archive mit denen diese Datei verknüpft ist werden automatisch aktualisiert.', 'zdm')?></p>
             </div>
         </div>
 
@@ -93,6 +102,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <p><?=esc_html__('Alle verfügbaren Farben findest du auf der', 'zdm')?> <?=ZDM__TITLE?> <a href="https://code.urban-base.net/z-downloads/farben/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Farben', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('Webseite', 'zdm')?></a></p>
             </div>
         </div>
+        
         <?php
     // end if ($active_tab == 'beginner')
     } elseif ($active_tab == 'advanced') { // Tab: Fortgeschritten
