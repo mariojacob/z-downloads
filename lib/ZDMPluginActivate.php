@@ -19,30 +19,10 @@ class ZDMPluginActivate {
 
         flush_rewrite_rules();
 
-        // Grundeinstellungen festlegen
-        $options = array(
-            'version'                       => ZDM__VERSION,
-            'licence-key'                   => '',
-            'licence-email'                 => '',
-            'licence-purchase'              => '',
-            'licence-product-name'          => '',
-            'licence-time'                  => 0,
-            'db-version'                    => 1,
-            'download-btn-text'             => 'Download',
-            'download-btn-style'            => 'black',
-            'download-btn-outline'          => '',
-            'download-btn-border-radius'    => 'none',
-            'download-btn-icon'             => 'none',
-            'download-btn-icon-only'        => '',
-            'download-btn-css'              => '',
-            'secure-ip'                     => 'on',
-            'file-open-in-browser-pdf'      => ''
-        );
-
         if (get_option('zdm_options')) {
-            update_option('zdm_options', $options);
+            update_option('zdm_options', ZDM__OPTIONS);
         } else {
-            add_option('zdm_options', $options);
+            add_option('zdm_options', ZDM__OPTIONS);
         }
 
         // Datenbank erstellen

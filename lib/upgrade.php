@@ -51,8 +51,8 @@ if ($zdm_options['version'] < ZDM__VERSION) {
         }
     }
 
-    // v2.0.0
-    if ($zdm_options['version'] <= '2.0.0') {
+    // v1.4.0
+    if ($zdm_options['version'] <= '1.4.0') {
 
         global $wpdb;
         $table_name = $wpdb->prefix . 'zdm_files';
