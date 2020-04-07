@@ -236,12 +236,25 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('Audioplayer und Videoplayer mit JavaScript steuern', 'zdm')?></h3>
+                <h3><?=esc_html__('Einzelnen Audioplayer und Videoplayer mit CSS und JavaScript steuern', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Um den Audioplayer mit Hilfe von JavaScript zu steuern besitzt jedes HTML Audio-Element eine individuelle id, diese setzt sich aus zdmAudio und der ID der Datei zusammen.', 'zdm')?></p>
+                <p><?=esc_html__('Um einen Audioplayer mit Hilfe von CSS und JavaScript zu steuern besitzt jedes HTML Audio-Element eine individuelle ID, diese setzt sich aus zdmAudio und der ID der Datei zusammen.', 'zdm')?></p>
                 <p><code>id="zdmAudio123"</code></p>
-                <p><?=esc_html__('Um den Videoplayer mit Hilfe von JavaScript zu steuern besitzt jedes HTML Video-Element eine individuelle id, diese setzt sich aus zdmVideo und der ID der Datei zusammen.', 'zdm')?></p>
+                <p><?=esc_html__('Um einen Videoplayer mit Hilfe von CSS und JavaScript zu steuern besitzt jedes HTML Video-Element eine individuelle ID, diese setzt sich aus zdmVideo und der ID der Datei zusammen.', 'zdm')?></p>
                 <p><code>id="zdmVideo123"</code></p>
+            </div>
+        </div>
+        
+        <div class="postbox">
+            <div class="inside">
+                <h3><?=esc_html__('Alle Audioplayer, Videoplayer und Buttons mit CSS und JavaScript steuern', 'zdm')?></h3>
+                <hr>
+                <p><?=esc_html__('Um alle Audioplayer mit Hilfe von CSS und JavaScript zu steuern besitzt jedes HTML Audio-Element eine Klassenbezeichnung, diese sieht wie folgt aus:', 'zdm')?></p>
+                <p><code>class="zdm-audio"</code></p>
+                <p><?=esc_html__('Um alle Videoplayer mit Hilfe von CSS und JavaScript zu steuern besitzt jedes HTML Video-Element eine Klassenbezeichnung, diese sieht wie folgt aus:', 'zdm')?></p>
+                <p><code>class="zdm-video"</code></p>
+                <p><?=esc_html__('Um alle Buttons mit Hilfe von CSS und JavaScript zu steuern besitzt jedes HTML Video-Element eine Klassenbezeichnung, diese sieht wie folgt aus:', 'zdm')?></p>
+                <p><code>class="zdm-btn"</code></p>
             </div>
         </div>
         

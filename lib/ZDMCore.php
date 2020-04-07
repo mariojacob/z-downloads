@@ -1315,7 +1315,7 @@ class ZDMCore {
             if ($db_file[0]->status != 'draft') {
 
                 // Ausgabe
-                $audio = '<audio preload="none" id="zdmAudio' . $db_file[0]->id . '"' . $autoplay . $loop . $controls . '>';
+                $audio = '<audio preload="none" id="zdmAudio' . $db_file[0]->id . '" class="zdm-audio"' . $autoplay . $loop . $controls . '>';
                 $audio .= esc_html__('Dein Browser unterstützt keine HTML Audio-Elemente.', 'zdm');
                 $audio .= '<source src="' . ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_file[0]->folder_path . '/' . $db_file[0]->file_name . '" type="' . $db_file[0]->file_type . '">';
                 $audio .= '</audio>';
@@ -1395,7 +1395,7 @@ class ZDMCore {
                         $icon = '';
                     }
     
-                    return '<a href="?' . $type . '=' . $id . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+                    return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_archive[0]->id) . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
                 }
             } else {
                 // Leerer Rückgabewert wenn keine Datei verknüpft ist
@@ -1466,9 +1466,9 @@ class ZDMCore {
                             // Externer Pfad für Datei
                             $file_path_url = ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_files[0]->folder_path . '/' . $db_files[0]->file_name;
     
-                            return '<a href="' . $file_path_url . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+                            return '<a href="' . $file_path_url . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
                         } else {
-                            return '<a href="?' . $type . '=' . $id . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+                            return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
                         }
                     }
                 }
@@ -1524,7 +1524,7 @@ class ZDMCore {
                     if ($db_archive[0]->status != 'draft') {
 
                         // Anzahl Ausgabe
-                        return $this->number_format($db_archive[0]->count);
+                        return htmlspecialchars($this->number_format($db_archive[0]->count));
                     }
                 }
 
@@ -1554,7 +1554,7 @@ class ZDMCore {
                         if ($db_archive[0]->status != 'draft') {
 
                             // Dateigröße Ausgabe
-                            return $db_archive[0]->file_size;
+                            return htmlspecialchars($db_archive[0]->file_size);
                         }
                     }
                 }
@@ -1576,7 +1576,7 @@ class ZDMCore {
                     if ($db_archive[0]->status != 'draft') {
 
                         // Name Ausgabe
-                        return $db_archive[0]->name;
+                        return htmlspecialchars($db_archive[0]->name);
                     }
                 }
 
@@ -1597,7 +1597,7 @@ class ZDMCore {
                     if ($db_archive[0]->status != 'draft') {
 
                         // Dateiname Ausgabe
-                        return $db_archive[0]->zip_name . '.zip';
+                        return htmlspecialchars($db_archive[0]->zip_name . '.zip');
                     }
                 }
 
@@ -1631,9 +1631,9 @@ class ZDMCore {
                                 
                             } else {
                                 if ($type === 'hash-md5') {
-                                    return $db_archive[0]->hash_md5;
+                                    return htmlspecialchars($db_archive[0]->hash_md5);
                                 } elseif ($type === 'hash-sha1') {
-                                    return $db_archive[0]->hash_sha1;
+                                    return htmlspecialchars($db_archive[0]->hash_sha1);
                                 }
                             }
                         }
@@ -1668,7 +1668,7 @@ class ZDMCore {
                     if ($db_files[0]->status != 'draft') {
         
                         // Anzahl Ausgabe
-                        return $this->number_format($db_files[0]->count);
+                        return htmlspecialchars($this->number_format($db_files[0]->count));
                     }
                 }
 
@@ -1689,7 +1689,7 @@ class ZDMCore {
                     if ($db_files[0]->status != 'draft') {
 
                         // Dateigröße Ausgabe
-                        return $db_files[0]->file_size;
+                        return htmlspecialchars($db_files[0]->file_size);
                     }
                 }
 
@@ -1710,7 +1710,7 @@ class ZDMCore {
                     if ($db_files[0]->status != 'draft') {
 
                         // Name Ausgabe
-                        return $db_files[0]->name;
+                        return htmlspecialchars($db_files[0]->name);
                     }
                 }
 
@@ -1731,7 +1731,7 @@ class ZDMCore {
                     if ($db_files[0]->status != 'draft') {
 
                         // Dateiname Ausgabe
-                        return $db_files[0]->file_name;
+                        return htmlspecialchars($db_files[0]->file_name);
                     }
                 }
 
@@ -1756,9 +1756,9 @@ class ZDMCore {
                             
                         } else {
                             if ($type === 'hash-md5') {
-                                return $db_files[0]->hash_md5;
+                                return htmlspecialchars($db_files[0]->hash_md5);
                             } elseif ($type === 'hash-sha1') {
-                                return $db_files[0]->hash_sha1;
+                                return htmlspecialchars($db_files[0]->hash_sha1);
                             }
                         }
                     }
@@ -1820,8 +1820,8 @@ class ZDMCore {
             if ($db_file[0]->status != 'draft') {
 
                 // Ausgabe
-                $video = '<video id="zdmVideo' . $db_file[0]->id . '" width="' . $width . '"' . $autoplay . $loop . $controls . '>';
-                $audio .= esc_html__('Dein Browser unterstützt keine HTML Video-Elemente.', 'zdm');
+                $video = '<video id="zdmVideo' . $db_file[0]->id . '" width="' . $width . '" class="zdm-video"' . $autoplay . $loop . $controls . '>';
+                $video .= esc_html__('Dein Browser unterstützt keine HTML Video-Elemente.', 'zdm');
                 $video .= '<source src="' . ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_file[0]->folder_path . '/' . $db_file[0]->file_name . '" type="' . $db_file[0]->file_type . '">';
                 $video .= '</video>';
 
