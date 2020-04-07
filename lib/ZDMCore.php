@@ -694,7 +694,7 @@ class ZDMCore {
                             "
                             );
                         
-                        if ($db_archive[0]->status != 'draft') {
+                        if ($db_archive[0]->status != 'private') {
                             
                             // Count aktualisieren
                             $count_new = $db_archive[0]->count + 1;
@@ -718,7 +718,7 @@ class ZDMCore {
                             $file_size = filesize($zip_file);
     
                             // Datei bereitstellen
-                            header('Content-Disposition: attachment; filename=' . $db_archive[0]->file_name);
+                            header('Content-Disposition: attachment; filename=' . $db_archive[0]->zip_name . '.zip');
                             header('Content-type: application/force-download');
                             header('Content-Length: ' . $file_size);
                             header('Content-type: ' . $db_archive[0]->file_type . '; charset=utf-8');
@@ -751,7 +751,7 @@ class ZDMCore {
                             "
                             );
 
-                        if ($db_files[0]->status != 'draft') {
+                        if ($db_files[0]->status != 'private') {
 
                             // Count aktualisieren
                             $count_new = $db_files[0]->count + 1;
@@ -1312,7 +1312,7 @@ class ZDMCore {
                 "
                 );
 
-            if ($db_file[0]->status != 'draft') {
+            if ($db_file[0]->status != 'private') {
 
                 // Ausgabe
                 $audio = '<audio preload="none" id="zdmAudio' . $db_file[0]->id . '" class="zdm-audio"' . $autoplay . $loop . $controls . '>';
@@ -1368,7 +1368,7 @@ class ZDMCore {
                     "
                     );
                 
-                if ($db_archive[0]->status != 'draft') {
+                if ($db_archive[0]->status != 'private') {
 
                     // Button Text bestimmen
                     if ($options['download-btn-icon-only'] != '') {
@@ -1424,7 +1424,7 @@ class ZDMCore {
                     "
                     );
 
-                if ($db_files[0]->status != 'draft') {
+                if ($db_files[0]->status != 'private') {
 
                     // Button Text bestimmen
                     if ($options['download-btn-icon-only'] != '') {
@@ -1521,7 +1521,7 @@ class ZDMCore {
                         "
                         );
 
-                    if ($db_archive[0]->status != 'draft') {
+                    if ($db_archive[0]->status != 'private') {
 
                         // Anzahl Ausgabe
                         return htmlspecialchars($this->number_format($db_archive[0]->count));
@@ -1551,7 +1551,7 @@ class ZDMCore {
                             "
                             );
 
-                        if ($db_archive[0]->status != 'draft') {
+                        if ($db_archive[0]->status != 'private') {
 
                             // Dateigröße Ausgabe
                             return htmlspecialchars($db_archive[0]->file_size);
@@ -1573,7 +1573,7 @@ class ZDMCore {
                         "
                         );
 
-                    if ($db_archive[0]->status != 'draft') {
+                    if ($db_archive[0]->status != 'private') {
 
                         // Name Ausgabe
                         return htmlspecialchars($db_archive[0]->name);
@@ -1594,7 +1594,7 @@ class ZDMCore {
                         "
                         );
 
-                    if ($db_archive[0]->status != 'draft') {
+                    if ($db_archive[0]->status != 'private') {
 
                         // Dateiname Ausgabe
                         return htmlspecialchars($db_archive[0]->zip_name . '.zip');
@@ -1624,7 +1624,7 @@ class ZDMCore {
                             "
                             );
 
-                        if ($db_archive[0]->status != 'draft') {
+                        if ($db_archive[0]->status != 'private') {
 
                             // Dateigröße Ausgabe
                             if ($this->licence() != true) {
@@ -1665,7 +1665,7 @@ class ZDMCore {
                         "
                         );
 
-                    if ($db_files[0]->status != 'draft') {
+                    if ($db_files[0]->status != 'private') {
         
                         // Anzahl Ausgabe
                         return htmlspecialchars($this->number_format($db_files[0]->count));
@@ -1686,7 +1686,7 @@ class ZDMCore {
                         "
                         );
 
-                    if ($db_files[0]->status != 'draft') {
+                    if ($db_files[0]->status != 'private') {
 
                         // Dateigröße Ausgabe
                         return htmlspecialchars($db_files[0]->file_size);
@@ -1707,7 +1707,7 @@ class ZDMCore {
                         "
                         );
 
-                    if ($db_files[0]->status != 'draft') {
+                    if ($db_files[0]->status != 'private') {
 
                         // Name Ausgabe
                         return htmlspecialchars($db_files[0]->name);
@@ -1728,7 +1728,7 @@ class ZDMCore {
                         "
                         );
 
-                    if ($db_files[0]->status != 'draft') {
+                    if ($db_files[0]->status != 'private') {
 
                         // Dateiname Ausgabe
                         return htmlspecialchars($db_files[0]->file_name);
@@ -1749,7 +1749,7 @@ class ZDMCore {
                         "
                         );
 
-                    if ($db_files[0]->status != 'draft') {
+                    if ($db_files[0]->status != 'private') {
 
                         // Dateigröße Ausgabe
                         if ($this->licence() != true) {
@@ -1817,7 +1817,7 @@ class ZDMCore {
                 "
                 );
 
-            if ($db_file[0]->status != 'draft') {
+            if ($db_file[0]->status != 'private') {
 
                 // Ausgabe
                 $video = '<video id="zdmVideo' . $db_file[0]->id . '" width="' . $width . '" class="zdm-video"' . $autoplay . $loop . $controls . '>';
