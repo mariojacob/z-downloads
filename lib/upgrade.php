@@ -9,8 +9,6 @@ $zdm_options = get_option('zdm_options');
 
 if ($zdm_options['version'] < ZDM__VERSION) {
 
-    $zdm_options['version'] = ZDM__VERSION;
-
     // Log
     ZDMCore::log('plugin upgrade', ZDM__VERSION);
 
@@ -52,43 +50,49 @@ if ($zdm_options['version'] < ZDM__VERSION) {
             }
         }
     }
+
+    // v2.0.0
+    if ($zdm_options['version'] <= '2.0.0') {
+
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'zdm_files';
+        $wpdb->query( "ALTER TABLE $table_name ADD `status` VARCHAR(20) NOT NULL DEFAULT 'public' AFTER `file_size`" );
+        $table_name = $wpdb->prefix . 'zdm_archives';
+        $wpdb->query( "ALTER TABLE $table_name ADD `status` VARCHAR(20) NOT NULL DEFAULT 'public' AFTER `file_size`" );
+    }
+
+    // Optionen
+    if ($zdm_options['download-btn-text'] == '') {
+        $zdm_options['download-btn-text'] = 'Download';
+    }
+
+    if (!$zdm_options['download-btn-style']) {
+        $zdm_options['download-btn-style'] = 'black';
+    }
+
+    if (!$zdm_options['download-btn-border-radius']) {
+        $zdm_options['download-btn-border-radius'] = 'none';
+    }
     
-    // v1.1.0 Download Buttons
-    if ($zdm_options['version'] <= '1.1.0') {
-
-        if ($zdm_options['download-btn-text'] == '') {
-            $zdm_options['download-btn-text'] = 'Download';
-        }
-
-        if (!$zdm_options['download-btn-style']) {
-            $zdm_options['download-btn-style'] = 'black';
-        }
-
-        if (!$zdm_options['download-btn-border-radius']) {
-            $zdm_options['download-btn-border-radius'] = 'none';
-        }
-        
-        if (!$zdm_options['download-btn-outline']) {
-            $zdm_options['download-btn-outline'] = '';
-        }
-
-        if (!$zdm_options['download-btn-icon']) {
-            $zdm_options['download-btn-icon'] = 'none';
-        }
-
-        if (!$zdm_options['download-btn-icon-only']) {
-            $zdm_options['download-btn-icon-only'] = '';
-        }
+    if (!$zdm_options['download-btn-outline']) {
+        $zdm_options['download-btn-outline'] = '';
     }
 
-    // v1.2.0
-    if ($zdm_options['version'] <= '1.2.0') {
-
-        if ($zdm_options['file-open-in-browser-pdf'] == '') {
-            $zdm_options['file-open-in-browser-pdf'] = '';
-        }
+    if (!$zdm_options['download-btn-icon']) {
+        $zdm_options['download-btn-icon'] = 'none';
     }
 
+    if (!$zdm_options['download-btn-icon-only']) {
+        $zdm_options['download-btn-icon-only'] = '';
+    }
+
+    if ($zdm_options['file-open-in-browser-pdf'] == '') {
+        $zdm_options['file-open-in-browser-pdf'] = '';
+    }
+
+    $zdm_options['version'] = ZDM__VERSION;
+    
     update_option('zdm_options', $zdm_options);
+
     //////////////////////////////
 }

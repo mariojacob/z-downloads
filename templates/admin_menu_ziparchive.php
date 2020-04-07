@@ -157,6 +157,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         'description'   => sanitize_textarea_field($_POST['description']),
                         'count'         => sanitize_text_field($_POST['count']),
                         'button_text'   => $zdm_button_text,
+                        'status'        => sanitize_text_field($_POST['status']),
                         'time_update'   => $zdm_time
                     ), 
                     array(
@@ -324,6 +325,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <table class="form-table">
                             <tbody>
             <form action="" method="post">
+
+                                <tr valign="top">
+                                    <th scope="row"><?=esc_html__('Sichtbarkeit', 'zdm')?>:</th>
+                                    <td valign="middle">
+                                        <p><input type="radio" name="status" value="public" <?php if($zdm_db_archive->status == 'public'){ echo 'checked="checked"'; } ?>> <?=esc_html__('Öffentlich', 'zdm')?></p>
+                                        <p><input type="radio" name="status" value="draft" <?php if($zdm_db_archive->status == 'draft'){ echo 'checked="checked"'; } ?>> <?=esc_html__('Privat', 'zdm')?></p>
+                                    </td>
+                                </tr>
                                 <?php
                                 if (ZDMCore::check_if_archive_cache_ok($zdm_archive_id)) {
                                     ?>
@@ -617,7 +626,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         
         $zdm_db_archives = $wpdb->get_results( 
             "
-            SELECT id, name, zip_name, count, archive_cache_path, file_size, time_create 
+            SELECT id, name, zip_name, count, archive_cache_path, file_size, status, time_create 
             FROM $zdm_tablename_archives 
             ORDER BY id DESC
             "
@@ -644,6 +653,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
                             <th scope="col"><div align="center"><b><?=esc_html__('Cache', 'zdm')?></b></div></th>
+                            <th scope="col" title="<?=esc_html__('Sichtbarkeit', 'zdm')?>"><div align="center"><b><ion-icon name="eye"></ion-icon></b></div></th>
                             <th scope="col" width="2%"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Archiv löschen', 'zdm')?>"></ion-icon></div></th>
                         </tr>
                     </thead>
@@ -725,6 +735,17 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     ?>
                                 </td>
                                 <td>
+                                    <?php
+                                    // Datei Status (Sichtbarkeit)
+                                    if ($zdm_db_archives[$i]->status == 'public') {
+                                        $zdm_archive_status = '<ion-icon name="eye" class="zdm-color-green" title="' . esc_html__('Sichtbarkeit: Öffentlich', 'zdm') . '"></ion-icon>';
+                                    } else {
+                                        $zdm_archive_status = '<ion-icon name="eye-off" title="' . esc_html__('Sichtbarkeit: Privat', 'zdm') . '"></ion-icon>';
+                                    }
+                                    ?>
+                                    <div align="center"><?=$zdm_archive_status?></div>
+                                </td>
+                                <td>
                                     <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_db_archives[$i]->id?>&delete=true&nonce=<?=wp_create_nonce('archiv-loeschen')?>" class="button button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Archiv löschen', 'zdm')?>"><ion-icon name="trash"></ion-icon></a>
                                 </td>
                             </tr>
@@ -743,6 +764,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
                             <th scope="col"><div align="center"><b><?=esc_html__('Cache', 'zdm')?></b></div></th>
+                            <th scope="col" title="<?=esc_html__('Sichtbarkeit', 'zdm')?>"><div align="center"><b><ion-icon name="eye"></ion-icon></b></div></th>
                             <th scope="col"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Archiv löschen', 'zdm')?>"></ion-icon></div></th>
                         </tr>
                     </tfoot>

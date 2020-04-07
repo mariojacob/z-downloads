@@ -319,21 +319,26 @@ class ZDMCore {
      * @return bool
      */
     public function check_if_archive_exists($archive_id) {
-        global $wpdb;
-        
-        $tablename_archives = $wpdb->prefix . "zdm_archives";
 
-        // Daten aus DB archives holen
-        $db_archives = $wpdb->get_results(
-            "
-            SELECT id 
-            FROM $tablename_archives 
-            WHERE id = '$archive_id'
-            "
-            );
-
-        if (count($db_archives) > 0) {
-            return true;
+        if (is_numeric($archive_id)) {
+            global $wpdb;
+            
+            $tablename_archives = $wpdb->prefix . "zdm_archives";
+    
+            // Daten aus DB archives holen
+            $db_archives = $wpdb->get_results(
+                "
+                SELECT id 
+                FROM $tablename_archives 
+                WHERE id = '$archive_id'
+                "
+                );
+    
+            if (count($db_archives) > 0) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
@@ -346,21 +351,26 @@ class ZDMCore {
      * @return bool
      */
     public function check_if_file_exists($file_id) {
-        global $wpdb;
-        
-        $tablename_files = $wpdb->prefix . "zdm_files";
 
-        // Daten aus DB files holen
-        $db_files = $wpdb->get_results(
-            "
-            SELECT id 
-            FROM $tablename_files 
-            WHERE id = '$file_id'
-            "
-            );
-
-        if (count($db_files) >= 1) {
-            return true;
+        if (is_numeric($file_id)) {
+            global $wpdb;
+            
+            $tablename_files = $wpdb->prefix . "zdm_files";
+    
+            // Daten aus DB files holen
+            $db_files = $wpdb->get_results(
+                "
+                SELECT id 
+                FROM $tablename_files 
+                WHERE id = '$file_id'
+                "
+                );
+    
+            if (count($db_files) >= 1) {
+                return true;
+            } else {
+                return false;
+            }
         } else {
             return false;
         }
@@ -678,30 +688,42 @@ class ZDMCore {
                         // Daten aus DB archives holen
                         $db_archive = $wpdb->get_results(
                             "
-                            SELECT zip_name, archive_cache_path 
+                            SELECT zip_name, archive_cache_path, status 
                             FROM $tablename_archives 
                             WHERE id = '$zdownload_url'
                             "
                             );
+                        
+                        if ($db_archive[0]->status != 'draft') {
                             
-                        // Count aktualisieren
-                        $count_new = $db_archive[0]->count + 1;
-                        $wpdb->update(
-                            $tablename_archives, 
-                            array(
-                                'count'         => $count_new,
-                                'time_update'   => time()
-                            ), 
-                            array(
-                                'id' => $zdownload_url
-                            ));
-
-                        // Statistik
-                        $this->log('download archive', $zdownload_url);
-
-                        // Pfad für ZIP-Datei
-                        $zip_file = ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . $db_archive[0]->archive_cache_path . '/' . $db_archive[0]->zip_name . '.zip';
-                        header("Location: $zip_file");
+                            // Count aktualisieren
+                            $count_new = $db_archive[0]->count + 1;
+                            $wpdb->update(
+                                $tablename_archives, 
+                                array(
+                                    'count'         => $count_new,
+                                    'time_update'   => time()
+                                ), 
+                                array(
+                                    'id' => $zdownload_url
+                                ));
+    
+                            // Statistik
+                            $this->log('download archive', $zdownload_url);
+    
+                            // Pfad für Datei
+                            $zip_file = ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . $db_archive[0]->archive_cache_path . '/' . $db_archive[0]->zip_name . '.zip';
+    
+                            // Dateigröße
+                            $file_size = filesize($zip_file);
+    
+                            // Datei bereitstellen
+                            header('Content-Disposition: attachment; filename=' . $db_archive[0]->file_name);
+                            header('Content-type: application/force-download');
+                            header('Content-Length: ' . $file_size);
+                            header('Content-type: ' . $db_archive[0]->file_type . '; charset=utf-8');
+                            readfile($zip_file);
+                        }
                     } // end if ($this->check_if_archive_exists($zdownload_url) === true)
                 } // end if ($zdownload_url != '' && is_numeric($zdownload_url))
             } // end if (isset($_GET['zdownload']))
@@ -723,39 +745,42 @@ class ZDMCore {
                         // Daten aus DB files holen
                         $db_files = $wpdb->get_results(
                             "
-                            SELECT folder_path, file_name, file_type 
+                            SELECT folder_path, file_name, file_type, status 
                             FROM $tablename_files 
                             WHERE id = '$zdownload_url'
                             "
                             );
 
-                        // Count aktualisieren
-                        $count_new = $db_files[0]->count + 1;
-                        $wpdb->update(
-                            $tablename_files, 
-                            array(
-                                'count'         => $count_new,
-                                'time_update'   => time()
-                            ), 
-                            array(
-                                'id' => $zdownload_url
-                            ));
+                        if ($db_files[0]->status != 'draft') {
 
-                        // Statistik
-                        $this->log('download file', $zdownload_url);
+                            // Count aktualisieren
+                            $count_new = $db_files[0]->count + 1;
+                            $wpdb->update(
+                                $tablename_files, 
+                                array(
+                                    'count'         => $count_new,
+                                    'time_update'   => time()
+                                ), 
+                                array(
+                                    'id' => $zdownload_url
+                                ));
 
-                        // Interner Pfad für Datei
-                        $file_path = ZDM__DOWNLOADS_FILES_PATH . '/' . $db_files[0]->folder_path . '/' . $db_files[0]->file_name;
+                            // Statistik
+                            $this->log('download file', $zdownload_url);
 
-                        // Dateigröße
-                        $file_size = filesize($file_path);
+                            // Interner Pfad für Datei
+                            $file_path = ZDM__DOWNLOADS_FILES_PATH . '/' . $db_files[0]->folder_path . '/' . $db_files[0]->file_name;
 
-                        // Datei bereitstellen
-                        header('Content-Disposition: attachment; filename=' . $db_files[0]->file_name);
-                        header('Content-type: application/force-download');
-                        header('Content-Length: ' . $file_size);
-                        header('Content-type: ' . $db_files[0]->file_type . '; charset=utf-8');
-                        readfile($file_path);
+                            // Dateigröße
+                            $file_size = filesize($file_path);
+
+                            // Datei bereitstellen
+                            header('Content-Disposition: attachment; filename=' . $db_files[0]->file_name);
+                            header('Content-type: application/force-download');
+                            header('Content-Length: ' . $file_size);
+                            header('Content-type: ' . $db_files[0]->file_type . '; charset=utf-8');
+                            readfile($file_path);
+                        }
                     } // end if ($this->check_if_file_exists($zdownload_url) === true)
                 } // end if ($zdownload_url != '' && is_numeric($zdownload_url))
             } // end if (isset($_GET['zdownload_f']))
@@ -1281,20 +1306,23 @@ class ZDMCore {
             // Daten aus DB files holen
             $db_file = $wpdb->get_results(
                 "
-                SELECT id, folder_path, file_name, file_type 
+                SELECT id, folder_path, file_name, file_type, status 
                 FROM $tablename_files 
                 WHERE id = '$file'
                 "
                 );
 
-            // Ausgabe
-            $audio = '<audio preload="none" id="zdmAudio' . $db_file[0]->id . '"' . $autoplay . $loop . $controls . '>';
-            $audio .= esc_html__('Dein Browser unterstützt keine HTML Audio-Elemente.', 'zdm');
-            $audio .= '<source src="' . ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_file[0]->folder_path . '/' . $db_file[0]->file_name . '" type="' . $db_file[0]->file_type . '">';
-            $audio .= '</audio>';
+            if ($db_file[0]->status != 'draft') {
 
-            if (in_array($db_file[0]->file_type, ZDM__MIME_TYPES_AUDIO)) {
-                return $audio;
+                // Ausgabe
+                $audio = '<audio preload="none" id="zdmAudio' . $db_file[0]->id . '"' . $autoplay . $loop . $controls . '>';
+                $audio .= esc_html__('Dein Browser unterstützt keine HTML Audio-Elemente.', 'zdm');
+                $audio .= '<source src="' . ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_file[0]->folder_path . '/' . $db_file[0]->file_name . '" type="' . $db_file[0]->file_type . '">';
+                $audio .= '</audio>';
+    
+                if (in_array($db_file[0]->file_type, ZDM__MIME_TYPES_AUDIO)) {
+                    return $audio;
+                }
             }
         }
     }
@@ -1334,38 +1362,41 @@ class ZDMCore {
                 // Daten aus DB archives holen
                 $db_archive = $wpdb->get_results(
                     "
-                    SELECT * 
+                    SELECT id, button_text, status 
                     FROM $tablename_archives 
                     WHERE id = '$zip'
                     "
                     );
+                
+                if ($db_archive[0]->status != 'draft') {
 
-                // Button Text bestimmen
-                if ($options['download-btn-icon-only'] != '') {
-                    $download_text = '';
-                    $icon_class = '  zdm-btn-icon-only';
-                } else {
-
-                    if ($db_archive[0]->button_text != '') {
-                        $download_text = $db_archive[0]->button_text;
+                    // Button Text bestimmen
+                    if ($options['download-btn-icon-only'] != '') {
+                        $download_text = '';
+                        $icon_class = '  zdm-btn-icon-only';
                     } else {
-                        $download_text = $options['download-btn-text'];
+    
+                        if ($db_archive[0]->button_text != '') {
+                            $download_text = $db_archive[0]->button_text;
+                        } else {
+                            $download_text = $options['download-btn-text'];
+                        }
+    
+                        $icon_class = ' zdm-btn-icon';
                     }
-
-                    $icon_class = ' zdm-btn-icon';
+    
+                    $type = 'zdownload';
+                    $id = base64_encode($db_archive[0]->id);
+    
+                    // Ausgabe
+                    if ($options['download-btn-icon'] != 'none') {
+                        $icon = '<ion-icon name="' . $options['download-btn-icon'] . '" class="' . $icon_class . '"></ion-icon>';
+                    } else {
+                        $icon = '';
+                    }
+    
+                    return '<a href="?' . $type . '=' . $id . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
                 }
-
-                $type = 'zdownload';
-                $id = base64_encode($db_archive[0]->id);
-
-                // Ausgabe
-                if ($options['download-btn-icon'] != 'none') {
-                    $icon = '<ion-icon name="' . $options['download-btn-icon'] . '" class="' . $icon_class . '"></ion-icon>';
-                } else {
-                    $icon = '';
-                }
-
-                return '<a href="?' . $type . '=' . $id . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
             } else {
                 // Leerer Rückgabewert wenn keine Datei verknüpft ist
                 return '';
@@ -1387,55 +1418,58 @@ class ZDMCore {
                 // Daten aus DB files holen
                 $db_files = $wpdb->get_results(
                     "
-                    SELECT id, button_text, folder_path, file_name, file_type 
+                    SELECT id, button_text, folder_path, file_name, file_type, status 
                     FROM $tablename_files 
                     WHERE id = '$file'
                     "
                     );
 
-                // Button Text bestimmen
-                if ($options['download-btn-icon-only'] != '') {
-                    $download_text = '';
-                    $icon_class = '  zdm-btn-icon-only';
-                } else {
+                if ($db_files[0]->status != 'draft') {
 
-                    if ($db_files[0]->button_text != '') {
-                        $download_text = $db_files[0]->button_text;
+                    // Button Text bestimmen
+                    if ($options['download-btn-icon-only'] != '') {
+                        $download_text = '';
+                        $icon_class = '  zdm-btn-icon-only';
                     } else {
-                        $download_text = $options['download-btn-text'];
+    
+                        if ($db_files[0]->button_text != '') {
+                            $download_text = $db_files[0]->button_text;
+                        } else {
+                            $download_text = $options['download-btn-text'];
+                        }
+    
+                        $icon_class = ' zdm-btn-icon';
                     }
-
-                    $icon_class = ' zdm-btn-icon';
-                }
-
-                $type = 'zdownload_f';
-                $id = base64_encode($db_files[0]->id);
-
-                // Ausgabe
-                if ($options['download-btn-icon'] != 'none') {
-                    $icon = '<ion-icon name="' . $options['download-btn-icon'] . '" class="' . $icon_class . '"></ion-icon>';
-                } else {
-                    $icon = '';
-                }
-
-                // HTTP user agent
-                $http_user_agent = @filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
-
-                require_once(ZDM__PATH . '/lib/bot_user_agents.php');
-
-                if (in_array($http_user_agent, ZDM__BOT_USER_AGENTS)) {
-                    // Zugriff von Bot
-                } else {
-                    // Zugriff von Benutzer
-
-                    if ($options['file-open-in-browser-pdf'] == 'on' && $db_files[0]->file_type == 'application/pdf') {
-
-                        // Externer Pfad für Datei
-                        $file_path_url = ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_files[0]->folder_path . '/' . $db_files[0]->file_name;
-
-                        return '<a href="' . $file_path_url . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+    
+                    $type = 'zdownload_f';
+                    $id = base64_encode($db_files[0]->id);
+    
+                    // Ausgabe
+                    if ($options['download-btn-icon'] != 'none') {
+                        $icon = '<ion-icon name="' . $options['download-btn-icon'] . '" class="' . $icon_class . '"></ion-icon>';
                     } else {
-                        return '<a href="?' . $type . '=' . $id . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+                        $icon = '';
+                    }
+    
+                    // HTTP user agent
+                    $http_user_agent = @filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
+    
+                    require_once(ZDM__PATH . '/lib/bot_user_agents.php');
+    
+                    if (in_array($http_user_agent, ZDM__BOT_USER_AGENTS)) {
+                        // Zugriff von Bot
+                    } else {
+                        // Zugriff von Benutzer
+    
+                        if ($options['file-open-in-browser-pdf'] == 'on' && $db_files[0]->file_type == 'application/pdf') {
+    
+                            // Externer Pfad für Datei
+                            $file_path_url = ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_files[0]->folder_path . '/' . $db_files[0]->file_name;
+    
+                            return '<a href="' . $file_path_url . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+                        } else {
+                            return '<a href="?' . $type . '=' . $id . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+                        }
                     }
                 }
             }
@@ -1481,14 +1515,17 @@ class ZDMCore {
                     // Daten aus DB archives holen
                     $db_archive = $wpdb->get_results(
                         "
-                        SELECT count 
+                        SELECT count, status 
                         FROM $tablename_archives 
                         WHERE id = '$zip'
                         "
                         );
 
-                    // Anzahl Ausgabe
-                    return $this->number_format($db_archive[0]->count);
+                    if ($db_archive[0]->status != 'draft') {
+
+                        // Anzahl Ausgabe
+                        return $this->number_format($db_archive[0]->count);
+                    }
                 }
 
                 ////////////////////
@@ -1508,14 +1545,17 @@ class ZDMCore {
                         // Daten aus DB archives holen
                         $db_archive = $wpdb->get_results(
                             "
-                            SELECT file_size 
+                            SELECT file_size, status 
                             FROM $tablename_archives 
                             WHERE id = '$zip'
                             "
                             );
 
-                        // Dateigröße Ausgabe
-                        return $db_archive[0]->file_size;
+                        if ($db_archive[0]->status != 'draft') {
+
+                            // Dateigröße Ausgabe
+                            return $db_archive[0]->file_size;
+                        }
                     }
                 }
 
@@ -1527,14 +1567,17 @@ class ZDMCore {
                     // Daten aus DB archives holen
                     $db_archive = $wpdb->get_results(
                         "
-                        SELECT name 
+                        SELECT name, status 
                         FROM $tablename_archives 
                         WHERE id = '$zip'
                         "
                         );
 
-                    // Name Ausgabe
-                    return $db_archive[0]->name;
+                    if ($db_archive[0]->status != 'draft') {
+
+                        // Name Ausgabe
+                        return $db_archive[0]->name;
+                    }
                 }
 
                 ////////////////////
@@ -1545,14 +1588,17 @@ class ZDMCore {
                     // Daten aus DB archives holen
                     $db_archive = $wpdb->get_results(
                         "
-                        SELECT zip_name 
+                        SELECT zip_name, status 
                         FROM $tablename_archives 
                         WHERE id = '$zip'
                         "
                         );
 
-                    // Dateiname Ausgabe
-                    return $db_archive[0]->zip_name . '.zip';
+                    if ($db_archive[0]->status != 'draft') {
+
+                        // Dateiname Ausgabe
+                        return $db_archive[0]->zip_name . '.zip';
+                    }
                 }
 
                 ////////////////////
@@ -1572,20 +1618,23 @@ class ZDMCore {
                         // Daten aus DB archives holen
                         $db_archive = $wpdb->get_results(
                             "
-                            SELECT hash_md5, hash_sha1 
+                            SELECT hash_md5, hash_sha1, status 
                             FROM $tablename_archives 
                             WHERE id = '$zip'
                             "
                             );
 
-                        // Dateigröße Ausgabe
-                        if ($this->licence() != true) {
-                            
-                        } else {
-                            if ($type === 'hash-md5') {
-                                return $db_archive[0]->hash_md5;
-                            } elseif ($type === 'hash-sha1') {
-                                return $db_archive[0]->hash_sha1;
+                        if ($db_archive[0]->status != 'draft') {
+
+                            // Dateigröße Ausgabe
+                            if ($this->licence() != true) {
+                                
+                            } else {
+                                if ($type === 'hash-md5') {
+                                    return $db_archive[0]->hash_md5;
+                                } elseif ($type === 'hash-sha1') {
+                                    return $db_archive[0]->hash_sha1;
+                                }
                             }
                         }
                     }
@@ -1610,14 +1659,17 @@ class ZDMCore {
                     // Daten aus DB files holen
                     $db_files = $wpdb->get_results(
                         "
-                        SELECT count 
+                        SELECT count, status 
                         FROM $tablename_files 
                         WHERE id = '$file'
                         "
                         );
+
+                    if ($db_files[0]->status != 'draft') {
         
-                    // Anzahl Ausgabe
-                    return $this->number_format($db_files[0]->count);
+                        // Anzahl Ausgabe
+                        return $this->number_format($db_files[0]->count);
+                    }
                 }
 
                 ////////////////////
@@ -1628,14 +1680,17 @@ class ZDMCore {
                     // Daten aus DB files holen
                     $db_files = $wpdb->get_results(
                         "
-                        SELECT file_size 
+                        SELECT file_size, status 
                         FROM $tablename_files 
                         WHERE id = '$file'
                         "
                         );
 
-                    // Dateigröße Ausgabe
-                    return $db_files[0]->file_size;
+                    if ($db_files[0]->status != 'draft') {
+
+                        // Dateigröße Ausgabe
+                        return $db_files[0]->file_size;
+                    }
                 }
 
                 ////////////////////
@@ -1646,14 +1701,17 @@ class ZDMCore {
                     // Daten aus DB files holen
                     $db_files = $wpdb->get_results(
                         "
-                        SELECT name 
+                        SELECT name, status 
                         FROM $tablename_files 
                         WHERE id = '$file'
                         "
                         );
 
-                    // Name Ausgabe
-                    return $db_files[0]->name;
+                    if ($db_files[0]->status != 'draft') {
+
+                        // Name Ausgabe
+                        return $db_files[0]->name;
+                    }
                 }
 
                 ////////////////////
@@ -1664,14 +1722,17 @@ class ZDMCore {
                     // Daten aus DB files holen
                     $db_files = $wpdb->get_results(
                         "
-                        SELECT file_name 
+                        SELECT file_name, status 
                         FROM $tablename_files 
                         WHERE id = '$file'
                         "
                         );
 
-                    // Dateiname Ausgabe
-                    return $db_files[0]->file_name;
+                    if ($db_files[0]->status != 'draft') {
+
+                        // Dateiname Ausgabe
+                        return $db_files[0]->file_name;
+                    }
                 }
 
                 ////////////////////
@@ -1682,20 +1743,23 @@ class ZDMCore {
                     // Daten aus DB files holen
                     $db_files = $wpdb->get_results(
                         "
-                        SELECT hash_md5, hash_sha1 
+                        SELECT hash_md5, hash_sha1, status 
                         FROM $tablename_files 
                         WHERE id = '$file'
                         "
                         );
 
-                    // Dateigröße Ausgabe
-                    if ($this->licence() != true) {
-                        
-                    } else {
-                        if ($type === 'hash-md5') {
-                            return $db_files[0]->hash_md5;
-                        } elseif ($type === 'hash-sha1') {
-                            return $db_files[0]->hash_sha1;
+                    if ($db_files[0]->status != 'draft') {
+
+                        // Dateigröße Ausgabe
+                        if ($this->licence() != true) {
+                            
+                        } else {
+                            if ($type === 'hash-md5') {
+                                return $db_files[0]->hash_md5;
+                            } elseif ($type === 'hash-sha1') {
+                                return $db_files[0]->hash_sha1;
+                            }
                         }
                     }
                 }
@@ -1747,20 +1811,23 @@ class ZDMCore {
             // Daten aus DB files holen
             $db_file = $wpdb->get_results(
                 "
-                SELECT id, folder_path, file_name, file_type 
+                SELECT id, folder_path, file_name, file_type, status 
                 FROM $tablename_files 
                 WHERE id = '$file'
                 "
                 );
 
-            // Ausgabe
-            $video = '<video id="zdmVideo' . $db_file[0]->id . '" width="' . $width . '"' . $autoplay . $loop . $controls . '>';
-            $audio .= esc_html__('Dein Browser unterstützt keine HTML Video-Elemente.', 'zdm');
-            $video .= '<source src="' . ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_file[0]->folder_path . '/' . $db_file[0]->file_name . '" type="' . $db_file[0]->file_type . '">';
-            $video .= '</video>';
+            if ($db_file[0]->status != 'draft') {
 
-            if (in_array($db_file[0]->file_type, ZDM__MIME_TYPES_VIDEO)) {
-                return $video;
+                // Ausgabe
+                $video = '<video id="zdmVideo' . $db_file[0]->id . '" width="' . $width . '"' . $autoplay . $loop . $controls . '>';
+                $audio .= esc_html__('Dein Browser unterstützt keine HTML Video-Elemente.', 'zdm');
+                $video .= '<source src="' . ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_file[0]->folder_path . '/' . $db_file[0]->file_name . '" type="' . $db_file[0]->file_type . '">';
+                $video .= '</video>';
+
+                if (in_array($db_file[0]->file_type, ZDM__MIME_TYPES_VIDEO)) {
+                    return $video;
+                }
             }
         }
     }

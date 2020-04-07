@@ -134,6 +134,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     'description'   => sanitize_textarea_field($_POST['description']),
                     'count'         => sanitize_text_field($_POST['count']),
                     'button_text'   => $zdm_button_text,
+                    'status'        => sanitize_text_field($_POST['status']),
                     'time_update'   => $zdm_time
                 ), 
                 array(
@@ -329,6 +330,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <tbody>
 
                                 <form action="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=file" method="post">
+                                    
+                                    <tr valign="top">
+                                        <th scope="row"><?=esc_html__('Sichtbarkeit', 'zdm')?>:</th>
+                                        <td valign="middle">
+                                            <p><input type="radio" name="status" value="public" <?php if($zdm_db_file->status == 'public'){ echo 'checked="checked"'; } ?>> <?=esc_html__('Öffentlich', 'zdm')?></p>
+                                            <p><input type="radio" name="status" value="draft" <?php if($zdm_db_file->status == 'draft'){ echo 'checked="checked"'; } ?>> <?=esc_html__('Privat', 'zdm')?></p>
+                                            <div class="zdm-help-text"><?=esc_html__('Die Sichtbarkeit dieser Datei hat nur Auswirkungen auf die Ausgabe dieser Datei, wenn diese Datei in einem Archiv verknüpft ist und du stellst die Sichtbarkeit auf "Privat", dann bleibt die Datei weiterhin im Archiv.', 'zdm')?></div>
+                                        </td>
+                                    </tr>
                                 
                                     <?php
 
@@ -685,7 +695,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         
         $zdm_db_files = $wpdb->get_results( 
             "
-            SELECT id, name, folder_path, file_name, count, file_size, file_type, time_create 
+            SELECT id, name, folder_path, file_name, count, file_size, status, file_type, time_create 
             FROM $zdm_tablename_files 
             ORDER BY time_create DESC
             "
@@ -711,6 +721,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
                             <th scope="col" title="<?=esc_html__('Zeigt an in wie vielen Archiven die Datei verknüpft ist.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
+                            <th scope="col" title="<?=esc_html__('Sichtbarkeit', 'zdm')?>"><div align="center"><b><ion-icon name="eye"></ion-icon></b></div></th>
                             <th scope="col" width="2%"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Datei löschen', 'zdm')?>"></ion-icon></div></th>
                         </tr>
                     </thead>
@@ -730,10 +741,18 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 $zdm_icon = '<ion-icon name="document"></ion-icon>';
                             }
 
+                            // Anzahl an Verknüpfungen in Archiven
                             $zdm_db_file_in_archive = ZDMCore::check_if_file_is_in_archive($zdm_db_files[$i]->id);
-                            $zdm_db_file_in_archive_icon = '';
+                            $zdm_db_count_file_in_archive = '';
                             if ($zdm_db_file_in_archive != false) {
-                                $zdm_db_file_in_archive_icon = $zdm_db_file_in_archive;
+                                $zdm_db_count_file_in_archive = $zdm_db_file_in_archive;
+                            }
+
+                            // Datei Status (Sichtbarkeit)
+                            if ($zdm_db_files[$i]->status == 'public') {
+                                $zdm_file_status = '<ion-icon name="eye" class="zdm-color-green" title="' . esc_html__('Sichtbarkeit: Öffentlich', 'zdm') . '"></ion-icon>';
+                            } else {
+                                $zdm_file_status = '<ion-icon name="eye-off" title="' . esc_html__('Sichtbarkeit: Privat', 'zdm') . '"></ion-icon>';
                             }
 
                             ?>
@@ -759,7 +778,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <?=date("d.m.Y", $zdm_db_files[$i]->time_create)?>
                                 </td>
                                 <td>
-                                    <div align="center"><?=$zdm_db_file_in_archive_icon?></div>
+                                    <div align="center"><?=$zdm_db_count_file_in_archive?></div>
+                                </td>
+                                <td>
+                                    <div align="center"><?=$zdm_file_status?></div>
                                 </td>
                                 <td>
                                     <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_db_files[$i]->id?>&delete=true&nonce=<?=wp_create_nonce('datei-loeschen')?>" class="button button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Datei löschen', 'zdm')?>"><ion-icon name="trash"></ion-icon></a>
@@ -779,6 +801,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
                             <th scope="col" title="<?=esc_html__('Zeigt an in wie vielen Archiven die Datei verknüpft ist.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
+                            <th scope="col" title="<?=esc_html__('Sichtbarkeit', 'zdm')?>"><div align="center"><b><ion-icon name="eye"></ion-icon></b></div></th>
                             <th scope="col"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Datei löschen', 'zdm')?>"></ion-icon></div></th>
                         </tr>
                     </tfoot>
