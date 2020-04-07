@@ -110,6 +110,21 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <br>
         <div class="postbox">
             <div class="inside">
+                <h3><?=esc_html__('Sichtbarkeit', 'zdm')?></h3>
+                <hr>
+                <p><?=esc_html__('Mit dieser Option kannst du auf der Detailseite einer Datei oder eines Archives einstellen.', 'zdm')?></p>
+                <p><?=esc_html__('Standardmäßig ist jede hinzugefügte Datei oder jedes erstellte Archiv auf "Öffentlich" gestellt.', 'zdm')?></p>
+                <h4><?=esc_html__('Sichtbarkeit von Dateien', 'zdm')?></h4>
+                <p><?=esc_html__('Die Sichtbarkeitseinstellungen einer Datei hat nur Auswirkungen auf die Ausgabe dieser Datei, wenn diese Datei in einem Archiv verknüpft ist und du stellst die Sichtbarkeit der Datei auf "Privat", dann bleibt die Datei weiterhin im Archiv bestehen.', 'zdm')?></p>
+                <p><?=esc_html__('Ist die Datei auf "Privat" gestellt, dann kann die Datei nicht mehr heruntergeladen werden, auch wenn jemand die URL des Download-Buttons direkt aufruft.', 'zdm')?></p>
+                <h4><?=esc_html__('Sichtbarkeit von Archiven', 'zdm')?></h4>
+                <p><?=esc_html__('Die Sichtbarkeitseinstellung eines Archives bestimmt ob ein Button oder sonstige Informationen im Frontend angezeigt werden.', 'zdm')?></p>
+                <p><?=esc_html__('Ist das Archiv auf "Privat" gestellt, dann kann das Archiv nicht mehr heruntergeladen werden, auch wenn jemand die URL des Download-Buttons direkt aufruft.', 'zdm')?></p>
+            </div>
+        </div>
+
+        <div class="postbox">
+            <div class="inside">
                 <h3><?=esc_html__('Dashboard', 'zdm')?></h3>
                 <hr>
                 <p><?=esc_html__('Das Dashboard zeigt dir alle wichtigen Informationen über deine Downloads.', 'zdm')?></p>

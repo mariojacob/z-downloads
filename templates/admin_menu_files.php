@@ -335,7 +335,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <th scope="row"><?=esc_html__('Sichtbarkeit', 'zdm')?>:</th>
                                         <td valign="middle">
                                             <p><input type="radio" name="status" value="public" <?php if($zdm_db_file->status == 'public'){ echo 'checked="checked"'; } ?>> <?=esc_html__('Öffentlich', 'zdm')?></p>
-                                            <p><input type="radio" name="status" value="draft" <?php if($zdm_db_file->status == 'draft'){ echo 'checked="checked"'; } ?>> <?=esc_html__('Privat', 'zdm')?></p>
+                                            <p><input type="radio" name="status" value="private" <?php if($zdm_db_file->status == 'private'){ echo 'checked="checked"'; } ?>> <?=esc_html__('Privat', 'zdm')?></p>
                                             <div class="zdm-help-text"><?=esc_html__('Die Sichtbarkeit dieser Datei hat nur Auswirkungen auf die Ausgabe dieser Datei, wenn diese Datei in einem Archiv verknüpft ist und du stellst die Sichtbarkeit auf "Privat", dann bleibt die Datei weiterhin im Archiv.', 'zdm')?></div>
                                         </td>
                                     </tr>
@@ -672,6 +672,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <p><?=esc_html__('Der Shortcode für den Videoplayer wird auf der Datei-Detailseite automatisch angezeigt wenn es sich um eine Videodatei handelt.', 'zdm')?></p>
                         <p><?=esc_html__('Weitere Ausgabeoptionen für den Videoplayer findest du im Tab', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Experte', 'zdm')?></a> 
                         <?=esc_html__('oder auf der', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('Webseite', 'zdm')?></a></p>
+                    </div>
+                </div>
+
+                <div class="postbox">
+                    <div class="inside">
+                        <h3><?=esc_html__('Sichtbarkeit', 'zdm')?></h3>
+                        <hr>
+                        <p><?=esc_html__('Die Sichtbarkeitseinstellungen einer Datei hat nur Auswirkungen auf die Ausgabe dieser Datei, wenn diese Datei in einem Archiv verknüpft ist und du stellst die Sichtbarkeit der Datei auf "Privat", dann bleibt die Datei weiterhin im Archiv bestehen.', 'zdm')?></p>
+                        <p><?=esc_html__('Ist die Datei auf "Privat" gestellt, dann kann die Datei nicht mehr heruntergeladen werden, auch wenn jemand die URL des Download-Buttons direkt aufruft.', 'zdm')?></p>
                     </div>
                 </div>
                 

@@ -330,7 +330,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <th scope="row"><?=esc_html__('Sichtbarkeit', 'zdm')?>:</th>
                                     <td valign="middle">
                                         <p><input type="radio" name="status" value="public" <?php if($zdm_db_archive->status == 'public'){ echo 'checked="checked"'; } ?>> <?=esc_html__('Öffentlich', 'zdm')?></p>
-                                        <p><input type="radio" name="status" value="draft" <?php if($zdm_db_archive->status == 'draft'){ echo 'checked="checked"'; } ?>> <?=esc_html__('Privat', 'zdm')?></p>
+                                        <p><input type="radio" name="status" value="private" <?php if($zdm_db_archive->status == 'private'){ echo 'checked="checked"'; } ?>> <?=esc_html__('Privat', 'zdm')?></p>
                                     </td>
                                 </tr>
                                 <?php
@@ -603,6 +603,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <h4><?=esc_html__('SHA1', 'zdm')?> <?=$zdm_premium_text?></h4>
                         <p><?=esc_html__('Du kannst den SHA1 Hashwert einer Datei oder eines ZIP-Archives ausgeben.', 'zdm')?></p>
                         <p><code>[zdownload_meta zip="123" type="hash-sha1"]</code></p>
+                    </div>
+                </div>
+
+                <div class="postbox">
+                    <div class="inside">
+                        <h3><?=esc_html__('Sichtbarkeit', 'zdm')?></h3>
+                        <hr>
+                        <p><?=esc_html__('Die Sichtbarkeitseinstellung eines Archives bestimmt ob ein Button oder sonstige Informationen im Frontend angezeigt werden.', 'zdm')?></p>
+                        <p><?=esc_html__('Ist das Archiv auf "Privat" gestellt, dann kann das Archiv nicht mehr heruntergeladen werden, auch wenn jemand die URL des Download-Buttons direkt aufruft.', 'zdm')?></p>
                     </div>
                 </div>
                 

@@ -68,12 +68,12 @@ class ZDMCore {
             ZDM__SLUG . '-settings',
             array($this, 'admin_menu_settings'));
         add_submenu_page(
-            null,
+            ZDM__SLUG,
             esc_html__('Hilfe', 'zdm'),
             esc_html__('Hilfe', 'zdm'),
             'manage_options',
             ZDM__SLUG . '-help',
-            array($this, 'admin_hidden_help'));
+            array($this, 'admin_menu_help'));
         add_submenu_page(
             null,
             esc_html__('Hilfe', 'zdm'),
@@ -142,8 +142,8 @@ class ZDMCore {
      *
      * @return void
      */
-    public function admin_hidden_help() {
-        require_once (plugin_dir_path(__FILE__) . '../templates/admin_hidden_help.php');
+    public function admin_menu_help() {
+        require_once (plugin_dir_path(__FILE__) . '../templates/admin_menu_help.php');
     }
 
     /**
