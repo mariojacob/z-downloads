@@ -6,8 +6,8 @@ License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
-Tested up to: 5.3
-Stable tag: 1.3.0
+Tested up to: 5.4
+Stable tag: 1.4.0
 
 Download management and automatic ZIP archive creation
 
@@ -48,7 +48,7 @@ The same file is in multiple downloads, such as promotional material. In the eve
 
 = Conditions =
 
--   WordPress 4.9+ -- latest version 5.3.x
+-   WordPress 4.9+ -- latest version 5.4.x
 
 = Translation =
 
@@ -100,7 +100,3 @@ Z-Downloads is translated into German and English, other languages can easily be
 -   You can find the versions here: [Z-Downloads release notes](https://code.urban-base.net/z-downloads/release-notes/?utm_source=wporg)
 
 == Upgrade Notice ==
-
-= 1.3.0 =
-
--   UI/UX updated
