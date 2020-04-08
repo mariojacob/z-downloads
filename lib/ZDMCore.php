@@ -930,7 +930,12 @@ class ZDMCore {
         return FALSE;
     }
 
-    // NOTE: Doc
+    /**
+     * Holt alle Daten aus DB eines Archives
+     *
+     * @param int $archive_id
+     * @return void
+     */
     public function get_archive_data($archive_id) {
         global $wpdb;
 
@@ -948,7 +953,12 @@ class ZDMCore {
         return $db_archive[0];
     }
 
-    // NOTE: Doc
+    /**
+     * Holt alle Archive IDs in denen die Datei verknüpft ist
+     *
+     * @param int $file_id
+     * @return array
+     */
     public function get_linked_archives($file_id) {
         global $wpdb;
 
