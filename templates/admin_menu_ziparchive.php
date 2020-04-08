@@ -339,7 +339,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <tr valign="top">
                                         <th scope="row"><?=esc_html__('Download', 'zdm')?>:</th>
                                         <td valign="middle">
-                                            <a href="<?=ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . $zdm_db_archive->archive_cache_path . '/' . $zdm_db_archive->zip_name . '.zip'?>" title="<?=esc_html__('ZIP-Archiv herunterladen:', 'zdm')?>" download><?=$zdm_db_archive->zip_name . '.zip'?></a>
+                                            <a href="<?=ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . htmlspecialchars($zdm_db_archive->archive_cache_path) . '/' . htmlspecialchars($zdm_db_archive->zip_name) . '.zip'?>" title="<?=esc_html__('ZIP-Archiv herunterladen:', 'zdm')?>" download><?=$zdm_db_archive->zip_name . '.zip'?></a>
                                         </td>
                                     </tr>
                                     <?php
@@ -405,7 +405,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             echo '<ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon>&nbsp;&nbsp;' . esc_html__('Cache ist aktuell', 'zdm') . '.';
                                         } else {
                                             ?>
-                                            <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_archive_id?>&archive-cache=<?=$zdm_archive_id?>&nonce=<?=wp_create_nonce('cache-aktualisieren')?>" class="button button-primary" title="<?=esc_html__('Cache aktualisieren', 'zdm')?>"><?=esc_html__('Cache aktualisieren', 'zdm')?></a>
+                                            <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=htmlspecialchars($zdm_archive_id)?>&archive-cache=<?=htmlspecialchars($zdm_archive_id)?>&nonce=<?=wp_create_nonce('cache-aktualisieren')?>" class="button button-primary" title="<?=esc_html__('Cache aktualisieren', 'zdm')?>"><?=esc_html__('Cache aktualisieren', 'zdm')?></a>
                                             <div class="zdm-help-text"><?=esc_html__('Die manuelle aktualisierung des Cache ist optional. Du musst den Cache nicht manuell aktualisieren, dieser wird automatisch aktualisiert sobald diese ZIP-Datei als Download angefordert wird.', 'zdm')?></div>
                                             <div class="zdm-help-text"><?=esc_html__('Mit dem Klick auf "Cache aktualisieren" wird eine ZIP-Datei mit den verknüpften Dateien angelegt.', 'zdm')?></div>
                                             <?php
@@ -427,14 +427,17 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         ?>
                                         <table class="zdm-table-list">
                                         <?php
-                                        for ($i = 0; $i < $zdm_db_files_rel_count; $i++) { ?>
+                                        for ($i = 0; $i < $zdm_db_files_rel_count; $i++) {
+                                            
+                                            $zdm_file_data = ZDMCore::get_file_data($zdm_db_files_rel_array[$i]->id_file);
+                                            ?>
 
                                             <tr>
                                                 <td>
-                                                    <?=ZDMCore::get_file_name($zdm_db_files_rel_array[$i]->id_file)?>
+                                                    <a href="?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_file_data->id)?>"><?=htmlspecialchars($zdm_file_data->name)?></a>
                                                 </td>
                                                 <td>
-                                                    <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_archive_id?>&file_delete_id=<?=$zdm_db_files_rel_array[$i]->id?>&nonce=<?=wp_create_nonce('datei-entfernen')?>" class="button button-small button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Datei aus Archiv entfernen', 'zdm')?>">&nbsp;<ion-icon name="close"></ion-icon>&nbsp;</a>
+                                                    <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=htmlspecialchars($zdm_archive_id)?>&file_delete_id=<?=htmlspecialchars($zdm_db_files_rel_array[$i]->id)?>&nonce=<?=wp_create_nonce('datei-entfernen')?>" class="button button-small button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Datei aus Archiv entfernen', 'zdm')?>">&nbsp;<ion-icon name="close"></ion-icon>&nbsp;</a>
                                                 </td>
                                             </tr>
                                         <?php } ?>
@@ -490,21 +493,21 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <tr valign="top">
                                     <th scope="row"><?=esc_html__('Download-Button', 'zdm')?></th>
                                     <td valign="middle">
-                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload zip=&quot;<?=$zdm_db_archive->id?>&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload zip=&quot;<?=htmlspecialchars($zdm_db_archive->id)?>&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
                                         <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
                                     </td>
                                 </tr>
                                 <tr valign="top">
                                     <th scope="row"><?=esc_html__('Download-Anzahl', 'zdm')?></th>
                                     <td valign="middle">
-                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta zip=&quot;<?=$zdm_db_archive->id?>&quot; type=&quot;count&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta zip=&quot;<?=htmlspecialchars($zdm_db_archive->id)?>&quot; type=&quot;count&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
                                         <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
                                     </td>
                                 </tr>
                                 <tr valign="top">
                                     <th scope="row"><?=esc_html__('Dateigröße', 'zdm')?></th>
                                     <td valign="middle">
-                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta zip=&quot;<?=$zdm_db_archive->id?>&quot; type=&quot;size&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta zip=&quot;<?=htmlspecialchars($zdm_db_archive->id)?>&quot; type=&quot;size&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
                                         <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
                                     </td>
                                 </tr>
@@ -521,14 +524,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <tr valign="top">
                                     <th scope="row"><?=$text_hash_md5?></th>
                                     <td valign="middle">
-                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta zip=&quot;<?=$zdm_db_archive->id?>&quot; type=&quot;hash-md5&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta zip=&quot;<?=htmlspecialchars($zdm_db_archive->id)?>&quot; type=&quot;hash-md5&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
                                         <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
                                     </td>
                                 </tr>
                                 <tr valign="top">
                                     <th scope="row"><?=$text_hash_sha1?></th>
                                     <td valign="middle">
-                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta zip=&quot;<?=$zdm_db_archive->id?>&quot; type=&quot;hash-sha1&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta zip=&quot;<?=htmlspecialchars($zdm_db_archive->id)?>&quot; type=&quot;hash-sha1&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
                                         <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
                                     </td>
                                 </tr>
@@ -672,7 +675,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                         for ($i = 0; $i < count($zdm_db_archives); $i++) {
 
-                            $zdm_dm_archive_id = $zdm_db_archives[$i]->id;
+                            $zdm_dm_archive_id = htmlspecialchars($zdm_db_archives[$i]->id);
                             // id, id_file, id_archive aus DB files_rel holen
                             $zdm_db_files_rel_array = $wpdb->get_results(
                                 "
@@ -693,7 +696,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     if ($zdm_db_files_rel_count != 0) {
                                         
                                         if (ZDMCore::check_if_archive_cache_ok($zdm_db_archives[$i]->id)) {
-                                            ?> <a href="<?=ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . $zdm_db_archives[$i]->archive_cache_path . '/' . $zdm_db_archives[$i]->zip_name?>.zip" title="<?=esc_html__('Download', 'zdm')?>" target="_blank" download><ion-icon name="cloud-download"></ion-icon></a> |  <?php
+                                            ?> <a href="<?=ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . htmlspecialchars($zdm_db_archives[$i]->archive_cache_path) . '/' . htmlspecialchars($zdm_db_archives[$i]->zip_name)?>.zip" title="<?=esc_html__('Download', 'zdm')?>" target="_blank" download><ion-icon name="cloud-download"></ion-icon></a> |  <?php
                                         } else {
                                             ?> <ion-icon name="cloud-download" title="<?=esc_html__('Aktualisiere den Cache der Datei um diese herunterzuladen', 'zdm')?>"></ion-icon></a> |  <?php
                                         }
@@ -701,10 +704,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         ?> <ion-icon name="warning" title="<?=esc_html__('Es sind keine Dateien mit dem Archiv verknüpft.', 'zdm')?>"></ion-icon> |  <?php
                                     }
                                     ?>
-                                    <b><a href="?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_db_archives[$i]->id?>"><?=$zdm_db_archives[$i]->name?></a></b>
+                                    <b><a href="?page=<?=ZDM__SLUG?>-ziparchive&id=<?=htmlspecialchars($zdm_db_archives[$i]->id)?>"><?=htmlspecialchars($zdm_db_archives[$i]->name)?></a></b>
                                 </td>
                                 <td>
-                                    <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-list" value="[zdownload zip=&quot;<?=$zdm_db_archives[$i]->id?>&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
+                                    <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-list" value="[zdownload zip=&quot;<?=htmlspecialchars($zdm_db_archives[$i]->id)?>&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
                                     <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
                                 </td>
                                 <td>
@@ -736,7 +739,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         if (ZDMCore::check_if_archive_cache_ok($zdm_db_archives[$i]->id)) {
                                             ?> <ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon> <?php
                                         } else {
-                                            ?> <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&archive-cache=<?=$zdm_db_archives[$i]->id?>&nonce=<?=wp_create_nonce('cache-aktualisieren')?>" class="button button-primary" title="<?=esc_html__('Cache aktualisieren', 'zdm')?>"><ion-icon name="refresh"></ion-icon></a> <?php
+                                            ?> <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&archive-cache=<?=htmlspecialchars($zdm_db_archives[$i]->id)?>&nonce=<?=wp_create_nonce('cache-aktualisieren')?>" class="button button-primary" title="<?=esc_html__('Cache aktualisieren', 'zdm')?>"><ion-icon name="refresh"></ion-icon></a> <?php
                                         }
                                     } else {
                                         ?> <ion-icon name="warning" class="zdm-color-yellow" title="<?=esc_html__('Es sind keine Dateien mit dem Archiv verknüpft.', 'zdm')?>"></ion-icon> <?php
@@ -755,7 +758,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <div align="center"><?=$zdm_archive_status?></div>
                                 </td>
                                 <td>
-                                    <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_db_archives[$i]->id?>&delete=true&nonce=<?=wp_create_nonce('archiv-loeschen')?>" class="button button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Archiv löschen', 'zdm')?>"><ion-icon name="trash"></ion-icon></a>
+                                    <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=htmlspecialchars($zdm_db_archives[$i]->id)?>&delete=true&nonce=<?=wp_create_nonce('archiv-loeschen')?>" class="button button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Archiv löschen', 'zdm')?>"><ion-icon name="trash"></ion-icon></a>
                                 </td>
                             </tr>
                             <?php
