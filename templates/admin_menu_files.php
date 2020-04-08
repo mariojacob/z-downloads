@@ -15,9 +15,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     // Aktiven Tab bestimmen
     if( isset($_GET['tab'])) {
-        $active_tab = htmlspecialchars($_GET['tab']);
+        $zdm_active_tab = htmlspecialchars($_GET['tab']);
     } else {
-        $active_tab = 'file';
+        $zdm_active_tab = 'file';
     }
 
     if (ZDMCore::licence()) {
@@ -269,8 +269,48 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             // Log
             ZDMCore::log('replace file', $zdm_file_id);
 
-            $active_tab = 'file';
+            $zdm_active_tab = 'file';
             $zdm_note = esc_html__('Datei wurde ersetzt!', 'zdm');
+        }
+
+        //////////////////////////////////////////////////
+        // Datei aus Archiv entfernen
+        //////////////////////////////////////////////////
+        if (isset($_GET['file_unlink_from_archive']) && isset($_GET['archive_id']) && wp_verify_nonce($_GET['nonce'], 'file_unlink_from_archive')) {
+
+            $zdm_archive_id = sanitize_text_field($_GET['archive_id']);
+
+            // id, id_file, id_archive aus DB files_rel holen
+            $zdm_db_files_rel_array = $wpdb->get_results(
+                "
+                SELECT id 
+                FROM $zdm_tablename_files_rel 
+                WHERE id_archive = '$zdm_archive_id' 
+                AND id_file = '$zdm_file_id' 
+                AND file_deleted = 0
+                "
+                );
+
+            $wpdb->delete(
+                $zdm_tablename_files_rel, 
+                array(
+                    'id' => $zdm_db_files_rel_array[0]->id
+                ));
+        
+            // files_rel update
+            $wpdb->update(
+                $zdm_tablename_files_rel, 
+                array(
+                    'file_updated' => 1
+                ), 
+                array(
+                    'id_archive' => $zdm_archive_id
+                ));
+
+            // Log
+            ZDMCore::log('unlink file', sanitize_text_field($_GET['archive_id']));
+            
+            $zdm_note = esc_html__('Datei aus Archiv entfernt!', 'zdm');
         }
     }
 
@@ -306,10 +346,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <div class="wrap">
 
             <nav class="nav-tab-wrapper wp-clearfix zdm-nav-tabs">
-                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>" class="nav-tab zdm-nav-tab <?php echo $active_tab == 'file' ? 'nav-tab-active' : ''; ?>" aria-current="page"><?=esc_html__('Datei', 'zdm')?></a>
-                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=shortcodes" class="nav-tab <?php echo $active_tab == 'shortcodes' ? 'nav-tab-active' : ''; ?>"><?=esc_html__('Shortcodes', 'zdm')?></a>
-                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=update-file" class="nav-tab <?php echo $active_tab == 'update-file' ? 'nav-tab-active' : ''; ?>"><?=esc_html__('Datei ersetzen', 'zdm')?></a>
-                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=help" class="nav-tab <?php echo $active_tab == 'help' ? 'nav-tab-active' : ''; ?>"><ion-icon name="help-circle-outline"></ion-icon> <?=esc_html__('Hilfe', 'zdm')?></a>
+                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>" class="nav-tab zdm-nav-tab <?php echo $zdm_active_tab == 'file' ? 'nav-tab-active' : ''; ?>" aria-current="page"><?=esc_html__('Datei', 'zdm')?></a>
+                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=shortcodes" class="nav-tab <?php echo $zdm_active_tab == 'shortcodes' ? 'nav-tab-active' : ''; ?>"><?=esc_html__('Shortcodes', 'zdm')?></a>
+                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=update-file" class="nav-tab <?php echo $zdm_active_tab == 'update-file' ? 'nav-tab-active' : ''; ?>"><?=esc_html__('Datei ersetzen', 'zdm')?></a>
+                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=help" class="nav-tab <?php echo $zdm_active_tab == 'help' ? 'nav-tab-active' : ''; ?>"><ion-icon name="help-circle-outline"></ion-icon> <?=esc_html__('Hilfe', 'zdm')?></a>
             </nav>
 
             <br>
@@ -318,7 +358,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             <?php
             // Tabs
-            if ($active_tab == 'file') { // Tab: Datei
+            if ($zdm_active_tab == 'file') { // Tab: Datei
                 ?>
                 
                 <div class="postbox">
@@ -434,11 +474,38 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             <?php
                                             $zdm_db_file_in_archive = ZDMCore::check_if_file_is_in_archive($zdm_db_file->id);
                                             if ($zdm_db_file_in_archive == 1) {
-                                                echo esc_html__('Die Datei ist in', 'zdm') . ' ' . $zdm_db_file_in_archive . ' ' . esc_html__('Archiv verknüpft.', 'zdm');
+                                                echo esc_html__('Diese Datei ist in', 'zdm') . ' ' . $zdm_db_file_in_archive . ' ' . esc_html__('Archiv verknüpft:', 'zdm');
                                             } elseif ($zdm_db_file_in_archive > 1) {
-                                                echo esc_html__('Die Datei ist in', 'zdm') . ' ' . $zdm_db_file_in_archive . ' Archiven verknüpft.';
+                                                echo esc_html__('Diese Datei ist in', 'zdm') . ' ' . $zdm_db_file_in_archive . ' Archiven verknüpft:';
                                             } else {
-                                                echo esc_html__('Die Datei ist in keinem Archiv verknüpft.', 'zdm');
+                                                echo esc_html__('Diese Datei ist in keinem Archiv verknüpft.', 'zdm');
+                                            }
+
+                                            if ($zdm_db_file_in_archive >= 1) {
+
+                                                ?>
+                                                <br /><br />
+                                                <table class="zdm-table-list">
+                                                    <?php
+                                                    $zdm_linked_archives = ZDMCore::get_linked_archives($zdm_db_file->id);
+
+                                                    for ($i=0; $i < count($zdm_linked_archives); $i++) {
+
+                                                        $zdm_linked_archive_data = ZDMCore::get_archive_data($zdm_linked_archives[$i]->id_archive);
+                                                        
+                                                        ?>
+
+                                                        <tr>
+                                                            <td>
+                                                                <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_linked_archive_data->id?>"><?=$zdm_linked_archive_data->name?></a>
+                                                            </td>
+                                                            <td>
+                                                                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_db_file->id?>&file_unlink_from_archive=true&archive_id=<?=$zdm_linked_archive_data->id?>&nonce=<?=wp_create_nonce('file_unlink_from_archive')?>" class="button button-small button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Datei aus folgendem Archiv entfernen:', 'zdm')?> <?=$zdm_linked_archive_data->name?>"><?=esc_html__('Datei aus diesem Archiv entfernen', 'zdm')?></a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php } ?>
+                                                </table>
+                                                <?php
                                             }
                                             ?>
                                         </td>
@@ -475,8 +542,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <input class="button-secondary" type="submit" name="delete" value="<?=esc_html__('Löschen', 'zdm')?>">
                                 </form>
                 <?php
-            // end if ($active_tab == 'file')
-            } elseif ($active_tab == 'shortcodes') { // Tab: Shortcodes
+            // end if ($zdm_active_tab == 'file')
+            } elseif ($zdm_active_tab == 'shortcodes') { // Tab: Shortcodes
                 ?>
                 <div class="postbox">
                     <div class="inside">
@@ -559,8 +626,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     </div>
                 </div>
                 <?php
-            // end if ($active_tab == 'shortcodes')
-            } elseif ($active_tab == 'update-file') { // Tab: Datei ersetzen
+            // end if ($zdm_active_tab == 'shortcodes')
+            } elseif ($zdm_active_tab == 'update-file') { // Tab: Datei ersetzen
                 ?>
                 <div class="postbox">
                     <div class="inside">
@@ -588,7 +655,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     </div>
                 </div>
                 <?php
-            } elseif ($active_tab == 'help') { // Tab: Hilfe
+            } elseif ($zdm_active_tab == 'help') { // Tab: Hilfe
                 ?>
 
                 <div class="zdm-box zdm-box-info">

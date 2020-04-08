@@ -320,7 +320,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <div class="postbox">
                     <div class="inside">
 
-                        <h2><?=esc_html__('Aechiv Informationen', 'zdm')?></h2>
+                        <h2><?=esc_html__('Archiv Informationen', 'zdm')?></h2>
                         <hr>
                         <table class="form-table">
                             <tbody>

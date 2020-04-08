@@ -930,6 +930,42 @@ class ZDMCore {
         return FALSE;
     }
 
+    // NOTE: Doc
+    public function get_archive_data($archive_id) {
+        global $wpdb;
+
+        $tablename_archives = $wpdb->prefix . "zdm_archives";
+
+        // Daten aus DB archives holen
+        $db_archive = $wpdb->get_results(
+            "
+            SELECT * 
+            FROM $tablename_archives 
+            WHERE id = '$archive_id'
+            "
+            );
+
+        return $db_archive[0];
+    }
+
+    // NOTE: Doc
+    public function get_linked_archives($file_id) {
+        global $wpdb;
+
+        $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
+
+        // Daten aus DB files_rel holen
+        $db_archive = $wpdb->get_results(
+            "
+            SELECT id_archive 
+            FROM $tablename_files_rel 
+            WHERE id_file = '$file_id'
+            "
+            );
+
+        return $db_archive;
+    }
+
     /**
      * Gibt Archivname zurück
      *
