@@ -53,8 +53,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <div class="inside">
                 <h3><?=esc_html__('Dateien ersetzen', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Wenn du die Datei ersetzt, dann wird nur die Datei ersetzt, die ID für die Shortcodes erhalten.', 'zdm')?></p>
-                <p><?=esc_html__('Der Cache aller Archive mit denen diese Datei verknüpft ist werden automatisch aktualisiert.', 'zdm')?></p>
+                <p><?=esc_html__('Wenn du die Datei ersetzt, dann wird nur die Datei ersetzt, die ID für die Shortcodes bleibt erhalten.', 'zdm')?></p>
+                <p><?=esc_html__('Der Cache aller Archive mit denen diese Datei verknüpft ist wird automatisch aktualisiert.', 'zdm')?></p>
             </div>
         </div>
 

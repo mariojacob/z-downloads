@@ -171,7 +171,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <div class="postbox">
                     <div class="inside">
                         <h3 class="zdm-color-green"><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Alle Daten wurden erfolgreich gelöscht!', 'zdm')?></h3>
-                        <p><?=esc_html__('Alle deine hochgeladenen Dateien, alle Archive im Cache und alle Datenbankeinträge von', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('wurden unwiederuflich gelöscht.', 'zdm')?></p>
+                        <p><?=esc_html__('Alle deine hochgeladenen Dateien, alle Archive im Cache und alle Datenbankeinträge von', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('wurden unwiderruflich gelöscht.', 'zdm')?></p>
                         <p><?=esc_html__('Du kannst jetzt das Plugin in der Plugin-Übersicht deaktivieren und deinstallieren oder du lädst neue Dateien hoch und beginnst ganz frisch.', 'zdm')?></p>
                         <a href="admin.php?page=<?=ZDM__SLUG?>-settings" class="button button-secondary"><?=esc_html__('Zurück zu den Einstellungen', 'zdm')?></a>
                     </div>
