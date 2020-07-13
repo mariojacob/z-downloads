@@ -688,7 +688,7 @@ class ZDMCore {
                         // Daten aus DB archives holen
                         $db_archive = $wpdb->get_results(
                             "
-                            SELECT zip_name, archive_cache_path, status 
+                            SELECT zip_name, count, archive_cache_path, status 
                             FROM $tablename_archives 
                             WHERE id = '$zdownload_url'
                             "
@@ -745,7 +745,7 @@ class ZDMCore {
                         // Daten aus DB files holen
                         $db_files = $wpdb->get_results(
                             "
-                            SELECT folder_path, file_name, file_type, status 
+                            SELECT count, folder_path, file_name, file_type, status 
                             FROM $tablename_files 
                             WHERE id = '$zdownload_url'
                             "
