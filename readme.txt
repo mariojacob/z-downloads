@@ -7,7 +7,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
 Tested up to: 5.4
-Stable tag: 1.4.1
+Stable tag: 1.4.2
 
 Download management and automatic ZIP archive creation
 
@@ -52,8 +52,13 @@ The same file is in multiple downloads, such as promotional material. In the eve
 
 = Translation =
 
--   English - en_US = in /language
--   German - de_DE = in /language
+-   German - de_DE is the default language
+-   English - en_AU (Australia)
+-   English - en_CA (Canada)
+-   English - en_GB (Great Britain)
+-   English - en_NZ (New Zealand)
+-   English - en_SA (South Africa)
+-   English - en_US (USA)
 
 == Installation ==
 
