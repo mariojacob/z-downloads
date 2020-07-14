@@ -1,0 +1,1940 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2020-04-08 23:29+0200\n"
+"PO-Revision-Date: 2020-07-14 11:05+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_AU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3.1\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-KeywordsList: __;esc_html__\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: inc/postbox_info.php:13
+msgid "Version"
+msgstr "Version"
+
+#: inc/postbox_info.php:15
+msgid "Release notes"
+msgstr "Release notes"
+
+#: inc/postbox_info.php:15
+msgid "release notes"
+msgstr "release notes"
+
+#: inc/postbox_info.php:19
+msgid "Dokumentation und Hilfe"
+msgstr "Documentation and help"
+
+#: inc/postbox_info.php:21
+msgid "Hilfeseiten für den Einstieg"
+msgstr "Help pages for getting started"
+
+#: inc/postbox_info.php:22 inc/postbox_info_archive.php:13
+#: inc/postbox_info_files.php:12 templates/admin_menu_files.php:350
+#: templates/admin_menu_files.php:551 templates/admin_menu_files.php:596
+#: templates/admin_menu_files.php:717 templates/admin_menu_files.php:729
+#: templates/admin_menu_files.php:741 templates/admin_menu_help.php:151
+#: templates/admin_menu_help.php:163 templates/admin_menu_help.php:175
+#: templates/admin_menu_ziparchive.php:308
+#: templates/admin_menu_ziparchive.php:487
+#: templates/admin_menu_ziparchive.php:595
+msgid "Shortcodes"
+msgstr "Shortcodes"
+
+#: inc/postbox_info.php:23 templates/admin_menu_files.php:702
+#: templates/admin_menu_help.php:102 templates/admin_menu_ziparchive.php:580
+msgid "Farben"
+msgstr "Colours"
+
+#: inc/postbox_info.php:24
+msgid "FAQ"
+msgstr "FAQ"
+
+#: inc/postbox_info.php:29
+msgid ""
+"Hast du Verbesserungsvorschläge oder Anregungen für das Plugin, dann "
+"schreibe mir"
+msgstr ""
+"Do you have suggestions for improvement or suggestions for the plugin, then "
+"write me"
+
+#: inc/postbox_info.php:30
+msgid "Wenn dir"
+msgstr "If you"
+
+#: inc/postbox_info.php:30
+msgid "gefällt, dann schreibe gerne eine"
+msgstr "like, then write a"
+
+#: inc/postbox_info.php:30
+msgid "bewerten"
+msgstr "evaluate"
+
+#: inc/postbox_info.php:30
+msgid "Bewertung"
+msgstr "Rating"
+
+#: inc/postbox_info.php:30
+msgid "Du würdest mir sehr dabei helfen das Plugin bekannter zu machen."
+msgstr "You would help me a lot to make the plugin known."
+
+#: inc/postbox_info_archive.php:10
+msgid ""
+"Archive sind komprimierte ZIP-Dateien mit denen du Dateien die du "
+"hochgeladen hast verknüpfen kannst."
+msgstr ""
+"Archives are compressed ZIP files that you can use to link files you've "
+"uploaded."
+
+#: inc/postbox_info_archive.php:12
+msgid ""
+"Diese Dateien werden vom Plugin automatisch in eine ZIP-Datei gespeichert "
+"und können mit einem"
+msgstr ""
+"These files are automatically saved by the plugin in a ZIP file and can be "
+"combined with a"
+
+#: inc/postbox_info_archive.php:13 inc/postbox_info_files.php:12
+#: templates/admin_menu_files.php:795 templates/admin_menu_files.php:875
+#: templates/admin_menu_ziparchive.php:662
+#: templates/admin_menu_ziparchive.php:773
+msgid "Shortcode"
+msgstr "Shortcode"
+
+#: inc/postbox_info_archive.php:14
+msgid "als Download-Button angezeigt werden."
+msgstr "be displayed as a download button."
+
+#: inc/postbox_info_archive.php:16 inc/postbox_info_files.php:15
+msgid ""
+"Wenn du eine Datei aktualisierst oder löscht, dann aktualisiert sich der "
+"Inhalt aller ZIP-Dateien in der sich diese Datei befindet oder befand "
+"automatisch."
+msgstr ""
+"When updating or deleting a file, the contents of all ZIP files in which "
+"this file resides or is automatically updated."
+
+#: inc/postbox_info_files.php:11
+msgid "Dateien können entweder einzeln mit einem"
+msgstr "Files can be either one with one"
+
+#: inc/postbox_info_files.php:13
+msgid ""
+"als Download-Button angezeigt werden oder zu einem Archiv verknüpft und in "
+"Form einer ZIP-Datei als Download-Button angezeigt werden."
+msgstr ""
+"be displayed as a download button or linked to an archive and displayed in "
+"the form of a ZIP file as a download button."
+
+#: inc/template_header_info.php:7 templates/admin_menu_help.php:209
+#: templates/admin_menu_help.php:231
+msgid "Info"
+msgstr "Info"
+
+#: inc/template_help_text.php:7
+msgid ""
+"Um einen leichten und schnellen Einstieg im Umgang mit diesem Plugin zu "
+"bekommen gibt es hier alles was du wissen musst"
+msgstr ""
+"To get an easy and quick start with using this plugin, here is everything "
+"you need to know"
+
+#: inc/template_help_text.php:7
+msgid "Hilfeseiten"
+msgstr "Help pages"
+
+#: lib/ZDMCore.php:37 lib/ZDMCore.php:38 templates/admin_hidden_log.php:30
+#: templates/admin_menu_dashboard.php:94 templates/admin_menu_dashboard.php:198
+#: templates/admin_menu_dashboard.php:277 templates/admin_menu_files.php:687
+#: templates/admin_menu_files.php:784 templates/admin_menu_help.php:65
+#: templates/admin_menu_ziparchive.php:664
+#: templates/admin_menu_ziparchive.php:775
+msgid "Dateien"
+msgstr "Files"
+
+#: lib/ZDMCore.php:44 lib/ZDMCore.php:45 templates/admin_menu_files.php:356
+#: templates/admin_menu_files.php:667 templates/admin_menu_files.php:669
+#: templates/admin_menu_files.php:786 templates/admin_menu_help.php:47
+msgid "Datei hinzufügen"
+msgstr "Add file"
+
+#: lib/ZDMCore.php:51 lib/ZDMCore.php:52 templates/admin_hidden_log.php:30
+#: templates/admin_menu_dashboard.php:53 templates/admin_menu_dashboard.php:155
+#: templates/admin_menu_dashboard.php:276 templates/admin_menu_help.php:87
+#: templates/admin_menu_ziparchive.php:565
+msgid "Archive"
+msgstr "Archive"
+
+#: lib/ZDMCore.php:58 lib/ZDMCore.php:59 templates/admin_menu_help.php:77
+#: templates/admin_menu_ziparchive.php:313
+#: templates/admin_menu_ziparchive.php:555
+#: templates/admin_menu_ziparchive.php:653
+msgid "Archiv erstellen"
+msgstr "Create archive"
+
+#: lib/ZDMCore.php:65 lib/ZDMCore.php:66
+#: templates/admin_menu_add_archive.php:177 templates/admin_menu_files.php:451
+#: templates/admin_menu_files.php:699 templates/admin_menu_help.php:99
+#: templates/admin_menu_help.php:266 templates/admin_menu_settings.php:130
+#: templates/admin_menu_ziparchive.php:368
+#: templates/admin_menu_ziparchive.php:577
+msgid "Einstellungen"
+msgstr "Settings"
+
+#: lib/ZDMCore.php:72 lib/ZDMCore.php:73 lib/ZDMCore.php:79 lib/ZDMCore.php:80
+#: templates/admin_menu_files.php:352 templates/admin_menu_help.php:27
+#: templates/admin_menu_ziparchive.php:309
+msgid "Hilfe"
+msgstr "Help"
+
+#: lib/ZDMCore.php:1365
+msgid "Dein Browser unterstützt keine HTML Audio-Elemente."
+msgstr "Your browser does not support HTML audio elements."
+
+#: lib/ZDMCore.php:1870
+msgid "Dein Browser unterstützt keine HTML Video-Elemente."
+msgstr "Your browser does not support HTML video elements."
+
+#: lib/constants.php:81
+msgid "Schwarz"
+msgstr "Black"
+
+#: lib/constants.php:82
+msgid "Grau 5"
+msgstr "Grey 5"
+
+#: lib/constants.php:83
+msgid "Grau 7"
+msgstr "Grey 7"
+
+#: lib/constants.php:84
+msgid "Grau 9"
+msgstr "Grey 9"
+
+#: lib/constants.php:85
+msgid "Grau 11"
+msgstr "Grey 11"
+
+#: lib/constants.php:86
+msgid "Grau 13"
+msgstr "Grey 13"
+
+#: lib/constants.php:87
+msgid "Lila"
+msgstr "Purple"
+
+#: lib/constants.php:88
+msgid "Blau"
+msgstr "Blue"
+
+#: lib/constants.php:89
+msgid "Grün"
+msgstr "Green"
+
+#: lib/constants.php:90
+msgid "Gelb"
+msgstr "Yellow"
+
+#: lib/constants.php:91
+msgid "Orange"
+msgstr "Orange"
+
+#: lib/constants.php:92
+msgid "Rot"
+msgstr "Red"
+
+#: lib/constants.php:110
+msgid "keine"
+msgstr "none"
+
+#: lib/constants.php:111
+msgid "1 Pixel"
+msgstr "1 pixel"
+
+#: lib/constants.php:112
+msgid "2 Pixel"
+msgstr "2 pixel"
+
+#: lib/constants.php:113
+msgid "3 Pixel"
+msgstr "3 pixel"
+
+#: lib/constants.php:114
+msgid "4 Pixel"
+msgstr "4 pixel"
+
+#: lib/constants.php:115
+msgid "5 Pixel"
+msgstr "5 pixel"
+
+#: lib/constants.php:116
+msgid "6 Pixel"
+msgstr "6 pixel"
+
+#: lib/constants.php:117
+msgid "7 Pixel"
+msgstr "7 pixel"
+
+#: lib/constants.php:118
+msgid "8 Pixel"
+msgstr "8 pixel"
+
+#: lib/constants.php:119
+msgid "9 Pixel"
+msgstr "9 pixel"
+
+#: lib/constants.php:120
+msgid "10 Pixel"
+msgstr "10 pixel"
+
+#: lib/constants.php:142
+msgid "keines"
+msgstr "none"
+
+#: lib/constants.php:143
+msgid "Pfeil 1"
+msgstr "Arrow 1"
+
+#: lib/constants.php:144
+msgid "Pfeil 2"
+msgstr "Arrow 2"
+
+#: lib/constants.php:145
+msgid "Download Code"
+msgstr "Download code"
+
+#: lib/constants.php:146
+msgid "Cloud Download"
+msgstr "Cloud Download"
+
+#: lib/constants.php:147
+msgid "Cloud"
+msgstr "Cloud"
+
+#: lib/constants.php:148
+msgid "Cloud Check"
+msgstr "Cloud check"
+
+#: lib/constants.php:149
+msgid "Check 1"
+msgstr "Check 1"
+
+#: lib/constants.php:150
+msgid "Check 2"
+msgstr "Check 2"
+
+#: lib/constants.php:151
+msgid "Check 3"
+msgstr "Check 3"
+
+#: lib/constants.php:152
+msgid "Herz 1"
+msgstr "Heart 1"
+
+#: lib/constants.php:153
+msgid "Herz 2"
+msgstr "Heart 2"
+
+#: lib/constants.php:154
+msgid "Stern 1"
+msgstr "Star 1"
+
+#: lib/constants.php:155
+msgid "Stern 2"
+msgstr "Star 2"
+
+#: lib/constants.php:156
+msgid "Trophäe"
+msgstr "Trophy"
+
+#: templates/admin_hidden_log.php:30
+msgid "Alles"
+msgstr "Everything"
+
+#: templates/admin_hidden_log.php:30 templates/admin_menu_dashboard.php:156
+#: templates/admin_menu_dashboard.php:199
+msgid "Downloads"
+msgstr "Downloads"
+
+#: templates/admin_hidden_log.php:109
+msgid "Log Details"
+msgstr "Log details"
+
+#: templates/admin_hidden_log.php:109 templates/admin_menu_files.php:356
+#: templates/admin_menu_ziparchive.php:313
+msgid "Zurück zur Übersicht"
+msgstr "Back to overview"
+
+#: templates/admin_hidden_log.php:118 templates/admin_hidden_log.php:201
+#: templates/admin_hidden_log.php:267
+msgid "Typ"
+msgstr "Type"
+
+#: templates/admin_hidden_log.php:122 templates/admin_hidden_log.php:202
+#: templates/admin_hidden_log.php:268
+msgid "Details"
+msgstr "Details"
+
+#: templates/admin_hidden_log.php:126
+msgid "User Agent"
+msgstr "User Agent"
+
+#: templates/admin_hidden_log.php:130
+msgid "IP Adresse"
+msgstr "IP address"
+
+#: templates/admin_hidden_log.php:134
+msgid "WordPress Benutzer ID"
+msgstr "WordPress user ID"
+
+#: templates/admin_hidden_log.php:137
+msgid "kein WordPress Benutzer"
+msgstr "not a WordPress user"
+
+#: templates/admin_hidden_log.php:145 templates/admin_hidden_log.php:203
+#: templates/admin_hidden_log.php:269 templates/admin_menu_files.php:798
+#: templates/admin_menu_files.php:878 templates/admin_menu_ziparchive.php:666
+#: templates/admin_menu_ziparchive.php:777
+msgid "Erstellt"
+msgstr "Created"
+
+#: templates/admin_hidden_log.php:162 templates/admin_menu_settings.php:351
+msgid "Log"
+msgstr "Log"
+
+#: templates/admin_hidden_log.php:162
+msgid "Zurück den Einstellungen"
+msgstr "Back the settings"
+
+#: templates/admin_hidden_log.php:173
+msgid "Hier ist die Ausgabe der Logs der aktuellsten 100 Einträge."
+msgstr "Here is the output of the logs of the latest 100 entries."
+
+#: templates/admin_hidden_log.php:176 templates/admin_hidden_log.php:287
+msgid "Logs filtern nach Typ"
+msgstr "Logs filter by type"
+
+#: templates/admin_hidden_log.php:192 templates/admin_hidden_log.php:303
+#: templates/admin_menu_files.php:541 templates/admin_menu_ziparchive.php:476
+msgid "Aktualisieren"
+msgstr "Update"
+
+#: templates/admin_hidden_log.php:250
+msgid "Details anzeigen"
+msgstr "View Details"
+
+#: templates/admin_hidden_log.php:284
+msgid "Es gibt keine Log-Einträge zu diesem Typ."
+msgstr "There are no log entries for this type."
+
+#: templates/admin_hidden_log.php:315 templates/admin_menu_dashboard.php:331
+#: templates/admin_menu_files.php:895 templates/admin_menu_ziparchive.php:794
+msgid "Nach oben"
+msgstr "Up"
+
+#: templates/admin_menu_add_archive.php:138
+msgid "Neues ZIP-Archiv erstellen"
+msgstr "Create new ZIP archive"
+
+#: templates/admin_menu_add_archive.php:141
+#: templates/admin_menu_add_file.php:15
+msgid "zurück zur Übersicht"
+msgstr "back to overview"
+
+#: templates/admin_menu_add_archive.php:146
+msgid "Archiv erfolgreich erstellt!"
+msgstr "Archive successfully created!"
+
+#: templates/admin_menu_add_archive.php:147
+#: templates/admin_menu_dashboard.php:318
+msgid "Neues Archiv erstellen"
+msgstr "Create a new archive"
+
+#: templates/admin_menu_add_archive.php:158 templates/admin_menu_files.php:440
+#: templates/admin_menu_files.php:794 templates/admin_menu_files.php:874
+#: templates/admin_menu_ziparchive.php:349
+#: templates/admin_menu_ziparchive.php:661
+#: templates/admin_menu_ziparchive.php:772
+msgid "Name"
+msgstr "Name"
+
+#: templates/admin_menu_add_archive.php:161
+msgid ""
+"Dieser Name wird in der Archiv-Liste angezeigt und dient dir als "
+"Orientierung."
+msgstr "This name is displayed in the archive list and serves as a guide."
+
+#: templates/admin_menu_add_archive.php:165
+msgid "ZIP-Datei Name:"
+msgstr "ZIP file name:"
+
+#: templates/admin_menu_add_archive.php:168
+msgid "Name für die ZIP-Datei die der Besucher herunterladet."
+msgstr "Name of the ZIP file the visitor downloads."
+
+#: templates/admin_menu_add_archive.php:169
+msgid ""
+"Für maximale kompatibilität verwende Bindestriche oder Unterstriche anstatt "
+"Leerzeichen."
+msgstr ""
+"For maximum compatibility, use hyphens or underscores instead of spaces."
+
+#: templates/admin_menu_add_archive.php:170
+msgid "Beispiel:"
+msgstr "Example:"
+
+#: templates/admin_menu_add_archive.php:170
+msgid "mein-neuer-download"
+msgstr "my-new-download"
+
+#: templates/admin_menu_add_archive.php:170 templates/admin_menu_help.php:146
+#: templates/admin_menu_help.php:148 templates/admin_menu_help.php:189
+#: templates/admin_menu_help.php:192 templates/admin_menu_help.php:220
+msgid "oder"
+msgstr "or"
+
+#: templates/admin_menu_add_archive.php:170
+msgid "mein_neuer_download"
+msgstr "mein_neuer_download"
+
+#: templates/admin_menu_add_archive.php:174
+msgid "Download-Button Text:"
+msgstr "Download Button Text:"
+
+#: templates/admin_menu_add_archive.php:177
+msgid "Standardtext für den Download-Button ist \""
+msgstr "Default text for the download button is \""
+
+#: templates/admin_menu_add_archive.php:177
+msgid "dieser Text kann in den"
+msgstr "this text can be found in the"
+
+#: templates/admin_menu_add_archive.php:177 templates/admin_menu_files.php:451
+#: templates/admin_menu_ziparchive.php:368
+msgid "geändert werden."
+msgstr "be changed."
+
+#: templates/admin_menu_add_archive.php:181
+msgid "Beschreibung:"
+msgstr "Description:"
+
+#: templates/admin_menu_add_archive.php:187
+msgid "Count:"
+msgstr "Count:"
+
+#: templates/admin_menu_add_archive.php:190 templates/admin_menu_files.php:460
+#: templates/admin_menu_ziparchive.php:383
+msgid "Anzahl an bisherigen Downloads."
+msgstr "Number of previous downloads."
+
+#: templates/admin_menu_add_archive.php:194
+msgid "Dateien verknüpfen"
+msgstr "Link files"
+
+#: templates/admin_menu_add_archive.php:212
+#: templates/admin_menu_ziparchive.php:464
+msgid "Für mehr Datei-Verknüpfungen aktiviere"
+msgstr "For more file shortcuts activate"
+
+#: templates/admin_menu_add_archive.php:226
+#: templates/admin_menu_settings.php:388
+msgid "Speichern"
+msgstr "Save"
+
+#: templates/admin_menu_add_archive.php:227
+msgid "Abbrechen"
+msgstr "Cancel"
+
+#: templates/admin_menu_add_file.php:12 templates/admin_menu_dashboard.php:314
+msgid "Neue Datei hochladen"
+msgstr "Upload new file"
+
+#: templates/admin_menu_add_file.php:24
+msgid "Hochladen"
+msgstr "Upload"
+
+#: templates/admin_menu_add_file.php:26
+msgid "Maximale Dateigröße für Uploads:"
+msgstr "Maximum file size for uploads:"
+
+#: templates/admin_menu_dashboard.php:17
+msgid "Willkommen bei"
+msgstr "Welcome to"
+
+#: templates/admin_menu_dashboard.php:18
+msgid ""
+"Bringe mehr Struktur in deine Downloads und aktualisiere diese effizienter."
+msgstr ""
+"Bring more structure into your downloads and update them more efficiently."
+
+#: templates/admin_menu_dashboard.php:19
+msgid "Um das volle Potential dieses Plugins zu Nutzen aktiviere jetzt die"
+msgstr "In order to use the full potential of this plugin activate the"
+
+#: templates/admin_menu_dashboard.php:19
+msgid "Funktionen."
+msgstr "Functions."
+
+#: templates/admin_menu_dashboard.php:21
+msgid "Mehr erfahren"
+msgstr "More info"
+
+#: templates/admin_menu_dashboard.php:26 templates/admin_menu_help.php:128
+msgid "Dashboard"
+msgstr "Dashboard"
+
+#: templates/admin_menu_dashboard.php:45 templates/admin_menu_help.php:133
+msgid "Letzte Downloads"
+msgstr "Last downloads"
+
+#: templates/admin_menu_dashboard.php:54 templates/admin_menu_dashboard.php:95
+msgid "Datum"
+msgstr "Date"
+
+#: templates/admin_menu_dashboard.php:70
+msgid "Gelöschtes Archiv"
+msgstr "Deleted archive"
+
+#: templates/admin_menu_dashboard.php:110
+msgid "Gelöschte Datei"
+msgstr "Deleted file"
+
+#: templates/admin_menu_dashboard.php:146 templates/admin_menu_help.php:135
+msgid "Beliebte Downloads"
+msgstr "Popular Downloads"
+
+#: templates/admin_menu_dashboard.php:172
+#: templates/admin_menu_dashboard.php:214
+msgid "Gelöschter Download"
+msgstr "Deleted Download"
+
+#: templates/admin_menu_dashboard.php:269 templates/admin_menu_help.php:131
+msgid "Download Statistik"
+msgstr "Download statistics"
+
+#: templates/admin_menu_dashboard.php:275
+msgid "Gesamt"
+msgstr "Total"
+
+#: templates/admin_menu_dashboard.php:289
+msgid "Letzten 30 Tage"
+msgstr "Last 30 days"
+
+#: templates/admin_menu_dashboard.php:295
+msgid "Letzten 7 Tage"
+msgstr "Last 7 days"
+
+#: templates/admin_menu_dashboard.php:301
+msgid "Letzten 24 Stunden"
+msgstr "Last 24 hours"
+
+#: templates/admin_menu_dashboard.php:316
+msgid "Dateien Übersicht"
+msgstr "Files overview"
+
+#: templates/admin_menu_dashboard.php:320
+msgid "Archive Übersicht"
+msgstr "Archive overview"
+
+#: templates/admin_menu_files.php:147 templates/admin_menu_ziparchive.php:206
+msgid "Aktualisiert"
+msgstr "Updated"
+
+#: templates/admin_menu_files.php:200
+msgid "Datei gelöscht!"
+msgstr "File deleted!"
+
+#: templates/admin_menu_files.php:273
+msgid "Datei wurde ersetzt!"
+msgstr "File has been replaced!"
+
+#: templates/admin_menu_files.php:313
+msgid "Datei aus Archiv entfernt!"
+msgstr "File removed from archive!"
+
+#: templates/admin_menu_files.php:349 templates/admin_menu_files.php:434
+msgid "Datei"
+msgstr "File"
+
+#: templates/admin_menu_files.php:351 templates/admin_menu_files.php:634
+#: templates/admin_menu_files.php:643 templates/admin_menu_files.php:676
+msgid "Datei ersetzen"
+msgstr "Replace file"
+
+#: templates/admin_menu_files.php:367
+msgid "Allgemeine Informationen"
+msgstr "General information"
+
+#: templates/admin_menu_files.php:375 templates/admin_menu_files.php:747
+#: templates/admin_menu_files.php:800 templates/admin_menu_files.php:880
+#: templates/admin_menu_help.php:113 templates/admin_menu_ziparchive.php:330
+#: templates/admin_menu_ziparchive.php:614
+#: templates/admin_menu_ziparchive.php:668
+#: templates/admin_menu_ziparchive.php:779
+msgid "Sichtbarkeit"
+msgstr "Visibility"
+
+#: templates/admin_menu_files.php:377 templates/admin_menu_ziparchive.php:332
+msgid "Öffentlich"
+msgstr "Public"
+
+#: templates/admin_menu_files.php:378 templates/admin_menu_ziparchive.php:333
+msgid "Privat"
+msgstr "Private"
+
+#: templates/admin_menu_files.php:379
+msgid ""
+"Die Sichtbarkeit dieser Datei hat nur Auswirkungen auf die Ausgabe dieser "
+"Datei, wenn diese Datei in einem Archiv verknüpft ist und du stellst die "
+"Sichtbarkeit auf \"Privat\", dann bleibt die Datei weiterhin im Archiv."
+msgstr ""
+"The visibility of this file only affects the output of this file if this "
+"file is linked in an archive and you set the visibility to \"Private\", then "
+"the file remains in the archive."
+
+#: templates/admin_menu_files.php:388 templates/admin_menu_files.php:401
+#: templates/admin_menu_files.php:414
+msgid "Vorschau"
+msgstr "Preview"
+
+#: templates/admin_menu_files.php:425
+msgid "Datei Download"
+msgstr "Download file"
+
+#: templates/admin_menu_files.php:443
+msgid ""
+"Dieser Name wird in der Dateiliste angezeigt und dient dir als Orientierung."
+msgstr "This name is displayed in the file list and serves as an orientation."
+
+#: templates/admin_menu_files.php:447 templates/admin_menu_ziparchive.php:364
+msgid "Download-Button Text"
+msgstr "Download button text"
+
+#: templates/admin_menu_files.php:451 templates/admin_menu_ziparchive.php:368
+msgid ""
+"Dieser Download-Button Text ist nur für diesen Download, der globale "
+"Standardtext kann in den"
+msgstr ""
+"This text is only displayed for this download, for all others the default "
+"text is used"
+
+#: templates/admin_menu_files.php:452 templates/admin_menu_ziparchive.php:369
+msgid "Der Standardtext ist"
+msgstr "The default text is"
+
+#: templates/admin_menu_files.php:453 templates/admin_menu_ziparchive.php:370
+msgid ""
+"Um den globale Standardtext wieder zu verwenden, lasse dieses Feld einfach "
+"leer und beim Aktualisieren wird der Standardtext automatisch eingefügt."
+msgstr ""
+"To reuse the default global text, just leave this field blank and the "
+"default text is automatically inserted when updating."
+
+#: templates/admin_menu_files.php:457 templates/admin_menu_files.php:796
+#: templates/admin_menu_files.php:876 templates/admin_menu_ziparchive.php:380
+#: templates/admin_menu_ziparchive.php:663
+#: templates/admin_menu_ziparchive.php:774
+msgid "Download Anzahl"
+msgstr "Download number"
+
+#: templates/admin_menu_files.php:464 templates/admin_menu_files.php:572
+#: templates/admin_menu_files.php:713 templates/admin_menu_files.php:797
+#: templates/admin_menu_files.php:877 templates/admin_menu_help.php:147
+#: templates/admin_menu_ziparchive.php:387
+#: templates/admin_menu_ziparchive.php:508
+#: templates/admin_menu_ziparchive.php:591
+#: templates/admin_menu_ziparchive.php:665
+#: templates/admin_menu_ziparchive.php:776
+msgid "Dateigröße"
+msgstr "File size"
+
+#: templates/admin_menu_files.php:472
+msgid "In Archiven"
+msgstr "In archives"
+
+#: templates/admin_menu_files.php:477 templates/admin_menu_files.php:479
+msgid "Diese Datei ist in"
+msgstr "This file is in"
+
+#: templates/admin_menu_files.php:477
+msgid "Archiv verknüpft:"
+msgstr "Archive linked:"
+
+#: templates/admin_menu_files.php:481
+msgid "Diese Datei ist in keinem Archiv verknüpft."
+msgstr "This file is not linked to any archive."
+
+#: templates/admin_menu_files.php:503
+msgid "Datei aus folgendem Archiv entfernen:"
+msgstr "Remove file from the following archive:"
+
+#: templates/admin_menu_files.php:503
+msgid "Datei aus diesem Archiv entfernen"
+msgstr "Remove file from this archive"
+
+#: templates/admin_menu_files.php:515
+msgid "Hash MD5"
+msgstr "Hash MD5"
+
+#: templates/admin_menu_files.php:521
+msgid "Hash SHA1"
+msgstr "Hash SHA1"
+
+#: templates/admin_menu_files.php:531
+msgid "Weitere Infos nur für"
+msgstr "More info only for"
+
+#: templates/admin_menu_files.php:531
+msgid ": Hash MD5, Hash SHA1"
+msgstr ": Hash MD5, Hash SHA1"
+
+#: templates/admin_menu_files.php:542 templates/admin_menu_ziparchive.php:477
+msgid "Löschen"
+msgstr "Delete"
+
+#: templates/admin_menu_files.php:553 templates/admin_menu_ziparchive.php:489
+msgid "Alle Shortcodes"
+msgstr "Shortcodes"
+
+#: templates/admin_menu_files.php:553 templates/admin_menu_ziparchive.php:489
+msgid "im Überblick mit Erklärung und Beispielen."
+msgstr "overview with explanation and examples."
+
+#: templates/admin_menu_files.php:558 templates/admin_menu_settings.php:221
+#: templates/admin_menu_ziparchive.php:494
+msgid "Download-Button"
+msgstr "Download button text"
+
+#: templates/admin_menu_files.php:560 templates/admin_menu_files.php:567
+#: templates/admin_menu_files.php:574 templates/admin_menu_files.php:584
+#: templates/admin_menu_files.php:594 templates/admin_menu_files.php:613
+#: templates/admin_menu_files.php:620 templates/admin_menu_files.php:844
+#: templates/admin_menu_ziparchive.php:496
+#: templates/admin_menu_ziparchive.php:503
+#: templates/admin_menu_ziparchive.php:510
+#: templates/admin_menu_ziparchive.php:527
+#: templates/admin_menu_ziparchive.php:534
+#: templates/admin_menu_ziparchive.php:710
+msgid "Shortcode in die Zwischenablage kopieren."
+msgstr "Copy the shortcode to the clipboard."
+
+#: templates/admin_menu_files.php:561 templates/admin_menu_files.php:568
+#: templates/admin_menu_files.php:575 templates/admin_menu_files.php:585
+#: templates/admin_menu_files.php:595 templates/admin_menu_files.php:614
+#: templates/admin_menu_files.php:621 templates/admin_menu_files.php:845
+#: templates/admin_menu_ziparchive.php:497
+#: templates/admin_menu_ziparchive.php:504
+#: templates/admin_menu_ziparchive.php:511
+#: templates/admin_menu_ziparchive.php:528
+#: templates/admin_menu_ziparchive.php:535
+#: templates/admin_menu_ziparchive.php:711
+msgid "Shortcode kopiert"
+msgstr "Copied shortcode"
+
+#: templates/admin_menu_files.php:565 templates/admin_menu_files.php:711
+#: templates/admin_menu_help.php:145 templates/admin_menu_ziparchive.php:501
+#: templates/admin_menu_ziparchive.php:589
+msgid "Download-Anzahl"
+msgstr "Download count"
+
+#: templates/admin_menu_files.php:582 templates/admin_menu_files.php:723
+#: templates/admin_menu_help.php:157
+msgid "Audioplayer"
+msgstr "Audio Player"
+
+#: templates/admin_menu_files.php:592 templates/admin_menu_files.php:735
+#: templates/admin_menu_help.php:169
+msgid "Videoplayer"
+msgstr "Video player"
+
+#: templates/admin_menu_files.php:596
+msgid "Alle Optionen"
+msgstr "All options"
+
+#: templates/admin_menu_files.php:596
+msgid "für den Videoplayer"
+msgstr "for the video player"
+
+#: templates/admin_menu_files.php:603 templates/admin_menu_files.php:606
+#: templates/admin_menu_ziparchive.php:517
+#: templates/admin_menu_ziparchive.php:520
+msgid "MD5 Hashwert ausgeben"
+msgstr "Output MD5 hash value"
+
+#: templates/admin_menu_files.php:603 templates/admin_menu_files.php:604
+#: templates/admin_menu_help.php:19 templates/admin_menu_ziparchive.php:517
+#: templates/admin_menu_ziparchive.php:518
+msgid "Funktion"
+msgstr "Function"
+
+#: templates/admin_menu_files.php:604 templates/admin_menu_files.php:607
+#: templates/admin_menu_ziparchive.php:518
+#: templates/admin_menu_ziparchive.php:521
+msgid "SHA1 Hashwert ausgeben"
+msgstr "Output SHA1 hash value"
+
+#: templates/admin_menu_files.php:636
+msgid ""
+"Hier kannst du eine neue Datei hochladen, diese ersetzt die aktuelle Datei, "
+"die ID für die Shortcodes bleibt gleich."
+msgstr ""
+"Here you can upload a new file, this will replace the current file, the ID "
+"for the shortcodes remains the same."
+
+#: templates/admin_menu_files.php:647
+msgid "Hochladen und ersetzen"
+msgstr "Upload and replace"
+
+#: templates/admin_menu_files.php:648
+msgid "Maximale Dateigröße für Uploads"
+msgstr "Maximum file size for uploads"
+
+#: templates/admin_menu_files.php:662 templates/admin_menu_ziparchive.php:548
+msgid ""
+"Hier findest du Einsteiger Tipps und Informationen für fortgeschrittene "
+"Funktionen."
+msgstr ""
+"Here you will find beginner tips and information for advanced functions."
+
+#: templates/admin_menu_files.php:669 templates/admin_menu_help.php:47
+msgid "Um eine Datei hochzuladen klicke im"
+msgstr "To upload a file click on"
+
+#: templates/admin_menu_files.php:669 templates/admin_menu_files.php:687
+#: templates/admin_menu_files.php:699 templates/admin_menu_help.php:47
+#: templates/admin_menu_help.php:65 templates/admin_menu_help.php:77
+#: templates/admin_menu_help.php:87 templates/admin_menu_help.php:99
+#: templates/admin_menu_help.php:266 templates/admin_menu_ziparchive.php:555
+#: templates/admin_menu_ziparchive.php:565
+#: templates/admin_menu_ziparchive.php:577
+msgid "Menü auf"
+msgstr "Menu on"
+
+#: templates/admin_menu_files.php:670 templates/admin_menu_help.php:48
+msgid "Wähle eine Datei aus und klicke auf \"Hochladen\"."
+msgstr "Select a file and click \"Upload\"."
+
+#: templates/admin_menu_files.php:678 templates/admin_menu_help.php:56
+msgid ""
+"Wenn du die Datei ersetzt, dann wird nur die Datei ersetzt, die ID für die "
+"Shortcodes bleibt erhalten."
+msgstr ""
+"If you replace the file, only the file will be replaced, the ID for the "
+"shortcodes is retained."
+
+#: templates/admin_menu_files.php:679 templates/admin_menu_help.php:57
+msgid ""
+"Der Cache aller Archive mit denen diese Datei verknüpft ist wird automatisch "
+"aktualisiert."
+msgstr ""
+"The cache of all archives with which this file is linked is updated "
+"automatically."
+
+#: templates/admin_menu_files.php:685 templates/admin_menu_help.php:63
+msgid "Download-Button für Datei mit Shortcode ausgeben"
+msgstr "Download button for file with shortcode"
+
+#: templates/admin_menu_files.php:687 templates/admin_menu_help.php:65
+msgid ""
+"Um eine Datei als Button auf einer Seite oder Beitrag auszugeben klicke im"
+msgstr "To show a file as a button on a page or post click on"
+
+#: templates/admin_menu_files.php:688 templates/admin_menu_help.php:66
+msgid ""
+"Hier siehst du eine Übersicht aller Dateien die du schon hochgeladen hast."
+msgstr "Here you can see an overview of all files you have already uploaded."
+
+#: templates/admin_menu_files.php:689 templates/admin_menu_help.php:67
+#: templates/admin_menu_help.php:89 templates/admin_menu_ziparchive.php:567
+msgid "Der Shortcode wird in der Liste angezeigt und sieht so aus:"
+msgstr "The shortcode appears in the list and looks like this:"
+
+#: templates/admin_menu_files.php:690 templates/admin_menu_help.php:68
+msgid "\"123\" ist die einzigartige ID der jeweiligen Datei."
+msgstr "\"123\" is the unique ID of each file."
+
+#: templates/admin_menu_files.php:691 templates/admin_menu_help.php:69
+msgid ""
+"Du kannst auch auf den Namen klicken um mehr Details zu dieser Datei zu "
+"bekommen, auf der Detailseite siehst du auch weitere Shortcodes die du "
+"verwendenden kannst."
+msgstr ""
+"You can also click on the name to get more details about this file, on the "
+"detail page you can see more shortcodes that you can use."
+
+#: templates/admin_menu_files.php:697 templates/admin_menu_help.php:97
+#: templates/admin_menu_ziparchive.php:575
+msgid "Button Farbe und Styles"
+msgstr "Button color and styles"
+
+#: templates/admin_menu_files.php:699 templates/admin_menu_help.php:99
+#: templates/admin_menu_ziparchive.php:577
+msgid "Um die Farbe oder sonstige Button-Einstellungen vorzunehmen klicke im"
+msgstr "To make the color or other button settings click in"
+
+#: templates/admin_menu_files.php:700 templates/admin_menu_help.php:100
+#: templates/admin_menu_ziparchive.php:578
+msgid "Hier kannst du im Bereich \"Download-Button\" folgendes ändern:"
+msgstr "Here you can change the following in the area \"Download-Button\":"
+
+#: templates/admin_menu_files.php:701 templates/admin_menu_help.php:101
+#: templates/admin_menu_ziparchive.php:579
+msgid ""
+"Den Standardtext, den Style (Farbe des Buttons), Outline, Runde Ecken oder "
+"ein Icon."
+msgstr ""
+"The standard text, the style (color of the button), outline, round corners "
+"or an icon."
+
+#: templates/admin_menu_files.php:702 templates/admin_menu_help.php:102
+#: templates/admin_menu_ziparchive.php:580
+msgid "Alle verfügbaren Farben findest du auf der"
+msgstr "All available colors can be found on the"
+
+#: templates/admin_menu_files.php:702 templates/admin_menu_files.php:717
+#: templates/admin_menu_files.php:729 templates/admin_menu_files.php:741
+#: templates/admin_menu_files.php:759 templates/admin_menu_help.php:102
+#: templates/admin_menu_help.php:151 templates/admin_menu_help.php:163
+#: templates/admin_menu_help.php:175 templates/admin_menu_ziparchive.php:580
+#: templates/admin_menu_ziparchive.php:595
+#: templates/admin_menu_ziparchive.php:626
+msgid "Webseite"
+msgstr "Webseite"
+
+#: templates/admin_menu_files.php:708 templates/admin_menu_help.php:142
+#: templates/admin_menu_ziparchive.php:586
+msgid "Metadaten ausgeben"
+msgstr "Output metadata"
+
+#: templates/admin_menu_files.php:710
+msgid ""
+"Du kannst eine Datei nicht nur als Button ausgeben sonder auch weitere "
+"Informationen zu diesem Download."
+msgstr ""
+"You can not only output a file as a button but also further information "
+"about this download."
+
+#: templates/admin_menu_files.php:715 templates/admin_menu_help.php:149
+#: templates/admin_menu_ziparchive.php:593
+msgid "Weitere Shortcodes"
+msgstr "More shortcodes"
+
+#: templates/admin_menu_files.php:716 templates/admin_menu_help.php:150
+#: templates/admin_menu_ziparchive.php:594
+msgid ""
+"Weitere Shortcode Optionen für die ausgabe erweiterter Metadaten findest du "
+"im Tab"
+msgstr ""
+"More shortcode options for outputting advanced metadata can be found in the "
+"tab"
+
+#: templates/admin_menu_files.php:716 templates/admin_menu_files.php:728
+#: templates/admin_menu_files.php:740 templates/admin_menu_help.php:34
+#: templates/admin_menu_help.php:150 templates/admin_menu_help.php:162
+#: templates/admin_menu_help.php:174 templates/admin_menu_ziparchive.php:594
+msgid "Experte"
+msgstr "Expert"
+
+#: templates/admin_menu_files.php:717 templates/admin_menu_files.php:729
+#: templates/admin_menu_files.php:741 templates/admin_menu_help.php:151
+#: templates/admin_menu_help.php:163 templates/admin_menu_help.php:175
+#: templates/admin_menu_ziparchive.php:595
+msgid "oder auf der"
+msgstr "or on the"
+
+#: templates/admin_menu_files.php:725 templates/admin_menu_help.php:159
+msgid ""
+"Wenn du eine Audiodatei wie zum Beispiel eine MP3-Datei hochlädst kannst du "
+"diese nicht nur als Download-Button anzeigen lassen sondern auch als "
+"Audioplayer."
+msgstr ""
+"If you upload an audio file, such as an MP3 file, you can not only show it "
+"as a download button, but also as an audio player."
+
+#: templates/admin_menu_files.php:726 templates/admin_menu_files.php:738
+#: templates/admin_menu_help.php:160 templates/admin_menu_help.php:172
+msgid "Dazu verwendest du diesen Shortcode:"
+msgstr "For this you use this shortcode:"
+
+#: templates/admin_menu_files.php:727 templates/admin_menu_help.php:161
+msgid ""
+"Der Shortcode für den Audioplayer wird auf der Datei-Detailseite automatisch "
+"angezeigt wenn es sich um eine Audiodatei handelt."
+msgstr ""
+"The audio player shortcode is automatically displayed on the file details "
+"page if it is an audio file."
+
+#: templates/admin_menu_files.php:728 templates/admin_menu_help.php:162
+msgid "Weitere Ausgabeoptionen für den Audioplayer findest du im Tab"
+msgstr "Other output options for the audio player can be found in the tab"
+
+#: templates/admin_menu_files.php:737 templates/admin_menu_help.php:171
+msgid ""
+"Wenn du eine Videodatei wie zum Beispiel eine MP4-Datei hochlädst kannst du "
+"diese nicht nur als Download-Button anzeigen lassen sondern auch als "
+"Videoplayer."
+msgstr ""
+"If you upload a video file, such as an MP4 file, you can not only display it "
+"as a download button but also as a video player."
+
+#: templates/admin_menu_files.php:739 templates/admin_menu_help.php:173
+msgid ""
+"Der Shortcode für den Videoplayer wird auf der Datei-Detailseite automatisch "
+"angezeigt wenn es sich um eine Videodatei handelt."
+msgstr ""
+"The video player shortcode is automatically displayed on the file details "
+"page if it is a video file."
+
+#: templates/admin_menu_files.php:740 templates/admin_menu_help.php:174
+msgid "Weitere Ausgabeoptionen für den Videoplayer findest du im Tab"
+msgstr "Other output options for the video player can be found in the tab"
+
+#: templates/admin_menu_files.php:749 templates/admin_menu_help.php:118
+msgid ""
+"Die Sichtbarkeitseinstellungen einer Datei hat nur Auswirkungen auf die "
+"Ausgabe dieser Datei, wenn diese Datei in einem Archiv verknüpft ist und du "
+"stellst die Sichtbarkeit der Datei auf \"Privat\", dann bleibt die Datei "
+"weiterhin im Archiv bestehen."
+msgstr ""
+"The visibility settings of a file only affect the output of this file, if "
+"this file is linked in an archive and you set the visibility of the file to "
+"\"Private\", then the file remains in the archive."
+
+#: templates/admin_menu_files.php:750 templates/admin_menu_help.php:119
+msgid ""
+"Ist die Datei auf \"Privat\" gestellt, dann kann die Datei nicht mehr "
+"heruntergeladen werden, auch wenn jemand die URL des Download-Buttons direkt "
+"aufruft."
+msgstr ""
+"If the file is set to \"Private\", the file can no longer be downloaded, "
+"even if someone calls the URL of the download button directly."
+
+#: templates/admin_menu_files.php:756 templates/admin_menu_ziparchive.php:623
+msgid "Weitere Hilfe"
+msgstr "Further help"
+
+#: templates/admin_menu_files.php:758 templates/admin_menu_ziparchive.php:625
+msgid ""
+"Weitere Hilfe und Dokumentation für spezielle Funktionen findest du hier"
+msgstr "Further help and documentation for special functions can be found here"
+
+#: templates/admin_menu_files.php:758 templates/admin_menu_ziparchive.php:625
+msgid "Hilfeseite - Experte"
+msgstr "Help page - expert"
+
+#: templates/admin_menu_files.php:759 templates/admin_menu_ziparchive.php:626
+msgid "Oder auf der"
+msgstr "Or on the"
+
+#: templates/admin_menu_files.php:799 templates/admin_menu_files.php:879
+msgid "Zeigt an in wie vielen Archiven die Datei verknüpft ist."
+msgstr "Shows in how many archives the file is linked."
+
+#: templates/admin_menu_files.php:801 templates/admin_menu_files.php:863
+#: templates/admin_menu_files.php:881
+msgid "Datei löschen"
+msgstr "Delete file"
+
+#: templates/admin_menu_files.php:829 templates/admin_menu_ziparchive.php:753
+msgid "Sichtbarkeit: Öffentlich"
+msgstr "Visibility: public"
+
+#: templates/admin_menu_files.php:831 templates/admin_menu_ziparchive.php:755
+msgid "Sichtbarkeit: Privat"
+msgstr "Visibility: private"
+
+#: templates/admin_menu_files.php:840 templates/admin_menu_ziparchive.php:340
+#: templates/admin_menu_ziparchive.php:699
+msgid "Download"
+msgstr "Download"
+
+#: templates/admin_menu_help.php:32
+msgid "Erste Schritte"
+msgstr "First steps"
+
+#: templates/admin_menu_help.php:33
+msgid "Fortgeschritten"
+msgstr "Advanced"
+
+#: templates/admin_menu_help.php:45
+msgid "Dateien hinzufügen"
+msgstr "Add files"
+
+#: templates/admin_menu_help.php:54
+msgid "Dateien ersetzen"
+msgstr "Replace files"
+
+#: templates/admin_menu_help.php:75 templates/admin_menu_ziparchive.php:553
+msgid "ZIP-Archiv anlegen"
+msgstr "Create ZIP archive"
+
+#: templates/admin_menu_help.php:77 templates/admin_menu_ziparchive.php:555
+msgid "Um ein ZIP-Archiv zu erstellen klicke im"
+msgstr "To create a ZIP archive click on"
+
+#: templates/admin_menu_help.php:78 templates/admin_menu_ziparchive.php:556
+msgid ""
+"Hier kannst du einen Namen, einen ZIP-Namen und sonstige Infos zum Archiv "
+"eintragen."
+msgstr ""
+"Here you can enter a name, a ZIP name and other information about the "
+"archive."
+
+#: templates/admin_menu_help.php:79 templates/admin_menu_ziparchive.php:557
+msgid ""
+"Um Dateien zum ZIP-Archiv hinzuzufügen wählst du im unteren Bereich bei "
+"\"Dateien verknüpfen\" aus deinen bereits hochgeladenen Dateien aus und "
+"klickst auf \"Speichern\"."
+msgstr ""
+"In order to add files to the ZIP archive you select in the lower area under "
+"\"Link files\" from your already uploaded files and click on \"Save\"."
+
+#: templates/admin_menu_help.php:85 templates/admin_menu_ziparchive.php:563
+msgid "Download-Button für Archiv mit Shortcode ausgeben"
+msgstr "Print download button for archive with shortcode"
+
+#: templates/admin_menu_help.php:87 templates/admin_menu_ziparchive.php:565
+msgid ""
+"Um ein Archiv als Button auf einer Seite oder Beitrag auszugeben klicke im"
+msgstr "To output an archive as a button on a page or post click on"
+
+#: templates/admin_menu_help.php:88 templates/admin_menu_ziparchive.php:566
+msgid "Hier siehst du eine Übersicht aller Archive die du erstellt hast."
+msgstr "Here you can see an overview of all archives you have created."
+
+#: templates/admin_menu_help.php:90 templates/admin_menu_ziparchive.php:568
+msgid "\"123\" ist die einzigartige ID des jeweiligen Archives."
+msgstr "\"123\" is the unique ID of the respective archive."
+
+#: templates/admin_menu_help.php:91 templates/admin_menu_ziparchive.php:569
+msgid ""
+"Du kannst auch auf den Namen klicken um mehr Details zu diesem Archiv zu "
+"bekommen, auf der Detailseite siehst du auch weitere Shortcodes die du "
+"verwendenden kannst."
+msgstr ""
+"You can also click on the name to get more details about this archive, on "
+"the detail page you can see more shortcodes that you can use."
+
+#: templates/admin_menu_help.php:115
+msgid ""
+"Mit dieser Option kannst du auf der Detailseite einer Datei oder eines "
+"Archives einstellen."
+msgstr "With this option you can set a file or archive on the detail page."
+
+#: templates/admin_menu_help.php:116
+msgid ""
+"Standardmäßig ist jede hinzugefügte Datei oder jedes erstellte Archiv auf "
+"\"Öffentlich\" gestellt."
+msgstr "By default, every added file or archive is set to \"Public\"."
+
+#: templates/admin_menu_help.php:117
+msgid "Sichtbarkeit von Dateien"
+msgstr "Visibility of files"
+
+#: templates/admin_menu_help.php:120
+msgid "Sichtbarkeit von Archiven"
+msgstr "Visibility of archives"
+
+#: templates/admin_menu_help.php:121 templates/admin_menu_ziparchive.php:616
+msgid ""
+"Die Sichtbarkeitseinstellung eines Archives bestimmt ob ein Button oder "
+"sonstige Informationen im Frontend angezeigt werden."
+msgstr ""
+"The visibility setting of an archive determines whether a button or other "
+"information is displayed in the front end."
+
+#: templates/admin_menu_help.php:122 templates/admin_menu_ziparchive.php:617
+msgid ""
+"Ist das Archiv auf \"Privat\" gestellt, dann kann das Archiv nicht mehr "
+"heruntergeladen werden, auch wenn jemand die URL des Download-Buttons direkt "
+"aufruft."
+msgstr ""
+"If the archive is set to \"Private\", the archive can no longer be "
+"downloaded, even if someone calls the URL of the download button directly."
+
+#: templates/admin_menu_help.php:130
+msgid ""
+"Das Dashboard zeigt dir alle wichtigen Informationen über deine Downloads."
+msgstr ""
+"The dashboard shows you all the important information about your downloads."
+
+#: templates/admin_menu_help.php:132
+msgid ""
+"Hier siehst du die Gesamte Anzahl an Datei und Archiv Downloads und die "
+"Downloads der letzten Zeit 30 Tage, 7 Tage und 24 Stunden."
+msgstr ""
+"Here you can see the total number of file and archive downloads and the "
+"latest downloads 30 days, 7 days and 24 hours."
+
+#: templates/admin_menu_help.php:134
+msgid ""
+"Dieser Bereich ist in Archive und Dateien aufgeteilt und zeigt dir die "
+"letzten Downloads mit Namen, Zeit und Datum."
+msgstr ""
+"This area is divided into archives and files and shows you the last "
+"downloads with name, time and date."
+
+#: templates/admin_menu_help.php:136
+msgid ""
+"Dieser Bereich ist auch in Archive und Dateien aufgeteilt und zeigt dir die "
+"fünf beliebtesten Downloads."
+msgstr ""
+"This section is also divided into archives and files and shows you the five "
+"most popular downloads."
+
+#: templates/admin_menu_help.php:144
+msgid ""
+"Du kannst eine Datei oder Archiv nicht nur als Button ausgeben sonder auch "
+"weitere Informationen zu diesem Download."
+msgstr ""
+"You can not just print a file or archive as a button but also more "
+"information about this download."
+
+#: templates/admin_menu_help.php:185
+msgid "Hashwert von Datei mit Shortcode ausgeben"
+msgstr "Output hash value of file with shortcode"
+
+#: templates/admin_menu_help.php:187 templates/admin_menu_ziparchive.php:603
+msgid "MD5"
+msgstr "MD5"
+
+#: templates/admin_menu_help.php:188 templates/admin_menu_ziparchive.php:604
+msgid ""
+"Du kannst den MD5 Hashwert einer Datei oder eines ZIP-Archives ausgeben."
+msgstr "You can output the MD5 hash value of a file or ZIP archive."
+
+#: templates/admin_menu_help.php:190 templates/admin_menu_ziparchive.php:606
+msgid "SHA1"
+msgstr "SHA1"
+
+#: templates/admin_menu_help.php:191 templates/admin_menu_ziparchive.php:607
+msgid ""
+"Du kannst den SHA1 Hashwert einer Datei oder eines ZIP-Archives ausgeben."
+msgstr "You can output the SHA1 hash value of a file or a ZIP archive."
+
+#: templates/admin_menu_help.php:198
+msgid "Alle Optionen des Audioplayer"
+msgstr "All options of the audio player"
+
+#: templates/admin_menu_help.php:200 templates/admin_menu_help.php:222
+msgid "Autoplay"
+msgstr "Autoplay"
+
+#: templates/admin_menu_help.php:202
+msgid ""
+"Die Option \"autoplay\" gibt an ob der Audioplayer beim Aufruf der Seite "
+"automatisch starten soll oder nicht. Standardmäßig ist diese Funktion "
+"deaktiviert wenn die Option \"autoplay\" nicht angegeben wird."
+msgstr ""
+"The option \"autoplay\" indicates whether the audio player should start "
+"automatically when the page is called or not. By default, this feature is "
+"disabled if the autoplay option is not specified."
+
+#: templates/admin_menu_help.php:203 templates/admin_menu_help.php:225
+msgid "Dauerschleife"
+msgstr "Continuous loop"
+
+#: templates/admin_menu_help.php:205
+msgid ""
+"Wenn die Option \"loop\" auf \"on\" gestellt wird, dann läuft die Audiodatei "
+"in einer Dauerschleife ab. Standardmäßig ist diese Option deaktiviert."
+msgstr ""
+"If the option \"loop\" is set to \"on\", then the audio file runs in a "
+"continuous loop. By default, this option is disabled."
+
+#: templates/admin_menu_help.php:206 templates/admin_menu_help.php:228
+msgid "Kontrollen deaktivieren"
+msgstr "Disable controls"
+
+#: templates/admin_menu_help.php:208
+msgid ""
+"Die Option \"controls\" ist standardmäßig aktiviert, wenn diese Option auf "
+"\"off\" gestellt wird, dann wird kein Player angezeigt. In Verbindung mit "
+"der Option \"autoplay\" kann so eine Audiodatei automatisch abgespielt "
+"werden ohne einen sichtbaren Player, das ist aber für die "
+"Benutzerfreundlichkeit nicht zu empfehlen."
+msgstr ""
+"The \"controls\" option is enabled by default, if this option is set to \"off"
+"\" then no player will be displayed. In conjunction with the \"autoplay\" "
+"option, an audio file can be played automatically without a visible player, "
+"but this is not recommended for user-friendliness."
+
+#: templates/admin_menu_help.php:210 templates/admin_menu_help.php:232
+msgid ""
+"Natürlich können alle Optionen auch kombiniert werden, das sieht dann so aus:"
+msgstr "Of course, all options can also be combined, which looks like this:"
+
+#: templates/admin_menu_help.php:217
+msgid "Alle Optionen des Videoplayer"
+msgstr "All options of the video player"
+
+#: templates/admin_menu_help.php:219
+msgid "Breite angeben"
+msgstr "Specify width"
+
+#: templates/admin_menu_help.php:221
+msgid ""
+"Die Option \"w\" ist optional mit der du die Breite des Videos in Form von "
+"\"%\" oder \"px\" angeben kannst. Standardmäßig ist eine Breite von \"100%\" "
+"eingestellt wenn die Option \"w\" nicht angegeben wird."
+msgstr ""
+"The option \"w\" is optional with which you can specify the width of the "
+"video in the form of \"%\" or \"px\". By default, a width of \"100%\" is set "
+"if the option \"w\" is not specified."
+
+#: templates/admin_menu_help.php:224
+msgid ""
+"Die Option \"autoplay\" gibt an ob das Video beim Aufruf der Seite "
+"automatisch starten soll oder nicht. Standardmäßig ist diese Funktion "
+"deaktiviert wenn die Option \"autoplay\" nicht angegeben wird."
+msgstr ""
+"The option \"autoplay\" indicates whether the video should start "
+"automatically when the page is called or not. By default, this feature is "
+"disabled if the autoplay option is not specified."
+
+#: templates/admin_menu_help.php:227
+msgid ""
+"Wenn die Option \"loop\" auf \"on\" gestellt wird, dann läuft das Video in "
+"einer Dauerschleife ab. Standardmäßig ist diese Option deaktiviert."
+msgstr ""
+"If the option \"loop\" is set to \"on\", then the video runs in a continuous "
+"loop. By default, this option is disabled."
+
+#: templates/admin_menu_help.php:230
+msgid ""
+"Die Option \"controls\" ist standardmäßig aktiviert, wenn diese Option auf "
+"\"off\" gestellt wird, dann werden keine Kontrollelemente wie Play, Pause, "
+"Lautstärke, Vollbild, Zeitleiste oder weitere Optionen beim Video angezeigt. "
+"In Verbindung mit der Option autoplay kann so eine Videodatei automatisch "
+"abgespielt werden ohne eine Möglichkeit das Video zu stoppen, das ist aber "
+"für die Benutzerfreundlichkeit nicht zu empfehlen."
+msgstr ""
+"The \"controls\" option is enabled by default, if this option is set to \"off"
+"\", then no controls such as play, pause, volume, full screen, timeline, or "
+"other video options are displayed. In conjunction with the autoplay option, "
+"such a video file can be played automatically without any possibility to "
+"stop the video, but this is not recommended for usability."
+
+#: templates/admin_menu_help.php:239
+msgid "Einzelnen Audioplayer und Videoplayer mit CSS und JavaScript steuern"
+msgstr "Control individual audio and video players with CSS and JavaScript"
+
+#: templates/admin_menu_help.php:241
+msgid ""
+"Um einen Audioplayer mit Hilfe von CSS und JavaScript zu steuern besitzt "
+"jedes HTML Audio-Element eine individuelle ID, diese setzt sich aus zdmAudio "
+"und der ID der Datei zusammen."
+msgstr ""
+"In order to control an audio player using CSS and JavaScript, each HTML "
+"audio element has an individual ID, which is made up of zdmAudio and the ID "
+"of the file."
+
+#: templates/admin_menu_help.php:243
+msgid ""
+"Um einen Videoplayer mit Hilfe von CSS und JavaScript zu steuern besitzt "
+"jedes HTML Video-Element eine individuelle ID, diese setzt sich aus zdmVideo "
+"und der ID der Datei zusammen."
+msgstr ""
+"To control a video player using CSS and JavaScript, each HTML video element "
+"has an individual ID, which is made up of zdmVideo and the ID of the file."
+
+#: templates/admin_menu_help.php:250
+msgid ""
+"Alle Audioplayer, Videoplayer und Buttons mit CSS und JavaScript steuern"
+msgstr ""
+"Control all audio players, video players and buttons with CSS and JavaScript"
+
+#: templates/admin_menu_help.php:252
+msgid ""
+"Um alle Audioplayer mit Hilfe von CSS und JavaScript zu steuern besitzt "
+"jedes HTML Audio-Element eine Klassenbezeichnung, diese sieht wie folgt aus:"
+msgstr ""
+"To control all audio players using CSS and JavaScript, each HTML audio "
+"element has a class name, which looks like this:"
+
+#: templates/admin_menu_help.php:254
+msgid ""
+"Um alle Videoplayer mit Hilfe von CSS und JavaScript zu steuern besitzt "
+"jedes HTML Video-Element eine Klassenbezeichnung, diese sieht wie folgt aus:"
+msgstr ""
+"In order to control all video players using CSS and JavaScript, each HTML "
+"video element has a class name, which looks like this:"
+
+#: templates/admin_menu_help.php:256
+msgid ""
+"Um alle Buttons mit Hilfe von CSS und JavaScript zu steuern besitzt jedes "
+"HTML Video-Element eine Klassenbezeichnung, diese sieht wie folgt aus:"
+msgstr ""
+"In order to control all buttons with the help of CSS and JavaScript, each "
+"HTML video element has a class name, which looks like this:"
+
+#: templates/admin_menu_help.php:263
+msgid "IP Adresse Anonymität"
+msgstr "IP address anonymity"
+
+#: templates/admin_menu_help.php:265
+msgid ""
+"Die IP Adresse der Webseitenbesucher die über dieses Plugin etwas "
+"herunterladen ist standardmäßig anonymisiert."
+msgstr ""
+"The IP address of the website visitors who download something via this "
+"plugin is anonymized by default."
+
+#: templates/admin_menu_help.php:266
+msgid ""
+"Um diese Einstellung zu ändern und die IP Adresse vollständig zu tracken "
+"klicke im"
+msgstr ""
+"To change this setting and to completely track the IP address, click on"
+
+#: templates/admin_menu_settings.php:142
+msgid "Einstellungen aktualisiert!"
+msgstr "Updated settings!"
+
+#: templates/admin_menu_settings.php:164
+msgid "Die Einstellungen wurden erfolgreich zurückgesetzt!"
+msgstr "The settings were reset successfully!"
+
+#: templates/admin_menu_settings.php:165 templates/admin_menu_settings.php:176
+msgid "Zurück zu den Einstellungen"
+msgstr "Back to the settings"
+
+#: templates/admin_menu_settings.php:173
+msgid "Alle Daten wurden erfolgreich gelöscht!"
+msgstr "All data was deleted successfully!"
+
+#: templates/admin_menu_settings.php:174
+msgid ""
+"Alle deine hochgeladenen Dateien, alle Archive im Cache und alle "
+"Datenbankeinträge von"
+msgstr ""
+"All your uploaded files, all archives in the cache and all database entries "
+"from"
+
+#: templates/admin_menu_settings.php:174
+msgid "wurden unwiderruflich gelöscht."
+msgstr "have been irrevocably deleted."
+
+#: templates/admin_menu_settings.php:175
+msgid ""
+"Du kannst jetzt das Plugin in der Plugin-Übersicht deaktivieren und "
+"deinstallieren oder du lädst neue Dateien hoch und beginnst ganz frisch."
+msgstr ""
+"You can now deactivate and uninstall the plugin in the plugin overview or "
+"you upload new files and start fresh."
+
+#: templates/admin_menu_settings.php:184
+msgid "ist aktiviert"
+msgstr "is activated"
+
+#: templates/admin_menu_settings.php:189
+msgid "Schlüssel"
+msgstr "Key"
+
+#: templates/admin_menu_settings.php:191
+msgid "Lizenz aktualisieren"
+msgstr "Update license"
+
+#: templates/admin_menu_settings.php:193
+msgid "Profitiere von den"
+msgstr "Benefit from the"
+
+#: templates/admin_menu_settings.php:193
+msgid "Funktionen und schalte alle Möglichkeiten von"
+msgstr "Functions and unlock all possibilities"
+
+#: templates/admin_menu_settings.php:193
+msgid "frei, mehr Infos"
+msgstr "free, more info"
+
+#: templates/admin_menu_settings.php:199
+msgid "Lizensiert für"
+msgstr "Licensed to"
+
+#: templates/admin_menu_settings.php:205
+msgid "Erworben"
+msgstr "Acquired"
+
+#: templates/admin_menu_settings.php:226
+msgid "Standardtext"
+msgstr "Standard text"
+
+#: templates/admin_menu_settings.php:230
+msgid ""
+"Das ist der Standardtext, dieser kann aber je Download individuell geändert "
+"werden."
+msgstr ""
+"This is the default text, but this can be changed individually per download."
+
+#: templates/admin_menu_settings.php:234
+msgid "Style"
+msgstr "Style"
+
+#: templates/admin_menu_settings.php:253
+msgid "Wähle aus verschiedenen Button-Farben den Standardwert für Buttons."
+msgstr "Choose from different button colors the default value for buttons."
+
+#: templates/admin_menu_settings.php:260
+msgid "Outline"
+msgstr "Outline"
+
+#: templates/admin_menu_settings.php:262
+msgid "Diese Option zeigt den Button als Rahmen."
+msgstr "This option shows the button as a frame."
+
+#: templates/admin_menu_settings.php:266
+msgid "Runde Ecken"
+msgstr "Round corners"
+
+#: templates/admin_menu_settings.php:282
+msgid ""
+"Wenn \"keine\" ausgewählt ist, dann wird der Standardwert deines Themes "
+"verwendet, der Button bleibt eckig."
+msgstr ""
+"If \"none\" is selected then the default value of your theme will be used, "
+"the button will remain square."
+
+#: templates/admin_menu_settings.php:286
+msgid "Icon"
+msgstr "Icon"
+
+#: templates/admin_menu_settings.php:302
+msgid "Hier sind die verfügbaren Icons:"
+msgstr "Here are the available icons:"
+
+#: templates/admin_menu_settings.php:319
+msgid "Nur Icon"
+msgstr "Icon only"
+
+#: templates/admin_menu_settings.php:321
+msgid "Diese Option zeigt nur das Icon ohne Text an."
+msgstr "This option displays only the icon without text."
+
+#: templates/admin_menu_settings.php:331
+msgid "Erweitert"
+msgstr "Extended"
+
+#: templates/admin_menu_settings.php:336
+msgid "Direkte URL zu PDF"
+msgstr "Direct URL to PDF"
+
+#: templates/admin_menu_settings.php:339
+msgid "Öffnet PDF-Dateien direkt im Browser."
+msgstr "Opens PDF files directly in the browser."
+
+#: templates/admin_menu_settings.php:340
+msgid ""
+"Während diese Option aktiviert ist wird keine Statistik für PDF-Dateien "
+"gespeichert."
+msgstr "No statistics are saved for PDF files while this option is activated."
+
+#: templates/admin_menu_settings.php:344
+msgid "IP-Adresse zensieren"
+msgstr "Censor the IP address"
+
+#: templates/admin_menu_settings.php:347
+msgid "Zensiert die IP-Adresse beim Download."
+msgstr "Censored the IP address during the download."
+
+#: templates/admin_menu_settings.php:353
+msgid "Log anzeigen"
+msgstr "Show log"
+
+#: templates/admin_menu_settings.php:357 templates/admin_menu_settings.php:359
+msgid "Einstellungen zurücksetzen"
+msgstr "Reset settings"
+
+#: templates/admin_menu_settings.php:360
+msgid "Hier kannst du alle Einstellungen auf Werkseinstellungen zurücksetzen."
+msgstr "Here you can reset all settings to factory settings."
+
+#: templates/admin_menu_settings.php:361
+msgid ""
+"Das bedeutet, die Premium Lizenz, die Buttoneinstellungen wie Standardtext, "
+"Style, Runde Ecken, Icons und alle anderen Einstellungen werden "
+"zurückgesetzt."
+msgstr ""
+"This means that the premium license, button settings such as standard text, "
+"style, round corners, icons and all other settings are reset."
+
+#: templates/admin_menu_settings.php:371
+msgid "deinstallieren"
+msgstr "uninstall"
+
+#: templates/admin_menu_settings.php:373
+msgid "Pfad von Z-Downloads-Upload-Ordner für Dateien, ZIP-Archive und Cache:"
+msgstr "Path of Z-Downloads upload folder for Files, ZIP archives, and cache:"
+
+#: templates/admin_menu_settings.php:376
+msgid "Achtung vor dem deinstallieren des Plugins"
+msgstr "Attention before uninstalling the plugin"
+
+#: templates/admin_menu_settings.php:377
+msgid ""
+"Wenn du das Z-Downloads-Plugin deinstallierst bleiben alle Dateien und ZIP-"
+"Archive im oben genannten Pfad bestehen, wenn du alle Dateien und ZIP-"
+"Archive die du erstellt hast löschen willst, dann klicke unten auf \"LÖSCHEN"
+"\""
+msgstr ""
+"If you uninstall the Z-Downloads-Plugin all files and ZIP-archives remain in "
+"the above path, if you want to delete all files and ZIP-archives you have "
+"created, then click on \"DELETE\" below"
+
+#: templates/admin_menu_settings.php:378
+msgid ""
+"Dieser Vorgang ist unwiederuflich und kann nicht rückgängig gemacht werden."
+msgstr "This process is irreplaceable and can not be undone."
+
+#: templates/admin_menu_settings.php:381
+msgid "LÖSCHEN"
+msgstr "DELETE"
+
+#: templates/admin_menu_ziparchive.php:58
+msgid "Cache aktualisiert!"
+msgstr "Cache updated!"
+
+#: templates/admin_menu_ziparchive.php:91
+msgid "Datei entfernt!"
+msgstr "File removed!"
+
+#: templates/admin_menu_ziparchive.php:208
+msgid "Name und ZIP-Datei Name darf nicht leer sein."
+msgstr "Name and ZIP file name can not be empty."
+
+#: templates/admin_menu_ziparchive.php:256
+msgid "Archiv gelöscht!"
+msgstr "Archive deleted!"
+
+#: templates/admin_menu_ziparchive.php:307
+msgid "Archiv"
+msgstr "Archive"
+
+#: templates/admin_menu_ziparchive.php:323
+msgid "Archiv Informationen"
+msgstr "Archive information"
+
+#: templates/admin_menu_ziparchive.php:342
+msgid "ZIP-Archiv herunterladen:"
+msgstr "Download ZIP Archive:"
+
+#: templates/admin_menu_ziparchive.php:352
+msgid ""
+"Dieser Name wird in der Archivliste angezeigt und dient dir als Orientierung."
+msgstr "This name is displayed in the archive list and serves as a guide."
+
+#: templates/admin_menu_ziparchive.php:356
+msgid "ZIP-Datei Name"
+msgstr "ZIP file name"
+
+#: templates/admin_menu_ziparchive.php:359
+msgid ""
+"Dieser Name wird als Dateiname für die ZIP-Datei verwendet wie zum Beispiel"
+msgstr "This name is used as the file name for the ZIP file such as"
+
+#: templates/admin_menu_ziparchive.php:360
+msgid "Leerzeichen werden automatisch in Bindestriche umgewandelt."
+msgstr "Spaces are automatically converted to hyphens."
+
+#: templates/admin_menu_ziparchive.php:374
+msgid "Beschreibung"
+msgstr "Description"
+
+#: templates/admin_menu_ziparchive.php:394
+msgid "Der Cache muss aktualisiert werden für diese Information."
+msgstr "The cache needs to be updated for this information."
+
+#: templates/admin_menu_ziparchive.php:401
+#: templates/admin_menu_ziparchive.php:667
+#: templates/admin_menu_ziparchive.php:778
+msgid "Cache"
+msgstr "Cache"
+
+#: templates/admin_menu_ziparchive.php:405
+msgid "Cache ist aktuell"
+msgstr "Cache up-to-date"
+
+#: templates/admin_menu_ziparchive.php:408
+#: templates/admin_menu_ziparchive.php:742
+msgid "Cache aktualisieren"
+msgstr "Update cache"
+
+#: templates/admin_menu_ziparchive.php:409
+msgid ""
+"Die manuelle aktualisierung des Cache ist optional. Du musst den Cache nicht "
+"manuell aktualisieren, dieser wird automatisch aktualisiert sobald diese ZIP-"
+"Datei als Download angefordert wird."
+msgstr ""
+"Updating the cache manually is optional. You do not have to update the cache "
+"manually, it will be updated automatically as soon as this ZIP file is "
+"requested for download."
+
+#: templates/admin_menu_ziparchive.php:410
+msgid ""
+"Mit dem Klick auf \"Cache aktualisieren\" wird eine ZIP-Datei mit den "
+"verknüpften Dateien angelegt."
+msgstr ""
+"By clicking on \"Update cache\" a ZIP file with the linked files is created."
+
+#: templates/admin_menu_ziparchive.php:417
+msgid "Verknüpfte Dateien"
+msgstr "Linked files"
+
+#: templates/admin_menu_ziparchive.php:424
+msgid ""
+"Wenn keine Datei zugewiesen ist, dann wird kein Download-Button im Frontend "
+"angezeigt."
+msgstr ""
+"If no file is assigned, then no download button is displayed in the frontend."
+
+#: templates/admin_menu_ziparchive.php:440
+msgid "Datei aus Archiv entfernen"
+msgstr "Remove file from archive"
+
+#: templates/admin_menu_ziparchive.php:588
+msgid ""
+"Du kannst ein Archiv nicht nur als Button ausgeben sonder auch weitere "
+"Informationen zu diesem Download."
+msgstr ""
+"You can not only output an archive as a button but also further information "
+"about this download."
+
+#: templates/admin_menu_ziparchive.php:601
+msgid "Hashwert von ZIP-Datei mit Shortcode ausgeben"
+msgstr "Output hash value of ZIP file with shortcode"
+
+#: templates/admin_menu_ziparchive.php:651
+msgid "ZIP-Archive"
+msgstr "ZIP archives"
+
+#: templates/admin_menu_ziparchive.php:669
+#: templates/admin_menu_ziparchive.php:761
+#: templates/admin_menu_ziparchive.php:780
+msgid "Archiv löschen"
+msgstr "Delete archive"
+
+#: templates/admin_menu_ziparchive.php:701
+msgid "Aktualisiere den Cache der Datei um diese herunterzuladen"
+msgstr "Update the cache of the file to download it"
+
+#: templates/admin_menu_ziparchive.php:704
+#: templates/admin_menu_ziparchive.php:721
+#: templates/admin_menu_ziparchive.php:745
+msgid "Es sind keine Dateien mit dem Archiv verknüpft."
+msgstr "No files are linked to the archive."
+
+#~ msgid "Datei bearbeiten"
+#~ msgstr "Edit file"
+
+#~ msgid "Archiv bearbeiten"
+#~ msgstr "Edit archive"
+
+#~ msgid "Status:"
+#~ msgstr "Status:"
+
+#~ msgid "erfolgreich hochgeladen."
+#~ msgstr "successfully uploaded."
+
+#~ msgid "Diese Datei wurde schon einmal hochgeladen und existiert jetzt"
+#~ msgstr "This file has been uploaded once and exists now"
+
+#~ msgid "mal"
+#~ msgstr "times"
+
+#~ msgid "Name:"
+#~ msgstr "Name:"
+
+#~ msgid ""
+#~ "Wenn kein Name eingegeben wird, wird automatisch der Dateiname verwendet."
+#~ msgstr "If no name is entered, the file name will be used automatically."
+
+#~ msgid "wurde gelöscht."
+#~ msgstr "was deleted."
+
+#~ msgid "Datei wurde erfolgreich aktualisiert."
+#~ msgstr "File was updated successfully."
+
+#~ msgid "Count"
+#~ msgstr "Count"
+
+#~ msgid "Allgemein"
+#~ msgstr "General"
+
+#~ msgid "Download-Button Standardtext"
+#~ msgstr "Download button standard text"
+
+#~ msgid "Download-Button Style"
+#~ msgstr "Download button style"
+
+#~ msgid "Download-Button runde Ecken:"
+#~ msgstr "Download button round corners:"
+
+#~ msgid "Hashwert ausgeben, nur für "
+#~ msgstr "Output hash value, only for "
+
+#~ msgid "Hashwert ausgeben"
+#~ msgstr "Output hash value"
+
+#~ msgid "Standardtext für den Download-Button ist"
+#~ msgstr "Default text for the download button is"
+
+#~ msgid "für einen Benutzerdefinierten Text"
+#~ msgstr "for a custom text"
+
+#~ msgid "aktiviere"
+#~ msgstr "activate"
+
+#~ msgid "Archive:"
+#~ msgstr "Archives:"
+
+#~ msgid "Dateien:"
+#~ msgstr "Files:"
+
+#~ msgid "Alle Informationen und Hilfeseiten über"
+#~ msgstr "All information and help pages About"
+
+#~ msgid " findest du auf der Webseite:"
+#~ msgstr " you can find on the website:"
+
+#~ msgid "Gibt die Anzahl an Downloads aus (nur in"
+#~ msgstr "Returns the number of downloads (only in"
+
+#~ msgid "verfügbar"
+#~ msgstr "available"
+
+#~ msgid "Gibt die Dateigröße aus (nur in"
+#~ msgstr "Returns the file size (only in"
+
+#~ msgid "Dateigröße:"
+#~ msgstr "File size:"
+
+#~ msgid "Shortcode:"
+#~ msgstr "Shortcode:"
+
+#~ msgid "Cache:"
+#~ msgstr "Cache:"
+
+#~ msgid "Cache-Datei aktualisieren"
+#~ msgstr "Update cache file"
+
+#~ msgid ""
+#~ "Beispiel:</b> <code>mein-neuer-download</code> oder "
+#~ "<code>mein_neuer_download</code>"
+#~ msgstr ""
+#~ "Example:</b> <code>my-new-download</code> or <code>my_new_download</code>"
+
+#~ msgid "\", für einen Benutzerdefinierten Text "
+#~ msgstr "\", for a custom text "
+
+#~ msgid "aktiviere "
+#~ msgstr "activate "
+
+#, fuzzy
+#~| msgid "Downloads"
+#~ msgid ">Downloads"
+#~ msgstr "Downloads"
