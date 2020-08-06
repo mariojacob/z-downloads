@@ -84,6 +84,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         $zdm_options['file-open-in-browser-pdf'] = trim(sanitize_text_field($_POST['file-open-in-browser-pdf']));
         // IP-Adresse zensieren
         $zdm_options['secure-ip'] = trim(sanitize_text_field($_POST['secure-ip']));
+        // Datei-Duplikate zulassen
+        $zdm_options['duplicate-file'] = trim(sanitize_text_field($_POST['duplicate-file']));
 
         // Update Optionen
         if (add_option('zdm_options', $zdm_options) === FALSE) {
@@ -345,6 +347,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <td valign="middle">
                                         <input type="checkbox" name="secure-ip" <?php if($zdm_options['secure-ip'] == 'on'){ echo 'checked="checked"'; } ?> >
                                         <?=esc_html__('Zensiert die IP-Adresse beim Download.', 'zdm')?>
+                                    </td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?=esc_html__('Duplikate zulassen', 'zdm')?>:</th>
+                                    <td valign="middle">
+                                        <input type="checkbox" name="duplicate-file" <?php if($zdm_options['duplicate-file'] == 'on'){ echo 'checked="checked"'; } ?> >
+                                        <?=esc_html__('Zulassen, dass bereits hochgeladene Dateien nochmals hinzugefügt werden.', 'zdm')?>
                                     </td>
                                 </tr>
                                 <tr valign="top">

@@ -29,6 +29,7 @@ define('ZDM__OPTIONS', [
     'download-btn-icon-only'        => '',
     'download-btn-css'              => '',
     'secure-ip'                     => 'on',
+    'duplicate-file'                => '',
     'file-open-in-browser-pdf'      => ''
 ]);
 

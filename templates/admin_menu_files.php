@@ -33,67 +33,83 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     // Datei hinzufügen
     //////////////////////////////////////////////////
     if (isset($_FILES['file']) && wp_verify_nonce($_POST['nonce'], 'datei-hochladen') && $_FILES['file']['name'] != '') {
-        
-        $zdm_file = array();
-        $zdm_file['name'] = sanitize_file_name($_FILES['file']['name']);
-        $zdm_file['type'] = $_FILES['file']['type'];
-        $zdm_file['size'] = ZDMCore::file_size_convert(sanitize_file_name($_FILES['file']['size']));
 
-        // Ordnername erstellen
-        $zdm_file['folder'] = md5(time() . $zdm_file['name']);
-
-        // Ordner erstellen
-        if (!is_dir($zdm_file['folder'])) {
-            wp_mkdir_p(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder']);
+        if ($zdm_options['duplicate-file'] != 'on') {
+            // MD5-Hash von hochgeladener Datei erzeugen
+            $zdm_uploaded_file_hash = md5_file($_FILES['file']['tmp_name']);
         }
 
-        $zdm_file_path = ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . $zdm_file['name'];
+        // Datei auf Duplikat prüfen
+        if ($zdm_options['duplicate-file'] != 'on' && in_array($zdm_uploaded_file_hash, ZDMCore::get_files_md5())) {
 
-        // Datei abspeichern
-        move_uploaded_file($_FILES['file']['tmp_name'], $zdm_file_path);
+            // Datei wurde bereits hochgeladen
 
-        // index.php in Ordner kopieren
-        copy('index.php', ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . 'index.php');
+            $zdm_status = 3;
+        } else {
 
-        // MD5 aus Datei
-        $zdm_file['md5'] = md5_file($zdm_file_path);
+            // Datei wurde noch nicht hochgeladen
+        
+            $zdm_file = array();
+            $zdm_file['name'] = sanitize_file_name($_FILES['file']['name']);
+            $zdm_file['type'] = $_FILES['file']['type'];
+            $zdm_file['size'] = ZDMCore::file_size_convert(sanitize_file_name($_FILES['file']['size']));
 
-        // SHA1 aus Datei
-        $zdm_file['sha1'] = sha1_file($zdm_file_path);
+            // Ordnername erstellen
+            $zdm_file['folder'] = md5(time() . $zdm_file['name']);
 
-        // Dateipfad in DB speichern
-        $wpdb->insert(
-            $zdm_tablename_files, 
-            array(
-                'name'          => $zdm_file['name'],
-                'hash_md5'      => $zdm_file['md5'],
-                'hash_sha1'     => $zdm_file['sha1'],
-                'folder_path'   => $zdm_file['folder'],
-                'file_name'     => $zdm_file['name'],
-                'file_type'     => $zdm_file['type'],
-                'file_size'     => $zdm_file['size'],
-                'time_create'   => $zdm_time
-            )
-        );
+            // Ordner erstellen
+            if (!is_dir($zdm_file['folder'])) {
+                wp_mkdir_p(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder']);
+            }
 
-        // Log
-        ZDMCore::log('add file', $zdm_file_path);
+            $zdm_file_path = ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . $zdm_file['name'];
 
-        $zdm_folder_path = $zdm_file['folder'];
+            // Datei abspeichern
+            move_uploaded_file($_FILES['file']['tmp_name'], $zdm_file_path);
 
-        // ID aus DB holen
-        $zdm_db_file = $wpdb->get_results( 
-            "
-            SELECT id 
-            FROM $zdm_tablename_files 
-            WHERE folder_path = '$zdm_folder_path'
-            "
-        );
+            // index.php in Ordner kopieren
+            copy('index.php', ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . 'index.php');
 
-        // Datei ID festlegen
-        $zdm_file_id = $zdm_db_file[0]->id;
+            // MD5 aus Datei
+            $zdm_file['md5'] = md5_file($zdm_file_path);
 
-        $zdm_status = 1;
+            // SHA1 aus Datei
+            $zdm_file['sha1'] = sha1_file($zdm_file_path);
+
+            // Dateipfad in DB speichern
+            $wpdb->insert(
+                $zdm_tablename_files, 
+                array(
+                    'name'          => $zdm_file['name'],
+                    'hash_md5'      => $zdm_file['md5'],
+                    'hash_sha1'     => $zdm_file['sha1'],
+                    'folder_path'   => $zdm_file['folder'],
+                    'file_name'     => $zdm_file['name'],
+                    'file_type'     => $zdm_file['type'],
+                    'file_size'     => $zdm_file['size'],
+                    'time_create'   => $zdm_time
+                )
+            );
+
+            // Log
+            ZDMCore::log('add file', $zdm_file_path);
+
+            $zdm_folder_path = $zdm_file['folder'];
+
+            // ID aus DB holen
+            $zdm_db_file = $wpdb->get_results( 
+                "
+                SELECT id 
+                FROM $zdm_tablename_files 
+                WHERE folder_path = '$zdm_folder_path'
+                "
+            );
+
+            // Datei ID festlegen
+            $zdm_file_id = $zdm_db_file[0]->id;
+
+            $zdm_status = 1;
+        }
     } elseif (isset($_GET['id']) OR isset($_POST['update']) OR isset($_POST['delete'])) {
 
         $zdm_status = 1;
@@ -894,8 +910,19 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <br>
             <a class="alignright button" href="javascript:void(0);" onclick="window.scrollTo(0,0);" style="margin:3px 0 0 30px;"><?=esc_html__('Nach oben', 'zdm')?></a>
         </div>
-
-<?php
+        <?php
+    } elseif ($zdm_status === 3) {
+        ?>
+        <div class="wrap">
+            <h1 class="wp-heading-inline"><?=esc_html__('Diese Datei wurde bereits hochgeladen', 'zdm')?></h1>
+            <p><?=esc_html__('Die Datei wurde nicht hinzugefügt, da diese bereits hochgeladen wurde.', 'zdm')?></p>
+            <p><?=esc_html__('Du kannst in den Einstellungen "Duplikate zulassen" aktivieren, dann kannst du Dateien auch mehrfach hochladen.', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-settings"><?=esc_html__('Zu den Einstellungen', 'zdm')?></a></p>
+            <br />
+            <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="button button-primary"><?=esc_html__('Neue Datei hochladen', 'zdm')?></a>
+            &nbsp;&nbsp;
+            <a href="admin.php?page=<?=ZDM__SLUG?>-files" class="button button-secondary"><?=esc_html__('Dateien Übersicht', 'zdm')?></a>
+        </div>
+        <?php
     }
 }
 ?>

@@ -1078,6 +1078,31 @@ class ZDMCore {
     }
 
     /**
+     * Gibt Array mit MD5-Hashes aller Dateien zurück
+     *
+     * @return array
+     */
+    public function get_files_md5() {
+        global $wpdb;
+
+        $tablename_files = $wpdb->prefix . "zdm_files";
+
+        // Daten aus DB files holen
+        $db_files_md5 = $wpdb->get_results(
+            "
+            SELECT hash_md5 
+            FROM $tablename_files
+            "
+            );
+        
+        for ($i=0; $i < count($db_files_md5); $i++) { 
+            $files_md5[] = $db_files_md5[$i]->hash_md5;
+        }
+
+        return $files_md5;
+    }
+
+    /**
      * Gibt Name von Datei zurück
      * 
      * @param int $file_id ID der Datei
