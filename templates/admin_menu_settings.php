@@ -36,6 +36,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             $zdm_options = get_option('zdm_options');
         } else {
+            // Lizenz-Schlüssel entfernen
+
             $zdm_options['licence-key'] = '';
 
             if (add_option('zdm_options', $zdm_options) === FALSE) {
@@ -50,6 +52,17 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         // Log
         ZDMCore::log('update licence');
+    }
+
+    // Lizenz-Schlüssel entfernen
+    if (isset($_GET['licence_delete']) && wp_verify_nonce($_GET['nonce'], 'licence_delete')) {
+
+        $zdm_options['licence-key'] = '';
+
+        if (add_option('zdm_options', $zdm_options) === FALSE) {
+            update_option('zdm_options', $zdm_options);
+            $status = 1;
+        }
     }
 
     if (ZDMCore::licence()) {
@@ -133,21 +146,17 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         <hr class="wp-header-end">
 
-        <form action="" method="post">
-
-            <input type="hidden" name="nonce" value="<?=wp_create_nonce('lizenz-aktualisieren')?>">
-
             <?php
             if ($status != '') {
 
-                echo '<div class="notice notice-success is-dismissible">';
+                echo '<div class="notice notice-success">';
                 echo '<br><b>' . esc_html__('Einstellungen aktualisiert!', 'zdm') . '</b><br><br>';
                 echo '</div>';
             }// end if $status != ''
 
             if ($note != '') {
 
-                echo '<div class="notice notice-success is-dismissible">';
+                echo '<div class="notice notice-success">';
                 echo '<br><b>' . $note . '</b><br><br>';
                 echo '</div>';
             }// end if $note != ''
@@ -181,32 +190,53 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <?php
             } else { // Normale Ansicht der Einstellungen
                 ?>
+
+            <form action="" method="post">
+                <input type="hidden" name="nonce" value="<?=wp_create_nonce('lizenz-aktualisieren')?>">
                 <div class="postbox">
                     <div class="inside">
-                        <h3><?=ZDM__PRO?> <?php if ($zdm_licence === 1) { ?>- <?=$zdm_options['licence-product-name'];?> <?=esc_html__('ist aktiviert', 'zdm')?><?php } ?></h3>
+                        <h3><?php if ($zdm_licence === 1) { ?><?=$zdm_options['licence-product-name'];?> <?=esc_html__('ist aktiviert', 'zdm')?><?php } else { echo ZDM__PRO; } ?></h3>
                         <hr>
                         <table class="form-table">
                             <tbody>
                                 <tr valign="top">
-                                    <th scope="row"><?=ZDM__PRO?> <?=esc_html__('Schlüssel', 'zdm')?>:</th>
+                                    <th scope="row"><?=ZDM__PRO?> <?=esc_html__('Lizenzschlüssel', 'zdm')?>:</th>
                                     <td valign="middle">
-                                        <input type="text" name="licence-key" size="50%" value="<?= esc_attr($zdm_options['licence-key']); ?>"> <input class="button-secondary" type="submit" name="licence_submit" value="<?=esc_html__('Lizenz aktualisieren', 'zdm')?>">
-                                        <?php if ($zdm_licence === 0) { ?>
+                                        <?php if ($zdm_licence === 1) { ?><ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon>&nbsp;<?php } ?>
+                                        <input type="text" name="licence-key" size="50%" value="<?= esc_attr($zdm_options['licence-key']); ?>">&nbsp;
+                                        <?php if ($zdm_licence === 1) {
+                                            ?>
+                                            <input class="button-primary" type="submit" name="licence_submit" value="<?=esc_html__('Aktualisieren', 'zdm')?>">
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <input class="button-primary" type="submit" name="licence_submit" value="<?=esc_html__('Aktivieren', 'zdm')?>">
+                                            <?php
+                                        }
+
+                                        if ($zdm_licence === 1) {
+                                            ?>
+                                            <br /><br />
+                                            <a href="admin.php?page=<?=ZDM__SLUG?>-settings&licence_delete=true&nonce=<?=wp_create_nonce('licence_delete')?>" class="button button-secondary"><?=esc_html__('Lizenzschlüssel entfernen', 'zdm')?></a>
+                                            <?php
+                                        }
+                                        if ($zdm_licence === 0) { ?>
                                             <div class="zdm-help-text"><?=esc_html__('Profitiere von den', 'zdm')?> <?=ZDM__PRO?>-<?=esc_html__('Funktionen und schalte alle Möglichkeiten von', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('frei, mehr Infos', 'zdm')?>: <a href="<?=ZDM__PRO_URL?>" target="_blank" title="code.urban-base.net"><?=ZDM__TITLE;?> <?=ZDM__PRO?></a></div>
-                                        <?php } ?>
+                                            <?php
+                                        } ?>
                                     </td>
                                 </tr>
                                 <?php if ($zdm_licence === 1) { ?>
                                 <tr valign="top">
                                     <th scope="row"><?=esc_html__('Lizensiert für', 'zdm')?>:</th>
                                     <td valign="middle">
-                                        <?=$zdm_options['licence-email'];?>
+                                        <ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon>&nbsp;<?=$zdm_options['licence-email'];?>
                                     </td>
                                 </tr>
                                 <tr valign="top">
                                     <th scope="row"><?=esc_html__('Erworben', 'zdm')?>:</th>
                                     <td valign="middle">
-                                        <?=date("d.m.Y", strtotime($zdm_options['licence-purchase']))?>
+                                        <ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon>&nbsp;<?=date("d.m.Y", strtotime($zdm_options['licence-purchase']))?>
                                     </td>
                                 </tr>
                                 <?php } ?>

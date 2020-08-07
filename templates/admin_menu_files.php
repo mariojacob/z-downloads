@@ -428,7 +428,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=help" class="nav-tab <?php echo $zdm_active_tab == 'help' ? 'nav-tab-active' : ''; ?>"><ion-icon name="help-circle-outline"></ion-icon> <?=esc_html__('Hilfe', 'zdm')?></a>
             </nav>
 
-            <br>
+            <br />
             <p><a href="admin.php?page=<?=ZDM__SLUG?>-files" class="page-title-action"><?=esc_html__('Zurück zur Übersicht', 'zdm')?></a> <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="page-title-action"><?=esc_html__('Datei hinzufügen', 'zdm')?></a></p>
 
 

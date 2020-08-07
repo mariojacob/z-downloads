@@ -36,7 +36,7 @@ class ZDMCore {
             ZDM__SLUG,                              // top-level menu
             esc_html__('Dateien', 'zdm'),           // Seitentitel
             esc_html__('Dateien', 'zdm'),           // Menuetext
-            ZDM__STANDARD_USER_ROLE,                       // Zugriffslevel
+            ZDM__STANDARD_USER_ROLE,                // Zugriffslevel
             ZDM__SLUG . '-files',                   // URL des submenue
             array($this, 'admin_menu_files'));      // Name der Funktion die ausgeführt wird
         add_submenu_page(
