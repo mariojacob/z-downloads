@@ -64,43 +64,167 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         $zdm_archive_id = sanitize_text_field($_GET['id']);
 
-        //////////////////////////////////////////////////
-        // Datei entfernen
-        //////////////////////////////////////////////////
-        if (isset($_GET['file_delete_id']) && wp_verify_nonce($_GET['nonce'], 'datei-entfernen')) {
+        // Daten aus DB holen
+        $zdm_db_archive = $wpdb->get_results( 
+            "
+            SELECT id 
+            FROM $zdm_tablename_archives 
+            WHERE id = '$zdm_archive_id'
+            "
+        );
 
-            $wpdb->delete(
-                $zdm_tablename_files_rel, 
-                array(
-                    'id' => sanitize_text_field($_GET['file_delete_id'])
-                ));
-        
-            // files_rel update
-            $wpdb->update(
-                $zdm_tablename_files_rel, 
-                array(
-                    'file_updated' => 1
-                ), 
-                array(
-                    'id_archive' => $zdm_archive_id
-                ));
+        // Checken ob Archiv existiert
+        if (count($zdm_db_archive) > 0) {
 
-            // Log
-            ZDMCore::log('unlink file', sanitize_text_field($_GET['file_delete_id']));
+            //////////////////////////////////////////////////
+            // Datei entfernen
+            //////////////////////////////////////////////////
+            if (isset($_GET['file_delete_id']) && wp_verify_nonce($_GET['nonce'], 'datei-entfernen')) {
+
+                $wpdb->delete(
+                    $zdm_tablename_files_rel, 
+                    array(
+                        'id' => sanitize_text_field($_GET['file_delete_id'])
+                    ));
             
-            $zdm_note = esc_html__('Datei entfernt!', 'zdm');
-        }
+                // files_rel update
+                $wpdb->update(
+                    $zdm_tablename_files_rel, 
+                    array(
+                        'file_updated' => 1
+                    ), 
+                    array(
+                        'id_archive' => $zdm_archive_id
+                    ));
 
-        //////////////////////////////////////////////////
-        // Daten aktualisieren
-        //////////////////////////////////////////////////
-        if (isset($_POST['update']) && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) {
+                // Log
+                ZDMCore::log('unlink file', sanitize_text_field($_GET['file_delete_id']));
+                
+                $zdm_note = esc_html__('Datei entfernt!', 'zdm');
+            }
 
-            // Check ob Felder ausgefüllt sind
-            if ($_POST['name'] != '' && $_POST['zip-name'] != '') {
+            //////////////////////////////////////////////////
+            // Daten aktualisieren
+            //////////////////////////////////////////////////
+            if (isset($_POST['update']) && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) {
 
-                // ZIP-Name
-                $zdm_zip_name = str_replace(' ', '-', trim(sanitize_file_name($_POST['zip-name'])));
+                // Check ob Felder ausgefüllt sind
+                if ($_POST['name'] != '' && $_POST['zip-name'] != '') {
+
+                    // ZIP-Name
+                    $zdm_zip_name = str_replace(' ', '-', trim(sanitize_file_name($_POST['zip-name'])));
+
+                    // Daten aus DB holen
+                    $zdm_db_archives = $wpdb->get_results( 
+                        "
+                        SELECT * 
+                        FROM $zdm_tablename_archives 
+                        WHERE id = '$zdm_archive_id'
+                        "
+                    );
+
+                    // Ordner und Cache-Datei löschen wenn sich der ZIP-Dateiname ändert
+                    if ($zdm_db_archives[0]->zip_name != $zdm_zip_name) {
+
+                        // Alte Datei und Ordner löschen
+                        $old_cache_folder = ZDM__DOWNLOADS_CACHE_PATH . '/' . $zdm_db_archives[0]->archive_cache_path;
+                        $old_cache_file = $old_cache_folder . '/' . $zdm_db_archives[0]->zip_name . '.zip';
+                        $old_cache_index = $old_cache_folder . '/' . 'index.php';
+                        if (file_exists($old_cache_file)) {
+                            unlink($old_cache_file);
+                        }
+                        if (file_exists($old_cache_index)) {
+                            unlink($old_cache_index);
+                        }
+                        if (is_dir($old_cache_folder)) {
+                            rmdir($old_cache_folder);
+                        }
+
+                        // files_rel update
+                        $wpdb->update(
+                            $zdm_tablename_files_rel, 
+                            array(
+                                'file_updated' => 1
+                            ), 
+                            array(
+                                'id_archive' => $zdm_archive_id
+                            ));
+                    }
+
+                    if ($_POST['button-text']) {
+                        if ($_POST['button-text'] != $zdm_options['download-btn-text']) {
+                            $zdm_button_text = sanitize_text_field($_POST['button-text']);
+                        } else {
+                            $zdm_button_text = '';
+                        }
+                    } else {
+                        $zdm_button_text = '';
+                    }
+
+                    $wpdb->update(
+                        $zdm_tablename_archives, 
+                        array(
+                            'name'          => sanitize_text_field($_POST['name']),
+                            'zip_name'      => $zdm_zip_name,
+                            'description'   => sanitize_textarea_field($_POST['description']),
+                            'count'         => sanitize_text_field($_POST['count']),
+                            'button_text'   => $zdm_button_text,
+                            'status'        => sanitize_text_field($_POST['status']),
+                            'time_update'   => $zdm_time
+                        ), 
+                        array(
+                            'id' => $zdm_archive_id
+                        ));
+
+                    // Anzahl für Schleifendurchlauf definieren
+                    $files_count = 10;
+                    if ($zdm_licence === 1) {
+                        $files_count = 20;
+                    }
+                    
+                    for ($i = 0; $i <= $files_count; $i++) {
+
+                        // Check ob diese Datei schon zu diesem Archiv verknüpft ist
+                        if (ZDMCore::check_file_rel_to_archive(sanitize_text_field($_POST['files'][$i]), $zdm_archive_id) === false) {
+                            
+                            // Check ob Auswahl nicht leer ist
+                            if ($_POST['files'][$i] != '') {
+
+                                // Daten in DB files_rel speichern
+                                $wpdb->insert(
+                                    $zdm_tablename_files_rel, 
+                                    array(
+                                        'id_file'       => sanitize_text_field($_POST['files'][$i]),
+                                        'id_archive'    => $zdm_archive_id
+                                    )
+                                );
+
+                                // files_rel update
+                                $wpdb->update(
+                                    $zdm_tablename_files_rel, 
+                                    array(
+                                        'file_updated' => 1
+                                    ), 
+                                    array(
+                                        'id_archive' => $zdm_archive_id
+                                    ));
+                            }
+                        }
+                    }
+
+                    // Log
+                    ZDMCore::log('update archive', $zdm_archive_id);
+
+                    $zdm_note = esc_html__('Aktualisiert', 'zdm');
+                } else {
+                    $zdm_warning = esc_html__('Name und ZIP-Datei Name darf nicht leer sein.', 'zdm');
+                }
+            }
+
+            //////////////////////////////////////////////////
+            // Archiv löschen
+            //////////////////////////////////////////////////
+            if (($_POST['delete'] && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) OR ($_GET['delete'] && wp_verify_nonce($_GET['nonce'], 'archiv-loeschen'))) {
 
                 // Daten aus DB holen
                 $zdm_db_archives = $wpdb->get_results( 
@@ -111,151 +235,40 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     "
                 );
 
-                // Ordner und Cache-Datei löschen wenn sich der ZIP-Dateiname ändert
-                if ($zdm_db_archives[0]->zip_name != $zdm_zip_name) {
-
-                    // Alte Datei und Ordner löschen
-                    $old_cache_folder = ZDM__DOWNLOADS_CACHE_PATH . '/' . $zdm_db_archives[0]->archive_cache_path;
-                    $old_cache_file = $old_cache_folder . '/' . $zdm_db_archives[0]->zip_name . '.zip';
-                    $old_cache_index = $old_cache_folder . '/' . 'index.php';
-                    if (file_exists($old_cache_file)) {
-                        unlink($old_cache_file);
-                    }
-                    if (file_exists($old_cache_index)) {
-                        unlink($old_cache_index);
-                    }
-                    if (is_dir($old_cache_folder)) {
-                        rmdir($old_cache_folder);
-                    }
-
-                    // files_rel update
-                    $wpdb->update(
-                        $zdm_tablename_files_rel, 
-                        array(
-                            'file_updated' => 1
-                        ), 
-                        array(
-                            'id_archive' => $zdm_archive_id
-                        ));
+                // Alte Datei und Ordner löschen
+                $old_cache_folder = ZDM__DOWNLOADS_CACHE_PATH . '/' . $zdm_db_archives[0]->archive_cache_path;
+                $old_cache_file = $old_cache_folder . '/' . $zdm_db_archives[0]->zip_name . '.zip';
+                $old_cache_index = $old_cache_folder . '/' . 'index.php';
+                if (file_exists($old_cache_file)) {
+                    @unlink($old_cache_file);
+                }
+                if (file_exists($old_cache_index)) {
+                    @unlink($old_cache_index);
+                }
+                if (is_dir($old_cache_folder)) {
+                    @rmdir($old_cache_folder);
                 }
 
-                if ($_POST['button-text']) {
-                    if ($_POST['button-text'] != $zdm_options['download-btn-text']) {
-                        $zdm_button_text = sanitize_text_field($_POST['button-text']);
-                    } else {
-                        $zdm_button_text = '';
-                    }
-                } else {
-                    $zdm_button_text = '';
-                }
-
-                $wpdb->update(
+                // Archiv löschen
+                $wpdb->delete(
                     $zdm_tablename_archives, 
-                    array(
-                        'name'          => sanitize_text_field($_POST['name']),
-                        'zip_name'      => $zdm_zip_name,
-                        'description'   => sanitize_textarea_field($_POST['description']),
-                        'count'         => sanitize_text_field($_POST['count']),
-                        'button_text'   => $zdm_button_text,
-                        'status'        => sanitize_text_field($_POST['status']),
-                        'time_update'   => $zdm_time
-                    ), 
                     array(
                         'id' => $zdm_archive_id
                     ));
 
-                // Anzahl für Schleifendurchlauf definieren
-                $files_count = 10;
-                if ($zdm_licence === 1) {
-                    $files_count = 20;
-                }
-                
-                for ($i = 0; $i <= $files_count; $i++) {
+                // files_rel löschen
+                $wpdb->delete(
+                    $zdm_tablename_files_rel, 
+                    array(
+                        'id_archive' => $zdm_archive_id
+                    ));
 
-                    // Check ob diese Datei schon zu diesem Archiv verknüpft ist
-                    if (ZDMCore::check_file_rel_to_archive(sanitize_text_field($_POST['files'][$i]), $zdm_archive_id) === false) {
-                        
-                        // Check ob Auswahl nicht leer ist
-                        if ($_POST['files'][$i] != '') {
+                ZDMCore::log('delete archive', $zdm_archive_id);
+            
+                $zdm_note = esc_html__('Archiv gelöscht!', 'zdm');
 
-                            // Daten in DB files_rel speichern
-                            $wpdb->insert(
-                                $zdm_tablename_files_rel, 
-                                array(
-                                    'id_file'       => sanitize_text_field($_POST['files'][$i]),
-                                    'id_archive'    => $zdm_archive_id
-                                )
-                            );
-
-                            // files_rel update
-                            $wpdb->update(
-                                $zdm_tablename_files_rel, 
-                                array(
-                                    'file_updated' => 1
-                                ), 
-                                array(
-                                    'id_archive' => $zdm_archive_id
-                                ));
-                        }
-                    }
-                }
-
-                // Log
-                ZDMCore::log('update archive', $zdm_archive_id);
-
-                $zdm_note = esc_html__('Aktualisiert', 'zdm');
-            } else {
-                $zdm_note = esc_html__('Name und ZIP-Datei Name darf nicht leer sein.', 'zdm');
+                $zdm_status = 3;
             }
-        }
-
-        //////////////////////////////////////////////////
-        // Archiv löschen
-        //////////////////////////////////////////////////
-        if (($_POST['delete'] && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) OR ($_GET['delete'] && wp_verify_nonce($_GET['nonce'], 'archiv-loeschen'))) {
-
-            // Daten aus DB holen
-            $zdm_db_archives = $wpdb->get_results( 
-                "
-                SELECT * 
-                FROM $zdm_tablename_archives 
-                WHERE id = '$zdm_archive_id'
-                "
-            );
-
-            // Alte Datei und Ordner löschen
-            $old_cache_folder = ZDM__DOWNLOADS_CACHE_PATH . '/' . $zdm_db_archives[0]->archive_cache_path;
-            $old_cache_file = $old_cache_folder . '/' . $zdm_db_archives[0]->zip_name . '.zip';
-            $old_cache_index = $old_cache_folder . '/' . 'index.php';
-            if (file_exists($old_cache_file)) {
-                @unlink($old_cache_file);
-            }
-            if (file_exists($old_cache_index)) {
-                @unlink($old_cache_index);
-            }
-            if (is_dir($old_cache_folder)) {
-                @rmdir($old_cache_folder);
-            }
-
-            // Archiv löschen
-            $wpdb->delete(
-                $zdm_tablename_archives, 
-                array(
-                    'id' => $zdm_archive_id
-                ));
-
-            // files_rel löschen
-            $wpdb->delete(
-                $zdm_tablename_files_rel, 
-                array(
-                    'id_archive' => $zdm_archive_id
-                ));
-
-            ZDMCore::log('delete archive', $zdm_archive_id);
-        
-            $zdm_note = esc_html__('Archiv gelöscht!', 'zdm');
-
-            $zdm_status = 3;
         }
     }
 
@@ -264,8 +277,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <div class="notice notice-success">
             <p><?=$zdm_note?></p>
         </div>
-
-    <?php }
+        <?php
+    }
+    if ($zdm_warning != '') { ?>
+        
+        <div class="notice notice-warning">
+            <p><?=$zdm_warning?></p>
+        </div>
+        <?php
+    }
 
     if ($zdm_status === 1) {
 

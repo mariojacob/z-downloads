@@ -127,40 +127,55 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         //////////////////////////////////////////////////
         if (isset($_POST['update']) && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) {
 
-            if ($_POST['name'] != '') {
-                $zdm_name = sanitize_text_field($_POST['name']);
-            } else {
-                $zdm_name = sanitize_text_field($_POST['filename']);
-            }
+            // Daten aus DB holen
+            $zdm_db_file = $wpdb->get_results( 
+                "
+                SELECT id 
+                FROM $zdm_tablename_files 
+                WHERE id = '$zdm_file_id'
+                "
+            );
 
-            if ($_POST['button-text']) {
-                if ($_POST['button-text'] != $zdm_options['download-btn-text']) {
-                    $zdm_button_text = sanitize_text_field($_POST['button-text']);
+            // Checken ob Datei existiert
+            if (count($zdm_db_file) > 0) {
+
+                if ($_POST['name'] != '') {
+                    $zdm_name = sanitize_text_field($_POST['name']);
+                } else {
+                    $zdm_name = sanitize_text_field($_POST['filename']);
+                }
+    
+                if ($_POST['button-text']) {
+                    if ($_POST['button-text'] != $zdm_options['download-btn-text']) {
+                        $zdm_button_text = sanitize_text_field($_POST['button-text']);
+                    } else {
+                        $zdm_button_text = '';
+                    }
                 } else {
                     $zdm_button_text = '';
                 }
+    
+                $wpdb->update(
+                    $zdm_tablename_files, 
+                    array(
+                        'name'          => $zdm_name,
+                        'description'   => sanitize_textarea_field($_POST['description']),
+                        'count'         => sanitize_text_field($_POST['count']),
+                        'button_text'   => $zdm_button_text,
+                        'status'        => sanitize_text_field($_POST['status']),
+                        'time_update'   => $zdm_time
+                    ), 
+                    array(
+                        'id' => $zdm_file_id
+                    ));
+    
+                // Log
+                ZDMCore::log('update file', $zdm_file_id);
+            
+                $zdm_note = esc_html__('Aktualisiert', 'zdm');
             } else {
-                $zdm_button_text = '';
+                $zdm_status = 2;
             }
-
-            $wpdb->update(
-                $zdm_tablename_files, 
-                array(
-                    'name'          => $zdm_name,
-                    'description'   => sanitize_textarea_field($_POST['description']),
-                    'count'         => sanitize_text_field($_POST['count']),
-                    'button_text'   => $zdm_button_text,
-                    'status'        => sanitize_text_field($_POST['status']),
-                    'time_update'   => $zdm_time
-                ), 
-                array(
-                    'id' => $zdm_file_id
-                ));
-
-            // Log
-            ZDMCore::log('update file', $zdm_file_id);
-        
-            $zdm_note = esc_html__('Aktualisiert', 'zdm');
         }
 
         //////////////////////////////////////////////////
@@ -173,49 +188,60 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 "
                 SELECT * 
                 FROM $zdm_tablename_files 
-                WHERE id = $zdm_file_id
+                WHERE id = '$zdm_file_id'
                 "
             );
-            $zdm_db_file = $zdm_db_file[0];
-        
-            // Datei und Ordner löschen
-            $zdm_folder_path = ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_db_file->folder_path;
-            $zdm_file_path = $zdm_folder_path . '/' . $zdm_db_file->file_name;
-            $zdm_file_index = $zdm_folder_path . '/' . 'index.php';
-            if (file_exists($zdm_file_path)) {
-                unlink($zdm_file_path);
-            }
-            if (file_exists($zdm_file_index)) {
-                unlink($zdm_file_index);
-            }
-            if (is_dir($zdm_folder_path)) {
-                rmdir($zdm_folder_path);
-            }
-        
-            // DB Eintrag löschen
-            $wpdb->delete(
-                $zdm_tablename_files, 
-                array(
-                    'id' => $zdm_file_id
-                ));
 
-            $wpdb->update(
-                $zdm_tablename_files_rel, 
-                array(
-                    'file_updated'  => 1,
-                    'file_deleted'  => 1,
-                    'time_update'   => $zdm_time
-                ), 
-                array(
-                    'id_file' => $zdm_file_id
-                ));
+            if (count($zdm_db_file) > 0) {
 
-            // Log
-            ZDMCore::log('delete file', $zdm_file_id);
-        
-            $zdm_note = esc_html__('Datei gelöscht!', 'zdm');
-
-            $zdm_status = 2;
+                $zdm_db_file = $zdm_db_file[0];
+            
+                // Datei und Ordner löschen
+                $zdm_folder_path = ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_db_file->folder_path;
+                $zdm_file_path = $zdm_folder_path . '/' . $zdm_db_file->file_name;
+                $zdm_file_index = $zdm_folder_path . '/' . 'index.php';
+                if (file_exists($zdm_file_path)) {
+                    unlink($zdm_file_path);
+                }
+                if (file_exists($zdm_file_index)) {
+                    unlink($zdm_file_index);
+                }
+                if (is_dir($zdm_folder_path)) {
+                    rmdir($zdm_folder_path);
+                }
+            
+                // DB Eintrag löschen
+                $wpdb->delete(
+                    $zdm_tablename_files, 
+                    array(
+                        'id' => $zdm_file_id
+                    ));
+    
+                $wpdb->update(
+                    $zdm_tablename_files_rel, 
+                    array(
+                        'file_updated'  => 1,
+                        'file_deleted'  => 1,
+                        'time_update'   => $zdm_time
+                    ), 
+                    array(
+                        'id_file' => $zdm_file_id
+                    ));
+    
+                // Log
+                ZDMCore::log('delete file', $zdm_file_id);
+            
+                $zdm_note = esc_html__('Datei gelöscht!', 'zdm');
+    
+                $zdm_status = 2;
+    
+                if (isset($_GET['duplicate-hash'])) {
+                    $zdm_uploaded_file_hash = htmlspecialchars($_GET['duplicate-hash']);
+                    $zdm_status = 3;
+                }
+            } else {
+                $zdm_status = 2;
+            }
         }
 
         //////////////////////////////////////////////////
@@ -912,15 +938,138 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         </div>
         <?php
     } elseif ($zdm_status === 3) {
+
+        // Daten von Dateien mit dem selben Hash holen
+        $zdm_db_files = $wpdb->get_results( 
+            "
+            SELECT id, name, folder_path, file_name, count, file_size, status, file_type, time_create 
+            FROM $zdm_tablename_files 
+            WHERE hash_md5 = '$zdm_uploaded_file_hash' 
+            ORDER BY time_create DESC
+            "
+        );
+
         ?>
         <div class="wrap">
-            <h1 class="wp-heading-inline"><?=esc_html__('Diese Datei wurde bereits hochgeladen', 'zdm')?></h1>
-            <p><?=esc_html__('Die Datei wurde nicht hinzugefügt, da diese bereits hochgeladen wurde.', 'zdm')?></p>
-            <p><?=esc_html__('Du kannst in den Einstellungen "Duplikate zulassen" aktivieren, dann kannst du Dateien auch mehrfach hochladen.', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-settings"><?=esc_html__('Zu den Einstellungen', 'zdm')?></a></p>
+            <h1 class="wp-heading-inline"><?=esc_html__('Neue Datei hochladen', 'zdm')?></h1>
+            <div class="notice notice-warning">
+                <p><b><?=esc_html__('Diese Datei wurde bereits hochgeladen.', 'zdm')?></b></p>
+                <p><?=esc_html__('Die gerade hochgeladene Datei existiert bereits und wurde nicht hinzugefügt.', 'zdm')?></p>
+                <p><?=esc_html__('In der Tabelle siehst du die Duplikate die bereits hochgeladen wurden.', 'zdm')?></p>
+                <p><?=esc_html__('Du kannst in den Einstellungen "Duplikate zulassen" aktivieren, dann kannst du die selbe Datei auch mehrfach hochladen.', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-settings"><?=esc_html__('Zu den Einstellungen', 'zdm')?></a></p>
+            </div>
+        
+            <?php
+            // Check ob Dateien existieren
+            if (count($zdm_db_files) > 0) {
+                ?>
+
+                <div class="col-wrap">
+                    <table class="wp-list-table widefat striped tags">
+                        <thead>
+                            <tr>
+                                <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
+                                <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
+                                <th scope="col"><div align="center"><ion-icon name="cloud-download" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></div></th>
+                                <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
+                                <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
+                                <th scope="col" title="<?=esc_html__('Zeigt an in wie vielen Archiven die Datei verknüpft ist.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
+                                <th scope="col" title="<?=esc_html__('Sichtbarkeit', 'zdm')?>"><div align="center"><b><ion-icon name="eye"></ion-icon></b></div></th>
+                                <th scope="col" width="2%"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Datei löschen', 'zdm')?>"></ion-icon></div></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                        <?php
+
+                            for ($i = 0; $i < count($zdm_db_files); $i++) {
+
+                                if (in_array($zdm_db_files[$i]->file_type, ZDM__MIME_TYPES_AUDIO)) { // Audio
+                                    $zdm_icon = '<ion-icon name="musical-notes"></ion-icon>';
+                                } elseif (in_array($zdm_db_files[$i]->file_type, ZDM__MIME_TYPES_VIDEO)) { // Video
+                                    $zdm_icon = '<ion-icon name="videocam"></ion-icon>';
+                                } elseif (in_array($zdm_db_files[$i]->file_type, ZDM__MIME_TYPES_IMAGE)) { // Bild
+                                    $zdm_icon = '<ion-icon name="images"></ion-icon>';
+                                } else {
+                                    $zdm_icon = '<ion-icon name="document"></ion-icon>';
+                                }
+
+                                // Anzahl an Verknüpfungen in Archiven
+                                $zdm_db_file_in_archive = ZDMCore::check_if_file_is_in_archive($zdm_db_files[$i]->id);
+                                $zdm_db_count_file_in_archive = '';
+                                if ($zdm_db_file_in_archive != false) {
+                                    $zdm_db_count_file_in_archive = $zdm_db_file_in_archive;
+                                }
+
+                                // Datei Status (Sichtbarkeit)
+                                if ($zdm_db_files[$i]->status == 'public') {
+                                    $zdm_file_status = '<ion-icon name="eye" class="zdm-color-green" title="' . esc_html__('Sichtbarkeit: Öffentlich', 'zdm') . '"></ion-icon>';
+                                } else {
+                                    $zdm_file_status = '<ion-icon name="eye-off" title="' . esc_html__('Sichtbarkeit: Privat', 'zdm') . '"></ion-icon>';
+                                }
+
+                                ?>
+                                <tr>
+                                    <td>
+                                        <div align="center"><?=$zdm_icon?></div>
+                                    </td>
+                                    <td>
+                                        <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_files[$i]->folder_path) . '/' . htmlspecialchars($zdm_db_files[$i]->file_name)?>" title="<?=esc_html__('Download', 'zdm')?>" target="_blank" download><ion-icon name="cloud-download"></ion-icon></a> | 
+                                        <b><a href="?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_db_files[$i]->id)?>"><?=htmlspecialchars($zdm_db_files[$i]->name)?></a></b>
+                                    </td>
+                                    <td>
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-list" value="[zdownload file=&quot;<?=$zdm_db_files[$i]->id?>&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
+                                    </td>
+                                    <td>
+                                        <div align="center"><?=ZDMCore::number_format($zdm_db_files[$i]->count)?></div>
+                                    </td>
+                                    <td>
+                                        <?=htmlspecialchars($zdm_db_files[$i]->file_size)?>
+                                    </td>
+                                    <td>
+                                        <?=date("d.m.Y", $zdm_db_files[$i]->time_create)?>
+                                    </td>
+                                    <td>
+                                        <div align="center"><?=$zdm_db_count_file_in_archive?></div>
+                                    </td>
+                                    <td>
+                                        <div align="center"><?=$zdm_file_status?></div>
+                                    </td>
+                                    <td>
+                                        <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_db_files[$i]->id)?>&delete=true&nonce=<?=wp_create_nonce('datei-loeschen')?>&duplicate-hash=<?=htmlspecialchars($zdm_uploaded_file_hash)?>" class="button button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Datei löschen', 'zdm')?>"><ion-icon name="trash"></ion-icon></a>
+                                    </td>
+                                </tr>
+                                <?php
+                            }
+
+                        ?>
+                        </tbody>
+
+                        <tfoot>
+                            <tr>
+                                <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
+                                <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
+                                <th scope="col"><div align="center"><ion-icon name="cloud-download" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></div></th>
+                                <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
+                                <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
+                                <th scope="col" title="<?=esc_html__('Zeigt an in wie vielen Archiven die Datei verknüpft ist.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
+                                <th scope="col" title="<?=esc_html__('Sichtbarkeit', 'zdm')?>"><div align="center"><b><ion-icon name="eye"></ion-icon></b></div></th>
+                                <th scope="col"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Datei löschen', 'zdm')?>"></ion-icon></div></th>
+                            </tr>
+                        </tfoot>
+
+                    </table>
+                </div>
+
+                <?php } ?>
+
+            
             <br />
             <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="button button-primary"><?=esc_html__('Neue Datei hochladen', 'zdm')?></a>
             &nbsp;&nbsp;
             <a href="admin.php?page=<?=ZDM__SLUG?>-files" class="button button-secondary"><?=esc_html__('Dateien Übersicht', 'zdm')?></a>
+        
         </div>
         <?php
     }
