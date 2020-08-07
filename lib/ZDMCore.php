@@ -28,7 +28,7 @@ class ZDMCore {
         add_menu_page(
             ZDM__TITLE,                             // Seitentitel
             ZDM__TITLE,                             // Menuetext
-            'manage_options',                       // Zugriffslevel
+            ZDM__STANDARD_USER_ROLE,                // Zugriffslevel
             ZDM__SLUG,                              // Pfad der Funktion,  __FILE__ bedeutet die Funktion ist in dieser Datei
             array($this, 'admin_menu_dashboard'),   // Name der Funktion die ausgeführt wird
             'dashicons-download');                  // Dashicon im Admin-Menü
@@ -36,42 +36,42 @@ class ZDMCore {
             ZDM__SLUG,                              // top-level menu
             esc_html__('Dateien', 'zdm'),           // Seitentitel
             esc_html__('Dateien', 'zdm'),           // Menuetext
-            'manage_options',                       // Zugriffslevel
+            ZDM__STANDARD_USER_ROLE,                       // Zugriffslevel
             ZDM__SLUG . '-files',                   // URL des submenue
             array($this, 'admin_menu_files'));      // Name der Funktion die ausgeführt wird
         add_submenu_page(
             ZDM__SLUG,
             esc_html__('Datei hinzufügen', 'zdm'),
             esc_html__('Datei hinzufügen', 'zdm'),
-            'manage_options',
+            ZDM__STANDARD_USER_ROLE,
             ZDM__SLUG . '-add-file',
             array($this, 'admin_menu_add_file'));
         add_submenu_page(
             ZDM__SLUG,
             esc_html__('Archive', 'zdm'),
             esc_html__('Archive', 'zdm'),
-            'manage_options',
+            ZDM__STANDARD_USER_ROLE,
             ZDM__SLUG . '-ziparchive',
             array($this, 'admin_menu_ziparchive'));
         add_submenu_page(
             ZDM__SLUG,
             esc_html__('Archiv erstellen', 'zdm'),
             esc_html__('Archiv erstellen', 'zdm'),
-            'manage_options',
+            ZDM__STANDARD_USER_ROLE,
             ZDM__SLUG . '-add-archive',
             array($this, 'admin_menu_add_archive'));
         add_submenu_page(
             ZDM__SLUG,
             esc_html__('Einstellungen', 'zdm'),
             esc_html__('Einstellungen', 'zdm'),
-            'manage_options',
+            ZDM__STANDARD_USER_ROLE,
             ZDM__SLUG . '-settings',
             array($this, 'admin_menu_settings'));
         add_submenu_page(
             ZDM__SLUG,
             esc_html__('Hilfe', 'zdm'),
             esc_html__('Hilfe', 'zdm'),
-            'manage_options',
+            ZDM__STANDARD_USER_ROLE,
             ZDM__SLUG . '-help',
             array($this, 'admin_menu_help'));
         if ($this->licence() != true) {
@@ -79,14 +79,14 @@ class ZDMCore {
                 ZDM__SLUG,
                 esc_html__('Upgrade', 'zdm'),
                 esc_html__('Upgrade', 'zdm'),
-                'manage_options',
-                'https://code.urban-base.net/z-downloads?utm_source=zdm_backend_premium');
+                ZDM__STANDARD_USER_ROLE,
+                ZDM__PRO_URL);
         }
         add_submenu_page(
             null,
             esc_html__('Hilfe', 'zdm'),
             esc_html__('Hilfe', 'zdm'),
-            'manage_options',
+            ZDM__STANDARD_USER_ROLE,
             ZDM__SLUG . '-log',
             array($this, 'admin_hidden_log'));
     }
