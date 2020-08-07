@@ -74,6 +74,14 @@ class ZDMCore {
             'manage_options',
             ZDM__SLUG . '-help',
             array($this, 'admin_menu_help'));
+        if ($this->licence() != true) {
+            add_submenu_page(
+                ZDM__SLUG,
+                esc_html__('Upgrade', 'zdm'),
+                esc_html__('Upgrade', 'zdm'),
+                'manage_options',
+                'https://code.urban-base.net/z-downloads?utm_source=zdm_backend_premium');
+        }
         add_submenu_page(
             null,
             esc_html__('Hilfe', 'zdm'),

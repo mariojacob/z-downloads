@@ -100,6 +100,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 // Log
                 ZDMCore::log('unlink file', sanitize_text_field($_GET['file_delete_id']));
                 
+                // Erfolg-Meldung ausgeben
                 $zdm_note = esc_html__('Datei entfernt!', 'zdm');
             }
 
@@ -215,8 +216,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     // Log
                     ZDMCore::log('update archive', $zdm_archive_id);
 
+                    // Erfolg-Meldung ausgeben
                     $zdm_note = esc_html__('Aktualisiert', 'zdm');
                 } else {
+                    // Warnung-Meldung ausgeben
                     $zdm_warning = esc_html__('Name und ZIP-Datei Name darf nicht leer sein.', 'zdm');
                 }
             }
@@ -265,6 +268,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                 ZDMCore::log('delete archive', $zdm_archive_id);
             
+                // Erfolg-Meldung ausgeben
                 $zdm_note = esc_html__('Archiv gelöscht!', 'zdm');
 
                 $zdm_status = 3;

@@ -44,6 +44,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             // Datei wurde bereits hochgeladen
 
+            // Upload-Duplikat-Seite anzeigen
             $zdm_status = 3;
         } else {
 
@@ -66,6 +67,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             // Datei abspeichern
             move_uploaded_file($_FILES['file']['tmp_name'], $zdm_file_path);
+
+            // Temporäre Datei löschen
+            unlink($_FILES['file']['tmp_name']);
 
             // index.php in Ordner kopieren
             copy('index.php', ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . 'index.php');
@@ -108,10 +112,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             // Datei ID festlegen
             $zdm_file_id = $zdm_db_file[0]->id;
 
+            // Datei Detailseite anzeigen
             $zdm_status = 1;
         }
     } elseif (isset($_GET['id']) OR isset($_POST['update']) OR isset($_POST['delete'])) {
 
+        // Datei Detailseite anzeigen
         $zdm_status = 1;
 
         if (isset($_GET['id'])) {
@@ -172,8 +178,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 // Log
                 ZDMCore::log('update file', $zdm_file_id);
             
+                // Erfolg-Meldung ausgeben
                 $zdm_note = esc_html__('Aktualisiert', 'zdm');
             } else {
+                // Dateiliste anzeigen
                 $zdm_status = 2;
             }
         }
@@ -231,15 +239,38 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 // Log
                 ZDMCore::log('delete file', $zdm_file_id);
             
+                // Erfolg-Meldung ausgeben
                 $zdm_note = esc_html__('Datei gelöscht!', 'zdm');
     
+                // Dateiliste anzeigen
                 $zdm_status = 2;
     
+                // Check ob der Aufruf von Upload-Duplikat-Seite kommt
                 if (isset($_GET['duplicate-hash'])) {
+
+                    // Datei-Hash
                     $zdm_uploaded_file_hash = htmlspecialchars($_GET['duplicate-hash']);
-                    $zdm_status = 3;
+
+                    // Daten aus DB holen
+                    $zdm_db_file = $wpdb->get_results( 
+                        "
+                        SELECT * 
+                        FROM $zdm_tablename_files 
+                        WHERE hash_md5 = '$zdm_uploaded_file_hash'
+                        "
+                    );
+
+                    // Checken ob mehr als eine Datei mit diesem Hash existiert
+                    if (count($zdm_db_file) > 0) {
+                        // Upload-Duplikat-Seite anzeigen
+                        $zdm_status = 3;
+                    } else {
+                        // Dateiliste anzeigen
+                        $zdm_status = 2;
+                    }
                 }
             } else {
+                // Dateiliste anzeigen
                 $zdm_status = 2;
             }
         }
@@ -312,6 +343,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             ZDMCore::log('replace file', $zdm_file_id);
 
             $zdm_active_tab = 'file';
+
+            // Erfolg-Meldung ausgeben
             $zdm_note = esc_html__('Datei wurde ersetzt!', 'zdm');
         }
 
@@ -352,6 +385,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             // Log
             ZDMCore::log('unlink file', sanitize_text_field($_GET['archive_id']));
             
+            // Erfolg-Meldung ausgeben
             $zdm_note = esc_html__('Datei aus Archiv entfernt!', 'zdm');
         }
     }
