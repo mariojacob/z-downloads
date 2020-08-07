@@ -61,6 +61,11 @@ if ($zdm_options['version'] < ZDM__VERSION) {
         $wpdb->query( "ALTER TABLE $table_name ADD `status` VARCHAR(20) NOT NULL DEFAULT 'public' AFTER `file_size`" );
     }
 
+    // v1.5.0
+    if ($zdm_options['version'] <= '1.5.0') {
+        $zdm_options['activation-time'] = time();
+    }
+
     // Optionen
     if ($zdm_options['download-btn-text'] == '') {
         $zdm_options['download-btn-text'] = 'Download';
