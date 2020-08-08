@@ -33,6 +33,16 @@ class ZDMPluginActivate {
             $zdm_options['activation-time'] = time();
         }
 
+        // Download Ordner Token
+        if (!$zdm_options['download-folder-token']) {
+            $zdm_options['download-folder-token'] = md5(uniqid(rand(), true));
+        }
+
+        update_option('zdm_options', $zdm_options);
+
+        // Optionen abrufen
+        $zdm_options = get_option('zdm_options');
+
         // Datenbank erstellen
         require_once (plugin_dir_path(__FILE__) . 'ZDMDatabase.php');
         $db = new ZDMDatabase();

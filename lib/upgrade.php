@@ -64,6 +64,8 @@ if ($zdm_options['version'] < ZDM__VERSION) {
     // v1.5.0
     if ($zdm_options['version'] <= '1.5.0') {
         $zdm_options['activation-time'] = time();
+        $zdm_options['download-folder-token'] = md5(uniqid(rand(), true));
+        rename(wp_upload_dir()['basedir'] . "/z-downloads", wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token']);
     }
 
     // Optionen
