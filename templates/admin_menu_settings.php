@@ -396,8 +396,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <th scope="row"><?=esc_html__('Direkte URL zu PDF', 'zdm')?>:</th>
                                     <td valign="middle">
                                         <input type="checkbox" name="file-open-in-browser-pdf" <?php if($zdm_options['file-open-in-browser-pdf'] == 'on'){ echo 'checked="checked"'; } ?> >
-                                        <?=esc_html__('Öffnet PDF-Dateien direkt im Browser.', 'zdm')?><br /><br />
-                                        <div class="zdm-help-text"><ion-icon name="information-circle"></ion-icon> <?=esc_html__('Während diese Option aktiviert ist wird keine Statistik für PDF-Dateien gespeichert.', 'zdm')?></div>
+                                        <?=esc_html__('Öffnet PDF-Dateien direkt im Browser.', 'zdm')?>
+                                        <div class="zdm-help-text"><?=esc_html__('Während diese Option aktiviert ist wird keine Statistik für PDF-Dateien gespeichert.', 'zdm')?></div>
                                     </td>
                                 </tr>
                                 <tr valign="top">
