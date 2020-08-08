@@ -470,9 +470,11 @@ class ZDMCore {
 
             // Zip-Archiv schließen
             $zip->close();
+            // Log
+            $this->log('archive cache created', 'ID: ' . $archive_id . ', path: ' . $file_path);
         } else {
             // Log
-            $this->log('error create zip', $file_path);
+            $this->log('error create archive cache', 'path: ' . $file_path);
         }
 
         // Dateigröße bestimmen

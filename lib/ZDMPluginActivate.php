@@ -25,12 +25,20 @@ class ZDMPluginActivate {
             add_option('zdm_options', ZDM__OPTIONS);
         }
 
+        // Optionen abrufen
+        $zdm_options = get_option('zdm_options');
+
+        // Aktivierungszeit setzen
+        if (!$zdm_options['activation-time']) {
+            $zdm_options['activation-time'] = time();
+        }
+
         // Datenbank erstellen
         require_once (plugin_dir_path(__FILE__) . 'ZDMDatabase.php');
         $db = new ZDMDatabase();
         $db->create_db();
 
         // Log
-        ZDMCore::log('plugin aktivate');
+        ZDMCore::log('plugin activated');
     }
 }

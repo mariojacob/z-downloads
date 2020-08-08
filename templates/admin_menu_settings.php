@@ -63,6 +63,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             update_option('zdm_options', $zdm_options);
             $status = 1;
         }
+
+        // Log
+        ZDMCore::log('delete licence');
     }
 
     if (ZDMCore::licence()) {
@@ -124,6 +127,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             if (get_option('zdm_options')) {
                 update_option('zdm_options', ZDM__OPTIONS);
                 $zdm_options = get_option('zdm_options');
+
+                // Log
+                ZDMCore::log('reset settings');
             }
         }
     }

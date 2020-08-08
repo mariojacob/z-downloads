@@ -98,5 +98,8 @@ class ZDMDatabase {
 
                 dbDelta($sql);
         }
+
+        // Log
+        ZDMCore::log('database created');
     }
 }

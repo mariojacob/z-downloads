@@ -15,7 +15,6 @@ define('ZDM__DOWNLOADS_FILES_PATH_URL', ZDM__DOWNLOADS_PATH_URL . "/files");
 // Optionen
 define('ZDM__OPTIONS', [
     'version'                       => ZDM__VERSION,
-    'activation-time'               => time(),
     'licence-key'                   => '',
     'licence-email'                 => '',
     'licence-purchase'              => '',

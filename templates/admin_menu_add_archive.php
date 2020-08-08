@@ -113,7 +113,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             }
 
             // Log
-            ZDMCore::log('add archive', $zdm_db_archive[0]->id);
+            ZDMCore::log('add archive', 'ID: ' . $zdm_db_archive[0]->id . ', name: ' . $zdm_post_name);
 
             $zdm_status = 1;
 

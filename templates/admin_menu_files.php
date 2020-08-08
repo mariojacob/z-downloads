@@ -96,7 +96,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             );
 
             // Log
-            ZDMCore::log('add file', $zdm_file_path);
+            ZDMCore::log('add file', 'name: ' . htmlspecialchars($zdm_file['name']) . ', path: ' . $zdm_file_path);
 
             $zdm_folder_path = $zdm_file['folder'];
 
@@ -176,7 +176,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     ));
     
                 // Log
-                ZDMCore::log('update file', $zdm_file_id);
+                ZDMCore::log('update file', 'ID: ' . $zdm_file_id . ', name: ' . $zdm_name);
             
                 // Erfolg-Meldung ausgeben
                 $zdm_note = esc_html__('Aktualisiert', 'zdm');
@@ -237,7 +237,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     ));
     
                 // Log
-                ZDMCore::log('delete file', $zdm_file_id);
+                ZDMCore::log('delete file', 'ID: ' . $zdm_file_id);
             
                 // Erfolg-Meldung ausgeben
                 $zdm_note = esc_html__('Datei gelöscht!', 'zdm');
@@ -340,7 +340,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     ));
 
             // Log
-            ZDMCore::log('replace file', $zdm_file_id);
+            ZDMCore::log('replace file', 'ID: ' . $zdm_file_id . ', name: ' . $zdm_name);
 
             $zdm_active_tab = 'file';
 
@@ -383,7 +383,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 ));
 
             // Log
-            ZDMCore::log('unlink file', sanitize_text_field($_GET['archive_id']));
+            ZDMCore::log('unlink file', 'ID: ' . sanitize_text_field($_GET['archive_id']));
             
             // Erfolg-Meldung ausgeben
             $zdm_note = esc_html__('Datei aus Archiv entfernt!', 'zdm');

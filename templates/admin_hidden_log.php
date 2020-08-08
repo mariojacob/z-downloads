@@ -56,6 +56,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     FROM $zdm_tablename_log 
                     WHERE type = 'download file' 
                     OR type = 'add file' 
+                    OR type = 'update file' 
+                    OR type = 'replace file' 
                     OR type = 'unlink file' 
                     OR type = 'delete file' 
                     ORDER BY time_create DESC 
