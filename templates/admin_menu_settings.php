@@ -8,9 +8,9 @@ if (!defined('ABSPATH')) {
 if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     $zdm_options = get_option('zdm_options');
-    $status = '';
-    $note = '';
-    $error = '';
+    $zdm_status = '';
+    $zdm_note = '';
+    $zdm_error = '';
 
     ////////////////////
     // Lizenzschlüssel aktualisieren
@@ -31,7 +31,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             if (add_option('zdm_options', $zdm_options) === FALSE) {
                 update_option('zdm_options', $zdm_options);
-                $status = 1;
+                $zdm_status = 1;
             }
 
             $zdm_options = get_option('zdm_options');
@@ -42,7 +42,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             if (add_option('zdm_options', $zdm_options) === FALSE) {
                 update_option('zdm_options', $zdm_options);
-                $status = 1;
+                $zdm_status = 1;
             }
         }
 
@@ -61,7 +61,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         if (add_option('zdm_options', $zdm_options) === FALSE) {
             update_option('zdm_options', $zdm_options);
-            $status = 1;
+            $zdm_status = 1;
         }
 
         // Log
@@ -106,7 +106,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         // Update Optionen
         if (add_option('zdm_options', $zdm_options) === FALSE) {
             update_option('zdm_options', $zdm_options);
-            $status = 1;
+            $zdm_status = 1;
         }// end if add_option() === FALSE
 
         $zdm_options = get_option('zdm_options');
@@ -175,26 +175,26 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <hr class="wp-header-end">
 
             <?php
-            if ($status != '') {
+            if ($zdm_status != '') {
 
                 echo '<div class="notice notice-success">';
                 echo '<br><b>' . esc_html__('Einstellungen aktualisiert!', 'zdm') . '</b><br><br>';
                 echo '</div>';
-            }// end if $status != ''
+            }// end if $zdm_status != ''
 
-            if ($note != '') {
+            if ($zdm_note != '') {
 
                 echo '<div class="notice notice-success">';
-                echo '<br><b>' . $note . '</b><br><br>';
+                echo '<br><b>' . $zdm_note . '</b><br><br>';
                 echo '</div>';
-            }// end if $note != ''
+            }// end if $zdm_note != ''
 
-            if ($error != '') {
+            if ($zdm_error != '') {
 
                 echo '<div class="notice notice-warning">';
-                echo '<br><b>' . $error . '</b><br><br>';
+                echo '<br><b>' . $zdm_error . '</b><br><br>';
                 echo '</div>';
-            }// end if $error != ''
+            }// end if $zdm_error != ''
 
             if (isset($_GET['reset_settings']) && wp_verify_nonce($_GET['nonce'], 'reset-settings')) { // Nur Hinweis dass die Einstellungen zurückgesetzt wurden anzeigen
                 ?>
