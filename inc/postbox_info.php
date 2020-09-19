@@ -19,9 +19,9 @@ if (!defined('ABSPATH')) {
                     <th scope="row"><?=esc_html__('Dokumentation und Hilfe', 'zdm')?>:</th>
                     <td valign="middle">
                         <a href="admin.php?page=<?=ZDM__SLUG?>-help"><?=esc_html__('Hilfeseiten für den Einstieg', 'zdm')?></a>, 
-                        <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=esc_html__('Shortcodes', 'zdm')?></a>, 
-                        <a href="https://code.urban-base.net/z-downloads/farben/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Farben', 'zdm')?>"><?=esc_html__('Farben', 'zdm')?></a>, 
-                        <a href="https://wordpress.org/plugins/z-downloads/#faq" target="_blank" title="<?=esc_html__('FAQ', 'zdm')?>"><?=esc_html__('FAQ', 'zdm')?></a>
+                        <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=esc_html__('Shortcodes', 'zdm')?> <ion-icon name="open"></ion-icon></a>, 
+                        <a href="https://code.urban-base.net/z-downloads/farben/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Farben', 'zdm')?>"><?=esc_html__('Farben', 'zdm')?> <ion-icon name="open"></ion-icon></a>, 
+                        <a href="https://wordpress.org/plugins/z-downloads/#faq" target="_blank" title="<?=esc_html__('FAQ', 'zdm')?>"><?=esc_html__('FAQ', 'zdm')?> <ion-icon name="open"></ion-icon></a>
                     </td>
                 </tr>
             </tbody>

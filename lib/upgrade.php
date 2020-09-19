@@ -97,6 +97,10 @@ if ($zdm_options['version'] < ZDM__VERSION) {
         $zdm_options['file-open-in-browser-pdf'] = '';
     }
 
+    if ($zdm_options['stat-single-file-last-limit'] == '') {
+        $zdm_options['stat-single-file-last-limit'] = 5;
+    }
+
     $zdm_options['version'] = ZDM__VERSION;
     
     update_option('zdm_options', $zdm_options);

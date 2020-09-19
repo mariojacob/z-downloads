@@ -535,7 +535,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <tr valign="top">
                                         <th scope="row"><?=esc_html__('Download Anzahl', 'zdm')?>:</th>
                                         <td valign="middle">
-                                            <input type="text" name="count" size="10%" value="<?=esc_attr($zdm_db_file->count)?>" spellcheck="true" autocomplete="off" placeholder=""> 
+                                            <input type="number" name="count" size="10%" value="<?=esc_attr($zdm_db_file->count)?>" spellcheck="true" autocomplete="off" placeholder=""> 
                                             <div class="zdm-help-text"><?=esc_html__('Anzahl an bisherigen Downloads.', 'zdm')?></div>
                                         </td>
                                     </tr>
@@ -719,18 +719,51 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                     <div class="postbox">
                         <div class="inside">
-                            <h3><?=esc_html__('Zusammenfassung', 'zdm')?></h3>
-                            <p>Download insgesamt, letzten 7 Tage, letzten 30 Tage</p>
+                            <h3><?=esc_html__('Download Statistik', 'zdm')?></h3>
                         </div>
+
+                        <table class="wp-list-table widefat">
+                            <tr valign="top">
+                                <th scope="row">
+                                    <b><?=esc_html__('Gesamt', 'zdm')?>:</b>
+                                </th>
+                                <td valign="middle">
+                                    <?=ZDMCore::number_format($zdm_db_file->count)?>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th scope="row"><b><?=esc_html__('Letzten 30 Tage', 'zdm')?>:</b></th>
+                                <td valign="middle">
+                                    <?=ZDMCore::number_format(ZDMStat::get_downloads_count_time_for_single_stat('file', $zdm_db_file->id, 86400*30))?>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th scope="row"><b><?=esc_html__('Letzten 7 Tage', 'zdm')?>:</b></th>
+                                <td valign="middle">
+                                    <?=ZDMCore::number_format(ZDMStat::get_downloads_count_time_for_single_stat('file', $zdm_db_file->id, 86400*7))?>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th scope="row"><b><?=esc_html__('Letzten 24 Stunden', 'zdm')?>:</b></th>
+                                <td valign="middle">
+                                    <?=ZDMCore::number_format(ZDMStat::get_downloads_count_time_for_single_stat('file', $zdm_db_file->id, 86400))?>
+                                </td>
+                            </tr>
+                        </table>
                     </div>
+
+                </div>
+
+                <div class="postbox-container zdm-postbox-col-sm-2">
 
                     <div class="postbox">
                         <div class="inside">
-                            <h3><?=esc_html__('Letzte 10 Downloads', 'zdm')?></h3>
+                            <h3><?=esc_html__('Letzte', 'zdm')?> <?=$zdm_options['stat-single-file-last-limit']?> <?=esc_html__('Downloads', 'zdm')?></h3>
+                            <a href="admin.php?page=<?=ZDM__SLUG?>-settings#zdm-stat"><?=esc_html__('Anzahl der Ausgabe ändern', 'zdm')?></a>
                         </div>
 
                         <?php
-                        $zdm_last_downloads = ZDMStat::get_last_downloads_for_single_stat('file', $zdm_db_file->id, 10);
+                        $zdm_last_downloads = ZDMStat::get_last_downloads_for_single_stat('file', $zdm_db_file->id, $zdm_options['stat-single-file-last-limit']);
                         $zdm_last_downloads_count = count($zdm_last_downloads);
                         if ($zdm_last_downloads_count != 0) {
                             ?>
@@ -762,16 +795,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <?php
                         }
                         ?>
-                    </div>
-
-                </div>
-
-                <div class="postbox-container zdm-postbox-col-sm-2">
-
-                    <div class="postbox">
-                        <div class="inside">
-                            <h3><?=esc_html__('Blabla...', 'zdm')?></h3>
-                        </div>
                     </div>
                     
                 </div>

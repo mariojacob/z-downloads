@@ -94,6 +94,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         // Download-Button Icon only
         $zdm_options['download-btn-icon-only'] = trim(sanitize_text_field($_POST['download-btn-icon-only']));
 
+        // Statistik
+
+        $zdm_options['stat-single-file-last-limit'] = trim(sanitize_text_field($_POST['stat-single-file-last-limit']));
+
         // Erweitert
 
         // Direkte URL zu PDF
@@ -393,7 +397,33 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     </div>
                 </div>
 
-                <div class="postbox">
+                <div class="postbox" id="zdm-stat">
+                    <div class="inside">
+                        <h3><?=esc_html__('Statistik', 'zdm')?></h3>
+                        <hr>
+                        <table class="form-table">
+                            <tbody>
+                                <tr valign="top">
+                                        <th scope="row">
+                                            <?=esc_html__('Letzte Downloads Limit', 'zdm')?>:
+                                            <?php
+                                            if ($zdm_licence === 0) {
+                                                echo '<br><a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('Funktion', 'zdm') . ' </a>';
+                                            }
+                                            ?>
+                                        </th>
+                                        <td valign="middle">
+                                            <input type="number" name="stat-single-file-last-limit" size="5" min="1" max="500" value="<?=esc_attr($zdm_options['stat-single-file-last-limit'])?>"<?php if ($zdm_licence === 0) { echo ' disabled'; } ?> >
+                                        <br>
+                                        <div class="zdm-help-text"><?=esc_html__('Bestimme die Anzahl der letzten Downloads die in der Datei-Detailseite im Tab Statistik angezeigt wird.', 'zdm')?></div>
+                                        </td>
+                                    </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="postbox" id="zdm-expanded">
                     <div class="inside">
                         <h3><?=esc_html__('Erweitert', 'zdm')?></h3>
                         <hr>

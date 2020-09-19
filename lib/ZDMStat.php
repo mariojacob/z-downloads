@@ -231,6 +231,39 @@ class ZDMStat {
     }
 
     /**
+     * Gibt Anzahl der Downloads für einzelne Datei oder Archiv zurück
+     *
+     * @param string $type
+     * @param int $item_id
+     * @param int $period
+     * @return int
+     */
+    public function get_downloads_count_time_for_single_stat($type, $item_id, $period) {
+
+        global $wpdb;
+        $tablename = $wpdb->prefix . "zdm_log";
+        $type_log = 'download ' . $type;
+
+        $time = time() - $period;
+            
+        $db_log = $wpdb->get_results(
+            "
+            SELECT id 
+            FROM $tablename 
+            WHERE time_create > '$time' 
+            AND type = '$type_log' 
+            AND message = '$item_id' 
+            ORDER by time_create DESC
+            "
+            );
+
+        $downloads = count($db_log);
+
+        return $downloads;
+        
+    }
+
+    /**
      * Gibt die letzten Downloads als Array zurück
      *
      * @param string $type [Optional] Typ
@@ -267,6 +300,10 @@ class ZDMStat {
      */
     public function get_last_downloads_for_single_stat($type, $item_id, $limit = 5) {
         $type_log = 'download ' . $type;
+
+        if ($limit == '') {
+            $limit = 5;
+        }
 
         global $wpdb;
 
