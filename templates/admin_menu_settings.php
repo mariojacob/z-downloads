@@ -345,31 +345,38 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <tr valign="top">
                                     <th scope="row"><?=esc_html__('Icon', 'zdm')?>:</th>
                                     <td valign="middle">
-                                        <select name="download-btn-icon">
                                         <?php
-                                            $zdm_btn_icon = '';
-
-                                            for( $i = 0; $i < count(ZDM__DOWNLOAD_BTN_ICON); $i++ ) {
-                                                $zdm_btn_icon   .= '<option value="' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '" ' 
-                                                                . ( $zdm_options['download-btn-icon'] == ZDM__DOWNLOAD_BTN_ICON_VAL[$i] ? 'selected="selected"' : '' ) . '>' 
-                                                                . ZDM__DOWNLOAD_BTN_ICON[$i] 
-                                                                . '</option>';
-                                            }
-                                            
-                                            echo $zdm_btn_icon;
+                                        $zdm_btn_icons_count = count(ZDM__DOWNLOAD_BTN_ICON);
+                                        $zdm_btn_icons_count_ceil = ceil(($zdm_btn_icons_count)/2);
                                         ?>
-                                        </select><br>
-                                        <div class="zdm-help-text"><?=esc_html__('Hier sind die verfügbaren Icons:', 'zdm')?></div>
-                                        <?php
-                                            $zdm_btn_icon_example = '';
-
-                                            for( $i = 1; $i < count(ZDM__DOWNLOAD_BTN_ICON); $i++ ) {
-                                                $zdm_btn_icon_example   .= ZDM__DOWNLOAD_BTN_ICON[$i] . ':' 
-                                                                        . '<ion-icon name="' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '" class="zdm-icon zdm-color-primary"></ion-icon>';
-                                            }
-                                            
-                                            echo $zdm_btn_icon_example;
-                                        ?>
+                                        <table>
+                                            <tr>
+                                                <fieldset>
+                                                <td>
+                                                    <?php
+                                                    $zdm_btn_icon_example_left = '';
+                                                    for ($i=0; $i < $zdm_btn_icons_count_ceil; $i++) {
+                                                        $zdm_btn_icon_example_left .= '<input type="radio" name="download-btn-icon" value="' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '" ';
+                                                        $zdm_btn_icon_example_left .= ( $zdm_options['download-btn-icon'] == ZDM__DOWNLOAD_BTN_ICON_VAL[$i] ? 'checked="checked"' : '' ) . '>';
+                                                        $zdm_btn_icon_example_left .= '<ion-icon name="' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '" class="zdm-icon zdm-color-primary"></ion-icon>' . ZDM__DOWNLOAD_BTN_ICON[$i] . '</input><br />';
+                                                    }
+                                                    echo $zdm_btn_icon_example_left;
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                    $zdm_btn_icon_example_right = '';
+                                                    for ($i=$zdm_btn_icons_count_ceil; $i < $zdm_btn_icons_count; $i++) {
+                                                        $zdm_btn_icon_example_right .= '<input type="radio" name="download-btn-icon" value="' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '" ';
+                                                        $zdm_btn_icon_example_right .= ( $zdm_options['download-btn-icon'] == ZDM__DOWNLOAD_BTN_ICON_VAL[$i] ? 'checked="checked"' : '' ) . '>';
+                                                        $zdm_btn_icon_example_right .= '<ion-icon name="' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '" class="zdm-icon zdm-color-primary"></ion-icon>' . ZDM__DOWNLOAD_BTN_ICON[$i] . '</input><br />';
+                                                    }
+                                                    echo $zdm_btn_icon_example_right;
+                                                    ?>
+                                                </td>
+                                            </fieldset>
+                                            </tr>
+                                        </table>
                                     </td>
                                 </tr>
                                 <tr valign="top">

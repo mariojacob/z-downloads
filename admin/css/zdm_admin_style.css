@@ -48,6 +48,12 @@
     width: 39%;
 }
 
+.zdm-postbox-col-sm-2 {
+    min-width: 300px;
+    width: 39%;
+    padding: 0 1% 0 0;
+}
+
 .zdm-icon {
     font-size: 18px !important;
     margin-left: 8px;

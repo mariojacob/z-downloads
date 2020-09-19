@@ -108,8 +108,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         ?>
         <div class="wrap">
 
-            <h1 class="wp-heading-inline"><?=esc_html__('Log Details', 'zdm')?><a href="admin.php?page=<?=ZDM__SLUG?>-log" class="page-title-action"><?=esc_html__('Zurück zur Übersicht', 'zdm')?></a></h1>
-            <hr class="wp-header-end">
+            <h1><?=esc_html__('Log Details', 'zdm')?></h1>
+            <button class="page-title-action" onclick="ZDMgoBack()"><?=esc_html__('Zurück', 'zdm')?></button>
+            <br /><br />
 
             <div class="postbox">
                 <div class="inside">
@@ -154,6 +155,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             </div>
 
         </div>
+
+        <script>
+        function ZDMgoBack() {
+            window.history.back();
+        }
+        </script>
         <?php
             
     } else { // Log Liste
@@ -161,8 +168,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         ?>
         <div class="wrap">
 
-            <h1 class="wp-heading-inline"><?=esc_html__('Log', 'zdm')?><a href="admin.php?page=<?=ZDM__SLUG?>-settings" class="page-title-action"><?=esc_html__('Zurück den Einstellungen', 'zdm')?></a></h1>
-            <hr class="wp-header-end">
+            <h1><?=esc_html__('Log', 'zdm')?></h1>
+            <a href="admin.php?page=<?=ZDM__SLUG?>-settings" class="page-title-action"><?=esc_html__('Zurück den Einstellungen', 'zdm')?></a>
+            <br /><br />
 
             <?php
             if (count($zdm_db_logs) > 0) {

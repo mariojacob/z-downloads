@@ -14,10 +14,10 @@ class ZDMStat {
      * Gibt Array mit den meisten Downloads zurück
      *
      * @param string $type [Optional] Typ der Abfrage
-     * @param integer $number [Optional] Anzahl an Einträgen
+     * @param integer $limit [Optional] Anzahl an Einträgen
      * @return array
      */
-    public function get_best_downloads($type = 'archive', $number = 5) {
+    public function get_best_downloads($type = 'archive', $limit = 5) {
         global $wpdb;
 
         if ($type == 'archive') {
@@ -29,7 +29,7 @@ class ZDMStat {
                 FROM $tablename_archives 
                 WHERE count > 0 
                 ORDER by count DESC 
-                Limit $number
+                Limit $limit
                 "
                 );
         }
@@ -43,7 +43,7 @@ class ZDMStat {
                 FROM $tablename_files 
                 WHERE count > 0 
                 ORDER by count DESC 
-                Limit $number
+                Limit $limit
                 "
                 );
         }
@@ -132,7 +132,7 @@ class ZDMStat {
      * Gibt Download Anzahl für einen bestimmten Zeitraum zurück
      *
      * @param string $type [Optional] Typ
-     * @param int $period Zeitangabe
+     * @param int $period Zeitangabe in Sekunden
      * @return int
      */
     public function get_downloads_count_time($type = 'all', $period) {
@@ -234,10 +234,10 @@ class ZDMStat {
      * Gibt die letzten Downloads als Array zurück
      *
      * @param string $type [Optional] Typ
-     * @param integer $number [Optional] Anzahl der Einträge
+     * @param integer $limit [Optional] Anzahl der Einträge
      * @return array
      */
-    public function get_last_downloads($type = 'archive', $number = 5) {
+    public function get_last_downloads($type = 'archive', $limit = 5) {
         $type_log = 'download ' . $type;
 
         global $wpdb;
@@ -250,7 +250,36 @@ class ZDMStat {
             FROM $tablename_log 
             WHERE type = '$type_log' 
             ORDER by id DESC 
-            Limit $number
+            Limit $limit
+            "
+            );
+
+        return $db_log;
+    }
+
+    /**
+     * Gibt die letzten Downloads (id, time_create) als Array zurück
+     *
+     * @param string $type
+     * @param integer $item_id [Optional]
+     * @param integer $limit [Optional] Anzahl der Einträge
+     * @return array
+     */
+    public function get_last_downloads_for_single_stat($type, $item_id, $limit = 5) {
+        $type_log = 'download ' . $type;
+
+        global $wpdb;
+
+        $tablename_log = $wpdb->prefix . "zdm_log";
+
+        $db_log = $wpdb->get_results(
+            "
+            SELECT id, time_create 
+            FROM $tablename_log 
+            WHERE type = '$type_log' 
+            AND message = '$item_id' 
+            ORDER by id DESC 
+            Limit $limit
             "
             );
 

@@ -176,7 +176,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     ));
     
                 // Log
-                ZDMCore::log('update file', 'ID: ' . $zdm_file_id . ', name: ' . $zdm_name);
+                ZDMCore::log('update file', $zdm_file_id);
             
                 // Erfolg-Meldung ausgeben
                 $zdm_note = esc_html__('Aktualisiert', 'zdm');
@@ -237,7 +237,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     ));
     
                 // Log
-                ZDMCore::log('delete file', 'ID: ' . $zdm_file_id);
+                ZDMCore::log('delete file', $zdm_file_id);
             
                 // Erfolg-Meldung ausgeben
                 $zdm_note = esc_html__('Datei gelöscht!', 'zdm');
@@ -340,7 +340,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     ));
 
             // Log
-            ZDMCore::log('replace file', 'ID: ' . $zdm_file_id . ', name: ' . $zdm_name);
+            ZDMCore::log('replace file', $zdm_file_id);
 
             $zdm_active_tab = 'file';
 
@@ -383,7 +383,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 ));
 
             // Log
-            ZDMCore::log('unlink file', 'ID: ' . sanitize_text_field($_GET['archive_id']));
+            ZDMCore::log('unlink file', $zdm_file_id);
             
             // Erfolg-Meldung ausgeben
             $zdm_note = esc_html__('Datei aus Archiv entfernt!', 'zdm');
@@ -420,21 +420,24 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         ?>
         
         <div class="wrap">
+            
+            <h1><?=esc_html__('Datei', 'zdm')?>: <?=$zdm_db_file->name?></h1>
+            <a href="admin.php?page=<?=ZDM__SLUG?>-files" class="page-title-action"><?=esc_html__('Zurück zur Übersicht', 'zdm')?></a> <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="page-title-action"><?=esc_html__('Datei hinzufügen', 'zdm')?></a>
+            <br /><br />
 
             <nav class="nav-tab-wrapper wp-clearfix zdm-nav-tabs">
-                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>" class="nav-tab zdm-nav-tab <?php echo $zdm_active_tab == 'file' ? 'nav-tab-active' : ''; ?>" aria-current="page"><?=esc_html__('Datei', 'zdm')?></a>
-                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=shortcodes" class="nav-tab <?php echo $zdm_active_tab == 'shortcodes' ? 'nav-tab-active' : ''; ?>"><?=esc_html__('Shortcodes', 'zdm')?></a>
-                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=update-file" class="nav-tab <?php echo $zdm_active_tab == 'update-file' ? 'nav-tab-active' : ''; ?>"><?=esc_html__('Datei ersetzen', 'zdm')?></a>
+                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>" class="nav-tab zdm-nav-tab <?php echo $zdm_active_tab == 'file' ? 'nav-tab-active' : ''; ?>" aria-current="page"><ion-icon name="document"></ion-icon> <?=esc_html__('Datei', 'zdm')?></a>
+                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=shortcodes" class="nav-tab <?php echo $zdm_active_tab == 'shortcodes' ? 'nav-tab-active' : ''; ?>">[/] <?=esc_html__('Shortcodes', 'zdm')?></a>
+                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=update-file" class="nav-tab <?php echo $zdm_active_tab == 'update-file' ? 'nav-tab-active' : ''; ?>"><ion-icon name="swap"></ion-icon> <?=esc_html__('Datei ersetzen', 'zdm')?></a>
+                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=statistic" class="nav-tab <?php echo $zdm_active_tab == 'statistic' ? 'nav-tab-active' : ''; ?>"><ion-icon name="stats"></ion-icon> <?=esc_html__('Statistik', 'zdm')?></a>
                 <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=help" class="nav-tab <?php echo $zdm_active_tab == 'help' ? 'nav-tab-active' : ''; ?>"><ion-icon name="help-circle-outline"></ion-icon> <?=esc_html__('Hilfe', 'zdm')?></a>
             </nav>
-
             <br />
-            <p><a href="admin.php?page=<?=ZDM__SLUG?>-files" class="page-title-action"><?=esc_html__('Zurück zur Übersicht', 'zdm')?></a> <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="page-title-action"><?=esc_html__('Datei hinzufügen', 'zdm')?></a></p>
-
 
             <?php
             // Tabs
-            if ($zdm_active_tab == 'file') { // Tab: Datei
+            // Tab: Datei
+            if ($zdm_active_tab == 'file') {
                 ?>
                 
                 <div class="postbox">
@@ -619,7 +622,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 </form>
                 <?php
             // end if ($zdm_active_tab == 'file')
-            } elseif ($zdm_active_tab == 'shortcodes') { // Tab: Shortcodes
+            // Tab: Shortcodes
+            } elseif ($zdm_active_tab == 'shortcodes') {
                 ?>
                 <div class="postbox">
                     <div class="inside">
@@ -703,7 +707,78 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 </div>
                 <?php
             // end if ($zdm_active_tab == 'shortcodes')
-            } elseif ($zdm_active_tab == 'update-file') { // Tab: Datei ersetzen
+            // Tab: Statistik
+            } elseif ($zdm_active_tab == 'statistic') {
+                ////////////////////
+                // Download Statistik
+                ////////////////////
+                require_once(ZDM__PATH . '/lib/ZDMStat.php');
+                ?>
+
+                <div class="postbox-container zdm-postbox-col-sm-2">
+
+                    <div class="postbox">
+                        <div class="inside">
+                            <h3><?=esc_html__('Zusammenfassung', 'zdm')?></h3>
+                            <p>Download insgesamt, letzten 7 Tage, letzten 30 Tage</p>
+                        </div>
+                    </div>
+
+                    <div class="postbox">
+                        <div class="inside">
+                            <h3><?=esc_html__('Letzte 10 Downloads', 'zdm')?></h3>
+                        </div>
+
+                        <?php
+                        $zdm_last_downloads = ZDMStat::get_last_downloads_for_single_stat('file', $zdm_db_file->id, 10);
+                        $zdm_last_downloads_count = count($zdm_last_downloads);
+                        if ($zdm_last_downloads_count != 0) {
+                            ?>
+                            <table class="wp-list-table widefat striped tags">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" width="60%"><b><?=esc_html__('Datum und Uhrzeit', 'zdm')?></b></th>
+                                        <th scope="col" width="40%"><b><?=esc_html__('Details', 'zdm')?></b></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <?php
+                                    for ($i=0; $i < $zdm_last_downloads_count; $i++) { 
+                                        ?>
+                                        <tr>
+                                            <td><?=date("d.m.Y - h:i:s", $zdm_last_downloads[$i]->time_create)?></td>
+                                            <td><a href="?page=<?=ZDM__SLUG?>-log&id=<?=$zdm_last_downloads[$i]->id?>"><?=esc_html__('Details anzeigen', 'zdm')?></a></td>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                            <?php
+                        } else {
+                            ?>
+                            <p style="text-align:center"><?=esc_html__('Diese Datei wurde noch nicht heruntergeladen.', 'zdm')?></p>
+                            <?php
+                        }
+                        ?>
+                    </div>
+
+                </div>
+
+                <div class="postbox-container zdm-postbox-col-sm-2">
+
+                    <div class="postbox">
+                        <div class="inside">
+                            <h3><?=esc_html__('Blabla...', 'zdm')?></h3>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <?php
+            // Tab: Datei ersetzen
+            } elseif ($zdm_active_tab == 'update-file') {
                 ?>
                 <div class="postbox">
                     <div class="inside">
@@ -731,7 +806,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     </div>
                 </div>
                 <?php
-            } elseif ($zdm_active_tab == 'help') { // Tab: Hilfe
+            // Tab: Hilfe
+            } elseif ($zdm_active_tab == 'help') {
                 ?>
 
                 <div class="zdm-box zdm-box-info">
