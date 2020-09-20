@@ -969,6 +969,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
                             <th scope="col"><div align="center"><ion-icon name="cloud-download" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></div></th>
+                            <th scope="col"><div align="center"><ion-icon name="stats" title="<?=esc_html__('Download Statistik', 'zdm')?>"></ion-icon></div></th>
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
                             <th scope="col" title="<?=esc_html__('Zeigt an in wie vielen Archiven die Datei verknüpft ist.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
@@ -1023,6 +1024,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <div align="center"><?=ZDMCore::number_format($zdm_db_files[$i]->count)?></div>
                                 </td>
                                 <td>
+                                    <div align="center"><a href="?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_db_files[$i]->id)?>&tab=statistic"><ion-icon name="stats"></ion-icon></a</div>
+                                </td>
+                                <td>
                                     <?=htmlspecialchars($zdm_db_files[$i]->file_size)?>
                                 </td>
                                 <td>
@@ -1049,6 +1053,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
                             <th scope="col"><div align="center"><ion-icon name="cloud-download" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></div></th>
+                            <th scope="col"><div align="center"><ion-icon name="stats" title="<?=esc_html__('Download Statistik', 'zdm')?>"></ion-icon></div></th>
                             <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
                             <th scope="col" title="<?=esc_html__('Zeigt an in wie vielen Archiven die Datei verknüpft ist.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
