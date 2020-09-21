@@ -16,23 +16,25 @@ define('ZDM__DOWNLOADS_FILES_PATH_URL', ZDM__DOWNLOADS_PATH_URL . "/files");
 
 // Optionen
 define('ZDM__OPTIONS', [
-    'version'                       => ZDM__VERSION,
-    'licence-key'                   => '',
-    'licence-email'                 => '',
-    'licence-purchase'              => '',
-    'licence-product-name'          => '',
-    'licence-time'                  => 0,
-    'db-version'                    => 1,
-    'download-btn-text'             => 'Download',
-    'download-btn-style'            => 'black',
-    'download-btn-outline'          => '',
-    'download-btn-border-radius'    => 'none',
-    'download-btn-icon'             => 'none',
-    'download-btn-icon-only'        => '',
-    'download-btn-css'              => '',
-    'secure-ip'                     => 'on',
-    'duplicate-file'                => '',
-    'file-open-in-browser-pdf'      => ''
+    'version'                           => ZDM__VERSION,
+    'licence-key'                       => '',
+    'licence-email'                     => '',
+    'licence-purchase'                  => '',
+    'licence-product-name'              => '',
+    'licence-time'                      => 0,
+    'db-version'                        => 1,
+    'download-btn-text'                 => 'Download',
+    'download-btn-style'                => 'black',
+    'download-btn-outline'              => '',
+    'download-btn-border-radius'        => 'none',
+    'download-btn-icon'                 => 'none',
+    'download-btn-icon-only'            => '',
+    'download-btn-css'                  => '',
+    'secure-ip'                         => 'on',
+    'duplicate-file'                    => '',
+    'file-open-in-browser-pdf'          => '',
+    'stat-single-file-last-limit'       => 5,
+    'stat-single-archive-last-limit'    => 5
 ]);
 
 // MIME Types

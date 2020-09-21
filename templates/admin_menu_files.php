@@ -423,7 +423,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             
             <h1><?=esc_html__('Datei', 'zdm')?>: <?=$zdm_db_file->name?></h1>
             <a href="admin.php?page=<?=ZDM__SLUG?>-files" class="page-title-action"><?=esc_html__('Zurück zur Übersicht', 'zdm')?></a> <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="page-title-action"><?=esc_html__('Datei hinzufügen', 'zdm')?></a>
-            <br /><br />
+            <br><br>
 
             <nav class="nav-tab-wrapper wp-clearfix zdm-nav-tabs">
                 <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>" class="nav-tab zdm-nav-tab <?php echo $zdm_active_tab == 'file' ? 'nav-tab-active' : ''; ?>" aria-current="page"><ion-icon name="document"></ion-icon> <?=esc_html__('Datei', 'zdm')?></a>
@@ -432,7 +432,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=statistic" class="nav-tab <?php echo $zdm_active_tab == 'statistic' ? 'nav-tab-active' : ''; ?>"><ion-icon name="stats"></ion-icon> <?=esc_html__('Statistik', 'zdm')?></a>
                 <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=help" class="nav-tab <?php echo $zdm_active_tab == 'help' ? 'nav-tab-active' : ''; ?>"><ion-icon name="help-circle-outline"></ion-icon> <?=esc_html__('Hilfe', 'zdm')?></a>
             </nav>
-            <br />
+            <br>
 
             <?php
             // Tabs
@@ -563,7 +563,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             if ($zdm_db_file_in_archive >= 1) {
 
                                                 ?>
-                                                <br /><br />
+                                                <br><br>
                                                 <table class="zdm-table-list">
                                                     <?php
                                                     $zdm_linked_archives = ZDMCore::get_linked_archives($zdm_db_file->id);
@@ -707,6 +707,36 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 </div>
                 <?php
             // end if ($zdm_active_tab == 'shortcodes')
+            // Tab: Datei ersetzen
+            } elseif ($zdm_active_tab == 'update-file') {
+                ?>
+                <div class="postbox">
+                    <div class="inside">
+                        <h2><?=esc_html__('Datei ersetzen', 'zdm')?></h2>
+                        <hr>
+                        <p><?=esc_html__('Hier kannst du eine neue Datei hochladen, diese ersetzt die aktuelle Datei, die ID für die Shortcodes bleibt gleich.', 'zdm')?></p>
+
+                        <table class="form-table">
+                            <tbody>
+                            
+                                <form action="" method="post" enctype="multipart/form-data">
+                                    <tr valign="top">
+                                        <th scope="row"><?=esc_html__('Datei ersetzen', 'zdm')?>:</th>
+                                        <td valign="middle">
+                                        <input type="hidden" name="nonce" value="<?=wp_create_nonce('datei-ersetzen')?>">
+                                        <input type="hidden" name="name" value="<?=htmlspecialchars($zdm_db_file->name)?>">
+                                        <input type="file" name="file"> <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Hochladen und ersetzen', 'zdm')?>">
+                                        <div class="zdm-help-text"><?=esc_html__('Maximale Dateigröße für Uploads', 'zdm')?>: <?=ini_get('upload_max_filesize')?></div>
+                                        </td>
+                                    </tr>
+                                </form>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <?php
+            // end if ($zdm_active_tab == 'update-file')
             // Tab: Statistik
             } elseif ($zdm_active_tab == 'statistic') {
                 ////////////////////
@@ -800,35 +830,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 </div>
 
                 <?php
-            // Tab: Datei ersetzen
-            } elseif ($zdm_active_tab == 'update-file') {
-                ?>
-                <div class="postbox">
-                    <div class="inside">
-                        <h2><?=esc_html__('Datei ersetzen', 'zdm')?></h2>
-                        <hr>
-                        <p><?=esc_html__('Hier kannst du eine neue Datei hochladen, diese ersetzt die aktuelle Datei, die ID für die Shortcodes bleibt gleich.', 'zdm')?></p>
-
-                        <table class="form-table">
-                            <tbody>
-                            
-                                <form action="" method="post" enctype="multipart/form-data">
-                                    <tr valign="top">
-                                        <th scope="row"><?=esc_html__('Datei ersetzen', 'zdm')?>:</th>
-                                        <td valign="middle">
-                                        <input type="hidden" name="nonce" value="<?=wp_create_nonce('datei-ersetzen')?>">
-                                        <input type="hidden" name="name" value="<?=htmlspecialchars($zdm_db_file->name)?>">
-                                        <input type="file" name="file"> <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Hochladen und ersetzen', 'zdm')?>">
-                                        <div class="zdm-help-text"><?=esc_html__('Maximale Dateigröße für Uploads', 'zdm')?>: <?=ini_get('upload_max_filesize')?></div>
-                                        </td>
-                                    </tr>
-                                </form>
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                <?php
+            // end if ($zdm_active_tab == 'statistic')
             // Tab: Hilfe
             } elseif ($zdm_active_tab == 'help') {
                 ?>
@@ -936,6 +938,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 </div>
 
                 <?php
+            // end if ($zdm_active_tab == 'help')
             }
             ?>
             
@@ -1203,7 +1206,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <?php } ?>
 
             
-            <br />
+            <br>
             <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="button button-primary"><?=esc_html__('Neue Datei hochladen', 'zdm')?></a>
             &nbsp;&nbsp;
             <a href="admin.php?page=<?=ZDM__SLUG?>-files" class="button button-secondary"><?=esc_html__('Dateien Übersicht', 'zdm')?></a>

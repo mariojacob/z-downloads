@@ -97,6 +97,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         // Statistik
 
         $zdm_options['stat-single-file-last-limit'] = trim(sanitize_text_field($_POST['stat-single-file-last-limit']));
+        $zdm_options['stat-single-archive-last-limit'] = trim(sanitize_text_field($_POST['stat-single-archive-last-limit']));
 
         // Erweitert
 
@@ -148,10 +149,20 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         if ($_GET['reset_settings'] == 'true') {
 
+            // Download Ordner Token beibehalten
+            $zdm_download_folder_token_temp = $zdm_options['download-folder-token'];
+
             flush_rewrite_rules();
 
             if (get_option('zdm_options')) {
                 update_option('zdm_options', ZDM__OPTIONS);
+                $zdm_options = get_option('zdm_options');
+                
+                // Neuen Downloadordner Token generieren
+                $zdm_new_download_folder_token = md5(uniqid(rand(), true));
+                rename(ZDM__DOWNLOADS_PATH, wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_new_download_folder_token);
+                $zdm_options['download-folder-token'] = $zdm_new_download_folder_token;
+                update_option('zdm_options', $zdm_options);
                 $zdm_options = get_option('zdm_options');
 
                 // Log
@@ -413,9 +424,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             ?>
                                         </th>
                                         <td valign="middle">
-                                            <input type="number" name="stat-single-file-last-limit" size="5" min="1" max="500" value="<?=esc_attr($zdm_options['stat-single-file-last-limit'])?>"<?php if ($zdm_licence === 0) { echo ' disabled'; } ?> >
-                                        <br>
-                                        <div class="zdm-help-text"><?=esc_html__('Bestimme die Anzahl der letzten Downloads die in der Datei-Detailseite im Tab Statistik angezeigt wird.', 'zdm')?></div>
+                                            <input type="number" name="stat-single-file-last-limit" size="5" min="1" max="500" value="<?=esc_attr($zdm_options['stat-single-file-last-limit'])?>"<?php if ($zdm_licence === 0) { echo ' disabled'; } ?> > 
+                                            <ion-icon name="information-circle-outline"></ion-icon> <?=esc_html__('Einstellung für Dateien', 'zdm')?>
+                                            <br>
+                                            <div class="zdm-help-text"><?=esc_html__('Bestimme die Anzahl der letzten Downloads die in der Datei-Detailseite im Tab Statistik angezeigt wird.', 'zdm')?></div>
+                                            <br>
+                                            <input type="number" name="stat-single-archive-last-limit" size="5" min="1" max="500" value="<?=esc_attr($zdm_options['stat-single-archive-last-limit'])?>"<?php if ($zdm_licence === 0) { echo ' disabled'; } ?> >
+                                            <ion-icon name="information-circle-outline"></ion-icon> <?=esc_html__('Einstellung für Archive', 'zdm')?>
+                                            <br>
+                                            <div class="zdm-help-text"><?=esc_html__('Bestimme die Anzahl der letzten Downloads die in der Archiv-Detailseite im Tab Statistik angezeigt wird.', 'zdm')?></div>
                                         </td>
                                     </tr>
                             </tbody>
@@ -472,7 +489,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <td valign="middle">
                                         <a href="admin.php?page=<?=ZDM__SLUG?>-settings&reset_settings=true&nonce=<?=wp_create_nonce('reset-settings')?>" class="button button-secondary"><?=esc_html__('Einstellungen zurücksetzen', 'zdm')?></a>
                                         <div class="zdm-help-text"><?=esc_html__('Hier kannst du alle Einstellungen auf Werkseinstellungen zurücksetzen.', 'zdm')?></div>
-                                        <div class="zdm-help-text"><?=esc_html__('Das bedeutet, die Premium Lizenz, die Buttoneinstellungen wie Standardtext, Style, Runde Ecken, Icons und alle anderen Einstellungen werden zurückgesetzt.', 'zdm')?></div>
+                                        <div class="zdm-help-text">
+                                            <?=esc_html__('Das bedeutet, die Premium Lizenz, die Buttoneinstellungen wie Standardtext, Style, Runde Ecken, Icons und alle anderen Einstellungen werden zurückgesetzt.', 'zdm')?><br>
+                                            <?=esc_html__('Auch der Downloadordner Token wird neu generiert.', 'zdm')?>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>

@@ -15,9 +15,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     // Aktiven Tab bestimmen
     if( isset($_GET['tab'])) {
-        $active_tab = htmlspecialchars($_GET['tab']);
+        $zdm_active_tab = htmlspecialchars($_GET['tab']);
     } else {
-        $active_tab = 'archive';
+        $zdm_active_tab = 'archive';
     }
 
     global $wpdb;
@@ -56,6 +56,19 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         ZDMCore::check_files_from_archive(sanitize_text_field($_GET['archive-cache']));
 
         $zdm_note = esc_html__('Cache aktualisiert!', 'zdm');
+    }
+
+    //////////////////////////////////////////////////
+    // Statistik Ausgabe aktualisieren
+    //////////////////////////////////////////////////
+    if (isset($_POST['update_stat_single_archive_last_limit']) && wp_verify_nonce($_POST['nonce'], 'update-stat-single-archive-last-limit')) {
+
+        $zdm_options['stat-single-archive-last-limit'] = trim(sanitize_text_field($_POST['stat-single-archive-last-limit']));
+        if (add_option('zdm_options', $zdm_options) === FALSE) {
+            update_option('zdm_options', $zdm_options);
+        }
+        $zdm_options = get_option('zdm_options');
+        $zdm_note = esc_html__('Einstellungen aktualisiert!', 'zdm');
     }
 
     if (isset($_GET['id'])) {
@@ -327,18 +340,23 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         
         <div class="wrap">
 
+            <h1><?=esc_html__('Archiv', 'zdm')?>: <?=esc_attr($zdm_db_archive->name)?></h1>
+            <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive" class="page-title-action"><?=esc_html__('Zurück zur Übersicht', 'zdm')?></a> <a href="admin.php?page=<?=ZDM__SLUG?>-add-archive" class="page-title-action"><?=esc_html__('Archiv erstellen', 'zdm')?></a>
+            <br><br>
+
             <nav class="nav-tab-wrapper wp-clearfix zdm-nav-tabs">
-                <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_archive_id?>" class="nav-tab zdm-nav-tab <?php echo $active_tab == 'archive' ? 'nav-tab-active' : ''; ?>" aria-current="page"><?=esc_html__('Archiv', 'zdm')?></a>
-                <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_archive_id?>&tab=shortcodes" class="nav-tab <?php echo $active_tab == 'shortcodes' ? 'nav-tab-active' : ''; ?>"><?=esc_html__('Shortcodes', 'zdm')?></a>
-                <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_archive_id?>&tab=help" class="nav-tab <?php echo $active_tab == 'help' ? 'nav-tab-active' : ''; ?>"><ion-icon name="help-circle-outline"></ion-icon> <?=esc_html__('Hilfe', 'zdm')?></a>
+                <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_archive_id?>" class="nav-tab zdm-nav-tab <?php echo $zdm_active_tab == 'archive' ? 'nav-tab-active' : ''; ?>" aria-current="page"><ion-icon name="document"></ion-icon> <?=esc_html__('Archiv', 'zdm')?></a>
+                <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_archive_id?>&tab=shortcodes" class="nav-tab <?php echo $zdm_active_tab == 'shortcodes' ? 'nav-tab-active' : ''; ?>">[/] <?=esc_html__('Shortcodes', 'zdm')?></a>
+                <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_archive_id?>&tab=statistic" class="nav-tab <?php echo $zdm_active_tab == 'statistic' ? 'nav-tab-active' : ''; ?>"><ion-icon name="stats"></ion-icon> <?=esc_html__('Statistik', 'zdm')?></a>
+                <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=$zdm_archive_id?>&tab=help" class="nav-tab <?php echo $zdm_active_tab == 'help' ? 'nav-tab-active' : ''; ?>"><ion-icon name="help-circle-outline"></ion-icon> <?=esc_html__('Hilfe', 'zdm')?></a>
             </nav>
 
             <br>
-            <p><a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive" class="page-title-action"><?=esc_html__('Zurück zur Übersicht', 'zdm')?></a> <a href="admin.php?page=<?=ZDM__SLUG?>-add-archive" class="page-title-action"><?=esc_html__('Archiv erstellen', 'zdm')?></a></p>
 
             <?php
             // Tabs
-            if ($active_tab == 'archive') { // Tab: Archiv
+            // Tab: Archiv
+            if ($zdm_active_tab == 'archive') {
                 ?>
 
                 <div class="postbox">
@@ -501,8 +519,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <input class="button-secondary" type="submit" name="delete" value="<?=esc_html__('Löschen', 'zdm')?>">
             </form>
                 <?php
-            // end if ($active_tab == 'archive')
-            } elseif ($active_tab == 'shortcodes') { // Tab: Shortcodes
+            // end if ($zdm_active_tab == 'archive')
+            // Tab: Shortcodes
+            } elseif ($zdm_active_tab == 'shortcodes') {
                 ?>
 
                 <div class="postbox">
@@ -565,7 +584,115 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 </div>
 
                 <?php
-            } elseif ($active_tab == 'help') { // Tab: Hilfe
+            // Tab: Statistik
+            } elseif ($zdm_active_tab == 'statistic') {
+                ////////////////////
+                // Download Statistik
+                ////////////////////
+                require_once(ZDM__PATH . '/lib/ZDMStat.php');
+                ?>
+
+                <div class="postbox-container zdm-postbox-col-sm-2">
+
+                    <div class="postbox">
+                        <div class="inside">
+                            <h3><?=esc_html__('Download Statistik', 'zdm')?></h3>
+                        </div>
+
+                        <table class="wp-list-table widefat">
+                            <tr valign="top">
+                                <th scope="row">
+                                    <b><?=esc_html__('Gesamt', 'zdm')?>:</b>
+                                </th>
+                                <td valign="middle">
+                                    <?=ZDMCore::number_format($zdm_db_archive->count)?>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th scope="row"><b><?=esc_html__('Letzten 30 Tage', 'zdm')?>:</b></th>
+                                <td valign="middle">
+                                    <?=ZDMCore::number_format(ZDMStat::get_downloads_count_time_for_single_stat('archive', $zdm_db_archive->id, 86400*30))?>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th scope="row"><b><?=esc_html__('Letzten 7 Tage', 'zdm')?>:</b></th>
+                                <td valign="middle">
+                                    <?=ZDMCore::number_format(ZDMStat::get_downloads_count_time_for_single_stat('archive', $zdm_db_archive->id, 86400*7))?>
+                                </td>
+                            </tr>
+                            <tr valign="top">
+                                <th scope="row"><b><?=esc_html__('Letzten 24 Stunden', 'zdm')?>:</b></th>
+                                <td valign="middle">
+                                    <?=ZDMCore::number_format(ZDMStat::get_downloads_count_time_for_single_stat('archive', $zdm_db_archive->id, 86400))?>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+
+                <div class="postbox-container zdm-postbox-col-sm-2">
+
+                    <div class="postbox">
+                        <div class="inside">
+                            <h3><?=esc_html__('Letzte', 'zdm')?> <?=$zdm_options['stat-single-archive-last-limit']?> <?=esc_html__('Downloads', 'zdm')?></h3>
+                            <form action="" method="post">
+                                <input type="hidden" name="nonce" value="<?=wp_create_nonce('update-stat-single-archive-last-limit')?>">
+                                <input type="number" name="stat-single-archive-last-limit" size="5" min="1" max="500" value="<?=esc_attr($zdm_options['stat-single-archive-last-limit'])?>"<?php if ($zdm_licence === 0) { echo ' disabled'; } ?> >
+                                <input class="button-primary" type="submit" name="update_stat_single_archive_last_limit" value="<?=esc_html__('Aktualisieren', 'zdm')?>"<?php if ($zdm_licence === 0) { echo ' disabled'; } ?>>
+                                <?php
+                                if ($zdm_licence === 0) {
+                                    ?>
+                                    <br><a href="<?=ZDM__PRO_URL?>" target="_blank" title="code.urban-base.net"><?=ZDM__PRO?> <?=esc_html__('Funktion', 'zdm')?></a>
+                                    <?php
+                                }
+                                ?>
+                                <div class="zdm-help-text">
+                                    <?=esc_html__('Bestimme die Anzahl der letzten Downloads die angezeigt wird. Diese Einstellung ist global und wirkt sich auf alle Archive aus.', 'zdm')?>
+                                </div>
+                            </form>
+                        </div>
+
+                        <?php
+                        $zdm_last_downloads = ZDMStat::get_last_downloads_for_single_stat('archive', $zdm_db_archive->id, $zdm_options['stat-single-archive-last-limit']);
+                        $zdm_last_downloads_count = count($zdm_last_downloads);
+                        if ($zdm_last_downloads_count != 0) {
+                            ?>
+                            <table class="wp-list-table widefat striped tags">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" width="60%"><b><?=esc_html__('Datum und Uhrzeit', 'zdm')?></b></th>
+                                        <th scope="col" width="40%"><b><?=esc_html__('Details', 'zdm')?></b></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <?php
+                                    for ($i=0; $i < $zdm_last_downloads_count; $i++) { 
+                                        ?>
+                                        <tr>
+                                            <td><?=date("d.m.Y - h:i:s", $zdm_last_downloads[$i]->time_create)?></td>
+                                            <td><a href="?page=<?=ZDM__SLUG?>-log&id=<?=$zdm_last_downloads[$i]->id?>"><?=esc_html__('Details anzeigen', 'zdm')?></a></td>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                </tbody>
+                            </table>
+                            <?php
+                        } else {
+                            ?>
+                            <p style="text-align:center"><?=esc_html__('Diese Datei wurde noch nicht heruntergeladen.', 'zdm')?></p>
+                            <?php
+                        }
+                        ?>
+                    </div>
+                    
+                </div>
+
+                <?php
+            // Tab: Hilfe
+            } elseif ($zdm_active_tab == 'help') {
                 ?>
                 
                 <div class="zdm-box zdm-box-info">
