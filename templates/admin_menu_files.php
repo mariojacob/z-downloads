@@ -1125,17 +1125,20 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         ?>
         <div class="wrap">
             <h1 class="wp-heading-inline"><?=esc_html__('Neue Datei hochladen', 'zdm')?></h1>
-            <div class="notice notice-warning">
+
+            <div class="zdm-box zdm-box-info">
                 <p><b><?=esc_html__('Diese Datei wurde bereits hochgeladen.', 'zdm')?></b></p>
                 <p><?=esc_html__('Die gerade hochgeladene Datei existiert bereits und wurde nicht hinzugefügt.', 'zdm')?></p>
                 <p><?=esc_html__('In der Tabelle siehst du die Duplikate die bereits hochgeladen wurden.', 'zdm')?></p>
-                <p><?=esc_html__('Du kannst in den Einstellungen "Duplikate zulassen" aktivieren, dann kannst du die selbe Datei auch mehrfach hochladen.', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-settings"><?=esc_html__('Zu den Einstellungen', 'zdm')?></a></p>
+                <p><?=esc_html__('Du kannst in den Einstellungen "Duplikate zulassen" aktivieren, dann kannst du die selbe Datei auch mehrfach hochladen.', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-settings#zdm-expanded"><?=esc_html__('Zu den Einstellungen', 'zdm')?></a></p>
             </div>
         
             <?php
             // Check ob Dateien existieren
             if (count($zdm_db_files) > 0) {
                 ?>
+
+                <h2><?=esc_html__('Duplikate', 'zdm')?></h2>
 
                 <div class="col-wrap">
                     <table class="wp-list-table widefat striped tags">
@@ -1144,6 +1147,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
                                 <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
                                 <th scope="col"><div align="center"><ion-icon name="cloud-download" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></div></th>
+                            <th scope="col"><div align="center"><ion-icon name="stats" title="<?=esc_html__('Download Statistik', 'zdm')?>"></ion-icon></div></th>
                                 <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                                 <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
                                 <th scope="col" title="<?=esc_html__('Zeigt an in wie vielen Archiven die Datei verknüpft ist.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
@@ -1198,6 +1202,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <div align="center"><?=ZDMCore::number_format($zdm_db_files[$i]->count)?></div>
                                     </td>
                                     <td>
+                                        <div align="center"><a href="?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_db_files[$i]->id)?>&tab=statistic"><ion-icon name="stats"></ion-icon></a</div>
+                                    </td>
+                                    <td>
                                         <?=htmlspecialchars($zdm_db_files[$i]->file_size)?>
                                     </td>
                                     <td>
@@ -1224,6 +1231,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
                                 <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
                                 <th scope="col"><div align="center"><ion-icon name="cloud-download" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></div></th>
+                            <th scope="col"><div align="center"><ion-icon name="stats" title="<?=esc_html__('Download Statistik', 'zdm')?>"></ion-icon></div></th>
                                 <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
                                 <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
                                 <th scope="col" title="<?=esc_html__('Zeigt an in wie vielen Archiven die Datei verknüpft ist.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
