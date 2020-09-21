@@ -66,6 +66,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         // Log
         ZDMCore::log('delete licence');
+
+        // Einstellungsseite neu laden
+        $zdm_settings_url = 'admin.php?page=' . ZDM__SLUG . '-settings';
+        wp_redirect($zdm_settings_url);
+        exit;
     }
 
     if (ZDMCore::licence()) {
@@ -138,6 +143,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                 // Log
                 ZDMCore::log('new download folder token');
+
+                // Einstellungsseite neu laden
+                $zdm_settings_url = 'admin.php?page=' . ZDM__SLUG . '-settings';
+                wp_redirect($zdm_settings_url);
+                exit;
             }
         }
     }
@@ -167,6 +177,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                 // Log
                 ZDMCore::log('reset settings');
+
+                // Einstellungsseite neu laden
+                $zdm_settings_url = 'admin.php?page=' . ZDM__SLUG . '-settings';
+                wp_redirect($zdm_settings_url);
+                exit;
             }
         }
     }
@@ -211,16 +226,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 echo '</div>';
             }// end if $zdm_error != ''
 
-            if (isset($_GET['reset_settings']) && wp_verify_nonce($_GET['nonce'], 'reset-settings')) { // Nur Hinweis dass die Einstellungen zurückgesetzt wurden anzeigen
-                ?>
-                <div class="postbox">
-                    <div class="inside">
-                        <h3 class="zdm-color-green"><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Die Einstellungen wurden erfolgreich zurückgesetzt!', 'zdm')?></h3>
-                        <a href="admin.php?page=<?=ZDM__SLUG?>-settings" class="button button-secondary"><?=esc_html__('Zurück zu den Einstellungen', 'zdm')?></a>
-                    </div>
-                </div>
-                <?php
-            } elseif (isset($_GET['delete_data']) && wp_verify_nonce($_GET['nonce'], 'alle-daten-löschen')) { // Nur Hinweis dass die Daten gelöscht wurden anzeigen
+            if (isset($_GET['delete_data']) && wp_verify_nonce($_GET['nonce'], 'alle-daten-löschen')) { // Nur Hinweis dass die Daten gelöscht wurden anzeigen
                 ?>
                 <div class="postbox">
                     <div class="inside">
