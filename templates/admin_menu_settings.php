@@ -430,6 +430,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             ?>
                                         </th>
                                         <td valign="middle">
+                                            <?php if ($zdm_licence === 0) {
+                                                ?>
+                                                <input type="hidden" name="stat-single-file-last-limit" value="<?=esc_attr($zdm_options['stat-single-file-last-limit'])?>">
+                                                <input type="hidden" name="stat-single-archive-last-limit" value="<?=esc_attr($zdm_options['stat-single-archive-last-limit'])?>">
+                                                <?php
+                                            }
+                                            ?>
                                             <input type="number" name="stat-single-file-last-limit" size="5" min="1" max="500" value="<?=esc_attr($zdm_options['stat-single-file-last-limit'])?>"<?php if ($zdm_licence === 0) { echo ' disabled'; } ?> > 
                                             <ion-icon name="information-circle-outline"></ion-icon> <?=esc_html__('Einstellung für Dateien', 'zdm')?>
                                             <br>
@@ -453,11 +460,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <table class="form-table">
                             <tbody>
                                 <tr valign="top">
-                                    <th scope="row"><?=esc_html__('Direkte URL zu PDF', 'zdm')?>:</th>
+                                    <th scope="row"><?=esc_html__('Direkte URL zu PDFs', 'zdm')?>:</th>
                                     <td valign="middle">
                                         <input type="checkbox" name="file-open-in-browser-pdf" <?php if($zdm_options['file-open-in-browser-pdf'] == 'on'){ echo 'checked="checked"'; } ?> >
-                                        <?=esc_html__('Öffnet PDF-Dateien direkt im Browser.', 'zdm')?>
-                                        <div class="zdm-help-text"><?=esc_html__('Während diese Option aktiviert ist wird keine Statistik für PDF-Dateien gespeichert.', 'zdm')?></div>
+                                        <?=esc_html__('Der Benutzer wird zum direkten Dateipfad weitergeleitet.', 'zdm')?>
                                     </td>
                                 </tr>
                                 <tr valign="top">

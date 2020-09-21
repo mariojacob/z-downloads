@@ -778,18 +778,27 @@ class ZDMCore {
                             // Statistik
                             $this->log('download file', $zdownload_url);
 
-                            // Interner Pfad für Datei
-                            $file_path = ZDM__DOWNLOADS_FILES_PATH . '/' . $db_files[0]->folder_path . '/' . $db_files[0]->file_name;
+                            if ($options['file-open-in-browser-pdf'] == 'on' && $db_files[0]->file_type == 'application/pdf') {
+    
+                                // Externer Pfad für Datei
+                                $file_path_url = ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_files[0]->folder_path . '/' . $db_files[0]->file_name;
+                                wp_redirect($file_path_url);
+                                exit;
+                            } else {
 
-                            // Dateigröße
-                            $file_size = filesize($file_path);
-
-                            // Datei bereitstellen
-                            header('Content-Disposition: attachment; filename=' . $db_files[0]->file_name);
-                            header('Content-type: application/force-download');
-                            header('Content-Length: ' . $file_size);
-                            header('Content-type: ' . $db_files[0]->file_type . '; charset=utf-8');
-                            readfile($file_path);
+                                // Interner Pfad für Datei
+                                $file_path = ZDM__DOWNLOADS_FILES_PATH . '/' . $db_files[0]->folder_path . '/' . $db_files[0]->file_name;
+    
+                                // Dateigröße
+                                $file_size = filesize($file_path);
+    
+                                // Datei bereitstellen
+                                header('Content-Disposition: attachment; filename=' . $db_files[0]->file_name);
+                                header('Content-type: application/force-download');
+                                header('Content-Length: ' . $file_size);
+                                header('Content-type: ' . $db_files[0]->file_type . '; charset=utf-8');
+                                readfile($file_path);
+                            }
                         }
                     } // end if ($this->check_if_file_exists($zdownload_url) === true)
                 } // end if ($zdownload_url != '' && is_numeric($zdownload_url))
@@ -1542,15 +1551,7 @@ class ZDMCore {
                     } else {
                         // Zugriff von Benutzer
     
-                        if ($options['file-open-in-browser-pdf'] == 'on' && $db_files[0]->file_type == 'application/pdf') {
-    
-                            // Externer Pfad für Datei
-                            $file_path_url = ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_files[0]->folder_path . '/' . $db_files[0]->file_name;
-    
-                            return '<a href="' . $file_path_url . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
-                        } else {
-                            return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
-                        }
+                        return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
                     }
                 }
             }
