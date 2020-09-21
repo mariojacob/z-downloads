@@ -12,7 +12,7 @@ if (!defined('ABSPATH')) {
                 <tr valign="top">
                     <th scope="row"><?=ZDM__TITLE?> <?=esc_html__('Version', 'zdm')?>:</th>
                     <td valign="middle">
-                        <?=esc_attr($zdm_options['version'])?> <a href="https://code.urban-base.net/z-downloads/release-notes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Release notes', 'zdm')?>"><?=esc_html__('release notes', 'zdm')?></a>
+                        <?=esc_attr($zdm_options['version'])?> <a href="https://code.urban-base.net/z-downloads/release-notes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Release notes', 'zdm')?>"><?=esc_html__('release notes', 'zdm')?> <ion-icon name="open"></ion-icon></a>
                     </td>
                 </tr>
                 <tr valign="top">
