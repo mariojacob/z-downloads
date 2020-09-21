@@ -268,6 +268,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         // Dateiliste anzeigen
                         $zdm_status = 2;
                     }
+                } else {
+                    // Seite neu laden
+                    $zdm_files_url = 'admin.php?page=' . ZDM__SLUG . '-files';
+                    wp_redirect($zdm_files_url);
+                    exit;
                 }
             } else {
                 // Dateiliste anzeigen

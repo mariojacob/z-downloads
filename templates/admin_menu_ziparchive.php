@@ -285,6 +285,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 $zdm_note = esc_html__('Archiv gelöscht!', 'zdm');
 
                 $zdm_status = 3;
+                
+                // Seite neu laden
+                $zdm_ziparchive_url = 'admin.php?page=' . ZDM__SLUG . '-ziparchive';
+                wp_redirect($zdm_ziparchive_url);
+                exit;
             }
         }
     }
