@@ -388,6 +388,19 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             // Erfolg-Meldung ausgeben
             $zdm_note = esc_html__('Datei aus Archiv entfernt!', 'zdm');
         }
+
+        //////////////////////////////////////////////////
+        // Statistik Ausgabe aktualisieren
+        //////////////////////////////////////////////////
+        if (isset($_POST['update_stat_single_file_last_limit']) && wp_verify_nonce($_POST['nonce'], 'update-stat-single-file-last-limit')) {
+    
+            $zdm_options['stat-single-file-last-limit'] = trim(sanitize_text_field($_POST['stat-single-file-last-limit']));
+            if (add_option('zdm_options', $zdm_options) === FALSE) {
+                update_option('zdm_options', $zdm_options);
+            }
+            $zdm_options = get_option('zdm_options');
+            $zdm_note = esc_html__('Einstellungen aktualisiert!', 'zdm');
+        }
     }
 
     if ($zdm_note != '') { ?>
@@ -789,7 +802,21 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <div class="postbox">
                         <div class="inside">
                             <h3><?=esc_html__('Letzte', 'zdm')?> <?=$zdm_options['stat-single-file-last-limit']?> <?=esc_html__('Downloads', 'zdm')?></h3>
-                            <a href="admin.php?page=<?=ZDM__SLUG?>-settings#zdm-stat"><?=esc_html__('Anzahl der Ausgabe ändern', 'zdm')?></a>
+                            <form action="" method="post">
+                                <input type="hidden" name="nonce" value="<?=wp_create_nonce('update-stat-single-file-last-limit')?>">
+                                <input type="number" name="stat-single-file-last-limit" size="5" min="1" max="500" value="<?=esc_attr($zdm_options['stat-single-file-last-limit'])?>"<?php if ($zdm_licence === 0) { echo ' disabled'; } ?> >
+                                <input class="button-primary" type="submit" name="update_stat_single_file_last_limit" value="<?=esc_html__('Aktualisieren', 'zdm')?>"<?php if ($zdm_licence === 0) { echo ' disabled'; } ?>>
+                                <?php
+                                if ($zdm_licence === 0) {
+                                    ?>
+                                    <br><a href="<?=ZDM__PRO_URL?>" target="_blank" title="code.urban-base.net"><?=ZDM__PRO?> <?=esc_html__('Funktion', 'zdm')?></a>
+                                    <?php
+                                }
+                                ?>
+                                <div class="zdm-help-text">
+                                    <?=esc_html__('Bestimme die Anzahl der letzten Downloads die angezeigt wird. Diese Einstellung ist global und wirkt sich auf alle Dateien aus.', 'zdm')?>
+                                </div>
+                            </form>
                         </div>
 
                         <?php
