@@ -840,7 +840,7 @@ class ZDMCore {
      */
     public function enqueue_admin_scripts() {
         // Admin CSS
-        wp_register_style('zdm_admin_styles', plugins_url('../admin/css/zdm_admin_style.css?v=' . ZDM__VERSION . time(), __FILE__));
+        wp_register_style('zdm_admin_styles', plugins_url('../admin/css/zdm_admin_style.min.css?ver=' . ZDM__VERSION, __FILE__));
         wp_enqueue_style('zdm_admin_styles');
 
         // Ionicons CSS
@@ -859,7 +859,7 @@ class ZDMCore {
      */
     public function enqueue_frontend_scripts() {
         // Frontend CSS
-        wp_register_style('zdm_styles', plugins_url('../public/css/zdm_style.css?v=' . ZDM__VERSION, __FILE__));
+        wp_register_style('zdm_styles', plugins_url('../public/css/zdm_style.min.css?ver=' . ZDM__VERSION, __FILE__));
         wp_enqueue_style('zdm_styles');
 
         // Ionicons CSS

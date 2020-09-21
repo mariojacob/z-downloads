@@ -545,7 +545,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <td valign="middle">
                                             <input type="text" name="button-text" size="50%" value="<?=esc_attr($zdm_button_text)?>" spellcheck="true" autocomplete="off" placeholder="">
                                             <br>
-                                            <div class="zdm-help-text"><?=esc_html__('Dieser Download-Button Text ist nur für diesen Download, der globale Standardtext kann in den', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-settings"><?=esc_html__('Einstellungen', 'zdm')?></a> <?=esc_html__('geändert werden.', 'zdm')?></div>
+                                            <div class="zdm-help-text"><?=esc_html__('Dieser Download-Button Text ist nur für diesen Download, der globale Standardtext kann in den', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-settings#zdm-download-button"><?=esc_html__('Einstellungen', 'zdm')?></a> <?=esc_html__('geändert werden.', 'zdm')?></div>
                                             <div class="zdm-help-text"><?=esc_html__('Der Standardtext ist', 'zdm')?>: <b>"<?=htmlspecialchars($zdm_options['download-btn-text'])?>"</b></div>
                                             <div class="zdm-help-text"><?=esc_html__('Um den globale Standardtext wieder zu verwenden, lasse dieses Feld einfach leer und beim Aktualisieren wird der Standardtext automatisch eingefügt.', 'zdm')?></div>
                                         </td>
@@ -905,7 +905,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <div class="inside">
                         <h3><?=esc_html__('Button Farbe und Styles', 'zdm')?></h3>
                         <hr>
-                        <p><?=esc_html__('Um die Farbe oder sonstige Button-Einstellungen vorzunehmen klicke im', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('Menü auf', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-settings"><?=esc_html__('Einstellungen', 'zdm')?></a>".</p>
+                        <p><?=esc_html__('Um die Farbe oder sonstige Button-Einstellungen vorzunehmen klicke im', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('Menü auf', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-settings#zdm-download-button"><?=esc_html__('Einstellungen', 'zdm')?></a>".</p>
                         <p><?=esc_html__('Hier kannst du im Bereich "Download-Button" folgendes ändern:', 'zdm')?></p>
                         <p><?=esc_html__('Den Standardtext, den Style (Farbe des Buttons), Outline, Runde Ecken oder ein Icon.', 'zdm')?></p>
                         <p><?=esc_html__('Alle verfügbaren Farben findest du auf der', 'zdm')?> <?=ZDM__TITLE?> <a href="https://code.urban-base.net/z-downloads/farben/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Farben', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('Webseite', 'zdm')?></a></p>

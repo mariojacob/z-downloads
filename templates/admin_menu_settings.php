@@ -297,7 +297,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             
             <form action="" method="post">
 
-                <div class="postbox">
+                <div class="postbox" id="zdm-download-button">
                     <div class="inside">
                         <h3><?=esc_html__('Download-Button', 'zdm')?></h3>
                         <hr>
