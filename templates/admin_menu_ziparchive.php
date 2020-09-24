@@ -346,6 +346,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <div class="wrap">
 
             <h1><?=esc_html__('Archiv', 'zdm')?>: <?=esc_attr($zdm_db_archive->name)?></h1>
+            <br>
             <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive" class="page-title-action"><?=esc_html__('Zurück zur Übersicht', 'zdm')?></a> <a href="admin.php?page=<?=ZDM__SLUG?>-add-archive" class="page-title-action"><?=esc_html__('Archiv erstellen', 'zdm')?></a>
             <br><br>
 

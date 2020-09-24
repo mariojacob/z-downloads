@@ -440,6 +440,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <div class="wrap">
             
             <h1><?=esc_html__('Datei', 'zdm')?>: <?=$zdm_db_file->name?></h1>
+            <br>
             <a href="admin.php?page=<?=ZDM__SLUG?>-files" class="page-title-action"><?=esc_html__('Zurück zur Übersicht', 'zdm')?></a> <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="page-title-action"><?=esc_html__('Datei hinzufügen', 'zdm')?></a>
             <br><br>
 
