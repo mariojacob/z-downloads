@@ -126,7 +126,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     }
     
     ////////////////////
-    // Neuen Downloadordner Token generieren
+    // Neuen Download Ordner Token generieren
     ////////////////////
     if (isset($_GET['new_download_folder_token']) && wp_verify_nonce($_GET['nonce'], 'new_download_folder_token')) {
 
@@ -168,7 +168,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 update_option('zdm_options', ZDM__OPTIONS);
                 $zdm_options = get_option('zdm_options');
                 
-                // Neuen Downloadordner Token generieren
+                // Neuen Download Ordner Token generieren
                 $zdm_new_download_folder_token = md5(uniqid(rand(), true));
                 rename(ZDM__DOWNLOADS_PATH, wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_new_download_folder_token);
                 $zdm_options['download-folder-token'] = $zdm_new_download_folder_token;
@@ -487,12 +487,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     </td>
                                 </tr>
                                 <tr valign="top">
-                                    <th scope="row"><?=esc_html__('Downloadordner Token', 'zdm')?>:</th>
+                                    <th scope="row"><?=esc_html__('Download Ordner Token', 'zdm')?>:</th>
                                     <td valign="middle">
                                         <input type="text" value="<?=$zdm_options['download-folder-token']?>" size="50%" disabled>&nbsp;
                                         <a href="admin.php?page=<?=ZDM__SLUG?>-settings&new_download_folder_token=true&nonce=<?=wp_create_nonce('new_download_folder_token')?>" class="button button-secondary"><?=esc_html__('Neuen Token generieren', 'zdm')?></a>
                                         <div class="zdm-help-text"><?=esc_html__('Kompletter Ordnername', 'zdm')?>: <code>/z-downloads-<?=$zdm_options['download-folder-token']?>/</code></div>
-                                        <div class="zdm-help-text"><?=esc_html__('Der Downloadordner ist nicht öffentlich sichtbar, ausser du hast "Direkte URL" zu gewissen Dateien aktiviert.', 'zdm')?></div>
+                                        <div class="zdm-help-text"><?=esc_html__('Der Download Ordner ist nicht öffentlich sichtbar, ausser du hast "Direkte URL" zu gewissen Dateien aktiviert.', 'zdm')?></div>
                                         <div class="zdm-help-text"><?=esc_html__('Du kannst den Token ohne Bedenken jederzeit ändern.', 'zdm')?></div>
                                     </td>
                                 </tr>
@@ -503,7 +503,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <div class="zdm-help-text"><?=esc_html__('Hier kannst du alle Einstellungen auf Werkseinstellungen zurücksetzen.', 'zdm')?></div>
                                         <div class="zdm-help-text">
                                             <?=esc_html__('Das bedeutet, die Premium Lizenz, die Buttoneinstellungen wie Standardtext, Style, Runde Ecken, Icons und alle anderen Einstellungen werden zurückgesetzt.', 'zdm')?><br>
-                                            <?=esc_html__('Auch der Downloadordner Token wird neu generiert.', 'zdm')?>
+                                            <?=esc_html__('Auch der Download Ordner Token wird neu generiert.', 'zdm')?>
                                         </div>
                                     </td>
                                 </tr>
