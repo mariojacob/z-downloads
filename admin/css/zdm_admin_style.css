@@ -1,3 +1,31 @@
+.zdm_dashboard_widget {
+    margin: 0;
+    display: inline-block;
+    width: 100%;
+}
+.zdm_dashboard_widget ul {
+    margin-top: 0;
+}
+.zdm_dashboard_widget li {
+    width: 50%;
+    float: left;
+    border-bottom: solid 1px #eee;
+}
+.zdm_dashboard_widget_leading {
+    font-size: 1.5em;
+    font-weight: lighter;
+}
+.zdm_dashboard_widget_number {
+    font-size: 1.5em;
+    color: #00caff;
+}
+.zdm_dashboard_widget_mb {
+    margin-bottom: 20px;
+}
+.zdm_dashboard_widget_section {
+    margin-top: 10px;
+}
+
 .zdm-welcome-notice {
     padding: 16px;
 }

@@ -535,6 +535,26 @@ class ZDMCore {
     }
 
     /**
+     * Fügt ein dashboard widget hinzu
+     *
+     * @return void
+     */
+    public function dashboard_widget()
+    {
+        wp_add_dashboard_widget('zdm_dashboard_widget', __('Download Statistik', 'zdm'), array($this, 'dashboard_widget_handler'));
+    }
+
+    /**
+     * Dashboard widget Inhalt
+     *
+     * @return void
+     */
+    public function dashboard_widget_handler()
+    {
+        require_once (plugin_dir_path(__FILE__) . '../templates/admin_dashboard_widget.php');
+    }
+
+    /**
      * Löscht alle Daten
      *
      * @return void
@@ -1324,6 +1344,9 @@ class ZDMCore {
 
         // Admin Menu
         add_action('admin_menu', array($this, 'admin_menu'));
+
+        // Dashboard widget
+        add_action('wp_dashboard_setup', array($this, 'dashboard_widget'));
 
         // Fügt Links in der Plugin-Übersicht ein
         add_filter('plugin_action_links_' . $this->plugin_basename, array($this, 'settings_link'));
