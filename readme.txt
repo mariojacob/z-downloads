@@ -6,16 +6,14 @@ License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
-Tested up to: 5.4
-Stable tag: 1.4.2
+Tested up to: 5.5
+Stable tag: 1.5.0
 
 Download management and automatic ZIP archive creation
 
 == Description ==
 
 The convenient download manager for WordPress.
-
-https://www.youtube.com/watch?v=x0wn-sf6g9w
 
 The main features are the automated processes:
 
@@ -26,7 +24,7 @@ The same file is in multiple downloads, such as promotional material. In the eve
 = Benefits =
 
 -   Time savings
--   Workload
+-   Easy to use
 -   Better overview
 
 = Top features =
@@ -48,7 +46,7 @@ The same file is in multiple downloads, such as promotional material. In the eve
 
 = Conditions =
 
--   WordPress 4.9+ -- latest version 5.4.x
+-   WordPress 4.9+ -- latest version 5.5.x
 
 = Translation =
 
@@ -90,15 +88,19 @@ Z-Downloads is translated into German and English, other languages can easily be
 
 1.  Overview of all uploaded files
 
-2.  Detailed view ZIP archive
+2.  Overview of all archives
 
-3.  Detail view file with audio player
+3.  Dashboard widget with download statistics
 
-4.  Dashboard with download statistics
+4.  Detailed download statistics
 
-5.  Create a new archive
+5.  Detail view from a audio file with audio player
 
-6.  Archive overview in a table
+6.  Available shortcodes for this archive
+
+7.  Use case in a post
+
+8.  Download statistics from a single archive
 
 == Changelog ==
 
