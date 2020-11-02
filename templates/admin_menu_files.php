@@ -131,7 +131,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         //////////////////////////////////////////////////
         // Daten aktualisieren
         //////////////////////////////////////////////////
-        if (isset($_POST['update']) && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) {
+        if (isset($_POST['update']) && wp_verify_nonce($_POST['nonce'], 'update-data')) {
 
             // Daten aus DB holen
             $zdm_db_file = $wpdb->get_results( 
@@ -179,7 +179,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 ZDMCore::log('update file', $zdm_file_id);
             
                 // Erfolg-Meldung ausgeben
-                $zdm_note = esc_html__('Aktualisiert', 'zdm');
+                $zdm_note = esc_html__('Updated', 'zdm');
             } else {
                 // Dateiliste anzeigen
                 $zdm_status = 2;
@@ -189,7 +189,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         //////////////////////////////////////////////////
         // Datei löschen
         //////////////////////////////////////////////////
-        if (($_POST['delete'] && wp_verify_nonce($_POST['nonce'], 'daten-aktualisieren')) OR ($_GET['delete'] && wp_verify_nonce($_GET['nonce'], 'datei-loeschen'))) {
+        if (($_POST['delete'] && wp_verify_nonce($_POST['nonce'], 'update-data')) OR ($_GET['delete'] && wp_verify_nonce($_GET['nonce'], 'delete-file'))) {
 
             // Daten aus DB holen
             $zdm_db_file = $wpdb->get_results( 
@@ -240,7 +240,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 ZDMCore::log('delete file', $zdm_file_id);
             
                 // Erfolg-Meldung ausgeben
-                $zdm_note = esc_html__('Datei gelöscht!', 'zdm');
+                $zdm_note = esc_html__('File deleted!', 'zdm');
     
                 // Dateiliste anzeigen
                 $zdm_status = 2;
@@ -283,7 +283,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         //////////////////////////////////////////////////
         // Datei ersetzen
         //////////////////////////////////////////////////
-        if (isset($_FILES['file']) && wp_verify_nonce($_POST['nonce'], 'datei-ersetzen') && $_FILES['file']['name'] != '') {
+        if (isset($_FILES['file']) && wp_verify_nonce($_POST['nonce'], 'replace-file') && $_FILES['file']['name'] != '') {
 
             // Daten aus DB holen
             $zdm_db_file = $wpdb->get_results( 
@@ -350,7 +350,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             $zdm_active_tab = 'file';
 
             // Erfolg-Meldung ausgeben
-            $zdm_note = esc_html__('Datei wurde ersetzt!', 'zdm');
+            $zdm_note = esc_html__('File has been replaced!', 'zdm');
         }
 
         //////////////////////////////////////////////////
@@ -391,7 +391,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             ZDMCore::log('unlink file', $zdm_file_id);
             
             // Erfolg-Meldung ausgeben
-            $zdm_note = esc_html__('Datei aus Archiv entfernt!', 'zdm');
+            $zdm_note = esc_html__('File removed from archive!', 'zdm');
         }
 
         //////////////////////////////////////////////////
@@ -404,7 +404,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 update_option('zdm_options', $zdm_options);
             }
             $zdm_options = get_option('zdm_options');
-            $zdm_note = esc_html__('Einstellungen aktualisiert!', 'zdm');
+            $zdm_note = esc_html__('Updated settings!', 'zdm');
         }
     }
 
@@ -439,17 +439,17 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         
         <div class="wrap">
             
-            <h1><?=esc_html__('Datei', 'zdm')?>: <?=$zdm_db_file->name?></h1>
+            <h1><?=esc_html__('File', 'zdm')?>: <?=$zdm_db_file->name?></h1>
             <br>
-            <a href="admin.php?page=<?=ZDM__SLUG?>-files" class="page-title-action"><?=esc_html__('Zurück zur Übersicht', 'zdm')?></a> <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="page-title-action"><?=esc_html__('Datei hinzufügen', 'zdm')?></a>
+            <a href="admin.php?page=<?=ZDM__SLUG?>-files" class="page-title-action"><?=esc_html__('Back to overview', 'zdm')?></a> <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="page-title-action"><?=esc_html__('Add file', 'zdm')?></a>
             <br><br>
 
             <nav class="nav-tab-wrapper wp-clearfix zdm-nav-tabs">
-                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>" class="nav-tab zdm-nav-tab <?php echo $zdm_active_tab == 'file' ? 'nav-tab-active' : ''; ?>" aria-current="page"><ion-icon name="document"></ion-icon> <?=esc_html__('Datei', 'zdm')?></a>
+                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>" class="nav-tab zdm-nav-tab <?php echo $zdm_active_tab == 'file' ? 'nav-tab-active' : ''; ?>" aria-current="page"><ion-icon name="document"></ion-icon> <?=esc_html__('File', 'zdm')?></a>
                 <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=shortcodes" class="nav-tab <?php echo $zdm_active_tab == 'shortcodes' ? 'nav-tab-active' : ''; ?>">[/] <?=esc_html__('Shortcodes', 'zdm')?></a>
-                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=update-file" class="nav-tab <?php echo $zdm_active_tab == 'update-file' ? 'nav-tab-active' : ''; ?>"><ion-icon name="swap"></ion-icon> <?=esc_html__('Datei ersetzen', 'zdm')?></a>
-                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=statistic" class="nav-tab <?php echo $zdm_active_tab == 'statistic' ? 'nav-tab-active' : ''; ?>"><ion-icon name="stats"></ion-icon> <?=esc_html__('Statistik', 'zdm')?></a>
-                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=help" class="nav-tab <?php echo $zdm_active_tab == 'help' ? 'nav-tab-active' : ''; ?>"><ion-icon name="help-circle-outline"></ion-icon> <?=esc_html__('Hilfe', 'zdm')?></a>
+                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=update-file" class="nav-tab <?php echo $zdm_active_tab == 'update-file' ? 'nav-tab-active' : ''; ?>"><ion-icon name="swap"></ion-icon> <?=esc_html__('Replace file', 'zdm')?></a>
+                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=statistic" class="nav-tab <?php echo $zdm_active_tab == 'statistic' ? 'nav-tab-active' : ''; ?>"><ion-icon name="stats"></ion-icon> <?=esc_html__('Statistics', 'zdm')?></a>
+                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=help" class="nav-tab <?php echo $zdm_active_tab == 'help' ? 'nav-tab-active' : ''; ?>"><ion-icon name="help-circle-outline"></ion-icon> <?=esc_html__('Help', 'zdm')?></a>
             </nav>
             <br>
 
@@ -462,7 +462,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <div class="postbox">
                     <div class="inside">
 
-                        <h2><?=esc_html__('Allgemeine Informationen', 'zdm')?></h2>
+                        <h2><?=esc_html__('General information', 'zdm')?></h2>
                         <hr>
                         <table class="form-table">
                             <tbody>
@@ -470,11 +470,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <form action="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=$zdm_file_id?>&tab=file" method="post">
                                     
                                     <tr valign="top">
-                                        <th scope="row"><?=esc_html__('Sichtbarkeit', 'zdm')?>:</th>
+                                        <th scope="row"><?=esc_html__('Visibility', 'zdm')?>:</th>
                                         <td valign="middle">
-                                            <p><input type="radio" name="status" value="public" <?php if($zdm_db_file->status == 'public'){ echo 'checked="checked"'; } ?>> <?=esc_html__('Öffentlich', 'zdm')?></p>
-                                            <p><input type="radio" name="status" value="private" <?php if($zdm_db_file->status == 'private'){ echo 'checked="checked"'; } ?>> <?=esc_html__('Privat', 'zdm')?></p>
-                                            <div class="zdm-help-text"><?=esc_html__('Die Sichtbarkeit dieser Datei hat nur Auswirkungen auf die Ausgabe dieser Datei, wenn diese Datei in einem Archiv verknüpft ist und du stellst die Sichtbarkeit auf "Privat", dann bleibt die Datei weiterhin im Archiv.', 'zdm')?></div>
+                                            <p><input type="radio" name="status" value="public" <?php if($zdm_db_file->status == 'public'){ echo 'checked="checked"'; } ?>> <?=esc_html__('Public', 'zdm')?></p>
+                                            <p><input type="radio" name="status" value="private" <?php if($zdm_db_file->status == 'private'){ echo 'checked="checked"'; } ?>> <?=esc_html__('Private', 'zdm')?></p>
+                                            <div class="zdm-help-text"><?=esc_html__('The visibility of this file only affects the output of this file if this file is linked in an archive and you set the visibility to "Private", then the file remains in the archive.', 'zdm')?></div>
                                         </td>
                                     </tr>
                                 
@@ -483,44 +483,44 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     if (in_array($zdm_db_file->file_type, ZDM__MIME_TYPES_AUDIO)) { // Audio
                                         ?>
                                         <tr valign="top">
-                                            <th scope="row"><?=esc_html__('Vorschau', 'zdm')?>:</th>
+                                            <th scope="row"><?=esc_html__('Preview', 'zdm')?>:</th>
                                             <td valign="middle">
                                                 <audio controls preload="none">
                                                     <source src="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" type="<?=htmlspecialchars($zdm_db_file->file_type)?>">
                                                 </audio>
                                                 <br>
-                                                Download: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" target="_blank" download><?=htmlspecialchars($zdm_db_file->file_name)?></a>
+                                                <?=esc_html__('Download', 'zdm')?>: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" target="_blank" download><?=htmlspecialchars($zdm_db_file->file_name)?></a>
                                             </td>
                                         </tr>
                                         <?php
                                     } elseif (in_array($zdm_db_file->file_type, ZDM__MIME_TYPES_VIDEO)) { // Video
                                         ?>
                                         <tr valign="top">
-                                            <th scope="row"><?=esc_html__('Vorschau', 'zdm')?>:</th>
+                                            <th scope="row"><?=esc_html__('Preview', 'zdm')?>:</th>
                                             <td valign="middle">
                                                 <video width="400px" controls>
                                                     <source src="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" type="<?=htmlspecialchars($zdm_db_file->file_type)?>">
                                                 </video>
                                                 <br>
-                                                Download: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" target="_blank" download><?=htmlspecialchars($zdm_db_file->file_name)?></a>
+                                                <?=esc_html__('Download', 'zdm')?>: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" target="_blank" download><?=htmlspecialchars($zdm_db_file->file_name)?></a>
                                             </td>
                                         </tr>
                                         <?php
                                     } elseif (in_array($zdm_db_file->file_type, ZDM__MIME_TYPES_IMAGE)) { // Image
                                         ?>
                                         <tr valign="top">
-                                            <th scope="row"><?=esc_html__('Vorschau', 'zdm')?>:</th>
+                                            <th scope="row"><?=esc_html__('Preview', 'zdm')?>:</th>
                                             <td valign="middle">
                                                 <img src="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" width="400px" height="auto">
                                                 <br>
-                                                Download: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" target="_blank" download><?=htmlspecialchars($zdm_db_file->file_name)?></a>
+                                                <?=esc_html__('Download', 'zdm')?>: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" target="_blank" download><?=htmlspecialchars($zdm_db_file->file_name)?></a>
                                             </td>
                                         </tr>
                                         <?php
                                     } else { // Sonstige Dateien
                                         ?>
                                         <tr valign="top">
-                                            <th scope="row"><?=esc_html__('Datei Download', 'zdm')?>:</th>
+                                            <th scope="row"><?=esc_html__('Download file', 'zdm')?>:</th>
                                             <td valign="middle">
                                                 <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" target="_blank" download><?=htmlspecialchars($zdm_db_file->file_name)?></a>
                                             </td>
@@ -529,7 +529,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     }
                                     ?>
                                     <tr valign="top">
-                                        <th scope="row"><?=esc_html__('Datei', 'zdm')?>:</th>
+                                        <th scope="row"><?=esc_html__('File', 'zdm')?>:</th>
                                         <td valign="middle">
                                             <input type="text" size="50%" value="<?=htmlspecialchars($zdm_db_file->file_name)?>" placeholder="" disabled>
                                         </td>
@@ -538,28 +538,28 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <th scope="row"><?=esc_html__('Name', 'zdm')?>:</th>
                                         <td valign="middle">
                                             <input type="text" name="name" size="50%" value="<?=htmlspecialchars($zdm_db_file->name)?>" spellcheck="true" autocomplete="off" placeholder="">
-                                            <div class="zdm-help-text"><?=esc_html__('Dieser Name wird in der Dateiliste angezeigt und dient dir als Orientierung.', 'zdm')?></div>
+                                            <div class="zdm-help-text"><?=esc_html__('This name is displayed in the file list and serves as an orientation.', 'zdm')?></div>
                                         </td>
                                     </tr>
                                     <tr valign="top">
-                                        <th scope="row"><?=esc_html__('Download-Button Text', 'zdm')?>:</th>
+                                        <th scope="row"><?=esc_html__('Download button text', 'zdm')?>:</th>
                                         <td valign="middle">
                                             <input type="text" name="button-text" size="50%" value="<?=esc_attr($zdm_button_text)?>" spellcheck="true" autocomplete="off" placeholder="">
                                             <br>
-                                            <div class="zdm-help-text"><?=esc_html__('Dieser Download-Button Text ist nur für diesen Download, der globale Standardtext kann in den', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-settings#zdm-download-button"><?=esc_html__('Einstellungen', 'zdm')?></a> <?=esc_html__('geändert werden.', 'zdm')?></div>
-                                            <div class="zdm-help-text"><?=esc_html__('Der Standardtext ist', 'zdm')?>: <b>"<?=htmlspecialchars($zdm_options['download-btn-text'])?>"</b></div>
-                                            <div class="zdm-help-text"><?=esc_html__('Um den globale Standardtext wieder zu verwenden, lasse dieses Feld einfach leer und beim Aktualisieren wird der Standardtext automatisch eingefügt.', 'zdm')?></div>
+                                            <div class="zdm-help-text"><?=esc_html__('This text is only displayed for this download, for all others the default text is used and can be changed in the', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-settings#zdm-download-button"><?=esc_html__('settings', 'zdm')?></a>.</div>
+                                            <div class="zdm-help-text"><?=esc_html__('The default text is', 'zdm')?>: <b>"<?=htmlspecialchars($zdm_options['download-btn-text'])?>"</b></div>
+                                            <div class="zdm-help-text"><?=esc_html__('To reuse the default global text, just leave this field blank and the default text is automatically inserted when updating.', 'zdm')?></div>
                                         </td>
                                     </tr>
                                     <tr valign="top">
-                                        <th scope="row"><?=esc_html__('Download Anzahl', 'zdm')?>:</th>
+                                        <th scope="row"><?=esc_html__('Download number', 'zdm')?>:</th>
                                         <td valign="middle">
                                             <input type="number" name="count" size="10%" value="<?=esc_attr($zdm_db_file->count)?>" spellcheck="true" autocomplete="off" placeholder=""> 
-                                            <div class="zdm-help-text"><?=esc_html__('Anzahl an bisherigen Downloads.', 'zdm')?></div>
+                                            <div class="zdm-help-text"><?=esc_html__('Number of previous downloads.', 'zdm')?></div>
                                         </td>
                                     </tr>
                                     <tr valign="top">
-                                        <th scope="row"><?=esc_html__('Dateigröße', 'zdm')?>:</th>
+                                        <th scope="row"><?=esc_html__('File size', 'zdm')?>:</th>
                                         <td valign="middle">
                                             <?php
                                             echo esc_attr($zdm_db_file->file_size);
@@ -567,16 +567,16 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         </td>
                                     </tr>
                                     <tr valign="top">
-                                        <th scope="row"><?=esc_html__('In Archiven', 'zdm')?>:</th>
+                                        <th scope="row"><?=esc_html__('In archives', 'zdm')?>:</th>
                                         <td valign="middle">
                                             <?php
                                             $zdm_db_file_in_archive = ZDMCore::check_if_file_is_in_archive($zdm_db_file->id);
                                             if ($zdm_db_file_in_archive == 1) {
-                                                echo esc_html__('Diese Datei ist in', 'zdm') . ' ' . $zdm_db_file_in_archive . ' ' . esc_html__('Archiv verknüpft:', 'zdm');
+                                                echo esc_html__('This file is in', 'zdm') . ' ' . $zdm_db_file_in_archive . ' ' . esc_html__('archives linked', 'zdm') . ':';
                                             } elseif ($zdm_db_file_in_archive > 1) {
-                                                echo esc_html__('Diese Datei ist in', 'zdm') . ' ' . $zdm_db_file_in_archive . ' Archiven verknüpft:';
+                                                echo esc_html__('This file is in', 'zdm') . ' ' . $zdm_db_file_in_archive . ' ' . esc_html__('archives linked', 'zdm') . ':';
                                             } else {
-                                                echo esc_html__('Diese Datei ist in keinem Archiv verknüpft.', 'zdm');
+                                                echo esc_html__('This file is not linked to any archive.', 'zdm');
                                             }
 
                                             if ($zdm_db_file_in_archive >= 1) {
@@ -598,7 +598,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                                                 <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&id=<?=htmlspecialchars($zdm_linked_archive_data->id)?>"><?=htmlspecialchars($zdm_linked_archive_data->name)?></a>
                                                             </td>
                                                             <td>
-                                                                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_db_file->id)?>&file_unlink_from_archive=true&archive_id=<?=htmlspecialchars($zdm_linked_archive_data->id)?>&nonce=<?=wp_create_nonce('file_unlink_from_archive')?>" class="button button-small button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Datei aus folgendem Archiv entfernen:', 'zdm')?> <?=htmlspecialchars($zdm_linked_archive_data->name)?>"><?=esc_html__('Datei aus diesem Archiv entfernen', 'zdm')?></a>
+                                                                <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_db_file->id)?>&file_unlink_from_archive=true&archive_id=<?=htmlspecialchars($zdm_linked_archive_data->id)?>&nonce=<?=wp_create_nonce('file_unlink_from_archive')?>" class="button button-small button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Remove file from the following archive', 'zdm')?>: <?=htmlspecialchars($zdm_linked_archive_data->name)?>"><?=esc_html__('Remove file from this archive', 'zdm')?></a>
                                                             </td>
                                                         </tr>
                                                     <?php } ?>
@@ -626,7 +626,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <tr valign="top">
                                         <th scope="row"></th>
                                         <td valign="middle">
-                                            <p><?=esc_html__('Weitere Infos nur für', 'zdm')?> <?=ZDM__PRO?><?=esc_html__(': Hash MD5, Hash SHA1', 'zdm')?></p>
+                                            <p><?=esc_html__('More info only for', 'zdm')?>: <?=ZDM__PRO?><?=esc_html__('hash MD5, hash SHA1', 'zdm')?></p>
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -634,10 +634,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         </table>
                     </div>
                 </div>
-                                    <input type="hidden" name="nonce" value="<?=wp_create_nonce('daten-aktualisieren')?>">
+                                    <input type="hidden" name="nonce" value="<?=wp_create_nonce('update-data')?>">
                                     <input type="hidden" name="file_id" value="<?=$zdm_file_id?>">
-                                    <input class="button-primary" type="submit" name="update" value="<?=esc_html__('Aktualisieren', 'zdm')?>">
-                                    <input class="button-secondary" type="submit" name="delete" value="<?=esc_html__('Löschen', 'zdm')?>">
+                                    <input class="button-primary" type="submit" name="update" value="<?=esc_html__('Update', 'zdm')?>">
+                                    <input class="button-secondary" type="submit" name="delete" value="<?=esc_html__('Delete', 'zdm')?>">
                                 </form>
                 <?php
             // end if ($zdm_active_tab == 'file')
@@ -649,39 +649,39 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     
                         <h2><?=esc_html__('Shortcodes', 'zdm')?></h2>
                         <hr>
-                        <p><a href="https://code.urban-base.net/z-downloads/shortcodes?utm_source=zdm_backend" target="_blank" title="<?=ZDM__TITLE?> Shortcodes"><?=esc_html__('Alle Shortcodes', 'zdm')?></a> <?=esc_html__('im Überblick mit Erklärung und Beispielen.', 'zdm')?></p>
+                        <p><a href="https://code.urban-base.net/z-downloads/shortcodes?utm_source=zdm_backend" target="_blank" title="<?=ZDM__TITLE?> Shortcodes"><?=esc_html__('All shortcodes', 'zdm')?></a> <?=esc_html__('overview with explanation and examples.', 'zdm')?></p>
                         
                         <table class="form-table">
                             <tbody>
                                 <tr valign="top">
-                                    <th scope="row"><?=esc_html__('Download-Button', 'zdm')?></th>
+                                    <th scope="row"><?=esc_html__('Download button', 'zdm')?></th>
                                     <td valign="middle">
-                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
-                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
                                     </td>
                                 </tr>
                                 <tr valign="top">
-                                    <th scope="row"><?=esc_html__('Download-Anzahl', 'zdm')?></th>
+                                    <th scope="row"><?=esc_html__('Download count', 'zdm')?></th>
                                     <td valign="middle">
-                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot; type=&quot;count&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
-                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot; type=&quot;count&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
                                     </td>
                                 </tr>
                                 <tr valign="top">
-                                    <th scope="row"><?=esc_html__('Dateigröße', 'zdm')?></th>
+                                    <th scope="row"><?=esc_html__('File size', 'zdm')?></th>
                                     <td valign="middle">
-                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot; type=&quot;size&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
-                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot; type=&quot;size&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
                                     </td>
                                 </tr>
                                 <?php
                                 if (in_array($zdm_db_file->file_type, ZDM__MIME_TYPES_AUDIO)) { // Audio
                                     ?>
                                     <tr valign="top">
-                                        <th scope="row"><?=esc_html__('Audioplayer', 'zdm')?></th>
+                                        <th scope="row"><?=esc_html__('Audio player', 'zdm')?></th>
                                         <td valign="middle">
-                                            <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_audio file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
-                                            <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
+                                            <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_audio file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
+                                            <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
                                         </td>
                                     </tr>
                                     <?php
@@ -690,34 +690,34 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <tr valign="top">
                                         <th scope="row"><?=esc_html__('Videoplayer', 'zdm')?></th>
                                         <td valign="middle">
-                                            <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_video file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
-                                            <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
-                                            <div class="zdm-help-text"><a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=esc_html__('Alle Optionen', 'zdm')?></a> <?=esc_html__('für den Videoplayer', 'zdm')?></div>
+                                            <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_video file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
+                                            <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
+                                            <div class="zdm-help-text"><a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=esc_html__('All options', 'zdm')?></a> <?=esc_html__('for the video player', 'zdm')?></div>
                                         </td>
                                     </tr>
                                     <?php
                                 }
                                 
                                 if ($zdm_licence === 0) {
-                                    $text_hash_md5 = esc_html__('MD5 Hashwert ausgeben', 'zdm') . '<br><a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('Funktion', 'zdm') . ' </a>';
-                                    $text_hash_sha1 = esc_html__('SHA1 Hashwert ausgeben', 'zdm') . '<br><a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('Funktion', 'zdm') . '</a>';
+                                    $text_hash_md5 = esc_html__('Output MD5 hash value', 'zdm') . '<br><a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('feature', 'zdm') . ' </a>';
+                                    $text_hash_sha1 = esc_html__('Output SHA1 hash value', 'zdm') . '<br><a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('feature', 'zdm') . '</a>';
                                 } else {
-                                    $text_hash_md5 = esc_html__('MD5 Hashwert ausgeben', 'zdm');
-                                    $text_hash_sha1 = esc_html__('SHA1 Hashwert ausgeben', 'zdm');
+                                    $text_hash_md5 = esc_html__('Output MD5 hash value', 'zdm');
+                                    $text_hash_sha1 = esc_html__('Output SHA1 hash value', 'zdm');
                                 }
                                 ?>
                                 <tr valign="top">
                                     <th scope="row"><?=$text_hash_md5?></th>
                                     <td valign="middle">
-                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot; type=&quot;hash-md5&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
-                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot; type=&quot;hash-md5&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
                                     </td>
                                 </tr>
                                 <tr valign="top">
                                     <th scope="row"><?=$text_hash_sha1?></th>
                                     <td valign="middle">
-                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot; type=&quot;hash-sha1&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
-                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot; type=&quot;hash-sha1&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -731,21 +731,21 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 ?>
                 <div class="postbox">
                     <div class="inside">
-                        <h2><?=esc_html__('Datei ersetzen', 'zdm')?></h2>
+                        <h2><?=esc_html__('Replace file', 'zdm')?></h2>
                         <hr>
-                        <p><?=esc_html__('Hier kannst du eine neue Datei hochladen, diese ersetzt die aktuelle Datei, die ID für die Shortcodes bleibt gleich.', 'zdm')?></p>
+                        <p><?=esc_html__('Here you can upload a new file, this will replace the current file, the ID for the shortcodes remains the same.', 'zdm')?></p>
 
                         <table class="form-table">
                             <tbody>
                             
                                 <form action="" method="post" enctype="multipart/form-data">
                                     <tr valign="top">
-                                        <th scope="row"><?=esc_html__('Datei ersetzen', 'zdm')?>:</th>
+                                        <th scope="row"><?=esc_html__('Replace file', 'zdm')?>:</th>
                                         <td valign="middle">
-                                        <input type="hidden" name="nonce" value="<?=wp_create_nonce('datei-ersetzen')?>">
+                                        <input type="hidden" name="nonce" value="<?=wp_create_nonce('replace-file')?>">
                                         <input type="hidden" name="name" value="<?=htmlspecialchars($zdm_db_file->name)?>">
-                                        <input type="file" name="file"> <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Hochladen und ersetzen', 'zdm')?>">
-                                        <div class="zdm-help-text"><?=esc_html__('Maximale Dateigröße für Uploads', 'zdm')?>: <?=ini_get('upload_max_filesize')?></div>
+                                        <input type="file" name="file"> <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Upload and replace', 'zdm')?>">
+                                        <div class="zdm-help-text"><?=esc_html__('Maximum file size for uploads', 'zdm')?>: <?=ini_get('upload_max_filesize')?></div>
                                         </td>
                                     </tr>
                                 </form>
@@ -774,26 +774,26 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <table class="wp-list-table widefat">
                             <tr valign="top">
                                 <th scope="row">
-                                    <b><?=esc_html__('Gesamt', 'zdm')?>:</b>
+                                    <b><?=esc_html__('Total', 'zdm')?>:</b>
                                 </th>
                                 <td valign="middle">
                                     <?=ZDMCore::number_format($zdm_db_file->count)?>
                                 </td>
                             </tr>
                             <tr valign="top">
-                                <th scope="row"><b><?=esc_html__('Letzten 30 Tage', 'zdm')?>:</b></th>
+                                <th scope="row"><b><?=esc_html__('Last 30 days', 'zdm')?>:</b></th>
                                 <td valign="middle">
                                     <?=ZDMCore::number_format(ZDMStat::get_downloads_count_time_for_single_stat('file', $zdm_db_file->id, 86400*30))?>
                                 </td>
                             </tr>
                             <tr valign="top">
-                                <th scope="row"><b><?=esc_html__('Letzten 7 Tage', 'zdm')?>:</b></th>
+                                <th scope="row"><b><?=esc_html__('Last 7 days', 'zdm')?>:</b></th>
                                 <td valign="middle">
                                     <?=ZDMCore::number_format(ZDMStat::get_downloads_count_time_for_single_stat('file', $zdm_db_file->id, 86400*7))?>
                                 </td>
                             </tr>
                             <tr valign="top">
-                                <th scope="row"><b><?=esc_html__('Letzten 24 Stunden', 'zdm')?>:</b></th>
+                                <th scope="row"><b><?=esc_html__('Last 24 hours', 'zdm')?>:</b></th>
                                 <td valign="middle">
                                     <?=ZDMCore::number_format(ZDMStat::get_downloads_count_time_for_single_stat('file', $zdm_db_file->id, 86400))?>
                                 </td>
@@ -807,20 +807,20 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                     <div class="postbox">
                         <div class="inside">
-                            <h3><?=esc_html__('Letzte', 'zdm')?> <?=$zdm_options['stat-single-file-last-limit']?> <?=esc_html__('Downloads', 'zdm')?></h3>
+                            <h3><?=esc_html__('Latest', 'zdm')?> <?=$zdm_options['stat-single-file-last-limit']?> <?=esc_html__('downloads', 'zdm')?></h3>
                             <form action="" method="post">
                                 <input type="hidden" name="nonce" value="<?=wp_create_nonce('update-stat-single-file-last-limit')?>">
                                 <input type="number" name="stat-single-file-last-limit" size="5" min="1" max="500" value="<?=esc_attr($zdm_options['stat-single-file-last-limit'])?>"<?php if ($zdm_licence === 0) { echo ' disabled'; } ?> >
-                                <input class="button-primary" type="submit" name="update_stat_single_file_last_limit" value="<?=esc_html__('Aktualisieren', 'zdm')?>"<?php if ($zdm_licence === 0) { echo ' disabled'; } ?>>
+                                <input class="button-primary" type="submit" name="update_stat_single_file_last_limit" value="<?=esc_html__('Update', 'zdm')?>"<?php if ($zdm_licence === 0) { echo ' disabled'; } ?>>
                                 <?php
                                 if ($zdm_licence === 0) {
                                     ?>
-                                    <br><a href="<?=ZDM__PRO_URL?>" target="_blank" title="code.urban-base.net"><?=ZDM__PRO?> <?=esc_html__('Funktion', 'zdm')?></a>
+                                    <br><a href="<?=ZDM__PRO_URL?>" target="_blank" title="code.urban-base.net"><?=ZDM__PRO?> <?=esc_html__('feature', 'zdm')?></a>
                                     <?php
                                 }
                                 ?>
                                 <div class="zdm-help-text">
-                                    <?=esc_html__('Bestimme die Anzahl der letzten Downloads die angezeigt wird. Diese Einstellung ist global und wirkt sich auf alle Dateien aus.', 'zdm')?>
+                                    <?=esc_html__('Determine the number of recent downloads that is displayed. This setting is global and affects all files.', 'zdm')?>
                                 </div>
                             </form>
                         </div>
@@ -833,7 +833,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <table class="wp-list-table widefat striped tags">
                                 <thead>
                                     <tr>
-                                        <th scope="col" width="60%"><b><?=esc_html__('Datum und Uhrzeit', 'zdm')?></b></th>
+                                        <th scope="col" width="60%"><b><?=esc_html__('Date and Time', 'zdm')?></b></th>
                                         <th scope="col" width="40%"><b><?=esc_html__('Details', 'zdm')?></b></th>
                                     </tr>
                                 </thead>
@@ -844,7 +844,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         ?>
                                         <tr>
                                             <td><?=date("d.m.Y - h:i:s", $zdm_last_downloads[$i]->time_create)?></td>
-                                            <td><a href="?page=<?=ZDM__SLUG?>-log&id=<?=$zdm_last_downloads[$i]->id?>"><?=esc_html__('Details anzeigen', 'zdm')?></a></td>
+                                            <td><a href="?page=<?=ZDM__SLUG?>-log&id=<?=$zdm_last_downloads[$i]->id?>"><?=esc_html__('Show details', 'zdm')?></a></td>
                                         </tr>
                                         <?php
                                     }
@@ -854,7 +854,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <?php
                         } else {
                             ?>
-                            <p style="text-align:center"><?=esc_html__('Diese Datei wurde noch nicht heruntergeladen.', 'zdm')?></p>
+                            <p style="text-align:center"><?=esc_html__('This file has not yet been downloaded.', 'zdm')?></p>
                             <?php
                         }
                         ?>
@@ -869,74 +869,74 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 ?>
 
                 <div class="zdm-box zdm-box-info">
-                    <p><?=esc_html__('Hier findest du Einsteiger Tipps und Informationen für fortgeschrittene Funktionen.', 'zdm')?></p>
+                    <p><?=esc_html__('Here you will find beginner tips and information for advanced features.', 'zdm')?></p>
                 </div>
 
                 <div class="postbox">
                     <div class="inside">
-                        <h3><?=esc_html__('Datei hinzufügen', 'zdm')?></h3>
+                        <h3><?=esc_html__('Add file', 'zdm')?></h3>
                         <hr>
-                        <p><?=esc_html__('Um eine Datei hochzuladen klicke im', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('Menü auf', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-add-file"><?=esc_html__('Datei hinzufügen', 'zdm')?></a>".</p>
-                        <p><?=esc_html__('Wähle eine Datei aus und klicke auf "Hochladen".', 'zdm')?></p>
+                        <p><?=esc_html__('To upload a file click on', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('menu on', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-add-file"><?=esc_html__('Add file', 'zdm')?></a>".</p>
+                        <p><?=esc_html__('Select a file and click "Upload".', 'zdm')?></p>
                     </div>
                 </div>
 
                 <div class="postbox">
                     <div class="inside">
-                        <h3><?=esc_html__('Datei ersetzen', 'zdm')?></h3>
+                        <h3><?=esc_html__('Replace file', 'zdm')?></h3>
                         <hr>
-                        <p><?=esc_html__('Wenn du die Datei ersetzt, dann wird nur die Datei ersetzt, die ID für die Shortcodes bleibt erhalten.', 'zdm')?></p>
-                        <p><?=esc_html__('Der Cache aller Archive mit denen diese Datei verknüpft ist wird automatisch aktualisiert.', 'zdm')?></p>
+                        <p><?=esc_html__('If you replace the file, only the file will be replaced, the ID for the shortcodes is retained.', 'zdm')?></p>
+                        <p><?=esc_html__('The cache of all archives with which this file is linked is updated automatically.', 'zdm')?></p>
                     </div>
                 </div>
 
                 <div class="postbox">
                     <div class="inside">
-                        <h3><?=esc_html__('Download-Button für Datei mit Shortcode ausgeben', 'zdm')?></h3>
+                        <h3><?=esc_html__('Download button for file with shortcode', 'zdm')?></h3>
                         <hr>
-                        <p><?=esc_html__('Um eine Datei als Button auf einer Seite oder Beitrag auszugeben klicke im', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('Menü auf', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-files"><?=esc_html__('Dateien', 'zdm')?></a>".</p>
-                        <p><?=esc_html__('Hier siehst du eine Übersicht aller Dateien die du schon hochgeladen hast.', 'zdm')?></p>
-                        <p><?=esc_html__('Der Shortcode wird in der Liste angezeigt und sieht so aus:', 'zdm')?> <code>[zdownload file="123"]</code></p>
-                        <p><?=esc_html__('"123" ist die einzigartige ID der jeweiligen Datei.', 'zdm')?></p>
-                        <p><?=esc_html__('Du kannst auch auf den Namen klicken um mehr Details zu dieser Datei zu bekommen, auf der Detailseite siehst du auch weitere Shortcodes die du verwendenden kannst.', 'zdm')?></p>
+                        <p><?=esc_html__('To show a file as a button on a page or post click on', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('menu on', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-files"><?=esc_html__('Files', 'zdm')?></a>".</p>
+                        <p><?=esc_html__('Here you can see an overview of all files you have already uploaded.', 'zdm')?></p>
+                        <p><?=esc_html__('The shortcode appears in the list and looks like this', 'zdm')?>: <code>[zdownload file="123"]</code></p>
+                        <p><?=esc_html__('"123" is the unique ID of each file.', 'zdm')?></p>
+                        <p><?=esc_html__('You can also click on the name to get more details about this file, on the detail page you can see more shortcodes that you can use.', 'zdm')?></p>
                     </div>
                 </div>
 
                 <div class="postbox">
                     <div class="inside">
-                        <h3><?=esc_html__('Button Farbe und Styles', 'zdm')?></h3>
+                        <h3><?=esc_html__('Button color and styles', 'zdm')?></h3>
                         <hr>
-                        <p><?=esc_html__('Um die Farbe oder sonstige Button-Einstellungen vorzunehmen klicke im', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('Menü auf', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-settings#zdm-download-button"><?=esc_html__('Einstellungen', 'zdm')?></a>".</p>
-                        <p><?=esc_html__('Hier kannst du im Bereich "Download-Button" folgendes ändern:', 'zdm')?></p>
-                        <p><?=esc_html__('Den Standardtext, den Style (Farbe des Buttons), Outline, Runde Ecken oder ein Icon.', 'zdm')?></p>
-                        <p><?=esc_html__('Alle verfügbaren Farben findest du auf der', 'zdm')?> <?=ZDM__TITLE?> <a href="https://code.urban-base.net/z-downloads/farben/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Farben', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('Webseite', 'zdm')?></a></p>
+                        <p><?=esc_html__('To make the color or other button settings click on', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('menu on', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-settings#zdm-download-button"><?=esc_html__('Settings', 'zdm')?></a>".</p>
+                        <p><?=esc_html__('Here you can change the following in the area "Download button"', 'zdm')?>:</p>
+                        <p><?=esc_html__('The standard text, the style (color of the button), outline, round corners or an icon.', 'zdm')?></p>
+                        <p><?=esc_html__('All available colors can be found on the', 'zdm')?> <?=ZDM__TITLE?> <a href="https://code.urban-base.net/z-downloads/farben/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('colors', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('website', 'zdm')?></a></p>
                     </div>
                 </div>
         
                 <div class="postbox">
                     <div class="inside">
-                        <h3><?=esc_html__('Metadaten ausgeben', 'zdm')?></h3>
+                        <h3><?=esc_html__('Output metadata', 'zdm')?></h3>
                         <hr>
-                        <p><?=esc_html__('Du kannst eine Datei nicht nur als Button ausgeben sonder auch weitere Informationen zu diesem Download.', 'zdm')?></p>
-                        <h4><?=esc_html__('Download-Anzahl', 'zdm')?></h4>
+                        <p><?=esc_html__('You can not only output a file as a button but also further information about this download.', 'zdm')?></p>
+                        <h4><?=esc_html__('Download count', 'zdm')?></h4>
                         <p><code>[zdownload_meta file="123" type="count"]</code></p>
-                        <h4><?=esc_html__('Dateigröße', 'zdm')?></h4>
+                        <h4><?=esc_html__('File size', 'zdm')?></h4>
                         <p><code>[zdownload_meta file="123" type="size"]</code></p>
-                        <h4><?=esc_html__('Weitere Shortcodes', 'zdm')?></h4>
-                        <p><?=esc_html__('Weitere Shortcode Optionen für die ausgabe erweiterter Metadaten findest du im Tab', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Experte', 'zdm')?></a> 
-                        <?=esc_html__('oder auf der', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('Webseite', 'zdm')?></a></p>
+                        <h4><?=esc_html__('More shortcodes', 'zdm')?></h4>
+                        <p><?=esc_html__('More shortcode options for outputting advanced metadata can be found in the tab', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Expert', 'zdm')?></a> 
+                        <?=esc_html__('or on the', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('website', 'zdm')?></a></p>
                     </div>
                 </div>
                 
                 <div class="postbox">
                     <div class="inside">
-                        <h3><?=esc_html__('Audioplayer', 'zdm')?></h3>
+                        <h3><?=esc_html__('Audio player', 'zdm')?></h3>
                         <hr>
-                        <p><?=esc_html__('Wenn du eine Audiodatei wie zum Beispiel eine MP3-Datei hochlädst kannst du diese nicht nur als Download-Button anzeigen lassen sondern auch als Audioplayer.', 'zdm')?></p>
-                        <p><?=esc_html__('Dazu verwendest du diesen Shortcode:', 'zdm')?> <code>[zdownload_audio file="123"]</code></p>
-                        <p><?=esc_html__('Der Shortcode für den Audioplayer wird auf der Datei-Detailseite automatisch angezeigt wenn es sich um eine Audiodatei handelt.', 'zdm')?></p>
-                        <p><?=esc_html__('Weitere Ausgabeoptionen für den Audioplayer findest du im Tab', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Experte', 'zdm')?></a> 
-                        <?=esc_html__('oder auf der', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('Webseite', 'zdm')?></a></p>
+                        <p><?=esc_html__('If you upload an audio file, such as an MP3 file, you can not only show it as a download button, but also as an audio player.', 'zdm')?></p>
+                        <p><?=esc_html__('For this you use this shortcode', 'zdm')?>: <code>[zdownload_audio file="123"]</code></p>
+                        <p><?=esc_html__('The audio player shortcode is automatically displayed on the file details page if it is an audio file.', 'zdm')?></p>
+                        <p><?=esc_html__('Other output options for the audio player can be found in the tab', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Expert', 'zdm')?></a> 
+                        <?=esc_html__('or on the', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('website', 'zdm')?></a></p>
                     </div>
                 </div>
                 
@@ -944,29 +944,29 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <div class="inside">
                         <h3><?=esc_html__('Videoplayer', 'zdm')?></h3>
                         <hr>
-                        <p><?=esc_html__('Wenn du eine Videodatei wie zum Beispiel eine MP4-Datei hochlädst kannst du diese nicht nur als Download-Button anzeigen lassen sondern auch als Videoplayer.', 'zdm')?></p>
-                        <p><?=esc_html__('Dazu verwendest du diesen Shortcode:', 'zdm')?> <code>[zdownload_video file="123"]</code></p>
-                        <p><?=esc_html__('Der Shortcode für den Videoplayer wird auf der Datei-Detailseite automatisch angezeigt wenn es sich um eine Videodatei handelt.', 'zdm')?></p>
-                        <p><?=esc_html__('Weitere Ausgabeoptionen für den Videoplayer findest du im Tab', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Experte', 'zdm')?></a> 
-                        <?=esc_html__('oder auf der', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('Webseite', 'zdm')?></a></p>
+                        <p><?=esc_html__('If you upload a video file, such as an MP4 file, you can not only display it as a download button but also as a video player.', 'zdm')?></p>
+                        <p><?=esc_html__('For this you use this shortcode', 'zdm')?>: <code>[zdownload_video file="123"]</code></p>
+                        <p><?=esc_html__('The video player shortcode is automatically displayed on the file details page if it is a video file.', 'zdm')?></p>
+                        <p><?=esc_html__('Other output options for the video player can be found in the tab', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Expert', 'zdm')?></a> 
+                        <?=esc_html__('or on the', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('website', 'zdm')?></a></p>
                     </div>
                 </div>
 
                 <div class="postbox">
                     <div class="inside">
-                        <h3><?=esc_html__('Sichtbarkeit', 'zdm')?></h3>
+                        <h3><?=esc_html__('Visibility', 'zdm')?></h3>
                         <hr>
-                        <p><?=esc_html__('Die Sichtbarkeitseinstellungen einer Datei hat nur Auswirkungen auf die Ausgabe dieser Datei, wenn diese Datei in einem Archiv verknüpft ist und du stellst die Sichtbarkeit der Datei auf "Privat", dann bleibt die Datei weiterhin im Archiv bestehen.', 'zdm')?></p>
-                        <p><?=esc_html__('Ist die Datei auf "Privat" gestellt, dann kann die Datei nicht mehr heruntergeladen werden, auch wenn jemand die URL des Download-Buttons direkt aufruft.', 'zdm')?></p>
+                        <p><?=esc_html__('The visibility settings of a file only affect the output of this file, if this file is linked in an archive and you set the visibility of the file to "Private", then the file remains in the archive.', 'zdm')?></p>
+                        <p><?=esc_html__('If the file is set to "Private", the file can no longer be downloaded, even if someone calls the URL of the download button directly.', 'zdm')?></p>
                     </div>
                 </div>
                 
                 <div class="postbox">
                     <div class="inside">
-                        <h3><?=esc_html__('Weitere Hilfe', 'zdm')?></h3>
+                        <h3><?=esc_html__('Further help', 'zdm')?></h3>
                         <hr>
-                        <p><?=esc_html__('Weitere Hilfe und Dokumentation für spezielle Funktionen findest du hier', 'zdm')?>: <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Hilfeseite - Experte', 'zdm')?></a></p>
-                        <p><?=esc_html__('Oder auf der', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=ZDM__TITLE?> <?=esc_html__('Webseite', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('Webseite', 'zdm')?></a></p>
+                        <p><?=esc_html__('Further help and documentation for special functions can be found here', 'zdm')?>: <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Help page - expert', 'zdm')?></a></p>
+                        <p><?=esc_html__('or on the', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=ZDM__TITLE?> <?=esc_html__('website', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('website', 'zdm')?></a></p>
                     </div>
                 </div>
 
@@ -992,9 +992,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         <div class="wrap">
 
-            <h1 class="wp-heading-inline"><?=esc_html__('Dateien', 'zdm')?></h1>
+            <h1 class="wp-heading-inline"><?=esc_html__('Files', 'zdm')?></h1>
             <hr class="wp-header-end">
-            <p><a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="page-title-action"><?=esc_html__('Datei hinzufügen', 'zdm')?></a></p>
+            <p><a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="page-title-action"><?=esc_html__('Add file', 'zdm')?></a></p>
 
             <?php if (count($zdm_db_files) > 0) { ?>
 
@@ -1004,12 +1004,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <tr>
                             <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
-                            <th scope="col"><ion-icon name="stats" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></th>
-                            <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
-                            <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
-                            <th scope="col" title="<?=esc_html__('Zeigt an in wie vielen Archiven die Datei verknüpft ist.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
-                            <th scope="col" title="<?=esc_html__('Sichtbarkeit', 'zdm')?>"><div align="center"><b><ion-icon name="eye"></ion-icon></b></div></th>
-                            <th scope="col" width="2%"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Datei löschen', 'zdm')?>"></ion-icon></div></th>
+                            <th scope="col"><ion-icon name="stats" title="<?=esc_html__('Download count', 'zdm')?>"></ion-icon></th>
+                            <th scope="col"><b><?=esc_html__('File size', 'zdm')?></b></th>
+                            <th scope="col"><b><?=esc_html__('Created', 'zdm')?></b></th>
+                            <th scope="col" title="<?=esc_html__('Shows in how many archives the file is linked.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
+                            <th scope="col" title="<?=esc_html__('Visibility', 'zdm')?>"><div align="center"><b><ion-icon name="eye"></ion-icon></b></div></th>
+                            <th scope="col" width="2%"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Delete file', 'zdm')?>"></ion-icon></div></th>
                         </tr>
                     </thead>
 
@@ -1037,9 +1037,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                             // Datei Status (Sichtbarkeit)
                             if ($zdm_db_files[$i]->status == 'public') {
-                                $zdm_file_status = '<ion-icon name="eye" class="zdm-color-green" title="' . esc_html__('Sichtbarkeit: Öffentlich', 'zdm') . '"></ion-icon>';
+                                $zdm_file_status = '<ion-icon name="eye" class="zdm-color-green" title="' . esc_html__('Visibility: public', 'zdm') . '"></ion-icon>';
                             } else {
-                                $zdm_file_status = '<ion-icon name="eye-off" title="' . esc_html__('Sichtbarkeit: Privat', 'zdm') . '"></ion-icon>';
+                                $zdm_file_status = '<ion-icon name="eye-off" title="' . esc_html__('Visibility: private', 'zdm') . '"></ion-icon>';
                             }
 
                             ?>
@@ -1052,8 +1052,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <b><a href="?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_db_files[$i]->id)?>"><?=htmlspecialchars($zdm_db_files[$i]->name)?></a></b>
                                 </td>
                                 <td>
-                                    <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-list" value="[zdownload file=&quot;<?=$zdm_db_files[$i]->id?>&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
-                                    <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
+                                    <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-list" value="[zdownload file=&quot;<?=$zdm_db_files[$i]->id?>&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
+                                    <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
                                 </td>
                                 <td>
                                 <a href="?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_db_files[$i]->id)?>&tab=statistic"><?=ZDMCore::number_format($zdm_db_files[$i]->count)?></a>
@@ -1071,7 +1071,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <div align="center"><?=$zdm_file_status?></div>
                                 </td>
                                 <td>
-                                    <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_db_files[$i]->id)?>&delete=true&nonce=<?=wp_create_nonce('datei-loeschen')?>" class="button button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Datei löschen', 'zdm')?>"><ion-icon name="trash"></ion-icon></a>
+                                    <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_db_files[$i]->id)?>&delete=true&nonce=<?=wp_create_nonce('delete-file')?>" class="button button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Delete file', 'zdm')?>"><ion-icon name="trash"></ion-icon></a>
                                 </td>
                             </tr>
                             <?php
@@ -1085,11 +1085,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
                             <th scope="col"><ion-icon name="stats" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></th>
-                            <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
-                            <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
-                            <th scope="col" title="<?=esc_html__('Zeigt an in wie vielen Archiven die Datei verknüpft ist.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
-                            <th scope="col" title="<?=esc_html__('Sichtbarkeit', 'zdm')?>"><div align="center"><b><ion-icon name="eye"></ion-icon></b></div></th>
-                            <th scope="col"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Datei löschen', 'zdm')?>"></ion-icon></div></th>
+                            <th scope="col"><b><?=esc_html__('File size', 'zdm')?></b></th>
+                            <th scope="col"><b><?=esc_html__('Created', 'zdm')?></b></th>
+                            <th scope="col" title="<?=esc_html__('Shows in how many archives the file is linked.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
+                            <th scope="col" title="<?=esc_html__('Visibility', 'zdm')?>"><div align="center"><b><ion-icon name="eye"></ion-icon></b></div></th>
+                            <th scope="col"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Delete file', 'zdm')?>"></ion-icon></div></th>
                         </tr>
                     </tfoot>
 
@@ -1103,7 +1103,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <?php require_once (plugin_dir_path(__FILE__) . '../inc/postbox_info_files.php'); ?>
 
             <br>
-            <a class="alignright button" href="javascript:void(0);" onclick="window.scrollTo(0,0);" style="margin:3px 0 0 30px;"><?=esc_html__('Nach oben', 'zdm')?></a>
+            <a class="alignright button" href="javascript:void(0);" onclick="window.scrollTo(0,0);" style="margin:3px 0 0 30px;"><?=esc_html__('To top', 'zdm')?></a>
         </div>
         <?php
     } elseif ($zdm_status === 3) {
@@ -1120,13 +1120,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         ?>
         <div class="wrap">
-            <h1 class="wp-heading-inline"><?=esc_html__('Neue Datei hochladen', 'zdm')?></h1>
+            <h1 class="wp-heading-inline"><?=esc_html__('Upload new file', 'zdm')?></h1>
 
             <div class="zdm-box zdm-box-info">
-                <p><b><?=esc_html__('Diese Datei wurde bereits hochgeladen.', 'zdm')?></b></p>
-                <p><?=esc_html__('Die gerade hochgeladene Datei existiert bereits und wurde nicht hinzugefügt.', 'zdm')?></p>
-                <p><?=esc_html__('In der Tabelle siehst du die Duplikate die bereits hochgeladen wurden.', 'zdm')?></p>
-                <p><?=esc_html__('Du kannst in den Einstellungen "Duplikate zulassen" aktivieren, dann kannst du die selbe Datei auch mehrfach hochladen.', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-settings#zdm-expanded"><?=esc_html__('Zu den Einstellungen', 'zdm')?></a></p>
+                <p><b><?=esc_html__('This file has already been uploaded.', 'zdm')?></b></p>
+                <p><?=esc_html__('The file you just uploaded already exists and has not been added.', 'zdm')?></p>
+                <p><?=esc_html__('In the table you can see the duplicates that have already been uploaded.', 'zdm')?></p>
+                <p><?=esc_html__('You can activate "Allow duplicates" in the settings, then you can upload the same file multiple times.', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-settings#zdm-expanded"><?=esc_html__('To the settings', 'zdm')?></a></p>
             </div>
         
             <?php
@@ -1134,7 +1134,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             if (count($zdm_db_files) > 0) {
                 ?>
 
-                <h2><?=esc_html__('Duplikate', 'zdm')?></h2>
+                <h2><?=esc_html__('Duplicates', 'zdm')?></h2>
 
                 <div class="col-wrap">
                     <table class="wp-list-table widefat striped tags">
@@ -1143,11 +1143,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
                                 <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
                                 <th scope="col"><ion-icon name="stats" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></th>
-                                <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
-                                <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
-                                <th scope="col" title="<?=esc_html__('Zeigt an in wie vielen Archiven die Datei verknüpft ist.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
-                                <th scope="col" title="<?=esc_html__('Sichtbarkeit', 'zdm')?>"><div align="center"><b><ion-icon name="eye"></ion-icon></b></div></th>
-                                <th scope="col" width="2%"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Datei löschen', 'zdm')?>"></ion-icon></div></th>
+                                <th scope="col"><b><?=esc_html__('File size', 'zdm')?></b></th>
+                                <th scope="col"><b><?=esc_html__('Created', 'zdm')?></b></th>
+                                <th scope="col" title="<?=esc_html__('Shows in how many archives the file is linked.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
+                                <th scope="col" title="<?=esc_html__('Visibility', 'zdm')?>"><div align="center"><b><ion-icon name="eye"></ion-icon></b></div></th>
+                                <th scope="col" width="2%"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Delete file', 'zdm')?>"></ion-icon></div></th>
                             </tr>
                         </thead>
 
@@ -1175,9 +1175,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                                 // Datei Status (Sichtbarkeit)
                                 if ($zdm_db_files[$i]->status == 'public') {
-                                    $zdm_file_status = '<ion-icon name="eye" class="zdm-color-green" title="' . esc_html__('Sichtbarkeit: Öffentlich', 'zdm') . '"></ion-icon>';
+                                    $zdm_file_status = '<ion-icon name="eye" class="zdm-color-green" title="' . esc_html__('Visibility: public', 'zdm') . '"></ion-icon>';
                                 } else {
-                                    $zdm_file_status = '<ion-icon name="eye-off" title="' . esc_html__('Sichtbarkeit: Privat', 'zdm') . '"></ion-icon>';
+                                    $zdm_file_status = '<ion-icon name="eye-off" title="' . esc_html__('Visibility: private', 'zdm') . '"></ion-icon>';
                                 }
 
                                 ?>
@@ -1190,8 +1190,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <b><a href="?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_db_files[$i]->id)?>"><?=htmlspecialchars($zdm_db_files[$i]->name)?></a></b>
                                     </td>
                                     <td>
-                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-list" value="[zdownload file=&quot;<?=$zdm_db_files[$i]->id?>&quot;]" readonly title="<?=esc_html__('Shortcode in die Zwischenablage kopieren.', 'zdm')?>">
-                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode kopiert', 'zdm')?></b></p>
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-list" value="[zdownload file=&quot;<?=$zdm_db_files[$i]->id?>&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
                                     </td>
                                     <td>
                                         <a href="?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_db_files[$i]->id)?>&tab=statistic"><?=ZDMCore::number_format($zdm_db_files[$i]->count)?></a>
@@ -1209,7 +1209,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <div align="center"><?=$zdm_file_status?></div>
                                     </td>
                                     <td>
-                                        <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_db_files[$i]->id)?>&delete=true&nonce=<?=wp_create_nonce('datei-loeschen')?>&duplicate-hash=<?=htmlspecialchars($zdm_uploaded_file_hash)?>" class="button button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Datei löschen', 'zdm')?>"><ion-icon name="trash"></ion-icon></a>
+                                        <a href="admin.php?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_db_files[$i]->id)?>&delete=true&nonce=<?=wp_create_nonce('delete-file')?>&duplicate-hash=<?=htmlspecialchars($zdm_uploaded_file_hash)?>" class="button button-secondary zdm-btn-danger-2-outline" title="<?=esc_html__('Delete file', 'zdm')?>"><ion-icon name="trash"></ion-icon></a>
                                     </td>
                                 </tr>
                                 <?php
@@ -1223,11 +1223,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
                                 <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
                                 <th scope="col"><ion-icon name="stats" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></th>
-                                <th scope="col"><b><?=esc_html__('Dateigröße', 'zdm')?></b></th>
-                                <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
-                                <th scope="col" title="<?=esc_html__('Zeigt an in wie vielen Archiven die Datei verknüpft ist.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
-                                <th scope="col" title="<?=esc_html__('Sichtbarkeit', 'zdm')?>"><div align="center"><b><ion-icon name="eye"></ion-icon></b></div></th>
-                                <th scope="col"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Datei löschen', 'zdm')?>"></ion-icon></div></th>
+                                <th scope="col"><b><?=esc_html__('File size', 'zdm')?></b></th>
+                                <th scope="col"><b><?=esc_html__('Created', 'zdm')?></b></th>
+                                <th scope="col" title="<?=esc_html__('Shows in how many archives the file is linked.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
+                                <th scope="col" title="<?=esc_html__('Visibility', 'zdm')?>"><div align="center"><b><ion-icon name="eye"></ion-icon></b></div></th>
+                                <th scope="col"><div align="center"><ion-icon name="trash" title="<?=esc_html__('Delete file', 'zdm')?>"></ion-icon></div></th>
                             </tr>
                         </tfoot>
 
@@ -1238,9 +1238,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             
             <br>
-            <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="button button-primary"><?=esc_html__('Neue Datei hochladen', 'zdm')?></a>
+            <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="button button-primary"><?=esc_html__('Upload new file', 'zdm')?></a>
             &nbsp;&nbsp;
-            <a href="admin.php?page=<?=ZDM__SLUG?>-files" class="button button-secondary"><?=esc_html__('Dateien Übersicht', 'zdm')?></a>
+            <a href="admin.php?page=<?=ZDM__SLUG?>-files" class="button button-secondary"><?=esc_html__('Files overview', 'zdm')?></a>
         
         </div>
         <?php

@@ -34,43 +34,43 @@ class ZDMCore {
             'dashicons-download');                  // Dashicon im Admin-Menü
         add_submenu_page(
             ZDM__SLUG,                              // top-level menu
-            esc_html__('Dateien', 'zdm'),           // Seitentitel
-            esc_html__('Dateien', 'zdm'),           // Menuetext
+            esc_html__('Files', 'zdm'),             // Seitentitel
+            esc_html__('Files', 'zdm'),             // Menuetext
             ZDM__STANDARD_USER_ROLE,                // Zugriffslevel
             ZDM__SLUG . '-files',                   // URL des submenue
             array($this, 'admin_menu_files'));      // Name der Funktion die ausgeführt wird
         add_submenu_page(
             ZDM__SLUG,
-            esc_html__('Datei hinzufügen', 'zdm'),
-            esc_html__('Datei hinzufügen', 'zdm'),
+            esc_html__('Add file', 'zdm'),
+            esc_html__('Add file', 'zdm'),
             ZDM__STANDARD_USER_ROLE,
             ZDM__SLUG . '-add-file',
             array($this, 'admin_menu_add_file'));
         add_submenu_page(
             ZDM__SLUG,
-            esc_html__('Archive', 'zdm'),
-            esc_html__('Archive', 'zdm'),
+            esc_html__('Archives', 'zdm'),
+            esc_html__('Archives', 'zdm'),
             ZDM__STANDARD_USER_ROLE,
             ZDM__SLUG . '-ziparchive',
             array($this, 'admin_menu_ziparchive'));
         add_submenu_page(
             ZDM__SLUG,
-            esc_html__('Archiv erstellen', 'zdm'),
-            esc_html__('Archiv erstellen', 'zdm'),
+            esc_html__('Create archive', 'zdm'),
+            esc_html__('Create archive', 'zdm'),
             ZDM__STANDARD_USER_ROLE,
             ZDM__SLUG . '-add-archive',
             array($this, 'admin_menu_add_archive'));
         add_submenu_page(
             ZDM__SLUG,
-            esc_html__('Einstellungen', 'zdm'),
-            esc_html__('Einstellungen', 'zdm'),
+            esc_html__('Settings', 'zdm'),
+            esc_html__('Settings', 'zdm'),
             ZDM__STANDARD_USER_ROLE,
             ZDM__SLUG . '-settings',
             array($this, 'admin_menu_settings'));
         add_submenu_page(
             ZDM__SLUG,
-            esc_html__('Hilfe', 'zdm'),
-            esc_html__('Hilfe', 'zdm'),
+            esc_html__('Help', 'zdm'),
+            esc_html__('Help', 'zdm'),
             ZDM__STANDARD_USER_ROLE,
             ZDM__SLUG . '-help',
             array($this, 'admin_menu_help'));
@@ -84,8 +84,8 @@ class ZDMCore {
         }
         add_submenu_page(
             null,
-            esc_html__('Hilfe', 'zdm'),
-            esc_html__('Hilfe', 'zdm'),
+            esc_html__('Help', 'zdm'),
+            esc_html__('Help', 'zdm'),
             ZDM__STANDARD_USER_ROLE,
             ZDM__SLUG . '-log',
             array($this, 'admin_hidden_log'));
@@ -1429,7 +1429,7 @@ class ZDMCore {
 
                 // Ausgabe
                 $audio = '<audio preload="none" id="zdmAudio' . $db_file[0]->id . '" class="zdm-audio"' . $autoplay . $loop . $controls . '>';
-                $audio .= esc_html__('Dein Browser unterstützt keine HTML Audio-Elemente.', 'zdm');
+                $audio .= esc_html__('Your browser does not support HTML audio elements.', 'zdm');
                 $audio .= '<source src="' . ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_file[0]->folder_path . '/' . $db_file[0]->file_name . '" type="' . $db_file[0]->file_type . '">';
                 $audio .= '</audio>';
     
@@ -1926,7 +1926,7 @@ class ZDMCore {
 
                 // Ausgabe
                 $video = '<video id="zdmVideo' . $db_file[0]->id . '" width="' . $width . '" class="zdm-video"' . $autoplay . $loop . $controls . '>';
-                $video .= esc_html__('Dein Browser unterstützt keine HTML Video-Elemente.', 'zdm');
+                $video .= esc_html__('Your browser does not support HTML video elements.', 'zdm');
                 $video .= '<source src="' . ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_file[0]->folder_path . '/' . $db_file[0]->file_name . '" type="' . $db_file[0]->file_type . '">';
                 $video .= '</video>';
 

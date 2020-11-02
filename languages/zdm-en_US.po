@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2020-09-24 23:11+0200\n"
-"PO-Revision-Date: 2020-09-24 23:13+0200\n"
+"PO-Revision-Date: 2020-11-02 14:01+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en_US\n"
@@ -368,7 +368,7 @@ msgstr "Trophy"
 #: templates/admin_menu_dashboard.php:301 templates/admin_menu_files.php:796
 #: templates/admin_menu_ziparchive.php:630
 msgid "Letzten 24 Stunden"
-msgstr "Last 24 hours"
+msgstr "Letzten 24 Stunden"
 
 #: templates/admin_dashboard_widget.php:5
 #: templates/admin_menu_dashboard.php:295 templates/admin_menu_files.php:790

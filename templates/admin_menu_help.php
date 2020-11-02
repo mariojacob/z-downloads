@@ -16,7 +16,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     // Text für Premium Funktionen
     if (!ZDMCore::licence()) {
-        $zdm_premium_text = '(<a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('Funktion', 'zdm') . ' </a>)';
+        $zdm_premium_text = '(<a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('feature', 'zdm') . ' </a>)';
     } else {
         $zdm_premium_text = '';
     }
@@ -24,14 +24,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     ?>
 
     <div class="wrap">
-        <h1 class="wp-heading-inline"><ion-icon name="help-circle-outline"></ion-icon> <?=ZDM__TITLE?> <?=esc_html__('Hilfe', 'zdm')?></h1>
+        <h1 class="wp-heading-inline"><ion-icon name="help-circle-outline"></ion-icon> <?=ZDM__TITLE?> <?=esc_html__('Help', 'zdm')?></h1>
 
         <hr class="wp-header-end">
 
         <nav class="nav-tab-wrapper wp-clearfix zdm-nav-tabs">
-		    <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=beginner" class="nav-tab <?php echo $active_tab == 'beginner' ? 'nav-tab-active' : ''; ?>" aria-current="page"><?=esc_html__('Erste Schritte', 'zdm')?></a>
-		    <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=advanced" class="nav-tab <?php echo $active_tab == 'advanced' ? 'nav-tab-active' : ''; ?>"><?=esc_html__('Fortgeschritten', 'zdm')?></a>
-		    <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert" class="nav-tab <?php echo $active_tab == 'expert' ? 'nav-tab-active' : ''; ?>"><?=esc_html__('Experte', 'zdm')?></a>
+		    <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=beginner" class="nav-tab <?php echo $active_tab == 'beginner' ? 'nav-tab-active' : ''; ?>" aria-current="page"><?=esc_html__('First steps', 'zdm')?></a>
+		    <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=advanced" class="nav-tab <?php echo $active_tab == 'advanced' ? 'nav-tab-active' : ''; ?>"><?=esc_html__('Advanced', 'zdm')?></a>
+		    <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert" class="nav-tab <?php echo $active_tab == 'expert' ? 'nav-tab-active' : ''; ?>"><?=esc_html__('Expert', 'zdm')?></a>
 		</nav>
 
     <?php
@@ -42,64 +42,64 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <br>
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('Dateien hinzufügen', 'zdm')?></h3>
+                <h3><?=esc_html__('Add files', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Um eine Datei hochzuladen klicke im', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('Menü auf', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-add-file"><?=esc_html__('Datei hinzufügen', 'zdm')?></a>".</p>
-                <p><?=esc_html__('Wähle eine Datei aus und klicke auf "Hochladen".', 'zdm')?></p>
+                <p><?=esc_html__('To upload a file click on', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('menu on', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-add-file"><?=esc_html__('Add file', 'zdm')?></a>".</p>
+                <p><?=esc_html__('Select a file and click "Upload".', 'zdm')?></p>
             </div>
         </div>
 
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('Dateien ersetzen', 'zdm')?></h3>
+                <h3><?=esc_html__('Replace files', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Wenn du die Datei ersetzt, dann wird nur die Datei ersetzt, die ID für die Shortcodes bleibt erhalten.', 'zdm')?></p>
-                <p><?=esc_html__('Der Cache aller Archive mit denen diese Datei verknüpft ist wird automatisch aktualisiert.', 'zdm')?></p>
+                <p><?=esc_html__('If you replace the file, only the file will be replaced, the ID for the shortcodes is retained.', 'zdm')?></p>
+                <p><?=esc_html__('The cache of all archives with which this file is linked is updated automatically.', 'zdm')?></p>
             </div>
         </div>
 
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('Download-Button für Datei mit Shortcode ausgeben', 'zdm')?></h3>
+                <h3><?=esc_html__('Download button for file with shortcode', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Um eine Datei als Button auf einer Seite oder Beitrag auszugeben klicke im', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('Menü auf', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-files"><?=esc_html__('Dateien', 'zdm')?></a>".</p>
-                <p><?=esc_html__('Hier siehst du eine Übersicht aller Dateien die du schon hochgeladen hast.', 'zdm')?></p>
-                <p><?=esc_html__('Der Shortcode wird in der Liste angezeigt und sieht so aus:', 'zdm')?> <code>[zdownload file="123"]</code></p>
-                <p><?=esc_html__('"123" ist die einzigartige ID der jeweiligen Datei.', 'zdm')?></p>
-                <p><?=esc_html__('Du kannst auch auf den Namen klicken um mehr Details zu dieser Datei zu bekommen, auf der Detailseite siehst du auch weitere Shortcodes die du verwendenden kannst.', 'zdm')?></p>
+                <p><?=esc_html__('To show a file as a button on a page or post click on', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('menu on', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-files"><?=esc_html__('Files', 'zdm')?></a>".</p>
+                <p><?=esc_html__('Here you can see an overview of all files you have already uploaded.', 'zdm')?></p>
+                <p><?=esc_html__('The shortcode appears in the list and looks like this', 'zdm')?>: <code>[zdownload file="123"]</code></p>
+                <p><?=esc_html__('"123" is the unique ID of each file.', 'zdm')?></p>
+                <p><?=esc_html__('You can also click on the name to get more details about this file, on the detail page you can see more shortcodes that you can use.', 'zdm')?></p>
             </div>
         </div>
 
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('ZIP-Archiv anlegen', 'zdm')?></h3>
+                <h3><?=esc_html__('Create ZIP archive', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Um ein ZIP-Archiv zu erstellen klicke im', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('Menü auf', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-add-archive"><?=esc_html__('Archiv erstellen', 'zdm')?></a>".</p>
-                <p><?=esc_html__('Hier kannst du einen Namen, einen ZIP-Namen und sonstige Infos zum Archiv eintragen.', 'zdm')?></p>
-                <p><?=esc_html__('Um Dateien zum ZIP-Archiv hinzuzufügen wählst du im unteren Bereich bei "Dateien verknüpfen" aus deinen bereits hochgeladenen Dateien aus und klickst auf "Speichern".', 'zdm')?></p>
+                <p><?=esc_html__('To create a ZIP archive click on', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('menu on', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-add-archive"><?=esc_html__('Create archive', 'zdm')?></a>".</p>
+                <p><?=esc_html__('Here you can enter a name, a ZIP name and other information about the archive.', 'zdm')?></p>
+                <p><?=esc_html__('In order to add files to the ZIP archive you select in the lower area under "Link files" from your already uploaded files and click on "Save".', 'zdm')?></p>
             </div>
         </div>
 
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('Download-Button für Archiv mit Shortcode ausgeben', 'zdm')?></h3>
+                <h3><?=esc_html__('Print download button for archive with shortcode', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Um ein Archiv als Button auf einer Seite oder Beitrag auszugeben klicke im', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('Menü auf', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive"><?=esc_html__('Archive', 'zdm')?></a>".</p>
-                <p><?=esc_html__('Hier siehst du eine Übersicht aller Archive die du erstellt hast.', 'zdm')?></p>
-                <p><?=esc_html__('Der Shortcode wird in der Liste angezeigt und sieht so aus:', 'zdm')?> <code>[zdownload zip="123"]</code></p>
-                <p><?=esc_html__('"123" ist die einzigartige ID des jeweiligen Archives.', 'zdm')?></p>
-                <p><?=esc_html__('Du kannst auch auf den Namen klicken um mehr Details zu diesem Archiv zu bekommen, auf der Detailseite siehst du auch weitere Shortcodes die du verwendenden kannst.', 'zdm')?></p>
+                <p><?=esc_html__('To output an archive as a button on a page or post click on', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('menu on', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive"><?=esc_html__('Archives', 'zdm')?></a>".</p>
+                <p><?=esc_html__('Here you can see an overview of all archives you have created.', 'zdm')?></p>
+                <p><?=esc_html__('The shortcode appears in the list and looks like this', 'zdm')?>: <code>[zdownload zip="123"]</code></p>
+                <p><?=esc_html__('"123" is the unique ID of the respective archive.', 'zdm')?></p>
+                <p><?=esc_html__('You can also click on the name to get more details about this archive, on the detail page you can see more shortcodes that you can use.', 'zdm')?></p>
             </div>
         </div>
 
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('Button Farbe und Styles', 'zdm')?></h3>
+                <h3><?=esc_html__('Button color and styles', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Um die Farbe oder sonstige Button-Einstellungen vorzunehmen klicke im', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('Menü auf', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-settings"><?=esc_html__('Einstellungen', 'zdm')?></a>".</p>
-                <p><?=esc_html__('Hier kannst du im Bereich "Download-Button" folgendes ändern:', 'zdm')?></p>
-                <p><?=esc_html__('Den Standardtext, den Style (Farbe des Buttons), Outline, Runde Ecken oder ein Icon.', 'zdm')?></p>
-                <p><?=esc_html__('Alle verfügbaren Farben findest du auf der', 'zdm')?> <?=ZDM__TITLE?> <a href="https://code.urban-base.net/z-downloads/farben/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Farben', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('Webseite', 'zdm')?></a></p>
+                <p><?=esc_html__('To make the color or other button settings click on', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('menu on', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-settings"><?=esc_html__('Settings', 'zdm')?></a>".</p>
+                <p><?=esc_html__('Here you can change the following in the area "Download-Button"', 'zdm')?>:</p>
+                <p><?=esc_html__('The standard text, the style (color of the button), outline, round corners or an icon.', 'zdm')?></p>
+                <p><?=esc_html__('All available colors can be found on the', 'zdm')?> <?=ZDM__TITLE?> <a href="https://code.urban-base.net/z-downloads/farben/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Colors', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('website', 'zdm')?></a></p>
             </div>
         </div>
         
@@ -110,16 +110,16 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <br>
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('Sichtbarkeit', 'zdm')?></h3>
+                <h3><?=esc_html__('Visability', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Mit dieser Option kannst du auf der Detailseite einer Datei oder eines Archives einstellen.', 'zdm')?></p>
-                <p><?=esc_html__('Standardmäßig ist jede hinzugefügte Datei oder jedes erstellte Archiv auf "Öffentlich" gestellt.', 'zdm')?></p>
-                <h4><?=esc_html__('Sichtbarkeit von Dateien', 'zdm')?></h4>
-                <p><?=esc_html__('Die Sichtbarkeitseinstellungen einer Datei hat nur Auswirkungen auf die Ausgabe dieser Datei, wenn diese Datei in einem Archiv verknüpft ist und du stellst die Sichtbarkeit der Datei auf "Privat", dann bleibt die Datei weiterhin im Archiv bestehen.', 'zdm')?></p>
-                <p><?=esc_html__('Ist die Datei auf "Privat" gestellt, dann kann die Datei nicht mehr heruntergeladen werden, auch wenn jemand die URL des Download-Buttons direkt aufruft.', 'zdm')?></p>
-                <h4><?=esc_html__('Sichtbarkeit von Archiven', 'zdm')?></h4>
-                <p><?=esc_html__('Die Sichtbarkeitseinstellung eines Archives bestimmt ob ein Button oder sonstige Informationen im Frontend angezeigt werden.', 'zdm')?></p>
-                <p><?=esc_html__('Ist das Archiv auf "Privat" gestellt, dann kann das Archiv nicht mehr heruntergeladen werden, auch wenn jemand die URL des Download-Buttons direkt aufruft.', 'zdm')?></p>
+                <p><?=esc_html__('With this option you can set a file or archive on the detail page.', 'zdm')?></p>
+                <p><?=esc_html__('By default, every added file or archive is set to "Public".', 'zdm')?></p>
+                <h4><?=esc_html__('Visibility of files', 'zdm')?></h4>
+                <p><?=esc_html__('The visibility settings of a file only affect the output of this file, if this file is linked in an archive and you set the visibility of the file to "Private", then the file remains in the archive.', 'zdm')?></p>
+                <p><?=esc_html__('If the file is set to "Private", the file can no longer be downloaded, even if someone calls the URL of the download button directly.', 'zdm')?></p>
+                <h4><?=esc_html__('Visibility of archives', 'zdm')?></h4>
+                <p><?=esc_html__('The visibility setting of an archive determines whether a button or other information is displayed in the front end.', 'zdm')?></p>
+                <p><?=esc_html__('If the archive is set to "Private", the archive can no longer be downloaded, even if someone calls the URL of the download button directly.', 'zdm')?></p>
             </div>
         </div>
 
@@ -127,52 +127,52 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <div class="inside">
                 <h3><?=esc_html__('Dashboard', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Das Dashboard zeigt dir alle wichtigen Informationen über deine Downloads.', 'zdm')?></p>
-                <h4><?=esc_html__('Download Statistik', 'zdm')?></h4>
-                <p><?=esc_html__('Hier siehst du die Gesamte Anzahl an Datei und Archiv Downloads und die Downloads der letzten Zeit 30 Tage, 7 Tage und 24 Stunden.', 'zdm')?></p>
-                <h4><?=esc_html__('Letzte Downloads', 'zdm')?></h4>
-                <p><?=esc_html__('Dieser Bereich ist in Archive und Dateien aufgeteilt und zeigt dir die letzten Downloads mit Namen, Zeit und Datum.', 'zdm')?></p>
-                <h4><?=esc_html__('Beliebte Downloads', 'zdm')?></h4>
-                <p><?=esc_html__('Dieser Bereich ist auch in Archive und Dateien aufgeteilt und zeigt dir die fünf beliebtesten Downloads.', 'zdm')?></p>
+                <p><?=esc_html__('The dashboard shows you all the important information about your downloads.', 'zdm')?></p>
+                <h4><?=esc_html__('Download statistics', 'zdm')?></h4>
+                <p><?=esc_html__('Here you can see the total number of file and archive downloads and the latest downloads 30 days, 7 days and 24 hours.', 'zdm')?></p>
+                <h4><?=esc_html__('Last downloads', 'zdm')?></h4>
+                <p><?=esc_html__('This area is divided into archives and files and shows you the last downloads with name, time and date.', 'zdm')?></p>
+                <h4><?=esc_html__('Popular Downloads', 'zdm')?></h4>
+                <p><?=esc_html__('This section is also divided into archives and files and shows you the five most popular downloads.', 'zdm')?></p>
             </div>
         </div>
         
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('Metadaten ausgeben', 'zdm')?></h3>
+                <h3><?=esc_html__('Output metadata', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Du kannst eine Datei oder Archiv nicht nur als Button ausgeben sonder auch weitere Informationen zu diesem Download.', 'zdm')?></p>
-                <h4><?=esc_html__('Download-Anzahl', 'zdm')?></h4>
-                <p><code>[zdownload_meta file="123" type="count"]</code> <?=esc_html__('oder', 'zdm')?> <code>[zdownload_meta zip="123" type="count"]</code></p>
-                <h4><?=esc_html__('Dateigröße', 'zdm')?></h4>
-                <p><code>[zdownload_meta file="123" type="size"]</code> <?=esc_html__('oder', 'zdm')?> <code>[zdownload_meta zip="123" type="size"]</code></p>
-                <h4><?=esc_html__('Weitere Shortcodes', 'zdm')?></h4>
-                <p><?=esc_html__('Weitere Shortcode Optionen für die ausgabe erweiterter Metadaten findest du im Tab', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Experte', 'zdm')?></a> 
-                <?=esc_html__('oder auf der', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('Webseite', 'zdm')?></a></p>
+                <p><?=esc_html__('You can not just print a file or archive as a button but also more information about this download.', 'zdm')?></p>
+                <h4><?=esc_html__('Download count', 'zdm')?></h4>
+                <p><code>[zdownload_meta file="123" type="count"]</code> <?=esc_html__('or', 'zdm')?> <code>[zdownload_meta zip="123" type="count"]</code></p>
+                <h4><?=esc_html__('File size', 'zdm')?></h4>
+                <p><code>[zdownload_meta file="123" type="size"]</code> <?=esc_html__('or', 'zdm')?> <code>[zdownload_meta zip="123" type="size"]</code></p>
+                <h4><?=esc_html__('More shortcodes', 'zdm')?></h4>
+                <p><?=esc_html__('More shortcode options for outputting advanced metadata can be found in the tab', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Experte', 'zdm')?></a> 
+                <?=esc_html__('or on the', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('website', 'zdm')?></a></p>
             </div>
         </div>
         
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('Audioplayer', 'zdm')?></h3>
+                <h3><?=esc_html__('Audio player', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Wenn du eine Audiodatei wie zum Beispiel eine MP3-Datei hochlädst kannst du diese nicht nur als Download-Button anzeigen lassen sondern auch als Audioplayer.', 'zdm')?></p>
-                <p><?=esc_html__('Dazu verwendest du diesen Shortcode:', 'zdm')?> <code>[zdownload_audio file="123"]</code></p>
-                <p><?=esc_html__('Der Shortcode für den Audioplayer wird auf der Datei-Detailseite automatisch angezeigt wenn es sich um eine Audiodatei handelt.', 'zdm')?></p>
-                <p><?=esc_html__('Weitere Ausgabeoptionen für den Audioplayer findest du im Tab', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Experte', 'zdm')?></a> 
-                <?=esc_html__('oder auf der', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('Webseite', 'zdm')?></a></p>
+                <p><?=esc_html__('If you upload an audio file, such as an MP3 file, you can not only show it as a download button, but also as an audio player.', 'zdm')?></p>
+                <p><?=esc_html__('For this you use this shortcode', 'zdm')?>: <code>[zdownload_audio file="123"]</code></p>
+                <p><?=esc_html__('The audio player shortcode is automatically displayed on the file details page if it is an audio file.', 'zdm')?></p>
+                <p><?=esc_html__('Other output options for the audio player can be found in the tab', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Expert', 'zdm')?></a> 
+                <?=esc_html__('or on the', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('website', 'zdm')?></a></p>
             </div>
         </div>
         
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('Videoplayer', 'zdm')?></h3>
+                <h3><?=esc_html__('Video player', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Wenn du eine Videodatei wie zum Beispiel eine MP4-Datei hochlädst kannst du diese nicht nur als Download-Button anzeigen lassen sondern auch als Videoplayer.', 'zdm')?></p>
-                <p><?=esc_html__('Dazu verwendest du diesen Shortcode:', 'zdm')?> <code>[zdownload_video file="123"]</code></p>
-                <p><?=esc_html__('Der Shortcode für den Videoplayer wird auf der Datei-Detailseite automatisch angezeigt wenn es sich um eine Videodatei handelt.', 'zdm')?></p>
-                <p><?=esc_html__('Weitere Ausgabeoptionen für den Videoplayer findest du im Tab', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Experte', 'zdm')?></a> 
-                <?=esc_html__('oder auf der', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('Webseite', 'zdm')?></a></p>
+                <p><?=esc_html__('If you upload a video file, such as an MP4 file, you can not only display it as a download button but also as a video player.', 'zdm')?></p>
+                <p><?=esc_html__('For this you use this shortcode', 'zdm')?>: <code>[zdownload_video file="123"]</code></p>
+                <p><?=esc_html__('The video player shortcode is automatically displayed on the file details page if it is a video file.', 'zdm')?></p>
+                <p><?=esc_html__('Other output options for the video player can be found in the tab', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Expert', 'zdm')?></a> 
+                <?=esc_html__('or on the', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('website', 'zdm')?></a></p>
             </div>
         </div>
         <?php
@@ -182,88 +182,88 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <br>
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('Hashwert von Datei mit Shortcode ausgeben', 'zdm')?></h3>
+                <h3><?=esc_html__('Output hash value of file with shortcode', 'zdm')?></h3>
                 <hr>
                 <h4><?=esc_html__('MD5', 'zdm')?> <?=$zdm_premium_text?></h4>
-                <p><?=esc_html__('Du kannst den MD5 Hashwert einer Datei oder eines ZIP-Archives ausgeben.', 'zdm')?></p>
-                <p><code>[zdownload_meta file="123" type="hash-md5"]</code> <?=esc_html__('oder', 'zdm')?> <code>[zdownload_meta zip="123" type="hash-md5"]</code></p>
+                <p><?=esc_html__('You can output the MD5 hash value of a file or ZIP archive.', 'zdm')?></p>
+                <p><code>[zdownload_meta file="123" type="hash-md5"]</code> <?=esc_html__('or', 'zdm')?> <code>[zdownload_meta zip="123" type="hash-md5"]</code></p>
                 <h4><?=esc_html__('SHA1', 'zdm')?> <?=$zdm_premium_text?></h4>
-                <p><?=esc_html__('Du kannst den SHA1 Hashwert einer Datei oder eines ZIP-Archives ausgeben.', 'zdm')?></p>
-                <p><code>[zdownload_meta file="123" type="hash-sha1"]</code> <?=esc_html__('oder', 'zdm')?> <code>[zdownload_meta zip="123" type="hash-sha1"]</code></p>
+                <p><?=esc_html__('You can output the SHA1 hash value of a file or a ZIP archive.', 'zdm')?></p>
+                <p><code>[zdownload_meta file="123" type="hash-sha1"]</code> <?=esc_html__('or', 'zdm')?> <code>[zdownload_meta zip="123" type="hash-sha1"]</code></p>
             </div>
         </div>
 
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('Alle Optionen des Audioplayer', 'zdm')?></h3>
+                <h3><?=esc_html__('All options of the audio player', 'zdm')?></h3>
                 <hr>
                 <h4><?=esc_html__('Autoplay', 'zdm')?></h4>
                 <p><code>[zdownload_audio file="123" autoplay="on"]</code></p>
-                <p><?=esc_html__('Die Option "autoplay" gibt an ob der Audioplayer beim Aufruf der Seite automatisch starten soll oder nicht. Standardmäßig ist diese Funktion deaktiviert wenn die Option "autoplay" nicht angegeben wird.', 'zdm')?></p>
-                <h4><?=esc_html__('Dauerschleife', 'zdm')?></h4>
+                <p><?=esc_html__('The option "autoplay" indicates whether the audio player should start automatically when the page is called or not. By default, this feature is disabled if the autoplay option is not specified.', 'zdm')?></p>
+                <h4><?=esc_html__('Continuous loop', 'zdm')?></h4>
                 <p><code>[zdownload_audio file="123" loop="on"]</code></p>
-                <p><?=esc_html__('Wenn die Option "loop" auf "on" gestellt wird, dann läuft die Audiodatei in einer Dauerschleife ab. Standardmäßig ist diese Option deaktiviert.', 'zdm')?></p>
-                <h4><?=esc_html__('Kontrollen deaktivieren', 'zdm')?></h4>
+                <p><?=esc_html__('If the option "loop" is set to "on", then the audio file runs in a continuous loop. By default, this option is disabled.', 'zdm')?></p>
+                <h4><?=esc_html__('Disable controls', 'zdm')?></h4>
                 <p><code>[zdownload_audio file="123" controls="off"]</code></p>
-                <p><?=esc_html__('Die Option "controls" ist standardmäßig aktiviert, wenn diese Option auf "off" gestellt wird, dann wird kein Player angezeigt. In Verbindung mit der Option "autoplay" kann so eine Audiodatei automatisch abgespielt werden ohne einen sichtbaren Player, das ist aber für die Benutzerfreundlichkeit nicht zu empfehlen.', 'zdm')?></p>
+                <p><?=esc_html__('The "controls" option is enabled by default, if this option is set to "off" then no player will be displayed. In conjunction with the "autoplay" option, an audio file can be played automatically without a visible player, but this is not recommended for user-friendliness.', 'zdm')?></p>
                 <h4><?=esc_html__('Info', 'zdm')?></h4>
-                <p><?=esc_html__('Natürlich können alle Optionen auch kombiniert werden, das sieht dann so aus:', 'zdm')?></p>
+                <p><?=esc_html__('Of course, all options can also be combined, which looks like this', 'zdm')?>:</p>
                 <p><code>[zdownload_audio file="123" autoplay="on" loop="on" controls="off"]</code></p>
             </div>
         </div>
         
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('Alle Optionen des Videoplayer', 'zdm')?></h3>
+                <h3><?=esc_html__('All options of the video player', 'zdm')?></h3>
                 <hr>
-                <h4><?=esc_html__('Breite angeben', 'zdm')?></h4>
-                <p><code>[zdownload_video file="123" w="50%"]</code> <?=esc_html__('oder', 'zdm')?> <code>[zdownload_video file="123" w="720px"]</code></p>
-                <p><?=esc_html__('Die Option "w" ist optional mit der du die Breite des Videos in Form von "%" oder "px" angeben kannst. Standardmäßig ist eine Breite von "100%" eingestellt wenn die Option "w" nicht angegeben wird.', 'zdm')?></p>
+                <h4><?=esc_html__('Specify width', 'zdm')?></h4>
+                <p><code>[zdownload_video file="123" w="50%"]</code> <?=esc_html__('or', 'zdm')?> <code>[zdownload_video file="123" w="720px"]</code></p>
+                <p><?=esc_html__('The option "w" is optional with which you can specify the width of the video in the form of "%" or "px". By default, a width of "100%" is set if the option "w" is not specified.', 'zdm')?></p>
                 <h4><?=esc_html__('Autoplay', 'zdm')?></h4>
                 <p><code>[zdownload_video file="123" autoplay="on"]</code></p>
-                <p><?=esc_html__('Die Option "autoplay" gibt an ob das Video beim Aufruf der Seite automatisch starten soll oder nicht. Standardmäßig ist diese Funktion deaktiviert wenn die Option "autoplay" nicht angegeben wird.', 'zdm')?></p>
-                <h4><?=esc_html__('Dauerschleife', 'zdm')?></h4>
+                <p><?=esc_html__('The option "autoplay" indicates whether the video should start automatically when the page is called or not. By default, this feature is disabled if the autoplay option is not specified.', 'zdm')?></p>
+                <h4><?=esc_html__('Continuous loop', 'zdm')?></h4>
                 <p><code>[zdownload_video file="123" loop="on"]</code></p>
-                <p><?=esc_html__('Wenn die Option "loop" auf "on" gestellt wird, dann läuft das Video in einer Dauerschleife ab. Standardmäßig ist diese Option deaktiviert.', 'zdm')?></p>
-                <h4><?=esc_html__('Kontrollen deaktivieren', 'zdm')?></h4>
+                <p><?=esc_html__('If the option "loop" is set to "on", then the video runs in a continuous loop. By default, this option is disabled.', 'zdm')?></p>
+                <h4><?=esc_html__('Disable controls', 'zdm')?></h4>
                 <p><code>[zdownload_video file="123" controls="off"]</code></p>
-                <p><?=esc_html__('Die Option "controls" ist standardmäßig aktiviert, wenn diese Option auf "off" gestellt wird, dann werden keine Kontrollelemente wie Play, Pause, Lautstärke, Vollbild, Zeitleiste oder weitere Optionen beim Video angezeigt. In Verbindung mit der Option autoplay kann so eine Videodatei automatisch abgespielt werden ohne eine Möglichkeit das Video zu stoppen, das ist aber für die Benutzerfreundlichkeit nicht zu empfehlen.', 'zdm')?></p>
+                <p><?=esc_html__('The "controls" option is enabled by default, if this option is set to "off", then no controls such as play, pause, volume, full screen, timeline, or other video options are displayed. In conjunction with the autoplay option, such a video file can be played automatically without any possibility to stop the video, but this is not recommended for usability.', 'zdm')?></p>
                 <h4><?=esc_html__('Info', 'zdm')?></h4>
-                <p><?=esc_html__('Natürlich können alle Optionen auch kombiniert werden, das sieht dann so aus:', 'zdm')?></p>
+                <p><?=esc_html__('Of course, all options can also be combined, which looks like this', 'zdm')?>:</p>
                 <p><code>[zdownload_video file="123" w="720px" autoplay="on" loop="on" controls="off"]</code></p>
             </div>
         </div>
         
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('Einzelnen Audioplayer und Videoplayer mit CSS und JavaScript steuern', 'zdm')?></h3>
+                <h3><?=esc_html__('Control individual audio and video players with CSS and JavaScript', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Um einen Audioplayer mit Hilfe von CSS und JavaScript zu steuern besitzt jedes HTML Audio-Element eine individuelle ID, diese setzt sich aus zdmAudio und der ID der Datei zusammen.', 'zdm')?></p>
+                <p><?=esc_html__('In order to control an audio player using CSS and JavaScript, each HTML audio element has an individual ID, which is made up of zdmAudio and the ID of the file.', 'zdm')?></p>
                 <p><code>id="zdmAudio123"</code></p>
-                <p><?=esc_html__('Um einen Videoplayer mit Hilfe von CSS und JavaScript zu steuern besitzt jedes HTML Video-Element eine individuelle ID, diese setzt sich aus zdmVideo und der ID der Datei zusammen.', 'zdm')?></p>
+                <p><?=esc_html__('To control a video player using CSS and JavaScript, each HTML video element has an individual ID, which is made up of zdmVideo and the ID of the file.', 'zdm')?></p>
                 <p><code>id="zdmVideo123"</code></p>
             </div>
         </div>
         
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('Alle Audioplayer, Videoplayer und Buttons mit CSS und JavaScript steuern', 'zdm')?></h3>
+                <h3><?=esc_html__('Control all audio players, video players and buttons with CSS and JavaScript', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Um alle Audioplayer mit Hilfe von CSS und JavaScript zu steuern besitzt jedes HTML Audio-Element eine Klassenbezeichnung, diese sieht wie folgt aus:', 'zdm')?></p>
+                <p><?=esc_html__('To control all audio players using CSS and JavaScript, each HTML audio element has a class name, which looks like this', 'zdm')?>:</p>
                 <p><code>class="zdm-audio"</code></p>
-                <p><?=esc_html__('Um alle Videoplayer mit Hilfe von CSS und JavaScript zu steuern besitzt jedes HTML Video-Element eine Klassenbezeichnung, diese sieht wie folgt aus:', 'zdm')?></p>
+                <p><?=esc_html__('In order to control all video players using CSS and JavaScript, each HTML video element has a class name, which looks like this', 'zdm')?>:</p>
                 <p><code>class="zdm-video"</code></p>
-                <p><?=esc_html__('Um alle Buttons mit Hilfe von CSS und JavaScript zu steuern besitzt jedes HTML Video-Element eine Klassenbezeichnung, diese sieht wie folgt aus:', 'zdm')?></p>
+                <p><?=esc_html__('In order to control all buttons with the help of CSS and JavaScript, each HTML video element has a class name, which looks like this', 'zdm')?>:</p>
                 <p><code>class="zdm-btn"</code></p>
             </div>
         </div>
         
         <div class="postbox">
             <div class="inside">
-                <h3><?=esc_html__('IP Adresse Anonymität', 'zdm')?></h3>
+                <h3><?=esc_html__('IP address anonymity', 'zdm')?></h3>
                 <hr>
-                <p><?=esc_html__('Die IP Adresse der Webseitenbesucher die über dieses Plugin etwas herunterladen ist standardmäßig anonymisiert.', 'zdm')?></p>
-                <p><?=esc_html__('Um diese Einstellung zu ändern und die IP Adresse vollständig zu tracken klicke im', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('Menü auf', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-settings"><?=esc_html__('Einstellungen', 'zdm')?></a>".</p>
+                <p><?=esc_html__('The IP address of the website visitors who download something via this plugin is anonymized by default.', 'zdm')?></p>
+                <p><?=esc_html__('To change this setting and to completely track the IP address, click on', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('menu on', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-settings"><?=esc_html__('Settings', 'zdm')?></a>".</p>
             </div>
         </div>
         <?php

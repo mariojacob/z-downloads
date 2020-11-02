@@ -14,11 +14,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <div class="zdm-welcome-icon-holder">
                 <img class="zdm-welcome-icon" src="<?=ZDM__PLUGIN_URL?>assets/icon-256x256.png" alt="ZIP Download Master Logo">
             </div>
-            <h1><?=esc_html__('Willkommen bei', 'zdm')?> <?=ZDM__TITLE?></h1>
-            <h3><?=esc_html__('Bringe mehr Struktur in deine Downloads und aktualisiere diese effizienter.', 'zdm')?></h3>
-            <h3><?=esc_html__('Um das volle Potential dieses Plugins zu Nutzen aktiviere jetzt die', 'zdm')?> <?=ZDM__PRO?>-<?=esc_html__('Funktionen.', 'zdm')?></h3>
+            <h1><?=esc_html__('Welcome to', 'zdm')?> <?=ZDM__TITLE?></h1>
+            <h3><?=esc_html__('Bring more structure into your downloads and update them more efficiently.', 'zdm')?></h3>
+            <h3><?=esc_html__('In order to use the full potential of this plugin activate now', 'zdm')?> <?=ZDM__PRO?></h3>
             <br>
-            <a href="<?=ZDM__PRO_URL?>" target="_blank" class="button button-primary"><?=esc_html__('Mehr erfahren', 'zdm')?></a>
+            <a href="<?=ZDM__PRO_URL?>" target="_blank" class="button button-primary"><?=esc_html__('More info', 'zdm')?></a>
     </div>
     <?php } ?>
     <div class="wrap">
@@ -50,8 +50,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <table class="wp-list-table widefat striped tags">
                             <thead>
                                 <tr>
-                                    <th scope="col" width="60%"><b><?=esc_html__('Archive', 'zdm')?></b></th>
-                                    <th scope="col" width="20%"><b><?=esc_html__('Datum', 'zdm')?></b></th>
+                                    <th scope="col" width="60%"><b><?=esc_html__('Archivee', 'zdm')?></b></th>
+                                    <th scope="col" width="20%"><b><?=esc_html__('Date', 'zdm')?></b></th>
                                 </tr>
                             </thead>
 
@@ -67,7 +67,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     $zdm_download_id_link = '<b><a href="?page=' . ZDM__SLUG . '-ziparchive&id=' . $zdm_last_downloads[$i]->message . '">' . $zdm_download_name . '</a></b>';
 
                                 } else {
-                                    $zdm_download_id_link = esc_html__('Gelöschtes Archiv', 'zdm');
+                                    $zdm_download_id_link = esc_html__('Deleted archive', 'zdm');
                                 }
 
                                 echo '<tr>';
@@ -91,8 +91,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <table class="wp-list-table widefat striped tags">
                             <thead>
                                 <tr>
-                                    <th scope="col" width="60%"><b><?=esc_html__('Dateien', 'zdm')?></b></th>
-                                    <th scope="col" width="20%"><b><?=esc_html__('Datum', 'zdm')?></b></th>
+                                    <th scope="col" width="60%"><b><?=esc_html__('Files', 'zdm')?></b></th>
+                                    <th scope="col" width="20%"><b><?=esc_html__('Date', 'zdm')?></b></th>
                                 </tr>
                             </thead>
 
@@ -107,7 +107,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         $zdm_download_id_link = '<b><a href="?page=' . ZDM__SLUG . '-files&id=' . $zdm_last_downloads_files[$i]->message . '">' . $zdm_download_name . '</a></b>';
 
                                     } else {
-                                        $zdm_download_id_link = esc_html__('Gelöschte Datei', 'zdm');
+                                        $zdm_download_id_link = esc_html__('Deleted file', 'zdm');
                                     }
 
                                     ?>
@@ -152,7 +152,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <table class="wp-list-table widefat striped tags">
                             <thead>
                                 <tr>
-                                    <th scope="col" width="80%"><b><?=esc_html__('Archive', 'zdm')?></b></th>
+                                    <th scope="col" width="80%"><b><?=esc_html__('Archives', 'zdm')?></b></th>
                                     <th scope="col" width="20%"><b><?=esc_html__('Downloads', 'zdm')?></b></th>
                                 </tr>
                             </thead>
@@ -169,7 +169,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         $zdm_download_id_link = '<b><a href="?page=' . ZDM__SLUG . '-ziparchive&id=' . $zdm_best_downloads[$i]->id . '">' . $zdm_download_name . '</a></b>';
 
                                     } else {
-                                        $zdm_download_id_link = esc_html__('Gelöschter Download', 'zdm');
+                                        $zdm_download_id_link = esc_html__('Deleted download', 'zdm');
                                     }
 
                                     ?>
@@ -195,7 +195,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <table class="wp-list-table widefat striped tags">
                             <thead>
                                 <tr>
-                                    <th scope="col" width="80%" colspan="2"><b><?=esc_html__('Dateien', 'zdm')?></b></th>
+                                    <th scope="col" width="80%" colspan="2"><b><?=esc_html__('Files', 'zdm')?></b></th>
                                     <th scope="col" width="20%"><b><?=esc_html__('Downloads', 'zdm')?></b></th>
                                 </tr>
                             </thead>
@@ -211,7 +211,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         $zdm_download_id_link = '<b><a href="?page=' . ZDM__SLUG . '-files&id=' . $zdm_best_downloads_files[$i]->id . '">' . $zdm_download_name . '</a></b>';
 
                                     } else {
-                                        $zdm_download_id_link = esc_html__('Gelöschter Download', 'zdm');
+                                        $zdm_download_id_link = esc_html__('Deleted download', 'zdm');
                                     }
 
                                     ?>
@@ -266,15 +266,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <div class="postbox">
 
                 <div class="inside">
-                    <h3><ion-icon name="stats"></ion-icon> <?=esc_html__('Download Statistik', 'zdm')?></h3>
+                    <h3><ion-icon name="stats"></ion-icon> <?=esc_html__('Download statistics', 'zdm')?></h3>
                 </div>
 
                 <table class="wp-list-table widefat">
                     <tr valign="top">
                         <th scope="row">
-                            <b><?=esc_html__('Gesamt', 'zdm')?>:</b><br>
-                            <b><?=esc_html__('Archive', 'zdm')?>:</b><br>
-                            <b><?=esc_html__('Dateien', 'zdm')?>:</b>
+                            <b><?=esc_html__('Total', 'zdm')?>:</b><br>
+                            <b><?=esc_html__('Archives', 'zdm')?>:</b><br>
+                            <b><?=esc_html__('Files', 'zdm')?>:</b>
                         </th>
                         <td valign="middle">
                             <?=ZDMCore::number_format(ZDMStat::get_downloads_count('all'))?><br>
@@ -286,19 +286,19 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <th colspan="2"><hr></th>
                     </tr>
                     <tr valign="top">
-                        <th scope="row"><b><?=esc_html__('Letzten 30 Tage', 'zdm')?>:</b></th>
+                        <th scope="row"><b><?=esc_html__('Last 30 days', 'zdm')?>:</b></th>
                         <td valign="middle">
                             <?=ZDMCore::number_format(ZDMStat::get_downloads_count_time('all', 86400*30))?>
                         </td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row"><b><?=esc_html__('Letzten 7 Tage', 'zdm')?>:</b></th>
+                        <th scope="row"><b><?=esc_html__('Last 7 days', 'zdm')?>:</b></th>
                         <td valign="middle">
                             <?=ZDMCore::number_format(ZDMStat::get_downloads_count_time('all', 86400*7))?>
                         </td>
                     </tr>
                     <tr valign="top">
-                        <th scope="row"><b><?=esc_html__('Letzten 24 Stunden', 'zdm')?>:</b></th>
+                        <th scope="row"><b><?=esc_html__('Last 24 hours', 'zdm')?>:</b></th>
                         <td valign="middle">
                             <?=ZDMCore::number_format(ZDMStat::get_downloads_count_time('all', 86400))?>
                         </td>
@@ -311,13 +311,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                 <div class="inside" align="center">
                     <br>
-                    <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="button button-primary"><?=esc_html__('Neue Datei hochladen', 'zdm')?></a>
+                    <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="button button-primary"><?=esc_html__('Upload new file', 'zdm')?></a>
                     &nbsp;&nbsp;
-                    <a href="admin.php?page=<?=ZDM__SLUG?>-files" class="button button-secondary"><?=esc_html__('Dateien Übersicht', 'zdm')?></a>
+                    <a href="admin.php?page=<?=ZDM__SLUG?>-files" class="button button-secondary"><?=esc_html__('Files overview', 'zdm')?></a>
                     <br><br>
-                    <a href="admin.php?page=<?=ZDM__SLUG?>-add-archive" class="button button-primary"><?=esc_html__('Neues Archiv erstellen', 'zdm')?></a>
+                    <a href="admin.php?page=<?=ZDM__SLUG?>-add-archive" class="button button-primary"><?=esc_html__('Create a new archive', 'zdm')?></a>
                     &nbsp;&nbsp;
-                    <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive" class="button button-secondary"><?=esc_html__('Archive Übersicht', 'zdm')?></a>
+                    <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive" class="button button-secondary"><?=esc_html__('Archive overview', 'zdm')?></a>
                 </div>
 
             </div><!-- end class="postbox" -->
@@ -328,7 +328,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <?php require_once (plugin_dir_path(__FILE__) . '../inc/postbox_info.php'); ?>
         </div>
 
-        <a class="alignright button" href="javascript:void(0);" onclick="window.scrollTo(0,0);" style="margin:3px 0 0 30px;"><?=esc_html__('Nach oben', 'zdm')?></a>
+        <a class="alignright button" href="javascript:void(0);" onclick="window.scrollTo(0,0);" style="margin:3px 0 0 30px;"><?=esc_html__('To top', 'zdm')?></a>
 
     </div><!-- end class="wrap" -->
 

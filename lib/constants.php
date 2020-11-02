@@ -83,18 +83,18 @@ define('ZDM__DOWNLOAD_BTN_STYLE_VAL', [
     'red'
 ]);
 define('ZDM__DOWNLOAD_BTN_STYLE', [
-    __('Schwarz', 'zdm'),
-    __('Grau 5', 'zdm'),
-    __('Grau 7', 'zdm'),
-    __('Grau 9', 'zdm'),
-    __('Grau 11', 'zdm'),
-    __('Grau 13', 'zdm'),
-    __('Lila', 'zdm'),
-    __('Blau', 'zdm'),
-    __('Grün', 'zdm'),
-    __('Gelb', 'zdm'),
+    __('Black', 'zdm'),
+    __('Grey 5', 'zdm'),
+    __('Grey 7', 'zdm'),
+    __('Grey 9', 'zdm'),
+    __('Grey 11', 'zdm'),
+    __('Grey 13', 'zdm'),
+    __('Purple', 'zdm'),
+    __('Blue', 'zdm'),
+    __('Green', 'zdm'),
+    __('Yellow', 'zdm'),
     __('Orange', 'zdm'),
-    __('Rot', 'zdm')
+    __('Red', 'zdm')
 ]);
 
 // Download-Button runde Ecken
@@ -112,17 +112,17 @@ define('ZDM__DOWNLOAD_BTN_BORDER_RADIUS_VAL', [
     '10'
 ]);
 define('ZDM__DOWNLOAD_BTN_BORDER_RADIUS', [
-    __('keine', 'zdm'),
-    __('1 Pixel', 'zdm'),
-    __('2 Pixel', 'zdm'),
-    __('3 Pixel', 'zdm'),
-    __('4 Pixel', 'zdm'),
-    __('5 Pixel', 'zdm'),
-    __('6 Pixel', 'zdm'),
-    __('7 Pixel', 'zdm'),
-    __('8 Pixel', 'zdm'),
-    __('9 Pixel', 'zdm'),
-    __('10 Pixel', 'zdm')
+    __('none', 'zdm'),
+    __('1 pixel', 'zdm'),
+    __('2 pixel', 'zdm'),
+    __('3 pixel', 'zdm'),
+    __('4 pixel', 'zdm'),
+    __('5 pixel', 'zdm'),
+    __('6 pixel', 'zdm'),
+    __('7 pixel', 'zdm'),
+    __('8 pixel', 'zdm'),
+    __('9 pixel', 'zdm'),
+    __('10 pixel', 'zdm')
 ]);
 
 // Download-Button Icons
@@ -145,18 +145,18 @@ define('ZDM__DOWNLOAD_BTN_ICON_VAL', [
 ]);
 define('ZDM__DOWNLOAD_BTN_ICON', [
     __('keines', 'zdm'),
-    __('Pfeil 1', 'zdm'),
-    __('Pfeil 2', 'zdm'),
-    __('Download Code', 'zdm'),
-    __('Cloud Download', 'zdm'),
+    __('Arrow 1', 'zdm'),
+    __('Arrow 2', 'zdm'),
+    __('Download code', 'zdm'),
+    __('Cloud download', 'zdm'),
     __('Cloud', 'zdm'),
-    __('Cloud Check', 'zdm'),
+    __('Cloud check', 'zdm'),
     __('Check 1', 'zdm'),
     __('Check 2', 'zdm'),
     __('Check 3', 'zdm'),
-    __('Herz 1', 'zdm'),
-    __('Herz 2', 'zdm'),
-    __('Stern 1', 'zdm'),
-    __('Stern 2', 'zdm'),
-    __('Trophäe', 'zdm')
+    __('Heart 1', 'zdm'),
+    __('Heart 2', 'zdm'),
+    __('Star 1', 'zdm'),
+    __('Star 2', 'zdm'),
+    __('Trophy', 'zdm')
 ]);

@@ -27,7 +27,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     } else { // Log Liste
         
-        $zdm_log_filter_array = array(esc_html__('Alles', 'zdm'), esc_html__('Downloads', 'zdm'), esc_html__('Dateien', 'zdm'), esc_html__('Archive', 'zdm'));
+        $zdm_log_filter_array = array(esc_html__('Everything', 'zdm'), esc_html__('Downloads', 'zdm'), esc_html__('Files', 'zdm'), esc_html__('Archives', 'zdm'));
         $zdm_log_filter_array_val = array("all", "downloads", "files", "archives");
 
         if (isset($_POST['log-filter-type']) && wp_verify_nonce($_POST['nonce'], 'log-types')) {
@@ -108,7 +108,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         ?>
         <div class="wrap">
 
-            <h1><?=esc_html__('Log Details', 'zdm')?></h1>
+            <h1><?=esc_html__('Log details', 'zdm')?></h1>
             <button class="page-title-action" onclick="ZDMgoBack()"><?=esc_html__('Zurück', 'zdm')?></button>
             <br /><br />
 
@@ -118,7 +118,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <table class="form-table">
                         <tbody>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('Typ', 'zdm')?></th>
+                                <th scope="row"><?=esc_html__('Type', 'zdm')?></th>
                                 <td valign="middle"><?=$zdm_db_log_details[0]->type?></td>
                             </tr>
                             <tr valign="top">
@@ -126,18 +126,18 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <td valign="middle"><?=$zdm_db_log_details[0]->message?></td>
                             </tr>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('User Agent', 'zdm')?></th>
+                                <th scope="row"><?=esc_html__('User agent', 'zdm')?></th>
                                 <td valign="middle"><?=$zdm_db_log_details[0]->user_agent?></td>
                             </tr>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('IP Adresse', 'zdm')?></th>
+                                <th scope="row"><?=esc_html__('IP adress', 'zdm')?></th>
                                 <td valign="middle"><?=$zdm_db_log_details[0]->user_ip?></td>
                             </tr>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('WordPress Benutzer ID', 'zdm')?></th>
+                                <th scope="row"><?=esc_html__('WordPress user ID', 'zdm')?></th>
                                 <?php
                                 if ($zdm_db_log_details[0]->user_id == 0) {
-                                    $user_id = esc_html__('kein WordPress Benutzer', 'zdm');
+                                    $user_id = esc_html__('no WordPress user', 'zdm');
                                 } else {
                                     $user_id = $zdm_db_log_details[0]->user_id;
                                 }
@@ -145,7 +145,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <td valign="middle"><?=$user_id?></td>
                             </tr>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('Erstellt', 'zdm')?></th>
+                                <th scope="row"><?=esc_html__('Created', 'zdm')?></th>
                                 <td valign="middle"><?=date("d.m.Y - H:i:s", $zdm_db_log_details[0]->time_create)?></td>
                             </tr>
                         </tbody>
@@ -169,7 +169,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <div class="wrap">
 
             <h1><?=esc_html__('Log', 'zdm')?></h1>
-            <a href="admin.php?page=<?=ZDM__SLUG?>-settings" class="page-title-action"><?=esc_html__('Zurück den Einstellungen', 'zdm')?></a>
+            <a href="admin.php?page=<?=ZDM__SLUG?>-settings" class="page-title-action"><?=esc_html__('Back the settings', 'zdm')?></a>
             <br /><br />
 
             <?php
@@ -180,10 +180,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                     <div class="postbox">
                         <div class="inside">
-                            <p><?=esc_html__('Hier ist die Ausgabe der Logs der aktuellsten 100 Einträge.', 'zdm')?></p>
+                            <p><?=esc_html__('Here is the output of the logs of the latest 100 entries.', 'zdm')?></p>
                             <p>
                                 <form action="" method="post">
-                                <?=esc_html__('Logs filtern nach Typ', 'zdm')?>: 
+                                <?=esc_html__('Logs filtern by type', 'zdm')?>: 
                                     <select name="log-filter-type">
                                         <?php
                                         $zdm_log_filter_option = '';
@@ -208,9 +208,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <table class="wp-list-table widefat striped tags">
                         <thead>
                             <tr>
-                                <th scope="col" colspan="2"><b><?=esc_html__('Typ', 'zdm')?></b></th>
+                                <th scope="col" colspan="2"><b><?=esc_html__('Type', 'zdm')?></b></th>
                                 <th scope="col"><b><?=esc_html__('Details', 'zdm')?></b></th>
-                                <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
+                                <th scope="col"><b><?=esc_html__('Created', 'zdm')?></b></th>
                             </tr>
                         </thead>
 
@@ -257,7 +257,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <div align="center"><ion-icon name="<?=$zdm_icon?>" class="zdm-icon-in-table <?=$zdm_class_color?>"></ion-icon></div>
                                     </td>
                                     <td>
-                                        <b><a href="?page=<?=ZDM__SLUG?>-log&id=<?=$zdm_db_logs[$i]->id?>" title="<?=esc_html__('Details anzeigen', 'zdm')?>"><?=$zdm_db_logs[$i]->type?></a></b>
+                                        <b><a href="?page=<?=ZDM__SLUG?>-log&id=<?=$zdm_db_logs[$i]->id?>" title="<?=esc_html__('Show details', 'zdm')?>"><?=$zdm_db_logs[$i]->type?></a></b>
                                     </td>
                                     <td>
                                         <?=$zdm_db_logs[$i]->message?>
@@ -274,9 +274,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                         <tfoot>
                             <tr>
-                                <th scope="col" colspan="2"><b><?=esc_html__('Typ', 'zdm')?></b></th>
+                                <th scope="col" colspan="2"><b><?=esc_html__('Type', 'zdm')?></b></th>
                                 <th scope="col"><b><?=esc_html__('Details', 'zdm')?></b></th>
-                                <th scope="col"><b><?=esc_html__('Erstellt', 'zdm')?></b></th>
+                                <th scope="col"><b><?=esc_html__('Created', 'zdm')?></b></th>
                             </tr>
                         </tfoot>
 
@@ -291,10 +291,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                     <div class="postbox">
                         <div class="inside">
-                            <p><?=esc_html__('Es gibt keine Log-Einträge zu diesem Typ.', 'zdm')?></p>
+                            <p><?=esc_html__('There are no log entries for this type.', 'zdm')?></p>
                             <p>
                                 <form action="" method="post">
-                                <?=esc_html__('Logs filtern nach Typ', 'zdm')?>: 
+                                <?=esc_html__('Logs filtern by type', 'zdm')?>: 
                                     <select name="log-filter-type">
                                         <?php
                                         $zdm_log_filter_option = '';
@@ -310,7 +310,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         ?>
                                     </select> 
                                     <input type="hidden" name="nonce" value="<?=wp_create_nonce('log-types')?>">
-                                    <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Aktualisieren', 'zdm')?>">
+                                    <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Update', 'zdm')?>">
                                 </form>
                             </p>
                         </div>
@@ -322,7 +322,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             ?>
 
             <br>
-            <a class="alignright button" href="javascript:void(0);" onclick="window.scrollTo(0,0);" style="margin:3px 0 0 30px;"><?=esc_html__('Nach oben', 'zdm')?></a>
+            <a class="alignright button" href="javascript:void(0);" onclick="window.scrollTo(0,0);" style="margin:3px 0 0 30px;"><?=esc_html__('To top', 'zdm')?></a>
         </div>
 
         <?php
