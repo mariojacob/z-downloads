@@ -657,21 +657,21 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <th scope="row"><?=esc_html__('Download button', 'zdm')?></th>
                                     <td valign="middle">
                                         <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
-                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode copied', 'zdm')?></b></p>
                                     </td>
                                 </tr>
                                 <tr valign="top">
                                     <th scope="row"><?=esc_html__('Download count', 'zdm')?></th>
                                     <td valign="middle">
                                         <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot; type=&quot;count&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
-                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode copied', 'zdm')?></b></p>
                                     </td>
                                 </tr>
                                 <tr valign="top">
                                     <th scope="row"><?=esc_html__('File size', 'zdm')?></th>
                                     <td valign="middle">
                                         <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot; type=&quot;size&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
-                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode copied', 'zdm')?></b></p>
                                     </td>
                                 </tr>
                                 <?php
@@ -681,17 +681,17 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <th scope="row"><?=esc_html__('Audio player', 'zdm')?></th>
                                         <td valign="middle">
                                             <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_audio file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
-                                            <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
+                                            <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode copied', 'zdm')?></b></p>
                                         </td>
                                     </tr>
                                     <?php
                                 } elseif (in_array($zdm_db_file->file_type, ZDM__MIME_TYPES_VIDEO)) { // Video
                                     ?>
                                     <tr valign="top">
-                                        <th scope="row"><?=esc_html__('Videoplayer', 'zdm')?></th>
+                                        <th scope="row"><?=esc_html__('Video player', 'zdm')?></th>
                                         <td valign="middle">
                                             <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_video file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
-                                            <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
+                                            <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode copied', 'zdm')?></b></p>
                                             <div class="zdm-help-text"><a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=esc_html__('All options', 'zdm')?></a> <?=esc_html__('for the video player', 'zdm')?></div>
                                         </td>
                                     </tr>
@@ -710,14 +710,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <th scope="row"><?=$text_hash_md5?></th>
                                     <td valign="middle">
                                         <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot; type=&quot;hash-md5&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
-                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode copied', 'zdm')?></b></p>
                                     </td>
                                 </tr>
                                 <tr valign="top">
                                     <th scope="row"><?=$text_hash_sha1?></th>
                                     <td valign="middle">
                                         <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?=htmlspecialchars($zdm_db_file->id)?>&quot; type=&quot;hash-sha1&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
-                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode copied', 'zdm')?></b></p>
                                     </td>
                                 </tr>
                             </tbody>
@@ -768,7 +768,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                     <div class="postbox">
                         <div class="inside">
-                            <h3><?=esc_html__('Download Statistik', 'zdm')?></h3>
+                            <h3><?=esc_html__('Download statistics', 'zdm')?></h3>
                         </div>
 
                         <table class="wp-list-table widefat">
@@ -942,7 +942,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 
                 <div class="postbox">
                     <div class="inside">
-                        <h3><?=esc_html__('Videoplayer', 'zdm')?></h3>
+                        <h3><?=esc_html__('Video player', 'zdm')?></h3>
                         <hr>
                         <p><?=esc_html__('If you upload a video file, such as an MP4 file, you can not only display it as a download button but also as a video player.', 'zdm')?></p>
                         <p><?=esc_html__('For this you use this shortcode', 'zdm')?>: <code>[zdownload_video file="123"]</code></p>
@@ -1053,7 +1053,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 </td>
                                 <td>
                                     <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-list" value="[zdownload file=&quot;<?=$zdm_db_files[$i]->id?>&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
-                                    <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
+                                    <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode copied', 'zdm')?></b></p>
                                 </td>
                                 <td>
                                 <a href="?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_db_files[$i]->id)?>&tab=statistic"><?=ZDMCore::number_format($zdm_db_files[$i]->count)?></a>
@@ -1084,7 +1084,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <tr>
                             <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
-                            <th scope="col"><ion-icon name="stats" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></th>
+                            <th scope="col"><ion-icon name="stats" title="<?=esc_html__('Download count', 'zdm')?>"></ion-icon></th>
                             <th scope="col"><b><?=esc_html__('File size', 'zdm')?></b></th>
                             <th scope="col"><b><?=esc_html__('Created', 'zdm')?></b></th>
                             <th scope="col" title="<?=esc_html__('Shows in how many archives the file is linked.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
@@ -1142,7 +1142,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <tr>
                                 <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
                                 <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
-                                <th scope="col"><ion-icon name="stats" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></th>
+                                <th scope="col"><ion-icon name="stats" title="<?=esc_html__('Download count', 'zdm')?>"></ion-icon></th>
                                 <th scope="col"><b><?=esc_html__('File size', 'zdm')?></b></th>
                                 <th scope="col"><b><?=esc_html__('Created', 'zdm')?></b></th>
                                 <th scope="col" title="<?=esc_html__('Shows in how many archives the file is linked.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>
@@ -1191,7 +1191,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     </td>
                                     <td>
                                         <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-list" value="[zdownload file=&quot;<?=$zdm_db_files[$i]->id?>&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
-                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Copied shortcode', 'zdm')?></b></p>
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode copied', 'zdm')?></b></p>
                                     </td>
                                     <td>
                                         <a href="?page=<?=ZDM__SLUG?>-files&id=<?=htmlspecialchars($zdm_db_files[$i]->id)?>&tab=statistic"><?=ZDMCore::number_format($zdm_db_files[$i]->count)?></a>
@@ -1222,7 +1222,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <tr>
                                 <th scope="col" colspan="2"><b><?=esc_html__('Name', 'zdm')?></b></th>
                                 <th scope="col"><b><?=esc_html__('Shortcode', 'zdm')?></b></th>
-                                <th scope="col"><ion-icon name="stats" title="<?=esc_html__('Download Anzahl', 'zdm')?>"></ion-icon></th>
+                                <th scope="col"><ion-icon name="stats" title="<?=esc_html__('Download count', 'zdm')?>"></ion-icon></th>
                                 <th scope="col"><b><?=esc_html__('File size', 'zdm')?></b></th>
                                 <th scope="col"><b><?=esc_html__('Created', 'zdm')?></b></th>
                                 <th scope="col" title="<?=esc_html__('Shows in how many archives the file is linked.', 'zdm')?>"><div align="center"><b><ion-icon name="link"></ion-icon></b></div></th>

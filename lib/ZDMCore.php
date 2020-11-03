@@ -541,7 +541,7 @@ class ZDMCore {
      */
     public function dashboard_widget()
     {
-        wp_add_dashboard_widget('zdm_dashboard_widget', __('Download Statistik', 'zdm'), array($this, 'dashboard_widget_handler'));
+        wp_add_dashboard_widget('zdm_dashboard_widget', __('Download statistics', 'zdm'), array($this, 'dashboard_widget_handler'));
     }
 
     /**

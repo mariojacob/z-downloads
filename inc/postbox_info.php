@@ -27,6 +27,6 @@ if (!defined('ABSPATH')) {
             </tbody>
         </table>
         <p><?=esc_html__('Do you have suggestions for improvement or suggestions for the plugin, then write me', 'zdm')?>: <a href="mailto:info@code.urban-base.net?subject=<?=ZDM__TITLE?> Verbesserungsvorschläge" target="_blank">info@code.urban-base.net</a></p>
-        <p><?=esc_html__('If you like', 'zdm')?> <?=ZDM__TITLE?>, <?=esc_html__('then write a', 'zdm')?> <a href="https://wordpress.org/support/plugin/z-downloads/reviews/?filter=5#postform" target="_blank" title="<?=ZDM__TITLE?> <?=esc_html__('review', 'zdm')?>">★★★★★ <?=esc_html__('Rating', 'zdm')?></a>. <?=esc_html__('You would help me a lot to make the plugin known.', 'zdm')?></p>
+        <p><?=esc_html__('If you like', 'zdm')?> <?=ZDM__TITLE?>, <?=esc_html__('then write a', 'zdm')?> <a href="https://wordpress.org/support/plugin/z-downloads/reviews/?filter=5#postform" target="_blank" title="<?=ZDM__TITLE?> <?=esc_html__('review', 'zdm')?>">★★★★★ <?=esc_html__('rating', 'zdm')?></a>. <?=esc_html__('You would help me a lot to make the plugin known.', 'zdm')?></p>
     </div>
 </div>

@@ -55,7 +55,7 @@ define('ZDM__BOT_USER_AGENTS', [
     'msnbot-media/1.1 (+http://search.msn.com/msnbot.htm)', // MSN Media Bot 1.1
     // Daum Bot
     'Mozilla/5.0 (compatible; Daum/4.1; +http://cs.daum.net/faq/15/4118.html?faqId=28966)', // Daum Bot
-    'Mozilla/5.0 (Unknown; Linux x86_64) AppleWebKit/538.1 (KHTML, like Gecko) Safari/538.1 Daum/4.1', , // Daum Bot
+    'Mozilla/5.0 (Unknown; Linux x86_64) AppleWebKit/538.1 (KHTML, like Gecko) Safari/538.1 Daum/4.1', // Daum Bot
     // DuckDuckGo
     'DuckDuckBot/1.0; (+http://duckduckgo.com/duckduckbot.html)', // DuckDuckGo
     'Mozilla/5.0 (compatible; DuckDuckGo-Favicons-Bot/1.0; +http://duckduckgo.com)', // DuckDuckGo Favicons Bot 1.0

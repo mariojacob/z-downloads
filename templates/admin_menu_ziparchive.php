@@ -387,7 +387,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <tr valign="top">
                                         <th scope="row"><?=esc_html__('Download', 'zdm')?>:</th>
                                         <td valign="middle">
-                                            <a href="<?=ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . htmlspecialchars($zdm_db_archive->archive_cache_path) . '/' . htmlspecialchars($zdm_db_archive->zip_name) . '.zip'?>" title="<?=esc_html__('ZIP-Archiv herunterladen:', 'zdm')?>" download><?=$zdm_db_archive->zip_name . '.zip'?></a>
+                                            <a href="<?=ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . htmlspecialchars($zdm_db_archive->archive_cache_path) . '/' . htmlspecialchars($zdm_db_archive->zip_name) . '.zip'?>" title="<?=esc_html__('Download ZIP archive', 'zdm')?>:" download><?=$zdm_db_archive->zip_name . '.zip'?></a>
                                         </td>
                                     </tr>
                                     <?php
@@ -509,7 +509,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <?php }
                                         } else {
                                             ?>
-                                            <p><?=esc_html__('For more linked files shortcuts activate', 'zdm')?> <a href="<?=ZDM__PRO_URL?>" target="_blank" title="code.urban-base.net"><?=ZDM__PRO?></a>.</p>
+                                            <p><?=esc_html__('For more linked files activate', 'zdm')?> <a href="<?=ZDM__PRO_URL?>" target="_blank" title="code.urban-base.net"><?=ZDM__PRO?></a>.</p>
                                             <?php
                                         } ?>
                                         </div>
@@ -566,7 +566,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     $text_hash_md5 = esc_html__('Output MD5 hash value', 'zdm') . '<br><a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('feature', 'zdm') . ' </a>';
                                     $text_hash_sha1 = esc_html__('Output SHA1 hash value', 'zdm') . '<br><a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('feature', 'zdm') . '</a>';
                                 } else {
-                                    $text_hash_md5 = esc_html__('Output MD5 hash valuen', 'zdm');
+                                    $text_hash_md5 = esc_html__('Output MD5 hash value', 'zdm');
                                     $text_hash_sha1 = esc_html__('Output SHA1 hash value', 'zdm');
                                 }
                                 ?>
@@ -722,7 +722,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <p><?=esc_html__('To output an archive as a button on a page or post click on', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('menu on', 'zdm')?> "<a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive"><?=esc_html__('Archive', 'zdm')?></a>".</p>
                         <p><?=esc_html__('Here you can see an overview of all archives you have created.', 'zdm')?></p>
                         <p><?=esc_html__('The shortcode appears in the list and looks like this', 'zdm')?>: <code>[zdownload zip="123"]</code></p>
-                        <p><?=esc_html__('"123" ist die einzigartige ID des jeweiligen Archives.', 'zdm')?></p>
+                        <p><?=esc_html__('"123" is the unique ID of the respective archive.', 'zdm')?></p>
                         <p><?=esc_html__('You can also click on the name to get more details about this archive, on the detail page you can see more shortcodes that you can use.', 'zdm')?></p>
                     </div>
                 </div>
@@ -780,7 +780,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <h3><?=esc_html__('Further help', 'zdm')?></h3>
                         <hr>
                         <p><?=esc_html__('Further help and documentation for special functions can be found here', 'zdm')?>: <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Help page - expert', 'zdm')?></a></p>
-                        <p><?=esc_html__('or on the', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=ZDM__TITLE?> <?=esc_html__('Webseite', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('website', 'zdm')?></a></p>
+                        <p><?=esc_html__('or on the', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=ZDM__TITLE?> <?=esc_html__('website', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('website', 'zdm')?></a></p>
                     </div>
                 </div>
 
@@ -896,10 +896,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         if (ZDMCore::check_if_archive_cache_ok($zdm_db_archives[$i]->id)) {
                                             ?> <ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon> <?php
                                         } else {
-                                            ?> <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&archive-cache=<?=htmlspecialchars($zdm_db_archives[$i]->id)?>&nonce=<?=wp_create_nonce('update-cache')?>" class="button button-primary" title="<?=esc_html__('Cache updated', 'zdm')?>"><ion-icon name="refresh"></ion-icon></a> <?php
+                                            ?> <a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive&archive-cache=<?=htmlspecialchars($zdm_db_archives[$i]->id)?>&nonce=<?=wp_create_nonce('update-cache')?>" class="button button-primary" title="<?=esc_html__('Update cache', 'zdm')?>"><ion-icon name="refresh"></ion-icon></a> <?php
                                         }
                                     } else {
-                                        ?> <ion-icon name="warning" class="zdm-color-yellow" title="<?=esc_html__('Es sind keine Dateien mit dem Archiv verknüpft.', 'zdm')?>"></ion-icon> <?php
+                                        ?> <ion-icon name="warning" class="zdm-color-yellow" title="<?=esc_html__('No files are linked to the archive.', 'zdm')?>"></ion-icon> <?php
                                     }
                                     ?>
                                 </td>

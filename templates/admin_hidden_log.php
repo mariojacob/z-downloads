@@ -109,7 +109,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <div class="wrap">
 
             <h1><?=esc_html__('Log details', 'zdm')?></h1>
-            <button class="page-title-action" onclick="ZDMgoBack()"><?=esc_html__('Zurück', 'zdm')?></button>
+            <button class="page-title-action" onclick="ZDMgoBack()"><?=esc_html__('Back', 'zdm')?></button>
             <br /><br />
 
             <div class="postbox">
@@ -183,7 +183,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <p><?=esc_html__('Here is the output of the logs of the latest 100 entries.', 'zdm')?></p>
                             <p>
                                 <form action="" method="post">
-                                <?=esc_html__('Logs filtern by type', 'zdm')?>: 
+                                <?=esc_html__('Logs filter by type', 'zdm')?>: 
                                     <select name="log-filter-type">
                                         <?php
                                         $zdm_log_filter_option = '';
@@ -199,7 +199,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         ?>
                                     </select> 
                                     <input type="hidden" name="nonce" value="<?=wp_create_nonce('log-types')?>">
-                                    <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Aktualisieren', 'zdm')?>">
+                                    <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Update', 'zdm')?>">
                                 </form>
                             </p>
                         </div>
@@ -294,7 +294,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <p><?=esc_html__('There are no log entries for this type.', 'zdm')?></p>
                             <p>
                                 <form action="" method="post">
-                                <?=esc_html__('Logs filtern by type', 'zdm')?>: 
+                                <?=esc_html__('Logs filter by type', 'zdm')?>: 
                                     <select name="log-filter-type">
                                         <?php
                                         $zdm_log_filter_option = '';

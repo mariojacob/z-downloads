@@ -147,7 +147,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <h4><?=esc_html__('File size', 'zdm')?></h4>
                 <p><code>[zdownload_meta file="123" type="size"]</code> <?=esc_html__('or', 'zdm')?> <code>[zdownload_meta zip="123" type="size"]</code></p>
                 <h4><?=esc_html__('More shortcodes', 'zdm')?></h4>
-                <p><?=esc_html__('More shortcode options for outputting advanced metadata can be found in the tab', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Experte', 'zdm')?></a> 
+                <p><?=esc_html__('More shortcode options for outputting advanced metadata can be found in the tab', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=expert"><?=esc_html__('Expert', 'zdm')?></a> 
                 <?=esc_html__('or on the', 'zdm')?> <a href="https://code.urban-base.net/z-downloads/shortcodes/?utm_source=zdm_backend" target="_blank" title="<?=esc_html__('Shortcodes', 'zdm')?>"><?=ZDM__TITLE?> <?=esc_html__('website', 'zdm')?></a></p>
             </div>
         </div>

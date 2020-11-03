@@ -15,7 +15,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     ////////////////////
     // Lizenzschlüssel aktualisieren
     ////////////////////
-    if (isset($_POST['licence_submit']) && wp_verify_nonce($_POST['nonce'], 'lizenz-aktualisieren')) {
+    if (isset($_POST['licence_submit']) && wp_verify_nonce($_POST['nonce'], 'update-license')) {
 
         // Lizenz
         // Lizenz-Schlüssel aktualisieren
@@ -55,7 +55,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     }
 
     // Lizenz-Schlüssel entfernen
-    if (isset($_GET['licence-delete']) && wp_verify_nonce($_GET['nonce'], 'licence-delete')) {
+    if (isset($_GET['licence_delete']) && wp_verify_nonce($_GET['nonce'], 'licence-delete')) {
 
         $zdm_options['licence-key'] = '';
 
@@ -122,7 +122,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         $zdm_options = get_option('zdm_options');
 
         // Log
-        ZDMCore::log('update settings');
+        ZDMCore::log('update settings', serialize($_POST));
     }
     
     ////////////////////
@@ -142,7 +142,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 $zdm_options = get_option('zdm_options');
 
                 // Log
-                ZDMCore::log('new download folder token');
+                ZDMCore::log('new download folder token', $zdm_new_download_folder_token);
 
                 // Einstellungsseite neu laden
                 $zdm_settings_url = 'admin.php?page=' . ZDM__SLUG . '-settings';
@@ -241,7 +241,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 ?>
 
             <form action="" method="post">
-                <input type="hidden" name="nonce" value="<?=wp_create_nonce('lizenz-aktualisieren')?>">
+                <input type="hidden" name="nonce" value="<?=wp_create_nonce('update-license')?>">
                 <div class="postbox">
                     <div class="inside">
                         <h3><?php if ($zdm_licence === 1) { ?><?=$zdm_options['licence-product-name'];?> <?=esc_html__('is activated', 'zdm')?><?php } else { echo ZDM__PRO; } ?></h3>
@@ -249,7 +249,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <table class="form-table">
                             <tbody>
                                 <tr valign="top">
-                                    <th scope="row"><?=ZDM__PRO?> <?=esc_html__('License key', 'zdm')?>:</th>
+                                    <th scope="row"><?=ZDM__PRO?> <?=esc_html__('license key', 'zdm')?>:</th>
                                     <td valign="middle">
                                         <?php if ($zdm_licence === 1) { ?><ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon>&nbsp;<?php } ?>
                                         <input type="text" name="licence-key" size="50%" value="<?= esc_attr($zdm_options['licence-key']); ?>">&nbsp;
@@ -277,13 +277,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 </tr>
                                 <?php if ($zdm_licence === 1) { ?>
                                 <tr valign="top">
-                                    <th scope="row"><?=esc_html__('Licensed to', 'zdm')?>:</th>
+                                    <th scope="row"><?=esc_html__('Licensed for', 'zdm')?>:</th>
                                     <td valign="middle">
                                         <ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon>&nbsp;<?=$zdm_options['licence-email'];?>
                                     </td>
                                 </tr>
                                 <tr valign="top">
-                                    <th scope="row"><?=esc_html__('Acquired', 'zdm')?>:</th>
+                                    <th scope="row"><?=esc_html__('Purchased', 'zdm')?>:</th>
                                     <td valign="middle">
                                         <ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon>&nbsp;<?=date("d.m.Y", strtotime($zdm_options['licence-purchase']))?>
                                     </td>
@@ -474,7 +474,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     </td>
                                 </tr>
                                 <tr valign="top">
-                                    <th scope="row"><?=esc_html__('Allow duplicatesn', 'zdm')?>:</th>
+                                    <th scope="row"><?=esc_html__('Allow duplicates', 'zdm')?>:</th>
                                     <td valign="middle">
                                         <input type="checkbox" name="duplicate-file" <?php if($zdm_options['duplicate-file'] == 'on'){ echo 'checked="checked"'; } ?> >
                                         <?=esc_html__('Allow files that have already been uploaded to be added again.', 'zdm')?>

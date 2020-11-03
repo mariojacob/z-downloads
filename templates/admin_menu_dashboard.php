@@ -42,7 +42,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <div class="postbox">
 
                     <div class="inside">
-                        <h3><ion-icon name="time"></ion-icon> <?=esc_html__('Letzte Downloads', 'zdm')?></h3>
+                        <h3><ion-icon name="time"></ion-icon> <?=esc_html__('Last downloads', 'zdm')?></h3>
                     </div>
 
                     <?php if ($zdm_last_downloads != false) { ?>
@@ -50,7 +50,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <table class="wp-list-table widefat striped tags">
                             <thead>
                                 <tr>
-                                    <th scope="col" width="60%"><b><?=esc_html__('Archivee', 'zdm')?></b></th>
+                                    <th scope="col" width="60%"><b><?=esc_html__('Archive', 'zdm')?></b></th>
                                     <th scope="col" width="20%"><b><?=esc_html__('Date', 'zdm')?></b></th>
                                 </tr>
                             </thead>
@@ -143,7 +143,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <div class="postbox">
 
                     <div class="inside">
-                        <h3><ion-icon name="trending-up"></ion-icon> <?=esc_html__('Beliebte Downloads', 'zdm')?></h3>
+                        <h3><ion-icon name="trending-up"></ion-icon> <?=esc_html__('Popular Downloads', 'zdm')?></h3>
                     </div>
 
                     <?php
@@ -311,7 +311,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                 <div class="inside" align="center">
                     <br>
-                    <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="button button-primary"><?=esc_html__('Upload new file', 'zdm')?></a>
+                    <a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="button button-primary"><?=esc_html__('Upload a new file', 'zdm')?></a>
                     &nbsp;&nbsp;
                     <a href="admin.php?page=<?=ZDM__SLUG?>-files" class="button button-secondary"><?=esc_html__('Files overview', 'zdm')?></a>
                     <br><br>

@@ -144,7 +144,7 @@ define('ZDM__DOWNLOAD_BTN_ICON_VAL', [
     'trophy'
 ]);
 define('ZDM__DOWNLOAD_BTN_ICON', [
-    __('keines', 'zdm'),
+    __('none', 'zdm'),
     __('Arrow 1', 'zdm'),
     __('Arrow 2', 'zdm'),
     __('Download code', 'zdm'),
