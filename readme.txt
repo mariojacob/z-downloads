@@ -7,7 +7,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
 Tested up to: 5.5
-Stable tag: 1.5.0
+Stable tag: 1.5.1
 
 Download management and automatic ZIP archive creation
 
@@ -48,15 +48,10 @@ The same file is in multiple downloads, such as promotional material. In the eve
 
 -   WordPress 4.9+ -- latest version 5.5.x
 
-= Translation =
+= Languages =
 
--   German - de_DE is the default language
--   English - en_AU (Australia)
--   English - en_CA (Canada)
--   English - en_GB (Great Britain)
--   English - en_NZ (New Zealand)
--   English - en_SA (South Africa)
--   English - en_US (USA)
+-   English - default language
+-   German - de_DE (translation)
 
 == Installation ==
 
@@ -82,7 +77,7 @@ Yes, no personal data of visitors is saved. By default, the IP address is anonym
 
 = What language is the plugin in? =
 
-Z-Downloads is translated into German and English, other languages can easily be added.
+Z-Downloads is translated into german and english, other languages can easily be added.
 
 == Screenshots ==
 
