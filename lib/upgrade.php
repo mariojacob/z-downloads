@@ -5,6 +5,22 @@ if (!defined('ABSPATH')) {
     die;
 }
 
+// temp
+// v1.5.2
+if (ZDM__VERSION == '1.5.2') {
+
+    $zdm_dir =  wp_upload_dir()['basedir'];
+    $dir_array = scandir($zdm_dir);
+    $zdm_regex_search = '/z-downloads-.{32}/';
+    $dir_count = count($dir_array);
+    for ($i=0; $i < $dir_count; $i++) { 
+        
+        if (preg_match($zdm_regex_search, $dir_array[$i])) {
+            rename(wp_upload_dir()['basedir'] . "/" . $dir_array[$i], wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token']);
+        }
+    }
+}
+
 $zdm_options = get_option('zdm_options');
 
 if ($zdm_options['version'] < ZDM__VERSION) {
@@ -13,7 +29,7 @@ if ($zdm_options['version'] < ZDM__VERSION) {
     ZDMCore::log('plugin upgrade', ZDM__VERSION);
 
     // v0.3.0 MIME Type Fix
-    if ($zdm_options['version'] <= '0.3.0') {
+    if ($zdm_options['version'] < '0.3.0') {
 
         global $wpdb;
 
@@ -52,7 +68,7 @@ if ($zdm_options['version'] < ZDM__VERSION) {
     }
 
     // v1.4.0
-    if ($zdm_options['version'] <= '1.4.0') {
+    if ($zdm_options['version'] < '1.4.0') {
 
         global $wpdb;
         $table_name = $wpdb->prefix . 'zdm_files';
@@ -62,7 +78,7 @@ if ($zdm_options['version'] < ZDM__VERSION) {
     }
 
     // v1.5.0
-    if ($zdm_options['version'] <= '1.5.0') {
+    if ($zdm_options['version'] < '1.5.0') {
         $zdm_options['activation-time'] = time();
         $zdm_options['download-folder-token'] = md5(uniqid(rand(), true));
         rename(wp_upload_dir()['basedir'] . "/z-downloads", wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token']);
