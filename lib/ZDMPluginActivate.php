@@ -1,17 +1,17 @@
 <?php
 
-// Abbruch bei direktem Zugriff
+// Abort by direct access
 if (!defined('ABSPATH')) {
     die;
 }
 
 /**
- * Plugin Aktivierung
+ * Plugin activation
  */
 class ZDMPluginActivate {
 
     /**
-     * Methode wenn Plugin aktiviert wird
+     * Method when plugin is activated
      *
      * @return void
      */
@@ -25,25 +25,25 @@ class ZDMPluginActivate {
             add_option('zdm_options', ZDM__OPTIONS);
         }
 
-        // Optionen abrufen
+        // Get options
         $zdm_options = get_option('zdm_options');
 
-        // Aktivierungszeit setzen
+        // Set activation time
         if (!$zdm_options['activation-time']) {
             $zdm_options['activation-time'] = time();
         }
 
-        // Download Ordner Token
+        // Download folder token
         if (!$zdm_options['download-folder-token']) {
             $zdm_options['download-folder-token'] = md5(uniqid(rand(), true));
         }
 
         update_option('zdm_options', $zdm_options);
 
-        // Optionen abrufen
+        // Get options
         $zdm_options = get_option('zdm_options');
 
-        // Datenbank erstellen
+        // Create database
         require_once (plugin_dir_path(__FILE__) . 'ZDMDatabase.php');
         $db = new ZDMDatabase();
         $db->create_db();

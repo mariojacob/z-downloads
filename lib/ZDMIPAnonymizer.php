@@ -1,6 +1,6 @@
 <?php
 
-// Abbruch bei direktem Zugriff
+// Abort by direct access
 if (!defined('ABSPATH')) {
     die;
 }
@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
 /**
  * Klasse um IPv4 und IPv6 Adressen zu anonymisieren<br>
  * <br><br>
- * Beispiele:<br>
+ * Examples:<br>
  * <br>
  * $ipAnonymizer = new IPAnonymizer();<br>
  * <br>
@@ -38,7 +38,7 @@ if (!defined('ABSPATH')) {
  * $ipAnonymizer->ipv4NetMask = "255.255.0.0";<br>
  * // returns 192.168.0.0<br>
  * <br>
- * Du kannst diese Klasse auch statisch verwenden:<br>
+ * You can also use this class statically:<br>
  * var_dump(IpAnonymizer::anonymizeIp('192.168.178.123'));<br>
  * returns 192.168.178.0<br>
  * <br>
@@ -47,28 +47,28 @@ if (!defined('ABSPATH')) {
  */
 class ZDMIPAnonymizer {
     /**
-     * @var string IPv4-Netzmaske zur Anonymisierung der IPv4-Adresse.
+     * @var string IPv4 netmask for anonymizing the IPv4 address.
      */
     public $ipv4NetMask = "255.255.255.0";
     /**
-     * @var string IPv6-Netzmaske zur Anonymisierung der IPv6-Adresse.
+     * @var string IPv6 netmask for anonymizing the IPv6 address.
      */
     public $ipv6NetMask = "ffff:ffff:ffff:ffff:0000:0000:0000:0000";
     /**
-     * Anonymisiere eine IPv4- oder IPv6-Adresse.
+     * Anonymize an IPv4 or IPv6 address.
      *
-     * @param $address string IP-Adresse, die anonymisiert werden muss
-     * @return string Die anonymisierte IP-Adresse. Gibt eine leere Zeichenkette zurück, wenn die IP-Adresse ungültig ist.
+     * @param $address string IP address that must be anonymized
+     * @return string The anonymized IP address. Returns an empty string if the IP address is invalid.
      */
     public static function anonymizeIp($address) {
         $anonymizer = new IPAnonymizer();
         return $anonymizer->anonymize($address);
     }
     /**
-     * Anonymisiere eine IPv4- oder IPv6-Adresse.
+     * Anonymize an IPv4 or IPv6 address.
      *
-     * @param $address string IP-Adresse, die anonymisiert werden muss
-     * @return string Die anonymisierte IP-Adresse. Gibt eine leere Zeichenkette zurück, wenn die IP-Adresse ungültig ist.
+     * @param $address string IP address that must be anonymized
+     * @return string The anonymized IP address. Returns an empty string if the IP address is invalid.
      */
     public function anonymize($address) {
         $packedAddress = inet_pton($address);
@@ -81,17 +81,17 @@ class ZDMIPAnonymizer {
         }
     }
     /**
-     * Anonymisiere eine IPv4 Adresse
-     * @param $address string IPv4 Adresse
-     * @return string Anonymisierte Adresse
+     * Anonymize an IPv4 address
+     * @param $address string IPv4 adress
+     * @return string Anonymized address
      */
     public function anonymizeIPv4($address) {
         return inet_ntop(inet_pton($address) & inet_pton($this->ipv4NetMask));
     }
     /**
-     * Anonymisiere eine IPv6 Adresse
-     * @param $address string IPv6 Adresse
-     * @return string Anonymisierte Adresse
+     * Anonymize an IPv6 address
+     * @param $address string IPv6 adress
+     * @return string Anonymized address
      */
     public function anonymizeIPv6($address) {
         return inet_ntop(inet_pton($address) & inet_pton($this->ipv6NetMask));

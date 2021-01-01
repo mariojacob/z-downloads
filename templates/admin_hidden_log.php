@@ -1,6 +1,6 @@
 <?php
 
-// Abbruch bei direktem Zugriff
+// Abort by direct access
 if (!defined('ABSPATH')) {
     die;
 }
@@ -11,7 +11,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     $zdm_tablename_log = $wpdb->prefix . "zdm_log";
     $zdm_status = '';
     
-    if (isset($_GET['id'])) { // Log Detailseite
+    if (isset($_GET['id'])) { // Log detail page
 
         $zdm_status = 1;
 
@@ -25,14 +25,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             "
         );
 
-    } else { // Log Liste
+    } else { // Log list
         
         $zdm_log_filter_array = array(esc_html__('Everything', 'zdm'), esc_html__('Downloads', 'zdm'), esc_html__('Files', 'zdm'), esc_html__('Archives', 'zdm'));
         $zdm_log_filter_array_val = array("all", "downloads", "files", "archives");
 
         if (isset($_POST['log-filter-type']) && wp_verify_nonce($_POST['nonce'], 'log-types')) {
 
-            // Allgemeines
+            // General
             
             $zdm_lof_filter_type = sanitize_text_field($_POST['log-filter-type']);
 
@@ -103,7 +103,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         }
     }
 
-    if ($zdm_status === 1) { // Log Detailseite
+    if ($zdm_status === 1) { // Log detail page
 
         ?>
         <div class="wrap">
@@ -163,7 +163,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         </script>
         <?php
             
-    } else { // Log Liste
+    } else { // Log list
         
         ?>
         <div class="wrap">

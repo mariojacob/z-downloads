@@ -1,17 +1,17 @@
 <?php
 
-// Abbruch bei direktem Zugriff
+// Abort by direct access
 if (!defined('ABSPATH')) {
     die;
 }
 
 /**
- * Datenbank Klasse
+ * Database class
  */
 class ZDMDatabase {
 
     /**
-     * Erstellt die Datenbankstruktur
+     * Creates the database structure
      *
      * @return void
      */

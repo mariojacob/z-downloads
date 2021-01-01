@@ -1,6 +1,6 @@
 <?php
 
-// Abbruch bei direktem Zugriff
+// Abort by direct access
 if (!defined('ABSPATH')) {
     die;
 }
@@ -19,10 +19,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     }
 
     global $wpdb;
-    // DB Tabellenname
+    // Database table name
     $zdm_tablename_files = $wpdb->prefix . "zdm_files";
 
-    // Daten aus DB holen
+    // Get data from database (files)
     $zdm_db_files = $wpdb->get_results( 
         "
         SELECT id, name 
@@ -30,16 +30,17 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         "
     );
 
-    // Dateien aus DB in Auswahlmenü speichern
-    $zdm_option_output = '';
-    for ($i = 0; $i < count($zdm_db_files); $i++) {
+    $zdm_db_files_count = count($zdm_db_files);
 
+    // Save files from database in selection menu
+    $zdm_option_output = '';
+    for ($i = 0; $i < $zdm_db_files_count; $i++) {
         $zdm_option_output .= '<option value="' . $zdm_db_files[$i]->id . '">' . $zdm_db_files[$i]->name . '</option>';
     }
 
     if (isset($_POST['submit']) && wp_verify_nonce($_POST['nonce'], 'daten-speichern')) {
 
-        // Check ob Felder ausgefüllt sind
+        // Check whether fields are filled out
         if ($_POST['name'] != '') {
 
             $zdm_post_name = sanitize_text_field($_POST['name']);
@@ -56,10 +57,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 $zdm_zip_name = str_replace(' ', '-', trim($zdm_post_name));
             }
 
-            // DB Tabellenname
+            // Database table name
             $zdm_tablename_archives = $wpdb->prefix . "zdm_archives";
 
-            // Daten in DB archives speichern
+            // Save data in database archives
             $wpdb->insert(
                 $zdm_tablename_archives, 
                 array(
@@ -73,7 +74,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 )
             );
 
-            // id aus gerade gespeichertem Archiv holen
+            // Get id from archive just saved
             $zdm_db_archive = $wpdb->get_results( 
                 "
                 SELECT id 
@@ -82,24 +83,24 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 "
             );
 
-            // Anzahl für Schleifendurchlauf definieren
+            // Define number for loop pass
             $files_count = 10;
             if ($zdm_licence === 1) {
                 $files_count = 20;
             }
 
-            // DB Tabellenname
+            // Database table name
             $zdm_tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
 
-            // doppelte Auswahl entfernen
+            // Remove duplicate selection
             $_POST['files'] = array_unique($_POST['files']);
 
-            // files_rel Einträge erstellen
+            // Create files_rel entries
             for ($i = 0; $i <= $files_count; $i++) {
 
                 if ($_POST['files'][$i] != '') {
 
-                    // Daten in DB files_rel speichern
+                    // Save data in database files_rel
                     $wpdb->insert(
                         $zdm_tablename_files_rel, 
                         array(
@@ -127,7 +128,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     <div class="wrap">
 
         <?php
-        // Notiz anzeigen
+        // Show note message
         if ($zdm_note != '') {
             echo '<div class="notice notice-warning">';
             echo '<br><b>' . $zdm_note . '</b><br><br>';

@@ -1,17 +1,17 @@
 <?php
 
-// Abbruch bei direktem Zugriff
+// Abort by direct access
 if (!defined('ABSPATH')) {
     die;
 }
 
 /**
- * Plugin deaktivierung
+ * Deactivate plugin
  */
 class ZDMPluginDeactivate {
 
     /**
-     * Methode wenn Plugin deaktiviert wird
+     * Method when plugin is deactivated
      *
      * @return void
      */

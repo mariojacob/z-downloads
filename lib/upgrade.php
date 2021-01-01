@@ -1,6 +1,6 @@
 <?php
 
-// Abbruch bei direktem Zugriff
+// Abort by direct access
 if (!defined('ABSPATH')) {
     die;
 }
@@ -28,14 +28,14 @@ if ($zdm_options['version'] < ZDM__VERSION) {
     // Log
     ZDMCore::log('plugin upgrade', ZDM__VERSION);
 
-    // v0.3.0 MIME Type Fix
+    // v0.3.0 MIME type fix
     if ($zdm_options['version'] < '0.3.0') {
 
         global $wpdb;
 
         $zdm_tablename_files = $wpdb->prefix . "zdm_files";
 
-        // Daten aus DB holen
+        // Get data from db
         $zdm_db_files = $wpdb->get_results( 
             "
             SELECT id, folder_path, file_name, file_type 
@@ -84,7 +84,7 @@ if ($zdm_options['version'] < ZDM__VERSION) {
         rename(wp_upload_dir()['basedir'] . "/z-downloads", wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token']);
     }
 
-    // Optionen
+    // Options
     if ($zdm_options['download-btn-text'] == '') {
         $zdm_options['download-btn-text'] = 'Download';
     }

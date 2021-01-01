@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2020-11-03 12:04+0100\n"
-"PO-Revision-Date: 2020-11-03 12:04+0100\n"
+"POT-Creation-Date: 2021-01-01 14:21+0100\n"
+"PO-Revision-Date: 2021-01-01 14:22+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.1\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-KeywordsList: __;esc_html__\n"
@@ -197,11 +197,11 @@ msgstr "Upgrade"
 msgid "Download statistics"
 msgstr "Downloadstatistik"
 
-#: lib/ZDMCore.php:1432
+#: lib/ZDMCore.php:1470
 msgid "Your browser does not support HTML audio elements."
 msgstr "Dein Browser unterstützt keine HTML Audio-Elemente."
 
-#: lib/ZDMCore.php:1929
+#: lib/ZDMCore.php:1951
 msgid "Your browser does not support HTML video elements."
 msgstr "Dein Browser unterstützt keine HTML Video-Elemente."
 
@@ -471,25 +471,25 @@ msgstr "Es gibt keine Log-Einträge zu diesem Typ."
 msgid "To top"
 msgstr "Nach oben"
 
-#: templates/admin_menu_add_archive.php:138
+#: templates/admin_menu_add_archive.php:139
 msgid "Create new ZIP archive"
 msgstr "Erstelle ein neues ZIP-Archiv"
 
-#: templates/admin_menu_add_archive.php:141
+#: templates/admin_menu_add_archive.php:142
 msgid "back to overview"
 msgstr "zurück zur Übersicht"
 
-#: templates/admin_menu_add_archive.php:146
+#: templates/admin_menu_add_archive.php:147
 msgid "Archive successfully created!"
 msgstr "Archiv erfolgreich erstellt!"
 
-#: templates/admin_menu_add_archive.php:147
+#: templates/admin_menu_add_archive.php:148
 #: templates/admin_menu_dashboard.php:318
 #: templates/admin_menu_ziparchive.php:350
 msgid "Create a new archive"
 msgstr "Erstelle ein neues Archiv"
 
-#: templates/admin_menu_add_archive.php:158 templates/admin_menu_files.php:538
+#: templates/admin_menu_add_archive.php:159 templates/admin_menu_files.php:538
 #: templates/admin_menu_files.php:1005 templates/admin_menu_files.php:1085
 #: templates/admin_menu_files.php:1143 templates/admin_menu_files.php:1223
 #: templates/admin_menu_ziparchive.php:397
@@ -498,93 +498,93 @@ msgstr "Erstelle ein neues Archiv"
 msgid "Name"
 msgstr "Name"
 
-#: templates/admin_menu_add_archive.php:161
+#: templates/admin_menu_add_archive.php:162
 #: templates/admin_menu_ziparchive.php:400
 msgid "This name is displayed in the archive list and serves as a guide."
 msgstr ""
 "Dieser Name wird in der Archiv-Liste angezeigt und dient dir als "
 "Orientierung."
 
-#: templates/admin_menu_add_archive.php:165
+#: templates/admin_menu_add_archive.php:166
 #: templates/admin_menu_ziparchive.php:404
 msgid "ZIP file name"
 msgstr "Zip-Datei Name"
 
-#: templates/admin_menu_add_archive.php:168
+#: templates/admin_menu_add_archive.php:169
 msgid "Name of the ZIP file the visitor downloads."
 msgstr "Name für die ZIP-Datei die der Besucher herunterladet."
 
-#: templates/admin_menu_add_archive.php:169
+#: templates/admin_menu_add_archive.php:170
 msgid ""
 "For maximum compatibility, use hyphens or underscores instead of spaces."
 msgstr ""
 "Für maximale kompatibilität verwende Bindestriche oder Unterstriche anstatt "
 "Leerzeichen."
 
-#: templates/admin_menu_add_archive.php:170
+#: templates/admin_menu_add_archive.php:171
 msgid "Example"
 msgstr "Beispiel"
 
-#: templates/admin_menu_add_archive.php:170
+#: templates/admin_menu_add_archive.php:171
 msgid "my-new-download"
 msgstr "mein-neuer-download"
 
-#: templates/admin_menu_add_archive.php:170 templates/admin_menu_help.php:146
+#: templates/admin_menu_add_archive.php:171 templates/admin_menu_help.php:146
 #: templates/admin_menu_help.php:148 templates/admin_menu_help.php:189
 #: templates/admin_menu_help.php:192 templates/admin_menu_help.php:220
 msgid "or"
 msgstr "oder"
 
-#: templates/admin_menu_add_archive.php:170
+#: templates/admin_menu_add_archive.php:171
 msgid "my_new_download"
 msgstr "mein_neuer_download"
 
-#: templates/admin_menu_add_archive.php:174 templates/admin_menu_files.php:545
+#: templates/admin_menu_add_archive.php:175 templates/admin_menu_files.php:545
 #: templates/admin_menu_ziparchive.php:412
 msgid "Download button text"
 msgstr "Download-Button Text"
 
-#: templates/admin_menu_add_archive.php:177
+#: templates/admin_menu_add_archive.php:178
 msgid "Default text for the download button is"
 msgstr "Standardtext für den Download-Button ist"
 
-#: templates/admin_menu_add_archive.php:177
+#: templates/admin_menu_add_archive.php:178
 msgid "this text can be found in the"
 msgstr "dieser Text kann in den"
 
-#: templates/admin_menu_add_archive.php:177 templates/admin_menu_files.php:549
+#: templates/admin_menu_add_archive.php:178 templates/admin_menu_files.php:549
 #: templates/admin_menu_ziparchive.php:416
 msgid "settings"
 msgstr "Einstellungen"
 
-#: templates/admin_menu_add_archive.php:181
+#: templates/admin_menu_add_archive.php:182
 #: templates/admin_menu_ziparchive.php:422
 msgid "Description"
 msgstr "Beschreibung"
 
-#: templates/admin_menu_add_archive.php:187
+#: templates/admin_menu_add_archive.php:188
 msgid "Count"
 msgstr "Anzahl"
 
-#: templates/admin_menu_add_archive.php:190 templates/admin_menu_files.php:558
+#: templates/admin_menu_add_archive.php:191 templates/admin_menu_files.php:558
 #: templates/admin_menu_ziparchive.php:431
 msgid "Number of previous downloads."
 msgstr "Anzahl an bisherigen Downloads."
 
-#: templates/admin_menu_add_archive.php:194
+#: templates/admin_menu_add_archive.php:195
 msgid "Link files"
 msgstr "Verknüpfte Dateien"
 
-#: templates/admin_menu_add_archive.php:212
+#: templates/admin_menu_add_archive.php:213
 msgid "For more file shortcuts activate"
 msgstr "Für mehr Datei-Verknüpfungen aktiviere"
 
-#: templates/admin_menu_add_archive.php:226
+#: templates/admin_menu_add_archive.php:227
 #: templates/admin_menu_settings.php:534
 msgid "Save"
 msgstr "Speichern"
 
-#: templates/admin_menu_add_archive.php:227
+#: templates/admin_menu_add_archive.php:228
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -645,11 +645,11 @@ msgstr "Datum"
 
 #: templates/admin_menu_dashboard.php:70
 msgid "Deleted archive"
-msgstr "Lösche Archiv"
+msgstr "Gelöschtes Archiv"
 
 #: templates/admin_menu_dashboard.php:110
 msgid "Deleted file"
-msgstr "Lösche Datei"
+msgstr "Gelöschte Datei"
 
 #: templates/admin_menu_dashboard.php:146 templates/admin_menu_help.php:135
 msgid "Popular Downloads"

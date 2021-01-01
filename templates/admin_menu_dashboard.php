@@ -1,6 +1,6 @@
 <?php
 
-// Abbruch bei direktem Zugriff
+// Abort by direct access
 if (!defined('ABSPATH')) {
     die;
 }
@@ -31,7 +31,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             <?php
             ////////////////////
-            // Letzte Downloads
+            // Last downloads
             ////////////////////
             
             $zdm_last_downloads = ZDMStat::get_last_downloads();
@@ -132,7 +132,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <?php }
 
             ////////////////////
-            // Beliebte Downloads
+            // Popular downloads
             ////////////////////
 
             $zdm_best_downloads = ZDMStat::get_best_downloads();
@@ -257,7 +257,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         <?php
         ////////////////////
-        // Download Statistik
+        // Download statistics
         ////////////////////
         ?>
 

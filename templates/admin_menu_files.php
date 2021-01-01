@@ -1,6 +1,6 @@
 <?php
 
-// Abbruch bei direktem Zugriff
+// Abort by direct access
 if (!defined('ABSPATH')) {
     die;
 }
@@ -13,7 +13,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     $zdm_options = get_option('zdm_options');
     $zdm_time = time();
 
-    // Aktiven Tab bestimmen
+    // Determine the active tab
     if( isset($_GET['tab'])) {
         $zdm_active_tab = htmlspecialchars($_GET['tab']);
     } else {
@@ -30,57 +30,58 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     $zdm_tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
 
     //////////////////////////////////////////////////
-    // Datei hinzufügen
+    // Add file
     //////////////////////////////////////////////////
     if (isset($_FILES['file']) && wp_verify_nonce($_POST['nonce'], 'datei-hochladen') && $_FILES['file']['name'] != '') {
 
         if ($zdm_options['duplicate-file'] != 'on') {
-            // MD5-Hash von hochgeladener Datei erzeugen
+            // Generate MD5 hash of uploaded file
             $zdm_uploaded_file_hash = md5_file($_FILES['file']['tmp_name']);
         }
 
-        // Datei auf Duplikat prüfen
+        // Check file for duplicates
         if ($zdm_options['duplicate-file'] != 'on' && in_array($zdm_uploaded_file_hash, ZDMCore::get_files_md5())) {
 
-            // Datei wurde bereits hochgeladen
+            // File has already been uploaded
 
-            // Upload-Duplikat-Seite anzeigen
+            // Show upload duplicate page
             $zdm_status = 3;
         } else {
 
-            // Datei wurde noch nicht hochgeladen
+            // File has not yet been uploaded
         
             $zdm_file = array();
             $zdm_file['name'] = sanitize_file_name($_FILES['file']['name']);
             $zdm_file['type'] = $_FILES['file']['type'];
             $zdm_file['size'] = ZDMCore::file_size_convert(sanitize_file_name($_FILES['file']['size']));
 
-            // Ordnername erstellen
+            // Create folder name
             $zdm_file['folder'] = md5(time() . $zdm_file['name']);
 
-            // Ordner erstellen
+            // Create folder
             if (!is_dir($zdm_file['folder'])) {
                 wp_mkdir_p(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder']);
             }
 
             $zdm_file_path = ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . $zdm_file['name'];
 
-            // Datei abspeichern
+            // Save file
             move_uploaded_file($_FILES['file']['tmp_name'], $zdm_file_path);
 
-            // Temporäre Datei löschen
+            // Delete temporary file
             unlink($_FILES['file']['tmp_name']);
 
-            // index.php in Ordner kopieren
-            copy('index.php', ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . 'index.php');
+            // Create index.php
+            $index_file_handle = fopen(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . 'index.php', 'w');
+            fclose($index_file_handle);
 
-            // MD5 aus Datei
+            // MD5 from file
             $zdm_file['md5'] = md5_file($zdm_file_path);
 
-            // SHA1 aus Datei
+            // SHA1 from file
             $zdm_file['sha1'] = sha1_file($zdm_file_path);
 
-            // Dateipfad in DB speichern
+            // Save file path in database
             $wpdb->insert(
                 $zdm_tablename_files, 
                 array(
@@ -100,7 +101,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             $zdm_folder_path = $zdm_file['folder'];
 
-            // ID aus DB holen
+            // Get ID from database
             $zdm_db_file = $wpdb->get_results( 
                 "
                 SELECT id 
@@ -109,31 +110,31 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 "
             );
 
-            // Datei ID festlegen
+            // Set file ID
             $zdm_file_id = $zdm_db_file[0]->id;
 
-            // Datei Detailseite anzeigen
+            // Show file details page
             $zdm_status = 1;
         }
     } elseif (isset($_GET['id']) OR isset($_POST['update']) OR isset($_POST['delete'])) {
 
-        // Datei Detailseite anzeigen
+        // Show file details page
         $zdm_status = 1;
 
         if (isset($_GET['id'])) {
-            // Datei ID festlegen wenn ID in URL Parameter steht
+            // Specify file ID if ID is in URL parameter
             $zdm_file_id = sanitize_text_field($_GET['id']);
         } else {
-            // Datei ID festlegen wenn Datei hochgeladen wurde
+            // Set file ID when file has been uploaded
             $zdm_file_id = sanitize_text_field($_POST['file_id']);
         }
 
         //////////////////////////////////////////////////
-        // Daten aktualisieren
+        // Update data
         //////////////////////////////////////////////////
         if (isset($_POST['update']) && wp_verify_nonce($_POST['nonce'], 'update-data')) {
 
-            // Daten aus DB holen
+            // Get data from database
             $zdm_db_file = $wpdb->get_results( 
                 "
                 SELECT id 
@@ -142,7 +143,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 "
             );
 
-            // Checken ob Datei existiert
+            // Check whether the file exists
             if (count($zdm_db_file) > 0) {
 
                 if ($_POST['name'] != '') {
@@ -178,20 +179,20 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 // Log
                 ZDMCore::log('update file', $zdm_file_id);
             
-                // Erfolg-Meldung ausgeben
+                // Output success message
                 $zdm_note = esc_html__('Updated', 'zdm');
             } else {
-                // Dateiliste anzeigen
+                // Show file list
                 $zdm_status = 2;
             }
         }
 
         //////////////////////////////////////////////////
-        // Datei löschen
+        // Delete file
         //////////////////////////////////////////////////
         if (($_POST['delete'] && wp_verify_nonce($_POST['nonce'], 'update-data')) OR ($_GET['delete'] && wp_verify_nonce($_GET['nonce'], 'delete-file'))) {
 
-            // Daten aus DB holen
+            // Get data from database
             $zdm_db_file = $wpdb->get_results( 
                 "
                 SELECT * 
@@ -251,7 +252,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     // Datei-Hash
                     $zdm_uploaded_file_hash = htmlspecialchars($_GET['duplicate-hash']);
 
-                    // Daten aus DB holen
+                    // Get data from database
                     $zdm_db_file = $wpdb->get_results( 
                         "
                         SELECT * 
@@ -285,7 +286,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         //////////////////////////////////////////////////
         if (isset($_FILES['file']) && wp_verify_nonce($_POST['nonce'], 'replace-file') && $_FILES['file']['name'] != '') {
 
-            // Daten aus DB holen
+            // Get data from database
             $zdm_db_file = $wpdb->get_results( 
                 "
                 SELECT * 
@@ -318,7 +319,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             // SHA1 aus Datei
             $zdm_file['sha1'] = sha1_file(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_db_file->folder_path . '/' . $zdm_file['name']);
 
-            // Dateipfad in DB speichern
+            // Dateipfad in DB aktualisieren
             $wpdb->update(
                 $zdm_tablename_files, 
                 array(
@@ -418,7 +419,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     if ($zdm_status === 1) { // Datei Detailseite
 
-        // Daten aus DB holen
+        // Get data from database (files)
         $zdm_db_file = $wpdb->get_results( 
             "
             SELECT * 
@@ -455,7 +456,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             <?php
             // Tabs
-            // Tab: Datei
+            // Tab: File
             if ($zdm_active_tab == 'file') {
                 ?>
                 
@@ -517,7 +518,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             </td>
                                         </tr>
                                         <?php
-                                    } else { // Sonstige Dateien
+                                    } else { // Other files
                                         ?>
                                         <tr valign="top">
                                             <th scope="row"><?=esc_html__('Download file', 'zdm')?>:</th>
@@ -726,7 +727,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 </div>
                 <?php
             // end if ($zdm_active_tab == 'shortcodes')
-            // Tab: Datei ersetzen
+            // Tab: Replace file
             } elseif ($zdm_active_tab == 'update-file') {
                 ?>
                 <div class="postbox">
@@ -864,7 +865,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                 <?php
             // end if ($zdm_active_tab == 'statistic')
-            // Tab: Hilfe
+            // Tab: Help
             } elseif ($zdm_active_tab == 'help') {
                 ?>
 
@@ -978,7 +979,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <!-- end wrap -->
         </div>
         <?php
-    } elseif ($zdm_status === '' OR $zdm_status === 2) { // Datei Liste
+    } elseif ($zdm_status === '' OR $zdm_status === 2) { // File list
         
         $zdm_db_files = $wpdb->get_results( 
             "
@@ -1022,20 +1023,20 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 $zdm_icon = '<ion-icon name="musical-notes"></ion-icon>';
                             } elseif (in_array($zdm_db_files[$i]->file_type, ZDM__MIME_TYPES_VIDEO)) { // Video
                                 $zdm_icon = '<ion-icon name="videocam"></ion-icon>';
-                            } elseif (in_array($zdm_db_files[$i]->file_type, ZDM__MIME_TYPES_IMAGE)) { // Bild
+                            } elseif (in_array($zdm_db_files[$i]->file_type, ZDM__MIME_TYPES_IMAGE)) { // Picture
                                 $zdm_icon = '<ion-icon name="images"></ion-icon>';
                             } else {
                                 $zdm_icon = '<ion-icon name="document"></ion-icon>';
                             }
 
-                            // Anzahl an Verknüpfungen in Archiven
+                            // Number of links in archives
                             $zdm_db_file_in_archive = ZDMCore::check_if_file_is_in_archive($zdm_db_files[$i]->id);
                             $zdm_db_count_file_in_archive = '';
                             if ($zdm_db_file_in_archive != false) {
                                 $zdm_db_count_file_in_archive = $zdm_db_file_in_archive;
                             }
 
-                            // Datei Status (Sichtbarkeit)
+                            // File status (visibility)
                             if ($zdm_db_files[$i]->status == 'public') {
                                 $zdm_file_status = '<ion-icon name="eye" class="zdm-color-green" title="' . esc_html__('Visibility: public', 'zdm') . '"></ion-icon>';
                             } else {
@@ -1108,7 +1109,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <?php
     } elseif ($zdm_status === 3) {
 
-        // Daten von Dateien mit dem selben Hash holen
+        // Get data from files with the same hash
         $zdm_db_files = $wpdb->get_results( 
             "
             SELECT id, name, folder_path, file_name, count, file_size, status, file_type, time_create 
@@ -1130,7 +1131,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             </div>
         
             <?php
-            // Check ob Dateien existieren
+            // Check if files exist
             if (count($zdm_db_files) > 0) {
                 ?>
 
@@ -1166,14 +1167,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     $zdm_icon = '<ion-icon name="document"></ion-icon>';
                                 }
 
-                                // Anzahl an Verknüpfungen in Archiven
+                                // Number of links in archives
                                 $zdm_db_file_in_archive = ZDMCore::check_if_file_is_in_archive($zdm_db_files[$i]->id);
                                 $zdm_db_count_file_in_archive = '';
                                 if ($zdm_db_file_in_archive != false) {
                                     $zdm_db_count_file_in_archive = $zdm_db_file_in_archive;
                                 }
 
-                                // Datei Status (Sichtbarkeit)
+                                // File status (visibility)
                                 if ($zdm_db_files[$i]->status == 'public') {
                                     $zdm_file_status = '<ion-icon name="eye" class="zdm-color-green" title="' . esc_html__('Visibility: public', 'zdm') . '"></ion-icon>';
                                 } else {

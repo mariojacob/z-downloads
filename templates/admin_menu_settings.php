@@ -1,6 +1,6 @@
 <?php
 
-// Abbruch bei direktem Zugriff
+// Abort by direct access
 if (!defined('ABSPATH')) {
     die;
 }
@@ -13,12 +13,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     $zdm_error = '';
 
     ////////////////////
-    // Lizenzschlüssel aktualisieren
+    // Update license key
     ////////////////////
     if (isset($_POST['licence_submit']) && wp_verify_nonce($_POST['nonce'], 'update-license')) {
 
-        // Lizenz
-        // Lizenz-Schlüssel aktualisieren
+        // license
+        // Update license key
         if (ZDMCore::licence_array(trim(sanitize_text_field($_POST['licence-key'])))['success'] === true) {
 
             $licence_array = $this->licence_array(trim(sanitize_text_field($_POST['licence-key'])));
@@ -36,7 +36,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             $zdm_options = get_option('zdm_options');
         } else {
-            // Lizenz-Schlüssel entfernen
+            // Remove license key
 
             $zdm_options['licence-key'] = '';
 
@@ -54,7 +54,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         ZDMCore::log('update licence');
     }
 
-    // Lizenz-Schlüssel entfernen
+    // Remove license key
     if (isset($_GET['licence_delete']) && wp_verify_nonce($_GET['nonce'], 'licence-delete')) {
 
         $zdm_options['licence-key'] = '';
@@ -67,7 +67,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         // Log
         ZDMCore::log('delete licence');
 
-        // Einstellungsseite neu laden
+        // Reload the settings page
         $zdm_settings_url = 'admin.php?page=' . ZDM__SLUG . '-settings';
         wp_redirect($zdm_settings_url);
         exit;
@@ -80,40 +80,40 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     }
 
     ////////////////////
-    // Daten aktualisieren
+    // Update data
     ////////////////////
     if (isset($_POST['submit']) && wp_verify_nonce($_POST['nonce'], 'einstellungen-speichern')) {
 
-        // Allgemein
+        // General
 
-        // Download-Button Text
+        // Download button text
         $zdm_options['download-btn-text'] = trim(sanitize_text_field($_POST['download-btn-text']));
-        // Download-Button Style
+        // Download button style
         $zdm_options['download-btn-style'] = trim(sanitize_text_field($_POST['download-btn-style']));
-        // Download-Button Outline
+        // Download button outline
         $zdm_options['download-btn-outline'] = trim(sanitize_text_field($_POST['download-btn-outline']));
-        // Download-Button runde Ecken
+        // Download button round corners
         $zdm_options['download-btn-border-radius'] = trim(sanitize_text_field($_POST['download-btn-border-radius']));
-        // Download-Button Icon
+        // Download button icon
         $zdm_options['download-btn-icon'] = trim(sanitize_text_field($_POST['download-btn-icon']));
-        // Download-Button Icon only
+        // Download button icon only
         $zdm_options['download-btn-icon-only'] = trim(sanitize_text_field($_POST['download-btn-icon-only']));
 
-        // Statistik
+        // Statistics
 
         $zdm_options['stat-single-file-last-limit'] = trim(sanitize_text_field($_POST['stat-single-file-last-limit']));
         $zdm_options['stat-single-archive-last-limit'] = trim(sanitize_text_field($_POST['stat-single-archive-last-limit']));
 
-        // Erweitert
+        // Extended
 
-        // Direkte URL zu PDF
+        // Direct url to PDF
         $zdm_options['file-open-in-browser-pdf'] = trim(sanitize_text_field($_POST['file-open-in-browser-pdf']));
-        // IP-Adresse zensieren
+        // Censor IP address
         $zdm_options['secure-ip'] = trim(sanitize_text_field($_POST['secure-ip']));
-        // Datei-Duplikate zulassen
+        // Allow file duplicates
         $zdm_options['duplicate-file'] = trim(sanitize_text_field($_POST['duplicate-file']));
 
-        // Update Optionen
+        // Update options
         if (add_option('zdm_options', $zdm_options) === FALSE) {
             update_option('zdm_options', $zdm_options);
             $zdm_status = 1;
@@ -126,7 +126,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     }
     
     ////////////////////
-    // Neuen Download Ordner Token generieren
+    // Generate new download folder token
     ////////////////////
     if (isset($_GET['new_download_folder_token']) && wp_verify_nonce($_GET['nonce'], 'new_download_folder_token')) {
 
@@ -144,7 +144,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 // Log
                 ZDMCore::log('new download folder token', $zdm_new_download_folder_token);
 
-                // Einstellungsseite neu laden
+                // Reload the settings page
                 $zdm_settings_url = 'admin.php?page=' . ZDM__SLUG . '-settings';
                 wp_redirect($zdm_settings_url);
                 exit;
@@ -153,13 +153,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     }
 
     ////////////////////
-    // Einstellungen zurücksetzen
+    // Reset settings
     ////////////////////
     if (isset($_GET['reset_settings']) && wp_verify_nonce($_GET['nonce'], 'reset-settings')) {
 
         if ($_GET['reset_settings'] == 'true') {
 
-            // Download Ordner Token beibehalten
+            // Keep download token folder
             $zdm_download_folder_token_temp = $zdm_options['download-folder-token'];
 
             flush_rewrite_rules();
@@ -168,7 +168,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 update_option('zdm_options', ZDM__OPTIONS);
                 $zdm_options = get_option('zdm_options');
                 
-                // Neuen Download Ordner Token generieren
+                // Generate new download folder token
                 $zdm_new_download_folder_token = md5(uniqid(rand(), true));
                 rename(ZDM__DOWNLOADS_PATH, wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_new_download_folder_token);
                 $zdm_options['download-folder-token'] = $zdm_new_download_folder_token;
@@ -178,7 +178,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 // Log
                 ZDMCore::log('reset settings');
 
-                // Einstellungsseite neu laden
+                // Reload the settings page
                 $zdm_settings_url = 'admin.php?page=' . ZDM__SLUG . '-settings';
                 wp_redirect($zdm_settings_url);
                 exit;
@@ -187,7 +187,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     }
 
     ////////////////////
-    // Lösche alle Daten
+    // Erase all data
     ////////////////////
     if (isset($_GET['delete_data']) && wp_verify_nonce($_GET['nonce'], 'delete-all-data')) {
 
@@ -237,7 +237,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     </div>
                 </div>
                 <?php
-            } else { // Normale Ansicht der Einstellungen
+            } else { // Normal view of the settings
                 ?>
 
             <form action="" method="post">

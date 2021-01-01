@@ -1,20 +1,20 @@
 <?php
 
-// Abbruch bei direktem Zugriff
+// Abort by direct access
 if (!defined('ABSPATH')) {
     die;
 }
 
 if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
-    // Aktiven Tab bestimmen
+    // Determine the active tab
     if( isset($_GET['tab'])) {
         $active_tab = htmlspecialchars($_GET['tab']);
     } else {
         $active_tab = 'beginner';
     }
 
-    // Text für Premium Funktionen
+    // Text for premium functions
     if (!ZDMCore::licence()) {
         $zdm_premium_text = '(<a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('feature', 'zdm') . ' </a>)';
     } else {
@@ -37,7 +37,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     <?php
 
     // Tabs
-    if ($active_tab == 'beginner') { // Tab: Erste Schritte
+    if ($active_tab == 'beginner') { // Tab: First steps
         ?>
         <br>
         <div class="postbox">
@@ -105,7 +105,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         
         <?php
     // end if ($active_tab == 'beginner')
-    } elseif ($active_tab == 'advanced') { // Tab: Fortgeschritten
+    } elseif ($active_tab == 'advanced') { // Tab: Advanced
         ?>
         <br>
         <div class="postbox">
@@ -177,7 +177,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         </div>
         <?php
     // end elseif ($active_tab == 'advanced')
-    } elseif ($active_tab == 'expert') { // Tab: Experte
+    } elseif ($active_tab == 'expert') { // Tab: Expert
         ?>
         <br>
         <div class="postbox">

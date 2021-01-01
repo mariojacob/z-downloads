@@ -13,12 +13,12 @@
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
  */
 
-// Abbruch bei direktem Zugriff
+// Abort by direct access
 if (!defined('ABSPATH')) {
     die;
 }
 
-// Konstanten
+// constants
 define('ZDM__PATH', plugin_dir_path(__FILE__));
 define('ZDM__PLUGIN_URL', plugin_dir_url(__FILE__));
 define('ZDM__SLUG', 'z-downloads');
@@ -30,10 +30,10 @@ define('ZDM__PRO_URL', 'https://code.urban-base.net/z-downloads?utm_source=zdm_b
 define('ZDM__STANDARD_USER_ROLE', 'manage_options');
 require_once(dirname(__FILE__) . '/lib/constants.php');
 
-// Lade Sprachdateien
+// load language files
 load_plugin_textdomain( 'zdm', false, dirname(plugin_basename(__FILE__)) . '/languages' );
 
-// Core Klasse laden
+// CLoad core class
 if( class_exists('ZDMCore') === false ) {
 	require_once(dirname(__FILE__) . '/lib/ZDMCore.php');
     $zdmCore = new ZDMCore();
@@ -43,13 +43,13 @@ if( class_exists('ZDMCore') === false ) {
     require_once(dirname(__FILE__) . '/lib/ZDMStat.php');
 }
 
-// Plugin Aktivierung
+// Plugin activation
 require_once (plugin_dir_path(__FILE__) . 'lib/ZDMPluginActivate.php');
 register_activation_hook(__FILE__, array('ZDMPluginActivate', 'activate'));
 
-// Plugin Deaktivierung
+// Plugin deactivation
 require_once (plugin_dir_path(__FILE__) . 'lib/ZDMPluginDeactivate.php');
 register_deactivation_hook(__FILE__, array('ZDMPluginDeactivate', 'deactivate'));
 
-// Plugin Upgrade
+// Plugin upgrade
 require_once (plugin_dir_path(__FILE__) . '/lib/upgrade.php');

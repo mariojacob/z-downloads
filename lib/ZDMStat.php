@@ -1,20 +1,20 @@
 <?php
 
-// Abbruch bei direktem Zugriff
+// Abort by direct access
 if (!defined('ABSPATH')) {
     die;
 }
 
 /**
- * ZDM-Statistics
+ * Statistics class
  */
 class ZDMStat {
 
     /**
-     * Gibt Array mit den meisten Downloads zurück
+     * Returns the array with the most downloads
      *
-     * @param string $type [Optional] Typ der Abfrage
-     * @param integer $limit [Optional] Anzahl an Einträgen
+     * @param string $type [Optional] Type of query 'archive' or 'file'
+     * @param integer $limit [Optional] Number of entries
      * @return array
      */
     public function get_best_downloads($type = 'archive', $limit = 5) {
@@ -53,9 +53,9 @@ class ZDMStat {
     }
 
     /**
-     * Gibt Anzahl der Downloads zurück
+     * Returns the number of downloads
      *
-     * @param string $type [Optional] Typ
+     * @param string $type [Optional] 'all' (standard), 'archive' or 'file'
      * @return int
      */
     public function get_downloads_count($type = 'all') {
@@ -64,10 +64,10 @@ class ZDMStat {
         $tablename_archives = $wpdb->prefix . "zdm_archives";
         $tablename_files = $wpdb->prefix . "zdm_files";
 
-        // Alle Downloads
+        // All downloads
         if ($type == 'all') {
 
-            // Archive
+            // Archives
             $db_archives = $wpdb->get_results(
                 "
                 SELECT count 
@@ -79,7 +79,7 @@ class ZDMStat {
                 $downloads_archives = $downloads_archives + $db_archives[$i]->count;
             }
     
-            // Dateien
+            // Files
             $db_files = $wpdb->get_results(
                 "
                 SELECT count 
@@ -94,7 +94,7 @@ class ZDMStat {
             return $downloads_archives + $downloads_files;
         }
 
-        // Archive
+        // Archives
         if ($type == 'archive') {
             $db_archives = $wpdb->get_results(
                 "
@@ -110,7 +110,7 @@ class ZDMStat {
             return $downloads_archives;
         }
 
-        // Dateien
+        // Files
         if ($type == 'file') {
             $db_files = $wpdb->get_results(
                 "
@@ -129,22 +129,22 @@ class ZDMStat {
     }
 
     /**
-     * Gibt Download Anzahl für einen bestimmten Zeitraum zurück
+     * Returns the number of downloads for a specific period of time
      *
-     * @param string $type [Optional] Typ
-     * @param int $period Zeitangabe in Sekunden
+     * @param string $type [Optional] 'all' (standard), 'archive' or 'file'
+     * @param int $period Time in seconds
      * @return int
      */
     public function get_downloads_count_time($type = 'all', $period) {
 
         global $wpdb;
 
-        // Alle Downloads
+        // All downloads
         if ($type == 'all') {
 
             $tablename_log = $wpdb->prefix . "zdm_log";
 
-            // Archive
+            // Archives
             $type_archives = 'download archive';
 
             $time = time() - $period;
@@ -161,7 +161,7 @@ class ZDMStat {
 
             $downloads_archives = count($db_log_archives);
 
-            // Dateien
+            // Files
             $type_files = 'download file';
 
             $time = time() - $period;
@@ -181,7 +181,7 @@ class ZDMStat {
             return $downloads_archives + $downloads_files;
         }
 
-        // Archive
+        // Archives
         if ($type == 'archive') {
 
             $tablename_log = $wpdb->prefix . "zdm_log";
@@ -205,7 +205,7 @@ class ZDMStat {
             return $downloads_archives;
         }
 
-        // Dateien
+        // Files
         if ($type == 'file') {
 
             $tablename_log = $wpdb->prefix . "zdm_log";
@@ -231,7 +231,7 @@ class ZDMStat {
     }
 
     /**
-     * Gibt Anzahl der Downloads für einzelne Datei oder Archiv zurück
+     * Returns the number of downloads for a single file or archive
      *
      * @param string $type
      * @param int $item_id
@@ -264,10 +264,10 @@ class ZDMStat {
     }
 
     /**
-     * Gibt die letzten Downloads als Array zurück
+     * Returns the last downloads as an array
      *
-     * @param string $type [Optional] Typ
-     * @param integer $limit [Optional] Anzahl der Einträge
+     * @param string $type [Optional]
+     * @param integer $limit [Optional] Number of entries
      * @return array
      */
     public function get_last_downloads($type = 'archive', $limit = 5) {
@@ -291,11 +291,11 @@ class ZDMStat {
     }
 
     /**
-     * Gibt die letzten Downloads (id, time_create) als Array zurück
+     * Returns the last downloads (id, time_create) as an array
      *
      * @param string $type
      * @param integer $item_id [Optional]
-     * @param integer $limit [Optional] Anzahl der Einträge
+     * @param integer $limit [Optional] Number of entries
      * @return array
      */
     public function get_last_downloads_for_single_stat($type, $item_id, $limit = 5) {

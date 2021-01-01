@@ -1,6 +1,6 @@
 <?php
 
-// Abbruch bei direktem Zugriff
+// Abort by direct access
 if (!defined('ABSPATH')) {
     die;
 }
@@ -14,7 +14,7 @@ define('ZDM__DOWNLOADS_PATH_URL', wp_upload_dir()['baseurl'] . "/z-downloads-" .
 define('ZDM__DOWNLOADS_CACHE_PATH_URL', ZDM__DOWNLOADS_PATH_URL . "/cache");
 define('ZDM__DOWNLOADS_FILES_PATH_URL', ZDM__DOWNLOADS_PATH_URL . "/files");
 
-// Optionen
+// options
 define('ZDM__OPTIONS', [
     'version'                           => ZDM__VERSION,
     'licence-key'                       => '',
@@ -37,7 +37,7 @@ define('ZDM__OPTIONS', [
     'stat-single-archive-last-limit'    => 5
 ]);
 
-// MIME Types
+// MIME types
 define('ZDM__MIME_TYPES_AUDIO', [
     'audio/aac',
     'audio/aacp',
@@ -67,7 +67,7 @@ define('ZDM__MIME_TYPES_IMAGE', [
     'image/tiff'
 ]);
 
-// Download-Button Style
+// Download button style
 define('ZDM__DOWNLOAD_BTN_STYLE_VAL', [
     'black',
     'grey5',
@@ -97,7 +97,7 @@ define('ZDM__DOWNLOAD_BTN_STYLE', [
     __('Red', 'zdm')
 ]);
 
-// Download-Button runde Ecken
+// Download button rounded edges
 define('ZDM__DOWNLOAD_BTN_BORDER_RADIUS_VAL', [
     'none',
     '1',
@@ -125,7 +125,7 @@ define('ZDM__DOWNLOAD_BTN_BORDER_RADIUS', [
     __('10 pixel', 'zdm')
 ]);
 
-// Download-Button Icons
+// Download button icons
 define('ZDM__DOWNLOAD_BTN_ICON_VAL', [
     'none',
     'download',
