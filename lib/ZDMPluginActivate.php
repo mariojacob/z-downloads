@@ -36,6 +36,7 @@ class ZDMPluginActivate {
         // Download folder token
         if (!$zdm_options['download-folder-token']) {
             $zdm_options['download-folder-token'] = md5(uniqid(rand(), true));
+            ZDMCore::log('download-folder-token', $zdm_options['download-folder-token']);
         }
 
         update_option('zdm_options', $zdm_options);
