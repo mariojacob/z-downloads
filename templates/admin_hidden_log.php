@@ -109,8 +109,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <div class="wrap">
 
             <h1><?=esc_html__('Log details', 'zdm')?></h1>
+            <br>
             <button class="page-title-action" onclick="ZDMgoBack()"><?=esc_html__('Back', 'zdm')?></button>
-            <br /><br />
+            <br><br>
 
             <div class="postbox">
                 <div class="inside">
