@@ -194,7 +194,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             ZDMCore::delete_all_data();
         }
     }
-
     ?>
 
     <div class="wrap">

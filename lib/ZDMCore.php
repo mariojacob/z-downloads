@@ -758,8 +758,9 @@ class ZDMCore {
                         }
                     } // end if ($this->check_if_archive_exists($zdownload_url) === true)
                     else {
-                        // TODO: Ordner Token Name überprüfen und raparieren
-                        // TODO: wenn repariert, Seite nochmal laden
+                        if ($this->repair_folder_token_name()) {
+                            // TODO: Seite nochmal laden
+                        }
                     }
                 } // end if ($zdownload_url != '' && is_numeric($zdownload_url))
             } // end if (isset($_GET['zdownload']))
@@ -828,8 +829,9 @@ class ZDMCore {
                         }
                     } // end if ($this->check_if_file_exists($zdownload_url) === true)
                     else {
-                        // TODO: Ordner Token Name überprüfen und raparieren
-                        // TODO: wenn repariert, Seite nochmal laden
+                        if ($this->repair_folder_token_name()) {
+                            // TODO: Seite nochmal laden
+                        }
                     }
                 } // end if ($zdownload_url != '' && is_numeric($zdownload_url))
             } // end if (isset($_GET['zdownload_f']))
@@ -1336,8 +1338,12 @@ class ZDMCore {
      * @return string Formatted number
      */
     public function number_format($number) {
-        // TODO: prüfen welche Sprache/Region aktiv ist und gibt entsprechend Punkt oder Beistrich zurück
-        return number_format($number, 0, ',', '.');
+
+        if (in_array(get_locale(), ZDM__COUNTRIES_USING_DECIMAL_POINT)) {
+            return number_format($number, 0, '.', ',');
+        } else {
+            return number_format($number, 0, ',', '.');
+        }
     }
 
     /**
@@ -1394,6 +1400,7 @@ class ZDMCore {
 
                 if ($dir_array[$i] != 'z-downloads-' . $options['download-folder-token']) {
                     rename(wp_upload_dir()['basedir'] . '/' . $dir_array[$i], wp_upload_dir()['basedir'] . '/z-downloads-' . $options['download-folder-token']);
+                    ZDMCore::log('folder token repaired');
                     return true;
                 } else {
                     return false;
