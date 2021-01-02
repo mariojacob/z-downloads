@@ -35,7 +35,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             ////////////////////
             
             $zdm_last_downloads = ZDMStat::get_last_downloads();
+            $zdm_last_downloads_count = count($zdm_last_downloads);
             $zdm_last_downloads_files = ZDMStat::get_last_downloads('file');
+            $zdm_last_downloads_files_count = count($zdm_last_downloads_files);
 
             if ($zdm_last_downloads != false OR $zdm_last_downloads_files != false) { ?>
                 
@@ -58,7 +60,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <tbody>
                             <?php
 
-                            for ($i = 0; $i < count($zdm_last_downloads); $i++) {
+                            for ($i = 0; $i < $zdm_last_downloads_count; $i++) {
 
                                 $zdm_download_name = ZDMCore::get_archive_name($zdm_last_downloads[$i]->message);
 
@@ -98,7 +100,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                             <tbody>
                                 <?php
-                                for ($i = 0; $i < count($zdm_last_downloads_files); $i++) {
+                                for ($i = 0; $i < $zdm_last_downloads_files_count; $i++) {
 
                                     $zdm_download_name = ZDMCore::get_file_name($zdm_last_downloads_files[$i]->message);
 
@@ -136,7 +138,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             ////////////////////
 
             $zdm_best_downloads = ZDMStat::get_best_downloads();
+            $zdm_best_downloads_count = count($zdm_best_downloads);
             $zdm_best_downloads_files = ZDMStat::get_best_downloads('file');
+            $zdm_best_downloads_files_count = count($zdm_best_downloads_files);
 
             if ($zdm_best_downloads != false OR $zdm_best_downloads_files != false) { ?>
                 
@@ -160,7 +164,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <tbody>
                             <?php
 
-                                for ($i = 0; $i < count($zdm_best_downloads); $i++) {
+                                for ($i = 0; $i < $zdm_best_downloads_count; $i++) {
 
                                     $zdm_download_name = $zdm_best_downloads[$i]->name;
 
@@ -182,7 +186,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         </td>
                                     </tr>
                                     <?php
-                                } // end for ($i = 0; $i < count($zdm_best_downloads); $i++)
+                                } // end for ($i = 0; $i < $zdm_best_downloads_count; $i++)
                                 ?>
                             </tbody>
                         </table>
@@ -202,7 +206,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                             <tbody>
                                 <?php
-                                for ($i = 0; $i < count($zdm_best_downloads_files); $i++) {
+                                for ($i = 0; $i < $zdm_best_downloads_files_count; $i++) {
 
                                     $zdm_download_name = $zdm_best_downloads_files[$i]->name;
 
@@ -238,7 +242,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         </td>
                                     </tr>
                                 <?php
-                                } // end for ($i = 0; $i < count($zdm_best_downloads_files); $i++)
+                                } // end for ($i = 0; $i < $zdm_best_downloads_files_count; $i++)
                                 ?>
                             </tbody>
                         </table>

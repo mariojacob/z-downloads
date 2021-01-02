@@ -315,7 +315,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             <?php
                                             $zdm_btn_style = '';
 
-                                            for( $i = 0; $i < count(ZDM__DOWNLOAD_BTN_STYLE); $i++ ) {
+                                            $zdm_download_btn_style = count(ZDM__DOWNLOAD_BTN_STYLE);
+
+                                            for( $i = 0; $i < $zdm_download_btn_style; $i++ ) {
                                             $zdm_btn_style    .= '<option value="' . ZDM__DOWNLOAD_BTN_STYLE_VAL[$i] . '" ' 
                                                                 . ( $zdm_options['download-btn-style'] == ZDM__DOWNLOAD_BTN_STYLE_VAL[$i] ? 'selected="selected"' : '' ) . '>' 
                                                                 . ZDM__DOWNLOAD_BTN_STYLE[$i] 
@@ -346,8 +348,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <select name="download-btn-border-radius">
                                             <?php
                                             $zdm_btn_border = '';
+                                            
+                                            $zdm_download_btn_border_radius = count(ZDM__DOWNLOAD_BTN_BORDER_RADIUS);
 
-                                            for( $i = 0; $i < count(ZDM__DOWNLOAD_BTN_BORDER_RADIUS); $i++ ) {
+                                            for( $i = 0; $i < $zdm_download_btn_border_radius; $i++ ) {
                                                 $zdm_btn_border .= '<option value="' . ZDM__DOWNLOAD_BTN_BORDER_RADIUS_VAL[$i] . '" ' 
                                                                 . ( $zdm_options['download-btn-border-radius'] == ZDM__DOWNLOAD_BTN_BORDER_RADIUS_VAL[$i] ? 'selected="selected"' : '' ) . '>' 
                                                                 . ZDM__DOWNLOAD_BTN_BORDER_RADIUS[$i] 

@@ -143,8 +143,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 "
             );
 
+            $zdm_db_file_count = count($zdm_db_file);
+
             // Check whether the file exists
-            if (count($zdm_db_file) > 0) {
+            if ($zdm_db_file_count > 0) {
 
                 if ($_POST['name'] != '') {
                     $zdm_name = sanitize_text_field($_POST['name']);
@@ -201,7 +203,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 "
             );
 
-            if (count($zdm_db_file) > 0) {
+            $zdm_db_file_count = count($zdm_db_file);
+
+            if ($zdm_db_file_count > 0) {
 
                 $zdm_db_file = $zdm_db_file[0];
             
@@ -587,8 +591,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                                 <table class="zdm-table-list">
                                                     <?php
                                                     $zdm_linked_archives = ZDMCore::get_linked_archives($zdm_db_file->id);
+                                                    $zdm_linked_archives_count = count($zdm_linked_archives);
 
-                                                    for ($i=0; $i < count($zdm_linked_archives); $i++) {
+                                                    for ($i=0; $i < $zdm_linked_archives_count; $i++) {
 
                                                         $zdm_linked_archive_data = ZDMCore::get_archive_data($zdm_linked_archives[$i]->id_archive);
                                                         
@@ -989,6 +994,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             "
         );
 
+        $zdm_db_files_count = count($zdm_db_files);
+
         ?>
 
         <div class="wrap">
@@ -997,7 +1004,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <hr class="wp-header-end">
             <p><a href="admin.php?page=<?=ZDM__SLUG?>-add-file" class="page-title-action"><?=esc_html__('Add file', 'zdm')?></a></p>
 
-            <?php if (count($zdm_db_files) > 0) { ?>
+            <?php if ($zdm_db_files_count > 0) { ?>
 
             <div class="col-wrap">
                 <table class="wp-list-table widefat striped tags">
@@ -1017,7 +1024,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <tbody>
                     <?php
 
-                        for ($i = 0; $i < count($zdm_db_files); $i++) {
+                        for ($i = 0; $i < $zdm_db_files_count; $i++) {
 
                             if (in_array($zdm_db_files[$i]->file_type, ZDM__MIME_TYPES_AUDIO)) { // Audio
                                 $zdm_icon = '<ion-icon name="musical-notes"></ion-icon>';
@@ -1119,6 +1126,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             "
         );
 
+        $zdm_db_files_count = count($zdm_db_files);
+
         ?>
         <div class="wrap">
             <h1 class="wp-heading-inline"><?=esc_html__('Upload new file', 'zdm')?></h1>
@@ -1132,7 +1141,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         
             <?php
             // Check if files exist
-            if (count($zdm_db_files) > 0) {
+            if ($zdm_db_files_count > 0) {
                 ?>
 
                 <h2><?=esc_html__('Duplicates', 'zdm')?></h2>
@@ -1155,7 +1164,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <tbody>
                         <?php
 
-                            for ($i = 0; $i < count($zdm_db_files); $i++) {
+                            for ($i = 0; $i < $zdm_db_files_count; $i++) {
 
                                 if (in_array($zdm_db_files[$i]->file_type, ZDM__MIME_TYPES_AUDIO)) { // Audio
                                     $zdm_icon = '<ion-icon name="musical-notes"></ion-icon>';

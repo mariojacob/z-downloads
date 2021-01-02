@@ -28,6 +28,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     } else { // Log list
         
         $zdm_log_filter_array = array(esc_html__('Everything', 'zdm'), esc_html__('Downloads', 'zdm'), esc_html__('Files', 'zdm'), esc_html__('Archives', 'zdm'));
+        $zdm_log_filter_array_count = count($zdm_log_filter_array);
         $zdm_log_filter_array_val = array("all", "downloads", "files", "archives");
 
         if (isset($_POST['log-filter-type']) && wp_verify_nonce($_POST['nonce'], 'log-types')) {
@@ -101,6 +102,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 "
             );
         }
+
+        $zdm_db_logs_count = count($zdm_db_logs);
     }
 
     if ($zdm_status === 1) { // Log detail page
@@ -174,7 +177,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <br /><br />
 
             <?php
-            if (count($zdm_db_logs) > 0) {
+            if ($zdm_db_logs_count > 0) {
                 ?>
 
                 <div class="col-wrap">
@@ -189,7 +192,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <?php
                                         $zdm_log_filter_option = '';
 
-                                        for( $i = 0; $i < count($zdm_log_filter_array); $i++ ) {
+                                        for( $i = 0; $i < $zdm_log_filter_array_count; $i++ ) {
                                             $zdm_log_filter_option .= '<option value="' . $zdm_log_filter_array_val[$i] . '" ' 
                                                                     . ( $zdm_lof_filter_type == $zdm_log_filter_array_val[$i] ? 'selected="selected"' : '' ) . '>' 
                                                                     . $zdm_log_filter_array[$i] 
@@ -218,7 +221,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         <tbody>
                         <?php
 
-                            for ($i = 0; $i < count($zdm_db_logs); $i++) {
+                            for ($i = 0; $i < $zdm_db_logs_count; $i++) {
 
                                 if ($zdm_db_logs[$i]->type == 'download archive' OR $zdm_db_logs[$i]->type == 'download file') {
                                     $zdm_icon = 'download';
@@ -300,7 +303,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <?php
                                         $zdm_log_filter_option = '';
 
-                                        for( $i = 0; $i < count($zdm_log_filter_array); $i++ ) {
+                                        for( $i = 0; $i < $zdm_log_filter_array_count; $i++ ) {
                                             $zdm_log_filter_option .= '<option value="' . $zdm_log_filter_array_val[$i] . '" ' 
                                                                     . ( $zdm_lof_filter_type == $zdm_log_filter_array_val[$i] ? 'selected="selected"' : '' ) . '>' 
                                                                     . $zdm_log_filter_array[$i] 

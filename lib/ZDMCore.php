@@ -520,9 +520,11 @@ class ZDMCore {
             AND file_deleted = '1'
             "
             );
+        
+        $db_files_rel_deleted_count = count($db_files_rel_deleted);
 
         // Deletes all entries from files_rel with file_deleted = '1' that point to the archive
-        for ($i = 0; $i < count($db_files_rel_deleted); $i++) { 
+        for ($i = 0; $i < $db_files_rel_deleted_count; $i++) { 
             $wpdb->delete(
                 $tablename_files_rel, 
                 array(
@@ -579,7 +581,9 @@ class ZDMCore {
             "
         );
 
-        for ($i=0; $i < count($zdm_db_archives); $i++) {
+        $zdm_db_archives_count = count($zdm_db_archives);
+
+        for ($i=0; $i < $zdm_db_archives_count; $i++) {
 
             if ($zdm_db_archives[$i]->archive_cache_path != '') {
             
@@ -618,7 +622,9 @@ class ZDMCore {
             "
         );
 
-        for ($i=0; $i < count($zdm_db_file); $i++) {
+        $zdm_db_file_count = count($zdm_db_file);
+
+        for ($i=0; $i < $zdm_db_file_count; $i++) {
             
             // Delete file and folder
             $zdm_folder_path = ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_db_file[$i]->folder_path;
@@ -654,7 +660,9 @@ class ZDMCore {
             "
         );
 
-        for ($i=0; $i < count($zdm_db_file_rel); $i++) {
+        $zdm_db_file_rel_count = count($zdm_db_file_rel);
+
+        for ($i=0; $i < $zdm_db_file_rel_count; $i++) {
 
             // Delete database entries
             $wpdb->delete(
@@ -1146,7 +1154,9 @@ class ZDMCore {
             "
             );
         
-        for ($i=0; $i < count($db_files_md5); $i++) { 
+        $db_files_md5_count = count($db_files_md5);
+        
+        for ($i=0; $i < $db_files_md5_count; $i++) { 
             $files_md5[] = $db_files_md5[$i]->hash_md5;
         }
 

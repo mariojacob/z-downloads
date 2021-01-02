@@ -74,8 +74,10 @@ class ZDMStat {
                 FROM $tablename_archives
                 "
                 );
+
+            $db_archives_count = count($db_archives);
     
-            for ($i=0; $i < count($db_archives); $i++) { 
+            for ($i=0; $i < $db_archives_count; $i++) { 
                 $downloads_archives = $downloads_archives + $db_archives[$i]->count;
             }
     
@@ -86,8 +88,10 @@ class ZDMStat {
                 FROM $tablename_files
                 "
                 );
+
+            $db_files_count = count($db_files);
     
-            for ($i=0; $i < count($db_files); $i++) { 
+            for ($i=0; $i < $db_files_count; $i++) { 
                 $downloads_files = $downloads_files + $db_files[$i]->count;
             }
 
@@ -102,8 +106,10 @@ class ZDMStat {
                 FROM $tablename_archives
                 "
                 );
+
+            $db_archives_count = count($db_archives);
     
-            for ($i=0; $i < count($db_archives); $i++) { 
+            for ($i=0; $i < $db_archives_count; $i++) { 
                 $downloads_archives = $downloads_archives + $db_archives[$i]->count;
             }
             
@@ -118,8 +124,10 @@ class ZDMStat {
                 FROM $tablename_files
                 "
                 );
+
+            $db_files_count = count($db_files);
     
-            for ($i=0; $i < count($db_files); $i++) { 
+            for ($i=0; $i < $db_files_count; $i++) { 
                 $downloads_files = $downloads_files + $db_files[$i]->count;
             }
 

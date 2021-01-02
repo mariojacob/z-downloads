@@ -40,9 +40,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         "
     );
 
+    $zdm_db_files_count = count($zdm_db_files);
+
     // Save files from database in selection menu
     $zdm_option_output = '';
-    for ($i = 0; $i < count($zdm_db_files); $i++) {
+    for ($i = 0; $i < $zdm_db_files_count; $i++) {
 
         $zdm_option_output .= '<option value="' . $zdm_db_files[$i]->id . '">' . $zdm_db_files[$i]->name . '</option>';
     }
@@ -800,6 +802,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             "
         );
 
+        $zdm_db_archives_count = count($zdm_db_archives);
+
         ?>
 
         <div class="wrap">
@@ -808,7 +812,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <hr class="wp-header-end">
             <p><a href="admin.php?page=<?=ZDM__SLUG?>-add-archive" class="page-title-action"><?=esc_html__('Create archive', 'zdm')?></a></p>
 
-            <?php if (count($zdm_db_archives) > 0) { ?>
+            <?php if ($zdm_db_archives_count > 0) { ?>
 
             <div class="col-wrap">
                 <table class="wp-list-table widefat striped tags">
@@ -829,7 +833,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <tbody>
                     <?php
 
-                        for ($i = 0; $i < count($zdm_db_archives); $i++) {
+                        for ($i = 0; $i < $zdm_db_archives_count; $i++) {
 
                             $zdm_dm_archive_id = htmlspecialchars($zdm_db_archives[$i]->id);
                             // Get id, id_file, id_archive from database (files_rel)
