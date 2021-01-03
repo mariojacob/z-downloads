@@ -11,5 +11,6 @@
     </ul>
     <div class="zdm_dashboard_widget_section">
         <a href="admin.php?page=<?=ZDM__SLUG?>" class="button button-secondary"><?=esc_html__('All statistics', 'zdm')?></a>
+        <a href="admin.php?page=<?=ZDM__SLUG?>-settings" class="button button-secondary"><?=esc_html__('Settings', 'zdm')?></a>
     </div>
 </div>
