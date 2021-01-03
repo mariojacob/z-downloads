@@ -421,7 +421,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     <?php }
 
-    if ($zdm_status === 1) { // Datei Detailseite
+    if ($zdm_status === 1) { // File detail page
 
         // Get data from database (files)
         $zdm_db_file = $wpdb->get_results( 
@@ -433,7 +433,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         );
         $zdm_db_file = $zdm_db_file[0];
 
-        // Download-Button Text
+        // Download button text
         if ($zdm_db_file->button_text != '') {
             $zdm_button_text = $zdm_db_file->button_text;
         } else {
@@ -484,6 +484,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     </tr>
                                 
                                     <?php
+                                    $zdm_file_path = ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name);
 
                                     if (in_array($zdm_db_file->file_type, ZDM__MIME_TYPES_AUDIO)) { // Audio
                                         ?>
@@ -491,10 +492,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             <th scope="row"><?=esc_html__('Preview', 'zdm')?>:</th>
                                             <td valign="middle">
                                                 <audio controls preload="none">
-                                                    <source src="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" type="<?=htmlspecialchars($zdm_db_file->file_type)?>">
+                                                    <source src="<?=$zdm_file_path?>" type="<?=htmlspecialchars($zdm_db_file->file_type)?>">
                                                 </audio>
                                                 <br>
-                                                <?=esc_html__('Download', 'zdm')?>: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" target="_blank" download><?=htmlspecialchars($zdm_db_file->file_name)?></a>
+                                                <?=esc_html__('Download', 'zdm')?>: <a href="<?=$zdm_file_path?>" target="_blank" download><?=htmlspecialchars($zdm_db_file->file_name)?></a>
                                             </td>
                                         </tr>
                                         <?php
@@ -504,21 +505,34 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             <th scope="row"><?=esc_html__('Preview', 'zdm')?>:</th>
                                             <td valign="middle">
                                                 <video width="400px" controls>
-                                                    <source src="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" type="<?=htmlspecialchars($zdm_db_file->file_type)?>">
+                                                    <source src="<?=$zdm_file_path?>" type="<?=htmlspecialchars($zdm_db_file->file_type)?>">
                                                 </video>
                                                 <br>
-                                                <?=esc_html__('Download', 'zdm')?>: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" target="_blank" download><?=htmlspecialchars($zdm_db_file->file_name)?></a>
+                                                <?=esc_html__('Download', 'zdm')?>: <a href="<?=$zdm_file_path?>" target="_blank" download><?=htmlspecialchars($zdm_db_file->file_name)?></a>
                                             </td>
                                         </tr>
                                         <?php
                                     } elseif (in_array($zdm_db_file->file_type, ZDM__MIME_TYPES_IMAGE)) { // Image
+
+                                        $zdm_image_width = 400;
+                                        $zdm_image_dimensions = getimagesize($zdm_file_path);
+                                        if ($zdm_image_dimensions[0] < 400) {
+                                            $zdm_image_width = $zdm_image_dimensions[0];
+                                        }
                                         ?>
                                         <tr valign="top">
                                             <th scope="row"><?=esc_html__('Preview', 'zdm')?>:</th>
                                             <td valign="middle">
-                                                <img src="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" width="400px" height="auto">
+                                                <img src="<?=$zdm_file_path?>" width="<?=$zdm_image_width?>px" height="auto">
                                                 <br>
-                                                <?=esc_html__('Download', 'zdm')?>: <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" target="_blank" download><?=htmlspecialchars($zdm_db_file->file_name)?></a>
+                                                <?=esc_html__('Download', 'zdm')?>: <a href="<?=$zdm_file_path?>" target="_blank" download><?=htmlspecialchars($zdm_db_file->file_name)?></a>
+                                            </td>
+                                        </tr>
+                                        <tr valign="top">
+                                            <th scope="row"><?=esc_html__('Details', 'zdm')?>:</th>
+                                            <td valign="middle">
+                                                <?=esc_html__('Image dimensions (width x height)', 'zdm')?>: <b><?=$zdm_image_dimensions[0]?> x <?=$zdm_image_dimensions[1]?></b> <?=esc_html__('pixels', 'zdm')?><br>
+                                                <?=esc_html__('MIME type', 'zdm')?>: <b><?=$zdm_image_dimensions['mime']?></b>
                                             </td>
                                         </tr>
                                         <?php
@@ -527,7 +541,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <tr valign="top">
                                             <th scope="row"><?=esc_html__('Download file', 'zdm')?>:</th>
                                             <td valign="middle">
-                                                <a href="<?=ZDM__DOWNLOADS_FILES_PATH_URL . '/' . htmlspecialchars($zdm_db_file->folder_path) . '/' . htmlspecialchars($zdm_db_file->file_name)?>" target="_blank" download><?=htmlspecialchars($zdm_db_file->file_name)?></a>
+                                                <a href="<?=$zdm_file_path?>" target="_blank" download><?=htmlspecialchars($zdm_db_file->file_name)?></a>
                                             </td>
                                         </tr>
                                         <?php
