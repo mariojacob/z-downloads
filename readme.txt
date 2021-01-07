@@ -6,8 +6,8 @@ License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
-Tested up to: 5.5
-Stable tag: 1.5.2
+Tested up to: 5.6
+Stable tag: 1.6.0
 
 Download management and automatic ZIP archive creation
 
@@ -46,7 +46,7 @@ The same file is in multiple downloads, such as promotional material. In the eve
 
 = Conditions =
 
--   WordPress 4.9+ -- latest version 5.5.x
+-   WordPress 4.9+ -- latest version 5.6.x
 
 = Languages =
 
