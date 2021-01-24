@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-01-07 16:03+0100\n"
-"PO-Revision-Date: 2021-01-07 16:04+0100\n"
+"POT-Creation-Date: 2021-01-24 10:09+0100\n"
+"PO-Revision-Date: 2021-01-24 10:10+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -177,7 +177,7 @@ msgstr "Archiv erstellen"
 #: lib/ZDMCore.php:65 lib/ZDMCore.php:66
 #: templates/admin_dashboard_widget.php:14 templates/admin_menu_files.php:929
 #: templates/admin_menu_help.php:99 templates/admin_menu_help.php:266
-#: templates/admin_menu_settings.php:200
+#: templates/admin_menu_settings.php:202
 #: templates/admin_menu_ziparchive.php:735
 msgid "Settings"
 msgstr "Einstellungen"
@@ -198,159 +198,159 @@ msgstr "Upgrade"
 msgid "Download statistics"
 msgstr "Downloadstatistik"
 
-#: lib/ZDMCore.php:1487
+#: lib/ZDMCore.php:1512
 msgid "Your browser does not support HTML audio elements."
 msgstr "Dein Browser unterstützt keine HTML Audio-Elemente."
 
-#: lib/ZDMCore.php:1968
+#: lib/ZDMCore.php:2002
 msgid "Your browser does not support HTML video elements."
 msgstr "Dein Browser unterstützt keine HTML Video-Elemente."
 
-#: lib/constants.php:86
+#: lib/constants.php:87
 msgid "Black"
 msgstr "Schwarz"
 
-#: lib/constants.php:87
+#: lib/constants.php:88
 msgid "Grey 5"
 msgstr "Grau 5"
 
-#: lib/constants.php:88
+#: lib/constants.php:89
 msgid "Grey 7"
 msgstr "Grau 7"
 
-#: lib/constants.php:89
+#: lib/constants.php:90
 msgid "Grey 9"
 msgstr "Grau 9"
 
-#: lib/constants.php:90
+#: lib/constants.php:91
 msgid "Grey 11"
 msgstr "Grau 11"
 
-#: lib/constants.php:91
+#: lib/constants.php:92
 msgid "Grey 13"
 msgstr "Grau 13"
 
-#: lib/constants.php:92
+#: lib/constants.php:93
 msgid "Purple"
 msgstr "Lila"
 
-#: lib/constants.php:93
+#: lib/constants.php:94
 msgid "Blue"
 msgstr "Blau"
 
-#: lib/constants.php:94
+#: lib/constants.php:95
 msgid "Green"
 msgstr "Grün"
 
-#: lib/constants.php:95
+#: lib/constants.php:96
 msgid "Yellow"
 msgstr "Gelb"
 
-#: lib/constants.php:96
+#: lib/constants.php:97
 msgid "Orange"
 msgstr "Orange"
 
-#: lib/constants.php:97
+#: lib/constants.php:98
 msgid "Red"
 msgstr "Rot"
 
-#: lib/constants.php:115 lib/constants.php:147
+#: lib/constants.php:116 lib/constants.php:148
 msgid "none"
 msgstr "keine"
 
-#: lib/constants.php:116
+#: lib/constants.php:117
 msgid "1 pixel"
 msgstr "1Pixel"
 
-#: lib/constants.php:117
+#: lib/constants.php:118
 msgid "2 pixel"
 msgstr "2 Pixel"
 
-#: lib/constants.php:118
+#: lib/constants.php:119
 msgid "3 pixel"
 msgstr "3 Pixel"
 
-#: lib/constants.php:119
+#: lib/constants.php:120
 msgid "4 pixel"
 msgstr "4 Pixel"
 
-#: lib/constants.php:120
+#: lib/constants.php:121
 msgid "5 pixel"
 msgstr "5 Pixel"
 
-#: lib/constants.php:121
+#: lib/constants.php:122
 msgid "6 pixel"
 msgstr "6 Pixel"
 
-#: lib/constants.php:122
+#: lib/constants.php:123
 msgid "7 pixel"
 msgstr "7 Pixel"
 
-#: lib/constants.php:123
+#: lib/constants.php:124
 msgid "8 pixel"
 msgstr "8 Pixel"
 
-#: lib/constants.php:124
+#: lib/constants.php:125
 msgid "9 pixel"
 msgstr "9 Pixel"
 
-#: lib/constants.php:125
+#: lib/constants.php:126
 msgid "10 pixel"
 msgstr "10 Pixel"
 
-#: lib/constants.php:148
+#: lib/constants.php:149
 msgid "Arrow 1"
 msgstr "Pfeil 1"
 
-#: lib/constants.php:149
+#: lib/constants.php:150
 msgid "Arrow 2"
 msgstr "Pfeil 2"
 
-#: lib/constants.php:150
+#: lib/constants.php:151
 msgid "Download code"
 msgstr "Download Code"
 
-#: lib/constants.php:151
+#: lib/constants.php:152
 msgid "Cloud download"
 msgstr "Cloud Download"
 
-#: lib/constants.php:152
+#: lib/constants.php:153
 msgid "Cloud"
 msgstr "Cloud"
 
-#: lib/constants.php:153
+#: lib/constants.php:154
 msgid "Cloud check"
 msgstr "Cloud Check"
 
-#: lib/constants.php:154
+#: lib/constants.php:155
 msgid "Check 1"
 msgstr "Check 1"
 
-#: lib/constants.php:155
+#: lib/constants.php:156
 msgid "Check 2"
 msgstr "Check 2"
 
-#: lib/constants.php:156
+#: lib/constants.php:157
 msgid "Check 3"
 msgstr "Check 3"
 
-#: lib/constants.php:157
+#: lib/constants.php:158
 msgid "Heart 1"
 msgstr "Herz 1"
 
-#: lib/constants.php:158
+#: lib/constants.php:159
 msgid "Heart 2"
 msgstr "Herz 2"
 
-#: lib/constants.php:159
+#: lib/constants.php:160
 msgid "Star 1"
 msgstr "Stern 1"
 
-#: lib/constants.php:160
+#: lib/constants.php:161
 msgid "Star 2"
 msgstr "Stern 2"
 
-#: lib/constants.php:161
+#: lib/constants.php:162
 msgid "Trophy"
 msgstr "Trophäe"
 
@@ -434,7 +434,7 @@ msgstr "kein WordPress Benutzer"
 msgid "Created"
 msgstr "Erstellt"
 
-#: templates/admin_hidden_log.php:175 templates/admin_menu_settings.php:485
+#: templates/admin_hidden_log.php:175 templates/admin_menu_settings.php:494
 msgid "Log"
 msgstr "Log"
 
@@ -452,7 +452,7 @@ msgstr "Logs filtern nach Typ"
 
 #: templates/admin_hidden_log.php:206 templates/admin_hidden_log.php:317
 #: templates/admin_menu_files.php:659 templates/admin_menu_files.php:834
-#: templates/admin_menu_settings.php:255
+#: templates/admin_menu_settings.php:257
 #: templates/admin_menu_ziparchive.php:525
 #: templates/admin_menu_ziparchive.php:649
 msgid "Update"
@@ -581,7 +581,7 @@ msgid "For more file shortcuts activate"
 msgstr "Für mehr Datei-Verknüpfungen aktiviere"
 
 #: templates/admin_menu_add_archive.php:227
-#: templates/admin_menu_settings.php:535
+#: templates/admin_menu_settings.php:544
 msgid "Save"
 msgstr "Speichern"
 
@@ -703,7 +703,7 @@ msgstr "Datei"
 msgid "Replace file"
 msgstr "Ersetze Datei"
 
-#: templates/admin_menu_files.php:456 templates/admin_menu_settings.php:420
+#: templates/admin_menu_files.php:456 templates/admin_menu_settings.php:422
 #: templates/admin_menu_ziparchive.php:357
 msgid "Statistics"
 msgstr "Statistik"
@@ -858,7 +858,7 @@ msgstr "Alle Shortcodes"
 msgid "overview with explanation and examples."
 msgstr "im Überblick mit Erklärung und Beispielen."
 
-#: templates/admin_menu_files.php:677 templates/admin_menu_settings.php:299
+#: templates/admin_menu_files.php:677 templates/admin_menu_settings.php:301
 #: templates/admin_menu_ziparchive.php:544
 msgid "Download button"
 msgstr "Download-Button"
@@ -926,7 +926,7 @@ msgstr "MD5 Hashwert ausgeben"
 
 #: templates/admin_menu_files.php:722 templates/admin_menu_files.php:723
 #: templates/admin_menu_files.php:838 templates/admin_menu_help.php:19
-#: templates/admin_menu_settings.php:429
+#: templates/admin_menu_settings.php:431
 #: templates/admin_menu_ziparchive.php:567
 #: templates/admin_menu_ziparchive.php:568
 msgid "feature"
@@ -1614,15 +1614,15 @@ msgstr ""
 "Um diese Einstellung zu ändern und die IP Adresse vollständig zu tracken "
 "klicke im"
 
-#: templates/admin_menu_settings.php:208
+#: templates/admin_menu_settings.php:210
 msgid "Settings updated!"
 msgstr "Einstellungen aktualisiert!"
 
-#: templates/admin_menu_settings.php:230
+#: templates/admin_menu_settings.php:232
 msgid "All data was deleted successfully!"
 msgstr "Alle Daten wurden erfolgreich gelöscht!"
 
-#: templates/admin_menu_settings.php:231
+#: templates/admin_menu_settings.php:233
 msgid ""
 "All your uploaded files, all archives in the cache and all database entries "
 "from"
@@ -1630,11 +1630,11 @@ msgstr ""
 "Alle deine hochgeladenen Dateien, alle Archive im Cache und alle "
 "Datenbankeinträge von"
 
-#: templates/admin_menu_settings.php:231
+#: templates/admin_menu_settings.php:233
 msgid "have been irrevocably deleted."
 msgstr "wurden unwiderruflich gelöscht."
 
-#: templates/admin_menu_settings.php:232
+#: templates/admin_menu_settings.php:234
 msgid ""
 "You can now deactivate and uninstall the plugin in the plugin overview or "
 "you upload new files and start fresh."
@@ -1642,78 +1642,78 @@ msgstr ""
 "Du kannst jetzt das Plugin in der Plugin-Übersicht deaktivieren und "
 "deinstallieren oder du lädst neue Dateien hoch und beginnst ganz frisch."
 
-#: templates/admin_menu_settings.php:233
+#: templates/admin_menu_settings.php:235
 msgid "Back to settings"
 msgstr "Zurück zu den Einstellungen"
 
-#: templates/admin_menu_settings.php:244
+#: templates/admin_menu_settings.php:246
 msgid "is activated"
 msgstr "ist aktiviert"
 
-#: templates/admin_menu_settings.php:249
+#: templates/admin_menu_settings.php:251
 msgid "license key"
 msgstr "Lizenzschlüssel"
 
-#: templates/admin_menu_settings.php:259
+#: templates/admin_menu_settings.php:261
 msgid "Activate"
 msgstr "Aktivieren"
 
-#: templates/admin_menu_settings.php:266
+#: templates/admin_menu_settings.php:268
 msgid "Remove license key"
 msgstr "Lizenzschlüssel entfernen"
 
-#: templates/admin_menu_settings.php:270
+#: templates/admin_menu_settings.php:272
 msgid "Benefit from the"
 msgstr "Profitiere von den"
 
-#: templates/admin_menu_settings.php:270
+#: templates/admin_menu_settings.php:272
 msgid "features and unlock all possibilities"
 msgstr "Funktionen und alle Möglichkeiten freischalten"
 
-#: templates/admin_menu_settings.php:270
+#: templates/admin_menu_settings.php:272
 msgid "free, more info"
 msgstr "frei, mehr Infos"
 
-#: templates/admin_menu_settings.php:277
+#: templates/admin_menu_settings.php:279
 msgid "Licensed for"
 msgstr "Lizensiert für"
 
-#: templates/admin_menu_settings.php:283
+#: templates/admin_menu_settings.php:285
 msgid "Purchased"
 msgstr "Erworben"
 
-#: templates/admin_menu_settings.php:304
+#: templates/admin_menu_settings.php:306
 msgid "Standard text"
 msgstr "Standardtext"
 
-#: templates/admin_menu_settings.php:308
+#: templates/admin_menu_settings.php:310
 msgid ""
 "This is the default text, but this can be changed individually per download."
 msgstr ""
 "Das ist der Standardtext, dieser kann aber je Download individuell geändert "
 "werden."
 
-#: templates/admin_menu_settings.php:312
+#: templates/admin_menu_settings.php:314
 msgid "Style"
 msgstr "Style"
 
-#: templates/admin_menu_settings.php:333
+#: templates/admin_menu_settings.php:335
 msgid "Choose from different button colors the default value for buttons."
 msgstr "Wähle aus verschiedenen Button-Farben den Standardwert für Buttons."
 
-#: templates/admin_menu_settings.php:340
+#: templates/admin_menu_settings.php:342
 msgid "Outline"
 msgstr "Outline"
 
-#: templates/admin_menu_settings.php:342
+#: templates/admin_menu_settings.php:344
 msgid "This option shows the button as a frame."
 msgstr "Diese Option zeigt den Button als Rahmen."
 
-#: templates/admin_menu_settings.php:346
+#: templates/admin_menu_settings.php:348
 msgid "Round corners"
 msgstr "Runde Ecken"
 
-#: templates/admin_menu_settings.php:364
+#: templates/admin_menu_settings.php:366
 msgid ""
 "If \"none\" is selected then the default value of your theme will be used, "
 "the button will remain square."
@@ -1721,27 +1721,27 @@ msgstr ""
 "Wenn \"keine\" ausgewählt ist, dann wird der Standardwert deines Themes "
 "verwendet, der Button bleibt eckig."
 
-#: templates/admin_menu_settings.php:368
+#: templates/admin_menu_settings.php:370
 msgid "Icon"
 msgstr "Icon"
 
-#: templates/admin_menu_settings.php:408
+#: templates/admin_menu_settings.php:410
 msgid "Only icon"
 msgstr "Nur Icon"
 
-#: templates/admin_menu_settings.php:410
+#: templates/admin_menu_settings.php:412
 msgid "This option displays only the icon without text."
 msgstr "Diese Option zeigt nur das Icon ohne Text an."
 
-#: templates/admin_menu_settings.php:426
+#: templates/admin_menu_settings.php:428
 msgid "Last downloads limit"
 msgstr "Letzte Downloads Limit"
 
-#: templates/admin_menu_settings.php:442
+#: templates/admin_menu_settings.php:444
 msgid "Setting for files"
 msgstr "Einstellung für Dateien"
 
-#: templates/admin_menu_settings.php:444
+#: templates/admin_menu_settings.php:446
 msgid ""
 "Determine the number of recent downloads that is displayed on the file "
 "details page in the Statistics tab."
@@ -1749,11 +1749,11 @@ msgstr ""
 "Bestimme die Anzahl der letzten Downloads die in der Datei-Detailseite im "
 "Tab Statistik angezeigt wird."
 
-#: templates/admin_menu_settings.php:447
+#: templates/admin_menu_settings.php:449
 msgid "Setting for archives"
 msgstr "Einstellung für Archive"
 
-#: templates/admin_menu_settings.php:449
+#: templates/admin_menu_settings.php:451
 msgid ""
 "Determine the number of recent downloads that is displayed on the archive "
 "detail page in the Statistics tab."
@@ -1761,52 +1761,61 @@ msgstr ""
 "Bestimme die Anzahl der letzten Downloads die in der Archiv-Detailseite im "
 "Tab Statistik angezeigt wird."
 
-#: templates/admin_menu_settings.php:459
+#: templates/admin_menu_settings.php:461
 msgid "More"
 msgstr "Mehr"
 
-#: templates/admin_menu_settings.php:464
+#: templates/admin_menu_settings.php:466
 msgid "Direct URL to PDFs"
 msgstr "Direkte URL zu PDFs"
 
-#: templates/admin_menu_settings.php:467
+#: templates/admin_menu_settings.php:469
 msgid "The user is taken to the direct file path."
 msgstr "Der Benutzer wird zum direkten Dateipfad weitergeleitet."
 
-#: templates/admin_menu_settings.php:471
+#: templates/admin_menu_settings.php:473
 msgid "Censor the IP address"
 msgstr "IP-Adresse zensieren"
 
-#: templates/admin_menu_settings.php:474
+#: templates/admin_menu_settings.php:476
 msgid "Censored the IP address during the download."
 msgstr "Zensiert die IP-Adresse beim Download."
 
-#: templates/admin_menu_settings.php:478
+#: templates/admin_menu_settings.php:480
 msgid "Allow duplicates"
 msgstr "Duplikate zulassen"
 
-#: templates/admin_menu_settings.php:481
+#: templates/admin_menu_settings.php:483
 msgid "Allow files that have already been uploaded to be added again."
 msgstr ""
 "Zulassen, dass bereits hochgeladene Dateien nochmals hinzugefügt werden."
 
 #: templates/admin_menu_settings.php:487
+msgid "Hide HTML id Attribute"
+msgstr "HTML id Attribut ausblenden"
+
+#: templates/admin_menu_settings.php:490
+msgid "Hides the HTML id Attribute when outputting button, audio and video."
+msgstr ""
+"Versteckt das HTML id Attribut bei der Ausgabe von Button, Audio und Video."
+
+#: templates/admin_menu_settings.php:496
 msgid "Show log"
 msgstr "Zeige Log"
 
-#: templates/admin_menu_settings.php:491
+#: templates/admin_menu_settings.php:500
 msgid "Download folder token"
 msgstr "Download Ordner Token"
 
-#: templates/admin_menu_settings.php:494
+#: templates/admin_menu_settings.php:503
 msgid "Generate new token"
 msgstr "Neuen Token generieren"
 
-#: templates/admin_menu_settings.php:495
+#: templates/admin_menu_settings.php:504
 msgid "Complete folder name"
 msgstr "Kompletter Ordnername"
 
-#: templates/admin_menu_settings.php:496
+#: templates/admin_menu_settings.php:505
 msgid ""
 "The download folder is not publicly visible unless you have activated "
 "\"Direct URL\" for certain files."
@@ -1814,19 +1823,19 @@ msgstr ""
 "Der Download Ordner ist nicht öffentlich sichtbar, ausser du hast \"Direkte "
 "URL\" zu gewissen Dateien aktiviert."
 
-#: templates/admin_menu_settings.php:497
+#: templates/admin_menu_settings.php:506
 msgid "You can change the token at any time without hesitation."
 msgstr "Du kannst den Token ohne Bedenken jederzeit ändern."
 
-#: templates/admin_menu_settings.php:501 templates/admin_menu_settings.php:503
+#: templates/admin_menu_settings.php:510 templates/admin_menu_settings.php:512
 msgid "Reset settings"
 msgstr "Einstellungen zurücksetzen"
 
-#: templates/admin_menu_settings.php:504
+#: templates/admin_menu_settings.php:513
 msgid "Here you can reset all settings to factory settings.."
 msgstr "Hier kannst du alle Einstellungen auf Werkseinstellungen zurücksetzen."
 
-#: templates/admin_menu_settings.php:506
+#: templates/admin_menu_settings.php:515
 msgid ""
 "This means that the premium license, button settings such as standard text, "
 "style, round corners, icons and all other settings are reset."
@@ -1835,27 +1844,27 @@ msgstr ""
 "Style, Runde Ecken, Icons und alle anderen Einstellungen werden "
 "zurückgesetzt."
 
-#: templates/admin_menu_settings.php:507
+#: templates/admin_menu_settings.php:516
 msgid "The download folder token is also regenerated."
 msgstr "Auch der Download Ordner Token wird neu generiert."
 
-#: templates/admin_menu_settings.php:518
+#: templates/admin_menu_settings.php:527
 msgid "uninstall"
 msgstr "deinstallieren"
 
-#: templates/admin_menu_settings.php:520
+#: templates/admin_menu_settings.php:529
 msgid "Path of"
 msgstr "Pfad von"
 
-#: templates/admin_menu_settings.php:520
+#: templates/admin_menu_settings.php:529
 msgid "upload folder for files, ZIP archives and cache"
 msgstr "Pfad von Z-Downloads-Upload-Ordner für Dateien, ZIP-Archive und Cache"
 
-#: templates/admin_menu_settings.php:523
+#: templates/admin_menu_settings.php:532
 msgid "Attention before uninstalling the plugin"
 msgstr "Achtung vor dem deinstallieren des Plugins"
 
-#: templates/admin_menu_settings.php:524
+#: templates/admin_menu_settings.php:533
 msgid ""
 "If you uninstall the Z-Downloads-Plugin all files and ZIP-archives remain in "
 "the above path, if you want to delete all files and ZIP-archives you have "
@@ -1866,12 +1875,12 @@ msgstr ""
 "Archive die du erstellt hast löschen willst, dann klicke unten auf \"LÖSCHEN"
 "\""
 
-#: templates/admin_menu_settings.php:525
+#: templates/admin_menu_settings.php:534
 msgid "This process is irreplaceable and can not be undone."
 msgstr ""
 "Dieser Vorgang ist unwiederuflich und kann nicht rückgängig gemacht werden."
 
-#: templates/admin_menu_settings.php:528
+#: templates/admin_menu_settings.php:537
 msgid "DELETE"
 msgstr "LÖSCHEN"
 

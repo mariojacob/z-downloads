@@ -49,6 +49,10 @@ if ($zdm_options['version'] < ZDM__VERSION) {
         $zdm_options['stat-single-archive-last-limit'] = 5;
     }
 
+    if (!$zdm_options['hide-html-id']) {
+        $zdm_options['hide-html-id'] = 'on';
+    }
+
     $zdm_options['version'] = ZDM__VERSION;
     
     update_option('zdm_options', $zdm_options);

@@ -751,10 +751,18 @@ class ZDMCore {
     
                             // Path for file
                             $zip_file = ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . $db_archive[0]->archive_cache_path . '/' . $db_archive[0]->zip_name . '.zip';
+
+                            header('Pragma: public');
+                            header('Expires: 0');
+                            header('Content-disposition: attachment; filename=' . $db_archive[0]->zip_name . '.zip');
+                            header('Content-type: ' . $db_archive[0]->file_type . '; charset=utf-8');
+                            readfile($zip_file);
+                            exit();
     
+                            /*
                             // File size
                             $file_size = filesize($zip_file);
-    
+                            
                             // Provide file
                             header('Content-Disposition: attachment; filename=' . $db_archive[0]->zip_name . '.zip');
                             header('Content-type: application/force-download');
@@ -763,6 +771,7 @@ class ZDMCore {
 
                             readfile($zip_file);
                             exit();
+                            */
                         }
                     } // end if ($this->check_if_archive_exists($zdownload_url) === true)
                     else {
@@ -826,13 +835,22 @@ class ZDMCore {
     
                                 // File size
                                 $file_size = filesize($file_path);
+
+                                header('Pragma: public');
+                                header('Expires: 0');
+                                header('Content-disposition: attachment; filename=' . $db_files[0]->file_name);
+                                header('Content-type: ' . $db_files[0]->file_type . '; charset=utf-8');
+                                readfile($file_path);
+                                exit();
     
+                                /*
                                 // Provide file
                                 header('Content-Disposition: attachment; filename=' . $db_files[0]->file_name);
                                 header('Content-type: application/force-download');
                                 header('Content-Length: ' . $file_size);
                                 header('Content-type: ' . $db_files[0]->file_type . '; charset=utf-8');
                                 readfile($file_path);
+                                */
                             }
                         }
                     } // end if ($this->check_if_file_exists($zdownload_url) === true)
@@ -1440,6 +1458,8 @@ class ZDMCore {
      */
     public function shortcode_audio($atts, $content = null) {
 
+        $options = get_option('zdm_options');
+
         $atts = shortcode_atts(
             array(
                 'file'      => '',
@@ -1482,8 +1502,13 @@ class ZDMCore {
 
             if ($db_file[0]->status != 'private') {
 
+                $html_id = '';
+                if ($options['hide-html-id'] != 'on') {
+                    $html_id = ' id="zdmAudio' . htmlspecialchars($db_file[0]->id) . '"';
+                }
+
                 // Output
-                $audio = '<audio preload="none" id="zdmAudio' . $db_file[0]->id . '" class="zdm-audio"' . $autoplay . $loop . $controls . '>';
+                $audio = '<audio preload="none"' . $html_id . ' class="zdm-audio"' . $autoplay . $loop . $controls . '>';
                 $audio .= esc_html__('Your browser does not support HTML audio elements.', 'zdm');
                 $audio .= '<source src="' . ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_file[0]->folder_path . '/' . $db_file[0]->file_name . '" type="' . $db_file[0]->file_type . '">';
                 $audio .= '</audio>';
@@ -1557,13 +1582,17 @@ class ZDMCore {
                     $id = base64_encode($db_archive[0]->id);
     
                     // Output
+                    $icon = '';
                     if ($options['download-btn-icon'] != 'none') {
                         $icon = '<ion-icon name="' . $options['download-btn-icon'] . '" class="' . $icon_class . '"></ion-icon>';
-                    } else {
-                        $icon = '';
+                    }
+
+                    $html_id = '';
+                    if ($options['hide-html-id'] != 'on') {
+                        $html_id = ' id="zdmBtn' . htmlspecialchars($db_archive[0]->id) . '"';
                     }
     
-                    return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_archive[0]->id) . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+                    return '<a href="?' . $type . '=' . $id . '"' . $html_id . ' class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
                 }
             } else {
                 // Empty return value if no file is linked
@@ -1963,8 +1992,13 @@ class ZDMCore {
 
             if ($db_file[0]->status != 'private') {
 
+                $html_id = '';
+                if ($options['hide-html-id'] != 'on') {
+                    $html_id = ' id="zdmVideo' . htmlspecialchars($db_file[0]->id) . '"';
+                }
+
                 // Output
-                $video = '<video id="zdmVideo' . $db_file[0]->id . '" width="' . $width . '" class="zdm-video"' . $autoplay . $loop . $controls . '>';
+                $video = '<video' . $html_id . ' width="' . $width . '" class="zdm-video"' . $autoplay . $loop . $controls . '>';
                 $video .= esc_html__('Your browser does not support HTML video elements.', 'zdm');
                 $video .= '<source src="' . ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_file[0]->folder_path . '/' . $db_file[0]->file_name . '" type="' . $db_file[0]->file_type . '">';
                 $video .= '</video>';

@@ -112,6 +112,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         $zdm_options['secure-ip'] = trim(sanitize_text_field($_POST['secure-ip']));
         // Allow file duplicates
         $zdm_options['duplicate-file'] = trim(sanitize_text_field($_POST['duplicate-file']));
+        // Hide HTML id Attribute
+        $zdm_options['hide-html-id'] = trim(sanitize_text_field($_POST['hide-html-id']));
 
         // Update options
         if (add_option('zdm_options', $zdm_options) === FALSE) {
@@ -479,6 +481,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <td valign="middle">
                                         <input type="checkbox" name="duplicate-file" <?php if($zdm_options['duplicate-file'] == 'on'){ echo 'checked="checked"'; } ?> >
                                         <?=esc_html__('Allow files that have already been uploaded to be added again.', 'zdm')?>
+                                    </td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?=esc_html__('Hide HTML id Attribute', 'zdm')?>:</th>
+                                    <td valign="middle">
+                                        <input type="checkbox" name="hide-html-id" <?php if($zdm_options['hide-html-id'] == 'on'){ echo 'checked="checked"'; } ?> >
+                                        <?=esc_html__('Hides the HTML id Attribute when outputting button, audio and video.', 'zdm')?>
                                     </td>
                                 </tr>
                                 <tr valign="top">
