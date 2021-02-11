@@ -1210,6 +1210,7 @@ class ZDMCore {
      * @return bool Returns true if valid and false if not
      */
     public function licence() {
+
         $options = get_option('zdm_options');
 
         if ($options['licence-key'] != '') {
@@ -1595,7 +1596,7 @@ class ZDMCore {
                         $html_id = ' id="zdmBtn' . htmlspecialchars($db_archive[0]->id) . '"';
                     }
     
-                    return '<a href="?' . $type . '=' . $id . '"' . $html_id . ' class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+                    return '<a href="?' . $type . '=' . $id . '"' . $html_id . ' class="' . $this->download_button_class() . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon . $download_text . '</a>';
                 }
             } else {
                 // Empty return value if no file is linked
@@ -1661,7 +1662,7 @@ class ZDMCore {
                     } else {
                         // Access by user
     
-                        return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow">' . $icon . $download_text . '</a>';
+                        return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon . $download_text . '</a>';
                     }
                 }
             }
@@ -1669,13 +1670,15 @@ class ZDMCore {
     }
 
     /**
-     * Shortcode for HTML list: [zdownload_list zip="123" style="ul"]
+     * Shortcode for HTML list: [zdownload_list zip="123" style="ul" links="on" bold="on"]
      *
      * @param string $atts
      * @param string $content
      * @return string
      */
     public function shortcode_list($atts, $content = null) {
+
+        $options = get_option('zdm_options');
 
         $atts = shortcode_atts(
             array(
@@ -1687,10 +1690,33 @@ class ZDMCore {
         );
         
         $zip = htmlspecialchars($atts['zip']);
-        $links = htmlspecialchars($atts['links']);
-        // TODO: Standardstyle checken
-        $style = htmlspecialchars($atts['style']);
-        $bold = htmlspecialchars($atts['bold']);
+        $link_1 = '';
+        $link_1_1 = '';
+        $link_2 = '';
+        if ($options['list-links'] != '') {
+            $link_1 = '<a href="' . get_site_url() . '?zdownload_f=';
+            $link_1_1 = '" target="_blank" rel="nofollow noopener noreferrer">';
+            $link_2 = '</a>';
+        }
+        if ($atts['links'] != '') {
+            $link_1 = '<a href="' . get_site_url() . '?zdownload_f=';
+            $link_1_1 = '" target="_blank" rel="nofollow noopener noreferrer">';
+            $link_2 = '</a>';
+        }
+        $style = $options['list-style'];
+        if ($atts['style'] != '') {
+            $style = htmlspecialchars($atts['style']);
+        }
+        $bold_1 = '';
+        $bold_2 = '';
+        if ($options['list-bold'] != '') {
+            $bold_1 = '<b>';
+            $bold_2 = '</b>';
+        }
+        if ($atts['bold'] != '') {
+            $bold_1 = '<b>';
+            $bold_2 = '</b>';
+        }
 
         if ($zip != '') {
 
@@ -1716,38 +1742,44 @@ class ZDMCore {
 
                 $list = '';
 
-                $bold_1 = '';
-                $bold_2 = '';
-                if ($bold != '') {
-                    $bold_1 = '<b>';
-                    $bold_2 = '</b>';
-                }
+                if ($style == 'rows') {
 
-                // TODO: verlinkung einfügen
+                    for ($i=0; $i < $linked_files_count; $i++) {
 
-                if ($style != '') {
-
-                    if ($style == 'ul') {
-
-                        $list .= '<ul>';
-                        for ($i=0; $i < $linked_files_count; $i++) { 
-                            $list .= '<li>' . $bold_1 . $this->get_file_name($linked_files[$i]->id_file) . $bold_2 . '</li>';
+                        $file_data = $this->get_file_data($linked_files[$i]->id_file);
+                        $link_id = '';
+                        if ($link_1 != '') {
+                            $link_id = base64_encode($file_data->id);
                         }
-                        $list .= '</ul>';
-                    } elseif ($style == 'ol') {
-
-                        $list .= '<ol>';
-                        for ($i=0; $i < $linked_files_count; $i++) {
-                            $list .= '<li>' . $bold_1 . $this->get_file_name($linked_files[$i]->id_file) . $bold_2 . '</li>';
-                        }
-                        $list .= '</ol>';
-                    }
-                } else {
-
-                    for ($i=0; $i < $linked_files_count; $i++) { 
-                        $list .= $bold_1 . $this->get_file_name($linked_files[$i]->id_file) . $bold_2;
+                        $list .= $link_1 . $link_id . $link_1_1 . $bold_1 . htmlspecialchars($file_data->name) . $bold_2 . $link_2;
                         $list .= '<br>';
                     }
+                } elseif ($style == 'ul') {
+
+                    $list .= '<ul>';
+                    for ($i=0; $i < $linked_files_count; $i++) {
+
+                        $file_data = $this->get_file_data($linked_files[$i]->id_file);
+                        $link_id = '';
+                        if ($link_1 != '') {
+                            $link_id = base64_encode($file_data->id);
+                        }
+                        $list .= '<li>' . $link_1 . $link_id . $link_1_1 . $bold_1 . htmlspecialchars($file_data->name) . $bold_2 . $link_2 . '</li>';
+                    }
+                    $list .= '</ul>';
+                } elseif ($style == 'ol') {
+
+                    $list .= '<ol>';
+                    for ($i=0; $i < $linked_files_count; $i++) {
+
+                        $file_data = $this->get_file_data($linked_files[$i]->id_file);
+                        $link_id = '';
+                        if ($link_1 != '') {
+                            $link_id = base64_encode($file_data->id);
+                        }
+                        $list .= '<li>' . $link_1 . $link_id . $link_1_1 . $bold_1 . htmlspecialchars($file_data->name) . $bold_2 . $link_2 . '</li>';
+                    }
+                    $list .= '</ol>';
                 }
 
                 return $list;

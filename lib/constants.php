@@ -31,6 +31,7 @@ define('ZDM__OPTIONS', [
     'download-btn-icon-only'            => '',
     'download-btn-css'                  => '',
     'list-style'                        => 'rows',
+    'list-bold'                         => '',
     'list-links'                        => '',
     'secure-ip'                         => 'on',
     'duplicate-file'                    => '',

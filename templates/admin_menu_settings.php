@@ -102,6 +102,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         // Lists
 
         $zdm_options['list-style'] = trim(sanitize_text_field($_POST['list-style']));
+        $zdm_options['list-bold'] = trim(sanitize_text_field($_POST['list-bold']));
         $zdm_options['list-links'] = trim(sanitize_text_field($_POST['list-links']));
 
         // Statistics
@@ -437,6 +438,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             <option value="ol" <?php if($zdm_options['list-style'] == 'ol'){ echo 'selected="selected"'; } ?> ><?=esc_html__('Ordered list (ol)', 'zdm')?></option>
                                         </select>
                                         <?=esc_html__('Specifies how the list is output.', 'zdm')?>
+                                    </td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?=esc_html__('Bold text', 'zdm')?>:</th>
+                                    <td valign="middle">
+                                        <input type="checkbox" name="list-bold" <?php if($zdm_options['list-bold'] == 'on'){ echo 'checked="checked"'; } ?> >
+                                        <?=esc_html__('Makes the text of the list items bold.', 'zdm')?>
                                     </td>
                                 </tr>
                                 <tr valign="top">

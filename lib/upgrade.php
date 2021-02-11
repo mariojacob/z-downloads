@@ -41,6 +41,10 @@ if ($zdm_options['version'] < ZDM__VERSION) {
         $zdm_options['list-style'] = 'rows';
     }
 
+    if (!$zdm_options['list-bold']) {
+        $zdm_options['list-bold'] = '';
+    }
+
     if (!$zdm_options['list-links']) {
         $zdm_options['list-links'] = '';
     }
