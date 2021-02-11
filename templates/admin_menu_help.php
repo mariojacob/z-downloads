@@ -136,6 +136,28 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <p><?=esc_html__('This section is also divided into archives and files and shows you the five most popular downloads.', 'zdm')?></p>
             </div>
         </div>
+
+        <div class="postbox">
+            <div class="inside">
+                <h3><?=esc_html__('Lists', 'zdm')?> <span class="zdm-color-primary" style="float: right"><?=esc_html__('NEW', 'zdm')?></span></h3>
+                <hr>
+                <p><?=esc_html__('You can output the files in an archive as a list.', 'zdm')?></p>
+                <h4><?=esc_html__('Quick output', 'zdm')?></h4>
+                <p><?=esc_html__('Use this shortcode to display a list of the files in an archive. You define the standard styles in the', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-settings"><?=esc_html__('settings', 'zdm')?></a>.</p>
+                <p><code>[zdownload_list zip="123"]</code></p>
+                <h3><?=esc_html__('Specific styles', 'zdm')?></h3>
+                <p><?=esc_html__('These special details overwrite the default values. All styles listed below can also be combined with one another.', 'zdm')?></p>
+                <h4><?=esc_html__('Style', 'zdm')?></h4>
+                <p><?=esc_html__('Use the keyword "style" and "rows" for rows, "ul" for an unordered list or "ol" for an ordered list.', 'zdm')?></p>
+                <p><code>[zdownload_list zip="123" style="ul"]</code></p>
+                <h4><?=esc_html__('Bold', 'zdm')?></h4>
+                <p><?=esc_html__('Use the keyword', 'zdm')?> <code>bold="on"</code> <?=esc_html__('to make the text of the list bold.', 'zdm')?></p>
+                <p><code>[zdownload_list zip="123" bold="on"]</code></p>
+                <h4><?=esc_html__('Links', 'zdm')?></h4>
+                <p><?=esc_html__('Use the keyword', 'zdm')?> <code>links="on"</code> <?=esc_html__('to output the text of the list elements as a link.', 'zdm')?></p>
+                <p><code>[zdownload_list zip="123" links="on"]</code></p>
+            </div>
+        </div>
         
         <div class="postbox">
             <div class="inside">

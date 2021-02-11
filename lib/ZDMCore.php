@@ -1402,6 +1402,9 @@ class ZDMCore {
         // Shortcode audio output
         add_shortcode('zdownload_audio', array($this, 'shortcode_audio'));
 
+        // Shortcode list files
+        add_shortcode('zdownload_list', array($this, 'shortcode_list'));
+
         // Shortcode metadata output
         add_shortcode('zdownload_meta', array($this, 'shortcode_meta'));
 
@@ -1663,6 +1666,93 @@ class ZDMCore {
                 }
             }
         } // end if ($file != '')
+    }
+
+    /**
+     * Shortcode for HTML list: [zdownload_list zip="123" style="ul"]
+     *
+     * @param string $atts
+     * @param string $content
+     * @return string
+     */
+    public function shortcode_list($atts, $content = null) {
+
+        $atts = shortcode_atts(
+            array(
+                'zip'   => '',
+                'links'  => '',
+                'style' => '',
+                'bold'  => ''
+                ), $atts
+        );
+        
+        $zip = htmlspecialchars($atts['zip']);
+        $links = htmlspecialchars($atts['links']);
+        // TODO: Standardstyle checken
+        $style = htmlspecialchars($atts['style']);
+        $bold = htmlspecialchars($atts['bold']);
+
+        if ($zip != '') {
+
+            $archive_data = $this->get_archive_data($zip);
+
+            if ($archive_data->status != 'private' && $this->check_if_any_file_rel_to_archive($zip) == true) {
+
+                global $wpdb;
+
+                $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
+
+                // Get id_file from database (files_rel)
+                $linked_files = $wpdb->get_results(
+                    "
+                    SELECT id_file
+                    FROM $tablename_files_rel 
+                    WHERE id_archive = '$zip' 
+                    AND file_deleted = 0
+                    "
+                    );
+            
+                $linked_files_count = count($linked_files);
+
+                $list = '';
+
+                $bold_1 = '';
+                $bold_2 = '';
+                if ($bold != '') {
+                    $bold_1 = '<b>';
+                    $bold_2 = '</b>';
+                }
+
+                // TODO: verlinkung einfügen
+
+                if ($style != '') {
+
+                    if ($style == 'ul') {
+
+                        $list .= '<ul>';
+                        for ($i=0; $i < $linked_files_count; $i++) { 
+                            $list .= '<li>' . $bold_1 . $this->get_file_name($linked_files[$i]->id_file) . $bold_2 . '</li>';
+                        }
+                        $list .= '</ul>';
+                    } elseif ($style == 'ol') {
+
+                        $list .= '<ol>';
+                        for ($i=0; $i < $linked_files_count; $i++) {
+                            $list .= '<li>' . $bold_1 . $this->get_file_name($linked_files[$i]->id_file) . $bold_2 . '</li>';
+                        }
+                        $list .= '</ol>';
+                    }
+                } else {
+
+                    for ($i=0; $i < $linked_files_count; $i++) { 
+                        $list .= $bold_1 . $this->get_file_name($linked_files[$i]->id_file) . $bold_2;
+                        $list .= '<br>';
+                    }
+                }
+
+                return $list;
+            }
+        }
     }
 
     /**

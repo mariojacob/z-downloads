@@ -37,6 +37,14 @@ if ($zdm_options['version'] < ZDM__VERSION) {
         $zdm_options['download-btn-icon-only'] = '';
     }
 
+    if (!$zdm_options['list-style']) {
+        $zdm_options['list-style'] = 'rows';
+    }
+
+    if (!$zdm_options['list-links']) {
+        $zdm_options['list-links'] = '';
+    }
+
     if ($zdm_options['file-open-in-browser-pdf'] == '') {
         $zdm_options['file-open-in-browser-pdf'] = '';
     }

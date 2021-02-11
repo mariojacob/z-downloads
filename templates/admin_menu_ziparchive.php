@@ -120,14 +120,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             }
 
             //////////////////////////////////////////////////
-            // Daten aktualisieren
+            // Update data
             //////////////////////////////////////////////////
             if (isset($_POST['update']) && wp_verify_nonce($_POST['nonce'], 'update-data')) {
 
-                // Check ob Felder ausgefüllt sind
+                // Check whether fields are filled out
                 if ($_POST['name'] != '' && $_POST['zip-name'] != '') {
 
-                    // ZIP-Name
+                    // ZIP name
                     $zdm_zip_name = str_replace(' ', '-', trim(sanitize_file_name($_POST['zip-name'])));
 
                     // Get data from database (archive)
@@ -200,7 +200,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     
                     for ($i = 0; $i <= $files_count; $i++) {
 
-                        // Check ob diese Datei schon zu diesem Archiv verknüpft ist
+                        // Check whether this file is already linked to this archive
                         if (ZDMCore::check_file_rel_to_archive(sanitize_text_field($_POST['files'][$i]), $zdm_archive_id) === false) {
                             
                             // Check whether selection is not empty

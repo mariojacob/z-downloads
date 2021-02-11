@@ -99,6 +99,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         // Download button icon only
         $zdm_options['download-btn-icon-only'] = trim(sanitize_text_field($_POST['download-btn-icon-only']));
 
+        // Lists
+
+        $zdm_options['list-style'] = trim(sanitize_text_field($_POST['list-style']));
+        $zdm_options['list-links'] = trim(sanitize_text_field($_POST['list-links']));
+
         // Statistics
 
         $zdm_options['stat-single-file-last-limit'] = trim(sanitize_text_field($_POST['stat-single-file-last-limit']));
@@ -410,6 +415,35 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <?=esc_html__('Only icon', 'zdm')?>
                                         <br>
                                         <div class="zdm-help-text"><?=esc_html__('This option displays only the icon without text.', 'zdm')?></div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="postbox" id="zdm-list">
+                    <div class="inside">
+                        <h3><?=esc_html__('Lists', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=advanced"><span class="zdm-color-primary" style="float: right"><ion-icon name="information-circle-outline"></ion-icon> <?=esc_html__('NEW', 'zdm')?></span></a></h3>
+                        <hr>
+                        <table class="form-table">
+                            <tbody>
+                                <tr valign="top">
+                                    <th scope="row"><?=esc_html__('List style', 'zdm')?>:</th>
+                                    <td valign="middle">
+                                        <select name="list-style">
+                                            <option value="rows" <?php if($zdm_options['list-style'] == 'rows'){ echo 'selected="selected"'; } ?> ><?=esc_html__('Rows', 'zdm')?></option>
+                                            <option value="ul" <?php if($zdm_options['list-style'] == 'ul'){ echo 'selected="selected"'; } ?> ><?=esc_html__('Unordered list (ul)', 'zdm')?></option>
+                                            <option value="ol" <?php if($zdm_options['list-style'] == 'ol'){ echo 'selected="selected"'; } ?> ><?=esc_html__('Ordered list (ol)', 'zdm')?></option>
+                                        </select>
+                                        <?=esc_html__('Specifies how the list is output.', 'zdm')?>
+                                    </td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?=esc_html__('List items as links', 'zdm')?>:</th>
+                                    <td valign="middle">
+                                        <input type="checkbox" name="list-links" <?php if($zdm_options['list-links'] == 'on'){ echo 'checked="checked"'; } ?> >
+                                        <?=esc_html__('Each list item is a clickable link.', 'zdm')?>
                                     </td>
                                 </tr>
                             </tbody>
