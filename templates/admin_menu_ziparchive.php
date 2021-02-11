@@ -548,6 +548,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     </td>
                                 </tr>
                                 <tr valign="top">
+                                    <th scope="row"><?=esc_html__('List files', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=advanced" style="text-decoration: none"><span class="zdm-color-primary"><ion-icon name="information-circle-outline"></ion-icon> <?=esc_html__('NEW', 'zdm')?></span></a></th>
+                                    <td valign="middle">
+                                        <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_list zip=&quot;<?=htmlspecialchars($zdm_db_archive->id)?>&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
+                                        <p class="zdm-color-green" style="display: none;"><b><ion-icon name="checkmark"></ion-icon> <?=esc_html__('Shortcode copied', 'zdm')?></b></p>
+                                    </td>
+                                </tr>
+                                <tr valign="top">
                                     <th scope="row"><?=esc_html__('Download count', 'zdm')?></th>
                                     <td valign="middle">
                                         <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta zip=&quot;<?=htmlspecialchars($zdm_db_archive->id)?>&quot; type=&quot;count&quot;]" readonly title="<?=esc_html__('Copy the shortcode to the clipboard.', 'zdm')?>">
