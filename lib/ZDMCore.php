@@ -1693,15 +1693,23 @@ class ZDMCore {
         $link_1 = '';
         $link_1_1 = '';
         $link_2 = '';
-        if ($options['list-links'] != '') {
+        if ($options['list-links'] == 'on') {
             $link_1 = '<a href="' . get_site_url() . '?zdownload_f=';
             $link_1_1 = '" target="_blank" rel="nofollow noopener noreferrer">';
             $link_2 = '</a>';
+        } elseif ($options['list-links'] == 'off') {
+            $link_1 = '';
+            $link_1_1 = '';
+            $link_2 = '';
         }
-        if ($atts['links'] != '') {
+        if ($atts['links'] == 'on') {
             $link_1 = '<a href="' . get_site_url() . '?zdownload_f=';
             $link_1_1 = '" target="_blank" rel="nofollow noopener noreferrer">';
             $link_2 = '</a>';
+        } elseif ($atts['links'] == 'off') {
+            $link_1 = '';
+            $link_1_1 = '';
+            $link_2 = '';
         }
         $style = $options['list-style'];
         if ($atts['style'] != '') {
@@ -1709,13 +1717,19 @@ class ZDMCore {
         }
         $bold_1 = '';
         $bold_2 = '';
-        if ($options['list-bold'] != '') {
+        if ($options['list-bold'] == 'on') {
             $bold_1 = '<b>';
             $bold_2 = '</b>';
+        } elseif ($options['list-bold'] == 'off') {
+            $bold_1 = '';
+            $bold_2 = '';
         }
-        if ($atts['bold'] != '') {
+        if ($atts['bold'] == 'on') {
             $bold_1 = '<b>';
             $bold_2 = '</b>';
+        } elseif ($atts['bold'] == 'off') {
+            $bold_1 = '';
+            $bold_2 = '';
         }
 
         if ($zip != '') {

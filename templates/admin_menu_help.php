@@ -153,9 +153,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <h4><?=esc_html__('Bold', 'zdm')?></h4>
                 <p><?=esc_html__('Use the keyword', 'zdm')?> <code>bold="on"</code> <?=esc_html__('to make the text of the list bold.', 'zdm')?></p>
                 <p><code>[zdownload_list zip="123" bold="on"]</code></p>
+                <p><?=esc_html__('Use the keyword', 'zdm')?> <code>bold="off"</code> <?=esc_html__('to make the text of the list normal.', 'zdm')?></p>
+                <p><code>[zdownload_list zip="123" bold="off"]</code></p>
                 <h4><?=esc_html__('Links', 'zdm')?></h4>
                 <p><?=esc_html__('Use the keyword', 'zdm')?> <code>links="on"</code> <?=esc_html__('to output the text of the list elements as a link.', 'zdm')?></p>
                 <p><code>[zdownload_list zip="123" links="on"]</code></p>
+                <p><?=esc_html__('Use the keyword', 'zdm')?> <code>links="off"</code> <?=esc_html__('to output the text of the list elements as a normal text.', 'zdm')?></p>
+                <p><code>[zdownload_list zip="123" links="off"]</code></p>
             </div>
         </div>
         
