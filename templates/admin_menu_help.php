@@ -141,7 +141,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <div class="inside">
                 <h3><?=esc_html__('Lists', 'zdm')?> <span class="zdm-color-primary" style="float: right"><?=esc_html__('NEW', 'zdm')?></span></h3>
                 <hr>
-                <p><?=esc_html__('You can output the files in an archive as a list.', 'zdm')?></p>
+                <p><?=esc_html__('You can output the files from an archive as a list.', 'zdm')?></p>
                 <h4><?=esc_html__('Quick output', 'zdm')?></h4>
                 <p><?=esc_html__('Use this shortcode to display a list of the files in an archive. You define the standard styles in the', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-settings"><?=esc_html__('settings', 'zdm')?></a>.</p>
                 <p><code>[zdownload_list zip="123"]</code></p>
