@@ -7,7 +7,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
 Tested up to: 5.6
-Stable tag: 1.6.1
+Stable tag: 1.7.0
 
 Download management and automatic ZIP archive creation
 
@@ -15,34 +15,38 @@ Download management and automatic ZIP archive creation
 
 The convenient download manager for WordPress.
 
-The main features are the automated processes:
+The main features are the automated processes.
 
-The same file is in multiple downloads, such as promotional material. In the event of a change, only one file has to be replaced and is applied to all existing downloads.
+For example: The same file is in multiple ZIP archives, such as promotional material. In the event of a change, only one file has to be replaced once and is automatically applied to all existing ZIP archives.
 
 [Z-Downloads Webseite](https://code.urban-base.net/z-downloads?utm_source=wporg)
 
 = Benefits =
 
--   Time savings
 -   Easy to use
--   Better overview
+-   Time savings
+-   Does his job perfectly
 
 = Top features =
 
 -   Multilingual - German and English
 -   GDPR (DSGVO) compliant - By default, the IP address is anonymized
+-   Security By default: the direct path to the download file is not visible
+-   Extensive help texts
 -   Download statistics
 -   Shortcodes
--   Output information
 -   Download button
 -   Download button with icons
+-   Output information like file size or download count
+-   Output a file lists
+-   Output a audio player
+-   Output a video player
 -   Show MD5 and SHA1 hash in the frontend
--   Security: the direct path to the download file is not visible
 -   You can activate the direct URL path for PDF files
 -   Central file management
 -   Automatic ZIP archive creation
--   PHP 7 optimized
 -   Prepared for internationalization
+-   and more...
 
 = Conditions =
 
@@ -69,7 +73,7 @@ For advanced functions there is [Z-Downloads Premium](https://code.urban-base.ne
 
 = Who is this plugin for? =
 
-Bloggers and website operators who offer various downloads.
+Bloggers and website operators who want a easy to use download plugin and offer various downloads.
 
 = Is this plugin GDPR (DSGVO) compliant? =
 
@@ -77,7 +81,7 @@ Yes, no personal data of visitors is saved. By default, the IP address is anonym
 
 = What language is the plugin in? =
 
-Z-Downloads is translated into german and english, other languages can easily be added.
+Z-Downloads is in English by default and completely translated into German, other languages can easily be added.
 
 == Screenshots ==
 
