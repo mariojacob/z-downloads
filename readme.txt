@@ -38,7 +38,7 @@ For example: The same file is in multiple ZIP archives, such as promotional mate
 -   Download button
 -   Download button with icons
 -   Output information like file size or download count
--   Output a file lists
+-   Output file lists
 -   Output a audio player
 -   Output a video player
 -   Show MD5 and SHA1 hash in the frontend
