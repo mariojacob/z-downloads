@@ -1376,7 +1376,7 @@ class ZDMCore {
     }
 
     // NOTE: Doc
-    public function php_modules_check_and_notice() {
+    public static function php_modules_check_and_notice() {
         
         $php_modules_text = '';
         if (phpversion() >= 7.4) {

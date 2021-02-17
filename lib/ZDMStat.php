@@ -17,7 +17,7 @@ class ZDMStat {
      * @param integer $limit [Optional] Number of entries
      * @return array
      */
-    public function get_best_downloads($type = 'archive', $limit = 5) {
+    public static function get_best_downloads($type = 'archive', $limit = 5) {
         global $wpdb;
 
         if ($type == 'archive') {
@@ -58,7 +58,7 @@ class ZDMStat {
      * @param string $type [Optional] 'all' (standard), 'archive' or 'file'
      * @return int
      */
-    public function get_downloads_count($type = 'all') {
+    public static function get_downloads_count($type = 'all') {
 
         global $wpdb;
         $tablename_archives = $wpdb->prefix . "zdm_archives";
@@ -77,6 +77,7 @@ class ZDMStat {
 
             $db_archives_count = count($db_archives);
     
+            $downloads_archives = 0;
             for ($i=0; $i < $db_archives_count; $i++) { 
                 $downloads_archives = $downloads_archives + $db_archives[$i]->count;
             }
@@ -91,6 +92,7 @@ class ZDMStat {
 
             $db_files_count = count($db_files);
     
+            $downloads_files = 0;
             for ($i=0; $i < $db_files_count; $i++) { 
                 $downloads_files = $downloads_files + $db_files[$i]->count;
             }
@@ -109,6 +111,7 @@ class ZDMStat {
 
             $db_archives_count = count($db_archives);
     
+            $downloads_archives = 0;
             for ($i=0; $i < $db_archives_count; $i++) { 
                 $downloads_archives = $downloads_archives + $db_archives[$i]->count;
             }
@@ -127,6 +130,7 @@ class ZDMStat {
 
             $db_files_count = count($db_files);
     
+            $downloads_files = 0;
             for ($i=0; $i < $db_files_count; $i++) { 
                 $downloads_files = $downloads_files + $db_files[$i]->count;
             }
@@ -143,7 +147,7 @@ class ZDMStat {
      * @param int $period Time in seconds
      * @return int
      */
-    public function get_downloads_count_time($type = 'all', $period) {
+    public static function get_downloads_count_time($type = 'all', $period) {
 
         global $wpdb;
 
@@ -246,7 +250,7 @@ class ZDMStat {
      * @param int $period
      * @return int
      */
-    public function get_downloads_count_time_for_single_stat($type, $item_id, $period) {
+    public static function get_downloads_count_time_for_single_stat($type, $item_id, $period) {
 
         global $wpdb;
         $tablename = $wpdb->prefix . "zdm_log";
@@ -278,7 +282,7 @@ class ZDMStat {
      * @param integer $limit [Optional] Number of entries
      * @return array
      */
-    public function get_last_downloads($type = 'archive', $limit = 5) {
+    public static function get_last_downloads($type = 'archive', $limit = 5) {
         $type_log = 'download ' . $type;
 
         global $wpdb;
@@ -306,7 +310,7 @@ class ZDMStat {
      * @param integer $limit [Optional] Number of entries
      * @return array
      */
-    public function get_last_downloads_for_single_stat($type, $item_id, $limit = 5) {
+    public static function get_last_downloads_for_single_stat($type, $item_id, $limit = 5) {
         $type_log = 'download ' . $type;
 
         if ($limit == '') {
