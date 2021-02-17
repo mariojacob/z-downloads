@@ -41,19 +41,17 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         // Check file for duplicates
         if ($zdm_options['duplicate-file'] != 'on' && in_array($zdm_uploaded_file_hash, ZDMCore::get_files_md5())) {
-
-            // File has already been uploaded
+            /* File has already been uploaded */
 
             // Show upload duplicate page
             $zdm_status = 3;
         } else {
-
-            // File has not yet been uploaded
+            /* File has not yet been uploaded */
         
             $zdm_file = array();
             $zdm_file['name'] = sanitize_file_name($_FILES['file']['name']);
             $zdm_file['type'] = $_FILES['file']['type'];
-            $zdm_file['size'] = ZDMCore::file_size_convert(sanitize_file_name($_FILES['file']['size']));
+            $zdm_file['size'] = ZDMCore::file_size_convert($_FILES['file']['size']);
 
             // Create folder name
             $zdm_file['folder'] = md5(time() . $zdm_file['name']);
@@ -69,7 +67,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             move_uploaded_file($_FILES['file']['tmp_name'], $zdm_file_path);
 
             // Delete temporary file
-            unlink($_FILES['file']['tmp_name']);
+            if (file_exists($_FILES['file']['tmp_name'])) {
+                unlink($_FILES['file']['tmp_name']);
+            }
 
             // Create index.php
             $index_file_handle = fopen(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . 'index.php', 'w');
@@ -515,9 +515,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     } elseif (in_array($zdm_db_file->file_type, ZDM__MIME_TYPES_IMAGE)) { // Image
 
                                         $zdm_image_width = 400;
-                                        $zdm_image_dimensions = getimagesize($zdm_file_path);
-                                        if ($zdm_image_dimensions[0] < 400) {
-                                            $zdm_image_width = $zdm_image_dimensions[0];
+                                        if (extension_loaded('gd')) {
+                                            
+                                            $zdm_image_dimensions = getimagesize($zdm_file_path);
+                                            if ($zdm_image_dimensions[0] < 400) {
+                                                $zdm_image_width = $zdm_image_dimensions[0];
+                                            }
                                         }
                                         ?>
                                         <tr valign="top">
@@ -531,8 +534,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <tr valign="top">
                                             <th scope="row"><?=esc_html__('Details', 'zdm')?>:</th>
                                             <td valign="middle">
-                                                <?=esc_html__('Image dimensions (width x height)', 'zdm')?>: <b><?=$zdm_image_dimensions[0]?> x <?=$zdm_image_dimensions[1]?></b> <?=esc_html__('pixels', 'zdm')?><br>
-                                                <?=esc_html__('MIME type', 'zdm')?>: <b><?=$zdm_image_dimensions['mime']?></b>
+                                                <?php
+                                                if (extension_loaded('gd')) {
+                                                    
+                                                    echo esc_html__('Image dimensions (width x height)', 'zdm') . ': <b>' . $zdm_image_dimensions[0] . ' x ' . $zdm_image_dimensions[1] . '</b> ' . esc_html__('pixels', 'zdm') . '<br>';
+                                                    echo esc_html__('MIME type', 'zdm') . ': <b>' . $zdm_image_dimensions['mime'] . '</b>';
+                                                }
+                                                ?>
                                             </td>
                                         </tr>
                                         <?php

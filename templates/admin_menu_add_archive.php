@@ -84,9 +84,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             );
 
             // Define number for loop pass
-            $files_count = 10;
+            $zdm_files_count = 5;
             if ($zdm_licence === 1) {
-                $files_count = 20;
+                $zdm_files_count = 20;
             }
 
             // Database table name
@@ -96,7 +96,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             $_POST['files'] = array_unique($_POST['files']);
 
             // Create files_rel entries
-            for ($i = 0; $i <= $files_count; $i++) {
+            for ($i = 0; $i < $zdm_files_count; $i++) {
 
                 if ($_POST['files'][$i] != '') {
 
@@ -119,7 +119,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             $zdm_status = 1;
 
         } else {
-            $zdm_note = 'Name und ZIP-Datei Name darf nicht leer sein.';
+            $zdm_note = esc_html__('Name and ZIP file name cannot be empty..', 'zdm');
         }
     }
 
@@ -158,7 +158,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <tr valign="top">
                                 <th scope="row"><?=esc_html__('Name', 'zdm')?>:</th>
                                 <td valign="middle">
-                                    <input type="text" name="name" size="50%" value="<?=@htmlspecialchars($_POST['name'])?>" spellcheck="true" autocomplete="off" placeholder="">
+                                    <input type="text" name="name" size="50%" value="<?=@htmlspecialchars($_POST['name'])?>" spellcheck="true" autocomplete="off" placeholder="" required>
                                     <div class="zdm-help-text"><?=esc_html__('This name is displayed in the archive list and serves as a guide.', 'zdm')?></div>
                                 </td>
                             </tr>
@@ -167,6 +167,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <td valign="middle">
                                     <input type="text" name="zip-name" size="50%" value="<?=@htmlspecialchars($_POST['zip-name'])?>" spellcheck="true" autocomplete="off" placeholder="">
                                     <div class="zdm-help-text"><?=esc_html__('Name of the ZIP file the visitor downloads.', 'zdm')?></div>
+                                    <div class="zdm-help-text"><?=esc_html__('If you leave this field blank, the name will be used.', 'zdm')?></div>
                                     <div class="zdm-help-text"><?=esc_html__('For maximum compatibility, use hyphens or underscores instead of spaces.', 'zdm')?></div>
                                     <div class="zdm-help-text"><b><?=esc_html__('Example', 'zdm')?>:</b> <code><?=esc_html__('my-new-download', 'zdm')?></code> <?=esc_html__('or', 'zdm')?> <code><?=esc_html__('my_new_download', 'zdm')?></code></div>
                                 </td>

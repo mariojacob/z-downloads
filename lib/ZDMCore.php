@@ -1375,6 +1375,33 @@ class ZDMCore {
         }
     }
 
+    // NOTE: Doc
+    public function php_modules_check_and_notice() {
+        
+        $php_modules_text = '';
+        if (phpversion() >= 7.4) {
+            
+            if (!extension_loaded('mbstring')) {
+                $php_modules_text .= '<code>mbstring</code><br>';
+            }
+            if (!extension_loaded('gd')) {
+                $php_modules_text .= '<code>GD</code><br>';
+            }
+            if (!extension_loaded('zip')) {
+                $php_modules_text .= '<code>zip</code><br>';
+            }
+
+            if ($php_modules_text != '') {
+                echo '<div class="notice notice-warning">';
+                echo '<p><h3>' . ZDM__TITLE . ' Plugin</h3></p>';
+                echo '<p><b>' . esc_html__('The following PHP modules are missing', 'zdm') . ':</b></p>';
+                echo '<p>' . $php_modules_text . '</p>';
+                echo '<p>' . esc_html__('Please contact the administrator or web hosting provider of this website to install/activate the missing PHP modules.', 'zdm') . '</p>';
+                echo '</div>';
+            }
+        }
+    }
+
     /**
      * Registers basic components in WP
      *
