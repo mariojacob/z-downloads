@@ -32,7 +32,7 @@ For example: The same file is in multiple ZIP archives, such as promotional mate
 -   Multilingual - German and English
 -   GDPR (DSGVO) compliant - By default, the IP address is anonymized
 -   Security By default: the direct path to the download file is not visible
--   Extensive help texts
+-   Help and documentation for all functions
 -   Download statistics
 -   Shortcodes
 -   Download button
