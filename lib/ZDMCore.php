@@ -699,6 +699,8 @@ class ZDMCore {
      */
     public function download() {
 
+        $options = get_option('zdm_options');
+
         // HTTP user agent
         $http_user_agent = @filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
 
@@ -751,27 +753,20 @@ class ZDMCore {
     
                             // Path for file
                             $zip_file = ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . $db_archive[0]->archive_cache_path . '/' . $db_archive[0]->zip_name . '.zip';
+                            $zip_file_root = ZDM__DOWNLOADS_CACHE_PATH . '/' . $db_archive[0]->archive_cache_path . '/' . $db_archive[0]->zip_name . '.zip';
 
+    
+                            // File size
+                            $file_size = filesize($zip_file_root);
+
+                            // Provide file
                             header('Pragma: public');
                             header('Expires: 0');
-                            header('Content-disposition: attachment; filename=' . $db_archive[0]->zip_name . '.zip');
-                            header('Content-type: ' . $db_archive[0]->file_type . '; charset=utf-8');
-                            readfile($zip_file);
-                            exit();
-    
-                            /*
-                            // File size
-                            $file_size = filesize($zip_file);
-                            
-                            // Provide file
+                            header("Content-Type: application/zip");
                             header('Content-Disposition: attachment; filename=' . $db_archive[0]->zip_name . '.zip');
-                            header('Content-type: application/force-download');
                             header('Content-Length: ' . $file_size);
-                            header('Content-type: ' . $db_archive[0]->file_type . '; charset=utf-8');
-
                             readfile($zip_file);
                             exit();
-                            */
                         }
                     } // end if ($this->check_if_archive_exists($zdownload_url) === true)
                     else {
@@ -823,7 +818,7 @@ class ZDMCore {
                             $this->log('download file', $zdownload_url);
 
                             if ($options['file-open-in-browser-pdf'] == 'on' && $db_files[0]->file_type == 'application/pdf') {
-    
+
                                 // External path for file
                                 $file_path_url = ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_files[0]->folder_path . '/' . $db_files[0]->file_name;
                                 wp_redirect($file_path_url);
@@ -836,21 +831,20 @@ class ZDMCore {
                                 // File size
                                 $file_size = filesize($file_path);
 
-                                header('Pragma: public');
-                                header('Expires: 0');
+                                var_dump($db_files[0]->file_type);
+
+                                header('Content-Description: File Transfer');
+                                header('Content-Type: application/octet-stream');
                                 header('Content-disposition: attachment; filename=' . $db_files[0]->file_name);
-                                header('Content-type: ' . $db_files[0]->file_type . '; charset=utf-8');
+                                header('Content-Transfer-Encoding: binary');
+                                header('Expires: 0');
+                                header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
+                                header('Pragma: public');
+                                header('Content-Length: ' . $file_size);
+                                ob_clean();
+                                flush();
                                 readfile($file_path);
                                 exit();
-    
-                                /*
-                                // Provide file
-                                header('Content-Disposition: attachment; filename=' . $db_files[0]->file_name);
-                                header('Content-type: application/force-download');
-                                header('Content-Length: ' . $file_size);
-                                header('Content-type: ' . $db_files[0]->file_type . '; charset=utf-8');
-                                readfile($file_path);
-                                */
                             }
                         }
                     } // end if ($this->check_if_file_exists($zdownload_url) === true)

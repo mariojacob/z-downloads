@@ -12,6 +12,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     $zdm_licence = 0;
     $zdm_options = get_option('zdm_options');
     $zdm_time = time();
+    $zdm_warning = '';
 
     // Determine the active tab
     if( isset($_GET['tab'])) {
@@ -193,7 +194,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         ));
 
                     // Define number for loop pass
-                    $files_count = 10;
+                    $files_count = 5;
                     if ($zdm_licence === 1) {
                         $files_count = 20;
                     }
@@ -242,7 +243,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             //////////////////////////////////////////////////
             // Delete archive
             //////////////////////////////////////////////////
-            if (($_POST['delete'] && wp_verify_nonce($_POST['nonce'], 'update-data')) OR ($_GET['delete'] && wp_verify_nonce($_GET['nonce'], 'delete-archive'))) {
+            if ((isset($_POST['delete']) && wp_verify_nonce($_POST['nonce'], 'update-data')) OR (isset($_GET['delete']) && wp_verify_nonce($_GET['nonce'], 'delete-archive'))) {
 
                 // Get data from database (archive)
                 $zdm_db_archives = $wpdb->get_results( 
@@ -282,11 +283,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     ));
 
                 ZDMCore::log('delete archive', 'ID: ' . $zdm_archive_id);
-            
-                // Output success message
-                $zdm_note = esc_html__('Archive deleted!', 'zdm');
-
-                $zdm_status = 3;
                 
                 // reload page
                 $zdm_ziparchive_url = 'admin.php?page=' . ZDM__SLUG . '-ziparchive';

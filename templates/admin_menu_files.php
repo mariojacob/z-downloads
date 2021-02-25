@@ -168,7 +168,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     $zdm_tablename_files, 
                     array(
                         'name'          => $zdm_name,
-                        'description'   => sanitize_textarea_field($_POST['description']),
                         'count'         => sanitize_text_field($_POST['count']),
                         'button_text'   => $zdm_button_text,
                         'status'        => sanitize_text_field($_POST['status']),
@@ -192,7 +191,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         //////////////////////////////////////////////////
         // Delete file
         //////////////////////////////////////////////////
-        if (($_POST['delete'] && wp_verify_nonce($_POST['nonce'], 'update-data')) OR ($_GET['delete'] && wp_verify_nonce($_GET['nonce'], 'delete-file'))) {
+        if ((isset($_POST['delete']) && wp_verify_nonce($_POST['nonce'], 'update-data')) OR (isset($_GET['delete']) && wp_verify_nonce($_GET['nonce'], 'delete-file'))) {
 
             // Get data from database
             $zdm_db_file = $wpdb->get_results( 
