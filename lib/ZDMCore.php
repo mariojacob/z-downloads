@@ -831,18 +831,10 @@ class ZDMCore {
                                 // File size
                                 $file_size = filesize($file_path);
 
-                                var_dump($db_files[0]->file_type);
-
-                                header('Content-Description: File Transfer');
-                                header('Content-Type: application/octet-stream');
-                                header('Content-disposition: attachment; filename=' . $db_files[0]->file_name);
-                                header('Content-Transfer-Encoding: binary');
-                                header('Expires: 0');
-                                header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
                                 header('Pragma: public');
-                                header('Content-Length: ' . $file_size);
-                                ob_clean();
-                                flush();
+                                header('Expires: 0');
+                                header('Content-disposition: attachment; filename=' . $db_files[0]->file_name);
+                                header('Content-type: ' . $db_files[0]->file_type . '; charset=utf-8');
                                 readfile($file_path);
                                 exit();
                             }
