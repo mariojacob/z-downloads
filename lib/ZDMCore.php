@@ -170,7 +170,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return bool
      */
-    public function check_file_rel_to_archive($files_id, $archive_id) {
+    public static function check_file_rel_to_archive($files_id, $archive_id) {
         global $wpdb;
 
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -198,7 +198,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return void
      */
-    public function check_files_from_archive($archive_id) {
+    public static function check_files_from_archive($archive_id) {
 
         global $wpdb;
         
@@ -225,7 +225,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return bool
      */
-    public function check_if_any_file_rel_to_archive($archive_id) {
+    public static function check_if_any_file_rel_to_archive($archive_id) {
         global $wpdb;
         
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -252,7 +252,7 @@ class ZDMCore {
      * @param int $files_id
      * @return mixed
      */
-    public function check_if_file_is_in_archive($files_id) {
+    public static function check_if_file_is_in_archive($files_id) {
         global $wpdb;
 
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -281,7 +281,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return bool
      */
-    public function check_if_archive_cache_ok($archive_id) {
+    public static function check_if_archive_cache_ok($archive_id) {
 
         global $wpdb;
         
@@ -326,7 +326,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return bool
      */
-    public function check_if_archive_exists($archive_id) {
+    public static function check_if_archive_exists($archive_id) {
 
         if (is_numeric($archive_id)) {
             global $wpdb;
@@ -358,7 +358,7 @@ class ZDMCore {
      * @param int $file_id
      * @return bool
      */
-    public function check_if_file_exists($file_id) {
+    public static function check_if_file_exists($file_id) {
 
         if (is_numeric($file_id)) {
             global $wpdb;
@@ -390,7 +390,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return void
      */
-    public function create_archive_cache($archive_id) {
+    public static function create_archive_cache($archive_id) {
 
         $time = time();
 
@@ -561,7 +561,7 @@ class ZDMCore {
      *
      * @return void
      */
-    public function delete_all_data() {
+    public static function delete_all_data() {
 
         global $wpdb;
 
@@ -697,7 +697,7 @@ class ZDMCore {
      *
      * @return void
      */
-    public function download() {
+    public static function download() {
 
         $options = get_option('zdm_options');
 
@@ -855,7 +855,7 @@ class ZDMCore {
      *
      * @return CSS class
      */
-    public function download_button_class() {
+    public static function download_button_class() {
 
         $options = get_option('zdm_options');
 
@@ -921,7 +921,7 @@ class ZDMCore {
      * @param int $bytes Bytes as input
      * @return string
      */
-    public function file_size_convert($bytes) {
+    public static function file_size_convert($bytes) {
         $bytes = floatval($bytes);
         $arBytes = array(
             0 => array(
@@ -962,7 +962,7 @@ class ZDMCore {
      * @param string $str String as from ini_get ('upload_max_filesize')
      * @return mixed
      */
-    public function file_size_convert_str2bytes($str) {
+    public static function file_size_convert_str2bytes($str) {
         // Strings only
         $unit_byte = preg_replace('/[^a-zA-Z]/', '', $str);
         $unit_byte = strtolower($unit_byte);
@@ -1000,7 +1000,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return void
      */
-    public function get_archive_data($archive_id) {
+    public static function get_archive_data($archive_id) {
         global $wpdb;
 
         $tablename_archives = $wpdb->prefix . "zdm_archives";
@@ -1023,7 +1023,7 @@ class ZDMCore {
      * @param int $file_id
      * @return array
      */
-    public function get_linked_archives($file_id) {
+    public static function get_linked_archives($file_id) {
         global $wpdb;
 
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -1046,7 +1046,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return string
      */
-    public function get_archive_name($archive_id) {
+    public static function get_archive_name($archive_id) {
         global $wpdb;
 
         $tablename_archives = $wpdb->prefix . "zdm_archives";
@@ -1070,7 +1070,7 @@ class ZDMCore {
      * @param string $hash
      * @return int Number of hashes found
      */
-    public function get_count_of_files_by_hash($type, $hash) {
+    public static function get_count_of_files_by_hash($type, $hash) {
         global $wpdb;
 
         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -1111,7 +1111,7 @@ class ZDMCore {
      * 
      * @return int WordPress user ID
      */
-    public function get_current_user_id() {
+    public static function get_current_user_id() {
         if (!function_exists('wp_get_current_user'))
             return 0;
         $user = wp_get_current_user();
@@ -1124,7 +1124,7 @@ class ZDMCore {
      * @param int $file_id
      * @return object
      */
-    public function get_file_data($file_id) {
+    public static function get_file_data($file_id) {
         global $wpdb;
 
         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -1146,7 +1146,7 @@ class ZDMCore {
      *
      * @return array
      */
-    public function get_files_md5() {
+    public static function get_files_md5() {
         global $wpdb;
 
         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -1174,7 +1174,7 @@ class ZDMCore {
      * @param int $file_id
      * @return object
      */
-    public function get_file_name($file_id) {
+    public static function get_file_name($file_id) {
         global $wpdb;
 
         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -1196,7 +1196,7 @@ class ZDMCore {
      * 
      * @return bool Returns true if valid and false if not
      */
-    public function licence() {
+    public static function licence() {
 
         $options = get_option('zdm_options');
 
@@ -1304,7 +1304,7 @@ class ZDMCore {
      * @param string $message Other Information
      * @return void
      */
-    public function log($type, $message = '---') {
+    public static function log($type, $message = '---') {
         // user IP address
         if (filter_input(INPUT_SERVER, 'REMOTE_ADDR')) {
 
@@ -1353,7 +1353,7 @@ class ZDMCore {
      * @param int $number
      * @return string Formatted number
      */
-    public function number_format($number) {
+    public static function number_format($number) {
 
         if (in_array(get_locale(), ZDM__COUNTRIES_USING_DECIMAL_POINT)) {
             return number_format($number, 0, '.', ',');
@@ -1432,7 +1432,7 @@ class ZDMCore {
      *
      * @return bool true: if repair was successful, otherwise: false
      */
-    public function repair_folder_token_name() {
+    public static function repair_folder_token_name() {
 
         $options = get_option('zdm_options');
         
@@ -1474,7 +1474,7 @@ class ZDMCore {
      * @param string $content
      * @return void HTML5 Audioplayer
      */
-    public function shortcode_audio($atts, $content = null) {
+    public static function shortcode_audio($atts, $content = null) {
 
         $options = get_option('zdm_options');
 
@@ -1543,7 +1543,7 @@ class ZDMCore {
      * 
      * @return string
      */
-    public function shortcode_download($atts, $content = null) {
+    public static function shortcode_download($atts, $content = null) {
 
         $atts = shortcode_atts(
             array(
@@ -1690,7 +1690,7 @@ class ZDMCore {
      * @param string $content
      * @return string
      */
-    public function shortcode_list($atts, $content = null) {
+    public static function shortcode_list($atts, $content = null) {
 
         $options = get_option('zdm_options');
 
@@ -1820,7 +1820,7 @@ class ZDMCore {
      * 
      * @return string Metadaten Ausgabe
      */
-    public function shortcode_meta($atts, $content = null) {
+    public static function shortcode_meta($atts, $content = null) {
 
         $atts = shortcode_atts(
             array(
@@ -2096,7 +2096,7 @@ class ZDMCore {
      * 
      * @return string HTML5 video player
      */
-    public function shortcode_video($atts, $content = null) {
+    public static function shortcode_video($atts, $content = null) {
 
         $atts = shortcode_atts(
             array(
