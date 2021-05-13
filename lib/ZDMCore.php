@@ -968,6 +968,7 @@ class ZDMCore {
         $unit_byte = strtolower($unit_byte);
         // Numbers only (allow decimal point)
         $num_val = preg_replace('/\D\.\D/', '', $str);
+        $num_val = intval($num_val);
         switch ($unit_byte) {
             case 'p':	// petabyte
             case 'pb':

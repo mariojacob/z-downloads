@@ -9,7 +9,7 @@ Requires at least: 4.9
 Tested up to: 5.7
 Stable tag: 1.7.4
 
-Download management and automatic ZIP archive creation
+Convenient download manager and automatic ZIP archive creation
 
 == Description ==
 
