@@ -235,7 +235,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 ?>
                 <div class="postbox">
                     <div class="inside">
-                        <h3 class="zdm-color-green"><ion-icon name="checkmark"></ion-icon> <?=esc_html__('All data was deleted successfully!', 'zdm')?></h3>
+                        <h3 class="zdm-color-green"><span class="material-icons-round zdm-md-1">check_circle_outline</span> <?=esc_html__('All data was deleted successfully!', 'zdm')?></h3>
                         <p><?=esc_html__('All your uploaded files, all archives in the cache and all database entries from', 'zdm')?> <?=ZDM__TITLE?> <?=esc_html__('have been irrevocably deleted.', 'zdm')?></p>
                         <p><?=esc_html__('You can now deactivate and uninstall the plugin in the plugin overview or you upload new files and start fresh.', 'zdm')?></p>
                         <a href="admin.php?page=<?=ZDM__SLUG?>-settings" class="button button-secondary"><?=esc_html__('Back to settings', 'zdm')?></a>
@@ -256,7 +256,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <tr valign="top">
                                     <th scope="row"><?=ZDM__PRO?> <?=esc_html__('license key', 'zdm')?>:</th>
                                     <td valign="middle">
-                                        <?php if ($zdm_licence === 1) { ?><ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon>&nbsp;<?php } ?>
+                                        <?php if ($zdm_licence === 1) { ?><span class="material-icons-round zdm-md-1 zdm-color-green">check_circle_outline</span>&nbsp;<?php } ?>
                                         <input type="text" name="licence-key" size="50%" value="<?= esc_attr($zdm_options['licence-key']); ?>">&nbsp;
                                         <?php if ($zdm_licence === 1) {
                                             ?>
@@ -284,13 +284,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <tr valign="top">
                                     <th scope="row"><?=esc_html__('Licensed for', 'zdm')?>:</th>
                                     <td valign="middle">
-                                        <ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon>&nbsp;<?=$zdm_options['licence-email'];?>
+                                        <span class="material-icons-round zdm-md-1 zdm-color-green">check_circle_outline</span>&nbsp;<?=$zdm_options['licence-email'];?>
                                     </td>
                                 </tr>
                                 <tr valign="top">
                                     <th scope="row"><?=esc_html__('Purchased', 'zdm')?>:</th>
                                     <td valign="middle">
-                                        <ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon>&nbsp;<?=date("d.m.Y", strtotime($zdm_options['licence-purchase']))?>
+                                        <span class="material-icons-round zdm-md-1 zdm-color-green">check_circle_outline</span>&nbsp;<?=date("d.m.Y", strtotime($zdm_options['licence-purchase']))?>
                                     </td>
                                 </tr>
                                 <?php } ?>
@@ -388,7 +388,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                                         for ($i=0; $i < $zdm_btn_icons_count_ceil; $i++) {
                                                             $zdm_btn_icon_example_left .= '<input type="radio" name="download-btn-icon" value="' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '" ';
                                                             $zdm_btn_icon_example_left .= ( $zdm_options['download-btn-icon'] == ZDM__DOWNLOAD_BTN_ICON_VAL[$i] ? 'checked="checked"' : '' ) . '>';
-                                                            $zdm_btn_icon_example_left .= '<ion-icon name="' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '" class="zdm-icon zdm-color-primary"></ion-icon>' . ZDM__DOWNLOAD_BTN_ICON[$i] . '</input><br />';
+                                                            $zdm_btn_icon_example_left .= '<span class="material-icons-round zdm-md-1 zdm-icon zdm-color-primary">' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '</span>' . ZDM__DOWNLOAD_BTN_ICON[$i] . '</input><br />';
                                                         }
                                                         echo $zdm_btn_icon_example_left;
                                                         ?>
@@ -399,7 +399,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                                         for ($i=$zdm_btn_icons_count_ceil; $i < $zdm_btn_icons_count; $i++) {
                                                             $zdm_btn_icon_example_right .= '<input type="radio" name="download-btn-icon" value="' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '" ';
                                                             $zdm_btn_icon_example_right .= ( $zdm_options['download-btn-icon'] == ZDM__DOWNLOAD_BTN_ICON_VAL[$i] ? 'checked="checked"' : '' ) . '>';
-                                                            $zdm_btn_icon_example_right .= '<ion-icon name="' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '" class="zdm-icon zdm-color-primary"></ion-icon>' . ZDM__DOWNLOAD_BTN_ICON[$i] . '</input><br />';
+                                                            $zdm_btn_icon_example_right .= '<span class="material-icons-round zdm-md-1 zdm-icon zdm-color-primary">' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '</span>' . ZDM__DOWNLOAD_BTN_ICON[$i] . '</input><br />';
                                                         }
                                                         echo $zdm_btn_icon_example_right;
                                                         ?>
@@ -425,7 +425,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                 <div class="postbox" id="zdm-list">
                     <div class="inside">
-                        <h3><?=esc_html__('Lists', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-help&tab=advanced"><span class="zdm-color-primary" style="float: right"><ion-icon name="information-circle-outline"></ion-icon> <?=esc_html__('NEW', 'zdm')?></span></a></h3>
+                        <h3><?=esc_html__('Lists', 'zdm')?></h3>
                         <hr>
                         <table class="form-table">
                             <tbody>
@@ -483,12 +483,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             }
                                             ?>
                                             <input type="number" name="stat-single-file-last-limit" size="5" min="1" max="500" value="<?=esc_attr($zdm_options['stat-single-file-last-limit'])?>"<?php if ($zdm_licence === 0) { echo ' disabled'; } ?> > 
-                                            <ion-icon name="information-circle-outline"></ion-icon> <?=esc_html__('Setting for files', 'zdm')?>
+                                            <span class="material-icons-outlined zdm-md-1">info</span> <?=esc_html__('Setting for files', 'zdm')?>
                                             <br>
                                             <div class="zdm-help-text"><?=esc_html__('Determine the number of recent downloads that is displayed on the file details page in the Statistics tab.', 'zdm')?></div>
                                             <br>
                                             <input type="number" name="stat-single-archive-last-limit" size="5" min="1" max="500" value="<?=esc_attr($zdm_options['stat-single-archive-last-limit'])?>"<?php if ($zdm_licence === 0) { echo ' disabled'; } ?> >
-                                            <ion-icon name="information-circle-outline"></ion-icon> <?=esc_html__('Setting for archives', 'zdm')?>
+                                            <span class="material-icons-outlined zdm-md-1">info</span> <?=esc_html__('Setting for archives', 'zdm')?>
                                             <br>
                                             <div class="zdm-help-text"><?=esc_html__('Determine the number of recent downloads that is displayed on the archive detail page in the Statistics tab.', 'zdm')?></div>
                                         </td>

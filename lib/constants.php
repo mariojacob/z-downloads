@@ -132,6 +132,29 @@ define('ZDM__DOWNLOAD_BTN_BORDER_RADIUS', [
 // Download button icons
 define('ZDM__DOWNLOAD_BTN_ICON_VAL', [
     'none',
+    'file_download',
+    'arrow_downward',
+    'code',
+    'cloud_download',
+    'cloud',
+    'cloud_done',
+    'check',
+    'check_circle',
+    'task_alt',
+    'check_circle_outline',
+    'verified',
+    'verified_user',
+    'done_outline',
+    'done_all',
+    'favorite',
+    'favorite_border',
+    'star',
+    'star_outline',
+    'emoji_events'
+]);
+// Download button icons
+define('ZDM__DOWNLOAD_BTN_ICON_VAL_OLD', [
+    'none',
     'download',
     'arrow-round-down',
     'code-download',
@@ -158,6 +181,11 @@ define('ZDM__DOWNLOAD_BTN_ICON', [
     __('Check 1', 'zdm'),
     __('Check 2', 'zdm'),
     __('Check 3', 'zdm'),
+    __('Check 4', 'zdm'),
+    __('Check 5', 'zdm'),
+    __('Check 6', 'zdm'),
+    __('Check 7', 'zdm'),
+    __('Check 8', 'zdm'),
     __('Heart 1', 'zdm'),
     __('Heart 2', 'zdm'),
     __('Star 1', 'zdm'),

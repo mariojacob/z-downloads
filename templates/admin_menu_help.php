@@ -24,7 +24,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     ?>
 
     <div class="wrap">
-        <h1 class="wp-heading-inline"><ion-icon name="help-circle-outline"></ion-icon> <?=ZDM__TITLE?> <?=esc_html__('Help', 'zdm')?></h1>
+        <h1 class="wp-heading-inline"><span class="material-icons-round zdm-md-1">help_outline</span> <?=ZDM__TITLE?> <?=esc_html__('Help', 'zdm')?></h1>
 
         <hr class="wp-header-end">
 

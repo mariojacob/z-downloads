@@ -1,9 +1,3 @@
-ion-icon {
-    position: relative;
-    /* Adjust these values accordingly */
-    top: 3px;
-}
-
 /********************
  Button
 ********************/
@@ -29,6 +23,19 @@ ion-icon {
 /********************
  Button Icon
 ********************/
+
+.material-icon-round.zdm-md-1,
+.material-icon-outlined.zdm-md-1 {
+    font-size: 1em;
+}
+.material-icon-round.zdm-md-1-5,
+.material-icon-outlined.zdm-md-1-5 {
+    font-size: 1.5em;
+}
+.material-icon-round.zdm-md-2,
+.material-icon-outlined.zdm-md-21 {
+    font-size: 2em;
+}
 
 .zdm-btn-icon {
     font-size: 1.2em;

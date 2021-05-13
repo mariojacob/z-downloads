@@ -224,22 +224,22 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             for ($i = 0; $i < $zdm_db_logs_count; $i++) {
 
                                 if ($zdm_db_logs[$i]->type == 'download archive' OR $zdm_db_logs[$i]->type == 'download file') {
-                                    $zdm_icon = 'download';
+                                    $zdm_icon = 'file_download';
                                     $zdm_class_color = 'zdm-color-primary';
                                 } elseif ($zdm_db_logs[$i]->type == 'add archive' OR $zdm_db_logs[$i]->type == 'add file') {
-                                    $zdm_icon = 'add-circle';
+                                    $zdm_icon = 'note_add';
                                     $zdm_class_color = 'zdm-color-green';
                                 } elseif ($zdm_db_logs[$i]->type == 'update archive' OR $zdm_db_logs[$i]->type == 'update file') {
-                                    $zdm_icon = 'checkmark-circle';
+                                    $zdm_icon = 'check_circle_outline';
                                     $zdm_class_color = '';
                                 } elseif ($zdm_db_logs[$i]->type == 'delete archive' OR $zdm_db_logs[$i]->type == 'delete file') {
-                                    $zdm_icon = 'trash';
+                                    $zdm_icon = 'delete';
                                     $zdm_class_color = 'zdm-color-red';
                                 } elseif ($zdm_db_logs[$i]->type == 'create archive cache') {
-                                    $zdm_icon = 'refresh-circle';
+                                    $zdm_icon = 'refresh';
                                     $zdm_class_color = 'zdm-color-green';
                                 } elseif ($zdm_db_logs[$i]->type == 'unlink file') {
-                                    $zdm_icon = 'remove-circle';
+                                    $zdm_icon = 'link_off';
                                     $zdm_class_color = 'zdm-color-yellow';
                                 } elseif ($zdm_db_logs[$i]->type == 'replace file') {
                                     $zdm_icon = 'swap';
@@ -248,17 +248,17 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     $zdm_icon = 'settings';
                                     $zdm_class_color = 'zdm-color-grey7';
                                 } elseif ($zdm_db_logs[$i]->type == 'error create zip') {
-                                    $zdm_icon = 'alert';
+                                    $zdm_icon = 'error_outline';
                                     $zdm_class_color = 'zdm-color-orange';
                                 } else {
-                                    $zdm_icon = 'information-circle';
+                                    $zdm_icon = 'info';
                                     $zdm_class_color = '';
                                 }
-
+// zdm-icon-in-table
                                 ?>
                                 <tr>
                                     <td>
-                                        <div align="center"><ion-icon name="<?=$zdm_icon?>" class="zdm-icon-in-table <?=$zdm_class_color?>"></ion-icon></div>
+                                        <div align="center"><span class="material-icons-round zdm-md-1-5 <?=$zdm_class_color?>"><?=$zdm_icon?></span></div>
                                     </td>
                                     <td>
                                         <b><a href="?page=<?=ZDM__SLUG?>-log&id=<?=$zdm_db_logs[$i]->id?>" title="<?=esc_html__('Show details', 'zdm')?>"><?=$zdm_db_logs[$i]->type?></a></b>

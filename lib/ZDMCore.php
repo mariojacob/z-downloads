@@ -170,7 +170,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return bool
      */
-    public static function check_file_rel_to_archive($files_id, $archive_id) {
+    public function check_file_rel_to_archive($files_id, $archive_id) {
         global $wpdb;
 
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -198,7 +198,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return void
      */
-    public static function check_files_from_archive($archive_id) {
+    public function check_files_from_archive($archive_id) {
 
         global $wpdb;
         
@@ -225,7 +225,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return bool
      */
-    public static function check_if_any_file_rel_to_archive($archive_id) {
+    public function check_if_any_file_rel_to_archive($archive_id) {
         global $wpdb;
         
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -252,7 +252,7 @@ class ZDMCore {
      * @param int $files_id
      * @return mixed
      */
-    public static function check_if_file_is_in_archive($files_id) {
+    public function check_if_file_is_in_archive($files_id) {
         global $wpdb;
 
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -281,7 +281,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return bool
      */
-    public static function check_if_archive_cache_ok($archive_id) {
+    public function check_if_archive_cache_ok($archive_id) {
 
         global $wpdb;
         
@@ -326,7 +326,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return bool
      */
-    public static function check_if_archive_exists($archive_id) {
+    public function check_if_archive_exists($archive_id) {
 
         if (is_numeric($archive_id)) {
             global $wpdb;
@@ -358,7 +358,7 @@ class ZDMCore {
      * @param int $file_id
      * @return bool
      */
-    public static function check_if_file_exists($file_id) {
+    public function check_if_file_exists($file_id) {
 
         if (is_numeric($file_id)) {
             global $wpdb;
@@ -390,7 +390,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return void
      */
-    public static function create_archive_cache($archive_id) {
+    public function create_archive_cache($archive_id) {
 
         $time = time();
 
@@ -561,7 +561,7 @@ class ZDMCore {
      *
      * @return void
      */
-    public static function delete_all_data() {
+    public function delete_all_data() {
 
         global $wpdb;
 
@@ -697,7 +697,7 @@ class ZDMCore {
      *
      * @return void
      */
-    public static function download() {
+    public function download() {
 
         $options = get_option('zdm_options');
 
@@ -855,7 +855,7 @@ class ZDMCore {
      *
      * @return CSS class
      */
-    public static function download_button_class() {
+    public function download_button_class() {
 
         $options = get_option('zdm_options');
 
@@ -887,13 +887,9 @@ class ZDMCore {
         wp_register_style('zdm_admin_styles', plugins_url('../admin/css/zdm_admin_style.min.css?ver=' . ZDM__VERSION, __FILE__));
         wp_enqueue_style('zdm_admin_styles');
 
-        // Ionicons CSS
-        wp_register_style('zdm_admin_styles_ionic', 'https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css');
-        wp_enqueue_style('zdm_admin_styles_ionic');
-
-        // Ionicons JS
-        wp_register_script('zdm_admin_ionic_js', 'https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js');
-        wp_enqueue_script('zdm_admin_ionic_js');
+        // Material Icons
+        wp_register_style('zdm_admin_material_icons', 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined|Material+Icons+Round');
+        wp_enqueue_style( 'zdm_admin_material_icons');
     }
 
     /**
@@ -906,13 +902,9 @@ class ZDMCore {
         wp_register_style('zdm_styles', plugins_url('../public/css/zdm_style.min.css?ver=' . ZDM__VERSION, __FILE__));
         wp_enqueue_style('zdm_styles');
 
-        // Ionicons CSS
-        wp_register_style('zdm_styles_ionic', 'https://cdnjs.cloudflare.com/ajax/libs/ionicons/4.5.6/css/ionicons.min.css');
-        wp_enqueue_style('zdm_styles_ionic');
-
-        // Ionicons JS
-        wp_register_script('zdm_ionic_js', 'https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js');
-        wp_enqueue_script('zdm_ionic_js');
+        // Material Icons
+        wp_register_style('zdm_admin_material_icons', 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined|Material+Icons+Round');
+        wp_enqueue_style( 'zdm_admin_material_icons');
     }
 
     /**
@@ -921,7 +913,7 @@ class ZDMCore {
      * @param int $bytes Bytes as input
      * @return string
      */
-    public static function file_size_convert($bytes) {
+    public function file_size_convert($bytes) {
         $bytes = floatval($bytes);
         $arBytes = array(
             0 => array(
@@ -962,7 +954,7 @@ class ZDMCore {
      * @param string $str String as from ini_get ('upload_max_filesize')
      * @return mixed
      */
-    public static function file_size_convert_str2bytes($str) {
+    public function file_size_convert_str2bytes($str) {
         // Strings only
         $unit_byte = preg_replace('/[^a-zA-Z]/', '', $str);
         $unit_byte = strtolower($unit_byte);
@@ -1000,7 +992,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return void
      */
-    public static function get_archive_data($archive_id) {
+    public function get_archive_data($archive_id) {
         global $wpdb;
 
         $tablename_archives = $wpdb->prefix . "zdm_archives";
@@ -1023,7 +1015,7 @@ class ZDMCore {
      * @param int $file_id
      * @return array
      */
-    public static function get_linked_archives($file_id) {
+    public function get_linked_archives($file_id) {
         global $wpdb;
 
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -1046,7 +1038,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return string
      */
-    public static function get_archive_name($archive_id) {
+    public function get_archive_name($archive_id) {
         global $wpdb;
 
         $tablename_archives = $wpdb->prefix . "zdm_archives";
@@ -1070,7 +1062,7 @@ class ZDMCore {
      * @param string $hash
      * @return int Number of hashes found
      */
-    public static function get_count_of_files_by_hash($type, $hash) {
+    public function get_count_of_files_by_hash($type, $hash) {
         global $wpdb;
 
         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -1111,7 +1103,7 @@ class ZDMCore {
      * 
      * @return int WordPress user ID
      */
-    public static function get_current_user_id() {
+    public function get_current_user_id() {
         if (!function_exists('wp_get_current_user'))
             return 0;
         $user = wp_get_current_user();
@@ -1124,7 +1116,7 @@ class ZDMCore {
      * @param int $file_id
      * @return object
      */
-    public static function get_file_data($file_id) {
+    public function get_file_data($file_id) {
         global $wpdb;
 
         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -1146,7 +1138,7 @@ class ZDMCore {
      *
      * @return array
      */
-    public static function get_files_md5() {
+    public function get_files_md5() {
         global $wpdb;
 
         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -1174,7 +1166,7 @@ class ZDMCore {
      * @param int $file_id
      * @return object
      */
-    public static function get_file_name($file_id) {
+    public function get_file_name($file_id) {
         global $wpdb;
 
         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -1196,7 +1188,7 @@ class ZDMCore {
      * 
      * @return bool Returns true if valid and false if not
      */
-    public static function licence() {
+    public function licence() {
 
         $options = get_option('zdm_options');
 
@@ -1304,7 +1296,7 @@ class ZDMCore {
      * @param string $message Other Information
      * @return void
      */
-    public static function log($type, $message = '---') {
+    public function log($type, $message = '---') {
         // user IP address
         if (filter_input(INPUT_SERVER, 'REMOTE_ADDR')) {
 
@@ -1353,7 +1345,7 @@ class ZDMCore {
      * @param int $number
      * @return string Formatted number
      */
-    public static function number_format($number) {
+    public function number_format($number) {
 
         if (in_array(get_locale(), ZDM__COUNTRIES_USING_DECIMAL_POINT)) {
             return number_format($number, 0, '.', ',');
@@ -1432,7 +1424,7 @@ class ZDMCore {
      *
      * @return bool true: if repair was successful, otherwise: false
      */
-    public static function repair_folder_token_name() {
+    public function repair_folder_token_name() {
 
         $options = get_option('zdm_options');
         
@@ -1474,7 +1466,7 @@ class ZDMCore {
      * @param string $content
      * @return void HTML5 Audioplayer
      */
-    public static function shortcode_audio($atts, $content = null) {
+    public function shortcode_audio($atts, $content = null) {
 
         $options = get_option('zdm_options');
 
@@ -1543,7 +1535,7 @@ class ZDMCore {
      * 
      * @return string
      */
-    public static function shortcode_download($atts, $content = null) {
+    public function shortcode_download($atts, $content = null) {
 
         $atts = shortcode_atts(
             array(
@@ -1601,8 +1593,9 @@ class ZDMCore {
     
                     // Output
                     $icon = '';
+                    $icon_size = $options['download-btn-icon-size'];
                     if ($options['download-btn-icon'] != 'none') {
-                        $icon = '<ion-icon name="' . $options['download-btn-icon'] . '" class="' . $icon_class . '"></ion-icon>';
+                        $icon = '<span class="material-icons-round ' . $icon_class . ' ' . $icon_size . '">' . $options['download-btn-icon'] . '</span>';
                     }
 
                     $html_id = '';
@@ -1661,7 +1654,8 @@ class ZDMCore {
     
                     // Output
                     if ($options['download-btn-icon'] != 'none') {
-                        $icon = '<ion-icon name="' . $options['download-btn-icon'] . '" class="' . $icon_class . '"></ion-icon>';
+                        $icon_size = $options['download-btn-icon-size'];
+                        $icon = '<span class="material-icons-round ' . $icon_class . ' ' . $icon_size . '">' . $options['download-btn-icon'] . '</span>';
                     } else {
                         $icon = '';
                     }
@@ -1690,7 +1684,7 @@ class ZDMCore {
      * @param string $content
      * @return string
      */
-    public static function shortcode_list($atts, $content = null) {
+    public function shortcode_list($atts, $content = null) {
 
         $options = get_option('zdm_options');
 
@@ -1820,7 +1814,7 @@ class ZDMCore {
      * 
      * @return string Metadaten Ausgabe
      */
-    public static function shortcode_meta($atts, $content = null) {
+    public function shortcode_meta($atts, $content = null) {
 
         $atts = shortcode_atts(
             array(
@@ -2096,7 +2090,7 @@ class ZDMCore {
      * 
      * @return string HTML5 video player
      */
-    public static function shortcode_video($atts, $content = null) {
+    public function shortcode_video($atts, $content = null) {
 
         $atts = shortcode_atts(
             array(

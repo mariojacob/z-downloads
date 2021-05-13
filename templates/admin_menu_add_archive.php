@@ -144,7 +144,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     <?php if ($zdm_status === 1) { ?>
 
         <div class="notice notice-success">
-        <p><ion-icon name="checkmark-circle" class="zdm-color-green"></ion-icon> <?=esc_html__('Archive successfully created!', 'zdm')?></p>
+        <p><span class="material-icons-round zdm-md-1 zdm-color-green">check_circle_outline</span> <?=esc_html__('Archive successfully created!', 'zdm')?></p>
         <p><a href="admin.php?page=<?=ZDM__SLUG?>-add-archive" class="button-primary"><?=esc_html__('Create a new archive', 'zdm')?></a></p>
         </div>
 

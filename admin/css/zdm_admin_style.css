@@ -1,3 +1,48 @@
+/********************
+ Icon
+********************/
+
+.material-icons-outlined,
+.material-icons-round {
+    position: relative;
+}
+
+.zdm-md-1,
+.zdm-md-1 {
+    font-size: 1em !important;
+    top: 2px !important;
+}
+.zdm-md-1-5,
+.zdm-md-1-5 {
+    font-size: 1.5em !important;
+    top: 3px !important;
+}
+.zdm-md-2,
+.zdm-md-2 {
+    font-size: 2em !important;
+}
+
+/********************
+ Others
+********************/
+
+.zdm-mx-1 {
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+}
+.zdm-mx-2 {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+}
+.zdm-mx-3 {
+    margin-left: 0.1rem;
+    margin-right: 0.1rem;
+}
+.zdm-mx-4 {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+}
+
 .zdm_dashboard_widget {
     margin: 0;
     display: inline-block;

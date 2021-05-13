@@ -44,7 +44,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <div class="postbox">
 
                     <div class="inside">
-                        <h3><ion-icon name="time"></ion-icon> <?=esc_html__('Last downloads', 'zdm')?></h3>
+                        <h3><span class="material-icons-round zdm-md-1">access_time</span> <?=esc_html__('Last downloads', 'zdm')?></h3>
                     </div>
 
                     <?php if ($zdm_last_downloads != false) { ?>
@@ -147,7 +147,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <div class="postbox">
 
                     <div class="inside">
-                        <h3><ion-icon name="trending-up"></ion-icon> <?=esc_html__('Popular Downloads', 'zdm')?></h3>
+                        <h3><span class="material-icons-round zdm-md-1">trending_up</span> <?=esc_html__('Popular Downloads', 'zdm')?></h3>
                     </div>
 
                     <?php
@@ -223,13 +223,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <td width="2%">
                                             <?php
                                             if (in_array($zdm_best_downloads_files[$i]->file_type, ZDM__MIME_TYPES_AUDIO)) { // Audio
-                                                $icon = '<ion-icon name="musical-notes"></ion-icon>';
+                                                $icon = '<span class="material-icons-round zdm-md-1-5">audiotrack</span>';
                                             } elseif (in_array($zdm_best_downloads_files[$i]->file_type, ZDM__MIME_TYPES_VIDEO)) { // Video
-                                                $icon = '<ion-icon name="videocam"></ion-icon>';
+                                                $icon = '<span class="material-icons-round zdm-md-1-5">movie</span>';
                                             } elseif (in_array($zdm_best_downloads_files[$i]->file_type, ZDM__MIME_TYPES_IMAGE)) { // Bild
-                                                $icon = '<ion-icon name="images"></ion-icon>';
+                                                $icon = '<span class="material-icons-round zdm-md-1-5">image</span>';
                                             } else {
-                                                $icon = '<ion-icon name="document"></ion-icon>';
+                                                $icon = '<span class="material-icons-outlined zdm-md-1-5">insert_drive_file</span>';
                                             }
                                             echo $icon;
                                             ?>
@@ -270,7 +270,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <div class="postbox">
 
                 <div class="inside">
-                    <h3><ion-icon name="stats"></ion-icon> <?=esc_html__('Download statistics', 'zdm')?></h3>
+                    <h3><span class="material-icons-round zdm-md-1">leaderboard</span> <?=esc_html__('Download statistics', 'zdm')?></h3>
                 </div>
 
                 <table class="wp-list-table widefat">
