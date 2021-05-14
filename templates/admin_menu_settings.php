@@ -87,39 +87,41 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         // General
 
         // Download button text
-        $zdm_options['download-btn-text'] = trim(sanitize_text_field($_POST['download-btn-text']));
+        @$zdm_options['download-btn-text'] = trim(sanitize_text_field($_POST['download-btn-text']));
         // Download button style
-        $zdm_options['download-btn-style'] = trim(sanitize_text_field($_POST['download-btn-style']));
+        @$zdm_options['download-btn-style'] = trim(sanitize_text_field($_POST['download-btn-style']));
         // Download button outline
-        $zdm_options['download-btn-outline'] = trim(sanitize_text_field($_POST['download-btn-outline']));
+        @$zdm_options['download-btn-outline'] = trim(sanitize_text_field($_POST['download-btn-outline']));
         // Download button round corners
-        $zdm_options['download-btn-border-radius'] = trim(sanitize_text_field($_POST['download-btn-border-radius']));
+        @$zdm_options['download-btn-border-radius'] = trim(sanitize_text_field($_POST['download-btn-border-radius']));
         // Download button icon
-        $zdm_options['download-btn-icon'] = trim(sanitize_text_field($_POST['download-btn-icon']));
+        @$zdm_options['download-btn-icon'] = trim(sanitize_text_field($_POST['download-btn-icon']));
+        // Download button icon position
+        @$zdm_options['download-btn-icon-position'] = trim(sanitize_text_field($_POST['download-btn-icon-position']));
         // Download button icon only
-        $zdm_options['download-btn-icon-only'] = trim(sanitize_text_field($_POST['download-btn-icon-only']));
+        @$zdm_options['download-btn-icon-only'] = trim(sanitize_text_field($_POST['download-btn-icon-only']));
 
         // Lists
 
-        $zdm_options['list-style'] = trim(sanitize_text_field($_POST['list-style']));
-        $zdm_options['list-bold'] = trim(sanitize_text_field($_POST['list-bold']));
-        $zdm_options['list-links'] = trim(sanitize_text_field($_POST['list-links']));
+        @$zdm_options['list-style'] = trim(sanitize_text_field($_POST['list-style']));
+        @$zdm_options['list-bold'] = trim(sanitize_text_field($_POST['list-bold']));
+        @$zdm_options['list-links'] = trim(sanitize_text_field($_POST['list-links']));
 
         // Statistics
 
-        $zdm_options['stat-single-file-last-limit'] = trim(sanitize_text_field($_POST['stat-single-file-last-limit']));
-        $zdm_options['stat-single-archive-last-limit'] = trim(sanitize_text_field($_POST['stat-single-archive-last-limit']));
+        @$zdm_options['stat-single-file-last-limit'] = trim(sanitize_text_field($_POST['stat-single-file-last-limit']));
+        @$zdm_options['stat-single-archive-last-limit'] = trim(sanitize_text_field($_POST['stat-single-archive-last-limit']));
 
         // Extended
 
         // Direct url to PDF
-        $zdm_options['file-open-in-browser-pdf'] = trim(sanitize_text_field($_POST['file-open-in-browser-pdf']));
+        @$zdm_options['file-open-in-browser-pdf'] = trim(sanitize_text_field($_POST['file-open-in-browser-pdf']));
         // Censor IP address
-        $zdm_options['secure-ip'] = trim(sanitize_text_field($_POST['secure-ip']));
+        @$zdm_options['secure-ip'] = trim(sanitize_text_field($_POST['secure-ip']));
         // Allow file duplicates
-        $zdm_options['duplicate-file'] = trim(sanitize_text_field($_POST['duplicate-file']));
+        @$zdm_options['duplicate-file'] = trim(sanitize_text_field($_POST['duplicate-file']));
         // Hide HTML id Attribute
-        $zdm_options['hide-html-id'] = trim(sanitize_text_field($_POST['hide-html-id']));
+        @$zdm_options['hide-html-id'] = trim(sanitize_text_field($_POST['hide-html-id']));
 
         // Update options
         if (add_option('zdm_options', $zdm_options) === FALSE) {
@@ -419,6 +421,17 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                                 </fieldset>
                                             </tr>
                                         </table>
+                                    </td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?=esc_html__('Icon position', 'zdm')?>:</th>
+                                    <td valign="middle">
+                                        <select name="download-btn-icon-position">
+                                            <option value="left" <?php if ($zdm_options['download-btn-icon-position'] == 'left') { echo 'selected="selected"'; } ?> ><?=esc_html__('Left', 'zdm')?></option>
+                                            <option value="right" <?php if ($zdm_options['download-btn-icon-position'] == 'right') { echo 'selected="selected"'; } ?> ><?=esc_html__('Right', 'zdm')?></option>
+                                        </select>
+                                        <br>
+                                        <div class="zdm-help-text"><?=esc_html__('Choose the position of the icon.', 'zdm')?></div>
                                     </td>
                                 </tr>
                                 <tr valign="top">

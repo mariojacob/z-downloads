@@ -62,6 +62,10 @@ if ($zdm_options['version'] < ZDM__VERSION) {
             $zdm_options['download-btn-icon'] = 'emoji_events';
     }
 
+    if (!$zdm_options['download-btn-icon-position']) {
+        $zdm_options['download-btn-icon-position'] = 'left';
+    }
+
     if (!$zdm_options['download-btn-icon-only']) {
         $zdm_options['download-btn-icon-only'] = '';
     }

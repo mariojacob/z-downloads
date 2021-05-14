@@ -1585,7 +1585,11 @@ class ZDMCore {
                             $download_text = $options['download-btn-text'];
                         }
     
-                        $icon_class = ' zdm-btn-icon';
+                        if ($options['download-btn-icon-position'] == 'left') {
+                            $icon_class = 'zdm-mr-2';
+                        } else {
+                            $icon_class = 'zdm-ml-2';
+                        }
                     }
     
                     $type = 'zdownload';
@@ -1595,15 +1599,21 @@ class ZDMCore {
                     $icon = '';
                     $icon_size = $options['download-btn-icon-size'];
                     if ($options['download-btn-icon'] != 'none') {
-                        $icon = '<span class="material-icons-round ' . $icon_class . ' ' . $icon_size . '">' . $options['download-btn-icon'] . '</span>';
+                        $icon = '<span class="material-icons-round ' . $icon_size . ' ' . $icon_class . '">' . $options['download-btn-icon'] . '</span>';
                     }
 
                     $html_id = '';
                     if ($options['hide-html-id'] != 'on') {
                         $html_id = ' id="zdmBtn' . htmlspecialchars($db_archive[0]->id) . '"';
                     }
+
+                    if ($options['download-btn-icon-position'] == 'left') {
+                        $icon_and_text = $icon . $download_text;
+                    } else {
+                        $icon_and_text = $download_text . $icon;
+                    }
     
-                    return '<a href="?' . $type . '=' . $id . '"' . $html_id . ' class="' . $this->download_button_class() . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon . $download_text . '</a>';
+                    return '<a href="?' . $type . '=' . $id . '"' . $html_id . ' class="' . $this->download_button_class() . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
                 }
             } else {
                 // Empty return value if no file is linked
@@ -1646,7 +1656,11 @@ class ZDMCore {
                             $download_text = $options['download-btn-text'];
                         }
     
-                        $icon_class = ' zdm-btn-icon';
+                        if ($options['download-btn-icon-position'] == 'left') {
+                            $icon_class = 'zdm-mr-2';
+                        } else {
+                            $icon_class = 'zdm-ml-2';
+                        }
                     }
     
                     $type = 'zdownload_f';
@@ -1655,9 +1669,15 @@ class ZDMCore {
                     // Output
                     if ($options['download-btn-icon'] != 'none') {
                         $icon_size = $options['download-btn-icon-size'];
-                        $icon = '<span class="material-icons-round ' . $icon_class . ' ' . $icon_size . '">' . $options['download-btn-icon'] . '</span>';
+                        $icon = '<span class="material-icons-round ' . $icon_size . ' ' . $icon_class . '">' . $options['download-btn-icon'] . '</span>';
                     } else {
                         $icon = '';
+                    }
+
+                    if ($options['download-btn-icon-position'] == 'left') {
+                        $icon_and_text = $icon . $download_text;
+                    } else {
+                        $icon_and_text = $download_text . $icon;
                     }
     
                     // HTTP user agent
@@ -1670,7 +1690,7 @@ class ZDMCore {
                     } else {
                         // Access by user
     
-                        return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon . $download_text . '</a>';
+                        return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
                     }
                 }
             }
