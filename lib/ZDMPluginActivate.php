@@ -19,19 +19,17 @@ class ZDMPluginActivate {
 
         flush_rewrite_rules();
 
-        if (get_option('zdm_options')) {
+        if (get_option('zdm_options'))
             update_option('zdm_options', ZDM__OPTIONS);
-        } else {
+        else
             add_option('zdm_options', ZDM__OPTIONS);
-        }
 
         // Get options
         $zdm_options = get_option('zdm_options');
 
         // Set activation time
-        if (!$zdm_options['activation-time']) {
+        if (!$zdm_options['activation-time'])
             $zdm_options['activation-time'] = time();
-        }
 
         // Download folder token
         if (!$zdm_options['download-folder-token']) {

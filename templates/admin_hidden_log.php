@@ -140,11 +140,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <tr valign="top">
                                 <th scope="row"><?=esc_html__('WordPress user ID', 'zdm')?></th>
                                 <?php
-                                if ($zdm_db_log_details[0]->user_id == 0) {
+                                if ($zdm_db_log_details[0]->user_id == 0)
                                     $user_id = esc_html__('no WordPress user', 'zdm');
-                                } else {
+                                else
                                     $user_id = $zdm_db_log_details[0]->user_id;
-                                }
                                 ?>
                                 <td valign="middle"><?=$user_id?></td>
                             </tr>

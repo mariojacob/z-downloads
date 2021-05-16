@@ -51,11 +51,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             // id_temp erstellen
             $zdm_archive_id_temp = md5($zdm_time . $zdm_post_name);
             // ZIP-Name
-            if ($_POST['zip-name'] != '') {
+            if ($_POST['zip-name'] != '')
                 $zdm_zip_name = str_replace(' ', '-', trim(sanitize_file_name($_POST['zip-name'])));
-            } else {
+            else
                 $zdm_zip_name = str_replace(' ', '-', trim($zdm_post_name));
-            }
 
             // Database table name
             $zdm_tablename_archives = $wpdb->prefix . "zdm_archives";
@@ -85,9 +84,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             // Define number for loop pass
             $zdm_files_count = 5;
-            if ($zdm_licence === 1) {
+            if ($zdm_licence === 1)
                 $zdm_files_count = 20;
-            }
 
             // Database table name
             $zdm_tablename_files_rel = $wpdb->prefix . "zdm_files_rel";

@@ -59,18 +59,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                             <tbody>
                             <?php
-
                             for ($i = 0; $i < $zdm_last_downloads_count; $i++) {
 
                                 $zdm_download_name = ZDMCore::get_archive_name($zdm_last_downloads[$i]->message);
 
-                                if ($zdm_download_name != '') {
-
+                                if ($zdm_download_name != '')
                                     $zdm_download_id_link = '<b><a href="?page=' . ZDM__SLUG . '-ziparchive&id=' . $zdm_last_downloads[$i]->message . '">' . $zdm_download_name . '</a></b>';
-
-                                } else {
+                                else
                                     $zdm_download_id_link = esc_html__('Deleted archive', 'zdm');
-                                }
 
                                 echo '<tr>';
                                     echo '<td>';
@@ -81,7 +77,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     echo '</td>';
                                 echo '</tr>';
                             }
-
                             ?>
                             </tbody>
                         </table>
@@ -104,14 +99,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                                     $zdm_download_name = ZDMCore::get_file_name($zdm_last_downloads_files[$i]->message);
 
-                                    if ($zdm_download_name != '') {
-
+                                    if ($zdm_download_name != '')
                                         $zdm_download_id_link = '<b><a href="?page=' . ZDM__SLUG . '-files&id=' . $zdm_last_downloads_files[$i]->message . '">' . $zdm_download_name . '</a></b>';
-
-                                    } else {
+                                    else
                                         $zdm_download_id_link = esc_html__('Deleted file', 'zdm');
-                                    }
-
                                     ?>
                                     <tr>
                                         <td>
@@ -168,14 +159,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                                     $zdm_download_name = $zdm_best_downloads[$i]->name;
 
-                                    if ($zdm_download_name != '') {
-
+                                    if ($zdm_download_name != '')
                                         $zdm_download_id_link = '<b><a href="?page=' . ZDM__SLUG . '-ziparchive&id=' . $zdm_best_downloads[$i]->id . '">' . $zdm_download_name . '</a></b>';
-
-                                    } else {
+                                    else
                                         $zdm_download_id_link = esc_html__('Deleted download', 'zdm');
-                                    }
-
                                     ?>
                                     <tr>
                                         <td>
@@ -210,14 +197,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                                     $zdm_download_name = $zdm_best_downloads_files[$i]->name;
 
-                                    if ($zdm_download_name != '') {
-
+                                    if ($zdm_download_name != '')
                                         $zdm_download_id_link = '<b><a href="?page=' . ZDM__SLUG . '-files&id=' . $zdm_best_downloads_files[$i]->id . '">' . $zdm_download_name . '</a></b>';
-
-                                    } else {
+                                    else
                                         $zdm_download_id_link = esc_html__('Deleted download', 'zdm');
-                                    }
-
                                     ?>
                                     <tr>
                                         <td width="2%">

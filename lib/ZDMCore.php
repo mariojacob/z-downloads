@@ -185,11 +185,10 @@ class ZDMCore {
             "
             );
 
-        if ($db_file_rel[0] === NULL) {
+        if ($db_file_rel[0] === NULL)
             return false;
-        } else {
-            return true;
-        }
+        
+        return true;
     }
 
     /**
@@ -214,9 +213,8 @@ class ZDMCore {
             "
             );
 
-        if (count($db_files_rel) > 0) {
+        if (count($db_files_rel) > 0)
             $this->create_archive_cache($archive_id);
-        }
     }
 
     /**
@@ -239,11 +237,10 @@ class ZDMCore {
             "
             );
 
-        if (count($db_files_rel) > 0) {
+        if (count($db_files_rel) > 0)
             return true;
-        } else {
-            return false;
-        }
+
+        return false;
     }
 
     /**
@@ -268,11 +265,10 @@ class ZDMCore {
 
         $db_count = count($db_file_rel);
 
-        if ($db_count > 0) {
+        if ($db_count > 0)
             return $db_count;
-        } else {
-            return false;
-        }
+        
+        return false;
     }
 
     /**
@@ -312,11 +308,10 @@ class ZDMCore {
         } else {
 
             // Check whether a file has been changed
-            if (count($db_files_rel) > 0) {
+            if (count($db_files_rel) > 0)
                 return false;
-            } else {
-                return true;
-            }
+            
+            return true;
         }
     }
 
@@ -342,11 +337,10 @@ class ZDMCore {
                 "
                 );
     
-            if (count($db_archives) > 0) {
+            if (count($db_archives) > 0)
                 return true;
-            } else {
-                return false;
-            }
+            
+            return false;
         } else {
             return false;
         }
@@ -374,11 +368,10 @@ class ZDMCore {
                 "
                 );
     
-            if (count($db_files) >= 1) {
+            if (count($db_files) >= 1)
                 return true;
-            } else {
-                return false;
-            }
+            
+            return false;
         } else {
             return false;
         }
@@ -424,16 +417,13 @@ class ZDMCore {
         $old_cache_folder = ZDM__DOWNLOADS_CACHE_PATH . '/' . $db_archive[0]->archive_cache_path;
         $old_cache_file = $old_cache_folder . '/' . $db_archive[0]->zip_name . '.zip';
         $old_cache_index = $old_cache_folder . '/' . 'index.php';
-        if (file_exists($old_cache_file)) {
+        if (file_exists($old_cache_file))
             unlink($old_cache_file);
-        }
-        if (file_exists($old_cache_index)) {
+        if (file_exists($old_cache_index))
             unlink($old_cache_index);
-        }
         if ($db_archive[0]->archive_cache_path != '') {
-            if (is_dir($old_cache_folder)) {
+            if (is_dir($old_cache_folder))
                 rmdir($old_cache_folder);
-            }
         }
         
         // Archive cache path
@@ -441,9 +431,8 @@ class ZDMCore {
         $archive_cache_path = md5(time() . $archive_id);
 
         // Create folder
-        if (!is_dir(ZDM__DOWNLOADS_CACHE_PATH . '/' . $archive_cache_path)) {
+        if (!is_dir(ZDM__DOWNLOADS_CACHE_PATH . '/' . $archive_cache_path))
             wp_mkdir_p(ZDM__DOWNLOADS_CACHE_PATH . '/' . $archive_cache_path);
-        }
 
         // Cache file path
         $file_path = ZDM__DOWNLOADS_CACHE_PATH . '/' . $archive_cache_path . '/' . $db_archive[0]->zip_name . '.zip';
@@ -592,15 +581,12 @@ class ZDMCore {
                 $zdm_cache_file = $zdm_cache_folder . '/' . $zdm_db_archives[$i]->zip_name . '.zip';
                 $zdm_cache_index = $zdm_cache_folder . '/' . 'index.php';
 
-                if (file_exists($zdm_cache_file)) {
+                if (file_exists($zdm_cache_file))
                     unlink($zdm_cache_file);
-                }
-                if (file_exists($zdm_cache_index)) {
+                if (file_exists($zdm_cache_index))
                     unlink($zdm_cache_index);
-                }
-                if (is_dir($zdm_cache_folder)) {
+                if (is_dir($zdm_cache_folder))
                     rmdir($zdm_cache_folder);
-                }
             }
 
             // Delete database entries
@@ -631,15 +617,12 @@ class ZDMCore {
             $zdm_file_path = $zdm_folder_path . '/' . $zdm_db_file[$i]->file_name;
             $zdm_file_index = $zdm_folder_path . '/' . 'index.php';
 
-            if (file_exists($zdm_file_path)) {
+            if (file_exists($zdm_file_path))
                 unlink($zdm_file_path);
-            }
-            if (file_exists($zdm_file_index)) {
+            if (file_exists($zdm_file_index))
                 unlink($zdm_file_index);
-            }
-            if (is_dir($zdm_folder_path)) {
+            if (is_dir($zdm_folder_path))
                 rmdir($zdm_folder_path);
-            }
 
             // Delete database entries
             $wpdb->delete(
@@ -676,17 +659,14 @@ class ZDMCore {
         // Delete main folder
         ////////////////////
 
-        if (is_dir(ZDM__DOWNLOADS_CACHE_PATH)) {
+        if (is_dir(ZDM__DOWNLOADS_CACHE_PATH))
             @rmdir(ZDM__DOWNLOADS_CACHE_PATH);
-        }
 
-        if (is_dir(ZDM__DOWNLOADS_FILES_PATH)) {
+        if (is_dir(ZDM__DOWNLOADS_FILES_PATH))
             @rmdir(ZDM__DOWNLOADS_FILES_PATH);
-        }
 
-        if (is_dir(ZDM__DOWNLOADS_PATH)) {
+        if (is_dir(ZDM__DOWNLOADS_PATH))
             @rmdir(ZDM__DOWNLOADS_PATH);
-        }
 
         // Log
         $this->log('delete all data');
@@ -1091,11 +1071,7 @@ class ZDMCore {
                 );
         }
 
-        if ($db_file[0] === NULL) {
-            return count($db_file);
-        } else {
-            return count($db_file);
-        }
+        return count($db_file);
     }
 
     /**
@@ -1222,9 +1198,8 @@ class ZDMCore {
                     $options['licence-product-name'] = '';
                     $options['licence-time'] = 0;
 
-                    if (add_option('zdm_options', $options) === FALSE) {
+                    if (add_option('zdm_options', $options) === FALSE)
                         update_option('zdm_options', $options);
-                    }
 
                     $options = get_option('zdm_options');
 
@@ -1240,9 +1215,8 @@ class ZDMCore {
             $options['licence-product-name'] = '';
             $options['licence-time'] = 0;
 
-            if (add_option('zdm_options', $options) === FALSE) {
+            if (add_option('zdm_options', $options) === FALSE)
                 update_option('zdm_options', $options);
-            }
 
             $options = get_option('zdm_options');
 
@@ -1282,11 +1256,10 @@ class ZDMCore {
 
         $array = json_decode($url['body'], true);
 
-        if ($array['success'] === true) {
+        if ($array['success'] === true)
             return $array;
-        } else {
-            return false;
-        }
+        
+        return false;
     }
 
     /**
@@ -1315,11 +1288,10 @@ class ZDMCore {
         }
 
         // HTTP user agent
-        if (filter_input(INPUT_SERVER, 'HTTP_USER_AGENT')) {
+        if (filter_input(INPUT_SERVER, 'HTTP_USER_AGENT'))
             $http_user_agent = filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
-        } else {
+        else
             $http_user_agent = "---";
-        }
 
         global $wpdb;
         
@@ -1347,11 +1319,10 @@ class ZDMCore {
      */
     public function number_format($number) {
 
-        if (in_array(get_locale(), ZDM__COUNTRIES_USING_DECIMAL_POINT)) {
+        if (in_array(get_locale(), ZDM__COUNTRIES_USING_DECIMAL_POINT))
             return number_format($number, 0, '.', ',');
-        } else {
-            return number_format($number, 0, ',', '.');
-        }
+        
+        return number_format($number, 0, ',', '.');
     }
 
     // NOTE: Doc
@@ -1360,15 +1331,12 @@ class ZDMCore {
         $php_modules_text = '';
         if (phpversion() >= 7.4) {
             
-            if (!extension_loaded('mbstring')) {
+            if (!extension_loaded('mbstring'))
                 $php_modules_text .= '<code>mbstring</code><br>';
-            }
-            if (!extension_loaded('gd')) {
+            if (!extension_loaded('gd'))
                 $php_modules_text .= '<code>GD</code><br>';
-            }
-            if (!extension_loaded('zip')) {
+            if (!extension_loaded('zip'))
                 $php_modules_text .= '<code>zip</code><br>';
-            }
 
             if ($php_modules_text != '') {
                 echo '<div class="notice notice-warning">';
@@ -1480,21 +1448,18 @@ class ZDMCore {
         );
         
         $file = htmlspecialchars($atts['file']);
-        if (htmlspecialchars($atts['autoplay']) == 'on') {
+        if (htmlspecialchars($atts['autoplay']) == 'on')
             $autoplay = ' autoplay';
-        } else {
+        else
             $autoplay = '';
-        }
-        if (htmlspecialchars($atts['loop']) == 'on') {
+        if (htmlspecialchars($atts['loop']) == 'on')
             $loop = ' loop';
-        } else {
+        else
             $loop = '';
-        }
-        if (htmlspecialchars($atts['controls']) == 'on') {
+        if (htmlspecialchars($atts['controls']) == 'on')
             $controls = '';
-        } else {
+        else
             $controls = ' controls';
-        }
 
         if ($file != '') {
 
@@ -1513,9 +1478,8 @@ class ZDMCore {
             if ($db_file[0]->status != 'private') {
 
                 $html_id = '';
-                if ($options['hide-html-id'] != 'on') {
+                if ($options['hide-html-id'] != 'on')
                     $html_id = ' id="zdmAudio' . htmlspecialchars($db_file[0]->id) . '"';
-                }
 
                 // Output
                 $audio = '<audio preload="none"' . $html_id . ' class="zdm-audio"' . $autoplay . $loop . $controls . '>';
@@ -1523,9 +1487,8 @@ class ZDMCore {
                 $audio .= '<source src="' . ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_file[0]->folder_path . '/' . $db_file[0]->file_name . '" type="' . $db_file[0]->file_type . '">';
                 $audio .= '</audio>';
     
-                if (in_array($db_file[0]->file_type, ZDM__MIME_TYPES_AUDIO)) {
+                if (in_array($db_file[0]->file_type, ZDM__MIME_TYPES_AUDIO))
                     return $audio;
-                }
             }
         }
     }
@@ -1579,17 +1542,15 @@ class ZDMCore {
                         $icon_class = '  zdm-btn-icon-only';
                     } else {
     
-                        if ($db_archive[0]->button_text != '') {
+                        if ($db_archive[0]->button_text != '')
                             $download_text = $db_archive[0]->button_text;
-                        } else {
+                        else
                             $download_text = $options['download-btn-text'];
-                        }
     
-                        if ($options['download-btn-icon-position'] == 'left') {
+                        if ($options['download-btn-icon-position'] == 'left')
                             $icon_class = 'zdm-mr-2';
-                        } else {
+                        else
                             $icon_class = 'zdm-ml-2';
-                        }
                     }
     
                     $type = 'zdownload';
@@ -1598,20 +1559,17 @@ class ZDMCore {
                     // Output
                     $icon = '';
                     $icon_size = $options['download-btn-icon-size'];
-                    if ($options['download-btn-icon'] != 'none') {
+                    if ($options['download-btn-icon'] != 'none')
                         $icon = '<span class="material-icons-round ' . $icon_size . ' ' . $icon_class . '">' . $options['download-btn-icon'] . '</span>';
-                    }
 
                     $html_id = '';
-                    if ($options['hide-html-id'] != 'on') {
+                    if ($options['hide-html-id'] != 'on')
                         $html_id = ' id="zdmBtn' . htmlspecialchars($db_archive[0]->id) . '"';
-                    }
 
-                    if ($options['download-btn-icon-position'] == 'left') {
+                    if ($options['download-btn-icon-position'] == 'left')
                         $icon_and_text = $icon . $download_text;
-                    } else {
+                    else
                         $icon_and_text = $download_text . $icon;
-                    }
     
                     return '<a href="?' . $type . '=' . $id . '"' . $html_id . ' class="' . $this->download_button_class() . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
                 }
@@ -1650,17 +1608,15 @@ class ZDMCore {
                         $icon_class = '  zdm-btn-icon-only';
                     } else {
     
-                        if ($db_files[0]->button_text != '') {
+                        if ($db_files[0]->button_text != '')
                             $download_text = $db_files[0]->button_text;
-                        } else {
+                        else
                             $download_text = $options['download-btn-text'];
-                        }
     
-                        if ($options['download-btn-icon-position'] == 'left') {
+                        if ($options['download-btn-icon-position'] == 'left')
                             $icon_class = 'zdm-mr-2';
-                        } else {
+                        else
                             $icon_class = 'zdm-ml-2';
-                        }
                     }
     
                     $type = 'zdownload_f';
@@ -1674,24 +1630,19 @@ class ZDMCore {
                         $icon = '';
                     }
 
-                    if ($options['download-btn-icon-position'] == 'left') {
+                    if ($options['download-btn-icon-position'] == 'left')
                         $icon_and_text = $icon . $download_text;
-                    } else {
+                    else
                         $icon_and_text = $download_text . $icon;
-                    }
     
                     // HTTP user agent
                     $http_user_agent = @filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
     
                     require_once(ZDM__PATH . '/lib/bot_user_agents.php');
     
-                    if (in_array($http_user_agent, ZDM__BOT_USER_AGENTS)) {
-                        // Access by bot
-                    } else {
-                        // Access by user
-    
+                    // Access by bot
+                    if (!in_array($http_user_agent, ZDM__BOT_USER_AGENTS))
                         return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
-                    }
                 }
             }
         } // end if ($file != '')
@@ -1874,9 +1825,8 @@ class ZDMCore {
                         "
                         );
 
-                    if ($db_archive[0]->status != 'private') {
+                    if ($db_archive[0]->status != 'private')
                         return htmlspecialchars($this->number_format($db_archive[0]->count));
-                    }
                 }
 
                 ////////////////////
@@ -1902,9 +1852,8 @@ class ZDMCore {
                             "
                             );
 
-                        if ($db_archive[0]->status != 'private') {
+                        if ($db_archive[0]->status != 'private')
                             return htmlspecialchars($db_archive[0]->file_size);
-                        }
                     }
                 }
 
@@ -1922,9 +1871,8 @@ class ZDMCore {
                         "
                         );
 
-                    if ($db_archive[0]->status != 'private') {
+                    if ($db_archive[0]->status != 'private')
                         return htmlspecialchars($db_archive[0]->name);
-                    }
                 }
 
                 ////////////////////
@@ -1941,9 +1889,8 @@ class ZDMCore {
                         "
                         );
 
-                    if ($db_archive[0]->status != 'private') {
+                    if ($db_archive[0]->status != 'private')
                         return htmlspecialchars($db_archive[0]->zip_name . '.zip');
-                    }
                 }
 
                 ////////////////////
@@ -2010,9 +1957,8 @@ class ZDMCore {
                         "
                         );
 
-                    if ($db_files[0]->status != 'private') {
+                    if ($db_files[0]->status != 'private')
                         return htmlspecialchars($this->number_format($db_files[0]->count));
-                    }
                 }
 
                 ////////////////////
@@ -2029,9 +1975,8 @@ class ZDMCore {
                         "
                         );
 
-                    if ($db_files[0]->status != 'private') {
+                    if ($db_files[0]->status != 'private')
                         return htmlspecialchars($db_files[0]->file_size);
-                    }
                 }
 
                 ////////////////////
@@ -2048,9 +1993,8 @@ class ZDMCore {
                         "
                         );
 
-                    if ($db_files[0]->status != 'private') {
+                    if ($db_files[0]->status != 'private')
                         return htmlspecialchars($db_files[0]->name);
-                    }
                 }
 
                 ////////////////////
@@ -2067,9 +2011,8 @@ class ZDMCore {
                         "
                         );
 
-                    if ($db_files[0]->status != 'private') {
+                    if ($db_files[0]->status != 'private')
                         return htmlspecialchars($db_files[0]->file_name);
-                    }
                 }
 
                 ////////////////////
@@ -2124,21 +2067,18 @@ class ZDMCore {
         
         $file = htmlspecialchars($atts['file']);
         $width = htmlspecialchars($atts['w']);
-        if (htmlspecialchars($atts['autoplay']) == 'on') {
+        if (htmlspecialchars($atts['autoplay']) == 'on')
             $autoplay = ' autoplay';
-        } else {
+        else
             $autoplay = '';
-        }
-        if (htmlspecialchars($atts['loop']) == 'on') {
+        if (htmlspecialchars($atts['loop']) == 'on')
             $loop = ' loop';
-        } else {
+        else
             $loop = '';
-        }
-        if (htmlspecialchars($atts['controls']) == 'on') {
+        if (htmlspecialchars($atts['controls']) == 'on')
             $controls = '';
-        } else {
+        else
             $controls = ' controls';
-        }
 
         if ($file != '') {
 
@@ -2157,9 +2097,8 @@ class ZDMCore {
             if ($db_file[0]->status != 'private') {
 
                 $html_id = '';
-                if ($options['hide-html-id'] != 'on') {
+                if ($options['hide-html-id'] != 'on')
                     $html_id = ' id="zdmVideo' . htmlspecialchars($db_file[0]->id) . '"';
-                }
 
                 // Output
                 $video = '<video' . $html_id . ' width="' . $width . '" class="zdm-video"' . $autoplay . $loop . $controls . '>';
@@ -2167,9 +2106,8 @@ class ZDMCore {
                 $video .= '<source src="' . ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_file[0]->folder_path . '/' . $db_file[0]->file_name . '" type="' . $db_file[0]->file_type . '">';
                 $video .= '</video>';
 
-                if (in_array($db_file[0]->file_type, ZDM__MIME_TYPES_VIDEO)) {
+                if (in_array($db_file[0]->file_type, ZDM__MIME_TYPES_VIDEO))
                     return $video;
-                }
             }
         }
     }
