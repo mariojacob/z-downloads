@@ -31,7 +31,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             <?php
             ////////////////////
-            // Last downloads
+            // Letzte Downloads
             ////////////////////
             
             $zdm_last_downloads = ZDMStat::get_last_downloads();
@@ -125,7 +125,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <?php }
 
             ////////////////////
-            // Popular downloads
+            // Beliebte Downloads
             ////////////////////
 
             $zdm_best_downloads = ZDMStat::get_best_downloads();
@@ -244,7 +244,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         <?php
         ////////////////////
-        // Download statistics
+        // Downloadstatistik
         ////////////////////
         ?>
 

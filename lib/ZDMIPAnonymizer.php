@@ -55,20 +55,20 @@ class ZDMIPAnonymizer {
      */
     public $ipv6NetMask = "ffff:ffff:ffff:ffff:0000:0000:0000:0000";
     /**
-     * Anonymize an IPv4 or IPv6 address.
+     * Anonymisiert eine IPv4- oder IPv6-Adresse
      *
-     * @param $address string IP address that must be anonymized
-     * @return string The anonymized IP address. Returns an empty string if the IP address is invalid.
+     * @param string $address IP-Adresse, die anonymisiert werden muss
+     * @return string Die anonymisierte IP-Adresse. Gibt eine leere Zeichenfolge zurück, wenn die IP-Adresse ungültig ist
      */
     public static function anonymizeIp($address) {
         $anonymizer = new IPAnonymizer();
         return $anonymizer->anonymize($address);
     }
     /**
-     * Anonymize an IPv4 or IPv6 address.
+     * Anonymisiert eine IPv4- oder IPv6-Adresse
      *
-     * @param $address string IP address that must be anonymized
-     * @return string The anonymized IP address. Returns an empty string if the IP address is invalid.
+     * @param string $address IP-Adresse, die anonymisiert werden muss
+     * @return string Die anonymisierte IP-Adresse. Gibt eine leere Zeichenfolge zurück, wenn die IP-Adresse ungültig ist
      */
     public function anonymize($address) {
         $packedAddress = inet_pton($address);
@@ -81,17 +81,17 @@ class ZDMIPAnonymizer {
         }
     }
     /**
-     * Anonymize an IPv4 address
-     * @param $address string IPv4 adress
-     * @return string Anonymized address
+     * Anonymisiert eine IPv4-Adresse
+     * @param string $address IPv4-Adresse
+     * @return string Anonymisierte IP-Adresse
      */
     public function anonymizeIPv4($address) {
         return inet_ntop(inet_pton($address) & inet_pton($this->ipv4NetMask));
     }
     /**
-     * Anonymize an IPv6 address
-     * @param $address string IPv6 adress
-     * @return string Anonymized address
+     * Anonymisiert eine IPv6-Adresse
+     * @param string $address IPv6-Adresse
+     * @return string Anonymisierte IP-Adresse
      */
     public function anonymizeIPv6($address) {
         return inet_ntop(inet_pton($address) & inet_pton($this->ipv6NetMask));

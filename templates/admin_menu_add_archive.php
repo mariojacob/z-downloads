@@ -19,10 +19,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     }
 
     global $wpdb;
-    // Database table name
     $zdm_tablename_files = $wpdb->prefix . "zdm_files";
 
-    // Get data from database (files)
     $zdm_db_files = $wpdb->get_results( 
         "
         SELECT id, name 
@@ -32,7 +30,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     $zdm_db_files_count = count($zdm_db_files);
 
-    // Save files from database in selection menu
+    // Speichere Dateien von Datenbank in Auswahlmenü
     $zdm_option_output = '';
     for ($i = 0; $i < $zdm_db_files_count; $i++) {
         $zdm_option_output .= '<option value="' . $zdm_db_files[$i]->id . '">' . $zdm_db_files[$i]->name . '</option>';
@@ -40,7 +38,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     if (isset($_POST['submit']) && wp_verify_nonce($_POST['nonce'], 'daten-speichern')) {
 
-        // Check whether fields are filled out
         if ($_POST['name'] != '') {
 
             $zdm_post_name = sanitize_text_field($_POST['name']);
@@ -56,10 +53,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             else
                 $zdm_zip_name = str_replace(' ', '-', trim($zdm_post_name));
 
-            // Database table name
             $zdm_tablename_archives = $wpdb->prefix . "zdm_archives";
 
-            // Save data in database archives
+            // Neuen Datenbankeintrag erstellen
             $wpdb->insert(
                 $zdm_tablename_archives, 
                 array(
@@ -73,7 +69,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 )
             );
 
-            // Get id from archive just saved
+            // Hole ID von gerade gespeichertem Archiv
             $zdm_db_archive = $wpdb->get_results( 
                 "
                 SELECT id 
@@ -82,18 +78,17 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 "
             );
 
-            // Define number for loop pass
+            // Definiere Anzahl für Dateiverknüpfungen
             $zdm_files_count = 5;
             if ($zdm_licence === 1)
                 $zdm_files_count = 20;
 
-            // Database table name
             $zdm_tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
 
-            // Remove duplicate selection
+            // Entferne doppelte Auswahl
             $_POST['files'] = array_unique($_POST['files']);
 
-            // Create files_rel entries
+            // Erstelle files_rel Eintrag
             for ($i = 0; $i < $zdm_files_count; $i++) {
 
                 if ($_POST['files'][$i] != '') {
@@ -111,7 +106,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 }
             }
 
-            // Log
             ZDMCore::log('add archive', 'ID: ' . $zdm_db_archive[0]->id . ', name: ' . $zdm_post_name);
 
             $zdm_status = 1;
@@ -126,7 +120,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     <div class="wrap">
 
         <?php
-        // Show note message
         if ($zdm_note != '') {
             echo '<div class="notice notice-warning">';
             echo '<br><b>' . $zdm_note . '</b><br><br>';

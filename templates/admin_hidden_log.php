@@ -11,7 +11,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     $zdm_tablename_log = $wpdb->prefix . "zdm_log";
     $zdm_status = '';
     
-    if (isset($_GET['id'])) { // Log detail page
+    if (isset($_GET['id'])) { // Log Detailseite
 
         $zdm_status = 1;
 
@@ -25,15 +25,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             "
         );
 
-    } else { // Log list
+    } else { // Log Liste
         
         $zdm_log_filter_array = array(esc_html__('Everything', 'zdm'), esc_html__('Downloads', 'zdm'), esc_html__('Files', 'zdm'), esc_html__('Archives', 'zdm'));
         $zdm_log_filter_array_count = count($zdm_log_filter_array);
         $zdm_log_filter_array_val = array("all", "downloads", "files", "archives");
 
         if (isset($_POST['log-filter-type']) && wp_verify_nonce($_POST['nonce'], 'log-types')) {
-
-            // General
             
             $zdm_lof_filter_type = sanitize_text_field($_POST['log-filter-type']);
 
@@ -44,7 +42,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     SELECT id, type, message, time_create 
                     FROM $zdm_tablename_log 
                     WHERE type = 'download archive' 
-                    OR type = 'download file' 
+                    || type = 'download file' 
                     ORDER BY time_create DESC 
                     LIMIT 100
                     "
@@ -56,11 +54,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     SELECT id, type, message, time_create 
                     FROM $zdm_tablename_log 
                     WHERE type = 'download file' 
-                    OR type = 'add file' 
-                    OR type = 'update file' 
-                    OR type = 'replace file' 
-                    OR type = 'unlink file' 
-                    OR type = 'delete file' 
+                    || type = 'add file' 
+                    || type = 'update file' 
+                    || type = 'replace file' 
+                    || type = 'unlink file' 
+                    || type = 'delete file' 
                     ORDER BY time_create DESC 
                     LIMIT 100
                     "
@@ -72,9 +70,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     SELECT id, type, message, time_create 
                     FROM $zdm_tablename_log 
                     WHERE type = 'download archive' 
-                    OR type = 'add archive' 
-                    OR type = 'delete archive' 
-                    OR type = 'create archive cache' 
+                    || type = 'add archive' 
+                    || type = 'delete archive' 
+                    || type = 'create archive cache' 
                     ORDER BY time_create DESC 
                     LIMIT 100
                     "
@@ -106,7 +104,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         $zdm_db_logs_count = count($zdm_db_logs);
     }
 
-    if ($zdm_status === 1) { // Log detail page
+    if ($zdm_status === 1) { // Log Detailseite
 
         ?>
         <div class="wrap">
@@ -165,9 +163,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         }
         </script>
         <?php
-            
-    } else { // Log list
-        
+    } else { // Log Liste
         ?>
         <div class="wrap">
 
@@ -219,23 +215,25 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                         <tbody>
                         <?php
-
                             for ($i = 0; $i < $zdm_db_logs_count; $i++) {
 
-                                if ($zdm_db_logs[$i]->type == 'download archive' OR $zdm_db_logs[$i]->type == 'download file') {
+                                if ($zdm_db_logs[$i]->type == 'download archive' || $zdm_db_logs[$i]->type == 'download file') {
                                     $zdm_icon = 'file_download';
                                     $zdm_class_color = 'zdm-color-primary';
-                                } elseif ($zdm_db_logs[$i]->type == 'add archive' OR $zdm_db_logs[$i]->type == 'add file') {
+                                } elseif ($zdm_db_logs[$i]->type == 'add archive' || $zdm_db_logs[$i]->type == 'add file') {
                                     $zdm_icon = 'note_add';
                                     $zdm_class_color = 'zdm-color-green';
-                                } elseif ($zdm_db_logs[$i]->type == 'update archive' OR $zdm_db_logs[$i]->type == 'update file') {
+                                } elseif ($zdm_db_logs[$i]->type == 'update archive' || $zdm_db_logs[$i]->type == 'update file') {
                                     $zdm_icon = 'check_circle_outline';
-                                    $zdm_class_color = '';
-                                } elseif ($zdm_db_logs[$i]->type == 'delete archive' OR $zdm_db_logs[$i]->type == 'delete file') {
+                                    $zdm_class_color = 'zdm-color-green';
+                                } elseif ($zdm_db_logs[$i]->type == 'delete archive' || $zdm_db_logs[$i]->type == 'delete file') {
                                     $zdm_icon = 'delete';
                                     $zdm_class_color = 'zdm-color-red';
                                 } elseif ($zdm_db_logs[$i]->type == 'create archive cache') {
                                     $zdm_icon = 'refresh';
+                                    $zdm_class_color = 'zdm-color-green';
+                                } elseif ($zdm_db_logs[$i]->type == 'archive cache created') {
+                                    $zdm_icon = 'check_circle_outline';
                                     $zdm_class_color = 'zdm-color-green';
                                 } elseif ($zdm_db_logs[$i]->type == 'unlink file') {
                                     $zdm_icon = 'link_off';
@@ -249,11 +247,28 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 } elseif ($zdm_db_logs[$i]->type == 'error create zip') {
                                     $zdm_icon = 'error_outline';
                                     $zdm_class_color = 'zdm-color-orange';
+                                } elseif ($zdm_db_logs[$i]->type == 'update licence') {
+                                    $zdm_icon = 'check_circle_outline';
+                                    $zdm_class_color = 'zdm-color-green';
+                                } elseif ($zdm_db_logs[$i]->type == 'delete licence') {
+                                    $zdm_icon = 'delete';
+                                    $zdm_class_color = 'zdm-color-red';
+                                } elseif ($zdm_db_logs[$i]->type == 'plugin upgrade') {
+                                    $zdm_icon = 'upgrade';
+                                    $zdm_class_color = 'zdm-color-primary';
+                                } elseif ($zdm_db_logs[$i]->type == 'delete all data') {
+                                    $zdm_icon = 'delete_forever';
+                                    $zdm_class_color = 'zdm-color-red';
+                                } elseif ($zdm_db_logs[$i]->type == 'plugin activated' || $zdm_db_logs[$i]->type == 'plugin deactivated') {
+                                    $zdm_icon = 'power_settings_new';
+                                    $zdm_class_color = 'zdm-color-primary';
+                                } elseif ($zdm_db_logs[$i]->type == 'database created') {
+                                    $zdm_icon = 'storage';
+                                    $zdm_class_color = 'zdm-color-primary';
                                 } else {
                                     $zdm_icon = 'info';
                                     $zdm_class_color = '';
                                 }
-// zdm-icon-in-table
                                 ?>
                                 <tr>
                                     <td>
@@ -271,7 +286,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 </tr>
                                 <?php
                             }
-
                         ?>
                         </tbody>
 
@@ -289,7 +303,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <?php
             } else {
                 ?>
-
                 <div class="col-wrap">
 
                     <div class="postbox">
@@ -319,17 +332,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         </div>
                     </div>
                 </div>
-                
                 <?php
             }
             ?>
-
             <br>
             <a class="alignright button" href="javascript:void(0);" onclick="window.scrollTo(0,0);" style="margin:3px 0 0 30px;"><?=esc_html__('To top', 'zdm')?></a>
         </div>
-
         <?php
-
     }
-
 }

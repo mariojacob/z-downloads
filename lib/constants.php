@@ -14,7 +14,7 @@ define('ZDM__DOWNLOADS_PATH_URL', wp_upload_dir()['baseurl'] . "/z-downloads-" .
 define('ZDM__DOWNLOADS_CACHE_PATH_URL', ZDM__DOWNLOADS_PATH_URL . "/cache");
 define('ZDM__DOWNLOADS_FILES_PATH_URL', ZDM__DOWNLOADS_PATH_URL . "/files");
 
-// options
+// Optionen
 define('ZDM__OPTIONS', [
     'version'                           => ZDM__VERSION,
     'licence-key'                       => '',
@@ -72,7 +72,7 @@ define('ZDM__MIME_TYPES_IMAGE', [
     'image/tiff'
 ]);
 
-// Download button style
+// Download Button Style
 define('ZDM__DOWNLOAD_BTN_STYLE_VAL', [
     'black',
     'grey5',
@@ -102,7 +102,7 @@ define('ZDM__DOWNLOAD_BTN_STYLE', [
     __('Red', 'zdm')
 ]);
 
-// Download button rounded edges
+// Download Button runde Ecken
 define('ZDM__DOWNLOAD_BTN_BORDER_RADIUS_VAL', [
     'none',
     '1',
@@ -130,7 +130,7 @@ define('ZDM__DOWNLOAD_BTN_BORDER_RADIUS', [
     __('10 pixel', 'zdm')
 ]);
 
-// Download button icons
+// Download Button Icons
 define('ZDM__DOWNLOAD_BTN_ICON_VAL', [
     'none',
     'file_download',
@@ -208,7 +208,7 @@ define('ZDM__DOWNLOAD_BTN_ICON', [
     __('Apps', 'zdm')
 ]);
 
-// Countries using decimal point
+// Länder mit Dezimalpunkt
 define('ZDM__COUNTRIES_USING_DECIMAL_POINT', [
     'en_AU',
     'bn_BD',

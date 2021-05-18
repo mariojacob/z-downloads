@@ -6,17 +6,16 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Deactivate plugin
+ * Plugin Deaktivierung
  */
 class ZDMPluginDeactivate {
 
     /**
-     * Method when plugin is deactivated
+     * Plugin deaktivieren
      *
      * @return void
      */
     public static function deactivate() {
-        // Log
-        ZDMCore::log('plugin deactivate');
+        ZDMCore::log('plugin deactivated');
     }
 }

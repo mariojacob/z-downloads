@@ -6,12 +6,12 @@ if (!defined('ABSPATH')) {
 }
 
 /**
- * Database class
+ * Datenbank Klasse
  */
 class ZDMDatabase {
 
     /**
-     * Creates the database structure
+     * Erstellt die Datenbankstruktur
      *
      * @return void
      */
@@ -99,7 +99,6 @@ class ZDMDatabase {
                 dbDelta($sql);
         }
 
-        // Log
         ZDMCore::log('database created');
     }
 }

@@ -7,7 +7,6 @@ if (!defined('ABSPATH')) {
 
 if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     ?>
-
     <div class="wrap">
         <h1 class="wp-heading-inline"><?=esc_html__('Upload new file', 'zdm')?></h1>
         <hr class="wp-header-end">
@@ -27,12 +26,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 </div>
             </div>
         </form>
-
         <br>
-
         <?php require_once (plugin_dir_path(__FILE__) . '../inc/postbox_info_files.php'); ?>
-
     </div>
-
 <?php
 }

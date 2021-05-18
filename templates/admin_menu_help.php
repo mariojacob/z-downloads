@@ -7,14 +7,14 @@ if (!defined('ABSPATH')) {
 
 if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
-    // Determine the active tab
+    // Aktiven Tab bestimmen
     if( isset($_GET['tab'])) {
         $active_tab = htmlspecialchars($_GET['tab']);
     } else {
         $active_tab = 'beginner';
     }
 
-    // Text for premium functions
+    // Text für Premiumfunktionen
     if (!ZDMCore::licence()) {
         $zdm_premium_text = '(<a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('feature', 'zdm') . ' </a>)';
     } else {
@@ -36,8 +36,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     <?php
 
+    //////////////////////////////////////////////////
     // Tabs
-    if ($active_tab == 'beginner') { // Tab: First steps
+    //////////////////////////////////////////////////
+    if ($active_tab == 'beginner') { // Tab: Erste Schritte
         ?>
         <br>
         <div class="postbox">
@@ -104,8 +106,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         </div>
         
         <?php
-    // end if ($active_tab == 'beginner')
-    } elseif ($active_tab == 'advanced') { // Tab: Advanced
+    //////////////////////////////////////////////////
+    // Ende Tab: Erste Schritte
+    //////////////////////////////////////////////////
+    } elseif ($active_tab == 'advanced') { // Tab: Erweitert
         ?>
         <br>
         <div class="postbox">
@@ -202,8 +206,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             </div>
         </div>
         <?php
-    // end elseif ($active_tab == 'advanced')
-    } elseif ($active_tab == 'expert') { // Tab: Expert
+    //////////////////////////////////////////////////
+    // Ende Tab: Erweitert
+    //////////////////////////////////////////////////
+    } elseif ($active_tab == 'expert') { // Tab: Experte
         ?>
         <br>
         <div class="postbox">
@@ -293,7 +299,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             </div>
         </div>
         <?php
-    } // end elseif ($active_tab == 'expert')
+    }
+    //////////////////////////////////////////////////
+    // Ende Tab: Experte
+    //////////////////////////////////////////////////
     ?>
 
     </div><!-- end class="wrap" -->

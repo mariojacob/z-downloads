@@ -9,10 +9,9 @@ $zdm_options = get_option('zdm_options');
 
 if ($zdm_options['version'] < ZDM__VERSION) {
 
-    // Log
-    ZDMCore::log('plugin upgrade', ZDM__VERSION);
+    ZDMCore::log('plugin upgrade', $zdm_options['version'] . ' to ' . ZDM__VERSION);
 
-    // Options
+    // Optionen
     if ($zdm_options['download-btn-text'] == '')
         $zdm_options['download-btn-text'] = 'Download';
 
@@ -87,6 +86,4 @@ if ($zdm_options['version'] < ZDM__VERSION) {
     $zdm_options['version'] = ZDM__VERSION;
     
     update_option('zdm_options', $zdm_options);
-
-    //////////////////////////////
 }
