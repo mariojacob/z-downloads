@@ -721,22 +721,22 @@ class ZDMCore {
                             // Get data from the database (log)
                             $db_log = $wpdb->get_results(
                                 "
-                                SELECT user_ip, time_create 
+                                SELECT user_agent, time_create 
                                 FROM $tablename_log 
                                 WHERE type = 'download archive' 
                                 AND message = '$zdownload_url' 
                                 ORDER BY id DESC LIMIT 1
                                 "
                                 );
-                            
-                            $user_ip = filter_input(INPUT_SERVER, 'REMOTE_ADDR');
-                            // Anonymize the IP address
-                            require_once(ZDM__PATH . '/lib/ZDMIPAnonymizer.php');
-                            $ip_anonymizer = new ZDMIPAnonymizer();
-                            $user_ip = $ip_anonymizer->anonymize($user_ip);
+
+                            // HTTP user agent
+                            if (filter_input(INPUT_SERVER, 'HTTP_USER_AGENT'))
+                                $user_agent = filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
+                            else
+                                $user_agent = "---";
 
                             // Download count delay for same user
-                            if (($db_log[0]->time_create < time()-5 && $db_log[0]->user_ip == $user_ip) || $db_log == null) {
+                            if (($db_log[0]->time_create < time()-5 && $db_log[0]->user_agent == $user_agent) || $db_log == null) {
                             
                                 // Update count
                                 $count_new = $db_archive[0]->count + 1;
@@ -810,22 +810,22 @@ class ZDMCore {
                             // Get data from the database (log)
                             $db_log = $wpdb->get_results(
                                 "
-                                SELECT user_ip, time_create 
+                                SELECT user_agent, time_create 
                                 FROM $tablename_log 
                                 WHERE type = 'download file' 
                                 AND message = '$zdownload_url' 
                                 ORDER BY id DESC LIMIT 1
                                 "
                                 );
-                            
-                            $user_ip = filter_input(INPUT_SERVER, 'REMOTE_ADDR');
-                            // Anonymize the IP address
-                            require_once(ZDM__PATH . '/lib/ZDMIPAnonymizer.php');
-                            $ip_anonymizer = new ZDMIPAnonymizer();
-                            $user_ip = $ip_anonymizer->anonymize($user_ip);
+
+                            // HTTP user agent
+                            if (filter_input(INPUT_SERVER, 'HTTP_USER_AGENT'))
+                                $user_agent = filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
+                            else
+                                $user_agent = "---";
 
                             // Download count delay for same user
-                            if (($db_log[0]->time_create < time()-5 && $db_log[0]->user_ip == $user_ip) || $db_log == null) {
+                            if (($db_log[0]->time_create < time()-5 && $db_log[0]->user_agent == $user_agent) || $db_log == null) {
                             
                                 // Update count
                                 $count_new = $db_files[0]->count + 1;
