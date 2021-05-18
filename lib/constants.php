@@ -204,7 +204,7 @@ define('ZDM__DOWNLOAD_BTN_ICON', [
     __('Event', 'zdm'),
     __('PDF', 'zdm'),
     __('File', 'zdm'),
-    __('code', 'zdm'),
+    __('Code', 'zdm'),
     __('Apps', 'zdm')
 ]);
 

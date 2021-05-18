@@ -271,7 +271,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         if ($zdm_licence === 1) {
                                             ?>
                                             <br /><br />
-                                            <a href="admin.php?page=<?=ZDM__SLUG?>-settings&licence_delete=true&nonce=<?=wp_create_nonce('licence-delete')?>" class="button button-secondary"><?=esc_html__('Lizenzschlüssel entfernen', 'zdm')?></a>
+                                            <a href="admin.php?page=<?=ZDM__SLUG?>-settings&licence_delete=true&nonce=<?=wp_create_nonce('licence-delete')?>" class="button button-secondary"><?=esc_html__('Remove license key', 'zdm')?></a>
                                             <?php
                                         }
                                         if ($zdm_licence === 0) { ?>
