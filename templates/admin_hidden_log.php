@@ -44,7 +44,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     WHERE type = 'download archive' 
                     || type = 'download file' 
                     ORDER BY time_create DESC 
-                    LIMIT 100
+                    LIMIT 500
                     "
                 );
             } elseif ($zdm_lof_filter_type == 'files') {
@@ -60,7 +60,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     || type = 'unlink file' 
                     || type = 'delete file' 
                     ORDER BY time_create DESC 
-                    LIMIT 100
+                    LIMIT 500
                     "
                 );
             } elseif ($zdm_lof_filter_type == 'archives') {
@@ -74,7 +74,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     || type = 'delete archive' 
                     || type = 'create archive cache' 
                     ORDER BY time_create DESC 
-                    LIMIT 100
+                    LIMIT 500
                     "
                 );
             } else {
@@ -84,7 +84,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     SELECT id, type, message, time_create 
                     FROM $zdm_tablename_log 
                     ORDER BY time_create DESC 
-                    LIMIT 100
+                    LIMIT 500
                     "
                 );
             }
@@ -96,7 +96,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 SELECT id, type, message, time_create 
                 FROM $zdm_tablename_log 
                 ORDER BY time_create DESC 
-                LIMIT 100
+                LIMIT 500
                 "
             );
         }
@@ -179,7 +179,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                     <div class="postbox">
                         <div class="inside">
-                            <p><?=esc_html__('Here is the output of the logs of the latest 100 entries.', 'zdm')?></p>
+                            <p><?=esc_html__('Here is the output of the logs of the latest 500 entries.', 'zdm')?></p>
                             <p>
                                 <form action="" method="post">
                                 <?=esc_html__('Logs filter by type', 'zdm')?>: 
