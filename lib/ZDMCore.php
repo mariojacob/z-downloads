@@ -715,21 +715,44 @@ class ZDMCore {
                             );
                         
                         if ($db_archive[0]->status != 'private') {
+
+                            $tablename_log = $wpdb->prefix . "zdm_log";
+
+                            // Get data from the database (log)
+                            $db_log = $wpdb->get_results(
+                                "
+                                SELECT user_ip, time_create 
+                                FROM $tablename_log 
+                                WHERE type = 'download archive' 
+                                AND message = '$zdownload_url' 
+                                ORDER BY id DESC LIMIT 1
+                                "
+                                );
                             
-                            // Update count
-                            $count_new = $db_archive[0]->count + 1;
-                            $wpdb->update(
-                                $tablename_archives, 
-                                array(
-                                    'count'         => $count_new,
-                                    'time_update'   => time()
-                                ), 
-                                array(
-                                    'id' => $zdownload_url
-                                ));
-    
-                            // Statistics
-                            $this->log('download archive', $zdownload_url);
+                            $user_ip = filter_input(INPUT_SERVER, 'REMOTE_ADDR');
+                            // Anonymize the IP address
+                            require_once(ZDM__PATH . '/lib/ZDMIPAnonymizer.php');
+                            $ip_anonymizer = new ZDMIPAnonymizer();
+                            $user_ip = $ip_anonymizer->anonymize($user_ip);
+
+                            // Download count delay for same user
+                            if (($db_log[0]->time_create < time()-5 && $db_log[0]->user_ip == $user_ip) || $db_log == null) {
+                            
+                                // Update count
+                                $count_new = $db_archive[0]->count + 1;
+                                $wpdb->update(
+                                    $tablename_archives, 
+                                    array(
+                                        'count'         => $count_new,
+                                        'time_update'   => time()
+                                    ), 
+                                    array(
+                                        'id' => $zdownload_url
+                                    ));
+        
+                                // Statistics
+                                $this->log('download archive', $zdownload_url);
+                            }
     
                             // Path for file
                             $zip_file = ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . $db_archive[0]->archive_cache_path . '/' . $db_archive[0]->zip_name . '.zip';
@@ -782,20 +805,43 @@ class ZDMCore {
 
                         if ($db_files[0]->status != 'private') {
 
-                            // Update count
-                            $count_new = $db_files[0]->count + 1;
-                            $wpdb->update(
-                                $tablename_files, 
-                                array(
-                                    'count'         => $count_new,
-                                    'time_update'   => time()
-                                ), 
-                                array(
-                                    'id' => $zdownload_url
-                                ));
+                            $tablename_log = $wpdb->prefix . "zdm_log";
 
-                            // Statistics
-                            $this->log('download file', $zdownload_url);
+                            // Get data from the database (log)
+                            $db_log = $wpdb->get_results(
+                                "
+                                SELECT user_ip, time_create 
+                                FROM $tablename_log 
+                                WHERE type = 'download file' 
+                                AND message = '$zdownload_url' 
+                                ORDER BY id DESC LIMIT 1
+                                "
+                                );
+                            
+                            $user_ip = filter_input(INPUT_SERVER, 'REMOTE_ADDR');
+                            // Anonymize the IP address
+                            require_once(ZDM__PATH . '/lib/ZDMIPAnonymizer.php');
+                            $ip_anonymizer = new ZDMIPAnonymizer();
+                            $user_ip = $ip_anonymizer->anonymize($user_ip);
+
+                            // Download count delay for same user
+                            if (($db_log[0]->time_create < time()-5 && $db_log[0]->user_ip == $user_ip) || $db_log == null) {
+                            
+                                // Update count
+                                $count_new = $db_files[0]->count + 1;
+                                $wpdb->update(
+                                    $tablename_files, 
+                                    array(
+                                        'count'         => $count_new,
+                                        'time_update'   => time()
+                                    ), 
+                                    array(
+                                        'id' => $zdownload_url
+                                    ));
+
+                                // Statistics
+                                $this->log('download file', $zdownload_url);
+                            }
 
                             if ($options['file-open-in-browser-pdf'] == 'on' && $db_files[0]->file_type == 'application/pdf') {
 
