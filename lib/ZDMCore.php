@@ -752,9 +752,7 @@ class ZDMCore {
                         }
                     } // end if ($this->check_if_archive_exists($zdownload_url) === true)
                     else {
-                        if ($this->repair_folder_token_name()) {
-                            // TODO: Seite nochmal laden
-                        }
+                        $this->repair_folder_token_name();
                     }
                 } // end if ($zdownload_url != '' && is_numeric($zdownload_url))
             } // end if (isset($_GET['zdownload']))
@@ -843,9 +841,7 @@ class ZDMCore {
                         }
                     } // end if ($this->check_if_file_exists($zdownload_url) === true)
                     else {
-                        if ($this->repair_folder_token_name()) {
-                            // TODO: Seite nochmal laden
-                        }
+                        $this->repair_folder_token_name();
                     }
                 } // end if ($zdownload_url != '' && is_numeric($zdownload_url))
             } // end if (isset($_GET['zdownload_f']))
