@@ -185,7 +185,7 @@ class ZDMCore {
             "
             );
 
-        if ($db_file_rel[0] === NULL)
+        if (@$db_file_rel[0] === NULL)
             return false;
         
         return true;

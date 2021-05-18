@@ -202,10 +202,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     for ($i = 0; $i <= $files_count; $i++) {
 
                         // Check whether this file is already linked to this archive
-                        if (ZDMCore::check_file_rel_to_archive(sanitize_text_field($_POST['files'][$i]), $zdm_archive_id) === false) {
+                        if (@ZDMCore::check_file_rel_to_archive(sanitize_text_field($_POST['files'][$i]), $zdm_archive_id) === false) {
                             
                             // Check whether selection is not empty
-                            if ($_POST['files'][$i] != '') {
+                            if (@$_POST['files'][$i] != '') {
 
                                 // Save data in database (files_rel)
                                 $wpdb->insert(
