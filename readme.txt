@@ -91,15 +91,11 @@ Z-Downloads is in English by default and completely translated into German, othe
 
 3.  Dashboard widget with download statistics
 
-4.  Detailed download statistics
+4.  Detail view from a audio file with audio player
 
-5.  Detail view from a audio file with audio player
+5.  Available shortcodes for this archive
 
-6.  Available shortcodes for this archive
-
-7.  Use case in a post
-
-8.  Download statistics from a single archive
+6.  Use case in a post
 
 == Changelog ==
 
