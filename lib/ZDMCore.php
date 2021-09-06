@@ -1174,7 +1174,7 @@ class ZDMCore {
      * 
      * @return bool Gibt true zurück, wenn gültig, und false, wenn nicht
      */
-    public function licence() {
+    public static function licence() {
 
         $options = get_option('zdm_options');
 
@@ -1240,7 +1240,7 @@ class ZDMCore {
      * @param string $licence_key
      * @return mixed Gibt Array mir Daten zurück falls gültig, ansonsten bool false
      */
-    public function licence_array($licence_key = '') {
+    public static function licence_array($licence_key = '') {
         if ($licence_key == '') {
             $options = get_option('zdm_options');
             $licence_key = $options['licence-key'];
@@ -1327,7 +1327,7 @@ class ZDMCore {
      * @param int $number
      * @return string Formatierte Nummer
      */
-    public function number_format($number) {
+    public static function number_format($number) {
 
         if (in_array(get_locale(), ZDM__COUNTRIES_USING_DECIMAL_POINT))
             return number_format($number, 0, '.', ',');
