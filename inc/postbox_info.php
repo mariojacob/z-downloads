@@ -1,8 +1,7 @@
 <?php
 // Abort by direct access
-if (!defined('ABSPATH')) {
+if (!defined('ABSPATH'))
     die;
-}
 ?>
 <div class="postbox">
     <div class="inside">

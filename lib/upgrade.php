@@ -1,9 +1,7 @@
 <?php
-
 // Abort by direct access
-if (!defined('ABSPATH')) {
+if (!defined('ABSPATH'))
     die;
-}
 
 $zdm_options = get_option('zdm_options');
 

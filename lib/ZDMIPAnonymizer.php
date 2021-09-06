@@ -1,9 +1,7 @@
 <?php
-
 // Abort by direct access
-if (!defined('ABSPATH')) {
+if (!defined('ABSPATH'))
     die;
-}
 
 /**
  * Klasse um IPv4 und IPv6 Adressen zu anonymisieren<br>

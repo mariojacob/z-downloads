@@ -1,9 +1,7 @@
 <?php
-
 // Abort by direct access
-if (!defined('ABSPATH')) {
+if (!defined('ABSPATH'))
     die;
-}
 
 if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     ?>

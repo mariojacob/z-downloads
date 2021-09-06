@@ -1,13 +1,10 @@
 <?php
-
 // Abort by direct access
-if (!defined('ABSPATH')) {
+if (!defined('ABSPATH'))
     die;
-}
 
-if (!defined('WP_UNINSTALL_PLUGIN')) {
+if (!defined('WP_UNINSTALL_PLUGIN'))
     die;
-}
 
 
 ////////////////////

@@ -1,9 +1,7 @@
 <?php
-
 // Abort by direct access
-if (!defined('ABSPATH')) {
+if (!defined('ABSPATH'))
     die;
-}
 
 /**
  * ZDM core main class
@@ -74,7 +72,7 @@ class ZDMCore {
             ZDM__STANDARD_USER_ROLE,
             ZDM__SLUG . '-help',
             array($this, 'admin_menu_help'));
-        if ($this->licence() != true) {
+        if (self::licence() != true) {
             add_submenu_page(
                 ZDM__SLUG,
                 esc_html__('Upgrade', 'zdm'),
@@ -170,7 +168,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return bool
      */
-    public function check_file_rel_to_archive($files_id, $archive_id) {
+    public static function check_file_rel_to_archive($files_id, $archive_id) {
         global $wpdb;
 
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -196,7 +194,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return void
      */
-    public function check_files_from_archive($archive_id) {
+    public static function check_files_from_archive($archive_id) {
 
         global $wpdb;
         
@@ -212,7 +210,7 @@ class ZDMCore {
             );
 
         if (count($db_files_rel) > 0)
-            $this->create_archive_cache($archive_id);
+            self::create_archive_cache($archive_id);
     }
 
     /**
@@ -221,7 +219,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return bool
      */
-    public function check_if_any_file_rel_to_archive($archive_id) {
+    public static function check_if_any_file_rel_to_archive($archive_id) {
         global $wpdb;
         
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -246,7 +244,7 @@ class ZDMCore {
      * @param int $files_id
      * @return mixed
      */
-    public function check_if_file_is_in_archive($files_id) {
+    public static function check_if_file_is_in_archive($files_id) {
         global $wpdb;
 
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -273,7 +271,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return bool
      */
-    public function check_if_archive_cache_ok($archive_id) {
+    public static function check_if_archive_cache_ok($archive_id) {
 
         global $wpdb;
         
@@ -315,7 +313,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return bool
      */
-    public function check_if_archive_exists($archive_id) {
+    public static function check_if_archive_exists($archive_id) {
 
         if (is_numeric($archive_id)) {
             global $wpdb;
@@ -345,7 +343,7 @@ class ZDMCore {
      * @param int $file_id
      * @return bool
      */
-    public function check_if_file_exists($file_id) {
+    public static function check_if_file_exists($file_id) {
 
         if (is_numeric($file_id)) {
             global $wpdb;
@@ -375,7 +373,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return void
      */
-    public function create_archive_cache($archive_id) {
+    public static function create_archive_cache($archive_id) {
 
         $time = time();
 
@@ -433,7 +431,7 @@ class ZDMCore {
 
         // Speichere Dateien in Array
         for ($i = 0; $i < $db_files_rel_count; $i++) {
-            $file_data = $this->get_file_data($db_files_rel[$i]->id_file);
+            $file_data = self::get_file_data($db_files_rel[$i]->id_file);
             $files[] = ZDM__DOWNLOADS_FILES_PATH . '/' . $file_data->folder_path . '/' . $file_data->file_name;
         }
 
@@ -444,18 +442,18 @@ class ZDMCore {
 
             // Dateien ins Zip-Archiv einfügen
             for ($i = 0; $i < $db_files_rel_count; $i++) {
-                $zip->addFile($files[$i], $this->get_file_data($db_files_rel[$i]->id_file)->file_name);
+                $zip->addFile($files[$i], self::get_file_data($db_files_rel[$i]->id_file)->file_name);
             }
 
             $zip->close();
 
-            $this->log('archive cache created', 'ID: ' . $archive_id . ', path: ' . $file_path);
+            self::log('archive cache created', 'ID: ' . $archive_id . ', path: ' . $file_path);
         } else {
-            $this->log('error create archive cache', 'path: ' . $file_path);
+            self::log('error create archive cache', 'path: ' . $file_path);
         }
 
         // Bestimmen Sie die Dateigröße
-        $file_size = $this->file_size_convert(filesize($file_path));
+        $file_size = self::file_size_convert(filesize($file_path));
 
         // MD5 von Datei
         $archive_hash_md5 = md5_file($file_path);
@@ -506,7 +504,7 @@ class ZDMCore {
                 ));
         }
 
-        $this->log('create archive cache' , 'ID: ' . $archive_id . ', path: ' . $file_path);
+        self::log('create archive cache' , 'ID: ' . $archive_id . ', path: ' . $file_path);
     }
 
     /**
@@ -534,7 +532,7 @@ class ZDMCore {
      *
      * @return void
      */
-    public function delete_all_data() {
+    public static function delete_all_data() {
 
         global $wpdb;
 
@@ -651,7 +649,7 @@ class ZDMCore {
         if (is_dir(ZDM__DOWNLOADS_PATH))
             @rmdir(ZDM__DOWNLOADS_PATH);
 
-        $this->log('delete all data');
+        self::log('delete all data');
     }
 
     /**
@@ -682,7 +680,7 @@ class ZDMCore {
 
                 if ($zdownload_url != '' && is_numeric($zdownload_url)) {
 
-                    if ($this->check_if_archive_exists($zdownload_url) === true) {
+                    if (self::check_if_archive_exists($zdownload_url) === true) {
 
                         global $wpdb;
                         $tablename_archives = $wpdb->prefix . "zdm_archives";
@@ -730,7 +728,7 @@ class ZDMCore {
                                         'id' => $zdownload_url
                                     ));
         
-                                $this->log('download archive', $zdownload_url);
+                                self::log('download archive', $zdownload_url);
                             }
     
                             // Pfad für Datei
@@ -750,9 +748,9 @@ class ZDMCore {
                             readfile($zip_file);
                             exit;
                         }
-                    } // end if ($this->check_if_archive_exists($zdownload_url) === true)
+                    } // end if (self::check_if_archive_exists($zdownload_url) === true)
                     else {
-                        $this->repair_folder_token_name();
+                        self::repair_folder_token_name();
                     }
                 } // end if ($zdownload_url != '' && is_numeric($zdownload_url))
             } // end if (isset($_GET['zdownload']))
@@ -766,7 +764,7 @@ class ZDMCore {
 
                 if ($zdownload_url != '' && is_numeric($zdownload_url)) {
 
-                    if ($this->check_if_file_exists($zdownload_url) === true) {
+                    if (self::check_if_file_exists($zdownload_url) === true) {
 
                         global $wpdb;
                         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -814,7 +812,7 @@ class ZDMCore {
                                         'id' => $zdownload_url
                                     ));
 
-                                $this->log('download file', $zdownload_url);
+                                self::log('download file', $zdownload_url);
                             }
 
                             if ($options['file-open-in-browser-pdf'] == 'on' && $db_files[0]->file_type == 'application/pdf') {
@@ -839,9 +837,9 @@ class ZDMCore {
                                 exit;
                             }
                         }
-                    } // end if ($this->check_if_file_exists($zdownload_url) === true)
+                    } // end if (self::check_if_file_exists($zdownload_url) === true)
                     else {
-                        $this->repair_folder_token_name();
+                        self::repair_folder_token_name();
                     }
                 } // end if ($zdownload_url != '' && is_numeric($zdownload_url))
             } // end if (isset($_GET['zdownload_f']))
@@ -853,7 +851,7 @@ class ZDMCore {
      *
      * @return string class
      */
-    public function download_button_class() {
+    public static function download_button_class() {
 
         $options = get_option('zdm_options');
 
@@ -911,7 +909,7 @@ class ZDMCore {
      * @param int $bytes Bytes as input
      * @return string
      */
-    public function file_size_convert($bytes) {
+    public static function file_size_convert($bytes) {
         $bytes = floatval($bytes);
         $arBytes = array(
             0 => array(
@@ -952,7 +950,7 @@ class ZDMCore {
      * @param string $str String as from ini_get ('upload_max_filesize')
      * @return mixed
      */
-    public function file_size_convert_str2bytes($str) {
+    public static function file_size_convert_str2bytes($str) {
         // Strings only
         $unit_byte = preg_replace('/[^a-zA-Z]/', '', $str);
         $unit_byte = strtolower($unit_byte);
@@ -990,7 +988,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return void
      */
-    public function get_archive_data($archive_id) {
+    public static function get_archive_data($archive_id) {
         global $wpdb;
 
         $tablename_archives = $wpdb->prefix . "zdm_archives";
@@ -1012,7 +1010,7 @@ class ZDMCore {
      * @param int $file_id
      * @return array
      */
-    public function get_linked_archives($file_id) {
+    public static function get_linked_archives($file_id) {
         global $wpdb;
 
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -1034,7 +1032,7 @@ class ZDMCore {
      * @param int $archive_id
      * @return string
      */
-    public function get_archive_name($archive_id) {
+    public static function get_archive_name($archive_id) {
         global $wpdb;
 
         $tablename_archives = $wpdb->prefix . "zdm_archives";
@@ -1057,7 +1055,7 @@ class ZDMCore {
      * @param string $hash
      * @return int Number of hashes found
      */
-    public function get_count_of_files_by_hash($type, $hash) {
+    public static function get_count_of_files_by_hash($type, $hash) {
         global $wpdb;
 
         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -1105,7 +1103,7 @@ class ZDMCore {
      * @param int $file_id
      * @return object
      */
-    public function get_file_data($file_id) {
+    public static function get_file_data($file_id) {
         global $wpdb;
 
         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -1126,7 +1124,7 @@ class ZDMCore {
      *
      * @return array
      */
-    public function get_files_md5() {
+    public static function get_files_md5() {
         global $wpdb;
 
         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -1153,7 +1151,7 @@ class ZDMCore {
      * @param int $file_id
      * @return object
      */
-    public function get_file_name($file_id) {
+    public static function get_file_name($file_id) {
         global $wpdb;
 
         $tablename_files = $wpdb->prefix . "zdm_files";
@@ -1184,7 +1182,7 @@ class ZDMCore {
 
             if ($timeDiff > 2592000) { // 2592000 = 30 Tage
                 
-                $licence_array = $this->licence_array();
+                $licence_array = self::licence_array();
 
                 if ($licence_array['success'] === true) {
 
@@ -1406,7 +1404,7 @@ class ZDMCore {
      *
      * @return bool true: if repair was successful, otherwise: false
      */
-    public function repair_folder_token_name() {
+    public static function repair_folder_token_name() {
 
         $options = get_option('zdm_options');
         
@@ -1420,7 +1418,7 @@ class ZDMCore {
 
                 if ($dir_array[$i] != 'z-downloads-' . $options['download-folder-token']) {
                     rename(wp_upload_dir()['basedir'] . '/' . $dir_array[$i], wp_upload_dir()['basedir'] . '/z-downloads-' . $options['download-folder-token']);
-                    $this->log('folder token repaired');
+                    self::log('folder token repaired');
                     return true;
                 } else {
                     return false;
@@ -1533,12 +1531,12 @@ class ZDMCore {
         ////////////////////
         if ($zip != '') {
             // Überprüft, ob überhaupt eine Datei zugewiesen ist
-            if ($this->check_if_any_file_rel_to_archive($zip)) {
+            if (self::check_if_any_file_rel_to_archive($zip)) {
 
                 $options = get_option('zdm_options');
 
                 // Überprüft, ob die Dateien aktuell sind
-                $this->check_files_from_archive($zip);
+                self::check_files_from_archive($zip);
 
                 global $wpdb;
                 $tablename_archives = $wpdb->prefix . "zdm_archives";
@@ -1588,7 +1586,7 @@ class ZDMCore {
                     else
                         $icon_and_text = $download_text . $icon;
     
-                    return '<a href="?' . $type . '=' . $id . '"' . $html_id . ' class="' . $this->download_button_class() . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
+                    return '<a href="?' . $type . '=' . $id . '"' . $html_id . ' class="' . self::download_button_class() . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
                 }
             } else {
                 // Leerer Rückgabewert, wenn keine Datei verknüpft ist
@@ -1601,7 +1599,7 @@ class ZDMCore {
         ////////////////////
         if ($file != '') {
 
-            if ($this->check_if_file_exists($file) === true) {
+            if (self::check_if_file_exists($file) === true) {
 
                 $options = get_option('zdm_options');
 
@@ -1658,7 +1656,7 @@ class ZDMCore {
     
                     // Access by bot
                     if (!in_array($http_user_agent, ZDM__BOT_USER_AGENTS))
-                        return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . $this->download_button_class() . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
+                        return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . self::download_button_class() . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
                 }
             } else {
                 // Leerer Rückgabewert, wenn Datei nicht vorhanden ist
@@ -1732,9 +1730,9 @@ class ZDMCore {
 
         if ($zip != '') {
 
-            $archive_data = $this->get_archive_data($zip);
+            $archive_data = self::get_archive_data($zip);
 
-            if ($archive_data->status != 'private' && $this->check_if_any_file_rel_to_archive($zip) == true) {
+            if ($archive_data->status != 'private' && self::check_if_any_file_rel_to_archive($zip) == true) {
 
                 global $wpdb;
 
@@ -1757,7 +1755,7 @@ class ZDMCore {
 
                     for ($i=0; $i < $linked_files_count; $i++) {
 
-                        $file_data = $this->get_file_data($linked_files[$i]->id_file);
+                        $file_data = self::get_file_data($linked_files[$i]->id_file);
                         $link_id = '';
                         if ($link_1 != '') {
                             $link_id = base64_encode($file_data->id);
@@ -1770,7 +1768,7 @@ class ZDMCore {
                     $list .= '<ul>';
                     for ($i=0; $i < $linked_files_count; $i++) {
 
-                        $file_data = $this->get_file_data($linked_files[$i]->id_file);
+                        $file_data = self::get_file_data($linked_files[$i]->id_file);
                         $link_id = '';
                         if ($link_1 != '') {
                             $link_id = base64_encode($file_data->id);
@@ -1783,7 +1781,7 @@ class ZDMCore {
                     $list .= '<ol>';
                     for ($i=0; $i < $linked_files_count; $i++) {
 
-                        $file_data = $this->get_file_data($linked_files[$i]->id_file);
+                        $file_data = self::get_file_data($linked_files[$i]->id_file);
                         $link_id = '';
                         if ($link_1 != '') {
                             $link_id = base64_encode($file_data->id);
@@ -1843,7 +1841,7 @@ class ZDMCore {
                         );
 
                     if ($db_archive[0]->status != 'private')
-                        return htmlspecialchars($this->number_format($db_archive[0]->count));
+                        return htmlspecialchars(self::number_format($db_archive[0]->count));
                 }
 
                 ////////////////////
@@ -1852,10 +1850,10 @@ class ZDMCore {
                 if ($type === 'size') {
                     
                     // Check ob überhaupt eine Datei zugewiesen ist
-                    if ($this->check_if_any_file_rel_to_archive($zip)) {
+                    if (self::check_if_any_file_rel_to_archive($zip)) {
 
                         // Dateien auf Aktualität prüfen
-                        $this->check_files_from_archive($zip);
+                        self::check_files_from_archive($zip);
 
                         global $wpdb;
                         $tablename_archives = $wpdb->prefix . "zdm_archives";
@@ -1913,10 +1911,10 @@ class ZDMCore {
                 if ($type === 'hash-md5' OR $type === 'hash-sha1') {
                     
                     // Überprüft, ob überhaupt eine Datei zugewiesen ist
-                    if ($this->check_if_any_file_rel_to_archive($zip)) {
+                    if (self::check_if_any_file_rel_to_archive($zip)) {
 
                         // Überprüf, ob die Dateien aktuell sind
-                        $this->check_files_from_archive($zip);
+                        self::check_files_from_archive($zip);
 
                         global $wpdb;
                         $tablename_archives = $wpdb->prefix . "zdm_archives";
@@ -1932,7 +1930,7 @@ class ZDMCore {
                         if ($db_archive[0]->status != 'private') {
 
                             // Ausgabe der Dateigröße
-                            if ($this->licence() != true) {
+                            if (self::licence() != true) {
                                 
                             } else {
                                 if ($type === 'hash-md5') {
@@ -1970,7 +1968,7 @@ class ZDMCore {
                         );
 
                     if ($db_files[0]->status != 'private')
-                        return htmlspecialchars($this->number_format($db_files[0]->count));
+                        return htmlspecialchars(self::number_format($db_files[0]->count));
                 }
 
                 ////////////////////
@@ -2040,7 +2038,7 @@ class ZDMCore {
                     if ($db_files[0]->status != 'private') {
 
                         // Ausgabe der Dateigröße
-                        if ($this->licence() != true) {
+                        if (self::licence() != true) {
                             
                         } else {
                             if ($type === 'hash-md5') {

@@ -14,9 +14,8 @@
  */
 
 // Abort by direct access
-if (!defined('ABSPATH')) {
+if (!defined('ABSPATH'))
     die;
-}
 
 // constants
 define('ZDM__PATH', plugin_dir_path(__FILE__));
