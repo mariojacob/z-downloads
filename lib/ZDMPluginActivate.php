@@ -48,5 +48,22 @@ class ZDMPluginActivate {
         }
 
         update_option('zdm_options', $zdm_options);
+
+        $zdm_options = get_option('zdm_options');
+
+        if (!defined('ZDM__DOWNLOADS_PATH'))
+            define('ZDM__DOWNLOADS_PATH', wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token']);
+        if (!defined('ZDM__DOWNLOADS_PATH'))
+            define('ZDM__DOWNLOADS_PATH', wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token']);
+        if (!defined('ZDM__DOWNLOADS_CACHE_PATH'))
+            define('ZDM__DOWNLOADS_CACHE_PATH', ZDM__DOWNLOADS_PATH . "/cache");
+        if (!defined('ZDM__DOWNLOADS_FILES_PATH'))
+            define('ZDM__DOWNLOADS_FILES_PATH', ZDM__DOWNLOADS_PATH . "/files");
+        if (!defined('ZDM__DOWNLOADS_PATH_URL'))
+            define('ZDM__DOWNLOADS_PATH_URL', wp_upload_dir()['baseurl'] . "/z-downloads-" . $zdm_options['download-folder-token']);
+        if (!defined('ZDM__DOWNLOADS_CACHE_PATH_URL'))
+            define('ZDM__DOWNLOADS_CACHE_PATH_URL', ZDM__DOWNLOADS_PATH_URL . "/cache");
+        if (!defined('ZDM__DOWNLOADS_FILES_PATH_URL'))
+            define('ZDM__DOWNLOADS_FILES_PATH_URL', ZDM__DOWNLOADS_PATH_URL . "/files");
     }
 }

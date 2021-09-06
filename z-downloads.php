@@ -33,6 +33,25 @@ require_once(dirname(__FILE__) . '/lib/constants.php');
 // load language files
 load_plugin_textdomain( 'zdm', false, dirname(plugin_basename(__FILE__)) . '/languages' );
 
+if (get_option('zdm_options')) {
+    $zdm_options = get_option('zdm_options');
+
+    if (!defined('ZDM__DOWNLOADS_PATH'))
+        define('ZDM__DOWNLOADS_PATH', wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token']);
+    if (!defined('ZDM__DOWNLOADS_PATH'))
+        define('ZDM__DOWNLOADS_PATH', wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token']);
+    if (!defined('ZDM__DOWNLOADS_CACHE_PATH'))
+        define('ZDM__DOWNLOADS_CACHE_PATH', ZDM__DOWNLOADS_PATH . "/cache");
+    if (!defined('ZDM__DOWNLOADS_FILES_PATH'))
+        define('ZDM__DOWNLOADS_FILES_PATH', ZDM__DOWNLOADS_PATH . "/files");
+    if (!defined('ZDM__DOWNLOADS_PATH_URL'))
+        define('ZDM__DOWNLOADS_PATH_URL', wp_upload_dir()['baseurl'] . "/z-downloads-" . $zdm_options['download-folder-token']);
+    if (!defined('ZDM__DOWNLOADS_CACHE_PATH_URL'))
+        define('ZDM__DOWNLOADS_CACHE_PATH_URL', ZDM__DOWNLOADS_PATH_URL . "/cache");
+    if (!defined('ZDM__DOWNLOADS_FILES_PATH_URL'))
+        define('ZDM__DOWNLOADS_FILES_PATH_URL', ZDM__DOWNLOADS_PATH_URL . "/files");
+}
+
 // CLoad core class
 if( class_exists('ZDMCore') === false ) {
 	require_once(dirname(__FILE__) . '/lib/ZDMCore.php');
@@ -55,12 +74,3 @@ register_deactivation_hook(__FILE__, array('ZDMPluginDeactivate', 'deactivate'))
 require_once (plugin_dir_path(__FILE__) . '/lib/upgrade.php');
 
 $zdmCore->php_modules_check_and_notice();
-
-$zdm_options = get_option('zdm_options');
-
-define('ZDM__DOWNLOADS_PATH', wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token']);
-define('ZDM__DOWNLOADS_CACHE_PATH', ZDM__DOWNLOADS_PATH . "/cache");
-define('ZDM__DOWNLOADS_FILES_PATH', ZDM__DOWNLOADS_PATH . "/files");
-define('ZDM__DOWNLOADS_PATH_URL', wp_upload_dir()['baseurl'] . "/z-downloads-" . $zdm_options['download-folder-token']);
-define('ZDM__DOWNLOADS_CACHE_PATH_URL', ZDM__DOWNLOADS_PATH_URL . "/cache");
-define('ZDM__DOWNLOADS_FILES_PATH_URL', ZDM__DOWNLOADS_PATH_URL . "/files");
