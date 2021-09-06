@@ -83,12 +83,14 @@
 }
 
 .zdm-btn-icon {
-    font-size: 1.2em;
+    font-size: 1.2em !important;
     margin-right: 8px;
+    position: relative;
+    top: 3px;
 }
 
 .zdm-btn-icon-only {
-    font-size: 1.2em;
+    font-size: 1.2em !important;
     margin: 0 4px;
 }
 

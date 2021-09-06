@@ -895,7 +895,7 @@ class ZDMCore {
      */
     public function enqueue_frontend_scripts() {
         // Frontend CSS
-        wp_register_style('zdm_styles', plugins_url('../public/css/zdm_style_1_8_0.min.css', __FILE__));
+        wp_register_style('zdm_styles', plugins_url('../public/css/zdm_style_1_8_1.min.css', __FILE__));
         wp_enqueue_style('zdm_styles');
 
         // Material Icons
@@ -1573,9 +1573,8 @@ class ZDMCore {
     
                     // Ausgabe
                     $icon = '';
-                    $icon_size = $options['download-btn-icon-size'];
                     if ($options['download-btn-icon'] != 'none')
-                        $icon = '<span class="material-icons-round ' . $icon_size . ' ' . $icon_class . '">' . $options['download-btn-icon'] . '</span>';
+                        $icon = '<span class="material-icons-round ' . $icon_class . '">' . $options['download-btn-icon'] . '</span>';
 
                     $html_id = '';
                     if ($options['hide-html-id'] != 'on')
@@ -1628,9 +1627,9 @@ class ZDMCore {
                             $download_text = $options['download-btn-text'];
     
                         if ($options['download-btn-icon-position'] == 'left')
-                            $icon_class = 'zdm-mr-2';
+                            $icon_class = 'zdm-btn-icon zdm-mr-2';
                         else
-                            $icon_class = 'zdm-ml-2';
+                            $icon_class = 'zdm-btn-icon zdm-ml-2';
                     }
     
                     $type = 'zdownload_f';
@@ -1638,8 +1637,7 @@ class ZDMCore {
     
                     // Ausgabe
                     if ($options['download-btn-icon'] != 'none') {
-                        $icon_size = $options['download-btn-icon-size'];
-                        $icon = '<span class="material-icons-round ' . $icon_size . ' ' . $icon_class . '">' . $options['download-btn-icon'] . '</span>';
+                        $icon = '<span class="material-icons-round ' . $icon_class . '">' . $options['download-btn-icon'] . '</span>';
                     } else {
                         $icon = '';
                     }
