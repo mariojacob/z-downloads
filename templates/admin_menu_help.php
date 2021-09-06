@@ -238,6 +238,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <h4><?=esc_html__('Disable controls', 'zdm')?></h4>
                 <p><code>[zdownload_audio file="123" controls="off"]</code></p>
                 <p><?=esc_html__('The "controls" option is enabled by default, if this option is set to "off" then no player will be displayed. In conjunction with the "autoplay" option, an audio file can be played automatically without a visible player, but this is not recommended for user-friendliness.', 'zdm')?></p>
+                <h4><?=esc_html__('Disable download', 'zdm')?></h4>
+                <p><code>[zdownload_audio file="123" nodownload="on"]</code></p>
+                <p><?=esc_html__('If the "nodownload" option is set to "on", the download button on the audio player is hidden.', 'zdm')?></p>
                 <h4><?=esc_html__('Info', 'zdm')?></h4>
                 <p><?=esc_html__('Of course, all options can also be combined, which looks like this', 'zdm')?>:</p>
                 <p><code>[zdownload_audio file="123" autoplay="on" loop="on" controls="off"]</code></p>

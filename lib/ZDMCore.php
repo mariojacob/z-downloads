@@ -1454,10 +1454,11 @@ class ZDMCore {
 
         $atts = shortcode_atts(
             array(
-                'file'      => '',
-                'autoplay'  => '',
-                'loop'      => '',
-                'controls'  => ''
+                'file'        => '',
+                'autoplay'    => '',
+                'loop'        => '',
+                'controls'    => '',
+                'nodownload'  => ''
                 ), $atts
         );
         
@@ -1470,10 +1471,14 @@ class ZDMCore {
             $loop = ' loop';
         else
             $loop = '';
-        if (htmlspecialchars($atts['controls']) == 'on')
+        if (htmlspecialchars($atts['controls']) == 'off')
             $controls = '';
         else
             $controls = ' controls';
+        if (htmlspecialchars($atts['nodownload']) == 'on')
+            $nodownload = ' controlslist="nodownload"';
+        else
+            $nodownload = '';
 
         if ($file != '') {
 
@@ -1495,7 +1500,7 @@ class ZDMCore {
                     $html_id = ' id="zdmAudio' . htmlspecialchars($db_file[0]->id) . '"';
 
                 // Ausgabe
-                $audio = '<audio preload="none"' . $html_id . ' class="zdm-audio"' . $autoplay . $loop . $controls . '>';
+                $audio = '<audio preload="none"' . $html_id . ' class="zdm-audio"' . $autoplay . $loop . $controls . $nodownload . '>';
                 $audio .= esc_html__('Your browser does not support HTML audio elements.', 'zdm');
                 $audio .= '<source src="' . ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_file[0]->folder_path . '/' . $db_file[0]->file_name . '" type="' . $db_file[0]->file_type . '">';
                 $audio .= '</audio>';
