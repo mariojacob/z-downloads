@@ -31,14 +31,6 @@ class ZDMPluginActivate {
         if (!$zdm_options['activation-time'])
             $zdm_options['activation-time'] = time();
 
-        // Download-Ordner-Token
-        if (!$zdm_options['download-folder-token']) {
-            $zdm_options['download-folder-token'] = md5(uniqid(rand(), true));
-            ZDMCore::log('download-folder-token', $zdm_options['download-folder-token']);
-        }
-
-        update_option('zdm_options', $zdm_options);
-
         // Optionen abrufen
         $zdm_options = get_option('zdm_options');
 
@@ -48,5 +40,13 @@ class ZDMPluginActivate {
         $db->create_db();
 
         ZDMCore::log('plugin activated');
+
+        // Download-Ordner-Token
+        if (!$zdm_options['download-folder-token']) {
+            $zdm_options['download-folder-token'] = md5(uniqid(rand(), true));
+            ZDMCore::log('download-folder-token', $zdm_options['download-folder-token']);
+        }
+
+        update_option('zdm_options', $zdm_options);
     }
 }

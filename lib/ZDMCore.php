@@ -748,7 +748,7 @@ class ZDMCore {
                             header('Content-Disposition: attachment; filename=' . $db_archive[0]->zip_name . '.zip');
                             header('Content-Length: ' . $file_size);
                             readfile($zip_file);
-                            exit();
+                            exit;
                         }
                     } // end if ($this->check_if_archive_exists($zdownload_url) === true)
                     else {
@@ -836,7 +836,7 @@ class ZDMCore {
                                 header('Content-disposition: attachment; filename=' . $db_files[0]->file_name);
                                 header('Content-type: ' . $db_files[0]->file_type . '; charset=utf-8');
                                 readfile($file_path);
-                                exit();
+                                exit;
                             }
                         }
                     } // end if ($this->check_if_file_exists($zdownload_url) === true)
@@ -1092,7 +1092,7 @@ class ZDMCore {
      * 
      * @return int WordPress user ID
      */
-    public function get_current_user_id() {
+    public static function get_current_user_id() {
         if (!function_exists('wp_get_current_user'))
             return 0;
         $user = wp_get_current_user();
@@ -1240,7 +1240,7 @@ class ZDMCore {
      * @param string $licence_key
      * @return mixed Gibt Array mir Daten zurück falls gültig, ansonsten bool false
      */
-    public static function licence_array($licence_key = '') {
+    public function licence_array($licence_key = '') {
         if ($licence_key == '') {
             $options = get_option('zdm_options');
             $licence_key = $options['licence-key'];
@@ -1279,7 +1279,7 @@ class ZDMCore {
      * @param string $message Sonstige Information
      * @return void
      */
-    public function log($type, $message = '---') {
+    public static function log($type, $message = '---') {
         // Benutzer IP Adresse
         if (filter_input(INPUT_SERVER, 'REMOTE_ADDR')) {
 
@@ -1315,7 +1315,7 @@ class ZDMCore {
                 'message'       => htmlspecialchars($message),
                 'user_agent'    => $http_user_agent,
                 'user_ip'       => $user_ip,
-                'user_id'       => ZDMCore::get_current_user_id(),
+                'user_id'       => self::get_current_user_id(),
                 'time_create'   => time()
             )
         );
@@ -1340,7 +1340,7 @@ class ZDMCore {
      *
      * @return void
      */
-    public static function php_modules_check_and_notice() {
+    public function php_modules_check_and_notice() {
         
         $php_modules_text = '';
         if (phpversion() >= 7.4) {
@@ -1420,7 +1420,7 @@ class ZDMCore {
 
                 if ($dir_array[$i] != 'z-downloads-' . $options['download-folder-token']) {
                     rename(wp_upload_dir()['basedir'] . '/' . $dir_array[$i], wp_upload_dir()['basedir'] . '/z-downloads-' . $options['download-folder-token']);
-                    ZDMCore::log('folder token repaired');
+                    $this->log('folder token repaired');
                     return true;
                 } else {
                     return false;
