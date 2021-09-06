@@ -1,9 +1,7 @@
 <?php
-
 // Abort by direct access
-if (!defined('ABSPATH')) {
+if (!defined('ABSPATH'))
     die;
-}
 
 if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
@@ -272,11 +270,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     ));
 
                 ZDMCore::log('delete archive', 'ID: ' . $zdm_archive_id);
-                
-                // reload page
-                $zdm_ziparchive_url = 'admin.php?page=' . ZDM__SLUG . '-ziparchive';
-                wp_redirect($zdm_ziparchive_url);
-                exit;
+
+                if (headers_sent()) {
+                    $zdm_status = 2;
+                } else {
+                    // Redirect
+                    $zdm_ziparchive_url = 'admin.php?page=' . ZDM__SLUG . '-ziparchive';
+                    wp_redirect($zdm_ziparchive_url);
+                    exit;
+                }
             }
         }
     }
@@ -817,6 +819,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         </div>
 
     <?php
+    } elseif ($zdm_status === 2) {
+        ?>
+        <div class="notice notice-success">
+            <p><span class="material-icons-round zdm-md-1 zdm-color-green">check_circle_outline</span> <?=esc_html__('Archive deleted!', 'zdm')?></p>
+            <p><a href="admin.php?page=<?=ZDM__SLUG?>-ziparchive" class="button-primary"><?=esc_html__('Back to overview', 'zdm')?></a></p>
+        </div>
+        <?php
     } else {
         
         $zdm_db_archives = $wpdb->get_results( 

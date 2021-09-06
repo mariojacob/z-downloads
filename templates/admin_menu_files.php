@@ -234,9 +234,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     ));
     
                 ZDMCore::log('delete file', $zdm_file_id);
-            
-                // Erfolg-Meldung ausgeben
-                $zdm_note = esc_html__('File deleted!', 'zdm');
     
                 // Status: 2 (Dateiliste)
                 $zdm_status = 2;
@@ -265,10 +262,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         $zdm_status = 2;
                     }
                 } else {
-                    // Seite neu laden
-                    $zdm_files_url = 'admin.php?page=' . ZDM__SLUG . '-files';
-                    wp_redirect($zdm_files_url);
-                    exit;
+                    if (headers_sent()) {
+                        $zdm_status = 4;
+                    } else {
+                        // Seite neu laden
+                        $zdm_files_url = 'admin.php?page=' . ZDM__SLUG . '-files';
+                        wp_redirect($zdm_files_url);
+                        exit;
+                    }
                 }
             } else {
                 // Status: 2 (Dateiliste)
@@ -1263,6 +1264,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             &nbsp;&nbsp;
             <a href="admin.php?page=<?=ZDM__SLUG?>-files" class="button button-secondary"><?=esc_html__('Files overview', 'zdm')?></a>
         
+        </div>
+        <?php
+    } elseif ($zdm_status === 4) {
+        ?>
+        <div class="notice notice-success">
+            <p><span class="material-icons-round zdm-md-1 zdm-color-green">check_circle_outline</span> <?=esc_html__('File deleted!', 'zdm')?></p>
+            <p><a href="admin.php?page=<?=ZDM__SLUG?>-files" class="button-primary"><?=esc_html__('Back to overview', 'zdm')?></a></p>
         </div>
         <?php
     }

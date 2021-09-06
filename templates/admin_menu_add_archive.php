@@ -130,13 +130,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <h1 class="wp-heading-inline"><?=esc_html__('Create new ZIP archive', 'zdm')?></h1>
         <hr class="wp-header-end">
 
-        <p><a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-ziparchive"><?=esc_html__('back to overview', 'zdm')?></a></p>
+        <p><a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-ziparchive"><?=esc_html__('Back to overview', 'zdm')?></a></p>
 
     <?php if ($zdm_status === 1) { ?>
 
         <div class="notice notice-success">
-        <p><span class="material-icons-round zdm-md-1 zdm-color-green">check_circle_outline</span> <?=esc_html__('Archive successfully created!', 'zdm')?></p>
-        <p><a href="admin.php?page=<?=ZDM__SLUG?>-add-archive" class="button-primary"><?=esc_html__('Create a new archive', 'zdm')?></a></p>
+            <p><span class="material-icons-round zdm-md-1 zdm-color-green">check_circle_outline</span> <?=esc_html__('Archive successfully created!', 'zdm')?></p>
+            <p><a href="admin.php?page=<?=ZDM__SLUG?>-add-archive" class="button-primary"><?=esc_html__('Create a new archive', 'zdm')?></a></p>
         </div>
 
     <?php } else { ?>
