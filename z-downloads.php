@@ -25,7 +25,7 @@ define('ZDM__TITLE', 'Z-Downloads');
 define('ZDM__VERSION', '1.8.1');
 define('ZDM__URL', 'https://code.urban-base.net/z-downloads?utm_source=zdm_backend');
 define('ZDM__PRO', 'Premium');
-define('ZDM__PRO_URL', 'https://code.urban-base.net/z-downloads?utm_source=zdm_backend_premium');
+define('ZDM__PRO_URL', 'https://urbanbase.gumroad.com/l/zdPRE');
 define('ZDM__STANDARD_USER_ROLE', 'manage_options');
 require_once(dirname(__FILE__) . '/lib/constants.php');
 
