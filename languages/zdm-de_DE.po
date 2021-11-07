@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2021-09-07 00:24+0200\n"
-"PO-Revision-Date: 2021-09-07 00:27+0200\n"
+"POT-Creation-Date: 2021-11-07 18:01+0100\n"
+"PO-Revision-Date: 2021-11-07 18:02+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -131,7 +131,7 @@ msgstr ""
 "Form einer ZIP-Datei als Download-Button angezeigt werden."
 
 #: inc/template_header_info.php:6 templates/admin_menu_help.php:242
-#: templates/admin_menu_help.php:264
+#: templates/admin_menu_help.php:267
 msgid "Info"
 msgstr "Info"
 
@@ -176,7 +176,7 @@ msgstr "Archiv erstellen"
 
 #: lib/ZDMCore.php:63 lib/ZDMCore.php:64
 #: templates/admin_dashboard_widget.php:14 templates/admin_menu_files.php:924
-#: templates/admin_menu_help.php:99 templates/admin_menu_help.php:299
+#: templates/admin_menu_help.php:99 templates/admin_menu_help.php:302
 #: templates/admin_menu_settings.php:221
 #: templates/admin_menu_ziparchive.php:733
 msgid "Settings"
@@ -210,11 +210,11 @@ msgstr ""
 "Bitte wende dich an den Administrator oder Webhosting Provider dieser "
 "Webseite um die fehlenden PHP-Module zu installieren/aktivieren."
 
-#: lib/ZDMCore.php:1502
+#: lib/ZDMCore.php:1507
 msgid "Your browser does not support HTML audio elements."
 msgstr "Dein Browser unterstützt keine HTML Audio-Elemente."
 
-#: lib/ZDMCore.php:2108
+#: lib/ZDMCore.php:2131
 msgid "Your browser does not support HTML video elements."
 msgstr "Dein Browser unterstützt keine HTML Video-Elemente."
 
@@ -1088,7 +1088,7 @@ msgstr "Um eine Datei hochzuladen klicke im"
 #: templates/admin_menu_files.php:924 templates/admin_menu_help.php:47
 #: templates/admin_menu_help.php:65 templates/admin_menu_help.php:77
 #: templates/admin_menu_help.php:87 templates/admin_menu_help.php:99
-#: templates/admin_menu_help.php:299 templates/admin_menu_ziparchive.php:711
+#: templates/admin_menu_help.php:302 templates/admin_menu_ziparchive.php:711
 #: templates/admin_menu_ziparchive.php:721
 #: templates/admin_menu_ziparchive.php:733
 msgid "menu on"
@@ -1674,7 +1674,7 @@ msgstr ""
 "werden ohne einen sichtbaren Player, das ist aber für die "
 "Benutzerfreundlichkeit nicht zu empfehlen."
 
-#: templates/admin_menu_help.php:239
+#: templates/admin_menu_help.php:239 templates/admin_menu_help.php:264
 msgid "Disable download"
 msgstr "Download deaktivieren"
 
@@ -1686,7 +1686,7 @@ msgstr ""
 "Wenn die Option \"nodownload\" auf \"on\" gesetzt ist wird der "
 "Downloadbutton beim Audioplayer ausgeblendet."
 
-#: templates/admin_menu_help.php:243 templates/admin_menu_help.php:265
+#: templates/admin_menu_help.php:243 templates/admin_menu_help.php:268
 msgid "Of course, all options can also be combined, which looks like this"
 msgstr ""
 "Natürlich können alle Optionen auch kombiniert werden, das sieht dann so aus"
@@ -1742,11 +1742,19 @@ msgstr ""
 "abgespielt werden ohne eine Möglichkeit das Video zu stoppen, das ist aber "
 "für die Benutzerfreundlichkeit nicht zu empfehlen."
 
-#: templates/admin_menu_help.php:272
+#: templates/admin_menu_help.php:266
+msgid ""
+"If the \"nodownload\" option is set to \"on\", the download button on the "
+"video player is hidden."
+msgstr ""
+"Wenn die Option \"nodownload\" auf \"on\" gesetzt ist wird der "
+"Downloadbutton beim Videoplayer ausgeblendet."
+
+#: templates/admin_menu_help.php:275
 msgid "Control individual audio and video players with CSS and JavaScript"
 msgstr "Einzelnen Audioplayer und Videoplayer mit CSS und JavaScript steuern"
 
-#: templates/admin_menu_help.php:274
+#: templates/admin_menu_help.php:277
 msgid ""
 "In order to control an audio player using CSS and JavaScript, each HTML "
 "audio element has an individual ID, which is made up of zdmAudio and the ID "
@@ -1756,7 +1764,7 @@ msgstr ""
 "jedes HTML Audio-Element eine individuelle ID, diese setzt sich aus zdmAudio "
 "und der ID der Datei zusammen."
 
-#: templates/admin_menu_help.php:276
+#: templates/admin_menu_help.php:279
 msgid ""
 "To control a video player using CSS and JavaScript, each HTML video element "
 "has an individual ID, which is made up of zdmVideo and the ID of the file."
@@ -1765,13 +1773,13 @@ msgstr ""
 "jedes HTML Video-Element eine individuelle ID, diese setzt sich aus zdmVideo "
 "und der ID der Datei zusammen."
 
-#: templates/admin_menu_help.php:283
+#: templates/admin_menu_help.php:286
 msgid ""
 "Control all audio players, video players and buttons with CSS and JavaScript"
 msgstr ""
 "Alle Audioplayer, Videoplayer und Buttons mit CSS und JavaScript steuern"
 
-#: templates/admin_menu_help.php:285
+#: templates/admin_menu_help.php:288
 msgid ""
 "To control all audio players using CSS and JavaScript, each HTML audio "
 "element has a class name, which looks like this"
@@ -1779,7 +1787,7 @@ msgstr ""
 "Um alle Audioplayer mit Hilfe von CSS und JavaScript zu steuern besitzt "
 "jedes HTML Audio-Element eine Klassenbezeichnung, diese sieht wie folgt aus"
 
-#: templates/admin_menu_help.php:287
+#: templates/admin_menu_help.php:290
 msgid ""
 "In order to control all video players using CSS and JavaScript, each HTML "
 "video element has a class name, which looks like this"
@@ -1787,7 +1795,7 @@ msgstr ""
 "Um alle Videoplayer mit Hilfe von CSS und JavaScript zu steuern besitzt "
 "jedes HTML Video-Element eine Klassenbezeichnung, diese sieht wie folgt aus"
 
-#: templates/admin_menu_help.php:289
+#: templates/admin_menu_help.php:292
 msgid ""
 "In order to control all buttons with the help of CSS and JavaScript, each "
 "HTML video element has a class name, which looks like this"
@@ -1795,11 +1803,11 @@ msgstr ""
 "Um alle Buttons mit Hilfe von CSS und JavaScript zu steuern besitzt jedes "
 "HTML Video-Element eine Klassenbezeichnung, diese sieht wie folgt aus"
 
-#: templates/admin_menu_help.php:296
+#: templates/admin_menu_help.php:299
 msgid "IP address anonymity"
 msgstr "IP Adresse Anonymität"
 
-#: templates/admin_menu_help.php:298
+#: templates/admin_menu_help.php:301
 msgid ""
 "The IP address of the website visitors who download something via this "
 "plugin is anonymized by default."
@@ -1807,7 +1815,7 @@ msgstr ""
 "Die IP Adresse der Webseitenbesucher die über dieses Plugin etwas "
 "herunterladen ist standardmäßig anonymisiert."
 
-#: templates/admin_menu_help.php:299
+#: templates/admin_menu_help.php:302
 msgid "To change this setting and to completely track the IP address, click on"
 msgstr ""
 "Um diese Einstellung zu ändern und die IP Adresse vollständig zu tracken "
