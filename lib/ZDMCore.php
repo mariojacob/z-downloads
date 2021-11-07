@@ -895,7 +895,7 @@ class ZDMCore {
      */
     public function enqueue_frontend_scripts() {
         // Frontend CSS
-        wp_register_style('zdm_styles', plugins_url('../public/css/zdm_style_1_8_1.min.css', __FILE__));
+        wp_register_style('zdm_styles', plugins_url('../public/css/zdm_style_1_8_2.min.css', __FILE__));
         wp_enqueue_style('zdm_styles');
 
         // Material Icons
@@ -1456,7 +1456,8 @@ class ZDMCore {
                 'autoplay'    => '',
                 'loop'        => '',
                 'controls'    => '',
-                'nodownload'  => ''
+                'nodownload'  => '',
+                'align'       => ''
                 ), $atts
         );
         
@@ -1477,6 +1478,10 @@ class ZDMCore {
             $nodownload = ' controlslist="nodownload"';
         else
             $nodownload = '';
+        if (htmlspecialchars($atts['align']) == 'center')
+            $align = ' zdm-center';
+        else
+            $align = '';
 
         if ($file != '') {
 
@@ -1498,7 +1503,7 @@ class ZDMCore {
                     $html_id = ' id="zdmAudio' . htmlspecialchars($db_file[0]->id) . '"';
 
                 // Ausgabe
-                $audio = '<audio preload="none"' . $html_id . ' class="zdm-audio"' . $autoplay . $loop . $controls . $nodownload . '>';
+                $audio = '<audio preload="none"' . $html_id . ' class="zdm-audio' . $align . '"' . $autoplay . $loop . $controls . $nodownload . '>';
                 $audio .= esc_html__('Your browser does not support HTML audio elements.', 'zdm');
                 $audio .= '<source src="' . ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_file[0]->folder_path . '/' . $db_file[0]->file_name . '" type="' . $db_file[0]->file_type . '">';
                 $audio .= '</audio>';
@@ -1519,12 +1524,18 @@ class ZDMCore {
         $atts = shortcode_atts(
             array(
                 'zip'   => '',
-                'file'  => ''
+                'file'  => '',
+                'align' => ''
                 ), $atts
         );
         
         $zip = htmlspecialchars($atts['zip']);
         $file = htmlspecialchars($atts['file']);
+
+        if (htmlspecialchars($atts['align']) == 'center')
+            $align = ' zdm-center';
+        else
+            $align = '';
 
         ////////////////////
         // ZIP
@@ -1585,7 +1596,7 @@ class ZDMCore {
                     else
                         $icon_and_text = $download_text . $icon;
     
-                    return '<a href="?' . $type . '=' . $id . '"' . $html_id . ' class="' . self::download_button_class() . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
+                    return '<a href="?' . $type . '=' . $id . '"' . $html_id . ' class="' . self::download_button_class() . $align .'" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
                 }
             } else {
                 // Leerer Rückgabewert, wenn keine Datei verknüpft ist
@@ -1654,7 +1665,7 @@ class ZDMCore {
     
                     // Access by bot
                     if (!in_array($http_user_agent, ZDM__BOT_USER_AGENTS))
-                        return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . self::download_button_class() . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
+                        return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . self::download_button_class() . $align .'" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
                 }
             } else {
                 // Leerer Rückgabewert, wenn Datei nicht vorhanden ist
@@ -2063,12 +2074,13 @@ class ZDMCore {
 
         $atts = shortcode_atts(
             array(
-                'file'      => '',
-                'w'         => '100%',
-                'autoplay'  => '',
-                'loop'      => '',
-                'controls'  => '',
-                'nodownload'  => ''
+                'file'        => '',
+                'w'           => '100%',
+                'autoplay'    => '',
+                'loop'        => '',
+                'controls'    => '',
+                'nodownload'  => '',
+                'align'       => ''
                 ), $atts
         );
         
@@ -2090,6 +2102,10 @@ class ZDMCore {
             $nodownload = ' controlslist="nodownload"';
         else
             $nodownload = '';
+        if (htmlspecialchars($atts['align']) == 'center')
+            $align = ' zdm-center';
+        else
+            $align = '';
 
         if ($file != '') {
 
@@ -2111,7 +2127,7 @@ class ZDMCore {
                     $html_id = ' id="zdmVideo' . htmlspecialchars($db_file[0]->id) . '"';
 
                 // Ausgabe
-                $video = '<video' . $html_id . ' width="' . $width . '" class="zdm-video"' . $autoplay . $loop . $controls . $nodownload . '>';
+                $video = '<video' . $html_id . ' width="' . $width . '" class="zdm-video' . $align . '"' . $autoplay . $loop . $controls . $nodownload . '>';
                 $video .= esc_html__('Your browser does not support HTML video elements.', 'zdm');
                 $video .= '<source src="' . ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_file[0]->folder_path . '/' . $db_file[0]->file_name . '" type="' . $db_file[0]->file_type . '">';
                 $video .= '</video>';
