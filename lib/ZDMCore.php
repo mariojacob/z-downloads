@@ -2059,6 +2059,8 @@ class ZDMCore {
      */
     public function shortcode_video($atts, $content = null) {
 
+        $options = get_option('zdm_options');
+
         $atts = shortcode_atts(
             array(
                 'file'      => '',
