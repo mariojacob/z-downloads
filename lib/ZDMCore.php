@@ -2065,7 +2065,8 @@ class ZDMCore {
                 'w'         => '100%',
                 'autoplay'  => '',
                 'loop'      => '',
-                'controls'  => ''
+                'controls'  => '',
+                'nodownload'  => ''
                 ), $atts
         );
         
@@ -2079,10 +2080,14 @@ class ZDMCore {
             $loop = ' loop';
         else
             $loop = '';
-        if (htmlspecialchars($atts['controls']) == 'on')
+        if (htmlspecialchars($atts['controls']) == 'off')
             $controls = '';
         else
             $controls = ' controls';
+        if (htmlspecialchars($atts['nodownload']) == 'on')
+            $nodownload = ' controlslist="nodownload"';
+        else
+            $nodownload = '';
 
         if ($file != '') {
 
@@ -2104,7 +2109,7 @@ class ZDMCore {
                     $html_id = ' id="zdmVideo' . htmlspecialchars($db_file[0]->id) . '"';
 
                 // Ausgabe
-                $video = '<video' . $html_id . ' width="' . $width . '" class="zdm-video"' . $autoplay . $loop . $controls . '>';
+                $video = '<video' . $html_id . ' width="' . $width . '" class="zdm-video"' . $autoplay . $loop . $controls . $nodownload . '>';
                 $video .= esc_html__('Your browser does not support HTML video elements.', 'zdm');
                 $video .= '<source src="' . ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_file[0]->folder_path . '/' . $db_file[0]->file_name . '" type="' . $db_file[0]->file_type . '">';
                 $video .= '</video>';
