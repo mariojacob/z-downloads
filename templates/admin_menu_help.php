@@ -261,6 +261,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <h4><?=esc_html__('Disable controls', 'zdm')?></h4>
                 <p><code>[zdownload_video file="123" controls="off"]</code></p>
                 <p><?=esc_html__('The "controls" option is enabled by default, if this option is set to "off", then no controls such as play, pause, volume, full screen, timeline, or other video options are displayed. In conjunction with the autoplay option, such a video file can be played automatically without any possibility to stop the video, but this is not recommended for usability.', 'zdm')?></p>
+                <h4><?=esc_html__('Disable download', 'zdm')?></h4>
+                <p><code>[zdownload_video file="123" nodownload="on"]</code></p>
+                <p><?=esc_html__('If the "nodownload" option is set to "on", the download button on the video player is hidden.', 'zdm')?></p>
                 <h4><?=esc_html__('Info', 'zdm')?></h4>
                 <p><?=esc_html__('Of course, all options can also be combined, which looks like this', 'zdm')?>:</p>
                 <p><code>[zdownload_video file="123" w="720px" autoplay="on" loop="on" controls="off"]</code></p>
