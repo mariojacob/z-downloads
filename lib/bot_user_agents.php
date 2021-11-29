@@ -129,7 +129,7 @@ define('ZDM__BOT_USER_AGENTS', [
     'FAST-WebCrawler/3.8', // FAST-WebCrawler 3.8
     'FAST Enterprise Crawler 6 / Scirus scirus-crawler@fast.no; http://www.scirus.com/srsapp/contactus/', // FAST Enterprise Crawler 6
     'FAST Enterprise Crawler 6 used by Schibsted (webcrawl@schibstedsok.no)', // FAST Enterprise Crawler 6
-     // findlink
+    // findlink
     'findlinks/1.0 (+http://wortschatz.uni-leipzig.de/findlinks/)',
     'findlinks/1.1.3-beta8 (+http://wortschatz.uni-leipzig.de/findlinks/)',
     'findlinks/1.1.3-beta9 (+http://wortschatz.uni-leipzig.de/findlinks/)',
@@ -267,7 +267,9 @@ define('ZDM__BOT_USER_AGENTS', [
     'MozacFetch/57.0.8', // MozacFetch
     // PetalBot
     'Mozilla/5.0 (compatible;PetalBot;+https://aspiegel.com/petalbot)',
+    'Mozilla/5.0 (compatible;PetalBot; +https://webmaster.petalsearch.com/site/petalbot)',
     'Mozilla/5.0 (Linux; Android 7.0;) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; PetalBot;+https://aspiegel.com/petalbot)',
+    'Mozilla/5.0 (Linux; Android 7.0;) AppleWebKit/537.36 (KHTML, like Gecko) Mobile Safari/537.36 (compatible; PetalBot;+https://webmaster.petalsearch.com/site/petalbot)',
     // Pinterest
     'Pinterest/0.2 (+http://www.pinterest.com/)', // Pinterest Bot 0.2
     'Mozilla/5.0 (compatible; Pinterestbot/1.0; +http://www.pinterest.com/bot.html)', // Pinterest Bot
@@ -377,7 +379,7 @@ define('ZDM__BOT_USER_AGENTS', [
     'WhatsApp/2.19.258 A',
     'WhatsApp/2.19.308 A',
     'WhatsApp/2.19.330 A',
-     // yacybot
+    // yacybot
     'yacybot (/global; amd64 FreeBSD 10.3-RELEASE; java 1.8.0_77; GMT/en) http://yacy.net/bot.html',
     'yacybot (/global; amd64 FreeBSD 10.3-RELEASE-p7; java 1.7.0_95; GMT/en) http://yacy.net/bot.html',
     'yacybot (-global; amd64 FreeBSD 9.2-RELEASE-p10; java 1.7.0_65; Europe/en) http://yacy.net/bot.html',
@@ -490,7 +492,7 @@ define('ZDM__BOT_USER_AGENTS', [
     'Mozilla/5.0 (compatible; SearchmetricsBot; https://www.searchmetrics.com/en/searchmetrics-bot/)', // searchmetrics
     'Mozilla/5.0 (compatible; SeznamBot/3.2; +http://napoveda.seznam.cz/en/seznambot-intro/)', // SeznamBot Crawler 3.2
     'Mozilla/5.0 (compatible; SISTRIX Crawler; http://crawler.sistrix.net/)', // Sistrix Crawler
-    'Slackbot-LinkExpanding 1.0 (+https://api.slack.com/robots)',// Slackbot Link Checker 1.0
+    'Slackbot-LinkExpanding 1.0 (+https://api.slack.com/robots)', // Slackbot Link Checker 1.0
     'Mozilla/5.0 (compatible; TTD-Content; +https://www.thetradedesk.com/general/ttd-content)', // The Trade Desk Content Scraper
     'Mozilla/5.0 (compatible; vebidoobot/1.0; +https://blog.vebidoo.de/vebidoobot/)', // vebidoobot
     'ZoominfoBot (zoominfobot at zoominfo dot com)', // Zoom Info Bot
