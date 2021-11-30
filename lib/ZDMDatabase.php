@@ -6,14 +6,25 @@ if (!defined('ABSPATH'))
 /**
  * Datenbank Klasse
  */
-class ZDMDatabase {
+class ZDMDatabase
+{
+    public function delete_field()
+    {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'zdm_log';
+        if ($wpdb->get_var('SHOW TABLES LIKE ' . $table_name) == $table_name) {
+            $sql = "ALTER TABLE " . $table_name . " DROP `user_id`";
+            dbDelta($sql);
+        }
+    }
 
     /**
      * Erstellt die Datenbankstruktur
      *
      * @return void
      */
-    public function create_db() {
+    public function create_db()
+    {
         global $wpdb;
         $table_name = $wpdb->prefix . 'zdm_archives';
 
@@ -34,9 +45,9 @@ class ZDMDatabase {
                 time_create INT(11) UNSIGNED NOT NULL,
                 time_update INT(11) UNSIGNED NOT NULL)";
 
-                require_once (ABSPATH . 'wp-admin/includes/upgrade.php');
+            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-                dbDelta($sql);
+            dbDelta($sql);
         }
 
         $table_name = $wpdb->prefix . 'zdm_files';
@@ -58,9 +69,9 @@ class ZDMDatabase {
                 time_create INT(11) UNSIGNED NOT NULL,
                 time_update INT(11) UNSIGNED NOT NULL)";
 
-                require_once (ABSPATH . 'wp-admin/includes/upgrade.php');
+            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-                dbDelta($sql);
+            dbDelta($sql);
         }
 
         $table_name = $wpdb->prefix . 'zdm_files_rel';
@@ -75,9 +86,9 @@ class ZDMDatabase {
                 time_create INT(11) UNSIGNED NOT NULL,
                 time_update INT(11) UNSIGNED NOT NULL)";
 
-                require_once (ABSPATH . 'wp-admin/includes/upgrade.php');
+            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-                dbDelta($sql);
+            dbDelta($sql);
         }
 
         $table_name = $wpdb->prefix . 'zdm_log';
@@ -89,12 +100,11 @@ class ZDMDatabase {
                 message TEXT NOT NULL,
                 user_agent VARCHAR(255) NOT NULL,
                 user_ip VARCHAR(255) NOT NULL,
-                user_id INT(11) UNSIGNED NOT NULL,
                 time_create INT(11) UNSIGNED NOT NULL)";
 
-                require_once (ABSPATH . 'wp-admin/includes/upgrade.php');
+            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-                dbDelta($sql);
+            dbDelta($sql);
         }
 
         ZDMCore::log('database created');

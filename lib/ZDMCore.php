@@ -1132,19 +1132,6 @@ class ZDMCore
     }
 
     /**
-     * Gibt die ID des aktuell angemeldeten Benutzers zurück
-     * 
-     * @return int WordPress user ID
-     */
-    public static function get_current_user_id()
-    {
-        if (!function_exists('wp_get_current_user'))
-            return 0;
-        $user = wp_get_current_user();
-        return (isset($user->ID) ? (int) $user->ID : 0);
-    }
-
-    /**
      * Gibt ein Objekt mit allen Daten aus der Datenbank (files) zurück
      * 
      * @param int $file_id
@@ -1366,7 +1353,6 @@ class ZDMCore
                 'message'       => htmlspecialchars($message),
                 'user_agent'    => $http_user_agent,
                 'user_ip'       => $user_ip,
-                'user_id'       => self::get_current_user_id(),
                 'time_create'   => time()
             )
         );

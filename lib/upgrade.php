@@ -7,8 +7,6 @@ $zdm_options = get_option('zdm_options');
 
 if ($zdm_options['version'] < ZDM__VERSION) {
 
-    ZDMCore::log('plugin upgrade', $zdm_options['version'] . ' to ' . ZDM__VERSION);
-
     // Optionen
     if ($zdm_options['download-btn-text'] == '')
         $zdm_options['download-btn-text'] = 'Download';
@@ -18,7 +16,7 @@ if ($zdm_options['version'] < ZDM__VERSION) {
 
     if (!$zdm_options['download-btn-border-radius'])
         $zdm_options['download-btn-border-radius'] = 'none';
-    
+
     if (!$zdm_options['download-btn-outline'])
         $zdm_options['download-btn-outline'] = '';
 
@@ -27,7 +25,7 @@ if ($zdm_options['version'] < ZDM__VERSION) {
 
     // NOTE: Temp since v1.8.0
     if ($zdm_options['download-btn-icon'] != 'none') {
-        
+
         if ($zdm_options['download-btn-icon'] == 'download')
             $zdm_options['download-btn-icon'] = 'file_download';
         if ($zdm_options['download-btn-icon'] == 'arrow-round-down')
@@ -81,7 +79,21 @@ if ($zdm_options['version'] < ZDM__VERSION) {
     if (!$zdm_options['hide-html-id'])
         $zdm_options['hide-html-id'] = 'on';
 
+    // NOTE: since v1.9.0
+    if (ZDM__VERSION >= '1.9.0') {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'zdm_log';
+        $drop_ddl = "ALTER TABLE " . $table_name . " DROP `user_id`";
+        require_once(ABSPATH . 'wp-admin/install-helper.php');
+        maybe_drop_column($table_name, "user_id", $drop_ddl);
+
+        flush_rewrite_rules();
+        wp_cache_flush();
+    }
+
+    ZDMCore::log('plugin upgrade', $zdm_options['version'] . ' to ' . ZDM__VERSION);
+
     $zdm_options['version'] = ZDM__VERSION;
-    
+
     update_option('zdm_options', $zdm_options);
 }

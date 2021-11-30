@@ -8,34 +8,33 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     global $wpdb;
     $zdm_tablename_log = $wpdb->prefix . "zdm_log";
     $zdm_status = '';
-    
+
     if (isset($_GET['id'])) { // Log Detailseite
 
         $zdm_status = 1;
 
         $zdm_log_id = sanitize_text_field($_GET['id']);
 
-        $zdm_db_log_details = $wpdb->get_results( 
+        $zdm_db_log_details = $wpdb->get_results(
             "
-            SELECT id, type, message, user_agent, user_ip, user_id, time_create 
+            SELECT id, type, message, user_agent, user_ip, time_create 
             FROM $zdm_tablename_log 
             WHERE id = '$zdm_log_id'
             "
         );
-
     } else { // Log Liste
-        
+
         $zdm_log_filter_array = array(esc_html__('Everything', 'zdm'), esc_html__('Downloads', 'zdm'), esc_html__('Files', 'zdm'), esc_html__('Archives', 'zdm'));
         $zdm_log_filter_array_count = count($zdm_log_filter_array);
         $zdm_log_filter_array_val = array("all", "downloads", "files", "archives");
 
         if (isset($_POST['log-filter-type']) && wp_verify_nonce($_POST['nonce'], 'log-types')) {
-            
+
             $zdm_lof_filter_type = sanitize_text_field($_POST['log-filter-type']);
 
             if ($zdm_lof_filter_type == 'downloads') {
-            
-                $zdm_db_logs = $wpdb->get_results( 
+
+                $zdm_db_logs = $wpdb->get_results(
                     "
                     SELECT id, type, message, time_create 
                     FROM $zdm_tablename_log 
@@ -46,8 +45,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     "
                 );
             } elseif ($zdm_lof_filter_type == 'files') {
-            
-                $zdm_db_logs = $wpdb->get_results( 
+
+                $zdm_db_logs = $wpdb->get_results(
                     "
                     SELECT id, type, message, time_create 
                     FROM $zdm_tablename_log 
@@ -62,8 +61,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     "
                 );
             } elseif ($zdm_lof_filter_type == 'archives') {
-            
-                $zdm_db_logs = $wpdb->get_results( 
+
+                $zdm_db_logs = $wpdb->get_results(
                     "
                     SELECT id, type, message, time_create 
                     FROM $zdm_tablename_log 
@@ -76,8 +75,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     "
                 );
             } else {
-            
-                $zdm_db_logs = $wpdb->get_results( 
+
+                $zdm_db_logs = $wpdb->get_results(
                     "
                     SELECT id, type, message, time_create 
                     FROM $zdm_tablename_log 
@@ -86,10 +85,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     "
                 );
             }
-
         } else {
-            
-            $zdm_db_logs = $wpdb->get_results( 
+
+            $zdm_db_logs = $wpdb->get_results(
                 "
                 SELECT id, type, message, time_create 
                 FROM $zdm_tablename_log 
@@ -104,12 +102,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     if ($zdm_status === 1) { // Log Detailseite
 
-        ?>
+?>
         <div class="wrap">
 
-            <h1><?=esc_html__('Log details', 'zdm')?></h1>
+            <h1><?= esc_html__('Log details', 'zdm') ?></h1>
             <br>
-            <button class="page-title-action" onclick="ZDMgoBack()"><?=esc_html__('Back', 'zdm')?></button>
+            <button class="page-title-action" onclick="ZDMgoBack()"><?= esc_html__('Back', 'zdm') ?></button>
             <br><br>
 
             <div class="postbox">
@@ -118,34 +116,24 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <table class="form-table">
                         <tbody>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('Type', 'zdm')?></th>
-                                <td valign="middle"><?=$zdm_db_log_details[0]->type?></td>
+                                <th scope="row"><?= esc_html__('Type', 'zdm') ?></th>
+                                <td valign="middle"><?= $zdm_db_log_details[0]->type ?></td>
                             </tr>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('Details', 'zdm')?></th>
-                                <td valign="middle"><?=$zdm_db_log_details[0]->message?></td>
+                                <th scope="row"><?= esc_html__('Details', 'zdm') ?></th>
+                                <td valign="middle"><?= $zdm_db_log_details[0]->message ?></td>
                             </tr>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('User agent', 'zdm')?></th>
-                                <td valign="middle"><?=$zdm_db_log_details[0]->user_agent?></td>
+                                <th scope="row"><?= esc_html__('User agent', 'zdm') ?></th>
+                                <td valign="middle"><?= $zdm_db_log_details[0]->user_agent ?></td>
                             </tr>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('IP adress', 'zdm')?></th>
-                                <td valign="middle"><?=$zdm_db_log_details[0]->user_ip?></td>
+                                <th scope="row"><?= esc_html__('IP adress', 'zdm') ?></th>
+                                <td valign="middle"><?= $zdm_db_log_details[0]->user_ip ?></td>
                             </tr>
                             <tr valign="top">
-                                <th scope="row"><?=esc_html__('WordPress user ID', 'zdm')?></th>
-                                <?php
-                                if ($zdm_db_log_details[0]->user_id == 0)
-                                    $user_id = esc_html__('no WordPress user', 'zdm');
-                                else
-                                    $user_id = $zdm_db_log_details[0]->user_id;
-                                ?>
-                                <td valign="middle"><?=$user_id?></td>
-                            </tr>
-                            <tr valign="top">
-                                <th scope="row"><?=esc_html__('Created', 'zdm')?></th>
-                                <td valign="middle"><?=date("d.m.Y - H:i:s", $zdm_db_log_details[0]->time_create)?></td>
+                                <th scope="row"><?= esc_html__('Created', 'zdm') ?></th>
+                                <td valign="middle"><?= date("d.m.Y - H:i:s", $zdm_db_log_details[0]->time_create) ?></td>
                             </tr>
                         </tbody>
                     </table>
@@ -156,49 +144,49 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         </div>
 
         <script>
-        function ZDMgoBack() {
-            window.history.back();
-        }
+            function ZDMgoBack() {
+                window.history.back();
+            }
         </script>
-        <?php
+    <?php
     } else { // Log Liste
-        ?>
+    ?>
         <div class="wrap">
 
-            <h1><?=esc_html__('Log', 'zdm')?></h1>
+            <h1><?= esc_html__('Log', 'zdm') ?></h1>
             <br />
-            <a href="admin.php?page=<?=ZDM__SLUG?>-settings" class="page-title-action"><?=esc_html__('Back the settings', 'zdm')?></a>
+            <a href="admin.php?page=<?= ZDM__SLUG ?>-settings" class="page-title-action"><?= esc_html__('Back the settings', 'zdm') ?></a>
             <br /><br />
 
             <?php
             if ($zdm_db_logs_count > 0) {
-                ?>
+            ?>
 
                 <div class="col-wrap">
 
                     <div class="postbox">
                         <div class="inside">
-                            <p><?=esc_html__('Here is the output of the logs of the latest 500 entries.', 'zdm')?></p>
+                            <p><?= esc_html__('Here is the output of the logs of the latest 500 entries.', 'zdm') ?></p>
                             <p>
-                                <form action="" method="post">
-                                <?=esc_html__('Logs filter by type', 'zdm')?>: 
-                                    <select name="log-filter-type">
-                                        <?php
-                                        $zdm_log_filter_option = '';
+                            <form action="" method="post">
+                                <?= esc_html__('Logs filter by type', 'zdm') ?>:
+                                <select name="log-filter-type">
+                                    <?php
+                                    $zdm_log_filter_option = '';
 
-                                        for( $i = 0; $i < $zdm_log_filter_array_count; $i++ ) {
-                                            $zdm_log_filter_option .= '<option value="' . $zdm_log_filter_array_val[$i] . '" ' 
-                                                                    . ( $zdm_lof_filter_type == $zdm_log_filter_array_val[$i] ? 'selected="selected"' : '' ) . '>' 
-                                                                    . $zdm_log_filter_array[$i] 
-                                                                    . '</option>';
-                                        }
-                                        
-                                        echo $zdm_log_filter_option;
-                                        ?>
-                                    </select> 
-                                    <input type="hidden" name="nonce" value="<?=wp_create_nonce('log-types')?>">
-                                    <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Update', 'zdm')?>">
-                                </form>
+                                    for ($i = 0; $i < $zdm_log_filter_array_count; $i++) {
+                                        $zdm_log_filter_option .= '<option value="' . $zdm_log_filter_array_val[$i] . '" '
+                                            . ($zdm_lof_filter_type == $zdm_log_filter_array_val[$i] ? 'selected="selected"' : '') . '>'
+                                            . $zdm_log_filter_array[$i]
+                                            . '</option>';
+                                    }
+
+                                    echo $zdm_log_filter_option;
+                                    ?>
+                                </select>
+                                <input type="hidden" name="nonce" value="<?= wp_create_nonce('log-types') ?>">
+                                <input class="button-primary" type="submit" name="submit" value="<?= esc_html__('Update', 'zdm') ?>">
+                            </form>
                             </p>
                         </div>
                     </div>
@@ -206,14 +194,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <table class="wp-list-table widefat striped tags">
                         <thead>
                             <tr>
-                                <th scope="col" colspan="2"><b><?=esc_html__('Type', 'zdm')?></b></th>
-                                <th scope="col"><b><?=esc_html__('Details', 'zdm')?></b></th>
-                                <th scope="col"><b><?=esc_html__('Created', 'zdm')?></b></th>
+                                <th scope="col" colspan="2"><b><?= esc_html__('Type', 'zdm') ?></b></th>
+                                <th scope="col"><b><?= esc_html__('Details', 'zdm') ?></b></th>
+                                <th scope="col"><b><?= esc_html__('Created', 'zdm') ?></b></th>
                             </tr>
                         </thead>
 
                         <tbody>
-                        <?php
+                            <?php
                             for ($i = 0; $i < $zdm_db_logs_count; $i++) {
 
                                 if ($zdm_db_logs[$i]->type == 'download archive' || $zdm_db_logs[$i]->type == 'download file') {
@@ -268,75 +256,75 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     $zdm_icon = 'info';
                                     $zdm_class_color = '';
                                 }
-                                ?>
+                            ?>
                                 <tr>
                                     <td>
-                                        <div align="center"><span class="material-icons-round zdm-md-1-5 <?=$zdm_class_color?>"><?=$zdm_icon?></span></div>
+                                        <div align="center"><span class="material-icons-round zdm-md-1-5 <?= $zdm_class_color ?>"><?= $zdm_icon ?></span></div>
                                     </td>
                                     <td>
-                                        <b><a href="?page=<?=ZDM__SLUG?>-log&id=<?=$zdm_db_logs[$i]->id?>" title="<?=esc_html__('Show details', 'zdm')?>"><?=$zdm_db_logs[$i]->type?></a></b>
+                                        <b><a href="?page=<?= ZDM__SLUG ?>-log&id=<?= $zdm_db_logs[$i]->id ?>" title="<?= esc_html__('Show details', 'zdm') ?>"><?= $zdm_db_logs[$i]->type ?></a></b>
                                     </td>
                                     <td>
-                                        <?=$zdm_db_logs[$i]->message?>
+                                        <?= $zdm_db_logs[$i]->message ?>
                                     </td>
                                     <td>
-                                        <?=date("d.m.Y - H:i:s", $zdm_db_logs[$i]->time_create)?>
+                                        <?= date("d.m.Y - H:i:s", $zdm_db_logs[$i]->time_create) ?>
                                     </td>
                                 </tr>
-                                <?php
+                            <?php
                             }
-                        ?>
+                            ?>
                         </tbody>
 
                         <tfoot>
                             <tr>
-                                <th scope="col" colspan="2"><b><?=esc_html__('Type', 'zdm')?></b></th>
-                                <th scope="col"><b><?=esc_html__('Details', 'zdm')?></b></th>
-                                <th scope="col"><b><?=esc_html__('Created', 'zdm')?></b></th>
+                                <th scope="col" colspan="2"><b><?= esc_html__('Type', 'zdm') ?></b></th>
+                                <th scope="col"><b><?= esc_html__('Details', 'zdm') ?></b></th>
+                                <th scope="col"><b><?= esc_html__('Created', 'zdm') ?></b></th>
                             </tr>
                         </tfoot>
 
                     </table>
 
                 </div>
-                <?php
+            <?php
             } else {
-                ?>
+            ?>
                 <div class="col-wrap">
 
                     <div class="postbox">
                         <div class="inside">
-                            <p><?=esc_html__('There are no log entries for this type.', 'zdm')?></p>
+                            <p><?= esc_html__('There are no log entries for this type.', 'zdm') ?></p>
                             <p>
-                                <form action="" method="post">
-                                <?=esc_html__('Logs filter by type', 'zdm')?>: 
-                                    <select name="log-filter-type">
-                                        <?php
-                                        $zdm_log_filter_option = '';
+                            <form action="" method="post">
+                                <?= esc_html__('Logs filter by type', 'zdm') ?>:
+                                <select name="log-filter-type">
+                                    <?php
+                                    $zdm_log_filter_option = '';
 
-                                        for( $i = 0; $i < $zdm_log_filter_array_count; $i++ ) {
-                                            $zdm_log_filter_option .= '<option value="' . $zdm_log_filter_array_val[$i] . '" ' 
-                                                                    . ( $zdm_lof_filter_type == $zdm_log_filter_array_val[$i] ? 'selected="selected"' : '' ) . '>' 
-                                                                    . $zdm_log_filter_array[$i] 
-                                                                    . '</option>';
-                                        }
-                                        
-                                        echo $zdm_log_filter_option;
-                                        ?>
-                                    </select> 
-                                    <input type="hidden" name="nonce" value="<?=wp_create_nonce('log-types')?>">
-                                    <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Update', 'zdm')?>">
-                                </form>
+                                    for ($i = 0; $i < $zdm_log_filter_array_count; $i++) {
+                                        $zdm_log_filter_option .= '<option value="' . $zdm_log_filter_array_val[$i] . '" '
+                                            . ($zdm_lof_filter_type == $zdm_log_filter_array_val[$i] ? 'selected="selected"' : '') . '>'
+                                            . $zdm_log_filter_array[$i]
+                                            . '</option>';
+                                    }
+
+                                    echo $zdm_log_filter_option;
+                                    ?>
+                                </select>
+                                <input type="hidden" name="nonce" value="<?= wp_create_nonce('log-types') ?>">
+                                <input class="button-primary" type="submit" name="submit" value="<?= esc_html__('Update', 'zdm') ?>">
+                            </form>
                             </p>
                         </div>
                     </div>
                 </div>
-                <?php
+            <?php
             }
             ?>
             <br>
-            <a class="alignright button" href="javascript:void(0);" onclick="window.scrollTo(0,0);" style="margin:3px 0 0 30px;"><?=esc_html__('To top', 'zdm')?></a>
+            <a class="alignright button" href="javascript:void(0);" onclick="window.scrollTo(0,0);" style="margin:3px 0 0 30px;"><?= esc_html__('To top', 'zdm') ?></a>
         </div>
-        <?php
+<?php
     }
 }

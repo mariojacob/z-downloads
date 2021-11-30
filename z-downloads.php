@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Plugin Name:     Z-Downloads
  * Version:         1.8.2
@@ -30,7 +31,7 @@ define('ZDM__STANDARD_USER_ROLE', 'manage_options');
 require_once(dirname(__FILE__) . '/lib/constants.php');
 
 // load language files
-load_plugin_textdomain( 'zdm', false, dirname(plugin_basename(__FILE__)) . '/languages' );
+load_plugin_textdomain('zdm', false, dirname(plugin_basename(__FILE__)) . '/languages');
 
 if (get_option('zdm_options')) {
     $zdm_options = get_option('zdm_options');
@@ -52,8 +53,8 @@ if (get_option('zdm_options')) {
 }
 
 // CLoad core class
-if( class_exists('ZDMCore') === false ) {
-	require_once(dirname(__FILE__) . '/lib/ZDMCore.php');
+if (class_exists('ZDMCore') === false) {
+    require_once(dirname(__FILE__) . '/lib/ZDMCore.php');
     $zdmCore = new ZDMCore();
     $zdmCore->register();
     $zdmCore->download();
@@ -62,14 +63,14 @@ if( class_exists('ZDMCore') === false ) {
 }
 
 // Plugin activation
-require_once (plugin_dir_path(__FILE__) . 'lib/ZDMPluginActivate.php');
+require_once(plugin_dir_path(__FILE__) . 'lib/ZDMPluginActivate.php');
 register_activation_hook(__FILE__, array('ZDMPluginActivate', 'activate'));
 
 // Plugin deactivation
-require_once (plugin_dir_path(__FILE__) . 'lib/ZDMPluginDeactivate.php');
+require_once(plugin_dir_path(__FILE__) . 'lib/ZDMPluginDeactivate.php');
 register_deactivation_hook(__FILE__, array('ZDMPluginDeactivate', 'deactivate'));
 
 // Plugin upgrade
-require_once (plugin_dir_path(__FILE__) . '/lib/upgrade.php');
+require_once(plugin_dir_path(__FILE__) . '/lib/upgrade.php');
 
 $zdmCore->php_modules_check_and_notice();
