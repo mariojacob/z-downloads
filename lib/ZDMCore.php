@@ -919,7 +919,7 @@ class ZDMCore
     public function enqueue_admin_scripts()
     {
         // Admin CSS
-        wp_register_style('zdm_admin_styles', plugins_url('../admin/css/zdm_admin_style_1_8_0.min.css', __FILE__));
+        wp_register_style('zdm_admin_styles', plugins_url('../admin/css/zdm_admin_styles.min.css?v=' . ZDM__VERSION, __FILE__));
         wp_enqueue_style('zdm_admin_styles');
 
         // Material Icons
@@ -935,7 +935,7 @@ class ZDMCore
     public function enqueue_frontend_scripts()
     {
         // Frontend CSS
-        wp_register_style('zdm_styles', plugins_url('../public/css/zdm_style_1_8_2.min.css', __FILE__));
+        wp_register_style('zdm_styles', plugins_url('../public/css/zdm_styles.min.css?v=' . ZDM__VERSION, __FILE__));
         wp_enqueue_style('zdm_styles');
 
         // Material Icons

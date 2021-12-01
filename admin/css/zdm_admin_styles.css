@@ -90,7 +90,9 @@
 }
 .zdm_dashboard_widget_number {
     font-size: 1.5em;
-    color: #00caff;
+}
+.zdm_dashboard_widget_number_trend {
+    font-weight: lighter;
 }
 .zdm_dashboard_widget_mb {
     margin-bottom: 20px;
