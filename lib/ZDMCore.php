@@ -750,22 +750,24 @@ class ZDMCore
                                 $user_agent = "---";
 
                             // Download-Zählverzögerung für denselben Benutzer
-                            if (($db_log[0]->time_create < time() - 5 && $db_log[0]->user_agent == $user_agent) || $db_log == null) {
+                            if (!empty($db_log[0])) {
+                                if (($db_log[0]->time_create < time() - 5 && $db_log[0]->user_agent == $user_agent) || $db_log == null) {
 
-                                // Count aktualisieren
-                                $count_new = $db_archive[0]->count + 1;
-                                $wpdb->update(
-                                    $tablename_archives,
-                                    array(
-                                        'count'         => $count_new,
-                                        'time_update'   => time()
-                                    ),
-                                    array(
-                                        'id' => $zdownload_url
-                                    )
-                                );
+                                    // Count aktualisieren
+                                    $count_new = $db_archive[0]->count + 1;
+                                    $wpdb->update(
+                                        $tablename_archives,
+                                        array(
+                                            'count'         => $count_new,
+                                            'time_update'   => time()
+                                        ),
+                                        array(
+                                            'id' => $zdownload_url
+                                        )
+                                    );
 
-                                self::log('download archive', $zdownload_url);
+                                    self::log('download archive', $zdownload_url);
+                                }
                             }
 
                             // Pfad für Datei
@@ -1174,6 +1176,7 @@ class ZDMCore
 
         $db_files_md5_count = count($db_files_md5);
 
+        $files_md5 = [];
         for ($i = 0; $i < $db_files_md5_count; $i++) {
             $files_md5[] = $db_files_md5[$i]->hash_md5;
         }
@@ -1613,7 +1616,7 @@ class ZDMCore
                     // Text-Button bestimmen
                     if ($options['download-btn-icon-only'] != '') {
                         $download_text = '';
-                        $icon_class = '  zdm-btn-icon-only';
+                        $icon_class = ' zdm-btn-icon-only';
                     } else {
 
                         if ($db_archive[0]->button_text != '')
@@ -1622,9 +1625,9 @@ class ZDMCore
                             $download_text = $options['download-btn-text'];
 
                         if ($options['download-btn-icon-position'] == 'left')
-                            $icon_class = 'zdm-mr-2';
+                            $icon_class = 'zdm-btn-icon-frontend zdm-mr-2';
                         else
-                            $icon_class = 'zdm-ml-2';
+                            $icon_class = 'zdm-btn-icon-frontend zdm-ml-2';
                     }
 
                     $type = 'zdownload';

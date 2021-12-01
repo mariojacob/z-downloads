@@ -19,7 +19,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     global $wpdb;
     $zdm_tablename_files = $wpdb->prefix . "zdm_files";
 
-    $zdm_db_files = $wpdb->get_results( 
+    $zdm_db_files = $wpdb->get_results(
         "
         SELECT id, name 
         FROM $zdm_tablename_files
@@ -55,7 +55,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             // Neuen Datenbankeintrag erstellen
             $wpdb->insert(
-                $zdm_tablename_archives, 
+                $zdm_tablename_archives,
                 array(
                     'id_temp'       => $zdm_archive_id_temp,
                     'name'          => $zdm_post_name,
@@ -68,7 +68,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             );
 
             // Hole ID von gerade gespeichertem Archiv
-            $zdm_db_archive = $wpdb->get_results( 
+            $zdm_db_archive = $wpdb->get_results(
                 "
                 SELECT id 
                 FROM $zdm_tablename_archives 
@@ -89,11 +89,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             // Erstelle files_rel Eintrag
             for ($i = 0; $i < $zdm_files_count; $i++) {
 
-                if ($_POST['files'][$i] != '') {
+                if (isset($_POST['files'][$i]) && $_POST['files'][$i] != '') {
 
                     // Save data in database files_rel
                     $wpdb->insert(
-                        $zdm_tablename_files_rel, 
+                        $zdm_tablename_files_rel,
                         array(
                             'id_file'       => sanitize_file_name($_POST['files'][$i]),
                             'id_archive'    => $zdm_db_archive[0]->id,
@@ -107,13 +107,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             ZDMCore::log('add archive', 'ID: ' . $zdm_db_archive[0]->id . ', name: ' . $zdm_post_name);
 
             $zdm_status = 1;
-
         } else {
             $zdm_note = esc_html__('Name and ZIP file name cannot be empty..', 'zdm');
         }
     }
 
-    ?>
+?>
 
     <div class="wrap">
 
@@ -125,100 +124,100 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         }
         ?>
 
-        <h1 class="wp-heading-inline"><?=esc_html__('Create new ZIP archive', 'zdm')?></h1>
+        <h1 class="wp-heading-inline"><?= esc_html__('Create new ZIP archive', 'zdm') ?></h1>
         <hr class="wp-header-end">
 
-        <p><a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-ziparchive"><?=esc_html__('Back to overview', 'zdm')?></a></p>
+        <p><a class="button-secondary" href="admin.php?page=<?= ZDM__SLUG ?>-ziparchive"><?= esc_html__('Back to overview', 'zdm') ?></a></p>
 
-    <?php if ($zdm_status === 1) { ?>
+        <?php if ($zdm_status === 1) { ?>
 
-        <div class="notice notice-success">
-            <p><span class="material-icons-round zdm-md-1 zdm-color-green">check_circle_outline</span> <?=esc_html__('Archive successfully created!', 'zdm')?></p>
-            <p><a href="admin.php?page=<?=ZDM__SLUG?>-add-archive" class="button-primary"><?=esc_html__('Create a new archive', 'zdm')?></a></p>
-        </div>
-
-    <?php } else { ?>
-
-        <form action="" method="post">
-            <div class="postbox">
-                <div class="inside">
-                    <table class="form-table">
-                        <tbody>
-                            <tr valign="top">
-                                <th scope="row"><?=esc_html__('Name', 'zdm')?>:</th>
-                                <td valign="middle">
-                                    <input type="text" name="name" size="50%" value="<?=@htmlspecialchars($_POST['name'])?>" spellcheck="true" autocomplete="off" placeholder="" required>
-                                    <div class="zdm-help-text"><?=esc_html__('This name is displayed in the archive list and serves as a guide.', 'zdm')?></div>
-                                </td>
-                            </tr>
-                            <tr valign="top">
-                                <th scope="row"><?=esc_html__('ZIP file name', 'zdm')?>:</th>
-                                <td valign="middle">
-                                    <input type="text" name="zip-name" size="50%" value="<?=@htmlspecialchars($_POST['zip-name'])?>" spellcheck="true" autocomplete="off" placeholder="">
-                                    <div class="zdm-help-text"><?=esc_html__('Name of the ZIP file the visitor downloads.', 'zdm')?></div>
-                                    <div class="zdm-help-text"><?=esc_html__('If you leave this field blank, the name will be used.', 'zdm')?></div>
-                                    <div class="zdm-help-text"><?=esc_html__('For maximum compatibility, use hyphens or underscores instead of spaces.', 'zdm')?></div>
-                                    <div class="zdm-help-text"><b><?=esc_html__('Example', 'zdm')?>:</b> <code><?=esc_html__('my-new-download', 'zdm')?></code> <?=esc_html__('or', 'zdm')?> <code><?=esc_html__('my_new_download', 'zdm')?></code></div>
-                                </td>
-                            </tr>
-                            <tr valign="top">
-                                <th scope="row"><?=esc_html__('Download button text', 'zdm')?>:</th>
-                                <td valign="middle">
-                                    <input type="text" name="button-text" size="50%" value="<?=esc_attr($zdm_options['download-btn-text'])?>" spellcheck="true" autocomplete="off" placeholder="">
-                                    <div class="zdm-help-text"><?=esc_html__('Default text for the download button is', 'zdm')?> "<?=esc_attr($zdm_options['download-btn-text'])?>", <?=esc_html__('this text can be found in the', 'zdm')?> <a href="admin.php?page=<?=ZDM__SLUG?>-settings"><?=esc_html__('settings', 'zdm')?></a>.</div>
-                                </td>
-                            </tr>
-                            <tr valign="top">
-                                <th scope="row"><?=esc_html__('Description', 'zdm')?>:</th>
-                                <td valign="middle">
-                                    <textarea name="description" id="" cols="100%" rows="5"><?=@htmlspecialchars($_POST['description'])?></textarea>
-                                </td>
-                            </tr>
-                            <tr valign="top">
-                                <th scope="row"><?=esc_html__('Count', 'zdm')?>:</th>
-                                <td valign="middle">
-                                    <input type="text" name="count" size="10%" value="0" spellcheck="true" autocomplete="off" placeholder=""> 
-                                    <div class="zdm-help-text"><?=esc_html__('Number of previous downloads.', 'zdm')?></div>
-                                </td>
-                            </tr>
-                            <tr valign="top">
-                                <th scope="row"><?=esc_html__('Link files', 'zdm')?>:</th>
-                                <td valign="middle">
-                                    <div class="zdm-select-50">
-                                    <?php for ($i = 1; $i <= 5; $i++) { ?>
-                                        <select name="files[]">
-                                            <option value=""></option>
-                                            <?php echo $zdm_option_output; ?>
-                                        </select><br>
-                                    <?php }
-                                    if ($zdm_licence === 1) {
-                                        for ($i = 6; $i <= 20; $i++) { ?>
-                                            <select name="files[]">
-                                                <option value=""></option>
-                                                <?php echo $zdm_option_output; ?>
-                                            </select><br>
-                                    <?php }
-                                    } else {
-                                        ?>
-                                        <p><?=esc_html__('For more file shortcuts activate', 'zdm')?> <a href="<?=ZDM__PRO_URL?>" target="_blank" title="code.urban-base.net"><?=ZDM__PRO?></a>.</p>
-                                        <?php
-                                    } ?>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
+            <div class="notice notice-success">
+                <p><span class="material-icons-round zdm-md-1 zdm-color-green">check_circle_outline</span> <?= esc_html__('Archive successfully created!', 'zdm') ?></p>
+                <p><a href="admin.php?page=<?= ZDM__SLUG ?>-add-archive" class="button-primary"><?= esc_html__('Create a new archive', 'zdm') ?></a></p>
             </div>
 
-            <?php require_once (plugin_dir_path(__FILE__) . '../inc/postbox_info_archive.php'); ?>
+        <?php } else { ?>
 
-            <input type="hidden" name="nonce" value="<?=wp_create_nonce('daten-speichern')?>">
-            <input class="button-primary" type="submit" name="submit" value="<?=esc_html__('Save', 'zdm')?>">
-            <a class="button-secondary" href="admin.php?page=<?=ZDM__SLUG?>-add-archive"><?=esc_html__('Cancel', 'zdm')?></a>
-        </form>
+            <form action="" method="post">
+                <div class="postbox">
+                    <div class="inside">
+                        <table class="form-table">
+                            <tbody>
+                                <tr valign="top">
+                                    <th scope="row"><?= esc_html__('Name', 'zdm') ?>:</th>
+                                    <td valign="middle">
+                                        <input type="text" name="name" size="50%" value="<?= @htmlspecialchars($_POST['name']) ?>" spellcheck="true" autocomplete="off" placeholder="" required>
+                                        <div class="zdm-help-text"><?= esc_html__('This name is displayed in the archive list and serves as a guide.', 'zdm') ?></div>
+                                    </td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?= esc_html__('ZIP file name', 'zdm') ?>:</th>
+                                    <td valign="middle">
+                                        <input type="text" name="zip-name" size="50%" value="<?= @htmlspecialchars($_POST['zip-name']) ?>" spellcheck="true" autocomplete="off" placeholder="">
+                                        <div class="zdm-help-text"><?= esc_html__('Name of the ZIP file the visitor downloads.', 'zdm') ?></div>
+                                        <div class="zdm-help-text"><?= esc_html__('If you leave this field blank, the name will be used.', 'zdm') ?></div>
+                                        <div class="zdm-help-text"><?= esc_html__('For maximum compatibility, use hyphens or underscores instead of spaces.', 'zdm') ?></div>
+                                        <div class="zdm-help-text"><b><?= esc_html__('Example', 'zdm') ?>:</b> <code><?= esc_html__('my-new-download', 'zdm') ?></code> <?= esc_html__('or', 'zdm') ?> <code><?= esc_html__('my_new_download', 'zdm') ?></code></div>
+                                    </td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?= esc_html__('Download button text', 'zdm') ?>:</th>
+                                    <td valign="middle">
+                                        <input type="text" name="button-text" size="50%" value="<?= esc_attr($zdm_options['download-btn-text']) ?>" spellcheck="true" autocomplete="off" placeholder="">
+                                        <div class="zdm-help-text"><?= esc_html__('Default text for the download button is', 'zdm') ?> "<?= esc_attr($zdm_options['download-btn-text']) ?>", <?= esc_html__('this text can be found in the', 'zdm') ?> <a href="admin.php?page=<?= ZDM__SLUG ?>-settings"><?= esc_html__('settings', 'zdm') ?></a>.</div>
+                                    </td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?= esc_html__('Description', 'zdm') ?>:</th>
+                                    <td valign="middle">
+                                        <textarea name="description" id="" cols="100%" rows="5"><?= @htmlspecialchars($_POST['description']) ?></textarea>
+                                    </td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?= esc_html__('Count', 'zdm') ?>:</th>
+                                    <td valign="middle">
+                                        <input type="text" name="count" size="10%" value="0" spellcheck="true" autocomplete="off" placeholder="">
+                                        <div class="zdm-help-text"><?= esc_html__('Number of previous downloads.', 'zdm') ?></div>
+                                    </td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?= esc_html__('Link files', 'zdm') ?>:</th>
+                                    <td valign="middle">
+                                        <div class="zdm-select-50">
+                                            <?php for ($i = 1; $i <= 5; $i++) { ?>
+                                                <select name="files[]">
+                                                    <option value=""></option>
+                                                    <?php echo $zdm_option_output; ?>
+                                                </select><br>
+                                                <?php }
+                                            if ($zdm_licence === 1) {
+                                                for ($i = 6; $i <= 20; $i++) { ?>
+                                                    <select name="files[]">
+                                                        <option value=""></option>
+                                                        <?php echo $zdm_option_output; ?>
+                                                    </select><br>
+                                                <?php }
+                                            } else {
+                                                ?>
+                                                <p><?= esc_html__('For more file shortcuts activate', 'zdm') ?> <a href="<?= ZDM__PRO_URL ?>" target="_blank" title="code.urban-base.net"><?= ZDM__PRO ?></a>.</p>
+                                            <?php
+                                            } ?>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-    <?php } ?>
+                <?php require_once(plugin_dir_path(__FILE__) . '../inc/postbox_info_archive.php'); ?>
+
+                <input type="hidden" name="nonce" value="<?= wp_create_nonce('daten-speichern') ?>">
+                <input class="button-primary" type="submit" name="submit" value="<?= esc_html__('Save', 'zdm') ?>">
+                <a class="button-secondary" href="admin.php?page=<?= ZDM__SLUG ?>-add-archive"><?= esc_html__('Cancel', 'zdm') ?></a>
+            </form>
+
+        <?php } ?>
 
     </div>
 

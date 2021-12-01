@@ -69,6 +69,11 @@
  Button Icon
 ********************/
 
+.zdm-btn-icon-frontend {
+    font-size: 16px !important;
+    vertical-align: text-bottom;
+}
+
 .material-icon-round.zdm-md-1,
 .material-icon-outlined.zdm-md-1 {
     font-size: 1em;
@@ -90,8 +95,8 @@
 }
 
 .zdm-btn-icon-only {
-    font-size: 1.2em !important;
-    margin: 0 4px;
+    font-size: 16px !important;
+    margin: 2px 4px 0 4px;
 }
 
 /********************

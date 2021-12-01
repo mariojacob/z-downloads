@@ -146,7 +146,7 @@ class ZDMStat
      * @param int $period Zeit in Sekunden
      * @return int
      */
-    public static function get_downloads_count_time($type = 'all', $period)
+    public static function get_downloads_count_time($type, $period)
     {
 
         global $wpdb;
