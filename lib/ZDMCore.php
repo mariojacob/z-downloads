@@ -1364,13 +1364,13 @@ class ZDMCore
      * @param int $number
      * @return string Formatierte Nummer
      */
-    public static function number_format($number)
+    public static function number_format($number, $decimals = 0)
     {
 
         if (in_array(get_locale(), ZDM__COUNTRIES_USING_DECIMAL_POINT))
-            return number_format($number, 0, '.', ',');
+            return number_format($number, $decimals, '.', ',');
 
-        return number_format($number, 0, ',', '.');
+        return number_format($number, $decimals, ',', '.');
     }
 
     /**
