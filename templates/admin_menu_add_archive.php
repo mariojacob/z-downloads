@@ -145,20 +145,60 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <tr valign="top">
                                     <th scope="row"><?= esc_html__('Name', 'zdm') ?>:</th>
                                     <td valign="middle">
-                                        <input type="text" name="name" size="50%" value="<?= @htmlspecialchars($_POST['name']) ?>" spellcheck="true" autocomplete="off" placeholder="" required>
+                                        <input type="text" name="name" id="archive-name" size="50%" value="<?= @htmlspecialchars($_POST['name']) ?>" spellcheck="true" autocomplete="off" placeholder="" required>
                                         <div class="zdm-help-text"><?= esc_html__('This name is displayed in the archive list and serves as a guide.', 'zdm') ?></div>
                                     </td>
                                 </tr>
                                 <tr valign="top">
                                     <th scope="row"><?= esc_html__('ZIP file name', 'zdm') ?>:</th>
                                     <td valign="middle">
-                                        <input type="text" name="zip-name" size="50%" value="<?= @htmlspecialchars($_POST['zip-name']) ?>" spellcheck="true" autocomplete="off" placeholder="">
+                                        <input type="text" name="zip-name" id="zip-name" size="50%" value="<?= @htmlspecialchars($_POST['zip-name']) ?>" spellcheck="true" autocomplete="off" placeholder="">
                                         <div class="zdm-help-text"><?= esc_html__('Name of the ZIP file the visitor downloads.', 'zdm') ?></div>
                                         <div class="zdm-help-text"><?= esc_html__('If you leave this field blank, the name will be used.', 'zdm') ?></div>
                                         <div class="zdm-help-text"><?= esc_html__('For maximum compatibility, use hyphens or underscores instead of spaces.', 'zdm') ?></div>
                                         <div class="zdm-help-text"><b><?= esc_html__('Example', 'zdm') ?>:</b> <code><?= esc_html__('my-new-download', 'zdm') ?></code> <?= esc_html__('or', 'zdm') ?> <code><?= esc_html__('my_new_download', 'zdm') ?></code></div>
                                     </td>
                                 </tr>
+                                <script>
+                                    // Prüfung auf Eingabe
+                                    document.getElementById('archive-name').addEventListener("keyup", function(evt) {
+                                        zdmZipName = document.getElementById("archive-name")
+                                            .value;
+                                        // Leerzeichen durch "_" ersetzen
+                                        zdmZipName = zdmZipName.toLowerCase();
+                                        zdmZipName = zdmZipName.replace(/\u00fc/g, "ue");
+                                        zdmZipName = zdmZipName.replace(/\u00e4/g, "ae");
+                                        zdmZipName = zdmZipName.replace(/\u00f6/g, "oe");
+                                        zdmZipName = zdmZipName.replace(/\u00df/g, "ss");
+                                        zdmZipName = zdmZipName.replace(/ /g, "_");
+                                        zdmZipName = zdmZipName.replace(/\//g, "_");
+                                        zdmZipName = zdmZipName.replace(/\(/g, "_");
+                                        zdmZipName = zdmZipName.replace(/\)/g, "_");
+                                        zdmZipName = zdmZipName.replace(/#/g, "");
+                                        zdmZipName = zdmZipName.replace(/\?/g, "");
+                                        zdmZipName = zdmZipName.replace(/!/g, "");
+                                        document.getElementById("zip-name").value = zdmZipName;
+                                    }, false);
+                                    // Prüfung auf Eingabe
+                                    document.getElementById('zip-name').addEventListener("keyup", function(evt) {
+                                        zdmZipName = document.getElementById("zip-name")
+                                            .value;
+                                        // Leerzeichen durch "_" ersetzen
+                                        zdmZipName = zdmZipName.toLowerCase();
+                                        zdmZipName = zdmZipName.replace(/\u00fc/g, "ue");
+                                        zdmZipName = zdmZipName.replace(/\u00e4/g, "ae");
+                                        zdmZipName = zdmZipName.replace(/\u00f6/g, "oe");
+                                        zdmZipName = zdmZipName.replace(/\u00df/g, "ss");
+                                        zdmZipName = zdmZipName.replace(/ /g, "_");
+                                        zdmZipName = zdmZipName.replace(/\//g, "_");
+                                        zdmZipName = zdmZipName.replace(/\(/g, "_");
+                                        zdmZipName = zdmZipName.replace(/\)/g, "_");
+                                        zdmZipName = zdmZipName.replace(/#/g, "");
+                                        zdmZipName = zdmZipName.replace(/\?/g, "");
+                                        zdmZipName = zdmZipName.replace(/!/g, "");
+                                        document.getElementById("zip-name").value = zdmZipName;
+                                    }, false);
+                                </script>
                                 <tr valign="top">
                                     <th scope="row"><?= esc_html__('Download button text', 'zdm') ?>:</th>
                                     <td valign="middle">
