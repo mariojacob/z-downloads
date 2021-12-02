@@ -151,9 +151,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                 $zdm_new_download_folder_token = md5(uniqid(rand(), true));
 
+                // Downloadordner umbenennen
                 if (is_dir(ZDM__DOWNLOADS_PATH))
                     rename(ZDM__DOWNLOADS_PATH, wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_new_download_folder_token);
 
+                // Neuen Downloadordner Token in Optionen speichern
                 $zdm_options['download-folder-token'] = $zdm_new_download_folder_token;
                 ZDMCore::log('download-folder-token', $zdm_options['download-folder-token']);
 
@@ -187,8 +189,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                 // Neuen Token für Download Ordner generieren
                 $zdm_new_download_folder_token = md5(uniqid(rand(), true));
-                rename(ZDM__DOWNLOADS_PATH, wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_new_download_folder_token);
+
+                // Downloadordner umbenennen
+                if (is_dir(ZDM__DOWNLOADS_PATH))
+                    rename(ZDM__DOWNLOADS_PATH, wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_new_download_folder_token);
+
+                // Neuen Downloadordner Token in Optionen speichern
                 $zdm_options['download-folder-token'] = $zdm_new_download_folder_token;
+                ZDMCore::log('download-folder-token', $zdm_options['download-folder-token']);
+
                 update_option('zdm_options', $zdm_options);
                 $zdm_options = get_option('zdm_options');
 
