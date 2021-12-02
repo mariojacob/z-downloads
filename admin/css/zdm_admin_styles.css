@@ -228,6 +228,9 @@ ion-icon {
     color: #bf4d54;
     border: 1px solid #ff6771;
 }
+.zdm-box-danger-outline {
+    border-color: #ff6771;
+}
 
 .zdm-nav-tabs a {
     border-radius: 4px 4px 0 0;

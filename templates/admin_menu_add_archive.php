@@ -126,7 +126,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         <h1 class="wp-heading-inline"><?= esc_html__('Create new ZIP archive', 'zdm') ?></h1>
         <hr class="wp-header-end">
-
         <p><a class="button-secondary" href="admin.php?page=<?= ZDM__SLUG ?>-ziparchive"><?= esc_html__('Back to overview', 'zdm') ?></a></p>
 
         <?php if ($zdm_status === 1) { ?>

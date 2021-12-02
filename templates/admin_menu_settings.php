@@ -231,8 +231,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         <div class="wrap">
             <h1 class="wp-heading-inline"><?= esc_html__('Settings', 'zdm') ?></h1>
-
             <hr class="wp-header-end">
+            <br>
 
             <?php
             if ($zdm_update != '') {
@@ -646,7 +646,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         </div>
                     </div>
 
-                    <div class="postbox">
+                    <div class="postbox zdm-box-danger-outline">
                         <div class="inside">
                             <h3><?= ZDM__TITLE ?> <?= esc_html__('uninstall', 'zdm') ?></h3>
                             <hr>
