@@ -220,6 +220,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         'id_archive' => $zdm_archive_id
                                     )
                                 );
+
+                                ZDMCore::log('link file', 'archive ID: ' . $zdm_archive_id . ', file ID: ' . sanitize_text_field($_POST['files'][$i]));
                             }
                         }
                     }
@@ -340,6 +342,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             <h1><?= esc_html__('Archive', 'zdm') ?>: <?= esc_attr($zdm_db_archive->name) ?></h1>
             <hr class="wp-header-end">
+            <br>
             <a href="admin.php?page=<?= ZDM__SLUG ?>-ziparchive" class="page-title-action"><?= esc_html__('Back to overview', 'zdm') ?></a> <a href="admin.php?page=<?= ZDM__SLUG ?>-add-archive" class="page-title-action"><?= esc_html__('Create a new archive', 'zdm') ?></a>
             <br><br>
 
@@ -956,8 +959,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                                                                                                                                                                                                                                                                                                                                                                                                                                             }
                                                                                                                                                                                                                                                                                                                                                                                                                                                         } else {
                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ?> <span class="material-icons-round zdm-md-1-5 zdm-color-yellow" title="<?= esc_html__('No files are linked to the archive.', 'zdm') ?>">warning_amber</span> <?php
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ?>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ?>
                                     </td>
                                     <td>
                                         <?php

@@ -436,6 +436,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             <h1><?= esc_html__('File', 'zdm') ?>: <?= $zdm_db_file->name ?></h1>
             <hr class="wp-header-end">
+            <br>
             <a href="admin.php?page=<?= ZDM__SLUG ?>-files" class="page-title-action"><?= esc_html__('Back to overview', 'zdm') ?></a> <a href="admin.php?page=<?= ZDM__SLUG ?>-add-file" class="page-title-action"><?= esc_html__('Add file', 'zdm') ?></a>
             <br><br>
 

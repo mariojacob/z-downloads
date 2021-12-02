@@ -222,6 +222,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 } elseif ($zdm_db_logs[$i]->type == 'archive cache created') {
                                     $zdm_icon = 'check_circle_outline';
                                     $zdm_class_color = 'zdm-color-green';
+                                } elseif ($zdm_db_logs[$i]->type == 'link file') {
+                                    $zdm_icon = 'link';
+                                    $zdm_class_color = 'zdm-color-green';
                                 } elseif ($zdm_db_logs[$i]->type == 'unlink file') {
                                     $zdm_icon = 'link_off';
                                     $zdm_class_color = 'zdm-color-yellow';

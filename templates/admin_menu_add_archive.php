@@ -101,6 +101,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             'time_create'   => $zdm_time
                         )
                     );
+
+                    ZDMCore::log('link file', 'archive ID: ' . $zdm_db_archive[0]->id . ', file ID: ' . sanitize_file_name($_POST['files'][$i]));
                 }
             }
 
