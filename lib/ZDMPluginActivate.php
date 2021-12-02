@@ -6,14 +6,16 @@ if (!defined('ABSPATH'))
 /**
  * Plugin Aktivierung
  */
-class ZDMPluginActivate {
+class ZDMPluginActivate
+{
 
     /**
      * Plugin aktivieren
      *
      * @return void
      */
-    public static function activate() {
+    public static function activate()
+    {
 
         flush_rewrite_rules();
 
@@ -26,22 +28,23 @@ class ZDMPluginActivate {
         $zdm_options = get_option('zdm_options');
 
         // Aktivierungszeit einstellen
-        if (!$zdm_options['activation-time'])
+        if (!array_key_exists('activation-time', $zdm_options))
             $zdm_options['activation-time'] = time();
 
         // Optionen abrufen
         $zdm_options = get_option('zdm_options');
 
         // Datenbank erstellen
-        require_once (plugin_dir_path(__FILE__) . 'ZDMDatabase.php');
+        require_once(plugin_dir_path(__FILE__) . 'ZDMDatabase.php');
         $db = new ZDMDatabase();
         $db->create_db();
 
         ZDMCore::log('plugin activated');
 
         // Download-Ordner-Token
-        if (!$zdm_options['download-folder-token']) {
+        if (!array_key_exists('download-folder-token', $zdm_options)) {
             $zdm_options['download-folder-token'] = md5(uniqid(rand(), true));
+            update_option('zdm_options', $zdm_options);
             ZDMCore::log('download-folder-token', $zdm_options['download-folder-token']);
         }
 
@@ -63,5 +66,7 @@ class ZDMPluginActivate {
             define('ZDM__DOWNLOADS_CACHE_PATH_URL', ZDM__DOWNLOADS_PATH_URL . "/cache");
         if (!defined('ZDM__DOWNLOADS_FILES_PATH_URL'))
             define('ZDM__DOWNLOADS_FILES_PATH_URL', ZDM__DOWNLOADS_PATH_URL . "/files");
+
+        flush_rewrite_rules();
     }
 }

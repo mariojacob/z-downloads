@@ -8,15 +8,6 @@ if (!defined('ABSPATH'))
  */
 class ZDMDatabase
 {
-    public function delete_field()
-    {
-        global $wpdb;
-        $table_name = $wpdb->prefix . 'zdm_log';
-        if ($wpdb->get_var('SHOW TABLES LIKE ' . $table_name) == $table_name) {
-            $sql = "ALTER TABLE " . $table_name . " DROP `user_id`";
-            dbDelta($sql);
-        }
-    }
 
     /**
      * Erstellt die Datenbankstruktur
@@ -26,87 +17,71 @@ class ZDMDatabase
     public function create_db()
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . 'zdm_archives';
+        require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-        if ($wpdb->get_var('SHOW TABLES LIKE ' . $table_name) != $table_name) {
-            $sql = "CREATE TABLE " . $table_name . "(
-                id INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                id_temp VARCHAR(32) NOT NULL,
-                name VARCHAR(255) NOT NULL,
-                zip_name VARCHAR(255) NOT NULL,
-                description text NOT NULL,
-                count INT(11) UNSIGNED NOT NULL DEFAULT 0,
-                button_text VARCHAR(255) NOT NULL,
-                hash_md5 VARCHAR(32) NOT NULL,
-                hash_sha1 VARCHAR(40) NOT NULL,
-                archive_cache_path VARCHAR(255) NOT NULL,
-                file_size VARCHAR(50) NOT NULL,
-                status VARCHAR(20) NOT NULL DEFAULT 'public',
-                time_create INT(11) UNSIGNED NOT NULL,
-                time_update INT(11) UNSIGNED NOT NULL)";
-
-            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-
-            dbDelta($sql);
-        }
-
-        $table_name = $wpdb->prefix . 'zdm_files';
-
-        if ($wpdb->get_var('SHOW TABLES LIKE ' . $table_name) != $table_name) {
-            $sql = "CREATE TABLE " . $table_name . "(
-                id INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                name VARCHAR(255) NOT NULL,
-                button_text VARCHAR(255) NOT NULL,
-                description TEXT NOT NULL,
-                count INT(11) UNSIGNED NOT NULL DEFAULT 0,
-                hash_md5 VARCHAR(32) NOT NULL,
-                hash_sha1 VARCHAR(40) NOT NULL,
-                folder_path VARCHAR(32) NOT NULL,
-                file_name VARCHAR(255) NOT NULL,
-                file_type VARCHAR(100) NOT NULL,
-                file_size VARCHAR(50) NOT NULL,
-                status VARCHAR(20) NOT NULL DEFAULT 'public',
-                time_create INT(11) UNSIGNED NOT NULL,
-                time_update INT(11) UNSIGNED NOT NULL)";
-
-            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-
-            dbDelta($sql);
-        }
-
-        $table_name = $wpdb->prefix . 'zdm_files_rel';
-
-        if ($wpdb->get_var('SHOW TABLES LIKE ' . $table_name) != $table_name) {
-            $sql = "CREATE TABLE " . $table_name . "(
-                id INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                id_file INT(11) UNSIGNED NOT NULL,
-                id_archive INT(11) UNSIGNED NOT NULL,
-                file_updated TINYINT(1) NOT NULL DEFAULT 0,
-                file_deleted TINYINT(1) NOT NULL DEFAULT 0,
-                time_create INT(11) UNSIGNED NOT NULL,
-                time_update INT(11) UNSIGNED NOT NULL)";
-
-            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-
-            dbDelta($sql);
-        }
-
+        // Tabelle zdm_log
         $table_name = $wpdb->prefix . 'zdm_log';
+        $sql = "CREATE TABLE " . $table_name . "(
+            id INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            type VARCHAR(64) NOT NULL,
+            message TEXT NOT NULL,
+            user_agent VARCHAR(255) NOT NULL,
+            user_ip VARCHAR(255) NOT NULL,
+            time_create INT(11) UNSIGNED NOT NULL)";
+        if (maybe_create_table($table_name, $sql))
+            ZDMCore::log('database table created', $table_name);
 
-        if ($wpdb->get_var('SHOW TABLES LIKE ' . $table_name) != $table_name) {
-            $sql = "CREATE TABLE " . $table_name . "(
-                id INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-                type VARCHAR(64) NOT NULL,
-                message TEXT NOT NULL,
-                user_agent VARCHAR(255) NOT NULL,
-                user_ip VARCHAR(255) NOT NULL,
-                time_create INT(11) UNSIGNED NOT NULL)";
+        // Tabelle zdm_archives
+        $table_name = $wpdb->prefix . 'zdm_archives';
+        $sql = "CREATE TABLE " . $table_name . "(
+            id INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            id_temp VARCHAR(32) NOT NULL,
+            name VARCHAR(255) NOT NULL,
+            zip_name VARCHAR(255) NOT NULL,
+            description text NOT NULL,
+            count INT(11) UNSIGNED NOT NULL DEFAULT 0,
+            button_text VARCHAR(255) NOT NULL,
+            hash_md5 VARCHAR(32) NOT NULL,
+            hash_sha1 VARCHAR(40) NOT NULL,
+            archive_cache_path VARCHAR(255) NOT NULL,
+            file_size VARCHAR(50) NOT NULL,
+            status VARCHAR(20) NOT NULL DEFAULT 'public',
+            time_create INT(11) UNSIGNED NOT NULL,
+            time_update INT(11) UNSIGNED NOT NULL)";
+        if (maybe_create_table($table_name, $sql))
+            ZDMCore::log('database table created', $table_name);
 
-            require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+        // Tabelle zdm_files
+        $table_name = $wpdb->prefix . 'zdm_files';
+        $sql = "CREATE TABLE " . $table_name . "(
+            id INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            name VARCHAR(255) NOT NULL,
+            button_text VARCHAR(255) NOT NULL,
+            description TEXT NOT NULL,
+            count INT(11) UNSIGNED NOT NULL DEFAULT 0,
+            hash_md5 VARCHAR(32) NOT NULL,
+            hash_sha1 VARCHAR(40) NOT NULL,
+            folder_path VARCHAR(32) NOT NULL,
+            file_name VARCHAR(255) NOT NULL,
+            file_type VARCHAR(100) NOT NULL,
+            file_size VARCHAR(50) NOT NULL,
+            status VARCHAR(20) NOT NULL DEFAULT 'public',
+            time_create INT(11) UNSIGNED NOT NULL,
+            time_update INT(11) UNSIGNED NOT NULL)";
+        if (maybe_create_table($table_name, $sql))
+            ZDMCore::log('database table created', $table_name);
 
-            dbDelta($sql);
-        }
-
-        ZDMCore::log('database created');
+        // Tabelle zdm_files_rel
+        $table_name = $wpdb->prefix . 'zdm_files_rel';
+        $sql = "CREATE TABLE " . $table_name . "(
+            id INT(11) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
+            id_file INT(11) UNSIGNED NOT NULL,
+            id_archive INT(11) UNSIGNED NOT NULL,
+            file_updated TINYINT(1) NOT NULL DEFAULT 0,
+            file_deleted TINYINT(1) NOT NULL DEFAULT 0,
+            time_create INT(11) UNSIGNED NOT NULL,
+            time_update INT(11) UNSIGNED NOT NULL)";
+        if (maybe_create_table($table_name, $sql))
+            ZDMCore::log('database table created', $table_name);
     }
 }

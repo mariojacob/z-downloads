@@ -36,10 +36,16 @@ load_plugin_textdomain('zdm', false, dirname(plugin_basename(__FILE__)) . '/lang
 if (get_option('zdm_options')) {
     $zdm_options = get_option('zdm_options');
 
-    if (!defined('ZDM__DOWNLOADS_PATH'))
-        define('ZDM__DOWNLOADS_PATH', wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token']);
-    if (!defined('ZDM__DOWNLOADS_PATH'))
-        define('ZDM__DOWNLOADS_PATH', wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token']);
+    if (array_key_exists('download-folder-token', $zdm_options)) {
+        if (!defined('ZDM__DOWNLOADS_PATH'))
+            define('ZDM__DOWNLOADS_PATH', wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token']);
+    } else {
+        $zdm_options['download-folder-token'] = md5(uniqid(rand(), true));
+        update_option('zdm_options', $zdm_options);
+
+        if (!defined('ZDM__DOWNLOADS_PATH'))
+            define('ZDM__DOWNLOADS_PATH', wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token']);
+    }
     if (!defined('ZDM__DOWNLOADS_CACHE_PATH'))
         define('ZDM__DOWNLOADS_CACHE_PATH', ZDM__DOWNLOADS_PATH . "/cache");
     if (!defined('ZDM__DOWNLOADS_FILES_PATH'))

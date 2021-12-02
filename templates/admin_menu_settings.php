@@ -150,7 +150,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             if (get_option('zdm_options')) {
 
                 $zdm_new_download_folder_token = md5(uniqid(rand(), true));
-                rename(ZDM__DOWNLOADS_PATH, wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_new_download_folder_token);
+
+                if (is_dir(ZDM__DOWNLOADS_PATH))
+                    rename(ZDM__DOWNLOADS_PATH, wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_new_download_folder_token);
+
                 $zdm_options['download-folder-token'] = $zdm_new_download_folder_token;
                 ZDMCore::log('download-folder-token', $zdm_options['download-folder-token']);
 
@@ -263,8 +266,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <div class="postbox">
                         <div class="inside">
                             <h3><?php if ($zdm_licence === 1) { ?><?= $zdm_options['licence-product-name']; ?> <?= esc_html__('is activated', 'zdm') ?><?php } else {
-                                                                                                                                                    echo ZDM__PRO;
-                                                                                                                                                } ?></h3>
+                                                                                                                                                        echo ZDM__PRO;
+                                                                                                                                                    } ?></h3>
                             <hr>
                             <table class="form-table">
                                 <tbody>
@@ -401,8 +404,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                                     <fieldset>
                                                         <td>
                                                             <input type="radio" name="download-btn-icon" value="<?= ZDM__DOWNLOAD_BTN_ICON_VAL[0] ?>" <?php if ($zdm_options['download-btn-icon'] == ZDM__DOWNLOAD_BTN_ICON_VAL[0]) {
-                                                                                                                                                        echo 'checked="checked"';
-                                                                                                                                                    } ?>> <span class="zdm-ml-2"><?= ZDM__DOWNLOAD_BTN_ICON[0] ?></input></span><br />
+                                                                                                                                                            echo 'checked="checked"';
+                                                                                                                                                        } ?>> <span class="zdm-ml-2"><?= ZDM__DOWNLOAD_BTN_ICON[0] ?></input></span><br />
                                                             <?php
                                                             $zdm_btn_icon_example = '';
                                                             for ($i = 1; $i < $zdm_btn_icons_count_ceil; $i++) {
@@ -548,8 +551,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             <div class="zdm-help-text"><?= esc_html__('Determine the number of recent downloads that is displayed on the file details page in the Statistics tab.', 'zdm') ?></div>
                                             <br>
                                             <input type="number" name="stat-single-archive-last-limit" size="5" min="1" max="500" value="<?= esc_attr($zdm_options['stat-single-archive-last-limit']) ?>" <?php if ($zdm_licence === 0) {
-                                                                                                                                                                                                            echo ' disabled';
-                                                                                                                                                                                                        } ?>>
+                                                                                                                                                                                                                echo ' disabled';
+                                                                                                                                                                                                            } ?>>
                                             <span class="material-icons-outlined zdm-md-1">info</span> <?= esc_html__('Setting for archives', 'zdm') ?>
                                             <br>
                                             <div class="zdm-help-text"><?= esc_html__('Determine the number of recent downloads that is displayed on the archive detail page in the Statistics tab.', 'zdm') ?></div>
