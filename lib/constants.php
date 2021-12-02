@@ -28,7 +28,8 @@ define('ZDM__OPTIONS', [
     'file-open-in-browser-pdf'          => '',
     'stat-single-file-last-limit'       => 5,
     'stat-single-archive-last-limit'    => 5,
-    'hide-html-id'                      => 'on'
+    'hide-html-id'                      => 'on',
+    'download-folder-token'             => ''
 ]);
 
 // MIME types

@@ -54,8 +54,6 @@ class ZDMPluginActivate
 
         if (!defined('ZDM__DOWNLOADS_PATH'))
             define('ZDM__DOWNLOADS_PATH', wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token']);
-        if (!defined('ZDM__DOWNLOADS_PATH'))
-            define('ZDM__DOWNLOADS_PATH', wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token']);
         if (!defined('ZDM__DOWNLOADS_CACHE_PATH'))
             define('ZDM__DOWNLOADS_CACHE_PATH', ZDM__DOWNLOADS_PATH . "/cache");
         if (!defined('ZDM__DOWNLOADS_FILES_PATH'))
@@ -66,7 +64,5 @@ class ZDMPluginActivate
             define('ZDM__DOWNLOADS_CACHE_PATH_URL', ZDM__DOWNLOADS_PATH_URL . "/cache");
         if (!defined('ZDM__DOWNLOADS_FILES_PATH_URL'))
             define('ZDM__DOWNLOADS_FILES_PATH_URL', ZDM__DOWNLOADS_PATH_URL . "/files");
-
-        flush_rewrite_rules();
     }
 }

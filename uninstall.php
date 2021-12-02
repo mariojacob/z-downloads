@@ -6,9 +6,8 @@ if (!defined('ABSPATH'))
 if (!defined('WP_UNINSTALL_PLUGIN'))
     die;
 
-
 ////////////////////
-// delete custom database
+// Benutzerdefinierte Datenbank löschen
 ////////////////////
 
 global $wpdb;
@@ -19,7 +18,7 @@ $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'zdm_files_rel');
 $wpdb->query('DROP TABLE IF EXISTS ' . $wpdb->prefix . 'zdm_log');
 
 ////////////////////
-// delete options
+// Optionen löschen
 ////////////////////
 
 delete_option('zdm_options');
