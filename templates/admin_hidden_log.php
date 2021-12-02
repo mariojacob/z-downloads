@@ -249,7 +249,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 } elseif ($zdm_db_logs[$i]->type == 'plugin activated' || $zdm_db_logs[$i]->type == 'plugin deactivated') {
                                     $zdm_icon = 'power_settings_new';
                                     $zdm_class_color = 'zdm-color-primary';
-                                } elseif ($zdm_db_logs[$i]->type == 'database created') {
+                                } elseif ($zdm_db_logs[$i]->type == 'database table created') {
                                     $zdm_icon = 'storage';
                                     $zdm_class_color = 'zdm-color-primary';
                                 } else {
