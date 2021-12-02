@@ -651,9 +651,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <h3><?= ZDM__TITLE ?> <?= esc_html__('uninstall', 'zdm') ?></h3>
                             <hr>
                             <p><?= esc_html__('Path of', 'zdm') ?> <?= ZDM__TITLE ?> <?= esc_html__('upload folder for files, ZIP archives and cache', 'zdm') ?>:<br>
-                                <b>
-                                    <pre><?= wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token'] . '/' ?></pre>
-                                </b>
+                                <?php
+                                $zdm_download_folder_path = wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token'];
+                                if (is_dir($zdm_download_folder_path))
+                                    $zdm_download_folder_text = $zdm_download_folder_path . '/';
+                                else
+                                    $zdm_download_folder_text = esc_html__('The folder does not yet exist and is automatically created when a file is uploaded.', 'zdm');
+                                ?>
+                            <div class="zdm-help-text"><code><?= $zdm_download_folder_text ?></code></div>
                             </p>
                             <hr>
                             <h3 class="zdm-color-red"><?= esc_html__('Attention before uninstalling the plugin', 'zdm') ?></h3>
