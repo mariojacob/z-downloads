@@ -729,47 +729,7 @@ class ZDMCore
 
                         if ($db_archive[0]->status != 'private') {
 
-                            $tablename_log = $wpdb->prefix . "zdm_log";
-
-                            $db_log = $wpdb->get_results(
-                                "
-                                SELECT user_agent, time_create 
-                                FROM $tablename_log 
-                                WHERE type = 'download archive' 
-                                AND message = '$zdownload_url' 
-                                ORDER BY id DESC LIMIT 1
-                                "
-                            );
-
-                            // HTTP user agent
-                            if (filter_input(INPUT_SERVER, 'HTTP_USER_AGENT'))
-                                $user_agent = filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
-                            else
-                                $user_agent = "---";
-
-                            // Download-Zählverzögerung für denselben Benutzer
-                            if (!empty($db_log[0])) {
-
-                                if (($db_log[0]->time_create < time() - 5 && $db_log[0]->user_agent == $user_agent) || $db_log == null) {
-
-                                    // Count aktualisieren
-                                    $count_new = $db_archive[0]->count + 1;
-                                    $wpdb->update(
-                                        $tablename_archives,
-                                        array(
-                                            'count'         => $count_new,
-                                            'time_update'   => time()
-                                        ),
-                                        array(
-                                            'id' => $zdownload_url
-                                        )
-                                    );
-
-                                    self::log('download archive', $zdownload_url);
-                                }
-                            } else {
-                                self::log('download archive', $zdownload_url);
-                            }
+                            self::log('download archive', $zdownload_url);
 
                             // Pfad für Datei
                             $zip_file = ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . $db_archive[0]->archive_cache_path . '/' . $db_archive[0]->zip_name . '.zip';
@@ -817,47 +777,7 @@ class ZDMCore
 
                         if ($db_files[0]->status != 'private') {
 
-                            $tablename_log = $wpdb->prefix . "zdm_log";
-
-                            $db_log = $wpdb->get_results(
-                                "
-                                SELECT user_agent, time_create 
-                                FROM $tablename_log 
-                                WHERE type = 'download file' 
-                                AND message = '$zdownload_url' 
-                                ORDER BY id DESC LIMIT 1
-                                "
-                            );
-
-                            // HTTP user agent
-                            if (filter_input(INPUT_SERVER, 'HTTP_USER_AGENT'))
-                                $user_agent = filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
-                            else
-                                $user_agent = "---";
-
-                            // Download-Zählverzögerung für denselben Benutzer
-                            if (!empty($db_log[0])) {
-
-                                if (($db_log[0]->time_create < time() - 5 && $db_log[0]->user_agent == $user_agent) || $db_log == null) {
-
-                                    // Count aktualisieren
-                                    $count_new = $db_files[0]->count + 1;
-                                    $wpdb->update(
-                                        $tablename_files,
-                                        array(
-                                            'count'         => $count_new,
-                                            'time_update'   => time()
-                                        ),
-                                        array(
-                                            'id' => $zdownload_url
-                                        )
-                                    );
-
-                                    self::log('download file', $zdownload_url);
-                                }
-                            } else {
-                                self::log('download file', $zdownload_url);
-                            }
+                            self::log('download file', $zdownload_url);
 
                             if ($options['file-open-in-browser-pdf'] == 'on' && $db_files[0]->file_type == 'application/pdf') {
 
