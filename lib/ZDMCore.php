@@ -1100,7 +1100,10 @@ class ZDMCore
             "
         );
 
-        return $db_archive[0]->name;
+        if (array_key_exists(0, $db_archive))
+            return $db_archive[0]->name;
+        else
+            return '';
     }
 
     /**
@@ -1212,7 +1215,10 @@ class ZDMCore
             "
         );
 
-        return @$db_file[0]->name;
+        if (array_key_exists(0, $db_file))
+            return $db_file[0]->name;
+        else
+            return '';
     }
 
     /**
