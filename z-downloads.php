@@ -2,7 +2,7 @@
 
 /**
  * Plugin Name:     Z-Downloads
- * Version:         1.8.2
+ * Version:         1.9.0
  * Plugin URI:      https://code.urban-base.net/z-downloads?utm_source=zdm_plugin_uri
  * Description:     Download Manager.
  * Author:          URBAN BASE
