@@ -302,7 +302,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                                 <?php
                                                 }
                                                 if ($zdm_licence === 0) { ?>
-                                                    <div class="zdm-help-text"><?= esc_html__('Benefit from the', 'zdm') ?> <?= ZDM__PRO ?>-<?= esc_html__('features and unlock all possibilities', 'zdm') ?> <?= ZDM__TITLE ?> <?= esc_html__('free, more info', 'zdm') ?>: <a href="<?= ZDM__PRO_URL ?>" target="_blank" title="code.urban-base.net"><?= ZDM__TITLE; ?> <?= ZDM__PRO ?></a></div>
+                                                    <div class="zdm-help-text"><?= esc_html__('Benefit from the', 'zdm') ?> <?= ZDM__PRO ?>-<?= esc_html__('features and unlock all possibilities', 'zdm') ?> <?= ZDM__TITLE ?> <?= esc_html__('free, more info', 'zdm') ?>: <a href="<?= ZDM__PRO_URL ?>" target="_blank" title="code.urban-base.net"><?= ZDM__TITLE; ?> <?= ZDM__PRO ?> <span class="material-icons-round zdm-md-1">open_in_new</span></a></div>
                                                 <?php
                                                 } ?>
                                         </td>
@@ -540,7 +540,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             <?= esc_html__('Last downloads limit', 'zdm') ?>:
                                             <?php
                                             if ($zdm_licence === 0) {
-                                                echo '<br><a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('feature', 'zdm') . ' </a>';
+                                                echo '<br><a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('feature', 'zdm') . '  <span class="material-icons-round zdm-md-1">open_in_new</span></a>';
                                             }
                                             ?>
                                         </th>
