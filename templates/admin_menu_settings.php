@@ -157,7 +157,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                 // Neuen Downloadordner Token in Optionen speichern
                 $zdm_options['download-folder-token'] = $zdm_new_download_folder_token;
-                ZDMCore::log('download-folder-token', $zdm_options['download-folder-token']);
+                ZDMCore::log('download folder token', $zdm_options['download-folder-token']);
 
                 update_option('zdm_options', $zdm_options);
                 $zdm_options = get_option('zdm_options');

@@ -474,10 +474,8 @@ class ZDMCore
             }
 
             $zip->close();
-
-            self::log('archive cache created', 'ID: ' . $archive_id . ', path: ' . $file_path);
         } else {
-            self::log('error create archive cache', 'path: ' . $file_path);
+            self::log('error archive cache created', 'path: ' . $file_path);
         }
 
         // Bestimmen Sie die Dateigröße

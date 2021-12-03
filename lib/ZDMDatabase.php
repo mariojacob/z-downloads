@@ -29,7 +29,7 @@ class ZDMDatabase
             user_ip VARCHAR(255) NOT NULL,
             time_create INT(11) UNSIGNED NOT NULL)";
         if (maybe_create_table($table_name, $sql))
-            ZDMCore::log('database table created', $table_name);
+            ZDMCore::log('database table created', 'zdm_log');
 
         // Tabelle zdm_archives
         $table_name = $wpdb->prefix . 'zdm_archives';
@@ -49,7 +49,7 @@ class ZDMDatabase
             time_create INT(11) UNSIGNED NOT NULL,
             time_update INT(11) UNSIGNED NOT NULL)";
         if (maybe_create_table($table_name, $sql))
-            ZDMCore::log('database table created', $table_name);
+            ZDMCore::log('database table created', 'zdm_archives');
 
         // Tabelle zdm_files
         $table_name = $wpdb->prefix . 'zdm_files';
@@ -69,7 +69,7 @@ class ZDMDatabase
             time_create INT(11) UNSIGNED NOT NULL,
             time_update INT(11) UNSIGNED NOT NULL)";
         if (maybe_create_table($table_name, $sql))
-            ZDMCore::log('database table created', $table_name);
+            ZDMCore::log('database table created', 'zdm_files');
 
         // Tabelle zdm_files_rel
         $table_name = $wpdb->prefix . 'zdm_files_rel';
@@ -82,6 +82,6 @@ class ZDMDatabase
             time_create INT(11) UNSIGNED NOT NULL,
             time_update INT(11) UNSIGNED NOT NULL)";
         if (maybe_create_table($table_name, $sql))
-            ZDMCore::log('database table created', $table_name);
+            ZDMCore::log('database table created', 'zdm_files_rel');
     }
 }

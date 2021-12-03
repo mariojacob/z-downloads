@@ -24,15 +24,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         );
     } else { // Log Liste
 
-        $zdm_log_filter_array = array(esc_html__('Everything', 'zdm'), esc_html__('Downloads', 'zdm'), esc_html__('Files', 'zdm'), esc_html__('Archives', 'zdm'));
+        $zdm_log_filter_array = array(esc_html__('Everything', 'zdm'), esc_html__('Downloads', 'zdm'), esc_html__('Files', 'zdm'), esc_html__('Archives', 'zdm'), esc_html__('System', 'zdm'));
         $zdm_log_filter_array_count = count($zdm_log_filter_array);
-        $zdm_log_filter_array_val = array("all", "downloads", "files", "archives");
+        $zdm_log_filter_array_val = array("all", "downloads", "files", "archives", "sys");
 
         if (isset($_POST['log-filter-type']) && wp_verify_nonce($_POST['nonce'], 'log-types')) {
 
-            $zdm_lof_filter_type = sanitize_text_field($_POST['log-filter-type']);
+            $zdm_log_filter_type = sanitize_text_field($_POST['log-filter-type']);
 
-            if ($zdm_lof_filter_type == 'downloads') {
+            if ($zdm_log_filter_type == 'downloads') {
 
                 $zdm_db_logs = $wpdb->get_results(
                     "
@@ -44,7 +44,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     LIMIT 500
                     "
                 );
-            } elseif ($zdm_lof_filter_type == 'files') {
+            } elseif ($zdm_log_filter_type == 'files') {
 
                 $zdm_db_logs = $wpdb->get_results(
                     "
@@ -60,7 +60,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     LIMIT 500
                     "
                 );
-            } elseif ($zdm_lof_filter_type == 'archives') {
+            } elseif ($zdm_log_filter_type == 'archives') {
 
                 $zdm_db_logs = $wpdb->get_results(
                     "
@@ -69,7 +69,23 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     WHERE type = 'download archive' 
                     || type = 'add archive' 
                     || type = 'delete archive' 
-                    || type = 'create archive cache' 
+                    || type = 'archive cache created' 
+                    ORDER BY time_create DESC 
+                    LIMIT 500
+                    "
+                );
+            } elseif ($zdm_log_filter_type == 'sys') {
+
+                $zdm_db_logs = $wpdb->get_results(
+                    "
+                    SELECT id, type, message, time_create 
+                    FROM $zdm_tablename_log 
+                    WHERE type = 'plugin activated' 
+                    || type = 'database table created' 
+                    || type = 'update licence' 
+                    || type = 'delete licence' 
+                    || type = 'download folder token' 
+                    || type = 'delete all data' 
                     ORDER BY time_create DESC 
                     LIMIT 500
                     "
@@ -121,7 +137,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             </tr>
                             <tr valign="top">
                                 <th scope="row"><?= esc_html__('Details', 'zdm') ?></th>
-                                <td valign="middle"><?= $zdm_db_log_details[0]->message ?></td>
+                                <td valign="middle">
+                                    <?= $zdm_db_log_details[0]->message ?>
+                                </td>
                             </tr>
                             <tr valign="top">
                                 <th scope="row"><?= esc_html__('User agent', 'zdm') ?></th>
@@ -176,7 +194,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                                     for ($i = 0; $i < $zdm_log_filter_array_count; $i++) {
                                         $zdm_log_filter_option .= '<option value="' . $zdm_log_filter_array_val[$i] . '" '
-                                            . ($zdm_lof_filter_type == $zdm_log_filter_array_val[$i] ? 'selected="selected"' : '') . '>'
+                                            . ($zdm_log_filter_type == $zdm_log_filter_array_val[$i] ? 'selected="selected"' : '') . '>'
                                             . $zdm_log_filter_array[$i]
                                             . '</option>';
                                     }
@@ -194,9 +212,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <table class="wp-list-table widefat striped tags">
                         <thead>
                             <tr>
-                                <th scope="col" colspan="2"><b><?= esc_html__('Type', 'zdm') ?></b></th>
-                                <th scope="col"><b><?= esc_html__('Details', 'zdm') ?></b></th>
-                                <th scope="col"><b><?= esc_html__('Created', 'zdm') ?></b></th>
+                                <th scope="col" colspan="2" width="20%"><b><?= esc_html__('Type', 'zdm') ?></b></th>
+                                <th scope="col" width="60%"><b><?= esc_html__('Details', 'zdm') ?></b></th>
+                                <th scope="col" width="20%"><b><?= esc_html__('Created', 'zdm') ?></b></th>
                             </tr>
                         </thead>
 
@@ -216,9 +234,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 } elseif ($zdm_db_logs[$i]->type == 'delete archive' || $zdm_db_logs[$i]->type == 'delete file') {
                                     $zdm_icon = 'delete';
                                     $zdm_class_color = 'zdm-color-red';
-                                } elseif ($zdm_db_logs[$i]->type == 'create archive cache') {
-                                    $zdm_icon = 'refresh';
-                                    $zdm_class_color = 'zdm-color-green';
                                 } elseif ($zdm_db_logs[$i]->type == 'archive cache created') {
                                     $zdm_icon = 'check_circle_outline';
                                     $zdm_class_color = 'zdm-color-green';
@@ -233,6 +248,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     $zdm_class_color = 'zdm-color-green';
                                 } elseif ($zdm_db_logs[$i]->type == 'update settings') {
                                     $zdm_icon = 'settings';
+                                    $zdm_class_color = 'zdm-color-grey7';
+                                } elseif ($zdm_db_logs[$i]->type == 'reset settings') {
+                                    $zdm_icon = 'history';
                                     $zdm_class_color = 'zdm-color-grey7';
                                 } elseif ($zdm_db_logs[$i]->type == 'error create zip') {
                                     $zdm_icon = 'error_outline';
@@ -307,7 +325,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                                     for ($i = 0; $i < $zdm_log_filter_array_count; $i++) {
                                         $zdm_log_filter_option .= '<option value="' . $zdm_log_filter_array_val[$i] . '" '
-                                            . ($zdm_lof_filter_type == $zdm_log_filter_array_val[$i] ? 'selected="selected"' : '') . '>'
+                                            . ($zdm_log_filter_type == $zdm_log_filter_array_val[$i] ? 'selected="selected"' : '') . '>'
                                             . $zdm_log_filter_array[$i]
                                             . '</option>';
                                     }
