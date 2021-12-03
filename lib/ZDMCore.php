@@ -751,6 +751,7 @@ class ZDMCore
 
                             // Download-Zählverzögerung für denselben Benutzer
                             if (!empty($db_log[0])) {
+
                                 if (($db_log[0]->time_create < time() - 5 && $db_log[0]->user_agent == $user_agent) || $db_log == null) {
 
                                     // Count aktualisieren
@@ -768,6 +769,8 @@ class ZDMCore
 
                                     self::log('download archive', $zdownload_url);
                                 }
+                            } else {
+                                self::log('download archive', $zdownload_url);
                             }
 
                             // Pfad für Datei
@@ -835,21 +838,26 @@ class ZDMCore
                                 $user_agent = "---";
 
                             // Download-Zählverzögerung für denselben Benutzer
-                            if ((@$db_log[0]->time_create < time() - 5 && @$db_log[0]->user_agent == $user_agent) || $db_log == null) {
+                            if (!empty($db_log[0])) {
 
-                                // Count aktualisieren
-                                $count_new = $db_files[0]->count + 1;
-                                $wpdb->update(
-                                    $tablename_files,
-                                    array(
-                                        'count'         => $count_new,
-                                        'time_update'   => time()
-                                    ),
-                                    array(
-                                        'id' => $zdownload_url
-                                    )
-                                );
+                                if (($db_log[0]->time_create < time() - 5 && $db_log[0]->user_agent == $user_agent) || $db_log == null) {
 
+                                    // Count aktualisieren
+                                    $count_new = $db_files[0]->count + 1;
+                                    $wpdb->update(
+                                        $tablename_files,
+                                        array(
+                                            'count'         => $count_new,
+                                            'time_update'   => time()
+                                        ),
+                                        array(
+                                            'id' => $zdownload_url
+                                        )
+                                    );
+
+                                    self::log('download file', $zdownload_url);
+                                }
+                            } else {
                                 self::log('download file', $zdownload_url);
                             }
 
