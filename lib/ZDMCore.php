@@ -217,7 +217,6 @@ class ZDMCore
      */
     public static function check_files_from_archive($archive_id)
     {
-
         global $wpdb;
 
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -233,6 +232,26 @@ class ZDMCore
 
         if (count($db_files_rel) > 0)
             self::create_archive_cache($archive_id);
+    }
+
+    /**
+     * Prüft ob der übergebene User Agent zu einem Bot gehört
+     *
+     * @return bool true wenn es ein Bot ist, false wenn nicht
+     */
+    public static function check_for_bot()
+    {
+        require_once(ZDM__PATH . '/lib/bot_user_agents.php');
+        $http_user_agent = @filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
+        $bot_list = ZDM__BOT_USER_AGENTS;
+        $values = '';
+        foreach ($bot_list as $value) {
+            $values .= $value . '|';
+        }
+        $values = rtrim($values, '|');
+        if (preg_match("/$values/i", $http_user_agent, $matches))
+            return true;
+        return false;
     }
 
     /**
@@ -297,7 +316,6 @@ class ZDMCore
      */
     public static function check_if_archive_cache_ok($archive_id)
     {
-
         global $wpdb;
 
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
@@ -340,7 +358,6 @@ class ZDMCore
      */
     public static function check_if_archive_exists($archive_id)
     {
-
         if (is_numeric($archive_id)) {
             global $wpdb;
 
@@ -371,7 +388,6 @@ class ZDMCore
      */
     public static function check_if_file_exists($file_id)
     {
-
         if (is_numeric($file_id)) {
             global $wpdb;
 
@@ -402,7 +418,6 @@ class ZDMCore
      */
     public static function create_archive_cache($archive_id)
     {
-
         $time = time();
 
         global $wpdb;
@@ -563,7 +578,6 @@ class ZDMCore
      */
     public static function delete_all_data()
     {
-
         global $wpdb;
 
         $zdm_tablename_archives = $wpdb->prefix . "zdm_archives";
@@ -692,18 +706,9 @@ class ZDMCore
      */
     public function download()
     {
+        if (!self::check_for_bot()) {
 
-        $options = get_option('zdm_options');
-
-        // HTTP user agent
-        $http_user_agent = @filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
-
-        require_once(ZDM__PATH . '/lib/bot_user_agents.php');
-
-        if (in_array($http_user_agent, ZDM__BOT_USER_AGENTS)) {
-            // Zugriff von Bot
-        } else {
-            // Zugriff von Benutzer
+            $options = get_option('zdm_options');
 
             ////////////////////
             // ZIP
@@ -818,7 +823,6 @@ class ZDMCore
      */
     public static function download_button_class()
     {
-
         $options = get_option('zdm_options');
 
         // Standard CSS-Klasse
@@ -1146,7 +1150,6 @@ class ZDMCore
      */
     public static function licence()
     {
-
         $options = get_option('zdm_options');
 
         if ($options['licence-key'] != '') {
@@ -1301,7 +1304,6 @@ class ZDMCore
      */
     public static function number_format($number, $decimals = 0)
     {
-
         if (in_array(get_locale(), ZDM__COUNTRIES_USING_DECIMAL_POINT))
             return number_format($number, $decimals, '.', ',');
 
@@ -1315,7 +1317,6 @@ class ZDMCore
      */
     public function php_modules_check_and_notice()
     {
-
         $php_modules_text = '';
         if (phpversion() >= 7.4) {
 
@@ -1344,7 +1345,6 @@ class ZDMCore
      */
     public function register()
     {
-
         // Fügt Administrationsskripte hinzu
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_scripts'));
 
@@ -1383,7 +1383,6 @@ class ZDMCore
      */
     public static function repair_folder_token_name()
     {
-
         $options = get_option('zdm_options');
 
         $dir =  wp_upload_dir()['basedir'];
@@ -1427,7 +1426,6 @@ class ZDMCore
      */
     public function shortcode_audio($atts, $content = null)
     {
-
         $options = get_option('zdm_options');
 
         $atts = shortcode_atts(
@@ -1502,159 +1500,154 @@ class ZDMCore
      */
     public function shortcode_download($atts, $content = null)
     {
+        if (!self::check_for_bot()) {
 
-        $atts = shortcode_atts(
-            array(
-                'zip'   => '',
-                'file'  => '',
-                'align' => ''
-            ),
-            $atts
-        );
+            $atts = shortcode_atts(
+                array(
+                    'zip'   => '',
+                    'file'  => '',
+                    'align' => ''
+                ),
+                $atts
+            );
 
-        $zip = htmlspecialchars($atts['zip']);
-        $file = htmlspecialchars($atts['file']);
+            $zip = htmlspecialchars($atts['zip']);
+            $file = htmlspecialchars($atts['file']);
 
-        if (htmlspecialchars($atts['align']) == 'center')
-            $align = ' zdm-center';
-        else
-            $align = '';
+            if (htmlspecialchars($atts['align']) == 'center')
+                $align = ' zdm-center';
+            else
+                $align = '';
 
-        ////////////////////
-        // ZIP
-        ////////////////////
-        if ($zip != '') {
-            // Überprüft, ob überhaupt eine Datei zugewiesen ist
-            if (self::check_if_any_file_rel_to_archive($zip)) {
+            ////////////////////
+            // ZIP
+            ////////////////////
+            if ($zip != '') {
+                // Überprüft, ob überhaupt eine Datei zugewiesen ist
+                if (self::check_if_any_file_rel_to_archive($zip)) {
 
-                $options = get_option('zdm_options');
+                    $options = get_option('zdm_options');
 
-                // Überprüft, ob die Dateien aktuell sind
-                self::check_files_from_archive($zip);
+                    // Überprüft, ob die Dateien aktuell sind
+                    self::check_files_from_archive($zip);
 
-                global $wpdb;
-                $tablename_archives = $wpdb->prefix . "zdm_archives";
+                    global $wpdb;
+                    $tablename_archives = $wpdb->prefix . "zdm_archives";
 
-                $db_archive = $wpdb->get_results(
-                    "
-                    SELECT id, button_text, status 
-                    FROM $tablename_archives 
-                    WHERE id = '$zip'
-                    "
-                );
+                    $db_archive = $wpdb->get_results(
+                        "
+                        SELECT id, button_text, status 
+                        FROM $tablename_archives 
+                        WHERE id = '$zip'
+                        "
+                    );
 
-                if ($db_archive[0]->status != 'private') {
+                    if ($db_archive[0]->status != 'private') {
 
-                    // Text-Button bestimmen
-                    if ($options['download-btn-icon-only'] != '') {
-                        $download_text = '';
-                        $icon_class = ' zdm-btn-icon-only';
-                    } else {
+                        // Text-Button bestimmen
+                        if ($options['download-btn-icon-only'] != '') {
+                            $download_text = '';
+                            $icon_class = ' zdm-btn-icon-only';
+                        } else {
 
-                        if ($db_archive[0]->button_text != '')
-                            $download_text = $db_archive[0]->button_text;
-                        else
-                            $download_text = $options['download-btn-text'];
+                            if ($db_archive[0]->button_text != '')
+                                $download_text = $db_archive[0]->button_text;
+                            else
+                                $download_text = $options['download-btn-text'];
 
-                        if ($options['download-btn-icon-position'] == 'left')
-                            $icon_class = 'zdm-btn-icon-frontend zdm-mr-2';
-                        else
-                            $icon_class = 'zdm-btn-icon-frontend zdm-ml-2';
-                    }
+                            if ($options['download-btn-icon-position'] == 'left')
+                                $icon_class = 'zdm-btn-icon-frontend zdm-mr-2';
+                            else
+                                $icon_class = 'zdm-btn-icon-frontend zdm-ml-2';
+                        }
 
-                    $type = 'zdownload';
-                    $id = base64_encode($db_archive[0]->id);
+                        $type = 'zdownload';
+                        $id = base64_encode($db_archive[0]->id);
 
-                    // Ausgabe
-                    $icon = '';
-                    if ($options['download-btn-icon'] != 'none')
-                        $icon = '<span class="material-icons-round ' . $icon_class . '">' . $options['download-btn-icon'] . '</span>';
-
-                    $html_id = '';
-                    if ($options['hide-html-id'] != 'on')
-                        $html_id = ' id="zdmBtn' . htmlspecialchars($db_archive[0]->id) . '"';
-
-                    if ($options['download-btn-icon-position'] == 'left')
-                        $icon_and_text = $icon . $download_text;
-                    else
-                        $icon_and_text = $download_text . $icon;
-
-                    return '<a href="?' . $type . '=' . $id . '"' . $html_id . ' class="' . self::download_button_class() . $align . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
-                }
-            } else {
-                // Leerer Rückgabewert, wenn keine Datei verknüpft ist
-                return '';
-            }
-        } // end if ($zip != '')
-
-        ////////////////////
-        // Datei
-        ////////////////////
-        if ($file != '') {
-
-            if (self::check_if_file_exists($file) === true) {
-
-                $options = get_option('zdm_options');
-
-                global $wpdb;
-                $tablename_files = $wpdb->prefix . "zdm_files";
-
-                $db_files = $wpdb->get_results(
-                    "
-                    SELECT id, button_text, folder_path, file_name, file_type, status 
-                    FROM $tablename_files 
-                    WHERE id = '$file'
-                    "
-                );
-
-                if ($db_files[0]->status != 'private') {
-
-                    // Text-Button bestimmen
-                    if ($options['download-btn-icon-only'] != '') {
-                        $download_text = '';
-                        $icon_class = '  zdm-btn-icon-only';
-                    } else {
-
-                        if ($db_files[0]->button_text != '')
-                            $download_text = $db_files[0]->button_text;
-                        else
-                            $download_text = $options['download-btn-text'];
-
-                        if ($options['download-btn-icon-position'] == 'left')
-                            $icon_class = 'zdm-btn-icon zdm-mr-2';
-                        else
-                            $icon_class = 'zdm-btn-icon zdm-ml-2';
-                    }
-
-                    $type = 'zdownload_f';
-                    $id = base64_encode($db_files[0]->id);
-
-                    // Ausgabe
-                    if ($options['download-btn-icon'] != 'none') {
-                        $icon = '<span class="material-icons-round ' . $icon_class . '">' . $options['download-btn-icon'] . '</span>';
-                    } else {
+                        // Ausgabe
                         $icon = '';
+                        if ($options['download-btn-icon'] != 'none')
+                            $icon = '<span class="material-icons-round ' . $icon_class . '">' . $options['download-btn-icon'] . '</span>';
+
+                        $html_id = '';
+                        if ($options['hide-html-id'] != 'on')
+                            $html_id = ' id="zdmBtn' . htmlspecialchars($db_archive[0]->id) . '"';
+
+                        if ($options['download-btn-icon-position'] == 'left')
+                            $icon_and_text = $icon . $download_text;
+                        else
+                            $icon_and_text = $download_text . $icon;
+
+                        return '<a href="?' . $type . '=' . $id . '"' . $html_id . ' class="' . self::download_button_class() . $align . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
                     }
-
-                    if ($options['download-btn-icon-position'] == 'left')
-                        $icon_and_text = $icon . $download_text;
-                    else
-                        $icon_and_text = $download_text . $icon;
-
-                    // HTTP user agent
-                    $http_user_agent = @filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
-
-                    require_once(ZDM__PATH . '/lib/bot_user_agents.php');
-
-                    // Access by bot
-                    if (!in_array($http_user_agent, ZDM__BOT_USER_AGENTS))
-                        return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . self::download_button_class() . $align . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
+                } else {
+                    // Leerer Rückgabewert, wenn keine Datei verknüpft ist
+                    return '';
                 }
-            } else {
-                // Leerer Rückgabewert, wenn Datei nicht vorhanden ist
-                return '';
-            }
-        } // end if ($file != '')
+            } // end if ($zip != '')
+
+            ////////////////////
+            // Datei
+            ////////////////////
+            if ($file != '') {
+
+                if (self::check_if_file_exists($file) === true) {
+
+                    $options = get_option('zdm_options');
+
+                    global $wpdb;
+                    $tablename_files = $wpdb->prefix . "zdm_files";
+
+                    $db_files = $wpdb->get_results(
+                        "
+                        SELECT id, button_text, folder_path, file_name, file_type, status 
+                        FROM $tablename_files 
+                        WHERE id = '$file'
+                        "
+                    );
+
+                    if ($db_files[0]->status != 'private') {
+
+                        // Text-Button bestimmen
+                        if ($options['download-btn-icon-only'] != '') {
+                            $download_text = '';
+                            $icon_class = '  zdm-btn-icon-only';
+                        } else {
+
+                            if ($db_files[0]->button_text != '')
+                                $download_text = $db_files[0]->button_text;
+                            else
+                                $download_text = $options['download-btn-text'];
+
+                            if ($options['download-btn-icon-position'] == 'left')
+                                $icon_class = 'zdm-btn-icon zdm-mr-2';
+                            else
+                                $icon_class = 'zdm-btn-icon zdm-ml-2';
+                        }
+
+                        $type = 'zdownload_f';
+                        $id = base64_encode($db_files[0]->id);
+
+                        // Ausgabe
+                        if ($options['download-btn-icon'] != 'none') {
+                            $icon = '<span class="material-icons-round ' . $icon_class . '">' . $options['download-btn-icon'] . '</span>';
+                        } else {
+                            $icon = '';
+                        }
+
+                        if ($options['download-btn-icon-position'] == 'left')
+                            $icon_and_text = $icon . $download_text;
+                        else
+                            $icon_and_text = $download_text . $icon;
+
+                        return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . self::download_button_class() . $align . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
+                    }
+                } else {
+                    // Leerer Rückgabewert, wenn Datei nicht vorhanden ist
+                    return '';
+                }
+            } // end if ($file != '')
+        }
     }
 
     /**
@@ -1666,7 +1659,6 @@ class ZDMCore
      */
     public function shortcode_list($atts, $content = null)
     {
-
         $options = get_option('zdm_options');
 
         $atts = shortcode_atts(
@@ -1797,7 +1789,6 @@ class ZDMCore
      */
     public function shortcode_meta($atts, $content = null)
     {
-
         $atts = shortcode_atts(
             array(
                 'zip'   => '',
@@ -2055,7 +2046,6 @@ class ZDMCore
      */
     public function shortcode_video($atts, $content = null)
     {
-
         $options = get_option('zdm_options');
 
         $atts = shortcode_atts(
