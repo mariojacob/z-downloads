@@ -163,42 +163,42 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 </tr>
                                 <script>
                                     // Prüfung auf Eingabe
-                                    document.getElementById('archive-name').addEventListener("keyup", function(evt) {
-                                        zdmZipName = document.getElementById("archive-name")
+                                    document.getElementById('archive-name').addEventListener('keyup', function(evt) {
+                                        zdmZipName = document.getElementById('archive-name')
                                             .value;
-                                        // Leerzeichen durch "_" ersetzen
+                                        // Eingabe Filter
                                         zdmZipName = zdmZipName.toLowerCase();
-                                        zdmZipName = zdmZipName.replace(/\u00fc/g, "ue");
-                                        zdmZipName = zdmZipName.replace(/\u00e4/g, "ae");
-                                        zdmZipName = zdmZipName.replace(/\u00f6/g, "oe");
-                                        zdmZipName = zdmZipName.replace(/\u00df/g, "ss");
-                                        zdmZipName = zdmZipName.replace(/ /g, "_");
-                                        zdmZipName = zdmZipName.replace(/\//g, "_");
-                                        zdmZipName = zdmZipName.replace(/\(/g, "_");
-                                        zdmZipName = zdmZipName.replace(/\)/g, "_");
-                                        zdmZipName = zdmZipName.replace(/#/g, "");
-                                        zdmZipName = zdmZipName.replace(/\?/g, "");
-                                        zdmZipName = zdmZipName.replace(/!/g, "");
-                                        document.getElementById("zip-name").value = zdmZipName;
+                                        zdmZipName = zdmZipName.replace(/\u00fc/g, 'ue');
+                                        zdmZipName = zdmZipName.replace(/\u00e4/g, 'ae');
+                                        zdmZipName = zdmZipName.replace(/\u00f6/g, 'oe');
+                                        zdmZipName = zdmZipName.replace(/\u00df/g, 'ss');
+                                        zdmZipName = zdmZipName.replace(/ /g, '_');
+                                        zdmZipName = zdmZipName.replace(/\//g, '_');
+                                        zdmZipName = zdmZipName.replace(/\(/g, '_');
+                                        zdmZipName = zdmZipName.replace(/\)/g, '_');
+                                        zdmZipName = zdmZipName.replace(/#/g, '');
+                                        zdmZipName = zdmZipName.replace(/\?/g, '');
+                                        zdmZipName = zdmZipName.replace(/!/g, '');
+                                        document.getElementById('zip-name').value = zdmZipName;
                                     }, false);
                                     // Prüfung auf Eingabe
-                                    document.getElementById('zip-name').addEventListener("keyup", function(evt) {
-                                        zdmZipName = document.getElementById("zip-name")
+                                    document.getElementById('zip-name').addEventListener('keyup', function(evt) {
+                                        zdmZipName = document.getElementById('zip-name')
                                             .value;
-                                        // Leerzeichen durch "_" ersetzen
+                                        // Eingabe Filter
                                         zdmZipName = zdmZipName.toLowerCase();
-                                        zdmZipName = zdmZipName.replace(/\u00fc/g, "ue");
-                                        zdmZipName = zdmZipName.replace(/\u00e4/g, "ae");
-                                        zdmZipName = zdmZipName.replace(/\u00f6/g, "oe");
-                                        zdmZipName = zdmZipName.replace(/\u00df/g, "ss");
-                                        zdmZipName = zdmZipName.replace(/ /g, "_");
-                                        zdmZipName = zdmZipName.replace(/\//g, "_");
-                                        zdmZipName = zdmZipName.replace(/\(/g, "_");
-                                        zdmZipName = zdmZipName.replace(/\)/g, "_");
-                                        zdmZipName = zdmZipName.replace(/#/g, "");
-                                        zdmZipName = zdmZipName.replace(/\?/g, "");
-                                        zdmZipName = zdmZipName.replace(/!/g, "");
-                                        document.getElementById("zip-name").value = zdmZipName;
+                                        zdmZipName = zdmZipName.replace(/\u00fc/g, 'ue');
+                                        zdmZipName = zdmZipName.replace(/\u00e4/g, 'ae');
+                                        zdmZipName = zdmZipName.replace(/\u00f6/g, 'oe');
+                                        zdmZipName = zdmZipName.replace(/\u00df/g, 'ss');
+                                        zdmZipName = zdmZipName.replace(/ /g, '_');
+                                        zdmZipName = zdmZipName.replace(/\//g, '_');
+                                        zdmZipName = zdmZipName.replace(/\(/g, '_');
+                                        zdmZipName = zdmZipName.replace(/\)/g, '_');
+                                        zdmZipName = zdmZipName.replace(/#/g, '');
+                                        zdmZipName = zdmZipName.replace(/\?/g, '');
+                                        zdmZipName = zdmZipName.replace(/!/g, '');
+                                        document.getElementById('zip-name').value = zdmZipName;
                                     }, false);
                                 </script>
                                 <tr valign="top">

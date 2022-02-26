@@ -1827,8 +1827,10 @@ class ZDMCore
                         "
                     );
 
-                    if ($db_archive[0]->status != 'private')
-                        return htmlspecialchars(self::number_format($db_archive[0]->count));
+                    if (array_key_exists(0, $db_archive)) {
+                        if ($db_archive[0]->status != 'private')
+                            return htmlspecialchars(self::number_format($db_archive[0]->count));
+                    }
                 }
 
                 ////////////////////
@@ -1853,8 +1855,10 @@ class ZDMCore
                             "
                         );
 
-                        if ($db_archive[0]->status != 'private')
-                            return htmlspecialchars($db_archive[0]->file_size);
+                        if (array_key_exists(0, $db_archive)) {
+                            if ($db_archive[0]->status != 'private')
+                                return htmlspecialchars($db_archive[0]->file_size);
+                        }
                     }
                 }
 
@@ -1871,8 +1875,10 @@ class ZDMCore
                         "
                     );
 
-                    if ($db_archive[0]->status != 'private')
-                        return htmlspecialchars($db_archive[0]->name);
+                    if (array_key_exists(0, $db_archive)) {
+                        if ($db_archive[0]->status != 'private')
+                            return htmlspecialchars($db_archive[0]->name);
+                    }
                 }
 
                 ////////////////////
@@ -1888,8 +1894,10 @@ class ZDMCore
                         "
                     );
 
-                    if ($db_archive[0]->status != 'private')
-                        return htmlspecialchars($db_archive[0]->zip_name . '.zip');
+                    if (array_key_exists(0, $db_archive)) {
+                        if ($db_archive[0]->status != 'private')
+                            return htmlspecialchars($db_archive[0]->zip_name . '.zip');
+                    }
                 }
 
                 ////////////////////
@@ -1914,15 +1922,18 @@ class ZDMCore
                             "
                         );
 
-                        if ($db_archive[0]->status != 'private') {
+                        if (array_key_exists(0, $db_archive)) {
 
-                            // Ausgabe der Dateigröße
-                            if (self::licence() != true) {
-                            } else {
-                                if ($type === 'hash-md5') {
-                                    return htmlspecialchars($db_archive[0]->hash_md5);
-                                } elseif ($type === 'hash-sha1') {
-                                    return htmlspecialchars($db_archive[0]->hash_sha1);
+                            if ($db_archive[0]->status != 'private') {
+
+                                // Ausgabe der Dateigröße
+                                if (self::licence() != true) {
+                                } else {
+                                    if ($type === 'hash-md5') {
+                                        return htmlspecialchars($db_archive[0]->hash_md5);
+                                    } elseif ($type === 'hash-sha1') {
+                                        return htmlspecialchars($db_archive[0]->hash_sha1);
+                                    }
                                 }
                             }
                         }
@@ -1953,8 +1964,10 @@ class ZDMCore
                         "
                     );
 
-                    if ($db_files[0]->status != 'private')
-                        return htmlspecialchars(self::number_format($db_files[0]->count));
+                    if (array_key_exists(0, $db_files)) {
+                        if ($db_files[0]->status != 'private')
+                            return htmlspecialchars(self::number_format($db_files[0]->count));
+                    }
                 }
 
                 ////////////////////
@@ -1970,8 +1983,10 @@ class ZDMCore
                         "
                     );
 
-                    if ($db_files[0]->status != 'private')
-                        return htmlspecialchars($db_files[0]->file_size);
+                    if (array_key_exists(0, $db_files)) {
+                        if ($db_files[0]->status != 'private')
+                            return htmlspecialchars($db_files[0]->file_size);
+                    }
                 }
 
                 ////////////////////
@@ -1987,8 +2002,10 @@ class ZDMCore
                         "
                     );
 
-                    if ($db_files[0]->status != 'private')
-                        return htmlspecialchars($db_files[0]->name);
+                    if (array_key_exists(0, $db_files)) {
+                        if ($db_files[0]->status != 'private')
+                            return htmlspecialchars($db_files[0]->name);
+                    }
                 }
 
                 ////////////////////
@@ -2004,8 +2021,10 @@ class ZDMCore
                         "
                     );
 
-                    if ($db_files[0]->status != 'private')
-                        return htmlspecialchars($db_files[0]->file_name);
+                    if (array_key_exists(0, $db_files)) {
+                        if ($db_files[0]->status != 'private')
+                            return htmlspecialchars($db_files[0]->file_name);
+                    }
                 }
 
                 ////////////////////
@@ -2021,15 +2040,18 @@ class ZDMCore
                         "
                     );
 
-                    if ($db_files[0]->status != 'private') {
+                    if (array_key_exists(0, $db_files)) {
 
-                        // Ausgabe der Dateigröße
-                        if (self::licence() != true) {
-                        } else {
-                            if ($type === 'hash-md5') {
-                                return htmlspecialchars($db_files[0]->hash_md5);
-                            } elseif ($type === 'hash-sha1') {
-                                return htmlspecialchars($db_files[0]->hash_sha1);
+                        if ($db_files[0]->status != 'private') {
+
+                            // Ausgabe der Dateigröße
+                            if (self::licence() != true) {
+                            } else {
+                                if ($type === 'hash-md5') {
+                                    return htmlspecialchars($db_files[0]->hash_md5);
+                                } elseif ($type === 'hash-sha1') {
+                                    return htmlspecialchars($db_files[0]->hash_sha1);
+                                }
                             }
                         }
                     }
