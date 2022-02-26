@@ -141,7 +141,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             <div class="postbox">
                 <div class="inside">
-                    <h3><?= esc_html__('Lists', 'zdm') ?> <span class="zdm-color-primary" style="float: right"><?= esc_html__('NEW', 'zdm') ?></span></h3>
+                    <h3><?= esc_html__('Lists', 'zdm') ?></h3>
                     <hr>
                     <p><?= esc_html__('You can output the files from an archive as a list.', 'zdm') ?></p>
                     <h4><?= esc_html__('Quick output', 'zdm') ?></h4>
