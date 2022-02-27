@@ -724,13 +724,15 @@ class ZDMCore
                         global $wpdb;
                         $tablename_archives = $wpdb->prefix . "zdm_archives";
 
-                        $db_archive = $wpdb->get_results(
+                        $db_archive_query = $wpdb->prepare(
                             "
                             SELECT zip_name, count, archive_cache_path, status 
                             FROM $tablename_archives 
-                            WHERE id = '$zdownload_url'
-                            "
+                            WHERE id = %d
+                            ",
+                            $zdownload_url
                         );
+                        $db_archive = $wpdb->get_results($db_archive_query);
 
                         if ($db_archive[0]->status != 'private') {
 
@@ -772,13 +774,15 @@ class ZDMCore
                         global $wpdb;
                         $tablename_files = $wpdb->prefix . "zdm_files";
 
-                        $db_files = $wpdb->get_results(
+                        $db_files_query = $wpdb->prepare(
                             "
                             SELECT count, folder_path, file_name, file_type, status 
                             FROM $tablename_files 
-                            WHERE id = '$zdownload_url'
-                            "
+                            WHERE id = %d
+                            ",
+                            $zdownload_url
                         );
+                        $db_files = $wpdb->get_results($db_files_query);
 
                         if ($db_files[0]->status != 'private') {
 
@@ -968,13 +972,15 @@ class ZDMCore
 
         $tablename_archives = $wpdb->prefix . "zdm_archives";
 
-        $db_archive = $wpdb->get_results(
+        $db_archive_query = $wpdb->prepare(
             "
             SELECT * 
             FROM $tablename_archives 
-            WHERE id = '$archive_id'
-            "
+            WHERE id = %d
+            ",
+            $archive_id
         );
+        $db_archive = $wpdb->get_results($db_archive_query);
 
         return $db_archive[0];
     }
@@ -991,13 +997,15 @@ class ZDMCore
 
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
 
-        $db_archive = $wpdb->get_results(
+        $db_archive_query = $wpdb->prepare(
             "
             SELECT id_archive 
             FROM $tablename_files_rel 
             WHERE id_file = '$file_id'
-            "
+            ",
+            $file_id
         );
+        $db_archive = $wpdb->get_results($db_archive_query);
 
         return $db_archive;
     }
@@ -1014,13 +1022,15 @@ class ZDMCore
 
         $tablename_archives = $wpdb->prefix . "zdm_archives";
 
-        $db_archive = $wpdb->get_results(
+        $db_archive_query = $wpdb->prepare(
             "
             SELECT name 
             FROM $tablename_archives 
-            WHERE id = '$archive_id'
-            "
+            WHERE id = %d
+            ",
+            $archive_id
         );
+        $db_archive = $wpdb->get_results($db_archive_query);
 
         if (array_key_exists(0, $db_archive))
             return $db_archive[0]->name;
@@ -1043,24 +1053,28 @@ class ZDMCore
 
         if ($type == 'md5') {
 
-            $db_file = $wpdb->get_results(
+            $db_file_query = $wpdb->prepare(
                 "
                 SELECT id 
                 FROM $tablename_files 
-                WHERE hash_md5 = '$hash'
-                "
+                WHERE hash_md5 = %s
+                ",
+                $hash
             );
+            $db_file = $wpdb->get_results($db_file_query);
         }
 
         if ($type == 'sha1') {
 
-            $db_file = $wpdb->get_results(
+            $db_file_query = $wpdb->prepare(
                 "
                 SELECT id 
                 FROM $tablename_files 
-                WHERE hash_sha1 = '$hash'
-                "
+                WHERE hash_sha1 = %s
+                ",
+                $hash
             );
+            $db_file = $wpdb->get_results($db_file_query);
         }
 
         return count($db_file);
@@ -1078,13 +1092,15 @@ class ZDMCore
 
         $tablename_files = $wpdb->prefix . "zdm_files";
 
-        $db_file = $wpdb->get_results(
+        $db_file_query = $wpdb->prepare(
             "
             SELECT * 
             FROM $tablename_files 
-            WHERE id = '$file_id'
-            "
+            WHERE id = %d
+            ",
+            $file_id
         );
+        $db_file = $wpdb->get_results($db_file_query);
 
         return $db_file[0];
     }
@@ -1129,13 +1145,15 @@ class ZDMCore
 
         $tablename_files = $wpdb->prefix . "zdm_files";
 
-        $db_file = $wpdb->get_results(
+        $db_file_query = $wpdb->prepare(
             "
             SELECT name 
             FROM $tablename_files 
-            WHERE id = '$file_id'
-            "
+            WHERE id = %d
+            ",
+            $file_id
         );
+        $db_file = $wpdb->get_results($db_file_query);
 
         if (array_key_exists(0, $db_file))
             return $db_file[0]->name;
@@ -1467,13 +1485,15 @@ class ZDMCore
             global $wpdb;
             $tablename_files = $wpdb->prefix . "zdm_files";
 
-            $db_file = $wpdb->get_results(
+            $db_file_query = $wpdb->prepare(
                 "
                 SELECT id, folder_path, file_name, file_type, status 
                 FROM $tablename_files 
-                WHERE id = '$file'
-                "
+                WHERE id = %d
+                ",
+                $file
             );
+            $db_file = $wpdb->get_results($db_file_query);
 
             if ($db_file[0]->status != 'private') {
 
@@ -1534,13 +1554,15 @@ class ZDMCore
                     global $wpdb;
                     $tablename_archives = $wpdb->prefix . "zdm_archives";
 
-                    $db_archive = $wpdb->get_results(
+                    $db_archive_query = $wpdb->prepare(
                         "
                         SELECT id, button_text, status 
                         FROM $tablename_archives 
-                        WHERE id = '$zip'
-                        "
+                        WHERE id = %d
+                        ",
+                        $zip
                     );
+                    $db_archive = $wpdb->get_results($db_archive_query);
 
                     if ($db_archive[0]->status != 'private') {
 
@@ -1598,13 +1620,15 @@ class ZDMCore
                     global $wpdb;
                     $tablename_files = $wpdb->prefix . "zdm_files";
 
-                    $db_files = $wpdb->get_results(
+                    $db_files_query = $wpdb->prepare(
                         "
                         SELECT id, button_text, folder_path, file_name, file_type, status 
                         FROM $tablename_files 
-                        WHERE id = '$file'
-                        "
+                        WHERE id = %d
+                        ",
+                        $file
                     );
+                    $db_files = $wpdb->get_results($db_files_query);
 
                     if ($db_files[0]->status != 'private') {
 
@@ -1724,14 +1748,16 @@ class ZDMCore
 
                 $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
 
-                $linked_files = $wpdb->get_results(
+                $db_linked_files_query = $wpdb->prepare(
                     "
                     SELECT id_file
                     FROM $tablename_files_rel 
-                    WHERE id_archive = '$zip' 
+                    WHERE id_archive = %d 
                     AND file_deleted = 0
-                    "
+                    ",
+                    $zip
                 );
+                $linked_files = $wpdb->get_results($db_linked_files_query);
 
                 $linked_files_count = count($linked_files);
 
@@ -1819,13 +1845,15 @@ class ZDMCore
                 ////////////////////
                 if ($type === 'count') {
 
-                    $db_archive = $wpdb->get_results(
+                    $db_archive_query = $wpdb->prepare(
                         "
                         SELECT count, status 
                         FROM $tablename_archives 
-                        WHERE id = '$zip'
-                        "
+                        WHERE id = %d
+                        ",
+                        $zip
                     );
+                    $db_archive = $wpdb->get_results($db_archive_query);
 
                     if (array_key_exists(0, $db_archive)) {
                         if ($db_archive[0]->status != 'private')
@@ -1847,13 +1875,15 @@ class ZDMCore
                         global $wpdb;
                         $tablename_archives = $wpdb->prefix . "zdm_archives";
 
-                        $db_archive = $wpdb->get_results(
+                        $db_archive_query = $wpdb->prepare(
                             "
                             SELECT file_size, status 
                             FROM $tablename_archives 
-                            WHERE id = '$zip'
-                            "
+                            WHERE id = %d
+                            ",
+                            $zip
                         );
+                        $db_archive = $wpdb->get_results($db_archive_query);
 
                         if (array_key_exists(0, $db_archive)) {
                             if ($db_archive[0]->status != 'private')
@@ -1867,13 +1897,15 @@ class ZDMCore
                 ////////////////////
                 if ($type === 'name') {
 
-                    $db_archive = $wpdb->get_results(
+                    $db_archive_query = $wpdb->prepare(
                         "
                         SELECT name, status 
                         FROM $tablename_archives 
-                        WHERE id = '$zip'
-                        "
+                        WHERE id = %d
+                        ",
+                        $zip
                     );
+                    $db_archive = $wpdb->get_results($db_archive_query);
 
                     if (array_key_exists(0, $db_archive)) {
                         if ($db_archive[0]->status != 'private')
@@ -1886,13 +1918,15 @@ class ZDMCore
                 ////////////////////
                 if ($type === 'filename') {
 
-                    $db_archive = $wpdb->get_results(
+                    $db_archive_query = $wpdb->prepare(
                         "
                         SELECT zip_name, status 
                         FROM $tablename_archives 
-                        WHERE id = '$zip'
-                        "
+                        WHERE id = %d
+                        ",
+                        $zip
                     );
+                    $db_archive = $wpdb->get_results($db_archive_query);
 
                     if (array_key_exists(0, $db_archive)) {
                         if ($db_archive[0]->status != 'private')
@@ -1914,13 +1948,15 @@ class ZDMCore
                         global $wpdb;
                         $tablename_archives = $wpdb->prefix . "zdm_archives";
 
-                        $db_archive = $wpdb->get_results(
+                        $db_archive_query = $wpdb->prepare(
                             "
                             SELECT hash_md5, hash_sha1, status 
                             FROM $tablename_archives 
-                            WHERE id = '$zip'
-                            "
+                            WHERE id = %d
+                            ",
+                            $zip
                         );
+                        $db_archive = $wpdb->get_results($db_archive_query);
 
                         if (array_key_exists(0, $db_archive)) {
 
@@ -1956,13 +1992,15 @@ class ZDMCore
                 ////////////////////
                 if ($type === 'count') {
 
-                    $db_files = $wpdb->get_results(
+                    $db_files_query = $wpdb->prepare(
                         "
                         SELECT count, status 
                         FROM $tablename_files 
-                        WHERE id = '$file'
-                        "
+                        WHERE id = %d
+                        ",
+                        $file
                     );
+                    $db_files = $wpdb->get_results($db_files_query);
 
                     if (array_key_exists(0, $db_files)) {
                         if ($db_files[0]->status != 'private')
@@ -1975,13 +2013,15 @@ class ZDMCore
                 ////////////////////
                 if ($type === 'size') {
 
-                    $db_files = $wpdb->get_results(
+                    $db_files_query = $wpdb->prepare(
                         "
                         SELECT file_size, status 
                         FROM $tablename_files 
-                        WHERE id = '$file'
-                        "
+                        WHERE id = $d
+                        ",
+                        $file
                     );
+                    $db_files = $wpdb->get_results($db_files_query);
 
                     if (array_key_exists(0, $db_files)) {
                         if ($db_files[0]->status != 'private')
@@ -1994,13 +2034,15 @@ class ZDMCore
                 ////////////////////
                 if ($type === 'name') {
 
-                    $db_files = $wpdb->get_results(
+                    $db_files_query = $wpdb->prepare(
                         "
                         SELECT name, status 
                         FROM $tablename_files 
-                        WHERE id = '$file'
-                        "
+                        WHERE id = %d
+                        ",
+                        $file
                     );
+                    $db_files = $wpdb->get_results($db_files_query);
 
                     if (array_key_exists(0, $db_files)) {
                         if ($db_files[0]->status != 'private')
@@ -2013,13 +2055,15 @@ class ZDMCore
                 ////////////////////
                 if ($type === 'filename') {
 
-                    $db_files = $wpdb->get_results(
+                    $db_files_query = $wpdb->prepare(
                         "
                         SELECT file_name, status 
                         FROM $tablename_files 
-                        WHERE id = '$file'
-                        "
+                        WHERE id = %d
+                        ",
+                        $file
                     );
+                    $db_files = $wpdb->get_results($db_files_query);
 
                     if (array_key_exists(0, $db_files)) {
                         if ($db_files[0]->status != 'private')
@@ -2032,13 +2076,15 @@ class ZDMCore
                 ////////////////////
                 if ($type === 'hash-md5' or $type === 'hash-sha1') {
 
-                    $db_files = $wpdb->get_results(
+                    $db_files_query = $wpdb->prepare(
                         "
                         SELECT hash_md5, hash_sha1, status 
                         FROM $tablename_files 
-                        WHERE id = '$file'
-                        "
+                        WHERE id = %d
+                        ",
+                        $file
                     );
+                    $db_files = $wpdb->get_results($db_files_query);
 
                     if (array_key_exists(0, $db_files)) {
 
@@ -2111,13 +2157,15 @@ class ZDMCore
             global $wpdb;
             $tablename_files = $wpdb->prefix . "zdm_files";
 
-            $db_file = $wpdb->get_results(
+            $db_file_query = $wpdb->prepare(
                 "
                 SELECT id, folder_path, file_name, file_type, status 
                 FROM $tablename_files 
-                WHERE id = '$file'
-                "
+                WHERE id = %d
+                ",
+                $file
             );
+            $db_file = $wpdb->get_results($db_file_query);
 
             if ($db_file[0]->status != 'private') {
 

@@ -68,13 +68,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             );
 
             // Hole ID von gerade gespeichertem Archiv
-            $zdm_db_archive = $wpdb->get_results(
+            $zdm_db_archive_query = $wpdb->prepare(
                 "
                 SELECT id 
                 FROM $zdm_tablename_archives 
-                WHERE id_temp = '$zdm_archive_id_temp'
-                "
+                WHERE id_temp = %s
+                ",
+                $zdm_archive_id_temp
             );
+            $zdm_db_archive = $wpdb->get_results($zdm_db_archive_query);
 
             // Definiere Anzahl für Dateiverknüpfungen
             $zdm_files_count = 5;

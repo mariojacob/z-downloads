@@ -98,13 +98,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             $zdm_folder_path = $zdm_file['folder'];
 
-            $zdm_db_file = $wpdb->get_results(
+            $zdm_db_file_query = $wpdb->prepare(
                 "
                 SELECT id 
                 FROM $zdm_tablename_files 
-                WHERE folder_path = '$zdm_folder_path'
-                "
+                WHERE folder_path = %s
+                ",
+                $zdm_folder_path
             );
+            $zdm_db_file = $wpdb->get_results($zdm_db_file_query);
 
             $zdm_file_id = $zdm_db_file[0]->id;
 
@@ -129,13 +131,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         //////////////////////////////////////////////////
         if (isset($_POST['update']) && wp_verify_nonce($_POST['nonce'], 'update-data')) {
 
-            $zdm_db_file = $wpdb->get_results(
+            $zdm_db_file_query = $wpdb->prepare(
                 "
                 SELECT id 
                 FROM $zdm_tablename_files 
-                WHERE id = '$zdm_file_id'
-                "
+                WHERE id = %d
+                ",
+                $zdm_file_id
             );
+            $zdm_db_file = $wpdb->get_results($zdm_db_file_query);
 
             $zdm_db_file_count = count($zdm_db_file);
 
@@ -186,13 +190,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         //////////////////////////////////////////////////
         if ((isset($_POST['delete']) && wp_verify_nonce($_POST['nonce'], 'update-data')) or (isset($_GET['delete']) && wp_verify_nonce($_GET['nonce'], 'delete-file'))) {
 
-            $zdm_db_file = $wpdb->get_results(
+            $zdm_db_file_query = $wpdb->prepare(
                 "
                 SELECT * 
                 FROM $zdm_tablename_files 
-                WHERE id = '$zdm_file_id'
-                "
+                WHERE id = %d
+                ",
+                $zdm_file_id
             );
+            $zdm_db_file = $wpdb->get_results($zdm_db_file_query);
 
             $zdm_db_file_count = count($zdm_db_file);
 
@@ -246,13 +252,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     $zdm_uploaded_file_hash = htmlspecialchars($_GET['duplicate-hash']);
 
                     // Get data from database
-                    $zdm_db_file = $wpdb->get_results(
+                    $zdm_db_file_query = $wpdb->prepare(
                         "
                         SELECT * 
                         FROM $zdm_tablename_files 
-                        WHERE hash_md5 = '$zdm_uploaded_file_hash'
-                        "
+                        WHERE hash_md5 = %s
+                        ",
+                        $zdm_uploaded_file_hash
                     );
+                    $zdm_db_file = $wpdb->get_results($zdm_db_file_query);
 
                     // Checken ob mehr als eine Datei mit diesem Hash existiert
                     if (count($zdm_db_file) > 0) {
@@ -283,13 +291,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         //////////////////////////////////////////////////
         if (isset($_FILES['file']) && wp_verify_nonce($_POST['nonce'], 'replace-file') && $_FILES['file']['name'] != '') {
 
-            $zdm_db_file = $wpdb->get_results(
+            $zdm_db_file_query = $wpdb->prepare(
                 "
                 SELECT * 
                 FROM $zdm_tablename_files 
-                WHERE id = $zdm_file_id
-                "
+                WHERE id = %d
+                ",
+                $zdm_file_id
             );
+            $zdm_db_file = $wpdb->get_results($zdm_db_file_query);
             $zdm_db_file = $zdm_db_file[0];
 
             $zdm_file = array();
@@ -358,15 +368,18 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             $zdm_archive_id = sanitize_text_field($_GET['archive_id']);
 
-            $zdm_db_files_rel_array = $wpdb->get_results(
+            $zdm_db_files_rel_array_query = $wpdb->prepare(
                 "
                 SELECT id 
                 FROM $zdm_tablename_files_rel 
-                WHERE id_archive = '$zdm_archive_id' 
-                AND id_file = '$zdm_file_id' 
+                WHERE id_archive =%d 
+                AND id_file = %d 
                 AND file_deleted = 0
-                "
+                ",
+                $zdm_archive_id,
+                $zdm_file_id
             );
+            $zdm_db_files_rel_array = $wpdb->get_results($zdm_db_files_rel_array_query);
 
             $wpdb->delete(
                 $zdm_tablename_files_rel,
@@ -414,13 +427,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     if ($zdm_status === 1) { // Detailseite von Datei
 
-        $zdm_db_file = $wpdb->get_results(
+        $zdm_db_file_query = $wpdb->prepare(
             "
             SELECT * 
             FROM $zdm_tablename_files 
-            WHERE id = $zdm_file_id
-            "
+            WHERE id = %d
+            ",
+            $zdm_file_id
         );
+        $zdm_db_file = $wpdb->get_results($zdm_db_file_query);
         $zdm_db_file = $zdm_db_file[0];
 
         // Download Button Text
@@ -1159,14 +1174,16 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     <?php
     } elseif ($zdm_status === 3) {
 
-        $zdm_db_files = $wpdb->get_results(
+        $zdm_db_files_query = $wpdb->prepare(
             "
             SELECT id, name, folder_path, file_name, count, file_size, status, file_type, time_create 
             FROM $zdm_tablename_files 
-            WHERE hash_md5 = '$zdm_uploaded_file_hash' 
+            WHERE hash_md5 = %s 
             ORDER BY time_create DESC
-            "
+            ",
+            $zdm_uploaded_file_hash
         );
+        $zdm_db_files = $wpdb->get_results($zdm_db_files_query);
 
         $zdm_db_files_count = count($zdm_db_files);
 

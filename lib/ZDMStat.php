@@ -23,29 +23,33 @@ class ZDMStat
         if ($type == 'archive') {
             $tablename_archives = $wpdb->prefix . "zdm_archives";
 
-            $db = $wpdb->get_results(
+            $db_query = $wpdb->prepare(
                 "
                 SELECT id, name, count 
                 FROM $tablename_archives 
                 WHERE count > 0 
                 ORDER by count DESC 
-                Limit $limit
-                "
+                Limit %d
+                ",
+                $limit
             );
+            $db = $wpdb->get_results($db_query);
         }
 
         if ($type == 'file') {
             $tablename_files = $wpdb->prefix . "zdm_files";
 
-            $db = $wpdb->get_results(
+            $db_query = $wpdb->prepare(
                 "
                 SELECT id, name, count, file_type 
                 FROM $tablename_files 
                 WHERE count > 0 
                 ORDER by count DESC 
-                Limit $limit
-                "
+                Limit %d
+                ",
+                $limit
             );
+            $db = $wpdb->get_results($db_query);
         }
 
         return $db;
@@ -161,15 +165,18 @@ class ZDMStat
 
             $time = time() - $period;
 
-            $db_log_archives = $wpdb->get_results(
+            $db_log_archives_query = $wpdb->prepare(
                 "
                 SELECT id 
                 FROM $tablename_log 
-                WHERE time_create > '$time' 
-                AND type = '$type_archives' 
+                WHERE time_create > %d 
+                AND type = %s 
                 ORDER by time_create DESC
-                "
+                ",
+                $time,
+                $type_archives
             );
+            $db_log_archives = $wpdb->get_results($db_log_archives_query);
 
             $downloads_archives = count($db_log_archives);
 
@@ -178,15 +185,18 @@ class ZDMStat
 
             $time = time() - $period;
 
-            $db_log_files = $wpdb->get_results(
+            $db_log_files_query = $wpdb->prepare(
                 "
                 SELECT id 
                 FROM $tablename_log 
-                WHERE time_create > '$time' 
-                AND type = '$type_files' 
+                WHERE time_create > %d 
+                AND type = %s 
                 ORDER by time_create DESC
-                "
+                ",
+                $time,
+                $type_files
             );
+            $db_log_files = $wpdb->get_results($db_log_files_query);
 
             $downloads_files = count($db_log_files);
 
@@ -202,15 +212,18 @@ class ZDMStat
 
             $time = time() - $period;
 
-            $db_log_archives = $wpdb->get_results(
+            $db_log_archives_query = $wpdb->prepare(
                 "
                 SELECT id 
                 FROM $tablename_log 
-                WHERE time_create > '$time' 
-                AND type = '$type_archives' 
+                WHERE time_create > %d 
+                AND type = %s 
                 ORDER by time_create DESC
-                "
+                ",
+                $time,
+                $type_archives
             );
+            $db_log_archives = $wpdb->get_results($db_log_archives_query);
 
             $downloads_archives = count($db_log_archives);
 
@@ -226,15 +239,18 @@ class ZDMStat
 
             $time = time() - $period;
 
-            $db_log_files = $wpdb->get_results(
+            $db_log_files_query = $wpdb->prepare(
                 "
                 SELECT id 
                 FROM $tablename_log 
-                WHERE time_create > '$time' 
-                AND type = '$type_files' 
+                WHERE time_create > %d 
+                AND type = %s 
                 ORDER by time_create DESC
-                "
+                ",
+                $time,
+                $type_files
             );
+            $db_log_files = $wpdb->get_results($db_log_files_query);
 
             $downloads_files = count($db_log_files);
 
@@ -259,16 +275,20 @@ class ZDMStat
 
         $time = time() - $period;
 
-        $db_log = $wpdb->get_results(
+        $db_log_query = $wpdb->prepare(
             "
             SELECT id 
             FROM $tablename 
-            WHERE time_create > '$time' 
-            AND type = '$type_log' 
-            AND message = '$item_id' 
+            WHERE time_create > %d 
+            AND type = %s 
+            AND message = %d 
             ORDER by time_create DESC
-            "
+            ",
+            $time,
+            $type_log,
+            $item_id
         );
+        $db_log = $wpdb->get_results($db_log_query);
 
         $downloads = count($db_log);
 
@@ -290,15 +310,18 @@ class ZDMStat
 
         $tablename_log = $wpdb->prefix . "zdm_log";
 
-        $db_log = $wpdb->get_results(
+        $db_log_query = $wpdb->prepare(
             "
             SELECT id, message, time_create 
             FROM $tablename_log 
-            WHERE type = '$type_log' 
+            WHERE type = %s 
             ORDER by id DESC 
-            Limit $limit
-            "
+            Limit %d
+            ",
+            $type_log,
+            $limit
         );
+        $db_log = $wpdb->get_results($db_log_query);
 
         return $db_log;
     }
@@ -323,16 +346,20 @@ class ZDMStat
 
         $tablename_log = $wpdb->prefix . "zdm_log";
 
-        $db_log = $wpdb->get_results(
+        $db_log_query = $wpdb->prepare(
             "
             SELECT id, time_create 
             FROM $tablename_log 
-            WHERE type = '$type_log' 
-            AND message = '$item_id' 
+            WHERE type = %s 
+            AND message = %d 
             ORDER by id DESC 
-            Limit $limit
-            "
+            Limit %d
+            ",
+            $type_log,
+            $item_id,
+            $limit
         );
+        $db_log = $wpdb->get_results($db_log_query);
 
         return $db_log;
     }

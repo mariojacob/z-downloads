@@ -77,13 +77,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         $zdm_archive_id = sanitize_text_field($_GET['id']);
 
-        $zdm_db_archive = $wpdb->get_results(
+        $zdm_db_file_query = $wpdb->prepare(
             "
             SELECT id 
             FROM $zdm_tablename_archives 
-            WHERE id = '$zdm_archive_id'
-            "
+            WHERE id = %d
+            ",
+            $zdm_archive_id
         );
+        $zdm_db_archive = $wpdb->get_results($zdm_db_file_query);
 
         // Check ob Archiv existiert
         if (count($zdm_db_archive) > 0) {
@@ -126,13 +128,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     // ZIP-Name
                     $zdm_zip_name = str_replace(' ', '-', trim(sanitize_file_name($_POST['zip-name'])));
 
-                    $zdm_db_archives = $wpdb->get_results(
+                    $zdm_db_archives_query = $wpdb->prepare(
                         "
                         SELECT * 
                         FROM $zdm_tablename_archives 
-                        WHERE id = '$zdm_archive_id'
-                        "
+                        WHERE id = %d
+                        ",
+                        $zdm_archive_id
                     );
+                    $zdm_db_archives = $wpdb->get_results($zdm_db_archives_query);
 
                     // Lösche den Ordner und die Cache-Datei, wenn sich der Name der ZIP-Datei ändert
                     if ($zdm_db_archives[0]->zip_name != $zdm_zip_name) {
@@ -240,13 +244,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             //////////////////////////////////////////////////
             if ((isset($_POST['delete']) && wp_verify_nonce($_POST['nonce'], 'update-data')) or (isset($_GET['delete']) && wp_verify_nonce($_GET['nonce'], 'delete-archive'))) {
 
-                $zdm_db_archives = $wpdb->get_results(
+                $zdm_db_archives_query = $wpdb->prepare(
                     "
                     SELECT * 
                     FROM $zdm_tablename_archives 
-                    WHERE id = '$zdm_archive_id'
-                    "
+                    WHERE id = %d
+                    ",
+                    $zdm_archive_id
                 );
+                $zdm_db_archives = $wpdb->get_results($zdm_db_archives_query);
 
                 // Alte Datei und Ordner löschen
                 $old_cache_folder = ZDM__DOWNLOADS_CACHE_PATH . '/' . $zdm_db_archives[0]->archive_cache_path;
@@ -309,24 +315,28 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     if ($zdm_status === 1) {
 
-        $zdm_db_files_rel_array = $wpdb->get_results(
+        $zdm_db_files_rel_array_query = $wpdb->prepare(
             "
             SELECT id, id_file, id_archive 
             FROM $zdm_tablename_files_rel 
-            WHERE id_archive = '$zdm_archive_id' 
+            WHERE id_archive = %d 
             AND file_deleted = 0
-            "
+            ",
+            $zdm_archive_id
         );
+        $zdm_db_files_rel_array = $wpdb->get_results($zdm_db_files_rel_array_query);
 
         $zdm_db_files_rel_count = count($zdm_db_files_rel_array);
 
-        $zdm_db_archive = $wpdb->get_results(
+        $zdm_db_archive_query = $wpdb->prepare(
             "
             SELECT * 
             FROM $zdm_tablename_archives 
-            WHERE id = $zdm_archive_id
-            "
+            WHERE id = %d
+            ",
+            $zdm_archive_id
         );
+        $zdm_db_archive = $wpdb->get_results($zdm_db_archive_query);
         $zdm_db_archive = $zdm_db_archive[0];
 
         // Download Button Text
@@ -894,14 +904,16 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             for ($i = 0; $i < $zdm_db_archives_count; $i++) {
 
                                 $zdm_dm_archive_id = htmlspecialchars($zdm_db_archives[$i]->id);
-                                $zdm_db_files_rel_array = $wpdb->get_results(
+                                $zdm_db_files_rel_array_query = $wpdb->prepare(
                                     "
-                                SELECT id, id_file, id_archive 
-                                FROM $zdm_tablename_files_rel 
-                                WHERE id_archive = '$zdm_dm_archive_id' 
-                                AND file_deleted = '0'
-                                "
+                                    SELECT id, id_file, id_archive 
+                                    FROM $zdm_tablename_files_rel 
+                                    WHERE id_archive = %d 
+                                    AND file_deleted = '0'
+                                    ",
+                                    $zdm_dm_archive_id
                                 );
+                                $zdm_db_files_rel_array = $wpdb->get_results($zdm_db_files_rel_array_query);
 
                                 $zdm_db_files_rel_count = count($zdm_db_files_rel_array);
 

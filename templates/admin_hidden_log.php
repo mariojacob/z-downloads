@@ -15,13 +15,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         $zdm_log_id = sanitize_text_field($_GET['id']);
 
-        $zdm_db_log_details = $wpdb->get_results(
+        $zdm_db_log_details_query = $wpdb->prepare(
             "
             SELECT id, type, message, user_agent, user_ip, time_create 
             FROM $zdm_tablename_log 
-            WHERE id = '$zdm_log_id'
-            "
+            WHERE id = %d
+            ",
+            $zdm_log_id
         );
+        $zdm_db_log_details = $wpdb->get_results($zdm_db_log_details_query);
     } else { // Log Liste
 
         $zdm_log_filter_array = array(esc_html__('Everything', 'zdm'), esc_html__('Downloads', 'zdm'), esc_html__('Files', 'zdm'), esc_html__('Archives', 'zdm'), esc_html__('System', 'zdm'));
