@@ -847,6 +847,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         </div>
 
     <?php
+        //////////////////////////////////////////////////
+        // Ansicht: Archiv Liste
+        //////////////////////////////////////////////////
     } elseif ($zdm_status === 2) {
     ?>
         <div class="notice notice-success">
@@ -923,15 +926,17 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <?php
                                         if ($zdm_db_files_rel_count != 0) {
 
-                                            if (ZDMCore::check_if_archive_cache_ok($zdm_db_archives[$i]->id)) {
-                                        ?> <a href="<?= ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . htmlspecialchars($zdm_db_archives[$i]->archive_cache_path) . '/' . htmlspecialchars($zdm_db_archives[$i]->zip_name) ?>.zip" title="<?= esc_html__('Download', 'zdm') ?>" target="_blank" download><span class="material-icons-round zdm-md-1-5">cloud_download</span></a> | <?php
-                                                                                                                                                                                                                                                                                                                                                                        } else {
-                                                                                                                                                                                                                                                                                                                                                                            ?> <span class="material-icons-round zdm-md-1-5" title="<?= esc_html__('Update the cache of the file to download it', 'zdm') ?>">cloud_download</span></a> | <?php
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    } else {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ?> <span class="material-icons-round zdm-md-1-5" title="<?= esc_html__('No files are linked to the archive.', 'zdm') ?>">warning_amber</span> | <?php
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            ?>
+                                            if (ZDMCore::check_if_archive_cache_ok($zdm_db_archives[$i]->id)) { ?>
+                                                <a href="<?= ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . htmlspecialchars($zdm_db_archives[$i]->archive_cache_path) . '/' . htmlspecialchars($zdm_db_archives[$i]->zip_name) ?>.zip" title="<?= esc_html__('Download', 'zdm') ?>" target="_blank" download><span class="material-icons-round zdm-md-1-5">cloud_download</span></a> |
+                                            <?php
+                                            } else {
+                                            ?> <span class="material-icons-round zdm-md-1-5" title="<?= esc_html__('Update the cache of the file to download it', 'zdm') ?>">cloud_download</span></a> |
+                                            <?php
+                                            }
+                                        } else {
+                                            ?> <span class="material-icons-round zdm-md-1-5" title="<?= esc_html__('No files are linked to the archive.', 'zdm') ?>">warning_amber</span> | <?php
+                                                                                                                                                                                        }
+                                                                                                                                                                                            ?>
                                         <b><a href="?page=<?= ZDM__SLUG ?>-ziparchive&id=<?= htmlspecialchars($zdm_db_archives[$i]->id) ?>"><?= htmlspecialchars($zdm_db_archives[$i]->name) ?></a></b>
                                     </td>
                                     <td>
@@ -965,12 +970,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         if ($zdm_db_files_rel_count != 0) {
 
                                             if (ZDMCore::check_if_archive_cache_ok($zdm_db_archives[$i]->id)) {
-                                        ?> <span class="material-icons-round zdm-md-1-5 zdm-color-green">check_circle_outline</span> <?php
-                                                                                                                                    } else {
-                                                                                                                                        ?> <a href="admin.php?page=<?= ZDM__SLUG ?>-ziparchive&archive-cache=<?= htmlspecialchars($zdm_db_archives[$i]->id) ?>&nonce=<?= wp_create_nonce('update-cache') ?>" class="button button-primary" title="<?= esc_html__('Update cache', 'zdm') ?>"><span class="material-icons-round zdm-md-1-5">refresh</span></a> <?php
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                        } else {
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                ?> <span class="material-icons-round zdm-md-1-5 zdm-color-yellow" title="<?= esc_html__('No files are linked to the archive.', 'zdm') ?>">warning_amber</span> <?php
+                                        ?> <span class="material-icons-round zdm-md-1-5 zdm-color-green">check_circle_outline</span>
+                                            <?php
+                                            } else {
+                                            ?> <a href="admin.php?page=<?= ZDM__SLUG ?>-ziparchive&archive-cache=<?= htmlspecialchars($zdm_db_archives[$i]->id) ?>&nonce=<?= wp_create_nonce('update-cache') ?>" class="button button-primary" title="<?= esc_html__('Update cache', 'zdm') ?>"><span class="material-icons-round zdm-md-1-5">refresh</span></a>
+                                            <?php
+                                            }
+                                        } else {
+                                            ?> <span class="material-icons-round zdm-md-1-5 zdm-color-yellow" title="<?= esc_html__('No files are linked to the archive.', 'zdm') ?>">warning_amber</span> <?php
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ?>
                                     </td>
