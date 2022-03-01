@@ -19,7 +19,7 @@ The main features are the automated processes.
 
 For example: The same file is in multiple ZIP archives, such as promotional material. In the event of a change, only one file has to be replaced once and is automatically applied to all existing ZIP archives.
 
-[Z-Downloads Webseite](https://code.urban-base.net/z-downloads?utm_source=wporg)
+[Z-Downloads Website](https://code.urban-base.net/z-downloads?utm_source=wporg)
 
 = Benefits =
 
