@@ -1,7 +1,7 @@
 ﻿=== Z-Downloads ===
 
 Contributors: urbanbase
-Tags: download manager, downloads, zip, zip archiv, workflow, shortcodes, statistics, statistik, download count, download button, button, md5, sha1
+Tags: download manager, zip, download button, workflow, zip archiv, shortcodes, statistics, downloads, statistik, download count, button, md5, sha1
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
@@ -9,7 +9,7 @@ Requires at least: 4.9
 Tested up to: 5.9
 Stable tag: 1.9.2
 
-Convenient download manager and automatic ZIP archive creation
+Convenient download manager and automatic ZIP archive creator
 
 == Description ==
 
@@ -24,15 +24,14 @@ For example: The same file is in multiple ZIP archives, such as promotional mate
 = Benefits =
 
 -   Easy to use
--   Time savings
+-   Time saving
 -   Does his job perfectly
 
 = Top features =
 
--   Multilingual - German and English
--   GDPR (DSGVO) compliant - By default, the IP address is anonymized
--   Security By default: the direct path to the download file is not visible
--   Help and documentation for all functions
+-   GDPR (DSGVO) compliant: by default, the IP address is anonymized
+-   Security by default: the direct path to the download file is not visible
+-   Help and documentation for all functions is integrated
 -   Download statistics
 -   Shortcodes
 -   Download button
@@ -47,6 +46,7 @@ For example: The same file is in multiple ZIP archives, such as promotional mate
 -   Automatic ZIP archive creation
 -   PHP 8 compatible
 -   Prepared for internationalization
+-   Multilingual: German and English
 -   and more...
 
 = Conditions =
@@ -68,7 +68,7 @@ Search for "Z-Downloads" in your WordPress plugin directory and install it, then
 
 = Is Z-Downloads free? =
 
-Yes! The basic functions are free.
+Yes! All basic functions are free.
 
 For advanced functions there is [Z-Downloads Premium](https://code.urban-base.net/z-downloads?utm_source=wporg), this includes for example the output of MD5 and SHA1 hash values or unlimited files per ZIP archive.
 
