@@ -75,19 +75,19 @@ for the latest official version of the plugin.
 
 <p align="center">Files overview:</p>
 
-![screenshot-1](https://user-images.githubusercontent.com/8767638/156264708-42cabe87-c6c9-4e07-bef6-99e0da14042f.png)
+![Screenshots-files](https://user-images.githubusercontent.com/8767638/156267332-27c8765f-ee64-4be2-ae8c-5a42a2045b89.png)
 
 <p align="center">ZIP file overview:</p>
 
-![screenshot-2](https://user-images.githubusercontent.com/8767638/156264751-a9a3d21f-b3ea-4adb-af39-4bb5905ae3d0.png)
+![Screenshots-zip](https://user-images.githubusercontent.com/8767638/156267378-c7fcfc47-3a25-413a-90dc-e5d6051c9561.png)
 
 <p align="center">Audio file detail view:</p>
 
-![screenshot-5](https://user-images.githubusercontent.com/8767638/156264992-1cf7e858-d679-42d9-95ca-16913da1e83b.png)
+![Screenshots-audio](https://user-images.githubusercontent.com/8767638/156267402-8006b756-5ea1-4be4-89ca-b9e283be8844.png)
 
 <p align="center">Shortcodes overview:</p>
 
-![screenshot-6](https://user-images.githubusercontent.com/8767638/156265024-66603668-6cd6-4c33-abc5-651743f4625a.png)
+![Screenshots-shortcodes](https://user-images.githubusercontent.com/8767638/156267427-aa348113-1f01-4a7b-9a29-46b9a77367ec.png)
 
 # Documentation
 
