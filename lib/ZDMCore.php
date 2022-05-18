@@ -855,7 +855,7 @@ class ZDMCore
     public function enqueue_admin_scripts()
     {
         // Admin CSS
-        wp_register_style('zdm_admin_styles', plugins_url('../admin/css/zdm_admin_styles.min.css?v=' . ZDM__VERSION, __FILE__));
+        wp_register_style('zdm_admin_styles', plugins_url('../admin/css/zdm_admin_styles.min.css?v=' . ZDM__VERSION, __FILE__)); // TODO: Version-Nummer entfernen und die Version im Dateiname übernehmen
         wp_enqueue_style('zdm_admin_styles');
 
         // Material Icons
