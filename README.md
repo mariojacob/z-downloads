@@ -2,7 +2,7 @@
 
 # Z-Downloads
 
-[![Z-Downloads Release](https://img.shields.io/github/v/release/mariojacob/z-downloads)](https://github.com/mariojacob/z-downloads/releases/) ![](https://img.shields.io/github/repo-size/mariojacob/z-downloads) ![](https://img.shields.io/wordpress/plugin/wp-version/z-downloads) ![](https://img.shields.io/wordpress/plugin/tested/z-downloads) ![](https://img.shields.io/wordpress/plugin/required-php/z-downloads)
+[![Z-Downloads Release](https://img.shields.io/github/v/release/mariojacob/z-downloads)](https://github.com/mariojacob/z-downloads/releases/) ![](https://img.shields.io/github/repo-size/mariojacob/z-downloads) ![](https://img.shields.io/wordpress/plugin/wp-version/z-downloads) ![](https://img.shields.io/wordpress/plugin/tested/z-downloads) ![](https://img.shields.io/wordpress/plugin/stars/z-downloads) ![](https://img.shields.io/wordpress/plugin/required-php/z-downloads)
 
 # Table of Contents
 
