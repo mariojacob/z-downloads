@@ -5,7 +5,7 @@ if (!defined('ABSPATH'))
 
 $zdm_options = get_option('zdm_options');
 
-if ($zdm_options['version'] < ZDM__VERSION) {
+if (version_compare($zdm_options['version'], ZDM__VERSION, '<')) {
 
     ZDMCore::log('plugin upgrade', $zdm_options['version'] . ' to ' . ZDM__VERSION);
 
