@@ -6,7 +6,7 @@ License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
-Tested up to: 6.0
+Tested up to: 6.1
 Stable tag: 1.10.0
 
 Convenient download manager and automatic ZIP archive creator

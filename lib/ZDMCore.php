@@ -875,8 +875,8 @@ class ZDMCore
         wp_enqueue_style('zdm_styles');
 
         // Material Icons
-        wp_register_style('zdm_admin_material_icons', 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined|Material+Icons+Round');
-        wp_enqueue_style('zdm_admin_material_icons');
+        wp_register_style('zdm_material_icons', 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined|Material+Icons+Round');
+        wp_enqueue_style('zdm_material_icons');
     }
 
     /**
