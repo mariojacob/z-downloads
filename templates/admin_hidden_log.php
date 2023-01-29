@@ -83,6 +83,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     SELECT id, type, message, time_create 
                     FROM $zdm_tablename_log 
                     WHERE type = 'plugin activated' 
+                    || type = 'plugin upgrade' 
                     || type = 'database table created' 
                     || type = 'update licence' 
                     || type = 'delete licence' 
