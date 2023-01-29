@@ -708,6 +708,8 @@ class ZDMCore
     {
         if (!self::check_for_bot()) {
 
+            global $wpdb;
+
             $options = get_option('zdm_options');
 
             ////////////////////
@@ -721,7 +723,6 @@ class ZDMCore
 
                     if (self::check_if_archive_exists($zdownload_url) === true) {
 
-                        global $wpdb;
                         $tablename_archives = $wpdb->prefix . "zdm_archives";
 
                         $db_archive_query = $wpdb->prepare(
@@ -737,6 +738,17 @@ class ZDMCore
                         if ($db_archive[0]->status != 'private') {
 
                             self::log('download archive', $zdownload_url);
+
+                            $db_archive[0]->count++;
+                            $wpdb->update(
+                                $tablename_archives,
+                                array(
+                                    'count' => $db_archive[0]->count
+                                ),
+                                array(
+                                    'id' => $zdownload_url
+                                )
+                            );
 
                             // Pfad für Datei
                             $zip_file = ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . $db_archive[0]->archive_cache_path . '/' . $db_archive[0]->zip_name . '.zip';
@@ -771,7 +783,6 @@ class ZDMCore
 
                     if (self::check_if_file_exists($zdownload_url) === true) {
 
-                        global $wpdb;
                         $tablename_files = $wpdb->prefix . "zdm_files";
 
                         $db_files_query = $wpdb->prepare(
@@ -787,6 +798,17 @@ class ZDMCore
                         if ($db_files[0]->status != 'private') {
 
                             self::log('download file', $zdownload_url);
+
+                            $db_files[0]->count++;
+                            $wpdb->update(
+                                $tablename_files,
+                                array(
+                                    'count' => $db_files[0]->count
+                                ),
+                                array(
+                                    'id' => $zdownload_url
+                                )
+                            );
 
                             if ($options['file-open-in-browser-pdf'] == 'on' && $db_files[0]->file_type == 'application/pdf') {
 
