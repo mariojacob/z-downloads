@@ -13,8 +13,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <img class="zdm-welcome-icon" src="<?= ZDM__PLUGIN_URL ?>assets/icon-256x256.png" alt="ZIP Download Master Logo">
             </div>
             <h1><?= esc_html__('Welcome to', 'zdm') ?> <?= ZDM__TITLE ?></h1>
-            <h3><?= esc_html__('Bring more structure into your downloads and update them more efficiently.', 'zdm') ?></h3>
-            <h3><?= esc_html__('In order to use the full potential of this plugin activate now', 'zdm') ?> <?= ZDM__PRO ?></h3>
+            <h3><?= esc_html__('Organize your downloads effectively and keep them up to date.', 'zdm') ?></h3>
+            <h3><?= esc_html__('To get the most out of this plugin, activate now', 'zdm') ?> <?= ZDM__PRO ?>.</h3>
             <br>
             <a href="<?= ZDM__PRO_URL ?>" target="_blank" class="button button-primary"><?= esc_html__('More info', 'zdm') ?></a>
         </div>
