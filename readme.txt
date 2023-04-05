@@ -6,8 +6,8 @@ License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
-Tested up to: 6.1
-Stable tag: 1.10.1
+Tested up to: 6.2
+Stable tag: 1.10.2
 
 Convenient download manager and automatic ZIP archive creator
 
@@ -15,43 +15,43 @@ Convenient download manager and automatic ZIP archive creator
 
 The convenient download manager for WordPress.
 
-The main features are the automated processes.
+An easy-to-use download manager for WordPress, focused on automation.
 
-For example: The same file is in multiple ZIP archives, such as promotional material. In the event of a change, only one file has to be replaced once and is automatically applied to all existing ZIP archives.
+Example use case: A single file is present in multiple ZIP archives, such as promotional materials. When a change is needed, simply replace the file once, and it will be automatically updated in all existing ZIP archives.
 
 [Z-Downloads Website](https://code.urban-base.net/z-downloads?utm_source=wporg)
 
 = Benefits =
 
--   Easy to use
--   Time saving
--   Does his job perfectly
+-   User-friendly interface
+-   Time-saving automation
+-   Reliable performance
 
 = Top features =
 
--   GDPR (DSGVO) compliant: by default, the IP address is anonymized
--   Security by default: the direct path to the download file is not visible
--   Help and documentation for all functions is integrated
+-   GDPR (DSGVO) compliant: IP address anonymization by default
+-   Built-in security: direct path to the download file remains hidden
+-   Integrated help and documentation for all functions
 -   Download statistics
 -   Shortcodes
 -   Download button
 -   Download button with icons
--   Output information like file size or download count
--   Output file lists
--   Output a audio player
--   Output a video player
--   Show MD5 and SHA1 hash in the frontend
--   You can activate the direct URL path for PDF files
--   Central file management
+-   Display information like file size or download count
+-   Generate file lists
+-   Embed an audio player
+-   Embed a video player
+-   Show MD5 and SHA1 hashes in the frontend
+-   Option to activate direct URL paths for PDF files
+-   Centralized file management
 -   Automatic ZIP archive creation
 -   PHP 8 compatible
--   Prepared for internationalization
--   Multilingual: German and English
--   and more...
+-   Ready for internationalization
+-   Multilingual: English and German
+-   And more...
 
 = Conditions =
 
--   WordPress 4.9+ -- latest version 6.1.x
+-   WordPress 4.9+ -- latest version 6.2.x
 
 = Languages =
 

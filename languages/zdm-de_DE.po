@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2022-06-16 21:06+0200\n"
-"PO-Revision-Date: 2022-06-16 21:07+0200\n"
+"POT-Creation-Date: 2023-04-05 11:27+0200\n"
+"PO-Revision-Date: 2023-04-05 11:31+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.2.2\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;esc_html__\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -199,11 +199,11 @@ msgstr "Upgrade"
 msgid "Download statistics"
 msgstr "Downloadstatistik"
 
-#: lib/ZDMCore.php:1351
+#: lib/ZDMCore.php:1373
 msgid "The following PHP modules are missing"
 msgstr "Folgende PHP Module fehlen"
 
-#: lib/ZDMCore.php:1353
+#: lib/ZDMCore.php:1375
 msgid ""
 "Please contact the administrator or web hosting provider of this website to "
 "install/activate the missing PHP modules."
@@ -211,11 +211,11 @@ msgstr ""
 "Bitte wende dich an den Administrator oder Webhosting Provider dieser "
 "Webseite um die fehlenden PHP-Module zu installieren/aktivieren."
 
-#: lib/ZDMCore.php:1506
+#: lib/ZDMCore.php:1528
 msgid "Your browser does not support HTML audio elements."
 msgstr "Dein Browser unterstützt keine HTML Audio-Elemente."
 
-#: lib/ZDMCore.php:2178
+#: lib/ZDMCore.php:2200
 msgid "Your browser does not support HTML video elements."
 msgstr "Dein Browser unterstützt keine HTML Video-Elemente."
 
@@ -493,58 +493,58 @@ msgstr "Downloads"
 msgid "System"
 msgstr "System"
 
-#: templates/admin_hidden_log.php:126
+#: templates/admin_hidden_log.php:127
 msgid "Log details"
 msgstr "Log Details"
 
-#: templates/admin_hidden_log.php:128
+#: templates/admin_hidden_log.php:129
 msgid "Back"
 msgstr "Zurück"
 
-#: templates/admin_hidden_log.php:137 templates/admin_hidden_log.php:217
-#: templates/admin_hidden_log.php:304
+#: templates/admin_hidden_log.php:138 templates/admin_hidden_log.php:218
+#: templates/admin_hidden_log.php:305
 msgid "Type"
 msgstr "Typ"
 
-#: templates/admin_hidden_log.php:141 templates/admin_hidden_log.php:218
-#: templates/admin_hidden_log.php:305 templates/admin_menu_files.php:545
+#: templates/admin_hidden_log.php:142 templates/admin_hidden_log.php:219
+#: templates/admin_hidden_log.php:306 templates/admin_menu_files.php:545
 #: templates/admin_menu_files.php:886 templates/admin_menu_ziparchive.php:696
 msgid "Details"
 msgstr "Details"
 
-#: templates/admin_hidden_log.php:147
+#: templates/admin_hidden_log.php:148
 msgid "User agent"
 msgstr "User Agent"
 
-#: templates/admin_hidden_log.php:151
+#: templates/admin_hidden_log.php:152
 msgid "IP adress"
 msgstr "IP Adresse"
 
-#: templates/admin_hidden_log.php:155 templates/admin_hidden_log.php:219
-#: templates/admin_hidden_log.php:306 templates/admin_menu_files.php:1063
+#: templates/admin_hidden_log.php:156 templates/admin_hidden_log.php:220
+#: templates/admin_hidden_log.php:307 templates/admin_menu_files.php:1063
 #: templates/admin_menu_files.php:1149 templates/admin_menu_files.php:1216
 #: templates/admin_menu_files.php:1302 templates/admin_menu_ziparchive.php:891
 #: templates/admin_menu_ziparchive.php:1012
 msgid "Created"
 msgstr "Erstellt"
 
-#: templates/admin_hidden_log.php:176 templates/admin_menu_settings.php:618
+#: templates/admin_hidden_log.php:177 templates/admin_menu_settings.php:618
 msgid "Log"
 msgstr "Log"
 
-#: templates/admin_hidden_log.php:178
+#: templates/admin_hidden_log.php:179
 msgid "Back the settings"
 msgstr "Zurück zu den Einstellungen"
 
-#: templates/admin_hidden_log.php:189
+#: templates/admin_hidden_log.php:190
 msgid "Here is the output of the logs of the latest 500 entries."
 msgstr "Hier ist die Ausgabe der Logs der aktuellsten 500 Einträge."
 
-#: templates/admin_hidden_log.php:192 templates/admin_hidden_log.php:323
+#: templates/admin_hidden_log.php:193 templates/admin_hidden_log.php:324
 msgid "Logs filter by type"
 msgstr "Logs filtern nach Typ"
 
-#: templates/admin_hidden_log.php:208 templates/admin_hidden_log.php:339
+#: templates/admin_hidden_log.php:209 templates/admin_hidden_log.php:340
 #: templates/admin_menu_files.php:681 templates/admin_menu_files.php:861
 #: templates/admin_menu_settings.php:290
 #: templates/admin_menu_ziparchive.php:535
@@ -552,16 +552,16 @@ msgstr "Logs filtern nach Typ"
 msgid "Update"
 msgstr "Aktualisieren"
 
-#: templates/admin_hidden_log.php:288 templates/admin_menu_files.php:896
+#: templates/admin_hidden_log.php:289 templates/admin_menu_files.php:896
 #: templates/admin_menu_ziparchive.php:706
 msgid "Show details"
 msgstr "Zeige Details"
 
-#: templates/admin_hidden_log.php:320
+#: templates/admin_hidden_log.php:321
 msgid "There are no log entries for this type."
 msgstr "Es gibt keine Log-Einträge zu diesem Typ."
 
-#: templates/admin_hidden_log.php:349 templates/admin_menu_dashboard.php:390
+#: templates/admin_hidden_log.php:350 templates/admin_menu_dashboard.php:390
 #: templates/admin_menu_files.php:1172 templates/admin_menu_ziparchive.php:1035
 msgid "To top"
 msgstr "Nach oben"
@@ -713,14 +713,12 @@ msgid "Welcome to"
 msgstr "Willkommen bei"
 
 #: templates/admin_menu_dashboard.php:16
-msgid ""
-"Bring more structure into your downloads and update them more efficiently."
-msgstr ""
-"Bringe mehr Struktur in deine Downloads und aktualisiere diese effizienter."
+msgid "Organize your downloads effectively and keep them up to date."
+msgstr "Organisiere deine Downloads effektiv und halte sie aktuell."
 
 #: templates/admin_menu_dashboard.php:17
-msgid "In order to use the full potential of this plugin activate now"
-msgstr "Um das volle Potential dieses Plugins zu Nutzen aktiviere jetzt die"
+msgid "To get the most out of this plugin, activate now"
+msgstr "Um das Beste aus diesem Plugin herauszuholen, aktiviere jetzt"
 
 #: templates/admin_menu_dashboard.php:19
 msgid "More info"
@@ -1375,7 +1373,7 @@ msgstr "Datei gelöscht!"
 msgid "First steps"
 msgstr "Erste Schritte"
 
-#: templates/admin_menu_help.php:31
+#: templates/admin_menu_help.php:31 templates/admin_menu_settings.php:577
 msgid "Advanced"
 msgstr "Erweitert"
 
@@ -1662,10 +1660,10 @@ msgstr "Kontrollen deaktivieren"
 
 #: templates/admin_menu_help.php:238
 msgid ""
-"The \"controls\" option is enabled by default, if this option is set to \"off"
-"\" then no player will be displayed. In conjunction with the \"autoplay\" "
-"option, an audio file can be played automatically without a visible player, "
-"but this is not recommended for user-friendliness."
+"The \"controls\" option is enabled by default, if this option is set to "
+"\"off\" then no player will be displayed. In conjunction with the "
+"\"autoplay\" option, an audio file can be played automatically without a "
+"visible player, but this is not recommended for user-friendliness."
 msgstr ""
 "Die Option \"controls\" ist standardmäßig aktiviert, wenn diese Option auf "
 "\"off\" gestellt wird, dann wird kein Player angezeigt. In Verbindung mit "
@@ -1728,11 +1726,11 @@ msgstr ""
 
 #: templates/admin_menu_help.php:263
 msgid ""
-"The \"controls\" option is enabled by default, if this option is set to \"off"
-"\", then no controls such as play, pause, volume, full screen, timeline, or "
-"other video options are displayed. In conjunction with the autoplay option, "
-"such a video file can be played automatically without any possibility to "
-"stop the video, but this is not recommended for usability."
+"The \"controls\" option is enabled by default, if this option is set to "
+"\"off\", then no controls such as play, pause, volume, full screen, "
+"timeline, or other video options are displayed. In conjunction with the "
+"autoplay option, such a video file can be played automatically without any "
+"possibility to stop the video, but this is not recommended for usability."
 msgstr ""
 "Die Option \"controls\" ist standardmäßig aktiviert, wenn diese Option auf "
 "\"off\" gestellt wird, dann werden keine Kontrollelemente wie Play, Pause, "
@@ -1870,16 +1868,16 @@ msgid "Remove license key"
 msgstr "Lizenzschlüssel entfernen"
 
 #: templates/admin_menu_settings.php:305
-msgid "Benefit from the"
-msgstr "Profitiere von den"
+msgid "Don't wait any longer - unlock the full potential of"
+msgstr "Warte nicht länger - schalte das volle Potential von"
 
 #: templates/admin_menu_settings.php:305
-msgid "features and unlock all possibilities"
-msgstr "Funktionen und alle Möglichkeiten freischalten"
+msgid "and get"
+msgstr "frei und hole dir heute noch"
 
 #: templates/admin_menu_settings.php:305
-msgid "free, more info"
-msgstr "frei, mehr Infos"
+msgid "today! Learn more at"
+msgstr "! Erfahre mehr auf"
 
 #: templates/admin_menu_settings.php:312
 msgid "Licensed for"
@@ -2016,10 +2014,6 @@ msgstr ""
 "Bestimme die Anzahl der letzten Downloads die in der Archiv-Detailseite im "
 "Tab Statistik angezeigt wird."
 
-#: templates/admin_menu_settings.php:577
-msgid "More"
-msgstr "Mehr"
-
 #: templates/admin_menu_settings.php:582
 msgid "Direct URL to PDFs"
 msgstr "Direkte URL zu PDFs"
@@ -2135,8 +2129,8 @@ msgid ""
 msgstr ""
 "Wenn du das Z-Downloads-Plugin deinstallierst bleiben alle Dateien und ZIP-"
 "Archive im oben genannten Pfad bestehen, wenn du alle Dateien und ZIP-"
-"Archive die du erstellt hast löschen willst, dann klicke unten auf \"LÖSCHEN"
-"\""
+"Archive die du erstellt hast löschen willst, dann klicke unten auf "
+"\"LÖSCHEN\""
 
 #: templates/admin_menu_settings.php:666
 msgid "This process is irreplaceable and can not be undone."
@@ -2301,6 +2295,24 @@ msgstr "Aktualisiere den Cache um die Datei herunterzuladen"
 #: templates/admin_menu_ziparchive.php:980
 msgid "No files are linked to the archive."
 msgstr "Es sind keine Dateien mit dem Archiv verknüpft."
+
+#~ msgid ""
+#~ "Bring more structure into your downloads and update them more efficiently."
+#~ msgstr ""
+#~ "Bringe mehr Struktur in deine Downloads und aktualisiere diese "
+#~ "effizienter."
+
+#~ msgid "Benefit from the"
+#~ msgstr "Profitiere von den"
+
+#~ msgid "features and unlock all possibilities"
+#~ msgstr "Funktionen und alle Möglichkeiten freischalten"
+
+#~ msgid "free, more info"
+#~ msgstr "frei, mehr Infos"
+
+#~ msgid "More"
+#~ msgstr "Mehr"
 
 #~ msgid "review"
 #~ msgstr "bewerte"
