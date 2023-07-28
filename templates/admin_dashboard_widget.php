@@ -97,5 +97,6 @@ if ($zdm_statistics_last_30_days_before == 0) {
     <div class="zdm_dashboard_widget_section">
         <a href="admin.php?page=<?= ZDM__SLUG ?>" class="button button-secondary"><?= esc_html__('All statistics', 'zdm') ?></a>
         <a href="admin.php?page=<?= ZDM__SLUG ?>-settings" class="button button-secondary"><?= esc_html__('Settings', 'zdm') ?></a>
+        <a href="<?= ZDM__PRO_URL ?>" target="_blank" class="button button-primary"><?= esc_html__('Upgrade to Premium', 'zdm') ?></a>
     </div>
 </div>
