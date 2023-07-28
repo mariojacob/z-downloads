@@ -457,7 +457,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         </td>
                                     </tr>
                                     <tr valign="top">
-                                        <th scope="row"><?= esc_html__('Cache', 'zdm') ?>:</th>
+                                        <th scope="row"><?= esc_html__('Cache', 'zdm') ?>:
+                                            <div class="zdm-tooltip">
+                                                <span class="material-icons-outlined zdm-md-1 zdm-color-grey7">info</span>
+                                                <span class="zdm-tooltiptext"><?= esc_html__('Manual cache update is optional. It auto-refreshes when the ZIP file is requested for download.', 'zdm') ?></span>
+                                            </div>
+                                        </th>
                                         <td valign="middle">
                                             <?php
                                             if (ZDMCore::check_if_archive_cache_ok($zdm_archive_id)) {
@@ -473,7 +478,25 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         </td>
                                     </tr>
                                     <tr valign="top">
-                                        <th scope="row"><?= esc_html__('Linked files', 'zdm') ?>:</th>
+                                        <th scope="row"><?= esc_html__('Linked files', 'zdm') ?>:
+                                            <?php
+                                            if (ZDMCore::licence() != true) {
+                                            ?>
+                                                <div class="zdm-tooltip">
+                                                    <span class="material-icons-outlined zdm-md-1 zdm-color-grey7">info</span>
+                                                    <span class="zdm-tooltiptext"><?= esc_html__('In the Premium version, you can pack an unlimited number of files into ZIP downloads. This lifts the limitation of the free version, which only allows 5 files per ZIP. Removing linked files does not delete them.', 'zdm') ?></span>
+                                                </div>
+                                            <?php
+                                            } else {
+                                            ?>
+                                                <div class="zdm-tooltip">
+                                                    <span class="material-icons-outlined zdm-md-1 zdm-color-grey7">info</span>
+                                                    <span class="zdm-tooltiptext"><?= esc_html__('Link an unlimited number of files. Removing linked files does not delete them.', 'zdm') ?></span>
+                                                </div>
+                                            <?php
+                                            }
+                                            ?>
+                                        </th>
                                         <td valign="middle">
                                             <div class="zdm-select-50">
 
