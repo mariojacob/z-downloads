@@ -284,23 +284,39 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <th scope="row"><?= ZDM__PRO ?> <?= esc_html__('license key', 'zdm') ?>:</th>
                                         <td valign="middle">
                                             <?php if ($zdm_licence === 1) { ?><span class="material-icons-round zdm-md-1 zdm-color-green">check_circle_outline</span>&nbsp;<?php } ?>
-                                                <input type="text" name="licence-key" size="50%" value="<?= esc_attr($zdm_options['licence-key']); ?>">&nbsp;
                                                 <?php if ($zdm_licence === 1) {
                                                 ?>
-                                                    <input class="button-primary" type="submit" name="licence_submit" value="<?= esc_html__('Update', 'zdm') ?>">
+                                                    <input type="password" name="licence-key" id="licence-key" size="50%" value="<?= esc_attr($zdm_options['licence-key']); ?>">&nbsp;
+                                                    <button class="button button-secondary" id="toggle-licence-key"><span class="material-icons-outlined zdm-md-1 zdm-color-grey7">visibility</span></button>&nbsp;
+                                                    <input class="button-primary" type="submit" name="licence_submit" value="<?= esc_html__('Update', 'zdm') ?>">&nbsp;
+                                                    <a href="admin.php?page=<?= ZDM__SLUG ?>-settings&licence_delete=true&nonce=<?= wp_create_nonce('licence-delete') ?>" class="button button-primary"><?= esc_html__('Remove license key', 'zdm') ?></a>
+                                                    <script>
+                                                        jQuery(document).ready(function($) {
+                                                            $("#toggle-licence-key").click(function(e) {
+                                                                // Verhindert das Standardverhalten des Buttons
+                                                                e.preventDefault();
+
+                                                                let input = $("#licence-key");
+                                                                let span = $(this).find('span');
+
+                                                                if (input.attr("type") === "password") {
+                                                                    input.attr("type", "text");
+                                                                    span.text("visibility_off");
+                                                                } else {
+                                                                    input.attr("type", "password");
+                                                                    span.text("visibility");
+                                                                }
+                                                            });
+                                                        });
+                                                    </script>
                                                 <?php
                                                 } else {
                                                 ?>
+                                                    <input type="text" name="licence-key" id="licence-key" size="50%" value="<?= esc_attr($zdm_options['licence-key']); ?>">&nbsp;
                                                     <input class="button-primary" type="submit" name="licence_submit" value="<?= esc_html__('Activate', 'zdm') ?>">
                                                 <?php
                                                 }
 
-                                                if ($zdm_licence === 1) {
-                                                ?>
-                                                    <br /><br />
-                                                    <a href="admin.php?page=<?= ZDM__SLUG ?>-settings&licence_delete=true&nonce=<?= wp_create_nonce('licence-delete') ?>" class="button button-secondary"><?= esc_html__('Remove license key', 'zdm') ?></a>
-                                                <?php
-                                                }
                                                 if ($zdm_licence === 0) { ?>
                                                     <div class="zdm-help-text"><?= esc_html__('Don\'t wait any longer - unlock the full potential of', 'zdm') ?> <?= ZDM__TITLE ?> <?= esc_html__('and get', 'zdm') ?> <?= ZDM__PRO ?> <?= esc_html__('today! Learn more at', 'zdm') ?>: <a href="<?= ZDM__PRO_URL ?>" target="_blank" title="code.urban-base.net"><?= ZDM__TITLE; ?> <?= ZDM__PRO ?> <span class="material-icons-round zdm-md-1">open_in_new</span></a></div>
                                                 <?php
