@@ -175,8 +175,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <div class="wrap">
 
             <h1><?= esc_html__('Log', 'zdm') ?></h1>
-            <br />
-            <a href="admin.php?page=<?= ZDM__SLUG ?>-settings" class="page-title-action"><?= esc_html__('Back the settings', 'zdm') ?></a>
             <br /><br />
 
             <?php

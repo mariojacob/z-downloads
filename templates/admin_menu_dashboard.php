@@ -16,7 +16,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             <h3><?= esc_html__('Organize your downloads effectively and keep them up to date.', 'zdm') ?></h3>
             <h3><?= esc_html__('To get the most out of this plugin, activate now', 'zdm') ?> <?= ZDM__PRO ?>.</h3>
             <br>
-            <a href="<?= ZDM__PRO_URL ?>" target="_blank" class="button button-primary"><?= esc_html__('More info', 'zdm') ?></a>
+            <a href="<?= ZDM__PRO_URL ?>" target="_blank" class="button button-primary"><?= esc_html__('Upgrade to Premium', 'zdm') ?></a>
         </div>
     <?php } ?>
     <div class="wrap">

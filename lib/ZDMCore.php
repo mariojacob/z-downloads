@@ -76,6 +76,14 @@ class ZDMCore
         );
         add_submenu_page(
             ZDM__SLUG,
+            esc_html__('Logs', 'zdm'),
+            esc_html__('Logs', 'zdm'),
+            ZDM__STANDARD_USER_ROLE,
+            ZDM__SLUG . '-log',
+            array($this, 'admin_hidden_log')
+        );
+        add_submenu_page(
+            ZDM__SLUG,
             esc_html__('Help', 'zdm'),
             esc_html__('Help', 'zdm'),
             ZDM__STANDARD_USER_ROLE,
@@ -85,20 +93,20 @@ class ZDMCore
         if (self::licence() != true) {
             add_submenu_page(
                 ZDM__SLUG,
+                esc_html__('Premium', 'zdm'),
+                esc_html__('Premium', 'zdm'),
+                ZDM__STANDARD_USER_ROLE,
+                ZDM__SLUG . '-premium',
+                array($this, 'admin_hidden_premium')
+            );
+            add_submenu_page(
+                ZDM__SLUG,
                 esc_html__('Upgrade', 'zdm'),
                 esc_html__('Upgrade', 'zdm'),
                 ZDM__STANDARD_USER_ROLE,
                 ZDM__PRO_URL
             );
         }
-        add_submenu_page(
-            null,
-            esc_html__('Help', 'zdm'),
-            esc_html__('Help', 'zdm'),
-            ZDM__STANDARD_USER_ROLE,
-            ZDM__SLUG . '-log',
-            array($this, 'admin_hidden_log')
-        );
     }
 
     /**
@@ -179,6 +187,16 @@ class ZDMCore
     public function admin_hidden_log()
     {
         require_once(plugin_dir_path(__FILE__) . '../templates/admin_hidden_log.php');
+    }
+
+    /**
+     * Adminmenü: Premium (versteckt)
+     *
+     * @return void
+     */
+    public function admin_hidden_premium()
+    {
+        require_once(plugin_dir_path(__FILE__) . '../templates/admin_hidden_premium.php');
     }
 
     /**

@@ -118,11 +118,6 @@
     display: block;
 }
 
-.zdm-table-premium td,
-.zdm-table-premium th {
-    padding: 0.5rem;
-}
-
 .zdm-help-text {
     color: #777;
     margin-top: 4px;
@@ -239,12 +234,6 @@ ion-icon {
 
 .zdm-nav-tabs a {
     border-radius: 4px 4px 0 0;
-}
-
-.zdm-premium-banner {
-    width: 300px;
-    height: auto;
-    display: block;
 }
 
 /********************
@@ -411,4 +400,35 @@ ion-icon {
 
 .zdm-color-bg-red {
     background: #fa3e3e !important;
+}
+
+/********************
+ Premium
+********************/
+
+.zdm-table-premium-mini td,
+.zdm-table-premium-mini th {
+    padding: 0.5rem;
+}
+.zdm-table-premium-xl td,
+.zdm-table-premium-xl th {
+    padding: 0.8rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.zdm-premium-banner {
+    width: 300px;
+    height: auto;
+    display: block;
+}
+
+.zdm-premium-postbox-col-md {
+    min-width: 300px;
+    width: 70%;
+    padding: 0 1% 0 0;
+}
+
+.zdm-premium-postbox-col-sm {
+    min-width: 200px;
+    width: 29%;
 }

@@ -6,7 +6,7 @@ if (!defined('ABSPATH'))
 <div class="postbox">
     <div class="inside">
         <img class="zdm-premium-banner" src="<?= ZDM__PLUGIN_URL ?>assets/z-downloads-premium-backend-mini.png" height="50%" alt="Z-Downloads Premium Banner">
-        <table class="form-table zdm-table-premium">
+        <table class="form-table zdm-table-premium-mini">
             <tbody>
                 <tr valign="top">
                     <th scope="row"></th>
@@ -94,13 +94,12 @@ if (!defined('ABSPATH'))
                     <td valign="middle"></td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row"><a href="#"><?= esc_html__('All the benefits of Premium at a glance') ?></a></th>
+                    <th scope="row"><a href="admin.php?page=<?= ZDM__SLUG ?>-premium"><?= esc_html__('All the benefits of Premium at a glance', 'zdm') ?></a></th>
                     <td valign="middle"></td>
-                    <td valign="middle"></td>
+                    <td valign="middle"><a href="<?= ZDM__PRO_URL ?>" target="_blank" class="button button-primary"><?= esc_html__('Upgrade to Premium', 'zdm') ?></a></td>
                     <td valign="middle"></td>
                 </tr>
             </tbody>
         </table>
-        <p><a href="<?= ZDM__PRO_URL ?>" target="_blank" class="button button-primary"><?= esc_html__('Upgrade to Premium') ?></a></p>
     </div>
 </div>
