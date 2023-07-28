@@ -670,7 +670,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         </div>
                     </div>
 
-                    <?php require_once(plugin_dir_path(__FILE__) . '../inc/postbox_info.php'); ?>
+                    <?php
+                    require_once(plugin_dir_path(__FILE__) . '../inc/postbox_info.php');
+                    if (ZDMCore::licence() != true)
+                        require_once(plugin_dir_path(__FILE__) . '../inc/postbox_premium_info.php');
+                    ?>
 
                     <input type="hidden" name="nonce" value="<?= wp_create_nonce('einstellungen-speichern') ?>">
                     <input class="button-primary" type="submit" name="submit" value="<?= esc_html__('Save', 'zdm') ?>">

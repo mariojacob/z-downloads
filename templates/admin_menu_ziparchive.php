@@ -978,8 +978,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             }
                                         } else {
                                             ?> <span class="material-icons-round zdm-md-1-5 zdm-color-yellow" title="<?= esc_html__('No files are linked to the archive.', 'zdm') ?>">warning_amber</span> <?php
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                ?>
+                                                                                                                                                                                                        }
+                                                                                                                                                                                                            ?>
                                     </td>
                                     <td>
                                         <?php
@@ -1029,7 +1029,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             <br>
 
-            <?php require_once(plugin_dir_path(__FILE__) . '../inc/postbox_info_archive.php'); ?>
+            <?php
+            require_once(plugin_dir_path(__FILE__) . '../inc/postbox_info_archive.php');
+            if (ZDMCore::licence() != true)
+                require_once(plugin_dir_path(__FILE__) . '../inc/postbox_premium_info.php');
+            ?>
 
             <br>
             <a class="alignright button" href="javascript:void(0);" onclick="window.scrollTo(0,0);" style="margin:3px 0 0 30px;"><?= esc_html__('To top', 'zdm') ?></a>

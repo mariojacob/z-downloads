@@ -10,7 +10,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     if (ZDMCore::licence() != true) { ?>
         <div class="zdm-welcome-notice notice notice-info">
             <div class="zdm-welcome-icon-holder">
-                <img class="zdm-welcome-icon" src="<?= ZDM__PLUGIN_URL ?>assets/icon-256x256.png" alt="ZIP Download Master Logo">
+                <img class="zdm-welcome-icon" src="<?= ZDM__PLUGIN_URL ?>assets/icon-256x256.png" alt="Z-Downloads Logo">
             </div>
             <h1><?= esc_html__('Welcome to', 'zdm') ?> <?= ZDM__TITLE ?></h1>
             <h3><?= esc_html__('Organize your downloads effectively and keep them up to date.', 'zdm') ?></h3>
@@ -384,7 +384,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         </div><!-- end class="postbox-container" -->
 
         <div class="postbox-container zdm-postbox-100">
-            <?php require_once(plugin_dir_path(__FILE__) . '../inc/postbox_info.php'); ?>
+            <?php
+            require_once(plugin_dir_path(__FILE__) . '../inc/postbox_info.php');
+            if (ZDMCore::licence() != true)
+                require_once(plugin_dir_path(__FILE__) . '../inc/postbox_premium_info.php');
+            ?>
         </div>
 
         <a class="alignright button" href="javascript:void(0);" onclick="window.scrollTo(0,0);" style="margin:3px 0 0 30px;"><?= esc_html__('To top', 'zdm') ?></a>

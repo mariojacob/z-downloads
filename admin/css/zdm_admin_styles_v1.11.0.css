@@ -118,6 +118,11 @@
     display: block;
 }
 
+.zdm-table-premium td,
+.zdm-table-premium th {
+    padding: 0.5rem;
+}
+
 .zdm-help-text {
     color: #777;
     margin-top: 4px;
@@ -234,6 +239,46 @@ ion-icon {
 
 .zdm-nav-tabs a {
     border-radius: 4px 4px 0 0;
+}
+
+.zdm-premium-banner {
+    width: 300px;
+    height: auto;
+    display: block;
+}
+
+/********************
+ Tooltip
+********************/
+
+.zdm-tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.zdm-tooltip .zdm-tooltiptext {
+    visibility: hidden;
+    width: 300px;
+    background-color: #fff;
+    color: #333;
+    font-weight: 400;
+    text-align: left;
+    padding: 15px;
+    position: absolute;
+    z-index: 1;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.07);
+}
+
+.zdm-tooltip:hover .zdm-tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }
 
 /********************

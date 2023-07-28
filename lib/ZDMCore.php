@@ -877,7 +877,7 @@ class ZDMCore
     public function enqueue_admin_scripts()
     {
         // Admin CSS
-        wp_register_style('zdm_admin_styles', plugins_url('../admin/css/zdm_admin_styles_v1.10.0.min.css', __FILE__));
+        wp_register_style('zdm_admin_styles', plugins_url('../admin/css/zdm_admin_styles_v1.11.0.min.css', __FILE__));
         wp_enqueue_style('zdm_admin_styles');
 
         // Material Icons
