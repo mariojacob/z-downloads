@@ -97,7 +97,7 @@ class ZDMCore
                 esc_html__('Premium', 'zdm'),
                 ZDM__STANDARD_USER_ROLE,
                 ZDM__SLUG . '-premium',
-                array($this, 'admin_hidden_premium')
+                array($this, 'admin_premium')
             );
             add_submenu_page(
                 ZDM__SLUG,
@@ -194,9 +194,9 @@ class ZDMCore
      *
      * @return void
      */
-    public function admin_hidden_premium()
+    public function admin_premium()
     {
-        require_once(plugin_dir_path(__FILE__) . '../templates/admin_hidden_premium.php');
+        require_once(plugin_dir_path(__FILE__) . '../templates/admin_premium.php');
     }
 
     /**

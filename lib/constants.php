@@ -29,7 +29,8 @@ define('ZDM__OPTIONS', [
     'stat-single-file-last-limit'       => 5,
     'stat-single-archive-last-limit'    => 5,
     'hide-html-id'                      => 'on',
-    'download-folder-token'             => ''
+    'download-folder-token'             => '',
+    'premium-notice-time'               => 0
 ]);
 
 // MIME types

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2023-07-28 11:25+0200\n"
-"PO-Revision-Date: 2023-07-28 11:28+0200\n"
+"POT-Creation-Date: 2023-07-29 19:17+0200\n"
+"PO-Revision-Date: 2023-07-29 19:17+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -36,15 +36,15 @@ msgid "Help pages for getting started"
 msgstr "Hilfeseiten für den Einstieg"
 
 #: inc/postbox_info.php:21 inc/postbox_info_archive.php:12
-#: inc/postbox_info_files.php:11 templates/admin_hidden_premium.php:70
-#: templates/admin_menu_files.php:460 templates/admin_menu_files.php:693
-#: templates/admin_menu_files.php:738 templates/admin_menu_files.php:977
-#: templates/admin_menu_files.php:989 templates/admin_menu_files.php:1001
-#: templates/admin_menu_help.php:179 templates/admin_menu_help.php:191
-#: templates/admin_menu_help.php:203 templates/admin_menu_ziparchive.php:361
+#: inc/postbox_info_files.php:11 templates/admin_menu_files.php:460
+#: templates/admin_menu_files.php:693 templates/admin_menu_files.php:738
+#: templates/admin_menu_files.php:977 templates/admin_menu_files.php:989
+#: templates/admin_menu_files.php:1001 templates/admin_menu_help.php:179
+#: templates/admin_menu_help.php:191 templates/admin_menu_help.php:203
+#: templates/admin_menu_ziparchive.php:361
 #: templates/admin_menu_ziparchive.php:571
 #: templates/admin_menu_ziparchive.php:573
-#: templates/admin_menu_ziparchive.php:802
+#: templates/admin_menu_ziparchive.php:802 templates/admin_premium.php:70
 msgid "Shortcodes"
 msgstr "Shortcodes"
 
@@ -57,7 +57,7 @@ msgstr "Farben"
 msgid "FAQ"
 msgstr "FAQ"
 
-#: inc/postbox_info.php:28 templates/admin_hidden_premium.php:240
+#: inc/postbox_info.php:28 templates/admin_premium.php:240
 msgid ""
 "Do you have suggestions for improvement or suggestions for the plugin, then "
 "write me"
@@ -65,23 +65,23 @@ msgstr ""
 "Hast du Verbesserungsvorschläge oder Anregungen für das Plugin, dann "
 "schreibe mir"
 
-#: inc/postbox_info.php:28 templates/admin_hidden_premium.php:240
+#: inc/postbox_info.php:28 templates/admin_premium.php:240
 msgid "suggestions for improvement"
 msgstr "Verbesserungsvorschläge"
 
-#: inc/postbox_info.php:29 templates/admin_hidden_premium.php:237
+#: inc/postbox_info.php:29 templates/admin_premium.php:237
 msgid "If you like"
 msgstr "Wenn du willst"
 
-#: inc/postbox_info.php:29 templates/admin_hidden_premium.php:237
+#: inc/postbox_info.php:29 templates/admin_premium.php:237
 msgid "then write a"
 msgstr "dann schreibe eine"
 
-#: inc/postbox_info.php:29 templates/admin_hidden_premium.php:237
+#: inc/postbox_info.php:29 templates/admin_premium.php:237
 msgid "rating"
 msgstr "Bewertung"
 
-#: inc/postbox_info.php:29 templates/admin_hidden_premium.php:237
+#: inc/postbox_info.php:29 templates/admin_premium.php:237
 msgid "You would help me a lot to make the plugin known."
 msgstr "Du würdest mir sehr dabei helfen das Plugin bekannter zu machen."
 
@@ -130,15 +130,15 @@ msgstr ""
 "als Download-Button angezeigt werden oder zu einem Archiv verknüpft und in "
 "Form einer ZIP-Datei als Download-Button angezeigt werden."
 
-#: inc/postbox_premium_info.php:14 templates/admin_hidden_premium.php:21
+#: inc/postbox_premium_info.php:14 templates/admin_premium.php:21
 msgid "Free"
 msgstr "Kostenlos"
 
-#: inc/postbox_premium_info.php:22 templates/admin_hidden_premium.php:28
+#: inc/postbox_premium_info.php:22 templates/admin_premium.php:28
 msgid "Unlimited downloads"
 msgstr "Unlimitierte Downloads"
 
-#: inc/postbox_premium_info.php:25 templates/admin_hidden_premium.php:31
+#: inc/postbox_premium_info.php:25 templates/admin_premium.php:31
 msgid ""
 "Offer both single files and ZIP files in unlimited quantities for download, "
 "for maximum flexibility and user-friendliness."
@@ -147,21 +147,21 @@ msgstr ""
 "Download an, für maximale Flexibilität und Benutzerfreundlichkeit."
 
 #: inc/postbox_premium_info.php:37 lib/ZDMCore.php:579
-#: templates/admin_hidden_premium.php:42 templates/admin_menu_dashboard.php:268
-#: templates/admin_menu_files.php:816 templates/admin_menu_help.php:133
-#: templates/admin_menu_ziparchive.php:649
+#: templates/admin_menu_dashboard.php:268 templates/admin_menu_files.php:816
+#: templates/admin_menu_help.php:133 templates/admin_menu_ziparchive.php:649
+#: templates/admin_premium.php:42
 msgid "Download statistics"
 msgstr "Downloadstatistik"
 
-#: inc/postbox_premium_info.php:40 templates/admin_hidden_premium.php:45
+#: inc/postbox_premium_info.php:40 templates/admin_premium.php:45
 msgid "Capture and analyze the download frequency of your files."
 msgstr "Erfassen und analysieren Sie die Download-Häufigkeit Ihrer Dateien."
 
-#: inc/postbox_premium_info.php:52 templates/admin_hidden_premium.php:168
+#: inc/postbox_premium_info.php:52 templates/admin_premium.php:168
 msgid "Unlimited files"
 msgstr "Unbegrenzte Dateien"
 
-#: inc/postbox_premium_info.php:55 templates/admin_hidden_premium.php:171
+#: inc/postbox_premium_info.php:55 templates/admin_premium.php:171
 msgid ""
 "In the Premium version, you can pack an unlimited number of files into ZIP "
 "downloads. This lifts the limitation of the free version, which only allows "
@@ -171,19 +171,19 @@ msgstr ""
 "packen. Dies hebt die Beschränkung der kostenlosen Version auf, in der nur 5 "
 "Dateien pro ZIP möglich sind."
 
-#: inc/postbox_premium_info.php:59 templates/admin_hidden_premium.php:175
+#: inc/postbox_premium_info.php:59 templates/admin_premium.php:175
 msgid "5 files"
 msgstr "5 Dateien"
 
-#: inc/postbox_premium_info.php:62 templates/admin_hidden_premium.php:178
+#: inc/postbox_premium_info.php:62 templates/admin_premium.php:178
 msgid "Unlimited"
 msgstr "Unlimitiert"
 
-#: inc/postbox_premium_info.php:67 templates/admin_hidden_premium.php:182
+#: inc/postbox_premium_info.php:67 templates/admin_premium.php:182
 msgid "Advanced statistics"
 msgstr "Erweiterte Statistik"
 
-#: inc/postbox_premium_info.php:70 templates/admin_hidden_premium.php:185
+#: inc/postbox_premium_info.php:70 templates/admin_premium.php:185
 msgid ""
 "Utilize advanced statistics to gain deeper insights into download trends and "
 "user behavior. Exclusive for Premium users."
@@ -209,8 +209,8 @@ msgstr ""
 msgid "All the benefits of Premium at a glance"
 msgstr "Alle Vorteile von Premium im Überblick"
 
-#: inc/postbox_premium_info.php:99 templates/admin_hidden_premium.php:228
-#: templates/admin_menu_dashboard.php:19
+#: inc/postbox_premium_info.php:99 templates/admin_dashboard_widget.php:103
+#: templates/admin_menu_dashboard.php:19 templates/admin_premium.php:228
 msgid "Upgrade to Premium"
 msgstr "Upgrade auf Premium"
 
@@ -304,236 +304,256 @@ msgstr "Dein Browser unterstützt keine HTML Audio-Elemente."
 msgid "Your browser does not support HTML video elements."
 msgstr "Dein Browser unterstützt keine HTML Video-Elemente."
 
-#: lib/constants.php:81
+#: lib/ZDMPremiumNotice.php:66
+msgid ""
+"Are you excited about our Download Manager and want to support its further "
+"development? By upgrading to"
+msgstr ""
+"Sind Sie begeistert von unserem Download Manager und wollen die "
+"Weiterentwicklung unterstützen? Durch ein Upgrade auf"
+
+#: lib/ZDMPremiumNotice.php:66
+msgid ""
+", not only can you contribute to this, but you will also unlock advanced "
+"features."
+msgstr ""
+"können Sie nicht nur dazu beitragen, sondern auch erweiterte Funktionen "
+"freischalten."
+
+#: lib/ZDMPremiumNotice.php:66
+msgid "Click here and discover more."
+msgstr "Klicken Sie hier und entdecken Sie mehr."
+
+#: lib/constants.php:82
 msgid "Black"
 msgstr "Schwarz"
 
-#: lib/constants.php:82
+#: lib/constants.php:83
 msgid "Grey 5"
 msgstr "Grau 5"
 
-#: lib/constants.php:83
+#: lib/constants.php:84
 msgid "Grey 7"
 msgstr "Grau 7"
 
-#: lib/constants.php:84
+#: lib/constants.php:85
 msgid "Grey 9"
 msgstr "Grau 9"
 
-#: lib/constants.php:85
+#: lib/constants.php:86
 msgid "Grey 11"
 msgstr "Grau 11"
 
-#: lib/constants.php:86
+#: lib/constants.php:87
 msgid "Grey 13"
 msgstr "Grau 13"
 
-#: lib/constants.php:87
+#: lib/constants.php:88
 msgid "Purple"
 msgstr "Lila"
 
-#: lib/constants.php:88
+#: lib/constants.php:89
 msgid "Blue"
 msgstr "Blau"
 
-#: lib/constants.php:89
+#: lib/constants.php:90
 msgid "Green"
 msgstr "Grün"
 
-#: lib/constants.php:90
+#: lib/constants.php:91
 msgid "Yellow"
 msgstr "Gelb"
 
-#: lib/constants.php:91
+#: lib/constants.php:92
 msgid "Orange"
 msgstr "Orange"
 
-#: lib/constants.php:92
+#: lib/constants.php:93
 msgid "Red"
 msgstr "Rot"
 
-#: lib/constants.php:110 lib/constants.php:163
+#: lib/constants.php:111 lib/constants.php:164
 msgid "none"
 msgstr "keine"
 
-#: lib/constants.php:111
+#: lib/constants.php:112
 msgid "1 pixel"
 msgstr "1Pixel"
 
-#: lib/constants.php:112
+#: lib/constants.php:113
 msgid "2 pixel"
 msgstr "2 Pixel"
 
-#: lib/constants.php:113
+#: lib/constants.php:114
 msgid "3 pixel"
 msgstr "3 Pixel"
 
-#: lib/constants.php:114
+#: lib/constants.php:115
 msgid "4 pixel"
 msgstr "4 Pixel"
 
-#: lib/constants.php:115
+#: lib/constants.php:116
 msgid "5 pixel"
 msgstr "5 Pixel"
 
-#: lib/constants.php:116
+#: lib/constants.php:117
 msgid "6 pixel"
 msgstr "6 Pixel"
 
-#: lib/constants.php:117
+#: lib/constants.php:118
 msgid "7 pixel"
 msgstr "7 Pixel"
 
-#: lib/constants.php:118
+#: lib/constants.php:119
 msgid "8 pixel"
 msgstr "8 Pixel"
 
-#: lib/constants.php:119
+#: lib/constants.php:120
 msgid "9 pixel"
 msgstr "9 Pixel"
 
-#: lib/constants.php:120
+#: lib/constants.php:121
 msgid "10 pixel"
 msgstr "10 Pixel"
 
-#: lib/constants.php:164
+#: lib/constants.php:165
 msgid "Arrow 1"
 msgstr "Pfeil 1"
 
-#: lib/constants.php:165
+#: lib/constants.php:166
 msgid "Arrow 2"
 msgstr "Pfeil 2"
 
-#: lib/constants.php:166
+#: lib/constants.php:167
 msgid "Arrow 3"
 msgstr "Pfeil 3"
 
-#: lib/constants.php:167
+#: lib/constants.php:168
 msgid "Arrow 4"
 msgstr "Pfeil 4"
 
-#: lib/constants.php:168
+#: lib/constants.php:169
 msgid "Arrow 5"
 msgstr "Pfeil 5"
 
-#: lib/constants.php:169
+#: lib/constants.php:170
 msgid "Arrow 6"
 msgstr "Pfeil 6"
 
-#: lib/constants.php:170
+#: lib/constants.php:171
 msgid "Cloud download"
 msgstr "Cloud Download"
 
-#: lib/constants.php:171
+#: lib/constants.php:172
 msgid "Cloud"
 msgstr "Cloud"
 
-#: lib/constants.php:172
+#: lib/constants.php:173
 msgid "Cloud outlined"
 msgstr "Cloud Outline"
 
-#: lib/constants.php:173
+#: lib/constants.php:174
 msgid "Cloud check"
 msgstr "Cloud Check"
 
-#: lib/constants.php:174
+#: lib/constants.php:175
 msgid "Check 1"
 msgstr "Check 1"
 
-#: lib/constants.php:175
+#: lib/constants.php:176
 msgid "Check 2"
 msgstr "Check 2"
 
-#: lib/constants.php:176
+#: lib/constants.php:177
 msgid "Check 3"
 msgstr "Check 3"
 
-#: lib/constants.php:177
+#: lib/constants.php:178
 msgid "Check 4"
 msgstr "Check 4"
 
-#: lib/constants.php:178
+#: lib/constants.php:179
 msgid "Check 5"
 msgstr "Check 5"
 
-#: lib/constants.php:179
+#: lib/constants.php:180
 msgid "Check 6"
 msgstr "Check 6"
 
-#: lib/constants.php:180
+#: lib/constants.php:181
 msgid "Check 7"
 msgstr "Check 7"
 
-#: lib/constants.php:181
+#: lib/constants.php:182
 msgid "Check 8"
 msgstr "Check 8"
 
-#: lib/constants.php:182
+#: lib/constants.php:183
 msgid "Check 9"
 msgstr "Check 9"
 
-#: lib/constants.php:183
+#: lib/constants.php:184
 msgid "Check 10"
 msgstr "Check 10"
 
-#: lib/constants.php:184
+#: lib/constants.php:185
 msgid "Check 11"
 msgstr "Check 11"
 
-#: lib/constants.php:185
+#: lib/constants.php:186
 msgid "Check 12"
 msgstr "Check 12"
 
-#: lib/constants.php:186
+#: lib/constants.php:187
 msgid "Heart"
 msgstr "Herz"
 
-#: lib/constants.php:187
+#: lib/constants.php:188
 msgid "Heart outlined"
 msgstr "Herz Outline"
 
-#: lib/constants.php:188
+#: lib/constants.php:189
 msgid "Star"
 msgstr "Stern"
 
-#: lib/constants.php:189
+#: lib/constants.php:190
 msgid "Star outlined"
 msgstr "Stern Outline"
 
-#: lib/constants.php:190
+#: lib/constants.php:191
 msgid "Thumb up"
 msgstr "Daumen hoch"
 
-#: lib/constants.php:191
+#: lib/constants.php:192
 msgid "Trending up"
 msgstr "Trend nach oben"
 
-#: lib/constants.php:192
+#: lib/constants.php:193
 msgid "Trophy"
 msgstr "Trophäe"
 
-#: lib/constants.php:193
+#: lib/constants.php:194
 msgid "Fingerprint"
 msgstr "Fingerabdruck"
 
-#: lib/constants.php:194
+#: lib/constants.php:195
 msgid "Event"
 msgstr "Veranstaltung"
 
-#: lib/constants.php:195
+#: lib/constants.php:196
 msgid "PDF"
 msgstr "PDF"
 
-#: lib/constants.php:196 templates/admin_menu_files.php:452
+#: lib/constants.php:197 templates/admin_menu_files.php:452
 #: templates/admin_menu_files.php:459 templates/admin_menu_files.php:569
 msgid "File"
 msgstr "Datei"
 
-#: lib/constants.php:197
+#: lib/constants.php:198
 msgid "Code"
 msgstr "Code"
 
-#: lib/constants.php:198
+#: lib/constants.php:199
 msgid "Apps"
 msgstr "Apps"
 
@@ -613,7 +633,7 @@ msgstr "IP Adresse"
 msgid "Created"
 msgstr "Erstellt"
 
-#: templates/admin_hidden_log.php:177 templates/admin_menu_settings.php:618
+#: templates/admin_hidden_log.php:177 templates/admin_menu_settings.php:634
 msgid "Log"
 msgstr "Log"
 
@@ -627,7 +647,7 @@ msgstr "Logs filtern nach Typ"
 
 #: templates/admin_hidden_log.php:207 templates/admin_hidden_log.php:338
 #: templates/admin_menu_files.php:681 templates/admin_menu_files.php:861
-#: templates/admin_menu_settings.php:290
+#: templates/admin_menu_settings.php:291
 #: templates/admin_menu_ziparchive.php:558
 #: templates/admin_menu_ziparchive.php:694
 msgid "Update"
@@ -646,150 +666,6 @@ msgstr "Es gibt keine Log-Einträge zu diesem Typ."
 #: templates/admin_menu_files.php:1176 templates/admin_menu_ziparchive.php:1062
 msgid "To top"
 msgstr "Nach oben"
-
-#: templates/admin_hidden_premium.php:56
-msgid "GDPR compliant"
-msgstr "DSGVO-konform"
-
-#: templates/admin_hidden_premium.php:59
-msgid ""
-"By default, IP addresses of users are anonymized, enhancing privacy and "
-"compliance with data protection regulations."
-msgstr ""
-"Standardmäßig werden die IP-Adressen der Benutzer anonymisiert, was die "
-"Privatsphäre erhöht und die Einhaltung von Datenschutzvorschriften "
-"unterstützt."
-
-#: templates/admin_hidden_premium.php:73
-msgid ""
-"With the shortcodes, you can easily embed download buttons into your pages "
-"or posts. Flexibility and efficiency in one package."
-msgstr ""
-"Mit den Shortcodes können Sie ganz einfach Download-Buttons in Ihre Seiten "
-"oder Beiträge einbinden. Flexibilität und Effizienz in einem Paket."
-
-#: templates/admin_hidden_premium.php:84 templates/admin_menu_files.php:700
-#: templates/admin_menu_settings.php:334
-#: templates/admin_menu_ziparchive.php:578
-msgid "Download button"
-msgstr "Download-Button"
-
-#: templates/admin_hidden_premium.php:87
-msgid ""
-"Customize the download button for each individual download. A variety of "
-"standard colors are provided for your convenience."
-msgstr ""
-"Gestalten Sie den Download-Button für jeden einzelnen Download. Eine Auswahl "
-"an Standardfarben steht für Ihre Bequemlichkeit zur Verfügung."
-
-#: templates/admin_hidden_premium.php:98
-msgid "Custom button text"
-msgstr "Download-Button Text"
-
-#: templates/admin_hidden_premium.php:101
-msgid ""
-"Personalize your download buttons with custom text to improve user "
-"experience and make the download process more intuitive."
-msgstr ""
-"Personalisieren Sie Ihre Download-Buttons mit individuellem Text, um das "
-"Benutzererlebnis zu verbessern und den Download-Prozess intuitiver zu "
-"gestalten."
-
-#: templates/admin_hidden_premium.php:112
-msgid "Show file size"
-msgstr "Dateigröße"
-
-#: templates/admin_hidden_premium.php:115
-msgid ""
-"Display the file size in the frontend to provide users with important "
-"information about the download."
-msgstr ""
-"Zeigen Sie die Dateigröße im Frontend an, um den Benutzern wichtige "
-"Informationen über den Download zu liefern."
-
-#: templates/admin_hidden_premium.php:126
-msgid "Show download count"
-msgstr "Downloadanzahl"
-
-#: templates/admin_hidden_premium.php:129
-msgid ""
-"Display the number of downloads in the frontend, letting your users know how "
-"popular a file is."
-msgstr ""
-"Zeigen Sie die Anzahl der Downloads im Frontend an und lassen Sie Ihre "
-"Benutzer wissen, wie beliebt eine Datei ist."
-
-#: templates/admin_hidden_premium.php:140
-msgid "Embed an audio player"
-msgstr "Audioplayer einbinden"
-
-#: templates/admin_hidden_premium.php:143
-msgid ""
-"Embed an audio player into your pages or posts, providing a seamless "
-"listening experience directly on your website. No more redirecting to "
-"external pages."
-msgstr ""
-"Binden Sie einen Audioplayer in Ihre Seiten oder Beiträge ein und bieten Sie "
-"eine nahtlose Hörerfahrung direkt auf Ihrer Website. Keine Weiterleitungen "
-"mehr zu externen Seiten."
-
-#: templates/admin_hidden_premium.php:154
-msgid "Embed a video player"
-msgstr "Videoplayer einbinden"
-
-#: templates/admin_hidden_premium.php:157
-msgid ""
-"Embed a video player into your pages or posts for a seamless viewing "
-"experience directly on your website. Enhance user engagement without needing "
-"to redirect to external sites."
-msgstr ""
-"Binden Sie einen Videoplayer in Ihre Seiten oder Beiträge ein, um ein "
-"nahtloses Seherlebnis direkt auf Ihrer Website zu ermöglichen. Steigern Sie "
-"die Benutzerbindung, ohne auf externe Seiten weiterleiten zu müssen."
-
-#: templates/admin_hidden_premium.php:196
-msgid "MD5 Hash Display"
-msgstr "MD5 Hash-Anzeige"
-
-#: templates/admin_hidden_premium.php:199
-msgid ""
-"Provide MD5 hashes of your downloads in the frontend. This additional "
-"security measure gives your users confidence in the integrity of your files. "
-"Only available in the Premium version."
-msgstr ""
-"Stellen Sie MD5-Hashes Ihrer Downloads im Frontend bereit. Diese zusätzliche "
-"Sicherheitsmaßnahme gibt Ihren Benutzern Vertrauen in die Integrität Ihrer "
-"Dateien. Nur in der Premium-Version verfügbar."
-
-#: templates/admin_hidden_premium.php:210
-msgid "SHA1 Hash Display"
-msgstr "SHA1 Hash-Anzeige"
-
-#: templates/admin_hidden_premium.php:213
-msgid ""
-"Provide SHA1 hashes of your downloads in the frontend. This additional "
-"security measure gives your users confidence in the integrity of your files. "
-"Only available in the Premium version."
-msgstr ""
-"Stellen Sie SHA1-Hashes Ihrer Downloads im Frontend bereit. Diese "
-"zusätzliche Sicherheitsmaßnahme gibt Ihren Benutzern Vertrauen in die "
-"Integrität Ihrer Dateien. Nur in der Premium-Version verfügbar."
-
-#: templates/admin_hidden_premium.php:226
-msgid ""
-"Unlock the full potential of Z-Downloads. More control, more features, more "
-"success. Upgrade to Premium now!"
-msgstr ""
-"Nutzen Sie das volle Potenzial von Z-Downloads. Mehr Kontrolle, mehr "
-"Funktionen, mehr Erfolg. Steigen Sie jetzt auf Premium um!"
-
-#: templates/admin_hidden_premium.php:236
-msgid "Write a review"
-msgstr "Schreibe eine Bewertung"
-
-#: templates/admin_hidden_premium.php:239
-msgid "Suggestions for improvement"
-msgstr "Verbesserungsvorschläge"
 
 #: templates/admin_menu_add_archive.php:115
 msgid "Name and ZIP file name cannot be empty.."
@@ -907,16 +783,37 @@ msgstr "Anzahl an bisherigen Downloads."
 msgid "Link files"
 msgstr "Verknüpfte Dateien"
 
-#: templates/admin_menu_add_archive.php:245
+#: templates/admin_menu_add_archive.php:233
+#: templates/admin_menu_ziparchive.php:487
+msgid ""
+"In the Premium version, you can pack an unlimited number of files into ZIP "
+"downloads. This lifts the limitation of the free version, which only allows "
+"5 files per ZIP. Removing linked files does not delete them."
+msgstr ""
+"In der Premium-Version können Sie unbegrenzt viele Dateien in ZIP-Downloads "
+"packen. Dies hebt die Beschränkung der kostenlosen Version auf, in der nur 5 "
+"Dateien pro ZIP möglich sind. Das Entfernen verlinkter Dateien führt nicht "
+"zu deren Löschung."
+
+#: templates/admin_menu_add_archive.php:240
+#: templates/admin_menu_ziparchive.php:494
+msgid ""
+"Link an unlimited number of files. Removing linked files does not delete "
+"them."
+msgstr ""
+"Verknüpfen Sie eine unbegrenzte Anzahl von Dateien. Das Entfernen "
+"verknüpfter Dateien führt nicht zu deren Löschung."
+
+#: templates/admin_menu_add_archive.php:263
 msgid "For more file shortcuts activate"
 msgstr "Für mehr Datei-Verknüpfungen aktiviere"
 
-#: templates/admin_menu_add_archive.php:259
-#: templates/admin_menu_settings.php:680
+#: templates/admin_menu_add_archive.php:277
+#: templates/admin_menu_settings.php:696
 msgid "Save"
 msgstr "Speichern"
 
-#: templates/admin_menu_add_archive.php:260
+#: templates/admin_menu_add_archive.php:278
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -978,7 +875,7 @@ msgstr "Beliebte Downloads"
 
 #: templates/admin_menu_dashboard.php:163
 #: templates/admin_menu_dashboard.php:209 templates/admin_menu_files.php:462
-#: templates/admin_menu_settings.php:534
+#: templates/admin_menu_settings.php:550
 #: templates/admin_menu_ziparchive.php:362
 msgid "Statistics"
 msgstr "Statistik"
@@ -1174,6 +1071,11 @@ msgstr "Alle Shortcodes"
 msgid "overview with explanation and examples."
 msgstr "im Überblick mit Erklärung und Beispielen."
 
+#: templates/admin_menu_files.php:700 templates/admin_menu_settings.php:350
+#: templates/admin_menu_ziparchive.php:578 templates/admin_premium.php:84
+msgid "Download button"
+msgstr "Download-Button"
+
 #: templates/admin_menu_files.php:702 templates/admin_menu_files.php:709
 #: templates/admin_menu_files.php:716 templates/admin_menu_files.php:726
 #: templates/admin_menu_files.php:736 templates/admin_menu_files.php:755
@@ -1239,7 +1141,7 @@ msgstr "MD5 Hashwert ausgeben"
 
 #: templates/admin_menu_files.php:745 templates/admin_menu_files.php:746
 #: templates/admin_menu_files.php:867 templates/admin_menu_help.php:17
-#: templates/admin_menu_settings.php:543
+#: templates/admin_menu_settings.php:559
 #: templates/admin_menu_ziparchive.php:608
 #: templates/admin_menu_ziparchive.php:609
 msgid "feature"
@@ -1589,7 +1491,7 @@ msgstr "Datei gelöscht!"
 msgid "First steps"
 msgstr "Erste Schritte"
 
-#: templates/admin_menu_help.php:31 templates/admin_menu_settings.php:577
+#: templates/admin_menu_help.php:31 templates/admin_menu_settings.php:593
 msgid "Advanced"
 msgstr "Erweitert"
 
@@ -1731,7 +1633,7 @@ msgstr ""
 "Dieser Bereich ist auch in Archive und Dateien aufgeteilt und zeigt dir die "
 "fünf beliebtesten Downloads."
 
-#: templates/admin_menu_help.php:144 templates/admin_menu_settings.php:488
+#: templates/admin_menu_help.php:144 templates/admin_menu_settings.php:504
 #: templates/admin_menu_ziparchive.php:808
 msgid "Lists"
 msgstr "Listen"
@@ -1764,7 +1666,7 @@ msgstr ""
 "Diese speziellen Details überschreiben die Standardwerte. Alle unten "
 "aufgeführten Stile können auch miteinander kombiniert werden."
 
-#: templates/admin_menu_help.php:152 templates/admin_menu_settings.php:347
+#: templates/admin_menu_help.php:152 templates/admin_menu_settings.php:363
 #: templates/admin_menu_ziparchive.php:816
 msgid "Style"
 msgstr "Stil"
@@ -2062,8 +1964,8 @@ msgstr ""
 "Du kannst jetzt das Plugin in der Plugin-Übersicht deaktivieren und "
 "deinstallieren oder du lädst neue Dateien hoch und beginnst ganz frisch."
 
-#: templates/admin_menu_settings.php:266 templates/admin_menu_settings.php:691
-#: templates/admin_menu_settings.php:698 templates/admin_menu_settings.php:705
+#: templates/admin_menu_settings.php:266 templates/admin_menu_settings.php:707
+#: templates/admin_menu_settings.php:714 templates/admin_menu_settings.php:721
 msgid "Back to settings"
 msgstr "Zurück zu den Einstellungen"
 
@@ -2075,62 +1977,62 @@ msgstr "ist aktiviert"
 msgid "license key"
 msgstr "Lizenzschlüssel"
 
-#: templates/admin_menu_settings.php:294
-msgid "Activate"
-msgstr "Aktivieren"
-
-#: templates/admin_menu_settings.php:301
+#: templates/admin_menu_settings.php:292
 msgid "Remove license key"
 msgstr "Lizenzschlüssel entfernen"
 
-#: templates/admin_menu_settings.php:305
+#: templates/admin_menu_settings.php:316
+msgid "Activate"
+msgstr "Aktivieren"
+
+#: templates/admin_menu_settings.php:321
 msgid "Don't wait any longer - unlock the full potential of"
 msgstr "Warte nicht länger - schalte das volle Potential von"
 
-#: templates/admin_menu_settings.php:305
+#: templates/admin_menu_settings.php:321
 msgid "and get"
 msgstr "frei und hole dir heute noch"
 
-#: templates/admin_menu_settings.php:305
+#: templates/admin_menu_settings.php:321
 msgid "today! Learn more at"
 msgstr "! Erfahre mehr auf"
 
-#: templates/admin_menu_settings.php:312
+#: templates/admin_menu_settings.php:328
 msgid "Licensed for"
 msgstr "Lizensiert für"
 
-#: templates/admin_menu_settings.php:318
+#: templates/admin_menu_settings.php:334
 msgid "Purchased"
 msgstr "Erworben"
 
-#: templates/admin_menu_settings.php:339
+#: templates/admin_menu_settings.php:355
 msgid "Standard text"
 msgstr "Standardtext"
 
-#: templates/admin_menu_settings.php:343
+#: templates/admin_menu_settings.php:359
 msgid ""
 "This is the default text, but this can be changed individually per download."
 msgstr ""
 "Das ist der Standardtext, dieser kann aber je Download individuell geändert "
 "werden."
 
-#: templates/admin_menu_settings.php:368
+#: templates/admin_menu_settings.php:384
 msgid "Choose from different button colors the default value for buttons."
 msgstr "Wähle aus verschiedenen Button-Farben den Standardwert für Buttons."
 
-#: templates/admin_menu_settings.php:377
+#: templates/admin_menu_settings.php:393
 msgid "Outline"
 msgstr "Outline"
 
-#: templates/admin_menu_settings.php:379
+#: templates/admin_menu_settings.php:395
 msgid "This option shows the button as a frame."
 msgstr "Diese Option zeigt den Button als Rahmen."
 
-#: templates/admin_menu_settings.php:383
+#: templates/admin_menu_settings.php:399
 msgid "Round corners"
 msgstr "Runde Ecken"
 
-#: templates/admin_menu_settings.php:401
+#: templates/admin_menu_settings.php:417
 msgid ""
 "If \"none\" is selected then the default value of your theme will be used, "
 "the button will remain square."
@@ -2138,79 +2040,79 @@ msgstr ""
 "Wenn \"keine\" ausgewählt ist, dann wird der Standardwert deines Themes "
 "verwendet, der Button bleibt eckig."
 
-#: templates/admin_menu_settings.php:405
+#: templates/admin_menu_settings.php:421
 msgid "Icon"
 msgstr "Icon"
 
-#: templates/admin_menu_settings.php:456
+#: templates/admin_menu_settings.php:472
 msgid "Icon position"
 msgstr "Icon Position"
 
-#: templates/admin_menu_settings.php:461
+#: templates/admin_menu_settings.php:477
 msgid "Left"
 msgstr "Links"
 
-#: templates/admin_menu_settings.php:464
+#: templates/admin_menu_settings.php:480
 msgid "Right"
 msgstr "Rechts"
 
-#: templates/admin_menu_settings.php:467
+#: templates/admin_menu_settings.php:483
 msgid "Choose the position of the icon."
 msgstr "Wähle die Position des Icon."
 
-#: templates/admin_menu_settings.php:476
+#: templates/admin_menu_settings.php:492
 msgid "Only icon"
 msgstr "Nur Icon"
 
-#: templates/admin_menu_settings.php:478
+#: templates/admin_menu_settings.php:494
 msgid "This option displays only the icon without text."
 msgstr "Diese Option zeigt nur das Icon ohne Text an."
 
-#: templates/admin_menu_settings.php:493
+#: templates/admin_menu_settings.php:509
 msgid "List style"
 msgstr "Listenstil"
 
-#: templates/admin_menu_settings.php:498
+#: templates/admin_menu_settings.php:514
 msgid "Rows"
 msgstr "Zeilen"
 
-#: templates/admin_menu_settings.php:501
+#: templates/admin_menu_settings.php:517
 msgid "Unordered list (ul)"
 msgstr "Ungeordnete Liste (ul)"
 
-#: templates/admin_menu_settings.php:504
+#: templates/admin_menu_settings.php:520
 msgid "Ordered list (ol)"
 msgstr "Geordnete Liste (ol)"
 
-#: templates/admin_menu_settings.php:506
+#: templates/admin_menu_settings.php:522
 msgid "Specifies how the list is output."
 msgstr "Gibt an, wie die Liste ausgegeben wird."
 
-#: templates/admin_menu_settings.php:510
+#: templates/admin_menu_settings.php:526
 msgid "Bold text"
 msgstr "Fetter Text"
 
-#: templates/admin_menu_settings.php:515
+#: templates/admin_menu_settings.php:531
 msgid "Makes the text of the list items bold."
 msgstr "Macht den Text der Listenelemente fett."
 
-#: templates/admin_menu_settings.php:519
+#: templates/admin_menu_settings.php:535
 msgid "List items as links"
 msgstr "Listenelemente als Links"
 
-#: templates/admin_menu_settings.php:524
+#: templates/admin_menu_settings.php:540
 msgid "Each list item is a clickable link."
 msgstr "Jedes Listenelement ist ein anklickbarer Link."
 
-#: templates/admin_menu_settings.php:540
+#: templates/admin_menu_settings.php:556
 msgid "Last downloads limit"
 msgstr "Letzte Downloads Limit"
 
-#: templates/admin_menu_settings.php:558
+#: templates/admin_menu_settings.php:574
 msgid "Setting for files"
 msgstr "Einstellung für Dateien"
 
-#: templates/admin_menu_settings.php:560
+#: templates/admin_menu_settings.php:576
 msgid ""
 "Determine the number of recent downloads that is displayed on the file "
 "details page in the Statistics tab."
@@ -2218,11 +2120,11 @@ msgstr ""
 "Bestimme die Anzahl der letzten Downloads die in der Datei-Detailseite im "
 "Tab Statistik angezeigt wird."
 
-#: templates/admin_menu_settings.php:565
+#: templates/admin_menu_settings.php:581
 msgid "Setting for archives"
 msgstr "Einstellung für Archive"
 
-#: templates/admin_menu_settings.php:567
+#: templates/admin_menu_settings.php:583
 msgid ""
 "Determine the number of recent downloads that is displayed on the archive "
 "detail page in the Statistics tab."
@@ -2230,57 +2132,57 @@ msgstr ""
 "Bestimme die Anzahl der letzten Downloads die in der Archiv-Detailseite im "
 "Tab Statistik angezeigt wird."
 
-#: templates/admin_menu_settings.php:582
+#: templates/admin_menu_settings.php:598
 msgid "Direct URL to PDFs"
 msgstr "Direkte URL zu PDFs"
 
-#: templates/admin_menu_settings.php:587
+#: templates/admin_menu_settings.php:603
 msgid "The user is taken to the direct file path."
 msgstr "Der Benutzer wird zum direkten Dateipfad weitergeleitet."
 
-#: templates/admin_menu_settings.php:591
+#: templates/admin_menu_settings.php:607
 msgid "Censor the IP address"
 msgstr "IP-Adresse zensieren"
 
-#: templates/admin_menu_settings.php:596
+#: templates/admin_menu_settings.php:612
 msgid "Censored the IP address during the download."
 msgstr "Zensiert die IP-Adresse beim Download."
 
-#: templates/admin_menu_settings.php:600
+#: templates/admin_menu_settings.php:616
 msgid "Allow duplicates"
 msgstr "Duplikate zulassen"
 
-#: templates/admin_menu_settings.php:605
+#: templates/admin_menu_settings.php:621
 msgid "Allow files that have already been uploaded to be added again."
 msgstr ""
 "Zulassen, dass bereits hochgeladene Dateien nochmals hinzugefügt werden."
 
-#: templates/admin_menu_settings.php:609
+#: templates/admin_menu_settings.php:625
 msgid "Hide HTML id Attribute"
 msgstr "HTML id Attribut ausblenden"
 
-#: templates/admin_menu_settings.php:614
+#: templates/admin_menu_settings.php:630
 msgid "Hides the HTML id Attribute when outputting button, audio and video."
 msgstr ""
 "Versteckt das HTML id Attribut bei der Ausgabe von Button, Audio und Video."
 
-#: templates/admin_menu_settings.php:620
+#: templates/admin_menu_settings.php:636
 msgid "Show log"
 msgstr "Zeige Log"
 
-#: templates/admin_menu_settings.php:624
+#: templates/admin_menu_settings.php:640
 msgid "Download folder token"
 msgstr "Download Ordner Token"
 
-#: templates/admin_menu_settings.php:627
+#: templates/admin_menu_settings.php:643
 msgid "Generate new token"
 msgstr "Neuen Token generieren"
 
-#: templates/admin_menu_settings.php:628
+#: templates/admin_menu_settings.php:644
 msgid "Complete folder name"
 msgstr "Kompletter Ordnername"
 
-#: templates/admin_menu_settings.php:629
+#: templates/admin_menu_settings.php:645
 msgid ""
 "The download folder is not publicly visible unless you have activated "
 "\"Direct URL\" for certain files."
@@ -2288,19 +2190,19 @@ msgstr ""
 "Der Download Ordner ist nicht öffentlich sichtbar, ausser du hast \"Direkte "
 "URL\" zu gewissen Dateien aktiviert."
 
-#: templates/admin_menu_settings.php:630
+#: templates/admin_menu_settings.php:646
 msgid "You can generate the token again at any time without hesitation."
 msgstr "Du kannst den Token jederzeit bedenkenlos neu generieren."
 
-#: templates/admin_menu_settings.php:634 templates/admin_menu_settings.php:636
+#: templates/admin_menu_settings.php:650 templates/admin_menu_settings.php:652
 msgid "Reset settings"
 msgstr "Einstellungen zurücksetzen"
 
-#: templates/admin_menu_settings.php:637
+#: templates/admin_menu_settings.php:653
 msgid "Here you can reset all settings to factory settings.."
 msgstr "Hier kannst du alle Einstellungen auf Werkseinstellungen zurücksetzen."
 
-#: templates/admin_menu_settings.php:639
+#: templates/admin_menu_settings.php:655
 msgid ""
 "This means that the premium license, button settings such as standard text, "
 "style, round corners, icons and all other settings are reset."
@@ -2309,23 +2211,23 @@ msgstr ""
 "Style, Runde Ecken, Icons und alle anderen Einstellungen werden "
 "zurückgesetzt."
 
-#: templates/admin_menu_settings.php:640
+#: templates/admin_menu_settings.php:656
 msgid "The download folder token is also regenerated."
 msgstr "Auch der Download Ordner Token wird neu generiert."
 
-#: templates/admin_menu_settings.php:651
+#: templates/admin_menu_settings.php:667
 msgid "uninstall"
 msgstr "deinstallieren"
 
-#: templates/admin_menu_settings.php:653
+#: templates/admin_menu_settings.php:669
 msgid "Path of"
 msgstr "Pfad von"
 
-#: templates/admin_menu_settings.php:653
+#: templates/admin_menu_settings.php:669
 msgid "upload folder for files, ZIP archives and cache"
 msgstr "Pfad von Z-Downloads-Upload-Ordner für Dateien, ZIP-Archive und Cache"
 
-#: templates/admin_menu_settings.php:659
+#: templates/admin_menu_settings.php:675
 msgid ""
 "The folder does not yet exist and is automatically created when a file is "
 "uploaded."
@@ -2333,11 +2235,11 @@ msgstr ""
 "Der Ordner existiert noch nicht und wird beim Hochladen einer Datei "
 "automatisch erstellt."
 
-#: templates/admin_menu_settings.php:664
+#: templates/admin_menu_settings.php:680
 msgid "Attention before uninstalling the plugin"
 msgstr "Achtung vor dem deinstallieren des Plugins"
 
-#: templates/admin_menu_settings.php:665
+#: templates/admin_menu_settings.php:681
 msgid ""
 "If you uninstall the Z-Downloads-Plugin all files and ZIP-archives remain in "
 "the above path, if you want to delete all files and ZIP-archives you have "
@@ -2348,24 +2250,24 @@ msgstr ""
 "Archive die du erstellt hast löschen willst, dann klicke unten auf "
 "\"LÖSCHEN\""
 
-#: templates/admin_menu_settings.php:666
+#: templates/admin_menu_settings.php:682
 msgid "This process is irreplaceable and can not be undone."
 msgstr ""
 "Dieser Vorgang ist unwiederuflich und kann nicht rückgängig gemacht werden."
 
-#: templates/admin_menu_settings.php:669
+#: templates/admin_menu_settings.php:685
 msgid "DELETE"
 msgstr "LÖSCHEN"
 
-#: templates/admin_menu_settings.php:690
+#: templates/admin_menu_settings.php:706
 msgid "License key deleted!"
 msgstr "Lizenzschlüssel gelöscht!"
 
-#: templates/admin_menu_settings.php:697
+#: templates/admin_menu_settings.php:713
 msgid "Download folder token updated!"
 msgstr "Download Ordner Token aktualisiert!"
 
-#: templates/admin_menu_settings.php:704
+#: templates/admin_menu_settings.php:720
 msgid "Settings successfully reset!"
 msgstr "Einstellungen erfolgreich zurückgesetzt!"
 
@@ -2446,25 +2348,6 @@ msgstr ""
 msgid "Linked files"
 msgstr "Verknüpfte Dateien"
 
-#: templates/admin_menu_ziparchive.php:487
-msgid ""
-"In the Premium version, you can pack an unlimited number of files into ZIP "
-"downloads. This lifts the limitation of the free version, which only allows "
-"5 files per ZIP. Removing linked files does not delete them."
-msgstr ""
-"In der Premium-Version können Sie unbegrenzt viele Dateien in ZIP-Downloads "
-"packen. Dies hebt die Beschränkung der kostenlosen Version auf, in der nur 5 "
-"Dateien pro ZIP möglich sind. Das Entfernen verlinkter Dateien führt nicht "
-"zu deren Löschung."
-
-#: templates/admin_menu_ziparchive.php:494
-msgid ""
-"Link an unlimited number of files. Removing linked files does not delete "
-"them."
-msgstr ""
-"Verknüpfen Sie eine unbegrenzte Anzahl von Dateien. Das Entfernen "
-"verknüpfter Dateien führt nicht zu deren Löschung."
-
 #: templates/admin_menu_ziparchive.php:506
 msgid ""
 "If no file is assigned, then no download button is displayed in the frontend."
@@ -2538,6 +2421,147 @@ msgstr "Aktualisiere den Cache um die Datei herunterzuladen"
 #: templates/admin_menu_ziparchive.php:1003
 msgid "No files are linked to the archive."
 msgstr "Es sind keine Dateien mit dem Archiv verknüpft."
+
+#: templates/admin_premium.php:56
+msgid "GDPR compliant"
+msgstr "DSGVO-konform"
+
+#: templates/admin_premium.php:59
+msgid ""
+"By default, IP addresses of users are anonymized, enhancing privacy and "
+"compliance with data protection regulations."
+msgstr ""
+"Standardmäßig werden die IP-Adressen der Benutzer anonymisiert, was die "
+"Privatsphäre erhöht und die Einhaltung von Datenschutzvorschriften "
+"unterstützt."
+
+#: templates/admin_premium.php:73
+msgid ""
+"With the shortcodes, you can easily embed download buttons into your pages "
+"or posts. Flexibility and efficiency in one package."
+msgstr ""
+"Mit den Shortcodes können Sie ganz einfach Download-Buttons in Ihre Seiten "
+"oder Beiträge einbinden. Flexibilität und Effizienz in einem Paket."
+
+#: templates/admin_premium.php:87
+msgid ""
+"Customize the download button for each individual download. A variety of "
+"standard colors are provided for your convenience."
+msgstr ""
+"Gestalten Sie den Download-Button für jeden einzelnen Download. Eine Auswahl "
+"an Standardfarben steht für Ihre Bequemlichkeit zur Verfügung."
+
+#: templates/admin_premium.php:98
+msgid "Custom button text"
+msgstr "Download-Button Text"
+
+#: templates/admin_premium.php:101
+msgid ""
+"Personalize your download buttons with custom text to improve user "
+"experience and make the download process more intuitive."
+msgstr ""
+"Personalisieren Sie Ihre Download-Buttons mit individuellem Text, um das "
+"Benutzererlebnis zu verbessern und den Download-Prozess intuitiver zu "
+"gestalten."
+
+#: templates/admin_premium.php:112
+msgid "Show file size"
+msgstr "Dateigröße"
+
+#: templates/admin_premium.php:115
+msgid ""
+"Display the file size in the frontend to provide users with important "
+"information about the download."
+msgstr ""
+"Zeigen Sie die Dateigröße im Frontend an, um den Benutzern wichtige "
+"Informationen über den Download zu liefern."
+
+#: templates/admin_premium.php:126
+msgid "Show download count"
+msgstr "Downloadanzahl"
+
+#: templates/admin_premium.php:129
+msgid ""
+"Display the number of downloads in the frontend, letting your users know how "
+"popular a file is."
+msgstr ""
+"Zeigen Sie die Anzahl der Downloads im Frontend an und lassen Sie Ihre "
+"Benutzer wissen, wie beliebt eine Datei ist."
+
+#: templates/admin_premium.php:140
+msgid "Embed an audio player"
+msgstr "Audioplayer einbinden"
+
+#: templates/admin_premium.php:143
+msgid ""
+"Embed an audio player into your pages or posts, providing a seamless "
+"listening experience directly on your website. No more redirecting to "
+"external pages."
+msgstr ""
+"Binden Sie einen Audioplayer in Ihre Seiten oder Beiträge ein und bieten Sie "
+"eine nahtlose Hörerfahrung direkt auf Ihrer Website. Keine Weiterleitungen "
+"mehr zu externen Seiten."
+
+#: templates/admin_premium.php:154
+msgid "Embed a video player"
+msgstr "Videoplayer einbinden"
+
+#: templates/admin_premium.php:157
+msgid ""
+"Embed a video player into your pages or posts for a seamless viewing "
+"experience directly on your website. Enhance user engagement without needing "
+"to redirect to external sites."
+msgstr ""
+"Binden Sie einen Videoplayer in Ihre Seiten oder Beiträge ein, um ein "
+"nahtloses Seherlebnis direkt auf Ihrer Website zu ermöglichen. Steigern Sie "
+"die Benutzerbindung, ohne auf externe Seiten weiterleiten zu müssen."
+
+#: templates/admin_premium.php:196
+msgid "MD5 Hash Display"
+msgstr "MD5 Hash-Anzeige"
+
+#: templates/admin_premium.php:199
+msgid ""
+"Provide MD5 hashes of your downloads in the frontend. This additional "
+"security measure gives your users confidence in the integrity of your files. "
+"Only available in the Premium version."
+msgstr ""
+"Stellen Sie MD5-Hashes Ihrer Downloads im Frontend bereit. Diese zusätzliche "
+"Sicherheitsmaßnahme gibt Ihren Benutzern Vertrauen in die Integrität Ihrer "
+"Dateien. Nur in der Premium-Version verfügbar."
+
+#: templates/admin_premium.php:210
+msgid "SHA1 Hash Display"
+msgstr "SHA1 Hash-Anzeige"
+
+#: templates/admin_premium.php:213
+msgid ""
+"Provide SHA1 hashes of your downloads in the frontend. This additional "
+"security measure gives your users confidence in the integrity of your files. "
+"Only available in the Premium version."
+msgstr ""
+"Stellen Sie SHA1-Hashes Ihrer Downloads im Frontend bereit. Diese "
+"zusätzliche Sicherheitsmaßnahme gibt Ihren Benutzern Vertrauen in die "
+"Integrität Ihrer Dateien. Nur in der Premium-Version verfügbar."
+
+#: templates/admin_premium.php:226
+msgid ""
+"Unlock the full potential of Z-Downloads. More control, more features, more "
+"success. Upgrade to Premium now!"
+msgstr ""
+"Nutzen Sie das volle Potenzial von Z-Downloads. Mehr Kontrolle, mehr "
+"Funktionen, mehr Erfolg. Steigen Sie jetzt auf Premium um!"
+
+#: templates/admin_premium.php:236
+msgid "Write a review"
+msgstr "Schreibe eine Bewertung"
+
+#: templates/admin_premium.php:239
+msgid "Suggestions for improvement"
+msgstr "Verbesserungsvorschläge"
+
+#~ msgid "you can contribute to this."
+#~ msgstr "können Sie dazu beitragen."
 
 #~ msgid "More info"
 #~ msgstr "Mehr Infos"

@@ -66,6 +66,7 @@ if (class_exists('ZDMCore') === false) {
     $zdmCore->register();
     $zdmCore->download();
 
+    require_once(dirname(__FILE__) . '/lib/ZDMPremiumNotice.php');
     require_once(dirname(__FILE__) . '/lib/ZDMStat.php');
 }
 
