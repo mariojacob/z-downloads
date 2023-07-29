@@ -1566,13 +1566,15 @@ class ZDMCore
                 array(
                     'zip'   => '',
                     'file'  => '',
-                    'align' => ''
+                    'align' => '',
+                    'url'   => ''
                 ),
                 $atts
             );
 
             $zip = htmlspecialchars($atts['zip']);
             $file = htmlspecialchars($atts['file']);
+            $url = esc_url($atts['url']);
 
             if (htmlspecialchars($atts['align']) == 'center')
                 $align = ' zdm-center';
@@ -1711,6 +1713,41 @@ class ZDMCore
                     return '';
                 }
             } // end if ($file != '')
+
+            ////////////////////
+            // URL
+            ////////////////////
+            if (self::licence() && $url != '') {
+                $options = get_option('zdm_options');
+
+                // Text-Button bestimmen
+                if ($options['download-btn-icon-only'] != '') {
+                    $download_text = '';
+                    $icon_class = '  zdm-btn-icon-only';
+                } else {
+
+                    $download_text = $options['download-btn-text'];
+
+                    if ($options['download-btn-icon-position'] == 'left')
+                        $icon_class = 'zdm-btn-icon zdm-mr-2';
+                    else
+                        $icon_class = 'zdm-btn-icon zdm-ml-2';
+                }
+
+                // Ausgabe
+                if ($options['download-btn-icon'] != 'none') {
+                    $icon = '<span class="material-icons-round ' . $icon_class . '">' . $options['download-btn-icon'] . '</span>';
+                } else {
+                    $icon = '';
+                }
+
+                if ($options['download-btn-icon-position'] == 'left')
+                    $icon_and_text = $icon . $download_text;
+                else
+                    $icon_and_text = $download_text . $icon;
+
+                return '<a href="' . $url . '" id="zdmBtn" class="' . self::download_button_class() . $align . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
+            }
         }
     }
 
