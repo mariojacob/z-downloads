@@ -409,6 +409,7 @@ ion-icon {
 .zdm-table-premium-mini td,
 .zdm-table-premium-mini th {
     padding: 0.5rem;
+    border-bottom: 1px solid #eee;
 }
 .zdm-table-premium-xl td,
 .zdm-table-premium-xl th {

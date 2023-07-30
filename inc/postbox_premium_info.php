@@ -64,10 +64,10 @@ if (!defined('ABSPATH'))
                     <td valign="middle"></td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row"><?= esc_html__('Advanced statistics', 'zdm') ?>
+                    <th scope="row"><?= esc_html__('External downloads', 'zdm') ?>
                         <div class="zdm-tooltip">
                             <span class="material-icons-outlined zdm-md-1 zdm-color-grey7">info</span>
-                            <span class="zdm-tooltiptext"><?= esc_html__('Utilize advanced statistics to gain deeper insights into download trends and user behavior. Exclusive for Premium users.', 'zdm') ?></span>
+                            <span class="zdm-tooltiptext"><?= esc_html__('Seamlessly integrates external files for download on your site. Example:', 'zdm') ?> <code>[zdownload url="https://example.com/file.zip"]</code>.</span>
                         </div>
                     </th>
                     <td valign="middle">
@@ -79,10 +79,10 @@ if (!defined('ABSPATH'))
                     <td valign="middle"></td>
                 </tr>
                 <tr valign="top">
-                    <th scope="row"><?= esc_html__('MD5 and SHA1 Hash Display', 'zdm') ?>
+                    <th scope="row"><?= esc_html__('Advanced statistics', 'zdm') ?>
                         <div class="zdm-tooltip">
                             <span class="material-icons-outlined zdm-md-1 zdm-color-grey7">info</span>
-                            <span class="zdm-tooltiptext"><?= esc_html__('Provide MD5 and SHA1 hashes of your downloads in the frontend. This additional security measure gives your users confidence in the integrity of your files. Only available in the Premium version.', 'zdm') ?></span>
+                            <span class="zdm-tooltiptext"><?= esc_html__('Utilize advanced statistics to gain deeper insights into download trends and user behavior. Exclusive for Premium users.', 'zdm') ?></span>
                         </div>
                     </th>
                     <td valign="middle">
