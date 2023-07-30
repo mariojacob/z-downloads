@@ -179,6 +179,20 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 </td>
                             </tr>
                             <tr valign="top">
+                                <th scope="row"><?= esc_html__('External downloads', 'zdm') ?>
+                                    <div class="zdm-tooltip">
+                                        <span class="material-icons-outlined zdm-md-1 zdm-color-grey7">info</span>
+                                        <span class="zdm-tooltiptext"><?= esc_html__('Seamlessly integrates external files for download on your site. Example:', 'zdm') ?> <code>[zdownload url="https://example.com/file.zip"]</code>.</span>
+                                    </div>
+                                </th>
+                                <td valign="middle">
+                                    <span class="material-icons-outlined zdm-color-red">close</span>
+                                </td>
+                                <td valign="middle">
+                                    <span class="material-icons-outlined zdm-color-green">done</span>
+                                </td>
+                            </tr>
+                            <tr valign="top">
                                 <th scope="row"><?= esc_html__('Advanced statistics', 'zdm') ?>
                                     <div class="zdm-tooltip">
                                         <span class="material-icons-outlined zdm-md-1 zdm-color-grey7">info</span>

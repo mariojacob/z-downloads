@@ -60,6 +60,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
             <div class="postbox">
                 <div class="inside">
+                    <h3><?= esc_html__('Download button for external Files as shortcode', 'zdm') ?></h3>
+                    <hr>
+                    <p><?= esc_html__('Download Button for External Files as Shortcode: This feature allows you to embed external files directly into your webpage with a simple shortcode. Users can then download these files directly from your site, enhancing the user experience by avoiding the need to navigate to an external page.', 'zdm') ?></p>
+                    <p><code>[zdownload url="https://example.com/file.zip"]</code></p>
+                </div>
+            </div>
+
+            <div class="postbox">
+                <div class="inside">
                     <h3><?= esc_html__('Download button for file with shortcode', 'zdm') ?></h3>
                     <hr>
                     <p><?= esc_html__('To show a file as a button on a page or post click on', 'zdm') ?> <?= ZDM__TITLE ?> <?= esc_html__('menu on', 'zdm') ?> "<a href="admin.php?page=<?= ZDM__SLUG ?>-files"><?= esc_html__('Files', 'zdm') ?></a>".</p>
