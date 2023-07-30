@@ -260,7 +260,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                                 <?php }
                                             } else {
                                                 ?>
-                                                <p><?= esc_html__('For more file shortcuts activate', 'zdm') ?> <a href="<?= ZDM__PRO_URL ?>" target="_blank" title="code.urban-base.net"><?= ZDM__PRO ?></a>.</p>
+                                                <p><?= esc_html__('In the free version, the number of files per archive is limited to 5.', 'zdm') ?> <?php ZDMCore::premium_badge(); ?></p>
                                             <?php
                                             } ?>
                                         </div>

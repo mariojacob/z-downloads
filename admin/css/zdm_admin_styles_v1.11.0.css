@@ -432,3 +432,17 @@ ion-icon {
     min-width: 200px;
     width: 29%;
 }
+
+.premium-badge {
+    display: inline-block;
+    padding: 0.2em 0.6em;
+    font-size: 75%;
+    font-weight: 700;
+    color: #fff;
+    background-color: #00caff;
+    border-radius: 10px;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+}

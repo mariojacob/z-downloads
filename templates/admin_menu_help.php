@@ -62,6 +62,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <div class="inside">
                     <h3><?= esc_html__('Download button for external Files as shortcode', 'zdm') ?></h3>
                     <hr>
+                    <?php ZDMCore::premium_badge(); ?>
                     <p><?= esc_html__('Download Button for External Files as Shortcode: This feature allows you to embed external files directly into your webpage with a simple shortcode. Users can then download these files directly from your site, enhancing the user experience by avoiding the need to navigate to an external page.', 'zdm') ?></p>
                     <p><code>[zdownload url="https://example.com/file.zip"]</code></p>
                 </div>
@@ -223,10 +224,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 <div class="inside">
                     <h3><?= esc_html__('Output hash value of file with shortcode', 'zdm') ?></h3>
                     <hr>
-                    <h4><?= esc_html__('MD5', 'zdm') ?> <?= $zdm_premium_text ?></h4>
+                    <h4><?= esc_html__('MD5', 'zdm') ?> <?php ZDMCore::premium_badge(); ?></h4>
                     <p><?= esc_html__('You can output the MD5 hash value of a file or ZIP archive.', 'zdm') ?></p>
                     <p><code>[zdownload_meta file="123" type="hash-md5"]</code> <?= esc_html__('or', 'zdm') ?> <code>[zdownload_meta zip="123" type="hash-md5"]</code></p>
-                    <h4><?= esc_html__('SHA1', 'zdm') ?> <?= $zdm_premium_text ?></h4>
+                    <h4><?= esc_html__('SHA1', 'zdm') ?> <?php ZDMCore::premium_badge(); ?></h4>
                     <p><?= esc_html__('You can output the SHA1 hash value of a file or a ZIP archive.', 'zdm') ?></p>
                     <p><code>[zdownload_meta file="123" type="hash-sha1"]</code> <?= esc_html__('or', 'zdm') ?> <code>[zdownload_meta zip="123" type="hash-sha1"]</code></p>
                 </div>

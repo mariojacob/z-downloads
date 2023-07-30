@@ -543,7 +543,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                                     <?php }
                                                 } else {
                                                     ?>
-                                                    <p><?= esc_html__('For more linked files activate', 'zdm') ?> <a href="<?= ZDM__PRO_URL ?>" target="_blank" title="code.urban-base.net"><?= ZDM__PRO ?> <span class="material-icons-round zdm-md-1">open_in_new</span></a>.</p>
+                                                    <p><?= esc_html__('In the free version, the number of files per archive is limited to 5.', 'zdm') ?> <?php ZDMCore::premium_badge(); ?></p>
                                                 <?php
                                                 } ?>
                                             </div>
@@ -602,25 +602,15 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <p class="zdm-color-green" style="display: none;"><b><span class="material-icons-round zdm-md-1">check_circle_outline</span> <?= esc_html__('Shortcode copied', 'zdm') ?></b></p>
                                     </td>
                                 </tr>
-                                <?php
-
-                                if ($zdm_licence === 0) {
-                                    $text_hash_md5 = esc_html__('Output MD5 hash value', 'zdm') . '<br><a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('feature', 'zdm') . ' <span class="material-icons-round zdm-md-1">open_in_new</span></a>';
-                                    $text_hash_sha1 = esc_html__('Output SHA1 hash value', 'zdm') . '<br><a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('feature', 'zdm') . ' <span class="material-icons-round zdm-md-1">open_in_new</span></a>';
-                                } else {
-                                    $text_hash_md5 = esc_html__('Output MD5 hash value', 'zdm');
-                                    $text_hash_sha1 = esc_html__('Output SHA1 hash value', 'zdm');
-                                }
-                                ?>
                                 <tr valign="top">
-                                    <th scope="row"><?= $text_hash_md5 ?></th>
+                                    <th scope="row"><?= esc_html__('Output MD5 hash value', 'zdm') ?> <?php ZDMCore::premium_badge(); ?></th>
                                     <td valign="middle">
                                         <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta zip=&quot;<?= htmlspecialchars($zdm_db_archive->id) ?>&quot; type=&quot;hash-md5&quot;]" readonly title="<?= esc_html__('Copy the shortcode to the clipboard.', 'zdm') ?>">
                                         <p class="zdm-color-green" style="display: none;"><b><span class="material-icons-round zdm-md-1">check_circle_outline</span> <?= esc_html__('Shortcode copied', 'zdm') ?></b></p>
                                     </td>
                                 </tr>
                                 <tr valign="top">
-                                    <th scope="row"><?= $text_hash_sha1 ?></th>
+                                    <th scope="row"><?= esc_html__('Output SHA1 hash value', 'zdm') ?> <?php ZDMCore::premium_badge(); ?></th>
                                     <td valign="middle">
                                         <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta zip=&quot;<?= htmlspecialchars($zdm_db_archive->id) ?>&quot; type=&quot;hash-sha1&quot;]" readonly title="<?= esc_html__('Copy the shortcode to the clipboard.', 'zdm') ?>">
                                         <p class="zdm-color-green" style="display: none;"><b><span class="material-icons-round zdm-md-1">check_circle_outline</span> <?= esc_html__('Shortcode copied', 'zdm') ?></b></p>
@@ -694,13 +684,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <input class="button-primary" type="submit" name="update_stat_single_archive_last_limit" value="<?= esc_html__('Update', 'zdm') ?>" <?php if ($zdm_licence === 0) {
                                                                                                                                                                         echo ' disabled';
                                                                                                                                                                     } ?>>
-                                <?php
-                                if ($zdm_licence === 0) {
-                                ?>
-                                    <br><a href="<?= ZDM__PRO_URL ?>" target="_blank" title="code.urban-base.net"><?= ZDM__PRO ?> <?= esc_html__('features', 'zdm') ?> <span class="material-icons-round zdm-md-1">open_in_new</span></a>
-                                <?php
-                                }
-                                ?>
+                                &nbsp;<?php ZDMCore::premium_badge(); ?>
                                 <div class="zdm-help-text">
                                     <?= esc_html__('Determine the number of recent downloads that is displayed. This setting is global and affects all archives.', 'zdm') ?>
                                 </div>
@@ -833,10 +817,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <div class="inside">
                         <h3><?= esc_html__('Output hash value of ZIP file with shortcode', 'zdm') ?></h3>
                         <hr>
-                        <h4><?= esc_html__('MD5', 'zdm') ?> <?= $zdm_premium_text ?></h4>
+                        <h4><?= esc_html__('MD5', 'zdm') ?> <?php ZDMCore::premium_badge(); ?></h4>
                         <p><?= esc_html__('You can output the MD5 hash value of a file or ZIP archive.', 'zdm') ?></p>
                         <p><code>[zdownload_meta zip="123" type="hash-md5"]</code></p>
-                        <h4><?= esc_html__('SHA1', 'zdm') ?> <?= $zdm_premium_text ?></h4>
+                        <h4><?= esc_html__('SHA1', 'zdm') ?> <?php ZDMCore::premium_badge(); ?></h4>
                         <p><?= esc_html__('You can output the SHA1 hash value of a file or a ZIP archive.', 'zdm') ?></p>
                         <p><code>[zdownload_meta zip="123" type="hash-sha1"]</code></p>
                     </div>

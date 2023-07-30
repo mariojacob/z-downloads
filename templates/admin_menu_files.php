@@ -650,25 +650,26 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <tr valign="top">
                                             <th scope="row"><?= esc_html__('Hash MD5', 'zdm') ?>:</th>
                                             <td valign="middle">
-                                                <input type="text" name="name" size="50%" value="<?= htmlspecialchars($zdm_db_file->hash_md5) ?>" placeholder="" disabled>
+                                                <input type="text" name="md5" size="50%" value="<?= htmlspecialchars($zdm_db_file->hash_md5) ?>" placeholder="" disabled>
                                             </td>
                                         </tr>
                                         <tr valign="top">
                                             <th scope="row"><?= esc_html__('Hash SHA1', 'zdm') ?>:</th>
                                             <td valign="middle">
-                                                <input type="text" name="name" size="50%" value="<?= htmlspecialchars($zdm_db_file->hash_sha1) ?>" placeholder="" disabled>
+                                                <input type="text" name="sha1" size="50%" value="<?= htmlspecialchars($zdm_db_file->hash_sha1) ?>" placeholder="" disabled>
                                             </td>
                                         </tr>
                                     <?php } else { ?>
-                                        <tr>
-                                            <th colspan="2">
-                                                <hr>
-                                            </th>
+                                        <tr valign="top">
+                                            <th scope="row"><?= esc_html__('Hash MD5', 'zdm') ?>: <?php ZDMCore::premium_badge(); ?></th>
+                                            <td valign="middle">
+                                                <input type="text" name="md5" size="50%" value="********************************" placeholder="" disabled>
+                                            </td>
                                         </tr>
                                         <tr valign="top">
-                                            <th scope="row"></th>
+                                            <th scope="row"><?= esc_html__('Hash SHA1', 'zdm') ?>: <?php ZDMCore::premium_badge(); ?></th>
                                             <td valign="middle">
-                                                <p><?= esc_html__('More info only for', 'zdm') ?>: <?= ZDM__PRO ?><?= esc_html__('hash MD5, hash SHA1', 'zdm') ?></p>
+                                                <input type="text" name="sha1" size="50%" value="****************************************" placeholder="" disabled>
                                             </td>
                                         </tr>
                                     <?php } ?>
@@ -740,24 +741,16 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     </tr>
                                 <?php
                                 }
-
-                                if ($zdm_licence === 0) {
-                                    $text_hash_md5 = esc_html__('Output MD5 hash value', 'zdm') . '<br><a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('feature', 'zdm') . ' <span class="material-icons-round zdm-md-1">open_in_new</span></a>';
-                                    $text_hash_sha1 = esc_html__('Output SHA1 hash value', 'zdm') . '<br><a href="' . ZDM__PRO_URL . '" target="_blank" title="code.urban-base.net">' . ZDM__PRO . ' ' . esc_html__('feature', 'zdm') . ' <span class="material-icons-round zdm-md-1">open_in_new</span></a>';
-                                } else {
-                                    $text_hash_md5 = esc_html__('Output MD5 hash value', 'zdm');
-                                    $text_hash_sha1 = esc_html__('Output SHA1 hash value', 'zdm');
-                                }
                                 ?>
                                 <tr valign="top">
-                                    <th scope="row"><?= $text_hash_md5 ?></th>
+                                    <th scope="row"><?= esc_html__('Output MD5 hash value', 'zdm') ?> <?php ZDMCore::premium_badge(); ?></th>
                                     <td valign="middle">
                                         <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?= htmlspecialchars($zdm_db_file->id) ?>&quot; type=&quot;hash-md5&quot;]" readonly title="<?= esc_html__('Copy the shortcode to the clipboard.', 'zdm') ?>">
                                         <p class="zdm-color-green" style="display: none;"><b><span class="material-icons-round zdm-md-1">done</span> <?= esc_html__('Shortcode copied', 'zdm') ?></b></p>
                                     </td>
                                 </tr>
                                 <tr valign="top">
-                                    <th scope="row"><?= $text_hash_sha1 ?></th>
+                                    <th scope="row"><?= esc_html__('Output SHA1 hash value', 'zdm') ?> <?php ZDMCore::premium_badge(); ?></th>
                                     <td valign="middle">
                                         <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="[zdownload_meta file=&quot;<?= htmlspecialchars($zdm_db_file->id) ?>&quot; type=&quot;hash-sha1&quot;]" readonly title="<?= esc_html__('Copy the shortcode to the clipboard.', 'zdm') ?>">
                                         <p class="zdm-color-green" style="display: none;"><b><span class="material-icons-round zdm-md-1">done</span> <?= esc_html__('Shortcode copied', 'zdm') ?></b></p>
@@ -861,13 +854,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                 <input class="button-primary" type="submit" name="update_stat_single_file_last_limit" value="<?= esc_html__('Update', 'zdm') ?>" <?php if ($zdm_licence === 0) {
                                                                                                                                                                         echo ' disabled';
                                                                                                                                                                     } ?>>
-                                <?php
-                                if ($zdm_licence === 0) {
-                                ?>
-                                    <br><a href="<?= ZDM__PRO_URL ?>" target="_blank" title="code.urban-base.net"><?= ZDM__PRO ?> <?= esc_html__('feature', 'zdm') ?> <span class="material-icons-round zdm-md-1">open_in_new</span></a>
-                                <?php
-                                }
-                                ?>
+                                &nbsp;<?php ZDMCore::premium_badge(); ?>
                                 <div class="zdm-help-text">
                                     <?= esc_html__('Determine the number of recent downloads that is displayed. This setting is global and affects all files.', 'zdm') ?>
                                 </div>

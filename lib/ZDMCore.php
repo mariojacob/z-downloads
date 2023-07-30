@@ -1306,6 +1306,23 @@ class ZDMCore
     }
 
     /**
+     * Zeigt Premium Badge an
+     *
+     * @return void
+     */
+    public static function premium_badge()
+    {
+        if (!self::licence()) {
+?>
+            <div class="zdm-tooltip">
+                <a href="admin.php?page=<?= ZDM__SLUG ?>-premium"><span class="premium-badge">PREMIUM</span></a>
+                <span class="zdm-tooltiptext"><?= esc_html__('Upgrade to Premium to unlock this exclusive feature.', 'zdm') ?> <a href="admin.php?page=<?= ZDM__SLUG ?>-premium"><?= ZDM__TITLE ?> <?= ZDM__PRO ?></a></span>
+            </div>
+<?php
+        }
+    }
+
+    /**
      * Log
      * 
      * @param string $type Art des Protokolls
