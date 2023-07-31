@@ -439,11 +439,38 @@ ion-icon {
     padding: 0.2em 0.6em;
     font-size: 75%;
     font-weight: 700;
-    color: #fff;
-    background-color: #00caff;
+    color: #555;
+    background-color: gold;
     border-radius: 10px;
     line-height: 1;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
+    position: relative;
+    overflow: hidden;
+}
+.premium-badge::before {
+    content: "";
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.1) 0%,
+        rgba(255, 255, 255, 0.7) 50%,
+        rgba(255, 255, 255, 0.1) 100%
+    );
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -50%;
+    transform: skewX(-20deg);
+    pointer-events: none;
+    animation: shine 3s forwards infinite;
+}
+@keyframes shine {
+    0% {
+        left: -50%;
+    }
+    100% {
+        left: 150%;
+    }
 }
