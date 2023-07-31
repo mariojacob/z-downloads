@@ -51,7 +51,7 @@ if (is_admin() && !ZDMCore::licence()) {
         $dismiss_time = $options['premium-notice-time'];
 
         // 3 Monate in Sekunden
-        $premium_time = 10; // 3 * 30 * 24 * 60 * 60; TODO: 10 nur während der Entwicklung
+        $premium_time = 3 * 30 * 24 * 60 * 60;
 
         if ($dismiss_time && (time() - $dismiss_time < $premium_time)) {
             return;
