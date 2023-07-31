@@ -46,17 +46,51 @@ Example use case: A single file is present in multiple ZIP archives, such as pro
 -   Automatic ZIP archive creation
 -   PHP 8 compatible
 -   Ready for internationalization
--   Multilingual: English and German
+-   Multilingual
 -   And more...
 
-= Conditions =
+= Effortlessly embed download buttons with shortcodes =
 
--   WordPress 4.9+ -- latest version 6.2.x
+Begin by uploading your file, then create a new post or page and apply the shortcode provided below. This shortcode will automatically generate a download button for you.
 
-= Languages =
+`[zdownload file="123"]`
 
--   English - default language
--   German - de_DE
+= Embed automatically generated ZIP archives effortlessly with shortcodes =
+
+Start by creating a new ZIP archive entry in the backend and link this entry to the previously uploaded files you want to include. After this setup is complete, create a new post or page on your site and embed the provided shortcode.
+
+`[zdownload zip="123"]`
+
+= Effortlessly embed external files with shortcodes =
+
+If you wish to incorporate a file from another website as a downloadable asset on your own site, you can utilize a specific shortcode. By embedding this shortcode in your post or page, you will generate a download button that links directly to the external file.
+
+`[zdownload url="https://example.com/file.zip"]`
+
+= Output list of linked files in an archive with shortcodes =
+
+With our special shortcode, managing your data has never been easier. Now, you can output all files linked to an archive as a list for a clear overview. Simply embed the shortcode into the desired post or page and get an organized display of all associated files.
+
+`[zdownload_list zip="123"]`
+
+= Output audio files as audio player using shortcode =
+
+With our easy-to-use shortcode, you can transform any audio file (MP3, WAV, OGG, etc.) into a functional audio player directly. Just embed the shortcode into your post or page, and the selected audio file will be immediately output as an audio player, ready for playback.
+
+`[zdownload_audio file="123"]`
+
+= Output video files as video player using shortcode =
+
+With our user-friendly shortcode, you can transform any video file directly into a functional video player. Just embed the shortcode into your post or page, and the selected video file will immediately be output as a video player, ready for viewing.
+
+`[zdownload_video file="123"]`
+
+== Languages ==
+
+Z-Downloads can be translated into multiple languages. Currently, it supports these languages:
+
+-   English
+-   German
 
 == Installation ==
 
