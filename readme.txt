@@ -6,8 +6,8 @@ License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
-Tested up to: 6.2
-Stable tag: 1.11.0
+Tested up to: 6.3
+Stable tag: 1.11.1
 
 Convenient download manager and automatic ZIP archive creator
 
@@ -29,7 +29,7 @@ Example use case: A single file is present in multiple ZIP archives, such as pro
 
 = Top features =
 
--   GDPR (DSGVO) compliant: IP address anonymization by default
+-   GDPR compliant: IP address anonymization by default
 -   Built-in security: direct path to the download file remains hidden
 -   Integrated help and documentation for all functions
 -   Download statistics
