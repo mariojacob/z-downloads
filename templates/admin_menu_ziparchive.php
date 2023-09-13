@@ -405,6 +405,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     }
                                     ?>
                                     <tr valign="top">
+                                        <th scope="row"><?= esc_html__('Share', 'zdm') ?>:</th>
+                                        <td valign="middle">
+                                            <input type="text" class="zdm-copy-to-clipboard zdm-copy-to-clipboard-detail" value="<?= get_home_url(); ?>?zdownload=<?= base64_encode($zdm_db_archive->id) ?>" readonly title="<?= esc_html__('Copy URL to the clipboard.', 'zdm') ?>">
+                                            <p class="zdm-color-green" style="display: none;"><b><span class="material-icons-round zdm-md-1">done</span> <?= esc_html__('URL copied to share', 'zdm') ?></b></p>
+                                            <div class="zdm-help-text"><?= esc_html__('Share this URL to download the file directly. Simply click on the URL to copy it.', 'zdm') ?></div>
+                                        </td>
+                                    </tr>
+                                    <tr valign="top">
                                         <th scope="row"><?= esc_html__('Name', 'zdm') ?>:</th>
                                         <td valign="middle">
                                             <input type="text" name="name" size="50%" value="<?= esc_attr($zdm_db_archive->name) ?>" spellcheck="true" autocomplete="off" placeholder="">
