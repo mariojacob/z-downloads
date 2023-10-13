@@ -1313,9 +1313,13 @@ class ZDMCore
     public static function premium_badge()
     {
         if (!self::licence()) {
+            // TODO: AUTUMN SALE
+            $zdm_sale = '';
+            if (ZDM__SHOW_SALE)
+                $zdm_sale = ' -40%';
 ?>
             <div class="zdm-tooltip">
-                <a href="admin.php?page=<?= ZDM__SLUG ?>-premium"><span class="premium-badge">PREMIUM</span></a>
+                <a href="admin.php?page=<?= ZDM__SLUG ?>-premium"><span class="premium-badge">PREMIUM<?= $zdm_sale ?></span></a>
                 <span class="zdm-tooltiptext"><?= esc_html__('Upgrade to Premium to unlock this exclusive feature.', 'zdm') ?> <a href="admin.php?page=<?= ZDM__SLUG ?>-premium"><?= ZDM__TITLE ?> <?= ZDM__PRO ?></a></span>
             </div>
 <?php

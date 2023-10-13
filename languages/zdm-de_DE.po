@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2023-09-13 08:46+0200\n"
-"PO-Revision-Date: 2023-09-13 08:49+0200\n"
+"POT-Creation-Date: 2023-10-13 11:38+0200\n"
+"PO-Revision-Date: 2023-10-13 11:38+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -10,7 +10,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.4\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: __;esc_html__\n"
 "X-Poedit-SearchPath-0: .\n"
@@ -57,7 +57,7 @@ msgstr "Farben"
 msgid "FAQ"
 msgstr "FAQ"
 
-#: inc/postbox_info.php:28 templates/admin_premium.php:254
+#: inc/postbox_info.php:28 templates/admin_premium.php:271
 msgid ""
 "Do you have suggestions for improvement or suggestions for the plugin, then "
 "write me"
@@ -65,23 +65,23 @@ msgstr ""
 "Hast du Verbesserungsvorschläge oder Anregungen für das Plugin, dann "
 "schreibe mir"
 
-#: inc/postbox_info.php:28 templates/admin_premium.php:254
+#: inc/postbox_info.php:28 templates/admin_premium.php:271
 msgid "suggestions for improvement"
 msgstr "Verbesserungsvorschläge"
 
-#: inc/postbox_info.php:29 templates/admin_premium.php:251
+#: inc/postbox_info.php:29 templates/admin_premium.php:268
 msgid "If you like"
 msgstr "Wenn du willst"
 
-#: inc/postbox_info.php:29 templates/admin_premium.php:251
+#: inc/postbox_info.php:29 templates/admin_premium.php:268
 msgid "then write a"
 msgstr "dann schreibe eine"
 
-#: inc/postbox_info.php:29 templates/admin_premium.php:251
+#: inc/postbox_info.php:29 templates/admin_premium.php:268
 msgid "rating"
 msgstr "Bewertung"
 
-#: inc/postbox_info.php:29 templates/admin_premium.php:251
+#: inc/postbox_info.php:29 templates/admin_premium.php:268
 msgid "You would help me a lot to make the plugin known."
 msgstr "Du würdest mir sehr dabei helfen das Plugin bekannter zu machen."
 
@@ -208,6 +208,7 @@ msgstr "Alle Vorteile von Premium im Überblick"
 
 #: inc/postbox_premium_info.php:99 templates/admin_dashboard_widget.php:103
 #: templates/admin_menu_dashboard.php:19 templates/admin_premium.php:242
+#: templates/admin_premium.php:256
 msgid "Upgrade to Premium"
 msgstr "Upgrade auf Premium"
 
@@ -281,15 +282,15 @@ msgstr "Premium"
 msgid "Upgrade"
 msgstr "Upgrade"
 
-#: lib/ZDMCore.php:1319
+#: lib/ZDMCore.php:1323
 msgid "Upgrade to Premium to unlock this exclusive feature."
 msgstr "Upgrade auf Premium, um diese exklusive Funktion freizuschalten."
 
-#: lib/ZDMCore.php:1408
+#: lib/ZDMCore.php:1412
 msgid "The following PHP modules are missing"
 msgstr "Folgende PHP Module fehlen"
 
-#: lib/ZDMCore.php:1410
+#: lib/ZDMCore.php:1414
 msgid ""
 "Please contact the administrator or web hosting provider of this website to "
 "install/activate the missing PHP modules."
@@ -297,15 +298,15 @@ msgstr ""
 "Bitte wende dich an den Administrator oder Webhosting Provider dieser "
 "Webseite um die fehlenden PHP-Module zu installieren/aktivieren."
 
-#: lib/ZDMCore.php:1563
+#: lib/ZDMCore.php:1567
 msgid "Your browser does not support HTML audio elements."
 msgstr "Dein Browser unterstützt keine HTML Audio-Elemente."
 
-#: lib/ZDMCore.php:2272
+#: lib/ZDMCore.php:2276
 msgid "Your browser does not support HTML video elements."
 msgstr "Dein Browser unterstützt keine HTML Video-Elemente."
 
-#: lib/ZDMPremiumNotice.php:61
+#: lib/ZDMPremiumNotice.php:71
 msgid ""
 "Are you excited about our Download Manager and want to support its further "
 "development? By upgrading to"
@@ -313,7 +314,7 @@ msgstr ""
 "Sind Sie begeistert von unserem Download Manager und wollen die "
 "Weiterentwicklung unterstützen? Durch ein Upgrade auf"
 
-#: lib/ZDMPremiumNotice.php:61
+#: lib/ZDMPremiumNotice.php:71
 msgid ""
 ", not only can you contribute to this, but you will also unlock advanced "
 "features."
@@ -321,9 +322,25 @@ msgstr ""
 "können Sie nicht nur dazu beitragen, sondern auch erweiterte Funktionen "
 "freischalten."
 
-#: lib/ZDMPremiumNotice.php:61
+#: lib/ZDMPremiumNotice.php:71
 msgid "Click here and discover more."
 msgstr "Klicken Sie hier und entdecken Sie mehr."
+
+#: lib/ZDMSaleNotice.php:57 templates/admin_premium.php:253
+msgid "FALL SALE -40%"
+msgstr "HERBST SALE -40%"
+
+#: lib/ZDMSaleNotice.php:57
+msgid ""
+"Until November 15, 2023 for Z-Downloads Premium. Grab the deal before it's "
+"too late!"
+msgstr ""
+"Bis zum 15.11.2023 für Z-Downloads Premium, schnapp dir das Angebot, bevor "
+"es zu spät ist!"
+
+#: lib/ZDMSaleNotice.php:57
+msgid "Get yours now!"
+msgstr "Jetzt sichern!"
 
 #: lib/constants.php:82
 msgid "Black"
@@ -2569,13 +2586,33 @@ msgstr ""
 "Nutzen Sie das volle Potenzial von Z-Downloads. Mehr Kontrolle, mehr "
 "Funktionen, mehr Erfolg. Steigen Sie jetzt auf Premium um!"
 
-#: templates/admin_premium.php:250
+#: templates/admin_premium.php:254
+msgid ""
+"Experience the full power of Z-Downloads Premium! Until November 15, 2023, "
+"get an unbeatable discount."
+msgstr ""
+"Nutze das volle Potential von Z-Downloads Premium! Bis zum 15. November 2023 "
+"gibt es einen unschlagbaren Rabatt."
+
+#: templates/admin_premium.php:255
+msgid ""
+"Don't miss this chance to enhance your WordPress journey. Time is running "
+"out; secure this deal now and unlock premium features today!"
+msgstr ""
+"Verpasse nicht diese Chance, dein WordPress-Erlebnis zu verbessern. Die Zeit "
+"läuft, das Angebot ist begrenzt. Sichere dir jetzt das Angebot und genieße "
+"die Premium-Funktionen sofort!"
+
+#: templates/admin_premium.php:267
 msgid "Write a review"
 msgstr "Schreibe eine Bewertung"
 
-#: templates/admin_premium.php:253
+#: templates/admin_premium.php:270
 msgid "Suggestions for improvement"
 msgstr "Verbesserungsvorschläge"
+
+#~ msgid "Premium -40% 🍁"
+#~ msgstr "Premium -40% 🍁"
 
 #~ msgid "MD5 and SHA1 Hash Display"
 #~ msgstr "MD5 und SHA1 Hash-Anzeige"
