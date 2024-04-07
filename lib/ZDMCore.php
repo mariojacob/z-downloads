@@ -260,16 +260,18 @@ class ZDMCore
     public static function check_for_bot()
     {
         require_once(ZDM__PATH . '/lib/bot_user_agents.php');
-        $http_user_agent = @filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
-        $bot_list = ZDM__BOT_USER_AGENTS;
-        $values = '';
-        foreach ($bot_list as $value) {
-            $values .= $value . '|';
+        $http_user_agent = filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
+        if (!$http_user_agent) {
+            return false;
         }
-        $values = rtrim($values, '|');
-        if (preg_match("/$values/i", $http_user_agent, $matches))
-            return true;
-        return false;
+
+        foreach (ZDM__BOT_USER_AGENTS as $bot_agent) {
+            if (stripos($http_user_agent, $bot_agent) !== false) {
+                return true; // Bot gefunden, sofort true zurückgeben
+            }
+        }
+
+        return false; // Kein Bot gefunden
     }
 
     /**
