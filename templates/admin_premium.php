@@ -244,23 +244,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             </div>
         </div>
 
-        <?php
-        if (ZDM__SHOW_SALE) { // TODO: AUTUMN SALE
-        ?>
-            <div class="postbox-container zdm-premium-postbox-col-sm">
-                <div class="postbox">
-                    <div class="inside">
-                        <h3>🍁 <?= esc_html__('FALL SALE -40%', 'zdm') ?> 🍁</h3>
-                        <p><?= esc_html__('Experience the full power of Z-Downloads Premium! Until November 15, 2023, get an unbeatable discount.', 'zdm') ?></p>
-                        <p><?= esc_html__('Don\'t miss this chance to enhance your WordPress journey. Time is running out; secure this deal now and unlock premium features today!', 'zdm') ?></p>
-                        <a href="<?= ZDM__PRO_URL ?>" target="_blank" class="button button-primary"><?= esc_html__('Upgrade to Premium', 'zdm') ?></a>
-                    </div>
-                </div>
-            </div>
-        <?php
-        }
-        ?>
-
         <div class="postbox-container zdm-premium-postbox-col-sm">
             <div class="postbox">
                 <div class="inside">

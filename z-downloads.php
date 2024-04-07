@@ -18,15 +18,6 @@
 if (!defined('ABSPATH'))
     die;
 
-// TODO: AUTUMN SALE
-$zdm_heute = new DateTime(); // aktuelles Datum
-$zdm_stichtag = new DateTime('2023-11-15');
-if ($zdm_heute < $zdm_stichtag)
-    define('ZDM__SHOW_SALE', true);
-else
-    define('ZDM__SHOW_SALE', false);
-// TODO: AUTUMN SALE END
-
 // constants
 
 define('ZDM__PATH', plugin_dir_path(__FILE__));
@@ -36,11 +27,7 @@ define('ZDM__TITLE', 'Z-Downloads');
 define('ZDM__VERSION', '1.11.2');
 define('ZDM__URL', 'https://code.urban-base.net/z-downloads?utm_source=zdm_backend');
 
-if (ZDM__SHOW_SALE) // TODO: AUTUMN SALE
-    define('ZDM__PRO', 'Premium -40%');
-else
-    define('ZDM__PRO', 'Premium');
-
+define('ZDM__PRO', 'Premium');
 define('ZDM__PRO_URL', 'https://urbanbase.gumroad.com/l/zdPRE');
 define('ZDM__STANDARD_USER_ROLE', 'manage_options');
 require_once(dirname(__FILE__) . '/lib/constants.php');
@@ -82,7 +69,6 @@ if (class_exists('ZDMCore') === false) {
     $zdmCore->download();
 
     require_once(dirname(__FILE__) . '/lib/ZDMPremiumNotice.php');
-    require_once(dirname(__FILE__) . '/lib/ZDMSaleNotice.php');
     require_once(dirname(__FILE__) . '/lib/ZDMStat.php');
 }
 
