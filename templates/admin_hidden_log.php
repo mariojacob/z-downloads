@@ -32,7 +32,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         if (isset($_POST['log-filter-type']) && wp_verify_nonce($_POST['nonce'], 'log-types')) {
 
-            $zdm_log_filter_type = sanitize_text_field($_POST['log-filter-type']);
+            $zdm_log_filter_type = isset($_POST['log-filter-type']) ? sanitize_text_field($_POST['log-filter-type']) : 'all';
 
             if ($zdm_log_filter_type == 'downloads') {
 
@@ -193,11 +193,9 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                     <?php
                                     $zdm_log_filter_option = '';
 
-                                    for ($i = 0; $i < $zdm_log_filter_array_count; $i++) {
-                                        $zdm_log_filter_option .= '<option value="' . $zdm_log_filter_array_val[$i] . '" '
-                                            . ($zdm_log_filter_type == $zdm_log_filter_array_val[$i] ? 'selected="selected"' : '') . '>'
-                                            . $zdm_log_filter_array[$i]
-                                            . '</option>';
+                                    foreach ($zdm_log_filter_array_val as $i => $value) {
+                                        $selected = $zdm_log_filter_type == $value ? 'selected="selected"' : '';
+                                        echo "<option value=\"$value\" $selected>{$zdm_log_filter_array[$i]}</option>";
                                     }
 
                                     echo $zdm_log_filter_option;

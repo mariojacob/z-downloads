@@ -221,7 +221,7 @@ class ZDMCore
             "
         );
 
-        if (@$db_file_rel[0] === NULL)
+        if (!isset($db_file_rel[0]))
             return false;
 
         return true;

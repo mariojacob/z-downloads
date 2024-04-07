@@ -88,46 +88,58 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         // Download-Button
 
         // Download Button Text
-        @$zdm_options['download-btn-text'] = trim(sanitize_text_field($_POST['download-btn-text']));
+        $zdm_options['download-btn-text'] = isset($_POST['download-btn-text']) ? trim(sanitize_text_field($_POST['download-btn-text'])) : '';
+
         // Download Button Style
-        @$zdm_options['download-btn-style'] = trim(sanitize_text_field($_POST['download-btn-style']));
+        $zdm_options['download-btn-style'] = isset($_POST['download-btn-style']) ? trim(sanitize_text_field($_POST['download-btn-style'])) : '';
+
         // Download Button Outline
-        @$zdm_options['download-btn-outline'] = trim(sanitize_text_field($_POST['download-btn-outline']));
-        // Download Button runde Ecken
-        @$zdm_options['download-btn-border-radius'] = trim(sanitize_text_field($_POST['download-btn-border-radius']));
+        $zdm_options['download-btn-outline'] = isset($_POST['download-btn-outline']) ? trim(sanitize_text_field($_POST['download-btn-outline'])) : '';
+
+        // Download Button Runde Ecken
+        $zdm_options['download-btn-border-radius'] = isset($_POST['download-btn-border-radius']) ? trim(sanitize_text_field($_POST['download-btn-border-radius'])) : '';
+
         // Download Button Icon
-        @$zdm_options['download-btn-icon'] = trim(sanitize_text_field($_POST['download-btn-icon']));
+        $zdm_options['download-btn-icon'] = isset($_POST['download-btn-icon']) ? trim(sanitize_text_field($_POST['download-btn-icon'])) : '';
+
         // Download Button Icon Position
-        @$zdm_options['download-btn-icon-position'] = trim(sanitize_text_field($_POST['download-btn-icon-position']));
-        // Download Button nur Icon
-        @$zdm_options['download-btn-icon-only'] = trim(sanitize_text_field($_POST['download-btn-icon-only']));
+        $zdm_options['download-btn-icon-position'] = isset($_POST['download-btn-icon-position']) ? trim(sanitize_text_field($_POST['download-btn-icon-position'])) : '';
+
+        // Download Button Nur Icon
+        $zdm_options['download-btn-icon-only'] = isset($_POST['download-btn-icon-only']) && trim(sanitize_text_field($_POST['download-btn-icon-only'])) == 'on' ? 'on' : '';
 
         // Listen
 
         // Listenstil
-        @$zdm_options['list-style'] = trim(sanitize_text_field($_POST['list-style']));
+        $zdm_options['list-style'] = isset($_POST['list-style']) ? trim(sanitize_text_field($_POST['list-style'])) : '';
+
         // Fetter Text
-        @$zdm_options['list-bold'] = trim(sanitize_text_field($_POST['list-bold']));
+        $zdm_options['list-bold'] = isset($_POST['list-bold']) && trim(sanitize_text_field($_POST['list-bold'])) == 'on' ? 'on' : '';
+
         // Listenelemente als Links
-        @$zdm_options['list-links'] = trim(sanitize_text_field($_POST['list-links']));
+        $zdm_options['list-links'] = isset($_POST['list-links']) && trim(sanitize_text_field($_POST['list-links'])) == 'on' ? 'on' : '';
 
         // Statistik
 
         // Letzte Downloads anzeigen für Dateien
-        @$zdm_options['stat-single-file-last-limit'] = trim(sanitize_text_field($_POST['stat-single-file-last-limit']));
+        $zdm_options['stat-single-file-last-limit'] = isset($_POST['stat-single-file-last-limit']) ? trim(sanitize_text_field($_POST['stat-single-file-last-limit'])) : '';
+
         // Letzte Downloads anzeigen für Archive
-        @$zdm_options['stat-single-archive-last-limit'] = trim(sanitize_text_field($_POST['stat-single-archive-last-limit']));
+        $zdm_options['stat-single-archive-last-limit'] = isset($_POST['stat-single-archive-last-limit']) ? trim(sanitize_text_field($_POST['stat-single-archive-last-limit'])) : '';
 
         // Mehr
 
         // Direkte URL zu PDFs
-        @$zdm_options['file-open-in-browser-pdf'] = trim(sanitize_text_field($_POST['file-open-in-browser-pdf']));
+        $zdm_options['file-open-in-browser-pdf'] = isset($_POST['file-open-in-browser-pdf']) && trim(sanitize_text_field($_POST['file-open-in-browser-pdf'])) == 'on' ? 'on' : '';
+
         // IP-Adresse zensieren
-        @$zdm_options['secure-ip'] = trim(sanitize_text_field($_POST['secure-ip']));
+        $zdm_options['secure-ip'] = isset($_POST['secure-ip']) && trim(sanitize_text_field($_POST['secure-ip'])) == 'on' ? 'on' : '';
+
         // Duplikate zulassen
-        @$zdm_options['duplicate-file'] = trim(sanitize_text_field($_POST['duplicate-file']));
+        $zdm_options['duplicate-file'] = isset($_POST['duplicate-file']) && trim(sanitize_text_field($_POST['duplicate-file'])) == 'on' ? 'on' : '';
+
         // HTML id Attribut ausblenden
-        @$zdm_options['hide-html-id'] = trim(sanitize_text_field($_POST['hide-html-id']));
+        $zdm_options['hide-html-id'] = isset($_POST['hide-html-id']) && trim(sanitize_text_field($_POST['hide-html-id'])) == 'on' ? 'on' : '';
 
         // Update options
         if (add_option('zdm_options', $zdm_options) === FALSE) {
