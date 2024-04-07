@@ -1,7 +1,7 @@
 ﻿=== Z-Downloads ===
 
 Contributors: urbanbase
-Tags: download manager, zip, download button, workflow, zip archiv, shortcodes, statistics, downloads, statistik, download count, button, md5, sha1
+Tags: download manager, zip, download button, statistics, zip archiv
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
