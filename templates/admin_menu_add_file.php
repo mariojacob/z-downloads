@@ -4,6 +4,12 @@ if (!defined('ABSPATH'))
     die;
 
 if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
+    $zdm_options = get_option('zdm_options');
+
+    $zdm_secure_file_upload = esc_html__('Disabled', 'zdm');
+    if ($zdm_options['secure-file-upload'] == 'on') {
+        $zdm_secure_file_upload = esc_html__('Enabled', 'zdm');
+    }
 ?>
     <div class="wrap">
         <h1 class="wp-heading-inline"><?= esc_html__('Upload new file', 'zdm') ?></h1>
@@ -20,7 +26,10 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                     <input class="button-primary" type="submit" name="submit" value="<?= esc_html__('Upload', 'zdm') ?>">
                     <br><br>
                     <hr>
-                    <p><?= esc_html__('Maximum file size for uploads', 'zdm') ?>: <?= ZDMCore::file_size_convert(ZDMCore::file_size_convert_str2bytes(ini_get('upload_max_filesize'))) ?></p>
+                    <p>
+                        <a href="admin.php?page=<?= ZDM__SLUG ?>-settings#zdm-expanded" title="<?= esc_html__('Change settings', 'zdm') ?>"><?= esc_html__('Secure file uploads', 'zdm') ?></a>: <b><?= $zdm_secure_file_upload ?></b><br>
+                        <a href="admin.php?page=<?= ZDM__SLUG ?>-settings#zdm-expanded" title="<?= esc_html__('Change settings', 'zdm') ?>"><?= esc_html__('Maximum file size for uploads', 'zdm') ?></a>: <b><?= ZDMCore::file_size_convert($zdm_options['max-upload-size-in-mb'] * 1024 * 1024) ?></b>
+                    </p>
                 </div>
             </div>
         </form>

@@ -129,6 +129,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
         // Mehr
 
+        // Secure file uploads
+        $zdm_options['secure-file-upload'] = isset($_POST['secure-file-upload']) && trim(sanitize_text_field($_POST['secure-file-upload'])) == 'on' ? 'on' : '';
+
+        // Maximum upload size
+        $zdm_options['max-upload-size-in-mb'] = isset($_POST['max-upload-size-in-mb']) ? trim(sanitize_text_field($_POST['max-upload-size-in-mb'])) : '';
+
         // Direkte URL zu PDFs
         $zdm_options['file-open-in-browser-pdf'] = isset($_POST['file-open-in-browser-pdf']) && trim(sanitize_text_field($_POST['file-open-in-browser-pdf'])) == 'on' ? 'on' : '';
 
@@ -576,16 +582,16 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             <?php
                                             }
                                             ?>
-                                            <input type="number" name="stat-single-file-last-limit" size="5" min="1" max="500" value="<?= esc_attr($zdm_options['stat-single-file-last-limit']) ?>" <?php if ($zdm_licence === 0) {
-                                                                                                                                                                                                        echo ' disabled';
-                                                                                                                                                                                                    } ?>>
+                                            <input type="number" name="stat-single-file-last-limit" min="1" max="500" value="<?= esc_attr($zdm_options['stat-single-file-last-limit']) ?>" <?php if ($zdm_licence === 0) {
+                                                                                                                                                                                                echo ' disabled';
+                                                                                                                                                                                            } ?>>
                                             <span class="material-icons-outlined zdm-md-1">info</span> <?= esc_html__('Setting for files', 'zdm') ?>
                                             <br>
                                             <div class="zdm-help-text"><?= esc_html__('Determine the number of recent downloads that is displayed on the file details page in the Statistics tab.', 'zdm') ?></div>
                                             <br>
-                                            <input type="number" name="stat-single-archive-last-limit" size="5" min="1" max="500" value="<?= esc_attr($zdm_options['stat-single-archive-last-limit']) ?>" <?php if ($zdm_licence === 0) {
-                                                                                                                                                                                                                echo ' disabled';
-                                                                                                                                                                                                            } ?>>
+                                            <input type="number" name="stat-single-archive-last-limit" min="1" max="500" value="<?= esc_attr($zdm_options['stat-single-archive-last-limit']) ?>" <?php if ($zdm_licence === 0) {
+                                                                                                                                                                                                        echo ' disabled';
+                                                                                                                                                                                                    } ?>>
                                             <span class="material-icons-outlined zdm-md-1">info</span> <?= esc_html__('Setting for archives', 'zdm') ?>
                                             <br>
                                             <div class="zdm-help-text"><?= esc_html__('Determine the number of recent downloads that is displayed on the archive detail page in the Statistics tab.', 'zdm') ?></div>
@@ -602,6 +608,23 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <hr>
                             <table class="form-table">
                                 <tbody>
+                                    <tr valign="top">
+                                        <th scope="row"><?= esc_html__('Secure file uploads', 'zdm') ?>:</th>
+                                        <td valign="middle">
+                                            <input type="checkbox" name="secure-file-upload" <?php if ($zdm_options['secure-file-upload'] == 'on') {
+                                                                                                    echo 'checked="checked"';
+                                                                                                } ?>>
+                                            <?= esc_html__('Limits file uploads to common files.', 'zdm') ?>
+                                            <div class="zdm-help-text"><?= esc_html__('Only deactivate this option if you are sure that your uploaded files cannot cause any damage.', 'zdm') ?></div>
+                                        </td>
+                                    </tr>
+                                    <tr valign="top">
+                                        <th scope="row"><?= esc_html__('Maximum upload size', 'zdm') ?>:</th>
+                                        <td valign="middle">
+                                            <input type="number" name="max-upload-size-in-mb" min="1" max="50000" value="<?= esc_attr($zdm_options['max-upload-size-in-mb']) ?>">
+                                            <?= esc_html__('Specifies the maximum file size in MB that can be uploaded.', 'zdm') ?>
+                                        </td>
+                                    </tr>
                                     <tr valign="top">
                                         <th scope="row"><?= esc_html__('Direct URL to PDFs', 'zdm') ?>:</th>
                                         <td valign="middle">

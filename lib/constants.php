@@ -30,7 +30,9 @@ define('ZDM__OPTIONS', [
     'stat-single-archive-last-limit'    => 5,
     'hide-html-id'                      => 'on',
     'download-folder-token'             => '',
-    'premium-notice-time'               => 0
+    'premium-notice-time'               => 0,
+    'secure-file-upload'                => 'on',
+    'max-upload-size-in-mb'             => 50
 ]);
 
 // MIME types

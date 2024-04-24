@@ -7,6 +7,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
     $zdm_status = '';
     $zdm_note = '';
+    $zdm_status_5_note = '';
     $zdm_licence = 0;
     $zdm_options = get_option('zdm_options');
     $zdm_time = time();
@@ -51,67 +52,153 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             $zdm_file['type'] = $_FILES['file']['type'];
             $zdm_file['size'] = ZDMCore::file_size_convert($_FILES['file']['size']);
 
-            // Ordnername erstellen
-            $zdm_file['folder'] = md5(time() . $zdm_file['name']);
+            $allowed_extensions = [
+                // Bilddateien
+                'jpg', 'jpeg', 'png', 'gif', 'svg', 'tiff', 'bmp', 'ico', 'webp', 'djvu',
+                // Dokumente
+                'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'odt', 'ods', 'odp', 'rtf', 'epub', 'mobi', 'ibooks',
+                'azw', 'fb2', 'pages', 'numbers', 'key',
+                // Audio- und Video
+                'mp3', 'wav', 'aac', 'ogg', 'oga', 'flac', 'mp4', 'mov', 'avi', 'wmv', 'mkv',
+                // Text- und Code
+                'txt', 'csv', 'json', 'xml', 'scpt',
+                // Archivformate
+                'zip', 'rar', '7z', 'tar', 'gz', 'cbz', 'cbr',
+                // Grafik
+                'psd', 'psb', 'ai', 'eps',
+                // Sonstiges
+                'unitypackage', 'dmg', 'plist', 'iso', 'img', 'bin', 'nrg', 'mdf'
+            ];
 
-            // Ordner erstellen
-            if (!is_dir($zdm_file['folder'])) {
-                wp_mkdir_p(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder']);
-            }
+            $allowed_mime_types = [
+                // Bilddateien
+                'image/jpeg', 'image/png', 'image/gif', 'image/svg', 'image/svg+xml', 'image/tiff',
+                'image/bmp', 'image/x-icon', 'image/webp', 'image/vnd.djvu',
 
-            $zdm_file_path = ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . $zdm_file['name'];
+                // Dokumente
+                'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
+                'application/vnd.ms-excel.sheet.macroEnabled.12', 'application/vnd.ms-excel.addin.macroEnabled.12',
+                'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+                'application/vnd.ms-powerpoint.addin.macroEnabled.12', 'application/vnd.ms-powerpoint.presentation.macroEnabled.12',
+                'application/vnd.ms-powerpoint.slideshow.macroEnabled.12', 'application/x-mspublisher', 'application/vnd.ms-access',
+                'application/vnd.openxmlformats-officedocument.presentationml.template',
+                'application/vnd.openxmlformats-officedocument.presentationml.slideshow',
+                'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.spreadsheet',
+                'application/vnd.oasis.opendocument.presentation', 'application/rtf',
+                'application/vnd.visio und application/vnd.ms-visio.drawing', 'application/epub+zip', 'application/x-mobipocket-ebook',
+                'application/vnd.amazon.ebook', 'application/x-fictionbook+xml',
+                'application/vnd.apple.pages', 'application/vnd.apple.numbers', 'application/vnd.apple.keynote', 'application/x-ibooks+zip',
 
-            // Datei soeichern
-            move_uploaded_file($_FILES['file']['tmp_name'], $zdm_file_path);
+                // Audio- und Video
+                'audio/mp3', 'audio/mpeg', 'audio/wav', 'audio/aac', 'audio/ogg', 'audio/flac',
+                'video/mp4', 'video/quicktime', 'video/x-msvideo', 'video/x-ms-wmv', 'video/x-matroska',
 
-            // Temporäre Datei löschen
-            if (file_exists($_FILES['file']['tmp_name'])) {
-                unlink($_FILES['file']['tmp_name']);
-            }
+                // Text- und Code
+                'text/plain', 'text/csv', 'application/json', 'application/xml', 'application/octet-stream', 'text/markdown',
+                'application/javascript', 'text/javascript', 'application/x-applescript',
 
-            // Erstelle index.php
-            $index_file_handle = fopen(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . 'index.php', 'w');
-            fclose($index_file_handle);
+                // Archivformate
+                'application/zip', 'application/x-zip-compressed', 'application/x-rar-compressed', 'application/x-7z-compressed',
+                'application/x-tar', 'application/gzip', 'application/x-ace-compressed', 'application/x-iso9660-image',
+                'application/x-cbz', 'application/x-cbr',
 
-            // MD5 von Datei erzeugen
-            $zdm_file['md5'] = md5_file($zdm_file_path);
+                // Grafik
+                'image/vnd.adobe.photoshop', 'application/postscript', 'application/postscript',
+                'application/illustrator', 'application/vnd.adobe.illustrator',
 
-            // SHA1 von Datei erzeugen
-            $zdm_file['sha1'] = sha1_file($zdm_file_path);
+                // Sonstiges
+                'application/x-apple-diskimage', 'application/plist', 'application/x-iso9660-image'
+            ];
 
-            // Erstelle einen neuen Datenbankeintrag
-            $wpdb->insert(
-                $zdm_tablename_files,
-                array(
-                    'name'          => $zdm_file['name'],
-                    'hash_md5'      => $zdm_file['md5'],
-                    'hash_sha1'     => $zdm_file['sha1'],
-                    'folder_path'   => $zdm_file['folder'],
-                    'file_name'     => $zdm_file['name'],
-                    'file_type'     => $zdm_file['type'],
-                    'file_size'     => $zdm_file['size'],
-                    'time_create'   => $zdm_time
-                )
-            );
+            $file_extension = pathinfo($zdm_file['name'], PATHINFO_EXTENSION);
+            $max_file_size = $zdm_options['max-upload-size-in-mb'] * 1024 * 1024;
 
-            ZDMCore::log('add file', 'name: ' . htmlspecialchars($zdm_file['name']) . ', path: ' . $zdm_file_path);
+            if (
+                ($zdm_options['secure-file-upload'] === 'on' && (
+                    !in_array(strtolower($file_extension), $allowed_extensions) ||
+                    !in_array($zdm_file['type'], $allowed_mime_types)
+                )) ||
+                $_FILES['file']['size'] > $max_file_size
+            ) {
+                if ($zdm_options['secure-file-upload'] === 'on' && (
+                    !in_array(strtolower($file_extension), $allowed_extensions) ||
+                    !in_array($zdm_file['type'], $allowed_mime_types)
+                )) {
+                    $zdm_status_5_note = '<b>.' . $file_extension . '</b> ' . esc_html__('file type not allowed.', 'zdm');
+                }
 
-            $zdm_folder_path = $zdm_file['folder'];
+                if ($_FILES['file']['size'] > $max_file_size) {
+                    $zdm_status_5_note = esc_html__('Maximum upload file size exceeded.', 'zdm');
+                }
 
-            $zdm_db_file_query = $wpdb->prepare(
-                "
+                $zdm_status = 5;
+            } else {
+
+                // Ordnername erstellen
+                $zdm_file['folder'] = md5(time() . $zdm_file['name']);
+
+                // Ordner erstellen
+                if (!is_dir($zdm_file['folder'])) {
+                    wp_mkdir_p(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder']);
+                }
+
+                $zdm_file_path = ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . $zdm_file['name'];
+
+                // Datei soeichern
+                move_uploaded_file($_FILES['file']['tmp_name'], $zdm_file_path);
+
+                // Temporäre Datei löschen
+                if (file_exists($_FILES['file']['tmp_name'])) {
+                    unlink($_FILES['file']['tmp_name']);
+                }
+
+                // Erstelle index.php
+                $index_file_handle = fopen(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . 'index.php', 'w');
+                fclose($index_file_handle);
+
+                // MD5 von Datei erzeugen
+                $zdm_file['md5'] = md5_file($zdm_file_path);
+
+                // SHA1 von Datei erzeugen
+                $zdm_file['sha1'] = sha1_file($zdm_file_path);
+
+                // Erstelle einen neuen Datenbankeintrag
+                $wpdb->insert(
+                    $zdm_tablename_files,
+                    array(
+                        'name'          => $zdm_file['name'],
+                        'hash_md5'      => $zdm_file['md5'],
+                        'hash_sha1'     => $zdm_file['sha1'],
+                        'folder_path'   => $zdm_file['folder'],
+                        'file_name'     => $zdm_file['name'],
+                        'file_type'     => $zdm_file['type'],
+                        'file_size'     => $zdm_file['size'],
+                        'time_create'   => $zdm_time
+                    )
+                );
+
+                ZDMCore::log('add file', 'name: ' . htmlspecialchars($zdm_file['name']) . ', path: ' . $zdm_file_path);
+
+                $zdm_folder_path = $zdm_file['folder'];
+
+                $zdm_db_file_query = $wpdb->prepare(
+                    "
                 SELECT id 
                 FROM $zdm_tablename_files 
                 WHERE folder_path = %s
                 ",
-                $zdm_folder_path
-            );
-            $zdm_db_file = $wpdb->get_results($zdm_db_file_query);
+                    $zdm_folder_path
+                );
+                $zdm_db_file = $wpdb->get_results($zdm_db_file_query);
 
-            $zdm_file_id = $zdm_db_file[0]->id;
+                $zdm_file_id = $zdm_db_file[0]->id;
 
-            // Status: 1 (Detailseite von Datei)
-            $zdm_status = 1;
+                // Status: 1 (Detailseite von Datei)
+                $zdm_status = 1;
+            }
         }
     } elseif (isset($_GET['id']) or isset($_POST['update']) or isset($_POST['delete'])) {
 
@@ -1329,6 +1416,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         <div class="notice notice-success">
             <p><span class="material-icons-round zdm-md-1 zdm-color-green">check_circle_outline</span> <?= esc_html__('File deleted!', 'zdm') ?></p>
             <p><a href="admin.php?page=<?= ZDM__SLUG ?>-files" class="button-primary"><?= esc_html__('Back to overview', 'zdm') ?></a></p>
+        </div>
+    <?php
+    } elseif ($zdm_status === 5) {
+    ?>
+        <div class="notice notice-error">
+            <p><span class="material-icons-round zdm-md-1 zdm-color-red">warning</span> <?= $zdm_status_5_note ?></p>
+            <p><a href="admin.php?page=<?= ZDM__SLUG ?>-settings#zdm-expanded" title="<?= esc_html__('Change settings', 'zdm') ?>"><?= esc_html__('Change settings', 'zdm') ?></a></p>
+            <p><a href="admin.php?page=<?= ZDM__SLUG ?>-add-file" class="button-primary"><?= esc_html__('Upload new file', 'zdm') ?></a></p>
         </div>
 <?php
     }
