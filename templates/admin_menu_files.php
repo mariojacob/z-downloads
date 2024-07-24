@@ -52,80 +52,19 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
             $zdm_file['type'] = $_FILES['file']['type'];
             $zdm_file['size'] = ZDMCore::file_size_convert($_FILES['file']['size']);
 
-            $allowed_extensions = [
-                // Bilddateien
-                'jpg', 'jpeg', 'png', 'gif', 'svg', 'tiff', 'bmp', 'ico', 'webp', 'djvu',
-                // Dokumente
-                'pdf', 'doc', 'docx', 'xls', 'xlsx', 'ppt', 'pptx', 'odt', 'ods', 'odp', 'rtf', 'epub', 'mobi', 'ibooks',
-                'azw', 'fb2', 'pages', 'numbers', 'key',
-                // Audio- und Video
-                'mp3', 'wav', 'aac', 'ogg', 'oga', 'flac', 'mp4', 'mov', 'avi', 'wmv', 'mkv',
-                // Text- und Code
-                'txt', 'csv', 'json', 'xml', 'scpt',
-                // Archivformate
-                'zip', 'rar', '7z', 'tar', 'gz', 'cbz', 'cbr',
-                // Grafik
-                'psd', 'psb', 'ai', 'eps',
-                // Sonstiges
-                'unitypackage', 'dmg', 'plist', 'iso', 'img', 'bin', 'nrg', 'mdf'
-            ];
-
-            $allowed_mime_types = [
-                // Bilddateien
-                'image/jpeg', 'image/png', 'image/gif', 'image/svg', 'image/svg+xml', 'image/tiff',
-                'image/bmp', 'image/x-icon', 'image/webp', 'image/vnd.djvu',
-
-                // Dokumente
-                'application/vnd.openxmlformats-officedocument.wordprocessingml.template',
-                'application/vnd.openxmlformats-officedocument.spreadsheetml.template',
-                'application/vnd.ms-excel.sheet.macroEnabled.12', 'application/vnd.ms-excel.addin.macroEnabled.12',
-                'application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-                'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-                'application/vnd.ms-powerpoint', 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
-                'application/vnd.ms-powerpoint.addin.macroEnabled.12', 'application/vnd.ms-powerpoint.presentation.macroEnabled.12',
-                'application/vnd.ms-powerpoint.slideshow.macroEnabled.12', 'application/x-mspublisher', 'application/vnd.ms-access',
-                'application/vnd.openxmlformats-officedocument.presentationml.template',
-                'application/vnd.openxmlformats-officedocument.presentationml.slideshow',
-                'application/vnd.oasis.opendocument.text', 'application/vnd.oasis.opendocument.spreadsheet',
-                'application/vnd.oasis.opendocument.presentation', 'application/rtf',
-                'application/vnd.visio und application/vnd.ms-visio.drawing', 'application/epub+zip', 'application/x-mobipocket-ebook',
-                'application/vnd.amazon.ebook', 'application/x-fictionbook+xml',
-                'application/vnd.apple.pages', 'application/vnd.apple.numbers', 'application/vnd.apple.keynote', 'application/x-ibooks+zip',
-
-                // Audio- und Video
-                'audio/mp3', 'audio/mpeg', 'audio/wav', 'audio/aac', 'audio/ogg', 'audio/flac',
-                'video/mp4', 'video/quicktime', 'video/x-msvideo', 'video/x-ms-wmv', 'video/x-matroska',
-
-                // Text- und Code
-                'text/plain', 'text/csv', 'application/json', 'application/xml', 'application/octet-stream', 'text/markdown',
-                'application/javascript', 'text/javascript', 'application/x-applescript',
-
-                // Archivformate
-                'application/zip', 'application/x-zip-compressed', 'application/x-rar-compressed', 'application/x-7z-compressed',
-                'application/x-tar', 'application/gzip', 'application/x-ace-compressed', 'application/x-iso9660-image',
-                'application/x-cbz', 'application/x-cbr',
-
-                // Grafik
-                'image/vnd.adobe.photoshop', 'application/postscript', 'application/postscript',
-                'application/illustrator', 'application/vnd.adobe.illustrator',
-
-                // Sonstiges
-                'application/x-apple-diskimage', 'application/plist', 'application/x-iso9660-image'
-            ];
-
             $file_extension = pathinfo($zdm_file['name'], PATHINFO_EXTENSION);
             $max_file_size = $zdm_options['max-upload-size-in-mb'] * 1024 * 1024;
 
             if (
                 ($zdm_options['secure-file-upload'] === 'on' && (
-                    !in_array(strtolower($file_extension), $allowed_extensions) ||
-                    !in_array($zdm_file['type'], $allowed_mime_types)
+                    !in_array(strtolower($file_extension), ZDM__ALLOWED_EXTENSIONS) ||
+                    !in_array($zdm_file['type'], ZDM__ALLOWED_MIME_TYPES)
                 )) ||
                 $_FILES['file']['size'] > $max_file_size
             ) {
                 if ($zdm_options['secure-file-upload'] === 'on' && (
-                    !in_array(strtolower($file_extension), $allowed_extensions) ||
-                    !in_array($zdm_file['type'], $allowed_mime_types)
+                    !in_array(strtolower($file_extension), ZDM__ALLOWED_EXTENSIONS) ||
+                    !in_array($zdm_file['type'], ZDM__ALLOWED_MIME_TYPES)
                 )) {
                     $zdm_status_5_note = '<b>.' . $file_extension . '</b> ' . esc_html__('file type not allowed.', 'zdm');
                 }
@@ -378,74 +317,99 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         //////////////////////////////////////////////////
         if (isset($_FILES['file']) && wp_verify_nonce($_POST['nonce'], 'replace-file') && $_FILES['file']['name'] != '') {
 
-            $zdm_db_file_query = $wpdb->prepare(
-                "
-                SELECT * 
-                FROM $zdm_tablename_files 
-                WHERE id = %d
-                ",
-                $zdm_file_id
-            );
-            $zdm_db_file = $wpdb->get_results($zdm_db_file_query);
-            $zdm_db_file = $zdm_db_file[0];
-
             $zdm_file = array();
-            $zdm_file['name'] = $_FILES['file']['name'];
+            $zdm_file['name'] = sanitize_file_name($_FILES['file']['name']);
             $zdm_file['type'] = $_FILES['file']['type'];
             $zdm_file['size'] = ZDMCore::file_size_convert($_FILES['file']['size']);
 
-            if ($_POST['name'] != '') {
-                $zdm_name = sanitize_text_field($_POST['name']);
+            $file_extension = pathinfo($zdm_file['name'], PATHINFO_EXTENSION);
+            $max_file_size = $zdm_options['max-upload-size-in-mb'] * 1024 * 1024;
+
+            // Datei auf erlaubte Erweiterungen und MIME-Typen prüfen
+            if (
+                ($zdm_options['secure-file-upload'] === 'on' && (
+                    !in_array(strtolower($file_extension), ZDM__ALLOWED_EXTENSIONS) ||
+                    !in_array($zdm_file['type'], ZDM__ALLOWED_MIME_TYPES)
+                )) ||
+                $_FILES['file']['size'] > $max_file_size
+            ) {
+                if ($zdm_options['secure-file-upload'] === 'on' && (
+                    !in_array(strtolower($file_extension), ZDM__ALLOWED_EXTENSIONS) ||
+                    !in_array($zdm_file['type'], ZDM__ALLOWED_MIME_TYPES)
+                )) {
+                    $zdm_note = '<b>.' . $file_extension . '</b> ' . esc_html__('file type not allowed.', 'zdm');
+                }
+
+                if ($_FILES['file']['size'] > $max_file_size) {
+                    $zdm_note = esc_html__('Maximum upload file size exceeded.', 'zdm');
+                }
+
+                $zdm_status = 5;
             } else {
-                $zdm_name = $zdm_file['name'];
+                $zdm_db_file_query = $wpdb->prepare(
+                    "
+                    SELECT * 
+                    FROM $zdm_tablename_files 
+                    WHERE id = %d
+                    ",
+                    $zdm_file_id
+                );
+                $zdm_db_file = $wpdb->get_results($zdm_db_file_query);
+                $zdm_db_file = $zdm_db_file[0];
+
+                if ($_POST['name'] != '') {
+                    $zdm_name = sanitize_text_field($_POST['name']);
+                } else {
+                    $zdm_name = $zdm_file['name'];
+                }
+
+                // Alte Datei löschen
+                unlink(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_db_file->folder_path . '/' . $zdm_db_file->file_name);
+
+                // Neue Datei abspeichern
+                move_uploaded_file($_FILES['file']['tmp_name'], ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_db_file->folder_path . '/' . $zdm_file['name']);
+
+                // MD5 aus Datei
+                $zdm_file['md5'] = md5_file(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_db_file->folder_path . '/' . $zdm_file['name']);
+
+                // SHA1 aus Datei
+                $zdm_file['sha1'] = sha1_file(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_db_file->folder_path . '/' . $zdm_file['name']);
+
+                // Dateipfad in DB aktualisieren
+                $wpdb->update(
+                    $zdm_tablename_files,
+                    array(
+                        'name'          => $zdm_name,
+                        'hash_md5'      => $zdm_file['md5'],
+                        'hash_sha1'     => $zdm_file['sha1'],
+                        'file_name'     => $zdm_file['name'],
+                        'file_type'     => $zdm_file['type'],
+                        'file_size'     => $zdm_file['size'],
+                        'time_update'   => $zdm_time
+                    ),
+                    array(
+                        'id' => $zdm_file_id
+                    )
+                );
+
+                $wpdb->update(
+                    $zdm_tablename_files_rel,
+                    array(
+                        'file_updated'  => 1,
+                        'time_update'   => $zdm_time
+                    ),
+                    array(
+                        'id_file' => $zdm_file_id
+                    )
+                );
+
+                ZDMCore::log('replace file', $zdm_file_id);
+
+                $zdm_active_tab = 'file';
+
+                // Erfolg-Meldung ausgeben
+                $zdm_note = esc_html__('File has been replaced!', 'zdm');
             }
-
-            // Alte Datei löschen
-            unlink(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_db_file->folder_path . '/' . $zdm_db_file->file_name);
-
-            // Neue Datei abspeichern
-            move_uploaded_file($_FILES['file']['tmp_name'], ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_db_file->folder_path . '/' . $zdm_file['name']);
-
-            // MD5 aus Datei
-            $zdm_file['md5'] = md5_file(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_db_file->folder_path . '/' . $zdm_file['name']);
-
-            // SHA1 aus Datei
-            $zdm_file['sha1'] = sha1_file(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_db_file->folder_path . '/' . $zdm_file['name']);
-
-            // Dateipfad in DB aktualisieren
-            $wpdb->update(
-                $zdm_tablename_files,
-                array(
-                    'name'          => $zdm_name,
-                    'hash_md5'      => $zdm_file['md5'],
-                    'hash_sha1'     => $zdm_file['sha1'],
-                    'file_name'     => $zdm_file['name'],
-                    'file_type'     => $zdm_file['type'],
-                    'file_size'     => $zdm_file['size'],
-                    'time_update'   => $zdm_time
-                ),
-                array(
-                    'id' => $zdm_file_id
-                )
-            );
-
-            $wpdb->update(
-                $zdm_tablename_files_rel,
-                array(
-                    'file_updated'  => 1,
-                    'time_update'   => $zdm_time
-                ),
-                array(
-                    'id_file' => $zdm_file_id
-                )
-            );
-
-            ZDMCore::log('replace file', $zdm_file_id);
-
-            $zdm_active_tab = 'file';
-
-            // Erfolg-Meldung ausgeben
-            $zdm_note = esc_html__('File has been replaced!', 'zdm');
         }
 
         //////////////////////////////////////////////////
