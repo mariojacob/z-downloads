@@ -1351,10 +1351,16 @@ class ZDMCore
         }
 
         // HTTP user agent
-        if (filter_input(INPUT_SERVER, 'HTTP_USER_AGENT'))
-            $http_user_agent = filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
-        else
+        $http_user_agent = filter_input(INPUT_SERVER, 'HTTP_USER_AGENT');
+        if (
+            $http_user_agent !== false &&
+            strlen($http_user_agent) < 255 &&
+            preg_match('/^[a-zA-Z0-9\-.,\s\/()]+$/', $http_user_agent)
+        ) {
+            $http_user_agent = htmlspecialchars($http_user_agent, ENT_QUOTES, 'UTF-8');
+        } else {
             $http_user_agent = "---";
+        }
 
         global $wpdb;
 
@@ -1364,8 +1370,8 @@ class ZDMCore
         $wpdb->insert(
             $tablename_log,
             array(
-                'type'          => htmlspecialchars($type),
-                'message'       => htmlspecialchars($message),
+                'type'          => htmlspecialchars($type, ENT_QUOTES, 'UTF-8'),
+                'message'       => htmlspecialchars($message, ENT_QUOTES, 'UTF-8'),
                 'user_agent'    => $http_user_agent,
                 'user_ip'       => $user_ip,
                 'time_create'   => time()

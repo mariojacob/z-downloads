@@ -146,11 +146,11 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             </tr>
                             <tr valign="top">
                                 <th scope="row"><?= esc_html__('User agent', 'zdm') ?></th>
-                                <td valign="middle"><?= $zdm_db_log_details[0]->user_agent ?></td>
+                                <td valign="middle"><?= esc_html($zdm_db_log_details[0]->user_agent) ?></td>
                             </tr>
                             <tr valign="top">
                                 <th scope="row"><?= esc_html__('IP adress', 'zdm') ?></th>
-                                <td valign="middle"><?= $zdm_db_log_details[0]->user_ip ?></td>
+                                <td valign="middle"><?= esc_html($zdm_db_log_details[0]->user_ip) ?></td>
                             </tr>
                             <tr valign="top">
                                 <th scope="row"><?= esc_html__('Created', 'zdm') ?></th>
