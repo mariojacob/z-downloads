@@ -88,10 +88,22 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
         // Download-Button
 
         // Download Button Text
-        $zdm_options['download-btn-text'] = isset($_POST['download-btn-text']) ? trim(sanitize_text_field($_POST['download-btn-text'])) : '';
+        $download_btn_text = isset($_POST['download-btn-text']) ? trim(sanitize_text_field($_POST['download-btn-text'])) : '';
+        $download_btn_text = substr($download_btn_text, 0, 50);
+        $zdm_options['download-btn-text'] = $download_btn_text;
 
         // Download Button Style
-        $zdm_options['download-btn-style'] = isset($_POST['download-btn-style']) ? trim(sanitize_text_field($_POST['download-btn-style'])) : '';
+        // Erlaubte Stile definieren
+        $allowed_styles = ZDM__DOWNLOAD_BTN_STYLE_VAL;
+        // Eingabe erhalten und bereinigen
+        $download_btn_style = isset($_POST['download-btn-style']) ? trim(sanitize_text_field($_POST['download-btn-style'])) : '';
+        // Eingabe validieren
+        if (in_array($download_btn_style, $allowed_styles, true)) {
+            $zdm_options['download-btn-style'] = $download_btn_style;
+        } else {
+            // Ungültige Eingabe behandeln (Standardwert setzen oder Fehler anzeigen)
+            $zdm_options['download-btn-style'] = 'default_style'; // Ersetzen Sie dies durch Ihren tatsächlichen Standardwert
+        }
 
         // Download Button Outline
         $zdm_options['download-btn-outline'] = isset($_POST['download-btn-outline']) ? trim(sanitize_text_field($_POST['download-btn-outline'])) : '';
@@ -286,6 +298,12 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                 </div>
             <?php
             } else { // Normale Ansicht der Einstellungsseite
+
+                if (empty($download_btn_text)) {
+                    $zdm_options['download-btn-text'] = 'Download';
+                } else {
+                    $zdm_options['download-btn-text'] = $download_btn_text;
+                }
             ?>
 
                 <form action="" method="post">
@@ -397,7 +415,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                                 ?>
                                             </select>
                                             &nbsp;&nbsp;&nbsp;
-                                            <span class="zdm-color-bg-<?= $zdm_options['download-btn-style'] ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                                            <span class="zdm-color-bg-<?= esc_attr($zdm_options['download-btn-style']) ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
                                             <br>
                                             <div class="zdm-help-text"><?= esc_html__('Choose from different button colors the default value for buttons.', 'zdm') ?></div>
                                         </td>
