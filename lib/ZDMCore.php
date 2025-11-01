@@ -213,12 +213,16 @@ class ZDMCore
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
 
         $db_file_rel = $wpdb->get_results(
-            "
-            SELECT id 
-            FROM $tablename_files_rel 
-            WHERE id_file = '$files_id' 
-            AND id_archive = '$archive_id'
-            "
+            $wpdb->prepare(
+                "
+                SELECT id 
+                FROM $tablename_files_rel 
+                WHERE id_file = %d 
+                AND id_archive = %d
+                ",
+                $files_id,
+                $archive_id
+            )
         );
 
         if (!isset($db_file_rel[0]))
@@ -240,12 +244,15 @@ class ZDMCore
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
 
         $db_files_rel = $wpdb->get_results(
-            "
-            SELECT id 
-            FROM $tablename_files_rel 
-            WHERE file_updated = '1' 
-            AND id_archive = '$archive_id'
-            "
+            $wpdb->prepare(
+                "
+                SELECT id 
+                FROM $tablename_files_rel 
+                WHERE file_updated = '1' 
+                AND id_archive = %d
+                ",
+                $archive_id
+            )
         );
 
         if (count($db_files_rel) > 0)
@@ -287,11 +294,14 @@ class ZDMCore
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
 
         $db_files_rel = $wpdb->get_results(
-            "
-            SELECT id 
-            FROM $tablename_files_rel 
-            WHERE id_archive = '$archive_id'
-            "
+            $wpdb->prepare(
+                "
+                SELECT id 
+                FROM $tablename_files_rel 
+                WHERE id_archive = %d
+                ",
+                $archive_id
+            )
         );
 
         if (count($db_files_rel) > 0)
@@ -313,11 +323,14 @@ class ZDMCore
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
 
         $db_file_rel = $wpdb->get_results(
-            "
-            SELECT id 
-            FROM $tablename_files_rel 
-            WHERE id_file = '$files_id'
-            "
+            $wpdb->prepare(
+                "
+                SELECT id 
+                FROM $tablename_files_rel 
+                WHERE id_file = %d
+                ",
+                $files_id
+            )
         );
 
         $db_count = count($db_file_rel);
@@ -341,20 +354,26 @@ class ZDMCore
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
 
         $db_files_rel = $wpdb->get_results(
-            "
-            SELECT id 
-            FROM $tablename_files_rel 
-            WHERE file_updated = '1' 
-            AND id_archive = '$archive_id'
-            "
+            $wpdb->prepare(
+                "
+                SELECT id 
+                FROM $tablename_files_rel 
+                WHERE file_updated = '1' 
+                AND id_archive = %d
+                ",
+                $archive_id
+            )
         );
 
         $db_files_rel_check_archive = $wpdb->get_results(
-            "
-            SELECT id 
-            FROM $tablename_files_rel 
-            WHERE id_archive = '$archive_id'
-            "
+            $wpdb->prepare(
+                "
+                SELECT id 
+                FROM $tablename_files_rel 
+                WHERE id_archive = %d
+                ",
+                $archive_id
+            )
         );
 
         // Überprüfen Sie, ob das Archiv eine Datei enthält
@@ -384,11 +403,14 @@ class ZDMCore
             $tablename_archives = $wpdb->prefix . "zdm_archives";
 
             $db_archives = $wpdb->get_results(
-                "
-                SELECT id 
-                FROM $tablename_archives 
-                WHERE id = '$archive_id'
-                "
+                $wpdb->prepare(
+                    "
+                    SELECT id 
+                    FROM $tablename_archives 
+                    WHERE id = %d
+                    ",
+                    $archive_id
+                )
             );
 
             if (count($db_archives) > 0)
@@ -414,11 +436,14 @@ class ZDMCore
             $tablename_files = $wpdb->prefix . "zdm_files";
 
             $db_files = $wpdb->get_results(
-                "
-                SELECT id 
-                FROM $tablename_files 
-                WHERE id = '$file_id'
-                "
+                $wpdb->prepare(
+                    "
+                    SELECT id 
+                    FROM $tablename_files 
+                    WHERE id = %d
+                    ",
+                    $file_id
+                )
             );
 
             if (count($db_files) >= 1)
@@ -446,20 +471,26 @@ class ZDMCore
         $tablename_files_rel = $wpdb->prefix . "zdm_files_rel";
 
         $db_archive = $wpdb->get_results(
-            "
-            SELECT * 
-            FROM $tablename_archives 
-            WHERE id = '$archive_id'
-            "
+            $wpdb->prepare(
+                "
+                SELECT * 
+                FROM $tablename_archives 
+                WHERE id = %d
+                ",
+                $archive_id
+            )
         );
 
         $db_files_rel = $wpdb->get_results(
-            "
-            SELECT * 
-            FROM $tablename_files_rel 
-            WHERE id_archive = '$archive_id' 
-            AND file_deleted = '0'
-            "
+            $wpdb->prepare(
+                "
+                SELECT * 
+                FROM $tablename_files_rel 
+                WHERE id_archive = %d 
+                AND file_deleted = '0'
+                ",
+                $archive_id
+            )
         );
 
         $db_files_rel_count = count($db_files_rel);
@@ -548,12 +579,15 @@ class ZDMCore
         );
 
         $db_files_rel_deleted = $wpdb->get_results(
-            "
-            SELECT id 
-            FROM $tablename_files_rel 
-            WHERE id_archive = '$archive_id' 
-            AND file_deleted = '1'
-            "
+            $wpdb->prepare(
+                "
+                SELECT id 
+                FROM $tablename_files_rel 
+                WHERE id_archive = %d 
+                AND file_deleted = '1'
+                ",
+                $archive_id
+            )
         );
 
         $db_files_rel_deleted_count = count($db_files_rel_deleted);
@@ -1043,7 +1077,7 @@ class ZDMCore
             "
             SELECT id_archive 
             FROM $tablename_files_rel 
-            WHERE id_file = '$file_id'
+            WHERE id_file = %d
             ",
             $file_id
         );
@@ -2119,7 +2153,7 @@ class ZDMCore
                         "
                         SELECT file_size, status 
                         FROM $tablename_files 
-                        WHERE id = $d
+                        WHERE id = %d
                         ",
                         $file
                     );
