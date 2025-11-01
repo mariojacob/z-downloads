@@ -929,6 +929,52 @@ class ZDMCore
     }
 
     /**
+     * Erstellt eine Download-URL inklusive bestehender Query-Parameter.
+     *
+     * @param string $type
+     * @param string $id
+     * @return string
+     */
+    private static function build_download_url($type, $id)
+    {
+        $current_url = add_query_arg(array());
+        $current_path = (string) wp_parse_url($current_url, PHP_URL_PATH);
+        $base_url = home_url($current_path !== '' ? $current_path : '/');
+
+        $existing_args = array();
+        $current_query = wp_parse_url($current_url, PHP_URL_QUERY);
+
+        if (!empty($current_query)) {
+            wp_parse_str($current_query, $existing_args);
+        }
+
+        $download_param = sanitize_key($type);
+        $sanitized_args = array();
+
+        if (!empty($existing_args)) {
+            foreach ($existing_args as $key => $value) {
+                $sanitized_key = sanitize_key($key);
+
+                if ($sanitized_key === '' || $sanitized_key === $download_param) {
+                    continue;
+                }
+
+                if (in_array($sanitized_key, array('zdownload', 'zdownload_f'), true)) {
+                    continue;
+                }
+
+                $sanitized_args[$sanitized_key] = sanitize_text_field($value);
+            }
+        }
+
+        if ($download_param !== '') {
+            $sanitized_args[$download_param] = $id;
+        }
+
+        return esc_url(add_query_arg($sanitized_args, $base_url));
+    }
+
+    /**
      * Integriert Administrationsskripte
      *
      * @return void
@@ -1706,7 +1752,9 @@ class ZDMCore
                         else
                             $icon_and_text = $download_text . $icon;
 
-                        return '<a href="?' . $type . '=' . $id . '"' . $html_id . ' class="' . self::download_button_class() . $align . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
+                        $download_url = self::build_download_url($type, $id);
+
+                        return '<a href="' . $download_url . '"' . $html_id . ' class="' . self::download_button_class() . $align . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
                     }
                 } else {
                     // Leerer Rückgabewert, wenn keine Datei verknüpft ist
@@ -1770,7 +1818,9 @@ class ZDMCore
                         else
                             $icon_and_text = $download_text . $icon;
 
-                        return '<a href="?' . $type . '=' . $id . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . self::download_button_class() . $align . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
+                        $download_url = self::build_download_url($type, $id);
+
+                        return '<a href="' . $download_url . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . self::download_button_class() . $align . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
                     }
                 } else {
                     // Leerer Rückgabewert, wenn Datei nicht vorhanden ist
@@ -1837,26 +1887,24 @@ class ZDMCore
         );
 
         $zip = htmlspecialchars($atts['zip']);
-        $link_1 = '';
-        $link_1_1 = '';
-        $link_2 = '';
-        if ($options['list-links'] == 'on') {
-            $link_1 = '<a href="' . get_site_url() . '?zdownload_f=';
-            $link_1_1 = '" target="_blank" rel="nofollow noopener noreferrer">';
-            $link_2 = '</a>';
-        } elseif ($options['list-links'] == 'off') {
-            $link_1 = '';
-            $link_1_1 = '';
-            $link_2 = '';
+        $use_links = ($options['list-links'] === 'on');
+
+        if ($options['list-links'] === 'off') {
+            $use_links = false;
         }
-        if ($atts['links'] == 'on') {
-            $link_1 = '<a href="' . get_site_url() . '?zdownload_f=';
-            $link_1_1 = '" target="_blank" rel="nofollow noopener noreferrer">';
-            $link_2 = '</a>';
-        } elseif ($atts['links'] == 'off') {
-            $link_1 = '';
-            $link_1_1 = '';
-            $link_2 = '';
+
+        if ($atts['links'] === 'on') {
+            $use_links = true;
+        } elseif ($atts['links'] === 'off') {
+            $use_links = false;
+        }
+
+        $link_open_template = '';
+        $link_close = '';
+
+        if ($use_links) {
+            $link_open_template = '<a href="%s" target="_blank" rel="nofollow noopener noreferrer">';
+            $link_close = '</a>';
         }
         $style = $options['list-style'];
         if ($atts['style'] != '') {
@@ -1909,11 +1957,14 @@ class ZDMCore
                     for ($i = 0; $i < $linked_files_count; $i++) {
 
                         $file_data = self::get_file_data($linked_files[$i]->id_file);
-                        $link_id = '';
-                        if ($link_1 != '') {
-                            $link_id = base64_encode($file_data->id);
+                        $entry = $bold_1 . htmlspecialchars($file_data->name) . $bold_2;
+
+                        if ($link_open_template !== '') {
+                            $download_url = self::build_download_url('zdownload_f', base64_encode($file_data->id));
+                            $entry = sprintf($link_open_template, $download_url) . $entry . $link_close;
                         }
-                        $list .= $link_1 . $link_id . $link_1_1 . $bold_1 . htmlspecialchars($file_data->name) . $bold_2 . $link_2;
+
+                        $list .= $entry;
                         $list .= '<br>';
                     }
                 } elseif ($style == 'ul') {
@@ -1922,11 +1973,14 @@ class ZDMCore
                     for ($i = 0; $i < $linked_files_count; $i++) {
 
                         $file_data = self::get_file_data($linked_files[$i]->id_file);
-                        $link_id = '';
-                        if ($link_1 != '') {
-                            $link_id = base64_encode($file_data->id);
+                        $entry = $bold_1 . htmlspecialchars($file_data->name) . $bold_2;
+
+                        if ($link_open_template !== '') {
+                            $download_url = self::build_download_url('zdownload_f', base64_encode($file_data->id));
+                            $entry = sprintf($link_open_template, $download_url) . $entry . $link_close;
                         }
-                        $list .= '<li>' . $link_1 . $link_id . $link_1_1 . $bold_1 . htmlspecialchars($file_data->name) . $bold_2 . $link_2 . '</li>';
+
+                        $list .= '<li>' . $entry . '</li>';
                     }
                     $list .= '</ul>';
                 } elseif ($style == 'ol') {
@@ -1935,11 +1989,14 @@ class ZDMCore
                     for ($i = 0; $i < $linked_files_count; $i++) {
 
                         $file_data = self::get_file_data($linked_files[$i]->id_file);
-                        $link_id = '';
-                        if ($link_1 != '') {
-                            $link_id = base64_encode($file_data->id);
+                        $entry = $bold_1 . htmlspecialchars($file_data->name) . $bold_2;
+
+                        if ($link_open_template !== '') {
+                            $download_url = self::build_download_url('zdownload_f', base64_encode($file_data->id));
+                            $entry = sprintf($link_open_template, $download_url) . $entry . $link_close;
                         }
-                        $list .= '<li>' . $link_1 . $link_id . $link_1_1 . $bold_1 . htmlspecialchars($file_data->name) . $bold_2 . $link_2 . '</li>';
+
+                        $list .= '<li>' . $entry . '</li>';
                     }
                     $list .= '</ol>';
                 }
