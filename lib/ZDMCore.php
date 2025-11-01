@@ -805,8 +805,13 @@ class ZDMCore
                             );
 
                             // Pfad für Datei
-                            $zip_file = ZDM__DOWNLOADS_CACHE_PATH_URL . '/' . $db_archive[0]->archive_cache_path . '/' . $db_archive[0]->zip_name . '.zip';
                             $zip_file_root = ZDM__DOWNLOADS_CACHE_PATH . '/' . $db_archive[0]->archive_cache_path . '/' . $db_archive[0]->zip_name . '.zip';
+
+                            if (!is_readable($zip_file_root)) {
+                                self::log('error download archive', 'not readable: ' . $zip_file_root);
+                                header('HTTP/1.1 404 Not Found');
+                                exit;
+                            }
 
                             // Provide file
                             header('Content-Description: File Transfer');
@@ -816,7 +821,7 @@ class ZDMCore
                             header("Content-Type: application/zip");
                             header('Content-Disposition: attachment; filename=' . $db_archive[0]->zip_name . '.zip');
                             header('Content-Length: ' . filesize($zip_file_root));
-                            readfile($zip_file);
+                            readfile($zip_file_root);
                             exit;
                         }
                     } // end if (self::check_if_archive_exists($zdownload_url) === true)
