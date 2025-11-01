@@ -1555,23 +1555,41 @@ class ZDMCore
     {
         $options = get_option('zdm_options');
 
-        $dir =  wp_upload_dir()['basedir'];
+        $uploads = wp_upload_dir();
+        if (empty($uploads['basedir'])) {
+            return false;
+        }
+
+        $dir = $uploads['basedir'];
         $dir_array = scandir($dir);
-        $regex_search = '/z-downloads-.{32}/';
-        $dir_count = count($dir_array);
-        for ($i = 0; $i < $dir_count; $i++) {
+        if ($dir_array === false) {
+            return false;
+        }
 
-            if (preg_match($regex_search, $dir_array[$i])) {
+        $regex_search = '/^z-downloads-.{32}$/';
+        $matching_dirs = array_filter(
+            $dir_array,
+            static function ($entry) use ($regex_search) {
+                return preg_match($regex_search, $entry);
+            }
+        );
 
-                if ($dir_array[$i] != 'z-downloads-' . $options['download-folder-token']) {
-                    rename(wp_upload_dir()['basedir'] . '/' . $dir_array[$i], wp_upload_dir()['basedir'] . '/z-downloads-' . $options['download-folder-token']);
+        $expected = 'z-downloads-' . $options['download-folder-token'];
+
+        foreach ($matching_dirs as $folder_name) {
+            if ($folder_name !== $expected) {
+                if (rename($dir . '/' . $folder_name, $dir . '/' . $expected)) {
                     self::log('folder token repaired');
                     return true;
-                } else {
-                    return false;
                 }
+
+                return false;
             }
+
+            return false;
         }
+
+        return false;
     }
 
     /**
