@@ -381,127 +381,177 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                 <form action="" method="post">
 
+                    <?php
+                    $zdm_preview_text_value = !empty($zdm_options['download-btn-text']) ? $zdm_options['download-btn-text'] : __('Download', 'zdm');
+                    $zdm_preview_icon_value = !empty($zdm_options['download-btn-icon']) ? $zdm_options['download-btn-icon'] : 'none';
+                    $zdm_preview_outline_value = $zdm_options['download-btn-outline'] === 'on' ? 'on' : 'off';
+                    $zdm_preview_icon_position = !empty($zdm_options['download-btn-icon-position']) ? $zdm_options['download-btn-icon-position'] : 'left';
+                    $zdm_preview_icon_only = $zdm_options['download-btn-icon-only'] === 'on' ? 'on' : 'off';
+                    $zdm_preview_border_radius = $zdm_options['download-btn-border-radius'] === 'none' ? 0 : (int) $zdm_options['download-btn-border-radius'];
+                    $zdm_preview_style_value = !empty($zdm_options['download-btn-style']) ? $zdm_options['download-btn-style'] : ZDM__DOWNLOAD_BTN_STYLE_VAL[0];
+
+                    $zdm_preview_button_classes = [
+                        'button',
+                        'zdm-btn',
+                        'zdm-preview-button',
+                        'zdm-btn-style-' . $zdm_preview_style_value . ($zdm_preview_outline_value === 'on' ? '-outline' : '')
+                    ];
+
+                    if ($zdm_preview_border_radius !== 0) {
+                        $zdm_preview_button_classes[] = 'zdm-btn-radius' . $zdm_preview_border_radius;
+                    }
+
+                    $zdm_preview_icon_classes = [
+                        'material-icons-round',
+                        'zdm-preview-icon'
+                    ];
+
+                    if ($zdm_preview_icon_only === 'on') {
+                        $zdm_preview_icon_classes[] = 'zdm-btn-icon-only';
+                    } else {
+                        $zdm_preview_icon_classes[] = 'zdm-btn-icon';
+                        if ($zdm_preview_icon_position === 'right') {
+                            $zdm_preview_icon_classes[] = 'zdm-ml-2';
+                        } else {
+                            $zdm_preview_icon_classes[] = 'zdm-mr-2';
+                        }
+                    }
+
+                    if ($zdm_preview_icon_value === 'none') {
+                        $zdm_preview_icon_classes[] = 'is-hidden';
+                    }
+
+                    $zdm_preview_text_classes = ['zdm-preview-text'];
+
+                    if ($zdm_preview_icon_only === 'on') {
+                        $zdm_preview_text_classes[] = 'is-hidden';
+                    }
+
+                    $zdm_preview_button_class_attr = esc_attr(implode(' ', $zdm_preview_button_classes));
+                    $zdm_preview_icon_class_attr = esc_attr(implode(' ', $zdm_preview_icon_classes));
+                    $zdm_preview_text_class_attr = esc_attr(implode(' ', $zdm_preview_text_classes));
+                    ?>
+
                     <div class="postbox" id="zdm-download-button">
                         <div class="inside">
                             <h3><?= esc_html__('Download button', 'zdm') ?></h3>
                             <hr>
-                            <table class="form-table">
+
+                            <div class="zdm-download-preview-wrapper">
+                                <div class="zdm-preview-heading">
+                                    <?= esc_html__('Preview', 'zdm') ?>
+                                </div>
+                                <div class="zdm-preview-button-container">
+                                    <button type="button" class="<?= $zdm_preview_button_class_attr ?>" data-style="<?= esc_attr($zdm_preview_style_value) ?>" data-outline="<?= esc_attr($zdm_preview_outline_value) ?>" data-icon-position="<?= esc_attr($zdm_preview_icon_position) ?>" data-icon-only="<?= esc_attr($zdm_preview_icon_only) ?>">
+                                        <span class="<?= $zdm_preview_icon_class_attr ?>"><?php if ($zdm_preview_icon_value !== 'none') {
+                                                                                            echo esc_html($zdm_preview_icon_value);
+                                                                                        } ?></span>
+                                        <span class="<?= $zdm_preview_text_class_attr ?>"><?= esc_html($zdm_preview_text_value) ?></span>
+                                    </button>
+                                </div>
+                                <div class="zdm-preview-hint"><?= esc_html__('Changes update the preview instantly.', 'zdm') ?></div>
+                            </div>
+
+                            <table class="form-table zdm-download-form">
                                 <tbody>
                                     <tr valign="top">
                                         <th scope="row"><?= esc_html__('Standard text', 'zdm') ?>:</th>
                                         <td valign="middle">
-                                            <input type="text" name="download-btn-text" size="15" value="<?= esc_attr($zdm_options['download-btn-text']) ?>">
-                                            <br>
+                                            <input type="text" name="download-btn-text" size="20" value="<?= esc_attr($zdm_options['download-btn-text']) ?>" class="regular-text">
                                             <div class="zdm-help-text"><?= esc_html__('This is the default text, but this can be changed individually per download.', 'zdm') ?></div>
                                         </td>
                                     </tr>
                                     <tr valign="top">
                                         <th scope="row"><?= esc_html__('Style', 'zdm') ?>:</th>
                                         <td valign="middle">
-                                            <select name="download-btn-style">
+                                            <input type="hidden" name="download-btn-style" id="zdm-download-btn-style-input" value="<?= esc_attr($zdm_preview_style_value) ?>">
+                                            <div class="zdm-icon-grid zdm-style-grid" role="radiogroup" aria-label="<?= esc_attr__('Style', 'zdm') ?>">
                                                 <?php
                                                 $zdm_btn_style = '';
-
                                                 $zdm_download_btn_style = count(ZDM__DOWNLOAD_BTN_STYLE);
 
                                                 for ($i = 0; $i < $zdm_download_btn_style; $i++) {
-                                                    $zdm_btn_style    .= '<option value="' . ZDM__DOWNLOAD_BTN_STYLE_VAL[$i] . '" '
-                                                        . ($zdm_options['download-btn-style'] == ZDM__DOWNLOAD_BTN_STYLE_VAL[$i] ? 'selected="selected"' : '') . '>'
-                                                        . ZDM__DOWNLOAD_BTN_STYLE[$i]
-                                                        . '</option>';
+                                                    $style_value = ZDM__DOWNLOAD_BTN_STYLE_VAL[$i];
+                                                    $style_label = ZDM__DOWNLOAD_BTN_STYLE[$i];
+                                                    $is_selected = ($zdm_preview_style_value === $style_value);
+                                                    $style_button_classes = 'zdm-icon-card zdm-style-card' . ($is_selected ? ' active' : '');
+
+                                                    $zdm_btn_style .= '<button type="button" class="' . esc_attr($style_button_classes) . '" role="radio" data-style-value="' . esc_attr($style_value) . '" aria-checked="' . ($is_selected ? 'true' : 'false') . '">';
+                                                    $zdm_btn_style .= '<span class="zdm-style-badge" data-style="' . esc_attr($style_value) . '"></span>';
+                                                    $zdm_btn_style .= '<span class="zdm-icon-card-label">' . esc_html($style_label) . '</span>';
+                                                    $zdm_btn_style .= '</button>';
                                                 }
 
                                                 echo $zdm_btn_style;
                                                 ?>
-                                            </select>
-                                            &nbsp;&nbsp;&nbsp;
-                                            <span class="zdm-color-bg-<?= esc_attr($zdm_options['download-btn-style']) ?>">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                            <br>
+                                            </div>
                                             <div class="zdm-help-text"><?= esc_html__('Choose from different button colors the default value for buttons.', 'zdm') ?></div>
                                         </td>
                                     </tr>
                                     <tr valign="top">
-                                        <th scope="row"></th>
+                                        <th scope="row"><?= esc_html__('Outline', 'zdm') ?>:</th>
                                         <td valign="middle">
-                                            <input type="checkbox" name="download-btn-outline" <?php if ($zdm_options['download-btn-outline'] == 'on') {
-                                                                                                    echo 'checked="checked"';
-                                                                                                } ?>>
-                                            <?= esc_html__('Outline', 'zdm') ?>
-                                            <br>
+                                            <label class="zdm-checkbox-modern">
+                                                <input type="checkbox" name="download-btn-outline" <?php if ($zdm_options['download-btn-outline'] == 'on') {
+                                                                                                            echo 'checked="checked"';
+                                                                                                        } ?>>
+                                                <span><?= esc_html__('Enable outline', 'zdm') ?></span>
+                                            </label>
                                             <div class="zdm-help-text"><?= esc_html__('This option shows the button as a frame.', 'zdm') ?></div>
                                         </td>
                                     </tr>
                                     <tr valign="top">
                                         <th scope="row"><?= esc_html__('Round corners', 'zdm') ?>:</th>
                                         <td valign="middle">
-                                            <select name="download-btn-border-radius">
+                                            <input type="hidden" name="download-btn-border-radius" id="zdm-download-btn-radius-input" value="<?= esc_attr($zdm_options['download-btn-border-radius']) ?>">
+                                            <div class="zdm-icon-grid zdm-radius-grid" role="radiogroup" aria-label="<?= esc_attr__('Round corners', 'zdm') ?>">
                                                 <?php
-                                                $zdm_btn_border = '';
-
+                                                $zdm_radius_cards = '';
                                                 $zdm_download_btn_border_radius = count(ZDM__DOWNLOAD_BTN_BORDER_RADIUS);
 
                                                 for ($i = 0; $i < $zdm_download_btn_border_radius; $i++) {
-                                                    $zdm_btn_border .= '<option value="' . ZDM__DOWNLOAD_BTN_BORDER_RADIUS_VAL[$i] . '" '
-                                                        . ($zdm_options['download-btn-border-radius'] == ZDM__DOWNLOAD_BTN_BORDER_RADIUS_VAL[$i] ? 'selected="selected"' : '') . '>'
-                                                        . ZDM__DOWNLOAD_BTN_BORDER_RADIUS[$i]
-                                                        . '</option>';
+                                                    $radius_value = ZDM__DOWNLOAD_BTN_BORDER_RADIUS_VAL[$i];
+                                                    $radius_label = ZDM__DOWNLOAD_BTN_BORDER_RADIUS[$i];
+                                                    $is_selected = ($zdm_options['download-btn-border-radius'] == $radius_value);
+                                                    $radius_button_classes = 'zdm-icon-card zdm-radius-chip' . ($is_selected ? ' active' : '');
+                                                    $preview_suffix = $radius_value === 'none' ? 'none' : (int) $radius_value;
+
+                                                    $zdm_radius_cards .= '<button type="button" class="' . esc_attr($radius_button_classes) . '" role="radio" data-radius-value="' . esc_attr($radius_value) . '" aria-checked="' . ($is_selected ? 'true' : 'false') . '">';
+                                                    $zdm_radius_cards .= '<span class="zdm-radius-chip-preview zdm-radius-chip-preview-' . esc_attr($preview_suffix) . '"></span>';
+                                                    $zdm_radius_cards .= '<span class="zdm-icon-card-label">' . esc_html($radius_label) . '</span>';
+                                                    $zdm_radius_cards .= '</button>';
                                                 }
 
-                                                echo $zdm_btn_border;
+                                                echo $zdm_radius_cards;
                                                 ?>
-                                            </select><br>
+                                            </div>
                                             <div class="zdm-help-text"><?= esc_html__('If "none" is selected then the default value of your theme will be used, the button will remain square.', 'zdm') ?></div>
                                         </td>
                                     </tr>
                                     <tr valign="top">
                                         <th scope="row"><?= esc_html__('Icon', 'zdm') ?>:</th>
                                         <td valign="middle">
-                                            <?php
-                                            $zdm_btn_icons_count = count(ZDM__DOWNLOAD_BTN_ICON);
-                                            $zdm_btn_icons_count_ceil = ceil(($zdm_btn_icons_count) / 3);
-                                            ?>
-                                            <table>
-                                                <tr>
-                                                    <fieldset>
-                                                        <td>
-                                                            <input type="radio" name="download-btn-icon" value="<?= ZDM__DOWNLOAD_BTN_ICON_VAL[0] ?>" <?php if ($zdm_options['download-btn-icon'] == ZDM__DOWNLOAD_BTN_ICON_VAL[0]) {
-                                                                                                                                                            echo 'checked="checked"';
-                                                                                                                                                        } ?>> <span class="zdm-ml-2"><?= ZDM__DOWNLOAD_BTN_ICON[0] ?></input></span><br />
-                                                            <?php
-                                                            $zdm_btn_icon_example = '';
-                                                            for ($i = 1; $i < $zdm_btn_icons_count_ceil; $i++) {
-                                                                $zdm_btn_icon_example .= '<input type="radio" name="download-btn-icon" value="' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '" ';
-                                                                $zdm_btn_icon_example .= ($zdm_options['download-btn-icon'] == ZDM__DOWNLOAD_BTN_ICON_VAL[$i] ? 'checked="checked"' : '') . '>';
-                                                                $zdm_btn_icon_example .= '<span class="material-icons-round zdm-md-1-5 zdm-color-primary zdm-mx-2">' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '</span>' . ZDM__DOWNLOAD_BTN_ICON[$i] . '</input><br />';
-                                                            }
-                                                            echo $zdm_btn_icon_example;
-                                                            ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php
-                                                            $zdm_btn_icon_example = '';
-                                                            for ($i = $zdm_btn_icons_count_ceil; $i < $zdm_btn_icons_count - $zdm_btn_icons_count_ceil; $i++) {
-                                                                $zdm_btn_icon_example .= '<input type="radio" name="download-btn-icon" value="' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '" ';
-                                                                $zdm_btn_icon_example .= ($zdm_options['download-btn-icon'] == ZDM__DOWNLOAD_BTN_ICON_VAL[$i] ? 'checked="checked"' : '') . '>';
-                                                                $zdm_btn_icon_example .= '<span class="material-icons-round zdm-md-1-5 zdm-color-primary zdm-mx-2">' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '</span>' . ZDM__DOWNLOAD_BTN_ICON[$i] . '</input><br />';
-                                                            }
-                                                            echo $zdm_btn_icon_example;
-                                                            ?>
-                                                        </td>
-                                                        <td>
-                                                            <?php
-                                                            $zdm_btn_icon_example = '';
-                                                            for ($i = $zdm_btn_icons_count_ceil + $zdm_btn_icons_count_ceil; $i < $zdm_btn_icons_count; $i++) {
-                                                                $zdm_btn_icon_example .= '<input type="radio" name="download-btn-icon" value="' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '" ';
-                                                                $zdm_btn_icon_example .= ($zdm_options['download-btn-icon'] == ZDM__DOWNLOAD_BTN_ICON_VAL[$i] ? 'checked="checked"' : '') . '>';
-                                                                $zdm_btn_icon_example .= '<span class="material-icons-round zdm-md-1-5 zdm-color-primary zdm-mx-2">' . ZDM__DOWNLOAD_BTN_ICON_VAL[$i] . '</span>' . ZDM__DOWNLOAD_BTN_ICON[$i] . '</input><br />';
-                                                            }
-                                                            echo $zdm_btn_icon_example;
-                                                            ?>
-                                                        </td>
-                                                    </fieldset>
-                                                </tr>
-                                            </table>
+                                            <input type="hidden" name="download-btn-icon" id="zdm-download-btn-icon-input" value="<?= esc_attr($zdm_preview_icon_value) ?>">
+                                            <div class="zdm-icon-grid" role="radiogroup" aria-label="<?= esc_attr__('Icon', 'zdm') ?>">
+                                                <?php
+                                                $zdm_btn_icons_count = count(ZDM__DOWNLOAD_BTN_ICON);
+                                                for ($i = 0; $i < $zdm_btn_icons_count; $i++) {
+                                                    $icon_value = ZDM__DOWNLOAD_BTN_ICON_VAL[$i];
+                                                    $icon_label = ZDM__DOWNLOAD_BTN_ICON[$i];
+                                                    $is_selected = ($zdm_preview_icon_value === $icon_value);
+                                                    $icon_button_classes = 'zdm-icon-card' . ($is_selected ? ' active' : '');
+                                                    echo '<button type="button" class="' . esc_attr($icon_button_classes) . '" role="radio" data-icon-value="' . esc_attr($icon_value) . '" aria-checked="' . ($is_selected ? 'true' : 'false') . '">';
+                                                    if ($icon_value === 'none') {
+                                                        echo '<span class="zdm-icon-placeholder">—</span>';
+                                                    } else {
+                                                        echo '<span class="material-icons-round">' . esc_html($icon_value) . '</span>';
+                                                    }
+                                                    echo '<span class="zdm-icon-card-label">' . esc_html($icon_label) . '</span>';
+                                                    echo '</button>';
+                                                }
+                                                ?>
+                                            </div>
+                                            <div class="zdm-help-text"><?= esc_html__('Choose the default icon for your download button.', 'zdm') ?></div>
                                         </td>
                                     </tr>
                                     <tr valign="top">
@@ -515,18 +565,18 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                                                             echo 'selected="selected"';
                                                                         } ?>><?= esc_html__('Right', 'zdm') ?></option>
                                             </select>
-                                            <br>
                                             <div class="zdm-help-text"><?= esc_html__('Choose the position of the icon.', 'zdm') ?></div>
                                         </td>
                                     </tr>
                                     <tr valign="top">
-                                        <th scope="row"></th>
+                                        <th scope="row"><?= esc_html__('Only icon', 'zdm') ?>:</th>
                                         <td valign="middle">
-                                            <input type="checkbox" name="download-btn-icon-only" <?php if ($zdm_options['download-btn-icon-only'] == 'on') {
-                                                                                                        echo 'checked="checked"';
-                                                                                                    } ?>>
-                                            <?= esc_html__('Only icon', 'zdm') ?>
-                                            <br>
+                                            <label class="zdm-checkbox-modern">
+                                                <input type="checkbox" name="download-btn-icon-only" <?php if ($zdm_options['download-btn-icon-only'] == 'on') {
+                                                                                                            echo 'checked="checked"';
+                                                                                                        } ?>>
+                                                <span><?= esc_html__('Show only the icon without text.', 'zdm') ?></span>
+                                            </label>
                                             <div class="zdm-help-text"><?= esc_html__('This option displays only the icon without text.', 'zdm') ?></div>
                                         </td>
                                     </tr>
@@ -534,6 +584,202 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             </table>
                         </div>
                     </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            const downloadBox = document.querySelector('#zdm-download-button');
+                            if (!downloadBox) {
+                                return;
+                            }
+
+                            const previewButton = downloadBox.querySelector('.zdm-preview-button');
+                            if (!previewButton) {
+                                return;
+                            }
+
+                            const previewText = previewButton.querySelector('.zdm-preview-text');
+                            const previewIcon = previewButton.querySelector('.zdm-preview-icon');
+
+                            const textInput = downloadBox.querySelector('input[name="download-btn-text"]');
+                            const styleHiddenInput = downloadBox.querySelector('#zdm-download-btn-style-input');
+                            const styleCards = downloadBox.querySelectorAll('.zdm-style-card');
+                            const outlineCheckbox = downloadBox.querySelector('input[name="download-btn-outline"]');
+                            const radiusHiddenInput = downloadBox.querySelector('#zdm-download-btn-radius-input');
+                            const radiusChips = downloadBox.querySelectorAll('.zdm-radius-chip');
+                            const iconHiddenInput = downloadBox.querySelector('#zdm-download-btn-icon-input');
+                            const iconCards = downloadBox.querySelectorAll('.zdm-icon-card[data-icon-value]');
+                            const iconPositionSelect = downloadBox.querySelector('select[name="download-btn-icon-position"]');
+                            const iconOnlyCheckbox = downloadBox.querySelector('input[name="download-btn-icon-only"]');
+                            const fallbackText = '<?= esc_js(__('Download', 'zdm')) ?>';
+                            const defaultStyleValue = '<?= esc_js($zdm_preview_style_value) ?>';
+
+                            function removeClassesByPrefix(element, prefix) {
+                                if (!element) {
+                                    return;
+                                }
+                                const classes = Array.from(element.classList);
+                                classes.forEach(function(cls) {
+                                    if (cls.startsWith(prefix)) {
+                                        element.classList.remove(cls);
+                                    }
+                                });
+                            }
+
+                            function updateStyleCardState(selectedValue) {
+                                styleCards.forEach(function(card) {
+                                    const isActive = card.getAttribute('data-style-value') === selectedValue;
+                                    card.classList.toggle('active', isActive);
+                                    card.setAttribute('aria-checked', isActive ? 'true' : 'false');
+                                });
+                            }
+
+                            function updateRadiusChipState(selectedValue) {
+                                radiusChips.forEach(function(chip) {
+                                    const isActive = chip.getAttribute('data-radius-value') === selectedValue;
+                                    chip.classList.toggle('active', isActive);
+                                    chip.setAttribute('aria-checked', isActive ? 'true' : 'false');
+                                });
+                            }
+
+                            function updateIconCardState(selectedValue) {
+                                iconCards.forEach(function(card) {
+                                    const isActive = card.getAttribute('data-icon-value') === selectedValue;
+                                    card.classList.toggle('active', isActive);
+                                    card.setAttribute('aria-checked', isActive ? 'true' : 'false');
+                                });
+                            }
+
+                            function updateButtonPreview() {
+                                const textValue = textInput ? textInput.value.trim() : '';
+                                if (previewText) {
+                                    previewText.textContent = textValue !== '' ? textValue : fallbackText;
+                                }
+
+                                const styleValue = styleHiddenInput && styleHiddenInput.value ? styleHiddenInput.value : defaultStyleValue;
+                                previewButton.dataset.style = styleValue;
+
+                                const outlineValue = outlineCheckbox && outlineCheckbox.checked ? 'on' : 'off';
+                                previewButton.dataset.outline = outlineValue;
+
+                                removeClassesByPrefix(previewButton, 'zdm-btn-style-');
+                                const styleClass = 'zdm-btn-style-' + styleValue + (outlineValue === 'on' ? '-outline' : '');
+                                previewButton.classList.add(styleClass);
+
+                                const radiusValue = radiusHiddenInput && radiusHiddenInput.value ? radiusHiddenInput.value : 'none';
+                                updateRadiusChipState(radiusValue);
+                                removeClassesByPrefix(previewButton, 'zdm-btn-radius');
+                                if (radiusValue !== 'none') {
+                                    previewButton.classList.add('zdm-btn-radius' + radiusValue);
+                                }
+
+                                const iconValue = iconHiddenInput ? iconHiddenInput.value : 'none';
+                                if (previewIcon) {
+                                    previewIcon.textContent = iconValue && iconValue !== 'none' ? iconValue : '';
+                                    previewIcon.classList.toggle('is-hidden', !iconValue || iconValue === 'none');
+                                    previewIcon.classList.remove('zdm-btn-icon', 'zdm-btn-icon-only', 'zdm-mr-2', 'zdm-ml-2');
+                                }
+
+                                const iconPosition = iconPositionSelect ? iconPositionSelect.value : 'left';
+                                previewButton.dataset.iconPosition = iconPosition;
+
+                                const iconOnly = iconOnlyCheckbox && iconOnlyCheckbox.checked ? 'on' : 'off';
+                                previewButton.dataset.iconOnly = iconOnly;
+
+                                if (previewIcon) {
+                                    if (iconOnly === 'on') {
+                                        previewIcon.classList.add('zdm-btn-icon-only');
+                                    } else {
+                                        previewIcon.classList.add('zdm-btn-icon');
+                                        if (!previewIcon.classList.contains('is-hidden')) {
+                                            previewIcon.classList.add(iconPosition === 'right' ? 'zdm-ml-2' : 'zdm-mr-2');
+                                        }
+                                    }
+                                }
+
+                                if (previewIcon && previewText) {
+                                    if (previewIcon.parentNode === previewButton) {
+                                        previewButton.removeChild(previewIcon);
+                                    }
+                                    if (previewText.parentNode === previewButton) {
+                                        previewButton.removeChild(previewText);
+                                    }
+
+                                    if (iconOnly === 'on') {
+                                        previewButton.appendChild(previewIcon);
+                                        previewButton.appendChild(previewText);
+                                    } else if (iconPosition === 'right') {
+                                        previewButton.appendChild(previewText);
+                                        previewButton.appendChild(previewIcon);
+                                    } else {
+                                        previewButton.appendChild(previewIcon);
+                                        previewButton.appendChild(previewText);
+                                    }
+                                }
+
+                                if (previewText) {
+                                    previewText.classList.toggle('is-hidden', iconOnly === 'on');
+                                }
+                            }
+
+                            if (textInput) {
+                                textInput.addEventListener('input', updateButtonPreview);
+                            }
+                            if (outlineCheckbox) {
+                                outlineCheckbox.addEventListener('change', updateButtonPreview);
+                            }
+                            if (iconPositionSelect) {
+                                iconPositionSelect.addEventListener('change', updateButtonPreview);
+                            }
+                            if (iconOnlyCheckbox) {
+                                iconOnlyCheckbox.addEventListener('change', updateButtonPreview);
+                            }
+
+                            radiusChips.forEach(function(chip) {
+                                chip.addEventListener('click', function() {
+                                    const value = this.getAttribute('data-radius-value');
+                                    if (radiusHiddenInput) {
+                                        radiusHiddenInput.value = value;
+                                    }
+                                    updateRadiusChipState(value);
+                                    updateButtonPreview();
+                                });
+
+                                chip.addEventListener('keydown', function(event) {
+                                    if (event.key === ' ' || event.key === 'Enter') {
+                                        event.preventDefault();
+                                        this.click();
+                                    }
+                                });
+                            });
+
+                            styleCards.forEach(function(card) {
+                                card.addEventListener('click', function() {
+                                    const value = this.getAttribute('data-style-value');
+                                    if (styleHiddenInput) {
+                                        styleHiddenInput.value = value;
+                                    }
+                                    updateStyleCardState(value);
+                                    updateButtonPreview();
+                                });
+                            });
+
+                            iconCards.forEach(function(card) {
+                                card.addEventListener('click', function() {
+                                    const value = this.getAttribute('data-icon-value');
+                                    if (iconHiddenInput) {
+                                        iconHiddenInput.value = value;
+                                    }
+                                    updateIconCardState(value);
+                                    updateButtonPreview();
+                                });
+                            });
+
+                            updateStyleCardState(styleHiddenInput && styleHiddenInput.value ? styleHiddenInput.value : defaultStyleValue);
+                            updateRadiusChipState(radiusHiddenInput && radiusHiddenInput.value ? radiusHiddenInput.value : 'none');
+                            updateIconCardState(iconHiddenInput ? iconHiddenInput.value : 'none');
+                            updateButtonPreview();
+                        });
+                    </script>
 
                     <div class="postbox" id="zdm-list">
                         <div class="inside">

@@ -403,6 +403,594 @@ ion-icon {
 }
 
 /********************
+Download Button Settings (Admin)
+********************/
+
+.zdm-download-preview-wrapper {
+    background: #f8fafc;
+    border: 1px solid #dce1e6;
+    border-radius: 12px;
+    padding: 18px 22px;
+    margin-bottom: 24px;
+}
+
+.zdm-preview-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0 0 14px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: #475569;
+}
+
+.zdm-preview-button-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.zdm-preview-hint {
+    margin-top: 12px;
+    color: #64748b;
+    font-size: 13px;
+}
+
+.zdm-style-select {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.zdm-style-badge {
+    display: inline-block;
+    width: 36px;
+    height: 16px;
+    border-radius: 999px;
+    border: 1px solid #dce1e6;
+    background: #f1f5f9;
+}
+
+.zdm-style-badge[data-style="black"] {
+    background: #000;
+}
+
+.zdm-style-badge[data-style="grey5"] {
+    background: #555;
+}
+
+.zdm-style-badge[data-style="grey7"] {
+    background: #777;
+}
+
+.zdm-style-badge[data-style="grey9"] {
+    background: #999;
+}
+
+.zdm-style-badge[data-style="grey11"] {
+    background: #bbb;
+}
+
+.zdm-style-badge[data-style="grey13"] {
+    background: #ddd;
+}
+
+.zdm-style-badge[data-style="purple"] {
+    background: #cb28cc;
+}
+
+.zdm-style-badge[data-style="blue"] {
+    background: #0c80e8;
+}
+
+.zdm-style-badge[data-style="green"] {
+    background: #59c71d;
+}
+
+.zdm-style-badge[data-style="yellow"] {
+    background: #ffcd19;
+}
+
+.zdm-style-badge[data-style="orange"] {
+    background: #ff7c00;
+}
+
+.zdm-style-badge[data-style="red"] {
+    background: #fa3e3e;
+}
+
+.zdm-checkbox-modern {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 500;
+    color: #1f2937;
+}
+
+.zdm-checkbox-modern input[type="checkbox"] {
+    transform: scale(1.1);
+}
+
+.zdm-icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    margin-top: 12px;
+}
+
+.zdm-radius-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+}
+
+.zdm-icon-card {
+    width: 100%;
+    appearance: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid #dce1e6;
+    background: #fff;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    color: #1f2937;
+}
+
+.zdm-radius-chip {
+    align-items: stretch;
+    gap: 12px;
+}
+
+.zdm-radius-chip-preview {
+    display: block;
+    width: 100%;
+    height: 28px;
+    border: 1px solid #cbd5e1;
+    border-radius: 0;
+    background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
+    transition: border-radius 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.zdm-radius-chip.active .zdm-radius-chip-preview {
+    border-color: #0c80e8;
+    box-shadow: 0 10px 18px -16px rgba(12, 128, 232, 0.75);
+}
+
+.zdm-radius-chip-preview-none {
+    border-radius: 0;
+}
+
+.zdm-radius-chip-preview-1 {
+    border-radius: 1px;
+}
+
+.zdm-radius-chip-preview-2 {
+    border-radius: 2px;
+}
+
+.zdm-radius-chip-preview-3 {
+    border-radius: 3px;
+}
+
+.zdm-radius-chip-preview-4 {
+    border-radius: 4px;
+}
+
+.zdm-radius-chip-preview-5 {
+    border-radius: 5px;
+}
+
+.zdm-radius-chip-preview-6 {
+    border-radius: 6px;
+}
+
+.zdm-radius-chip-preview-7 {
+    border-radius: 7px;
+}
+
+.zdm-radius-chip-preview-8 {
+    border-radius: 8px;
+}
+
+.zdm-radius-chip-preview-9 {
+    border-radius: 9px;
+}
+
+.zdm-radius-chip-preview-10 {
+    border-radius: 10px;
+}
+
+.zdm-icon-card .material-icons-round,
+.zdm-icon-card .material-icons-outlined {
+    font-size: 26px;
+    color: #0c80e8;
+}
+
+.zdm-icon-card-label {
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.zdm-icon-card:hover {
+    border-color: #0c80e8;
+    box-shadow: 0 12px 20px -18px rgba(12, 128, 232, 0.6);
+    transform: translateY(-1px);
+}
+
+.zdm-icon-card:focus {
+    outline: 2px solid #0c80e8;
+    outline-offset: 2px;
+}
+
+.zdm-icon-card.active {
+    border-color: #0c80e8;
+    box-shadow: 0 16px 28px -18px rgba(12, 128, 232, 0.8);
+}
+
+.zdm-icon-placeholder {
+    font-size: 22px;
+    color: #94a3b8;
+    font-weight: 700;
+}
+
+.zdm-preview-icon.is-hidden,
+.zdm-preview-text.is-hidden {
+    display: none;
+}
+
+@media (max-width: 782px) {
+    .zdm-download-preview-wrapper {
+        padding: 16px;
+    }
+
+    .zdm-icon-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+}
+
+#zdm-download-button .zdm-btn {
+    display: inline-block;
+    color: #fff !important;
+    background: #555 !important;
+    border: 2px solid #555 !important;
+    border-radius: 0px !important;
+    font-size: 12px !important;
+    text-decoration: none !important;
+    padding: 8px 12px !important;
+    cursor: pointer !important;
+    transition-duration: 0.4s !important;
+}
+
+#zdm-download-button .zdm-btn:hover {
+    background: #fff !important;
+    color: #555 !important;
+}
+
+#zdm-download-button .zdm-btn-icon {
+    font-size: 1.2em !important;
+    margin-right: 8px;
+    position: relative;
+    top: 3px;
+}
+
+#zdm-download-button .zdm-btn-icon-only {
+    font-size: 16px !important;
+    margin: 2px 4px 0 4px;
+}
+
+#zdm-download-button .zdm-btn-radius1 {
+    border-radius: 1px !important;
+}
+
+#zdm-download-button .zdm-btn-radius2 {
+    border-radius: 2px !important;
+}
+
+#zdm-download-button .zdm-btn-radius3 {
+    border-radius: 3px !important;
+}
+
+#zdm-download-button .zdm-btn-radius4 {
+    border-radius: 4px !important;
+}
+
+#zdm-download-button .zdm-btn-radius5 {
+    border-radius: 5px !important;
+}
+
+#zdm-download-button .zdm-btn-radius6 {
+    border-radius: 6px !important;
+}
+
+#zdm-download-button .zdm-btn-radius7 {
+    border-radius: 7px !important;
+}
+
+#zdm-download-button .zdm-btn-radius8 {
+    border-radius: 8px !important;
+}
+
+#zdm-download-button .zdm-btn-radius9 {
+    border-radius: 9px !important;
+}
+
+#zdm-download-button .zdm-btn-radius10 {
+    border-radius: 10px !important;
+}
+
+/* Button Style */
+#zdm-download-button .zdm-btn-style-black {
+    color: #fff !important;
+    background: #000 !important;
+    border: 2px solid #000 !important;
+}
+
+#zdm-download-button .zdm-btn-style-black:hover {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey5 {
+    color: #fff !important;
+    background: #555 !important;
+    border: 2px solid #555 !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey5:hover {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey7 {
+    color: #fff !important;
+    background: #777 !important;
+    border: 2px solid #777 !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey7:hover {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey9 {
+    color: #fff !important;
+    background: #999 !important;
+    border: 2px solid #999 !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey9:hover {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey11 {
+    color: #000 !important;
+    background: #bbb !important;
+    border: 2px solid #bbb !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey11:hover {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey13 {
+    color: #000 !important;
+    background: #ddd !important;
+    border: 2px solid #ddd !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey13:hover {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+#zdm-download-button .zdm-btn-style-purple {
+    color: #fff !important;
+    background: #cb28cc !important;
+    border: 2px solid #cb28cc !important;
+}
+
+#zdm-download-button .zdm-btn-style-purple:hover {
+    color: #cb28cc !important;
+    background: #fff !important;
+}
+
+#zdm-download-button .zdm-btn-style-blue {
+    color: #fff !important;
+    background: #0c80e8 !important;
+    border: 2px solid #0c80e8 !important;
+}
+
+#zdm-download-button .zdm-btn-style-blue:hover {
+    color: #0c80e8 !important;
+    background: #fff !important;
+}
+
+#zdm-download-button .zdm-btn-style-green {
+    color: #fff !important;
+    background: #59c71d !important;
+    border: 2px solid #59c71d !important;
+}
+
+#zdm-download-button .zdm-btn-style-green:hover {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+#zdm-download-button .zdm-btn-style-yellow {
+    color: #fff !important;
+    background: #ffcd19 !important;
+    border: 2px solid #ffcd19 !important;
+}
+
+#zdm-download-button .zdm-btn-style-yellow:hover {
+    color: #000 !important;
+    background: #fff !important;
+}
+
+#zdm-download-button .zdm-btn-style-orange {
+    color: #fff !important;
+    background: #ff7c00 !important;
+    border: 2px solid #ff7c00 !important;
+}
+
+#zdm-download-button .zdm-btn-style-orange:hover {
+    color: #ff7c00 !important;
+    background: #fff !important;
+}
+
+#zdm-download-button .zdm-btn-style-red {
+    color: #fff !important;
+    background: #fa3e3e !important;
+    border: 2px solid #fa3e3e !important;
+}
+
+#zdm-download-button .zdm-btn-style-red:hover {
+    color: #fa3e3e !important;
+    background: #fff !important;
+}
+
+/* Button Style Outline */
+#zdm-download-button .zdm-btn-style-black-outline {
+    color: #000 !important;
+    background: #fff !important;
+    border: 2px solid #000 !important;
+}
+
+#zdm-download-button .zdm-btn-style-black-outline:hover {
+    color: #fff !important;
+    background: #000 !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey5-outline {
+    color: #000 !important;
+    background: #fff !important;
+    border: 2px solid #555 !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey5-outline:hover {
+    color: #fff !important;
+    background: #555 !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey7-outline {
+    color: #000 !important;
+    background: #fff !important;
+    border: 2px solid #777 !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey7-outline:hover {
+    color: #fff !important;
+    background: #777 !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey9-outline {
+    color: #000 !important;
+    background: #fff !important;
+    border: 2px solid #999 !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey9-outline:hover {
+    color: #fff !important;
+    background: #999 !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey11-outline {
+    color: #000 !important;
+    background: #fff !important;
+    border: 2px solid #bbb !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey11-outline:hover {
+    color: #000 !important;
+    background: #bbb !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey13-outline {
+    color: #000 !important;
+    background: #fff !important;
+    border: 2px solid #ddd !important;
+}
+
+#zdm-download-button .zdm-btn-style-grey13-outline:hover {
+    color: #000 !important;
+    background: #ddd !important;
+}
+
+#zdm-download-button .zdm-btn-style-purple-outline {
+    color: #cb28cc !important;
+    background: #fff !important;
+    border: 2px solid #cb28cc !important;
+}
+
+#zdm-download-button .zdm-btn-style-purple-outline:hover {
+    color: #fff !important;
+    background: #cb28cc !important;
+}
+
+#zdm-download-button .zdm-btn-style-blue-outline {
+    color: #0c80e8 !important;
+    background: #fff !important;
+    border: 2px solid #0c80e8 !important;
+}
+
+#zdm-download-button .zdm-btn-style-blue-outline:hover {
+    color: #fff !important;
+    background: #0c80e8 !important;
+}
+
+#zdm-download-button .zdm-btn-style-green-outline {
+    color: #59c71d !important;
+    background: #fff !important;
+    border: 2px solid #59c71d !important;
+}
+
+#zdm-download-button .zdm-btn-style-green-outline:hover {
+    color: #000 !important;
+    background: #59c71d !important;
+}
+
+#zdm-download-button .zdm-btn-style-yellow-outline {
+    color: #000 !important;
+    background: #fff !important;
+    border: 2px solid #ffcd19 !important;
+}
+
+#zdm-download-button .zdm-btn-style-yellow-outline:hover {
+    color: #fff !important;
+    background: #ffcd19 !important;
+}
+
+#zdm-download-button .zdm-btn-style-orange-outline {
+    color: #ff7c00 !important;
+    background: #fff !important;
+    border: 2px solid #ff7c00 !important;
+}
+
+#zdm-download-button .zdm-btn-style-orange-outline:hover {
+    color: #fff !important;
+    background: #ff7c00 !important;
+}
+
+#zdm-download-button .zdm-btn-style-red-outline {
+    color: #fa3e3e !important;
+    background: #fff !important;
+    border: 2px solid #fa3e3e !important;
+}
+
+#zdm-download-button .zdm-btn-style-red-outline:hover {
+    color: #fff !important;
+    background: #fa3e3e !important;
+}
+
+/********************
  Premium
 ********************/
 
