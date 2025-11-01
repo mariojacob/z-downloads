@@ -403,6 +403,168 @@ ion-icon {
 }
 
 /********************
+Uninstall Card
+********************/
+
+.zdm-uninstall-card .inside {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.zdm-uninstall-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.zdm-uninstall-header h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.zdm-uninstall-header p {
+    margin: 4px 0 0;
+    color: #4b5563;
+}
+
+.zdm-uninstall-path {
+    background: #fff7f7;
+    border: 1px solid #ffd2d2;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.zdm-uninstall-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #b91c1c;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.zdm-uninstall-path-field {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.zdm-uninstall-path-input {
+    flex: 1 1 320px;
+    min-width: 240px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    font-family: monospace;
+    font-size: 13px;
+    color: #1f2937;
+}
+
+.zdm-uninstall-path-input:focus {
+    outline: none;
+    border-color: #fa3e3e;
+    box-shadow: 0 0 0 2px rgba(250, 62, 62, 0.15);
+}
+
+.zdm-uninstall-path-note {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: #fff;
+    border: 1px dashed #e2e8f0;
+    color: #4b5563;
+}
+
+.zdm-copy-path {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+    border-radius: 8px !important;
+    border-color: #fa3e3e !important;
+    color: #fa3e3e !important;
+    background: #fff !important;
+}
+
+.zdm-copy-path:hover {
+    color: #7a1e1e !important;
+    border-color: #7a1e1e !important;
+}
+
+.zdm-copy-path.is-success {
+    border-color: #59c71d !important;
+    color: #59c71d !important;
+    background: #f4fff0 !important;
+}
+
+.zdm-uninstall-warning {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: #fff1f1;
+    border: 1px solid #ffb3b3;
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.zdm-uninstall-warning h4 {
+    margin: 0 0 8px;
+    font-size: 15px;
+    color: #b91c1c;
+}
+
+.zdm-uninstall-list {
+    margin: 0;
+    padding-left: 18px;
+    color: #4b5563;
+    list-style: disc;
+}
+
+.zdm-uninstall-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.zdm-uninstall-actions a.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    padding: 10px 16px !important;
+    border-radius: 10px !important;
+}
+
+.zdm-uninstall-actions p {
+    margin: 0;
+    color: #4b5563;
+}
+
+.zdm-uninstall-card .zdm-help-text {
+    margin-top: 6px;
+}
+
+@media (max-width: 782px) {
+    .zdm-uninstall-path-input {
+        flex: 1 1 100%;
+    }
+
+    .zdm-uninstall-path-field {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .zdm-uninstall-actions a.button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/********************
 Download Button Settings (Admin)
 ********************/
 

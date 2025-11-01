@@ -957,29 +957,103 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                         </div>
                     </div>
 
-                    <div class="postbox zdm-box-danger-outline">
+                    <div class="postbox zdm-box-danger-outline zdm-uninstall-card">
                         <div class="inside">
-                            <h3><?= ZDM__TITLE ?> <?= esc_html__('uninstall', 'zdm') ?></h3>
-                            <hr>
-                            <p><?= esc_html__('Path of', 'zdm') ?> <?= ZDM__TITLE ?> <?= esc_html__('upload folder for files, ZIP archives and cache', 'zdm') ?>:<br>
+                            <div class="zdm-uninstall-header">
+                                <div>
+                                    <h3><?= esc_html__('Safely uninstall', 'zdm') ?> <?= ZDM__TITLE ?></h3>
+                                    <p><?= esc_html__('Clean up files and data before deactivating the plugin.', 'zdm') ?></p>
+                                </div>
+                            </div>
+
+                            <div class="zdm-uninstall-path">
+                                <span class="zdm-uninstall-label"><?= esc_html__('Download folder', 'zdm') ?></span>
                                 <?php
                                 $zdm_download_folder_path = wp_upload_dir()['basedir'] . "/z-downloads-" . $zdm_options['download-folder-token'];
-                                if (is_dir($zdm_download_folder_path))
-                                    $zdm_download_folder_text = $zdm_download_folder_path . '/';
-                                else
-                                    $zdm_download_folder_text = esc_html__('The folder does not yet exist and is automatically created when a file is uploaded.', 'zdm');
+                                $zdm_download_folder_exists = is_dir($zdm_download_folder_path);
+                                $zdm_download_folder_text = $zdm_download_folder_exists ? $zdm_download_folder_path . '/' : esc_html__('The folder does not yet exist and is automatically created when a file is uploaded.', 'zdm');
                                 ?>
-                            <div class="zdm-help-text"><code><?= $zdm_download_folder_text ?></code></div>
-                            </p>
-                            <hr>
-                            <h3 class="zdm-color-red"><?= esc_html__('Attention before uninstalling the plugin', 'zdm') ?></h3>
-                            <p class="zdm-color-red"><?= esc_html__('If you uninstall the Z-Downloads-Plugin all files and ZIP-archives remain in the above path, if you want to delete all files and ZIP-archives you have created, then click on "DELETE" below', 'zdm') ?></p>
-                            <p class="zdm-color-red"><?= esc_html__('This process is irreplaceable and can not be undone.', 'zdm') ?></p>
+                                <?php if ($zdm_download_folder_exists) : ?>
+                                    <div class="zdm-uninstall-path-field">
+                                        <input type="text" class="zdm-uninstall-path-input" value="<?= esc_attr($zdm_download_folder_text) ?>" readonly>
+                                        <button type="button" class="button button-secondary zdm-copy-path" data-copy="<?= esc_attr($zdm_download_folder_text) ?>">
+                                            <span class="material-icons-outlined zdm-md-1">content_copy</span>
+                                            <?= esc_html__('Copy path', 'zdm') ?>
+                                        </button>
+                                    </div>
+                                <?php else : ?>
+                                    <div class="zdm-uninstall-path-note">
+                                        <span class="material-icons-outlined zdm-md-1">info</span>
+                                        <span><?= esc_html($zdm_download_folder_text) ?></span>
+                                    </div>
+                                <?php endif; ?>
+                                <p class="zdm-help-text"><?= esc_html__('Files remain here after uninstalling. Use the button below to remove them now.', 'zdm') ?></p>
+                            </div>
 
-                            <br>
-                            <a href="admin.php?page=<?= ZDM__SLUG ?>-settings&delete_data=true&nonce=<?= wp_create_nonce('delete-all-data') ?>" class="button button-secondary zdm-btn-danger-outline"><?= esc_html__('DELETE', 'zdm') ?></a>
+                            <div class="zdm-uninstall-warning">
+                                <span class="material-icons-round zdm-md-1-5 zdm-color-red">warning</span>
+                                <div>
+                                    <h4><?= esc_html__('Before you uninstall', 'zdm') ?></h4>
+                                    <ul class="zdm-uninstall-list">
+                                        <li><?= esc_html__('All uploaded files and generated ZIP archives stay inside the download folder.', 'zdm') ?></li>
+                                        <li><?= esc_html__('Database entries are removed only if you trigger the delete action now.', 'zdm') ?></li>
+                                        <li><?= esc_html__('This cleanup cannot be undone.', 'zdm') ?></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="zdm-uninstall-actions">
+                                <a href="admin.php?page=<?= ZDM__SLUG ?>-settings&delete_data=true&nonce=<?= wp_create_nonce('delete-all-data') ?>" class="button zdm-btn-danger">
+                                    <span class="material-icons-round zdm-md-1">delete</span>
+                                    <?= esc_html__('Delete all plugin data now', 'zdm') ?>
+                                </a>
+                                <p><?= esc_html__('Afterwards you can safely deactivate and remove the plugin.', 'zdm') ?></p>
+                            </div>
                         </div>
                     </div>
+                    <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            document.querySelectorAll('.zdm-copy-path').forEach(function(button) {
+                                button.addEventListener('click', function() {
+                                    var copyValue = this.getAttribute('data-copy');
+                                    if (!copyValue) {
+                                        return;
+                                    }
+
+                                    var self = this;
+                                    var originalContent = self.innerHTML;
+                                    var setSuccessState = function(btn) {
+                                        btn.classList.add('is-success');
+                                        btn.innerHTML = '<span class="material-icons-round zdm-md-1 zdm-color-green">check</span><?= esc_js(__('Copied!', 'zdm')) ?>';
+                                        setTimeout(function() {
+                                            btn.classList.remove('is-success');
+                                            btn.innerHTML = originalContent;
+                                        }, 2000);
+                                    };
+
+                                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                                        navigator.clipboard.writeText(copyValue).then(function() {
+                                            setSuccessState(self);
+                                        }).catch(function() {
+                                            self.innerHTML = originalContent;
+                                        });
+                                    } else {
+                                        var tempInput = document.createElement('input');
+                                        tempInput.value = copyValue;
+                                        document.body.appendChild(tempInput);
+                                        tempInput.select();
+                                        try {
+                                            document.execCommand('copy');
+                                            setSuccessState(self);
+                                        } catch (error) {
+                                            self.innerHTML = originalContent;
+                                        }
+                                        document.body.removeChild(tempInput);
+                                    }
+                                });
+                            });
+                        });
+                    </script>
 
                     <?php
                     require_once(plugin_dir_path(__FILE__) . '../inc/postbox_info.php');
