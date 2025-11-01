@@ -493,8 +493,6 @@ class ZDMCore
             )
         );
 
-        $db_files_rel_count = count($db_files_rel);
-
         // Alte Datei und Ordner löschen
         $old_cache_folder = ZDM__DOWNLOADS_CACHE_PATH . '/' . $db_archive[0]->archive_cache_path;
         $old_cache_file = $old_cache_folder . '/' . $db_archive[0]->zip_name . '.zip';
@@ -523,12 +521,19 @@ class ZDMCore
         $index_file_handle = fopen(ZDM__DOWNLOADS_CACHE_PATH . '/' . $archive_cache_path . '/' . 'index.php', 'w');
         fclose($index_file_handle);
 
-        // Speichere Dateien in Array
-        $files = [];
-        $file_data_cache = [];
-        for ($i = 0; $i < $db_files_rel_count; $i++) {
-            $file_data_cache[$i] = self::get_file_data($db_files_rel[$i]->id_file);
-            $files[$i] = ZDM__DOWNLOADS_FILES_PATH . '/' . $file_data_cache[$i]->folder_path . '/' . $file_data_cache[$i]->file_name;
+        // Speichere Dateien und Metadaten einmalig
+        $cached_files = [];
+        foreach ($db_files_rel as $file_relation) {
+            $file_data = self::get_file_data($file_relation->id_file);
+
+            if (!is_object($file_data)) {
+                continue;
+            }
+
+            $cached_files[] = [
+                'path' => ZDM__DOWNLOADS_FILES_PATH . '/' . $file_data->folder_path . '/' . $file_data->file_name,
+                'zip_name' => $file_data->file_name,
+            ];
         }
 
         $zip = new ZipArchive;
@@ -537,8 +542,8 @@ class ZDMCore
         if ($zip->open($file_path, ZipArchive::CREATE) === TRUE) {
 
             // Dateien ins Zip-Archiv einfügen
-            for ($i = 0; $i < $db_files_rel_count; $i++) {
-                $zip->addFile($files[$i], $file_data_cache[$i]->file_name);
+            foreach ($cached_files as $cached_file) {
+                $zip->addFile($cached_file['path'], $cached_file['zip_name']);
             }
 
             $zip->close();
