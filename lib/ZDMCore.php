@@ -524,9 +524,11 @@ class ZDMCore
         fclose($index_file_handle);
 
         // Speichere Dateien in Array
+        $files = [];
+        $file_data_cache = [];
         for ($i = 0; $i < $db_files_rel_count; $i++) {
-            $file_data = self::get_file_data($db_files_rel[$i]->id_file);
-            $files[] = ZDM__DOWNLOADS_FILES_PATH . '/' . $file_data->folder_path . '/' . $file_data->file_name;
+            $file_data_cache[$i] = self::get_file_data($db_files_rel[$i]->id_file);
+            $files[$i] = ZDM__DOWNLOADS_FILES_PATH . '/' . $file_data_cache[$i]->folder_path . '/' . $file_data_cache[$i]->file_name;
         }
 
         $zip = new ZipArchive;
@@ -536,7 +538,7 @@ class ZDMCore
 
             // Dateien ins Zip-Archiv einfügen
             for ($i = 0; $i < $db_files_rel_count; $i++) {
-                $zip->addFile($files[$i], self::get_file_data($db_files_rel[$i]->id_file)->file_name);
+                $zip->addFile($files[$i], $file_data_cache[$i]->file_name);
             }
 
             $zip->close();
