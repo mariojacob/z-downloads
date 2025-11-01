@@ -1561,24 +1561,53 @@ class ZDMCore
         }
 
         $dir = $uploads['basedir'];
+        $regex_search = '/^z-downloads-.{32}$/';
+        $expected = 'z-downloads-' . $options['download-folder-token'];
+
+        if (class_exists('\FilesystemIterator')) {
+            try {
+                $iterator = new \FilesystemIterator($dir, \FilesystemIterator::SKIP_DOTS);
+            } catch (\UnexpectedValueException $exception) {
+                return false;
+            }
+
+            foreach ($iterator as $fileInfo) {
+                if (!$fileInfo->isDir()) {
+                    continue;
+                }
+
+                $folder_name = $fileInfo->getFilename();
+                if (!preg_match($regex_search, $folder_name)) {
+                    continue;
+                }
+
+                if ($folder_name !== $expected) {
+                    if (rename($fileInfo->getPathname(), $dir . '/' . $expected)) {
+                        self::log('folder token repaired');
+                        return true;
+                    }
+
+                    return false;
+                }
+
+                return false;
+            }
+
+            return false;
+        }
+
         $dir_array = scandir($dir);
         if ($dir_array === false) {
             return false;
         }
 
-        $regex_search = '/^z-downloads-.{32}$/';
-        $matching_dirs = array_filter(
-            $dir_array,
-            static function ($entry) use ($regex_search) {
-                return preg_match($regex_search, $entry);
+        foreach ($dir_array as $entry) {
+            if (!preg_match($regex_search, $entry)) {
+                continue;
             }
-        );
 
-        $expected = 'z-downloads-' . $options['download-folder-token'];
-
-        foreach ($matching_dirs as $folder_name) {
-            if ($folder_name !== $expected) {
-                if (rename($dir . '/' . $folder_name, $dir . '/' . $expected)) {
+            if ($entry !== $expected) {
+                if (rename($dir . '/' . $entry, $dir . '/' . $expected)) {
                     self::log('folder token repaired');
                     return true;
                 }
