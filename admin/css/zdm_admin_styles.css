@@ -271,6 +271,214 @@ ion-icon {
 }
 
 /********************
+ Premium upgrade postbox
+********************/
+
+.zdm-premium-box {
+    overflow: hidden;
+    border: none;
+    box-shadow: 0 12px 35px -18px rgba(12, 128, 232, 0.45);
+    border-radius: 16px;
+}
+
+.zdm-premium-box .inside {
+    margin: 0;
+    padding: 0;
+    background: #f6f9ff;
+}
+
+.zdm-premium-box__header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    align-items: center;
+    padding: 32px 36px;
+    background: linear-gradient(135deg, #0c80e8 0%, #59c71d 100%);
+    color: #fff;
+}
+
+.zdm-premium-box__visual img {
+    max-width: 220px;
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.zdm-premium-box__headline {
+    flex: 1 1 280px;
+    min-width: 240px;
+}
+
+.zdm-premium-box__headline h3 {
+    margin: 0 0 8px;
+    font-size: 24px;
+    color: #fff;
+}
+
+.zdm-premium-box__headline p {
+    margin: 0 0 16px;
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.zdm-premium-box__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-bottom: 16px;
+}
+
+.zdm-premium-box__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.zdm-button-ghost {
+    color: #fff !important;
+    background: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.65) !important;
+    box-shadow: none !important;
+}
+
+.zdm-button-ghost:hover,
+.zdm-button-ghost:focus {
+    color: #0c80e8 !important;
+    background: #fff !important;
+    border-color: #fff !important;
+}
+
+.zdm-premium-box__features {
+    display: grid;
+    gap: 20px;
+    padding: 32px 36px 40px;
+}
+
+.zdm-premium-feature {
+    display: grid;
+    grid-template-columns: auto 1fr minmax(220px, auto);
+    gap: 20px;
+    align-items: center;
+    padding: 24px;
+    border-radius: 14px;
+    background: #fff;
+    border: 1px solid #e3ecff;
+    box-shadow: 0 18px 40px -24px rgba(12, 128, 232, 0.35);
+}
+
+.zdm-premium-feature__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 14px;
+    background: #f1f6ff;
+    color: #0c80e8;
+}
+
+.zdm-premium-feature__icon .material-icons-outlined {
+    font-size: 28px !important;
+}
+
+.zdm-premium-feature__content h4 {
+    margin: 0 0 6px;
+    font-size: 18px;
+    color: #11294b;
+}
+
+.zdm-premium-feature__content p {
+    margin: 0;
+    color: #51627f;
+    line-height: 1.5;
+    font-size: 14px;
+}
+
+.zdm-premium-feature__plans {
+    display: grid;
+    gap: 12px;
+}
+
+.zdm-premium-feature__plan {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    background: #f8fbff;
+    border: 1px solid #dfe8ff;
+    text-align: left;
+}
+
+.zdm-premium-feature__plan-label {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #51627f;
+}
+
+.zdm-premium-feature__plan-value {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.zdm-premium-feature__plan-value .material-icons-outlined {
+    font-size: 22px !important;
+}
+
+@media (max-width: 960px) {
+    .zdm-premium-box__header {
+        padding: 28px;
+    }
+
+    .zdm-premium-box__features {
+        padding: 28px 28px 32px;
+    }
+
+    .zdm-premium-feature {
+        grid-template-columns: 1fr;
+    }
+
+    .zdm-premium-feature__plans {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+}
+
+@media (max-width: 600px) {
+    .zdm-premium-box__header {
+        text-align: center;
+    }
+
+    .zdm-premium-box__cta {
+        justify-content: center;
+    }
+
+    .zdm-premium-feature__icon {
+        margin: 0 auto;
+    }
+
+    .zdm-premium-feature__content h4,
+    .zdm-premium-feature__content p {
+        text-align: center;
+    }
+
+    .zdm-premium-feature__plans {
+        grid-template-columns: 1fr;
+    }
+}
+
+/********************
  Buttons
 ********************/
 
