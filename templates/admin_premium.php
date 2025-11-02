@@ -144,7 +144,6 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                             <p><?= esc_html__('Automate workflows, surface actionable insights and deliver a polished download experience for your users.', 'zdm') ?></p>
                             <div class="zdm-premium-box__cta">
                                 <a href="<?= ZDM__PRO_URL ?>" target="_blank" class="button button-primary"><?= esc_html__('Upgrade to Premium', 'zdm') ?></a>
-                                <a href="admin.php?page=<?= ZDM__SLUG ?>-premium" class="button zdm-button-ghost"><?= esc_html__('Explore all benefits', 'zdm') ?></a>
                             </div>
                         </div>
                     </div>
