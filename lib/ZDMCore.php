@@ -1030,6 +1030,32 @@ class ZDMCore
             wp_localize_script('zdm_dropzone_script', 'zdmDropzoneConfig', $dropzone_config);
             wp_enqueue_script('zdm_dropzone_script');
         }
+
+        if ($current_page === ZDM__SLUG . '-log') {
+            wp_register_script('zdm_log_script', ZDM__PLUGIN_URL . 'admin/js/zdm_log.js', array(), ZDM__VERSION, true);
+
+            $log_strings = array(
+                'loading'          => esc_html__('Loading logs…', 'zdm'),
+                'errorGeneric'     => esc_html__('Logs could not be loaded. Please try again.', 'zdm'),
+                'errorPermissions' => esc_html__('You do not have sufficient permissions to load logs.', 'zdm'),
+                'summary'          => esc_html__('Showing {from}–{to} of {total} entries', 'zdm'),
+                'summaryZero'      => esc_html__('No entries found for the current filters', 'zdm'),
+                'pagePrev'         => esc_html__('Previous page', 'zdm'),
+                'pageNext'         => esc_html__('Next page', 'zdm'),
+                'pageNumber'       => esc_html__('Page {page}', 'zdm'),
+                'detailsTitle'     => esc_html__('Log entry #{id}', 'zdm'),
+                'filterReset'      => esc_html__('Filters have been reset.', 'zdm'),
+                'empty'            => esc_html__('No log entries match the current filters.', 'zdm'),
+                'detailNotFound'   => esc_html__('The requested log entry could not be found.', 'zdm'),
+                'detailRequestError' => esc_html__('The log entry could not be loaded. Please try again.', 'zdm'),
+            );
+
+            wp_localize_script('zdm_log_script', 'zdmLogConfig', array(
+                'strings' => $log_strings,
+            ));
+
+            wp_enqueue_script('zdm_log_script');
+        }
     }
 
     /**
@@ -1124,6 +1150,409 @@ class ZDMCore
             ),
             500
         );
+    }
+
+    /**
+     * AJAX Handler für das Laden der Logs im Backend
+     *
+     * @return void
+     */
+    public function ajax_load_logs()
+    {
+        if (!current_user_can(ZDM__STANDARD_USER_ROLE)) {
+            wp_send_json_error(
+                array('message' => esc_html__('You do not have sufficient permissions to view logs.', 'zdm')),
+                403
+            );
+        }
+
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+
+        if ($nonce === '' || !wp_verify_nonce($nonce, 'zdm-logs-request')) {
+            wp_send_json_error(
+                array('message' => esc_html__('Security check failed.', 'zdm')),
+                403
+            );
+        }
+
+        global $wpdb;
+
+        $tablename_log = $wpdb->prefix . 'zdm_log';
+
+        $per_page = isset($_POST['per_page']) ? absint($_POST['per_page']) : 50;
+        if ($per_page < 10) {
+            $per_page = 10;
+        } elseif ($per_page > 200) {
+            $per_page = 200;
+        }
+
+        $page = isset($_POST['page']) ? absint($_POST['page']) : 1;
+        if ($page < 1) {
+            $page = 1;
+        }
+
+        $types = array();
+        if (isset($_POST['types'])) {
+            $raw_types = wp_unslash($_POST['types']);
+            if (!is_array($raw_types)) {
+                $raw_types = array($raw_types);
+            }
+
+            foreach ($raw_types as $raw_type) {
+                $type = sanitize_text_field($raw_type);
+                if ($type !== '') {
+                    $types[] = $type;
+                }
+            }
+
+            if (!empty($types)) {
+                $types = array_values(array_unique($types));
+            }
+        }
+
+        $search = isset($_POST['search']) ? sanitize_text_field(wp_unslash($_POST['search'])) : '';
+
+        $timezone = function_exists('wp_timezone') ? wp_timezone() : new DateTimeZone('UTC');
+
+        $date_from = null;
+        if (isset($_POST['date_from'])) {
+            $date_from_raw = sanitize_text_field(wp_unslash($_POST['date_from']));
+            if ($date_from_raw !== '') {
+                $date_from_obj = date_create($date_from_raw, $timezone);
+                if ($date_from_obj instanceof DateTimeInterface) {
+                    $date_from_obj->setTime(0, 0, 0);
+                    $date_from = $date_from_obj->getTimestamp();
+                }
+            }
+        }
+
+        $date_to = null;
+        if (isset($_POST['date_to'])) {
+            $date_to_raw = sanitize_text_field(wp_unslash($_POST['date_to']));
+            if ($date_to_raw !== '') {
+                $date_to_obj = date_create($date_to_raw, $timezone);
+                if ($date_to_obj instanceof DateTimeInterface) {
+                    $date_to_obj->setTime(23, 59, 59);
+                    $date_to = $date_to_obj->getTimestamp();
+                }
+            }
+        }
+
+        $where_clauses = array();
+        $params = array();
+
+        if (!empty($types)) {
+            $placeholders = implode(',', array_fill(0, count($types), '%s'));
+            $where_clauses[] = "type IN ($placeholders)";
+            $params = array_merge($params, $types);
+        }
+
+        if (null !== $date_from) {
+            $where_clauses[] = 'time_create >= %d';
+            $params[] = $date_from;
+        }
+
+        if (null !== $date_to) {
+            $where_clauses[] = 'time_create <= %d';
+            $params[] = $date_to;
+        }
+
+        if ($search !== '') {
+            $like = '%' . $wpdb->esc_like($search) . '%';
+            $where_clauses[] = '(message LIKE %s OR type LIKE %s OR user_agent LIKE %s OR user_ip LIKE %s)';
+            $params[] = $like;
+            $params[] = $like;
+            $params[] = $like;
+            $params[] = $like;
+        }
+
+        $where_sql = '';
+        if (!empty($where_clauses)) {
+            $where_sql = 'WHERE ' . implode(' AND ', $where_clauses);
+        }
+
+        $count_sql = "SELECT COUNT(*) FROM $tablename_log $where_sql";
+        $count_query = $count_sql;
+
+        if (!empty($params)) {
+            $count_query = call_user_func_array(array($wpdb, 'prepare'), array_merge(array($count_sql), $params));
+        }
+
+        $total = (int) $wpdb->get_var($count_query);
+
+        $pages = $total > 0 ? (int) ceil($total / $per_page) : 1;
+        if ($pages < 1) {
+            $pages = 1;
+        }
+
+        if ($page > $pages) {
+            $page = $pages;
+        }
+
+        $offset = ($page - 1) * $per_page;
+
+        $data_sql = "SELECT id, type, message, user_agent, user_ip, time_create FROM $tablename_log $where_sql ORDER BY time_create DESC LIMIT %d OFFSET %d";
+        $data_params = array_merge($params, array($per_page, $offset));
+
+        $data_query = $data_sql;
+        if (!empty($data_params)) {
+            $data_query = call_user_func_array(array($wpdb, 'prepare'), array_merge(array($data_sql), $data_params));
+        }
+
+        $logs = $wpdb->get_results($data_query);
+
+        $log_type_config = self::get_log_type_config();
+
+        $prepared_logs = array();
+        if (!empty($logs)) {
+            foreach ($logs as $log) {
+                $log_time = isset($log->time_create) ? (int) $log->time_create : 0;
+                $type_key = isset($log->type) ? $log->type : '';
+                $type_info = $log_type_config['default'];
+
+                if ($type_key !== '' && isset($log_type_config[$type_key])) {
+                    $type_info = array_merge($type_info, $log_type_config[$type_key]);
+                }
+
+                $prepared_logs[] = array(
+                    'id'            => isset($log->id) ? (int) $log->id : 0,
+                    'type'          => isset($log->type) ? $log->type : '',
+                    'type_label'    => isset($type_info['label']) ? $type_info['label'] : (isset($log->type) ? $log->type : ''),
+                    'icon'          => isset($type_info['icon']) ? $type_info['icon'] : $log_type_config['default']['icon'],
+                    'color'         => isset($type_info['color']) ? $type_info['color'] : $log_type_config['default']['color'],
+                    'message'       => isset($log->message) ? $log->message : '',
+                    'message_plain' => isset($log->message) ? wp_strip_all_tags($log->message) : '',
+                    'user_agent'    => isset($log->user_agent) ? $log->user_agent : '',
+                    'user_ip'       => isset($log->user_ip) ? $log->user_ip : '',
+                    'time_create'   => $log_time,
+                    'time_formatted'=> $log_time > 0 ? date_i18n('d.m.Y - H:i:s', $log_time) : ''
+                );
+            }
+        }
+
+        wp_send_json_success(
+            array(
+                'logs'     => $prepared_logs,
+                'total'    => $total,
+                'page'     => $page,
+                'pages'    => $pages,
+                'per_page' => $per_page
+            )
+        );
+    }
+
+    /**
+     * AJAX Handler für das Laden eines einzelnen Log-Eintrags
+     *
+     * @return void
+     */
+    public function ajax_load_log_detail()
+    {
+        if (!current_user_can(ZDM__STANDARD_USER_ROLE)) {
+            wp_send_json_error(
+                array('message' => esc_html__('You do not have sufficient permissions to view logs.', 'zdm')),
+                403
+            );
+        }
+
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+
+        if ($nonce === '' || !wp_verify_nonce($nonce, 'zdm-logs-request')) {
+            wp_send_json_error(
+                array('message' => esc_html__('Security check failed.', 'zdm')),
+                403
+            );
+        }
+
+        $log_id = isset($_POST['log_id']) ? absint($_POST['log_id']) : 0;
+
+        if ($log_id <= 0) {
+            wp_send_json_error(
+                array('message' => esc_html__('Invalid log entry.', 'zdm')),
+                400
+            );
+        }
+
+        global $wpdb;
+        $tablename_log = $wpdb->prefix . 'zdm_log';
+
+        $log_query = $wpdb->prepare(
+            "SELECT id, type, message, user_agent, user_ip, time_create FROM $tablename_log WHERE id = %d",
+            $log_id
+        );
+
+        $log = $wpdb->get_row($log_query);
+
+        if (!$log) {
+            wp_send_json_error(
+                array('message' => esc_html__('Log entry not found.', 'zdm')),
+                404
+            );
+        }
+
+        $log_type_config = self::get_log_type_config();
+        $type_key = isset($log->type) ? $log->type : '';
+        $type_info = $log_type_config['default'];
+
+        if ($type_key !== '' && isset($log_type_config[$type_key])) {
+            $type_info = array_merge($type_info, $log_type_config[$type_key]);
+        }
+
+        $log_time = isset($log->time_create) ? (int) $log->time_create : 0;
+
+        $prepared_log = array(
+            'id'            => isset($log->id) ? (int) $log->id : 0,
+            'type'          => isset($log->type) ? $log->type : '',
+            'type_label'    => isset($type_info['label']) ? $type_info['label'] : (isset($log->type) ? $log->type : ''),
+            'icon'          => isset($type_info['icon']) ? $type_info['icon'] : $log_type_config['default']['icon'],
+            'color'         => isset($type_info['color']) ? $type_info['color'] : $log_type_config['default']['color'],
+            'message'       => isset($log->message) ? $log->message : '',
+            'message_plain' => isset($log->message) ? wp_strip_all_tags($log->message) : '',
+            'user_agent'    => isset($log->user_agent) ? $log->user_agent : '',
+            'user_ip'       => isset($log->user_ip) ? $log->user_ip : '',
+            'time_create'   => $log_time,
+            'time_formatted'=> $log_time > 0 ? date_i18n('d.m.Y - H:i:s', $log_time) : ''
+        );
+
+        wp_send_json_success(
+            array(
+                'log' => $prepared_log
+            )
+        );
+    }
+
+    /**
+     * Liefert Konfigurationsdaten für bekannte Log-Typen
+     *
+     * @return array
+     */
+    public static function get_log_type_config()
+    {
+        $config = array(
+            'download archive'        => array(
+                'label' => esc_html__('Download archive', 'zdm'),
+                'icon'  => 'file_download',
+                'color' => 'zdm-color-primary',
+            ),
+            'download file'           => array(
+                'label' => esc_html__('Download file', 'zdm'),
+                'icon'  => 'file_download',
+                'color' => 'zdm-color-primary',
+            ),
+            'add archive'             => array(
+                'label' => esc_html__('Add archive', 'zdm'),
+                'icon'  => 'note_add',
+                'color' => 'zdm-color-green',
+            ),
+            'add file'                => array(
+                'label' => esc_html__('Add file', 'zdm'),
+                'icon'  => 'note_add',
+                'color' => 'zdm-color-green',
+            ),
+            'update archive'          => array(
+                'label' => esc_html__('Update archive', 'zdm'),
+                'icon'  => 'check_circle_outline',
+                'color' => 'zdm-color-green',
+            ),
+            'update file'             => array(
+                'label' => esc_html__('Update file', 'zdm'),
+                'icon'  => 'check_circle_outline',
+                'color' => 'zdm-color-green',
+            ),
+            'delete archive'          => array(
+                'label' => esc_html__('Delete archive', 'zdm'),
+                'icon'  => 'delete',
+                'color' => 'zdm-color-red',
+            ),
+            'delete file'             => array(
+                'label' => esc_html__('Delete file', 'zdm'),
+                'icon'  => 'delete',
+                'color' => 'zdm-color-red',
+            ),
+            'archive cache created'   => array(
+                'label' => esc_html__('Archive cache created', 'zdm'),
+                'icon'  => 'check_circle_outline',
+                'color' => 'zdm-color-green',
+            ),
+            'link file'               => array(
+                'label' => esc_html__('Link file', 'zdm'),
+                'icon'  => 'link',
+                'color' => 'zdm-color-green',
+            ),
+            'unlink file'             => array(
+                'label' => esc_html__('Unlink file', 'zdm'),
+                'icon'  => 'link_off',
+                'color' => 'zdm-color-yellow',
+            ),
+            'replace file'            => array(
+                'label' => esc_html__('Replace file', 'zdm'),
+                'icon'  => 'swap_horiz',
+                'color' => 'zdm-color-green',
+            ),
+            'update settings'         => array(
+                'label' => esc_html__('Update settings', 'zdm'),
+                'icon'  => 'settings',
+                'color' => 'zdm-color-grey7',
+            ),
+            'reset settings'          => array(
+                'label' => esc_html__('Reset settings', 'zdm'),
+                'icon'  => 'history',
+                'color' => 'zdm-color-grey7',
+            ),
+            'error create zip'        => array(
+                'label' => esc_html__('Error while creating ZIP', 'zdm'),
+                'icon'  => 'error_outline',
+                'color' => 'zdm-color-orange',
+            ),
+            'update licence'          => array(
+                'label' => esc_html__('Update licence', 'zdm'),
+                'icon'  => 'check_circle_outline',
+                'color' => 'zdm-color-green',
+            ),
+            'delete licence'          => array(
+                'label' => esc_html__('Delete licence', 'zdm'),
+                'icon'  => 'delete',
+                'color' => 'zdm-color-red',
+            ),
+            'plugin upgrade'          => array(
+                'label' => esc_html__('Plugin upgrade', 'zdm'),
+                'icon'  => 'upgrade',
+                'color' => 'zdm-color-primary',
+            ),
+            'plugin activated'        => array(
+                'label' => esc_html__('Plugin activated', 'zdm'),
+                'icon'  => 'power_settings_new',
+                'color' => 'zdm-color-primary',
+            ),
+            'plugin deactivated'      => array(
+                'label' => esc_html__('Plugin deactivated', 'zdm'),
+                'icon'  => 'power_settings_new',
+                'color' => 'zdm-color-primary',
+            ),
+            'delete all data'         => array(
+                'label' => esc_html__('Delete all data', 'zdm'),
+                'icon'  => 'delete_forever',
+                'color' => 'zdm-color-red',
+            ),
+            'database table created'  => array(
+                'label' => esc_html__('Database table created', 'zdm'),
+                'icon'  => 'storage',
+                'color' => 'zdm-color-primary',
+            ),
+            'download folder token'   => array(
+                'label' => esc_html__('Download folder token', 'zdm'),
+                'icon'  => 'vpn_key',
+                'color' => 'zdm-color-primary',
+            ),
+        );
+
+        $config['default'] = array(
+            'label' => esc_html__('Other', 'zdm'),
+            'icon'  => 'info',
+            'color' => '',
+        );
+
+        return $config;
     }
 
     /**
@@ -1781,6 +2210,8 @@ class ZDMCore
 
         // AJAX Upload Handler
         add_action('wp_ajax_zdm_upload_file', array($this, 'ajax_upload_file'));
+        add_action('wp_ajax_zdm_load_logs', array($this, 'ajax_load_logs'));
+        add_action('wp_ajax_zdm_load_log_detail', array($this, 'ajax_load_log_detail'));
 
         // Dashboard-Widget
         add_action('wp_dashboard_setup', array($this, 'dashboard_widget'));
