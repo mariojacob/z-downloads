@@ -47,49 +47,51 @@ $plan_labels = [
     'pro' => esc_html(ZDM__PRO),
 ];
 ?>
-<div class="postbox zdm-premium-box">
+<div class="postbox zdm-premium-mini">
     <div class="inside">
-        <div class="zdm-premium-box__header">
-            <div class="zdm-premium-box__visual">
-                <img class="zdm-premium-banner" src="<?= ZDM__PLUGIN_URL ?>assets/z-downloads-premium-backend-mini.png" alt="Z-Downloads Premium">
+        <div class="zdm-premium-mini__header">
+            <div class="zdm-premium-mini__headline">
+                <span class="zdm-premium-mini__badge"><?= esc_html(ZDM__PRO) ?></span>
+                <h3><?= esc_html__('Premium Features at a Glance', 'zdm') ?></h3>
+                <p><?= esc_html__('Compare Free vs. Premium and upgrade when you are ready.', 'zdm') ?></p>
             </div>
-            <div class="zdm-premium-box__headline">
-                <span class="zdm-premium-box__badge"><?= esc_html(ZDM__PRO) ?></span>
-                <h3><?= esc_html__('Upgrade to unlock all premium features', 'zdm') ?></h3>
-                <p><?= esc_html__('Boost your download experience with automation, insights and exclusive tools for power users.', 'zdm') ?></p>
-                <div class="zdm-premium-box__cta">
-                    <a href="<?= ZDM__PRO_URL ?>" target="_blank" class="button button-primary"><?= esc_html__('Upgrade to Premium', 'zdm') ?></a>
-                    <a href="admin.php?page=<?= ZDM__SLUG ?>-premium" class="button zdm-button-ghost"><?= esc_html__('Discover all benefits', 'zdm') ?></a>
-                </div>
+            <div class="zdm-premium-mini__cta">
+                <a href="<?= ZDM__PRO_URL ?>" target="_blank" class="button button-primary button-small"><?= esc_html__('Upgrade', 'zdm') ?></a>
+                <a href="admin.php?page=<?= ZDM__SLUG ?>-premium" class="button button-link zdm-premium-mini__link"><?= esc_html__('Details', 'zdm') ?></a>
             </div>
         </div>
-        <div class="zdm-premium-box__features">
-            <?php foreach ($features as $feature) : ?>
-                <article class="zdm-premium-feature">
-                    <div class="zdm-premium-feature__icon">
-                        <span class="material-icons-outlined zdm-md-2"><?= esc_html($feature['icon']) ?></span>
+        <div class="zdm-premium-mini__list">
+            <?php foreach ($features as $feature) :
+                $free = $feature['free'];
+                $pro = $feature['pro'];
+                ?>
+                <div class="zdm-premium-mini__row">
+                    <div class="zdm-premium-mini__info">
+                        <span class="material-icons-outlined zdm-premium-mini__icon"><?= esc_html($feature['icon']) ?></span>
+                        <div>
+                            <strong><?= $feature['title'] ?></strong>
+                            <p><?= $feature['description'] ?></p>
+                        </div>
                     </div>
-                    <div class="zdm-premium-feature__content">
-                        <h4><?= $feature['title'] ?></h4>
-                        <p><?= $feature['description'] ?></p>
+                    <div class="zdm-premium-mini__plans">
+                        <span class="zdm-premium-mini__plan-label"><?= $plan_labels['free'] ?></span>
+                        <span class="zdm-premium-mini__plan-value <?= isset($free['class']) ? esc_attr($free['class']) : '' ?>">
+                            <?php if ('icon' === $free['type']) : ?>
+                                <span class="material-icons-outlined"><?= esc_html($free['value']) ?></span>
+                            <?php else : ?>
+                                <?= $free['value'] ?>
+                            <?php endif; ?>
+                        </span>
+                        <span class="zdm-premium-mini__plan-label"><?= $plan_labels['pro'] ?></span>
+                        <span class="zdm-premium-mini__plan-value <?= isset($pro['class']) ? esc_attr($pro['class']) : '' ?>">
+                            <?php if ('icon' === $pro['type']) : ?>
+                                <span class="material-icons-outlined"><?= esc_html($pro['value']) ?></span>
+                            <?php else : ?>
+                                <?= $pro['value'] ?>
+                            <?php endif; ?>
+                        </span>
                     </div>
-                    <div class="zdm-premium-feature__plans">
-                        <?php foreach (['free', 'pro'] as $plan_key) :
-                            $plan = $feature[$plan_key];
-                            ?>
-                            <div class="zdm-premium-feature__plan">
-                                <span class="zdm-premium-feature__plan-label"><?= $plan_labels[$plan_key] ?></span>
-                                <span class="zdm-premium-feature__plan-value <?= isset($plan['class']) ? esc_attr($plan['class']) : '' ?>">
-                                    <?php if ('icon' === $plan['type']) : ?>
-                                        <span class="material-icons-outlined"><?= esc_html($plan['value']) ?></span>
-                                    <?php else : ?>
-                                        <?= $plan['value'] ?>
-                                    <?php endif; ?>
-                                </span>
-                            </div>
-                        <?php endforeach; ?>
-                    </div>
-                </article>
+                </div>
             <?php endforeach; ?>
         </div>
     </div>
