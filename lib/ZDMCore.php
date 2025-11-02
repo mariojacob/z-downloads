@@ -995,6 +995,41 @@ class ZDMCore
         // Material Icons
         wp_register_style('zdm_admin_material_icons', 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined|Material+Icons+Round');
         wp_enqueue_style('zdm_admin_material_icons');
+
+        $current_page = isset($_GET['page']) ? sanitize_text_field(wp_unslash($_GET['page'])) : '';
+
+        if ($current_page === ZDM__SLUG . '-add-file') {
+            $dropzone_version = '5.9.3';
+
+            wp_register_style('zdm_dropzone_css', 'https://cdnjs.cloudflare.com/ajax/libs/dropzone/' . $dropzone_version . '/min/dropzone.min.css', array(), $dropzone_version);
+            wp_enqueue_style('zdm_dropzone_css');
+
+            wp_register_script('zdm_dropzone_lib', 'https://cdnjs.cloudflare.com/ajax/libs/dropzone/' . $dropzone_version . '/min/dropzone.min.js', array(), $dropzone_version, true);
+            wp_enqueue_script('zdm_dropzone_lib');
+
+            wp_register_script('zdm_dropzone_script', ZDM__PLUGIN_URL . 'admin/js/zdm_dropzone.js', array('zdm_dropzone_lib'), ZDM__VERSION, true);
+
+            $zdm_options = get_option('zdm_options');
+
+            $dropzone_config = array(
+                'ajaxUrl'           => admin_url('admin-ajax.php'),
+                'nonce'             => wp_create_nonce('datei-hochladen'),
+                'maxFileSizeMb'     => isset($zdm_options['max-upload-size-in-mb']) ? (float) $zdm_options['max-upload-size-in-mb'] : 0,
+                'allowedMimeTypes'  => array_values(ZDM__ALLOWED_MIME_TYPES),
+                'timeout'           => 0,
+                'texts'             => array(
+                    'defaultMessage'   => esc_html__('Drop your file here or click to browse', 'zdm'),
+                    'uploadInProgress' => esc_html__('Uploading...', 'zdm'),
+                    'success'          => esc_html__('Upload complete. Redirecting...', 'zdm'),
+                    'duplicate'        => esc_html__('This file has already been uploaded.', 'zdm'),
+                    'validation'       => esc_html__('Upload not allowed.', 'zdm'),
+                    'genericError'     => esc_html__('Upload failed. Please try again.', 'zdm'),
+                ),
+            );
+
+            wp_localize_script('zdm_dropzone_script', 'zdmDropzoneConfig', $dropzone_config);
+            wp_enqueue_script('zdm_dropzone_script');
+        }
     }
 
     /**
@@ -1011,6 +1046,221 @@ class ZDMCore
         // Material Icons
         wp_register_style('zdm_material_icons', 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined|Material+Icons+Round');
         wp_enqueue_style('zdm_material_icons');
+    }
+
+    /**
+     * AJAX Upload Handler für Dropzone
+     *
+     * @return void
+     */
+    public function ajax_upload_file()
+    {
+        if (!current_user_can(ZDM__STANDARD_USER_ROLE)) {
+            wp_send_json_error(
+                array('message' => esc_html__('You do not have sufficient permissions to upload files.', 'zdm')),
+                403
+            );
+        }
+
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field($_POST['nonce']) : '';
+
+        if ($nonce === '' || !wp_verify_nonce($nonce, 'datei-hochladen')) {
+            wp_send_json_error(
+                array('message' => esc_html__('Security check failed.', 'zdm')),
+                403
+            );
+        }
+
+        if (!isset($_FILES['file'])) {
+            wp_send_json_error(
+                array('message' => esc_html__('No file received.', 'zdm')),
+                400
+            );
+        }
+
+        $upload_result = self::process_file_upload($_FILES['file']);
+
+        if (isset($upload_result['status']) && $upload_result['status'] === 1) {
+            $redirect_url = admin_url('admin.php?page=' . ZDM__SLUG . '-files&id=' . $upload_result['file_id']);
+
+            wp_send_json_success(
+                array(
+                    'file_id' => $upload_result['file_id'],
+                    'redirect_url' => $redirect_url,
+                    'message' => esc_html__('File uploaded successfully.', 'zdm')
+                )
+            );
+        }
+
+        if (isset($upload_result['status']) && $upload_result['status'] === 3) {
+            wp_send_json_error(
+                array(
+                    'code' => 'duplicate',
+                    'message' => esc_html__('This file has already been uploaded.', 'zdm'),
+                    'hash' => isset($upload_result['uploaded_file_hash']) ? $upload_result['uploaded_file_hash'] : ''
+                ),
+                409
+            );
+        }
+
+        if (isset($upload_result['status']) && $upload_result['status'] === 5) {
+            $message = isset($upload_result['message']) && $upload_result['message'] !== '' ? $upload_result['message'] : esc_html__('Upload failed due to validation error.', 'zdm');
+
+            wp_send_json_error(
+                array(
+                    'code' => 'validation',
+                    'message' => $message
+                ),
+                400
+            );
+        }
+
+        $message = isset($upload_result['message']) && $upload_result['message'] !== '' ? $upload_result['message'] : esc_html__('Upload failed.', 'zdm');
+
+        wp_send_json_error(
+            array(
+                'code' => 'error',
+                'message' => $message
+            ),
+            500
+        );
+    }
+
+    /**
+     * Verarbeitet Datei-Uploads (Backend)
+     *
+     * @param array $uploaded_file
+     * @return array
+     */
+    public static function process_file_upload($uploaded_file)
+    {
+        $result = array(
+            'status' => 0,
+            'message' => '',
+            'uploaded_file_hash' => ''
+        );
+
+        if (!isset($uploaded_file['tmp_name']) || $uploaded_file['tmp_name'] === '' || !file_exists($uploaded_file['tmp_name'])) {
+            $result['message'] = esc_html__('Temporary upload not found.', 'zdm');
+            return $result;
+        }
+
+        $options = get_option('zdm_options');
+        $zdm_time = time();
+
+        $zdm_file = array();
+        $zdm_file['name'] = sanitize_file_name($uploaded_file['name']);
+        $zdm_file['type'] = $uploaded_file['type'];
+        $zdm_file['size'] = self::file_size_convert($uploaded_file['size']);
+
+        $file_extension = pathinfo($zdm_file['name'], PATHINFO_EXTENSION);
+        $max_file_size = $options['max-upload-size-in-mb'] * 1024 * 1024;
+
+        if ($options['duplicate-file'] != 'on') {
+            $zdm_file['md5_tmp'] = md5_file($uploaded_file['tmp_name']);
+            $result['uploaded_file_hash'] = $zdm_file['md5_tmp'];
+
+            if (in_array($zdm_file['md5_tmp'], self::get_files_md5())) {
+                $result['status'] = 3;
+                return $result;
+            }
+        }
+
+        if (
+            ($options['secure-file-upload'] === 'on' && (
+                !in_array(strtolower($file_extension), ZDM__ALLOWED_EXTENSIONS) ||
+                !in_array($zdm_file['type'], ZDM__ALLOWED_MIME_TYPES)
+            )) ||
+            $uploaded_file['size'] > $max_file_size
+        ) {
+            if ($options['secure-file-upload'] === 'on' && (
+                !in_array(strtolower($file_extension), ZDM__ALLOWED_EXTENSIONS) ||
+                !in_array($zdm_file['type'], ZDM__ALLOWED_MIME_TYPES)
+            )) {
+                $result['message'] = '<b>.' . $file_extension . '</b> ' . esc_html__('file type not allowed.', 'zdm');
+            }
+
+            if ($uploaded_file['size'] > $max_file_size) {
+                $result['message'] = esc_html__('Maximum upload file size exceeded.', 'zdm');
+            }
+
+            $result['status'] = 5;
+            return $result;
+        }
+
+        $zdm_file['folder'] = md5($zdm_time . $zdm_file['name']);
+        $target_folder = ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'];
+
+        if (!wp_mkdir_p($target_folder)) {
+            $result['status'] = 5;
+            $result['message'] = esc_html__('Could not create upload folder.', 'zdm');
+            return $result;
+        }
+
+        $target_path = $target_folder . '/' . $zdm_file['name'];
+
+        if (!move_uploaded_file($uploaded_file['tmp_name'], $target_path)) {
+            $result['status'] = 5;
+            $result['message'] = esc_html__('File could not be saved.', 'zdm');
+            return $result;
+        }
+
+        if (file_exists($uploaded_file['tmp_name'])) {
+            @unlink($uploaded_file['tmp_name']);
+        }
+
+        $index_path = $target_folder . '/index.php';
+        if (!file_exists($index_path)) {
+            $index_file_handle = fopen($index_path, 'w');
+            if ($index_file_handle !== false) {
+                fclose($index_file_handle);
+            }
+        }
+
+        $zdm_file['md5'] = md5_file($target_path);
+        $zdm_file['sha1'] = sha1_file($target_path);
+        $result['uploaded_file_hash'] = $zdm_file['md5'];
+
+        global $wpdb;
+        $tablename_files = $wpdb->prefix . 'zdm_files';
+
+        $insert = $wpdb->insert(
+            $tablename_files,
+            array(
+                'name'        => $zdm_file['name'],
+                'hash_md5'    => $zdm_file['md5'],
+                'hash_sha1'   => $zdm_file['sha1'],
+                'folder_path' => $zdm_file['folder'],
+                'file_name'   => $zdm_file['name'],
+                'file_type'   => $zdm_file['type'],
+                'file_size'   => $zdm_file['size'],
+                'time_create' => $zdm_time
+            )
+        );
+
+        if ($insert === false) {
+            $result['status'] = 5;
+            $result['message'] = esc_html__('Database error while saving file.', 'zdm');
+
+            @unlink($target_path);
+            if (file_exists($index_path)) {
+                @unlink($index_path);
+            }
+            @rmdir($target_folder);
+
+            return $result;
+        }
+
+        $file_id = $wpdb->insert_id;
+
+        self::log('add file', 'name: ' . htmlspecialchars($zdm_file['name']) . ', path: ' . $target_path);
+
+        $result['status'] = 1;
+        $result['file_id'] = $file_id;
+        $result['folder'] = $zdm_file['folder'];
+        $result['file_name'] = $zdm_file['name'];
+
+        return $result;
     }
 
     /**
@@ -1528,6 +1778,9 @@ class ZDMCore
 
         // Adminmenü
         add_action('admin_menu', array($this, 'admin_menu'));
+
+        // AJAX Upload Handler
+        add_action('wp_ajax_zdm_upload_file', array($this, 'ajax_upload_file'));
 
         // Dashboard-Widget
         add_action('wp_dashboard_setup', array($this, 'dashboard_widget'));

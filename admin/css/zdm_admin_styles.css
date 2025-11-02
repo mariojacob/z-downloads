@@ -2008,6 +2008,158 @@ Download Button Settings (Admin)
 }
 
 /********************
+ Dropzone Upload
+********************/
+
+.zdm-dropzone {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding: 3rem 1.5rem;
+    border: 2px dashed #8c8f94;
+    border-radius: 12px;
+    background: #f8f9fb;
+    text-align: center;
+    transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+    cursor: pointer;
+}
+
+.zdm-dropzone .material-icons-round,
+.zdm-dropzone .material-icons-outlined {
+    font-size: 48px;
+    color: #2271b1;
+}
+
+.zdm-dropzone__inner {
+    max-width: 520px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.zdm-dropzone__title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #1d2327;
+    margin: 0;
+}
+
+.zdm-dropzone__hint {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #646970;
+}
+
+.zdm-dropzone__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.zdm-dropzone__actions .button {
+    padding: 0.6rem 1.6rem;
+    font-size: 0.95rem;
+}
+
+.zdm-dropzone__alt {
+    margin: 0;
+    color: #6b6b6b;
+    font-size: 0.85rem;
+}
+
+.zdm-dropzone__fallback {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.zdm-dropzone__fallback input[type="file"] {
+    display: block;
+}
+
+.zdm-dropzone__message {
+    margin: 0.5rem auto 0;
+    font-size: 0.95rem;
+    color: #50575e;
+    transition: color 0.2s ease;
+}
+
+.zdm-dropzone__message.is-info {
+    color: #2271b1;
+}
+
+.zdm-dropzone__message.is-success {
+    color: #008a20;
+}
+
+.zdm-dropzone__message.is-error {
+    color: #d63638;
+}
+
+.zdm-dropzone.is-dragover {
+    border-color: #2271b1;
+    background: #f0f6fc;
+    box-shadow: 0 0 0 4px rgba(34, 113, 177, 0.12);
+}
+
+.zdm-dropzone.is-uploading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.zdm-dropzone.is-uploading::after {
+    content: "";
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(34, 113, 177, 0.2);
+    border-top-color: #2271b1;
+    border-radius: 50%;
+    animation: zdm-dropzone-spin 0.6s linear infinite;
+}
+
+.zdm-dropzone.has-dropzone-js .zdm-dropzone__fallback {
+    display: none;
+}
+
+.zdm-dropzone .dz-message {
+    margin: 0;
+}
+
+.zdm-dropzone .dz-preview {
+    display: none;
+}
+
+@media (max-width: 782px) {
+    .zdm-dropzone {
+        padding: 2.5rem 1.25rem;
+    }
+
+    .zdm-dropzone__inner {
+        gap: 0.6rem;
+    }
+
+    .zdm-dropzone__actions .button {
+        width: 100%;
+    }
+}
+
+@keyframes zdm-dropzone-spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/********************
  Premium
 ********************/
 

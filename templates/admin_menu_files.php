@@ -31,112 +31,36 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
     //////////////////////////////////////////////////
     // Datei hinzufügen
     //////////////////////////////////////////////////
-    if (isset($_FILES['file']) && wp_verify_nonce($_POST['nonce'], 'datei-hochladen') && $_FILES['file']['name'] != '') {
+    if (
+        isset($_FILES['file']) &&
+        isset($_POST['nonce']) &&
+        wp_verify_nonce($_POST['nonce'], 'datei-hochladen') &&
+        $_FILES['file']['name'] != ''
+    ) {
+        $upload_result = ZDMCore::process_file_upload($_FILES['file']);
 
-        if ($zdm_options['duplicate-file'] != 'on') {
-            // Generiere MD5-Hash von hochgeladener Datei
-            $zdm_uploaded_file_hash = md5_file($_FILES['file']['tmp_name']);
+        if (isset($upload_result['uploaded_file_hash']) && $upload_result['uploaded_file_hash'] !== '') {
+            $zdm_uploaded_file_hash = $upload_result['uploaded_file_hash'];
         }
 
-        // Check ob Datei bereits hochgeladen wurde
-        if ($zdm_options['duplicate-file'] != 'on' && in_array($zdm_uploaded_file_hash, ZDMCore::get_files_md5())) {
-            /* Datei wurde bereits hochgeladen */
-
-            // Zeige Duplikateseite
-            $zdm_status = 3;
-        } else {
-            /* Datei wurde noch nicht hochgeladen */
-
-            $zdm_file = array();
-            $zdm_file['name'] = sanitize_file_name($_FILES['file']['name']);
-            $zdm_file['type'] = $_FILES['file']['type'];
-            $zdm_file['size'] = ZDMCore::file_size_convert($_FILES['file']['size']);
-
-            $file_extension = pathinfo($zdm_file['name'], PATHINFO_EXTENSION);
-            $max_file_size = $zdm_options['max-upload-size-in-mb'] * 1024 * 1024;
-
-            if (
-                ($zdm_options['secure-file-upload'] === 'on' && (
-                    !in_array(strtolower($file_extension), ZDM__ALLOWED_EXTENSIONS) ||
-                    !in_array($zdm_file['type'], ZDM__ALLOWED_MIME_TYPES)
-                )) ||
-                $_FILES['file']['size'] > $max_file_size
-            ) {
-                if ($zdm_options['secure-file-upload'] === 'on' && (
-                    !in_array(strtolower($file_extension), ZDM__ALLOWED_EXTENSIONS) ||
-                    !in_array($zdm_file['type'], ZDM__ALLOWED_MIME_TYPES)
-                )) {
-                    $zdm_status_5_note = '<b>.' . $file_extension . '</b> ' . esc_html__('file type not allowed.', 'zdm');
-                }
-
-                if ($_FILES['file']['size'] > $max_file_size) {
-                    $zdm_status_5_note = esc_html__('Maximum upload file size exceeded.', 'zdm');
-                }
-
-                $zdm_status = 5;
-            } else {
-
-                // Ordnername erstellen
-                $zdm_file['folder'] = md5(time() . $zdm_file['name']);
-
-                // Ordner erstellen
-                if (!is_dir($zdm_file['folder'])) {
-                    wp_mkdir_p(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder']);
-                }
-
-                $zdm_file_path = ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . $zdm_file['name'];
-
-                // Datei soeichern
-                move_uploaded_file($_FILES['file']['tmp_name'], $zdm_file_path);
-
-                // Temporäre Datei löschen
-                if (file_exists($_FILES['file']['tmp_name'])) {
-                    unlink($_FILES['file']['tmp_name']);
-                }
-
-                // Erstelle index.php
-                $index_file_handle = fopen(ZDM__DOWNLOADS_FILES_PATH . '/' . $zdm_file['folder'] . '/' . 'index.php', 'w');
-                fclose($index_file_handle);
-
-                // MD5 von Datei erzeugen
-                $zdm_file['md5'] = md5_file($zdm_file_path);
-
-                // SHA1 von Datei erzeugen
-                $zdm_file['sha1'] = sha1_file($zdm_file_path);
-
-                // Erstelle einen neuen Datenbankeintrag
-                $wpdb->insert(
-                    $zdm_tablename_files,
-                    array(
-                        'name'          => $zdm_file['name'],
-                        'hash_md5'      => $zdm_file['md5'],
-                        'hash_sha1'     => $zdm_file['sha1'],
-                        'folder_path'   => $zdm_file['folder'],
-                        'file_name'     => $zdm_file['name'],
-                        'file_type'     => $zdm_file['type'],
-                        'file_size'     => $zdm_file['size'],
-                        'time_create'   => $zdm_time
-                    )
-                );
-
-                ZDMCore::log('add file', 'name: ' . htmlspecialchars($zdm_file['name']) . ', path: ' . $zdm_file_path);
-
-                $zdm_folder_path = $zdm_file['folder'];
-
-                $zdm_db_file_query = $wpdb->prepare(
-                    "
-                SELECT id 
-                FROM $zdm_tablename_files 
-                WHERE folder_path = %s
-                ",
-                    $zdm_folder_path
-                );
-                $zdm_db_file = $wpdb->get_results($zdm_db_file_query);
-
-                $zdm_file_id = $zdm_db_file[0]->id;
-
-                // Status: 1 (Detailseite von Datei)
+        if (isset($upload_result['status'])) {
+            if ($upload_result['status'] === 1) {
                 $zdm_status = 1;
+                $zdm_file_id = $upload_result['file_id'];
+            } elseif ($upload_result['status'] === 3) {
+                $zdm_status = 3;
+            } elseif ($upload_result['status'] === 5) {
+                $zdm_status = 5;
+                if (isset($upload_result['message']) && $upload_result['message'] !== '') {
+                    $zdm_status_5_note = $upload_result['message'];
+                }
+            } else {
+                $zdm_status = 5;
+                if (isset($upload_result['message']) && $upload_result['message'] !== '') {
+                    $zdm_status_5_note = $upload_result['message'];
+                } else {
+                    $zdm_status_5_note = esc_html__('Upload failed.', 'zdm');
+                }
             }
         }
     } elseif (isset($_GET['id']) or isset($_POST['update']) or isset($_POST['delete'])) {
