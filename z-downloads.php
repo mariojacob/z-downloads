@@ -32,6 +32,9 @@ define('ZDM__PRO_URL', 'https://urbanbase.gumroad.com/l/zdPRE');
 define('ZDM__STANDARD_USER_ROLE', 'manage_options');
 require_once(dirname(__FILE__) . '/lib/constants.php');
 
+// Neu: Version laden
+require_once(dirname(__FILE__) . '/lib/version.php');
+
 if (!get_option('zdm_options'))
     add_option('zdm_options', ZDM__OPTIONS);
 
