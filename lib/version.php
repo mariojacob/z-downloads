@@ -3,4 +3,4 @@
 if (!defined('ABSPATH'))
     die;
 
-define('ZDM__VERSION', '1.11.8');
+define('ZDM__VERSION', '1.12.0');

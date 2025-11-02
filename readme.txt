@@ -1,13 +1,13 @@
 ﻿=== Z-Downloads ===
 
 Contributors: urbanbase
-Tags: download manager, zip, download button, statistics, zip archiv
+Tags: download manager, zip, download button, statistics, zip archive
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Requires PHP: 5.6
 Requires at least: 4.9
-Tested up to: 6.7
-Stable tag: 1.11.8
+Tested up to: 6.8
+Stable tag: 1.12.0
 
 Convenient download manager and automatic ZIP archive creator
 
@@ -15,125 +15,121 @@ Convenient download manager and automatic ZIP archive creator
 
 The convenient download manager for WordPress.
 
-An easy-to-use download manager for WordPress, focused on automation.
+Z-Downloads makes file delivery simple: upload, place a shortcode, done. It automatically builds ZIP archives, keeps them updated when files change, and gives you clear stats and a clean UI.
 
-Example use case: A single file is present in multiple ZIP archives, such as promotional materials. When a change is needed, simply replace the file once, and it will be automatically updated in all existing ZIP archives.
+**Example use case:** A single file is present in multiple ZIP archives (e.g., press kits). Update the file once—every affected ZIP is rebuilt automatically.
 
 [Z-Downloads Website](https://code.urban-base.net/z-downloads?utm_source=wporg)
 
 = Benefits =
 
--   User-friendly interface
--   Time-saving automation
--   Reliable performance
+- User-friendly interface with inline help
+- Time-saving automation (auto-rebuild of ZIP archives)
+- Reliable performance with smart caching
 
 = Top features =
 
--   GDPR compliant: IP address anonymization by default
--   Built-in security: direct path to the download file remains hidden
--   Integrated help and documentation for all functions
--   Download statistics
--   Shortcodes
--   Download button
--   Download button with icons
--   Display information like file size or download count
--   Generate file lists
--   Embed an audio player
--   Embed a video player
--   Show MD5 and SHA1 hashes in the frontend
--   Option to activate direct URL paths for PDF files
--   Centralized file management
--   Automatic ZIP archive creation
--   PHP 8 compatible
--   Ready for internationalization
--   Multilingual
--   And more...
+- GDPR compliant: IP address anonymization by default
+- Built-in security: direct file paths remain hidden
+- Download statistics + dashboard widget
+- Shortcodes for files, ZIPs, lists, audio, and video
+- Download button (with optional icons)
+- Display info like file size or download count
+- Generate file lists
+- Embed an audio player
+- Embed a video player
+- Show MD5 and SHA1 hashes in the frontend (**Premium**)
+- Option to activate direct URL paths for PDF files
+- Centralized file management
+- Automatic ZIP archive creation
+- Drag-and-drop file upload
+- Log page to trace actions and troubleshoot
+- Safe uninstall option to remove all plugin data on request
+- PHP 8 compatible
+- Ready for internationalization (English & German included)
+- Multilingual
+- And more...
 
 = Effortlessly embed download buttons with shortcodes =
 
-Begin by uploading your file, then create a new post or page and apply the shortcode provided below. This shortcode will automatically generate a download button for you.
+Upload your file, then add this shortcode to a post or page:
 
 `[zdownload file="123"]`
 
-= Embed automatically generated ZIP archives effortlessly with shortcodes =
+= Embed automatically generated ZIP archives with shortcodes =
 
-Start by creating a new ZIP archive entry in the backend and link this entry to the previously uploaded files you want to include. After this setup is complete, create a new post or page on your site and embed the provided shortcode.
+Create a ZIP entry in the backend, link your files, then use:
 
 `[zdownload zip="123"]`
 
-= Effortlessly embed external files with shortcodes =
+= Embed external files with shortcodes =
 
-If you wish to incorporate a file from another website as a downloadable asset on your own site, you can utilize a specific shortcode. By embedding this shortcode in your post or page, you will generate a download button that links directly to the external file.
+Link to a file hosted elsewhere and render a download button:
 
 `[zdownload url="https://example.com/file.zip"]`
 
-= Output list of linked files in an archive with shortcodes =
+= Output a list of files linked to a ZIP archive =
 
-With our special shortcode, managing your data has never been easier. Now, you can output all files linked to an archive as a list for a clear overview. Simply embed the shortcode into the desired post or page and get an organized display of all associated files.
+Display all files attached to an archive as a neat list:
 
 `[zdownload_list zip="123"]`
 
-= Output audio files as audio player using shortcode =
+= Output audio files as an audio player =
 
-With our easy-to-use shortcode, you can transform any audio file (MP3, WAV, OGG, etc.) into a functional audio player directly. Just embed the shortcode into your post or page, and the selected audio file will be immediately output as an audio player, ready for playback.
+Turn an audio file (MP3, WAV, OGG, …) into a player:
 
 `[zdownload_audio file="123"]`
 
-= Output video files as video player using shortcode =
+= Output video files as a video player =
 
-With our user-friendly shortcode, you can transform any video file directly into a functional video player. Just embed the shortcode into your post or page, and the selected video file will immediately be output as a video player, ready for viewing.
+Render a video file directly as a player:
 
 `[zdownload_video file="123"]`
 
 == Languages ==
 
-Z-Downloads can be translated into multiple languages. Currently, it supports these languages:
+Z-Downloads can be translated into multiple languages. Currently supported:
 
--   English
--   German
+- English
+- German
 
 == Installation ==
 
 = In the WordPress plugin directory =
 
-Search for "Z-Downloads" in your WordPress plugin directory and install it, then activate it.
+Search for "Z-Downloads" in your WordPress plugin directory, install, and activate.
 
 == Frequently Asked Questions ==
 
 = Is Z-Downloads free? =
 
-Yes! All basic functions are free.
+Yes. All basic functions are free.
 
-For advanced functions there is [Z-Downloads Premium](https://code.urban-base.net/z-downloads?utm_source=wporg), this includes for example the output of MD5 and SHA1 hash values or unlimited files per ZIP archive.
+For advanced features there is [Z-Downloads Premium](https://code.urban-base.net/z-downloads?utm_source=wporg) — e.g., MD5/SHA1 hash output or unlimited files per ZIP archive.
 
 = Who is this plugin for? =
 
-Bloggers and website operators who want a easy to use download plugin and offer various downloads.
+Site owners who want an easy, fast way to offer downloads and ZIP packages without manual maintenance.
 
 = Is this plugin GDPR (DSGVO) compliant? =
 
-Yes, no personal data of visitors is saved. By default, the IP address is anonymized, but this can be changed in the settings.
+Yes. No personal visitor data is stored. IP addresses are anonymized by default (can be changed in the settings).
 
 = What language is the plugin in? =
 
-Z-Downloads is in English by default and completely translated into German, other languages can easily be added.
+The plugin ships in English and is fully translated into German. Other languages can be added easily.
 
 == Screenshots ==
 
-1.  Overview of all uploaded files
-
-2.  Overview of all archives
-
-3.  Dashboard widget with download statistics
-
-4.  Detail view from a audio file with audio player
-
-5.  Available shortcodes for this archive
-
-6.  Use case in a post
+1. Overview of all uploaded files
+2. Overview of all archives
+3. Dashboard widget with download statistics
+4. Detail view of an audio file with audio player
+5. Available shortcodes for an archive
+6. Use case in a post
 
 == Changelog ==
 
--   You can find the versions here: [Z-Downloads release notes](https://code.urban-base.net/z-downloads/release-notes/?utm_source=wporg)
+- You can find the versions here: [Z-Downloads release notes](https://code.urban-base.net/z-downloads/release-notes/?utm_source=wporg)
 
 == Upgrade Notice ==
