@@ -308,75 +308,129 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
 
                 <form action="" method="post">
                     <input type="hidden" name="nonce" value="<?= wp_create_nonce('update-license') ?>">
-                    <div class="postbox">
+                    <?php
+                    $zdm_licence_icon = $zdm_licence === 1 ? 'verified' : 'vpn_key';
+                    $zdm_licence_icon_color = $zdm_licence === 1 ? 'zdm-color-green' : 'zdm-color-grey7';
+                    $zdm_licence_status_text = $zdm_licence === 1 ? esc_html__('Premium features are unlocked and ready to use.', 'zdm') : esc_html__('Activate your license to unlock all premium features.', 'zdm');
+                    $zdm_licence_button_label = $zdm_licence === 1 ? esc_html__('Update', 'zdm') : esc_html__('Activate', 'zdm');
+                    $zdm_licence_badge_class = $zdm_licence === 1 ? 'is-active' : 'is-inactive';
+                    $zdm_licence_badge_label = $zdm_licence === 1 ? esc_html__('Active', 'zdm') : esc_html__('Inactive', 'zdm');
+                    $zdm_licence_last_checked = !empty($zdm_options['licence-time']) ? date_i18n(get_option('date_format') . ' ' . get_option('time_format'), (int) $zdm_options['licence-time']) : esc_html__('Not validated yet', 'zdm');
+                    ?>
+                    <div class="postbox zdm-licence-card">
                         <div class="inside">
-                            <h3><?php if ($zdm_licence === 1) { ?><?= $zdm_options['licence-product-name']; ?> <?= esc_html__('is activated', 'zdm') ?><?php } else {
-                                                                                                                                                        echo ZDM__PRO;
-                                                                                                                                                    } ?></h3>
-                            <hr>
-                            <table class="form-table">
-                                <tbody>
-                                    <tr valign="top">
-                                        <th scope="row"><?= ZDM__PRO ?> <?= esc_html__('license key', 'zdm') ?>:</th>
-                                        <td valign="middle">
-                                            <?php if ($zdm_licence === 1) { ?><span class="material-icons-round zdm-md-1 zdm-color-green">check_circle_outline</span>&nbsp;<?php } ?>
-                                                <?php if ($zdm_licence === 1) {
-                                                ?>
-                                                    <input type="password" name="licence-key" id="licence-key" size="50%" value="<?= esc_attr($zdm_options['licence-key']); ?>">&nbsp;
-                                                    <button class="button button-secondary" id="toggle-licence-key"><span class="material-icons-outlined zdm-md-1 zdm-color-grey7">visibility</span></button>&nbsp;
-                                                    <input class="button-primary" type="submit" name="licence_submit" value="<?= esc_html__('Update', 'zdm') ?>">&nbsp;
-                                                    <a href="admin.php?page=<?= ZDM__SLUG ?>-settings&licence_delete=true&nonce=<?= wp_create_nonce('licence-delete') ?>" class="button button-primary"><?= esc_html__('Remove license key', 'zdm') ?></a>
-                                                    <script>
-                                                        jQuery(document).ready(function($) {
-                                                            $("#toggle-licence-key").click(function(e) {
-                                                                // Verhindert das Standardverhalten des Buttons
-                                                                e.preventDefault();
+                            <div class="zdm-licence-header">
+                                <span class="material-icons-round zdm-md-1-5 <?= esc_attr($zdm_licence_icon_color) ?>"><?= esc_html($zdm_licence_icon) ?></span>
+                                <div class="zdm-licence-title">
+                                    <h3><?= $zdm_licence === 1 ? esc_html($zdm_options['licence-product-name']) : ZDM__PRO ?></h3>
+                                    <p><?= esc_html($zdm_licence_status_text) ?></p>
+                                </div>
+                                <span class="zdm-licence-status-badge <?= esc_attr($zdm_licence_badge_class) ?>">
+                                    <?= esc_html($zdm_licence_badge_label) ?>
+                                </span>
+                            </div>
 
-                                                                let input = $("#licence-key");
-                                                                let span = $(this).find('span');
-
-                                                                if (input.attr("type") === "password") {
-                                                                    input.attr("type", "text");
-                                                                    span.text("visibility_off");
-                                                                } else {
-                                                                    input.attr("type", "password");
-                                                                    span.text("visibility");
-                                                                }
-                                                            });
-                                                        });
-                                                    </script>
-                                                <?php
-                                                } else {
-                                                ?>
-                                                    <input type="text" name="licence-key" id="licence-key" size="50%" value="<?= esc_attr($zdm_options['licence-key']); ?>">&nbsp;
-                                                    <input class="button-primary" type="submit" name="licence_submit" value="<?= esc_html__('Activate', 'zdm') ?>">
-                                                <?php
-                                                }
-
-                                                if ($zdm_licence === 0) { ?>
-                                                    <div class="zdm-help-text"><?= esc_html__('Don\'t wait any longer - unlock the full potential of', 'zdm') ?> <?= ZDM__TITLE ?> <?= esc_html__('and get', 'zdm') ?> <?= ZDM__PRO ?> <?= esc_html__('today! Learn more at', 'zdm') ?>: <a href="<?= ZDM__PRO_URL ?>" target="_blank" title="<?= ZDM__TITLE; ?> <?= ZDM__PRO ?>"><?= ZDM__TITLE; ?> <?= ZDM__PRO ?> <span class="material-icons-round zdm-md-1">open_in_new</span></a></div>
-                                                <?php
-                                                } ?>
-                                        </td>
-                                    </tr>
-                                    <?php if ($zdm_licence === 1) { ?>
-                                        <tr valign="top">
-                                            <th scope="row"><?= esc_html__('Licensed for', 'zdm') ?>:</th>
-                                            <td valign="middle">
-                                                <span class="material-icons-round zdm-md-1 zdm-color-green">check_circle_outline</span>&nbsp;<?= $zdm_options['licence-email']; ?>
-                                            </td>
-                                        </tr>
-                                        <tr valign="top">
-                                            <th scope="row"><?= esc_html__('Purchased', 'zdm') ?>:</th>
-                                            <td valign="middle">
-                                                <span class="material-icons-round zdm-md-1 zdm-color-green">check_circle_outline</span>&nbsp;<?= date("d.m.Y", strtotime($zdm_options['licence-purchase'])) ?>
-                                            </td>
-                                        </tr>
+                            <div class="zdm-licence-body">
+                                <div class="zdm-licence-input">
+                                    <label for="licence-key"><?= ZDM__PRO ?> <?= esc_html__('license key', 'zdm') ?></label>
+                                    <div class="zdm-licence-input-row">
+                                        <input type="<?= $zdm_licence === 1 ? 'password' : 'text' ?>" name="licence-key" id="licence-key" value="<?= esc_attr($zdm_options['licence-key']); ?>" autocomplete="off">
+                                        <?php if ($zdm_licence === 1) { ?>
+                                            <button class="button button-secondary zdm-licence-toggle" id="toggle-licence-key">
+                                                <span class="material-icons-outlined zdm-md-1 zdm-color-grey7">visibility</span>
+                                            </button>
+                                        <?php } ?>
+                                        <input class="button-primary" type="submit" name="licence_submit" value="<?= esc_attr($zdm_licence_button_label) ?>">
+                                        <?php if ($zdm_licence === 1) { ?>
+                                            <a href="admin.php?page=<?= ZDM__SLUG ?>-settings&licence_delete=true&nonce=<?= wp_create_nonce('licence-delete') ?>" class="button button-secondary zdm-licence-remove">
+                                                <span class="material-icons-round zdm-md-1">backspace</span>
+                                                <?= esc_html__('Remove license', 'zdm') ?>
+                                            </a>
+                                        <?php } ?>
+                                    </div>
+                                    <?php if ($zdm_licence === 0) { ?>
+                                        <div class="zdm-licence-upgrade">
+                                            <span class="material-icons-round zdm-md-1">sparkles</span>
+                                            <p><?= esc_html__('Unlock all premium features with', 'zdm') ?> <?= ZDM__PRO ?>. <?= esc_html__('Learn more at', 'zdm') ?> <a href="<?= ZDM__PRO_URL ?>" target="_blank" title="<?= ZDM__TITLE; ?> <?= ZDM__PRO ?>"><?= ZDM__TITLE; ?> <?= ZDM__PRO ?> <span class="material-icons-round zdm-md-1">open_in_new</span></a></p>
+                                        </div>
+                                        <div class="zdm-licence-steps">
+                                            <div class="zdm-licence-step">
+                                                <span class="zdm-licence-step__index">1</span>
+                                                <div>
+                                                    <span class="zdm-licence-step__title"><?= esc_html__('Locate your purchase email', 'zdm') ?></span>
+                                                    <p><?= esc_html__('Copy the license key you received after buying Z-Downloads PRO.', 'zdm') ?></p>
+                                                </div>
+                                            </div>
+                                            <div class="zdm-licence-step">
+                                                <span class="zdm-licence-step__index">2</span>
+                                                <div>
+                                                    <span class="zdm-licence-step__title"><?= esc_html__('Paste the key above', 'zdm') ?></span>
+                                                    <p><?= esc_html__('Insert the license key and click Activate to validate it instantly.', 'zdm') ?></p>
+                                                </div>
+                                            </div>
+                                            <div class="zdm-licence-step">
+                                                <span class="zdm-licence-step__index">3</span>
+                                                <div>
+                                                    <span class="zdm-licence-step__title"><?= esc_html__('Enjoy premium features', 'zdm') ?></span>
+                                                    <p><?= esc_html__('Create unlimited download sets, advanced stats and branded buttons.', 'zdm') ?></p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="zdm-licence-support">
+                                            <span class="material-icons-round zdm-md-1">support_agent</span>
+                                            <p><?= esc_html__('Need help locating your license? Contact our support team and we will resend it to you.', 'zdm') ?> <a href="<?= esc_url(defined('ZDM__SUPPORT_URL') ? ZDM__SUPPORT_URL : ZDM__PRO_URL) ?>" target="_blank"><?= esc_html__('Contact support', 'zdm') ?></a></p>
+                                        </div>
                                     <?php } ?>
-                                </tbody>
-                            </table>
+                                </div>
+
+                                <?php if ($zdm_licence === 1) { ?>
+                                    <div class="zdm-licence-meta">
+                                        <div class="zdm-licence-meta-item">
+                                            <span class="material-icons-round zdm-md-1 zdm-color-green">mail</span>
+                                            <div>
+                                                <span class="zdm-meta-label"><?= esc_html__('Licensed for', 'zdm') ?></span>
+                                                <span class="zdm-meta-value"><?= esc_html($zdm_options['licence-email']); ?></span>
+                                            </div>
+                                        </div>
+                                        <div class="zdm-licence-meta-item">
+                                            <span class="material-icons-round zdm-md-1 zdm-color-green">event</span>
+                                            <div>
+                                                <span class="zdm-meta-label"><?= esc_html__('Purchased on', 'zdm') ?></span>
+                                                <span class="zdm-meta-value"><?= esc_html(date('d.m.Y', strtotime($zdm_options['licence-purchase']))); ?></span>
+                                            </div>
+                                        </div>
+                                        <div class="zdm-licence-meta-item">
+                                            <span class="material-icons-round zdm-md-1 zdm-color-green">history</span>
+                                            <div>
+                                                <span class="zdm-meta-label"><?= esc_html__('Last validation', 'zdm') ?></span>
+                                                <span class="zdm-meta-value"><?= esc_html($zdm_licence_last_checked); ?></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php } ?>
+                            </div>
                         </div>
                     </div>
+                    <?php if ($zdm_licence === 1) { ?>
+                        <script>
+                            jQuery(document).ready(function($) {
+                                $('#toggle-licence-key').on('click', function(e) {
+                                    e.preventDefault();
+
+                                    const $input = $('#licence-key');
+                                    const $icon = $(this).find('span');
+
+                                    if ($input.attr('type') === 'password') {
+                                        $input.attr('type', 'text');
+                                        $icon.text('visibility_off');
+                                    } else {
+                                        $input.attr('type', 'password');
+                                        $icon.text('visibility');
+                                    }
+                                });
+                            });
+                        </script>
+                    <?php } ?>
                 </form>
 
                 <form action="" method="post">

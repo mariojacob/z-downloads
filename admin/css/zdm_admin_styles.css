@@ -403,6 +403,272 @@ ion-icon {
 }
 
 /********************
+Licence Card
+********************/
+
+.zdm-licence-card .inside {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.zdm-licence-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.zdm-licence-header .material-icons-round {
+    background: #f1f5f9;
+    border-radius: 12px;
+    padding: 10px;
+    font-size: 26px !important;
+}
+
+.zdm-licence-title {
+    flex: 1;
+}
+
+.zdm-licence-title h3 {
+    margin: 0;
+    font-size: 18px;
+}
+
+.zdm-licence-title p {
+    margin: 6px 0 0;
+    color: #4b5563;
+}
+
+.zdm-licence-status-badge {
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.zdm-licence-status-badge.is-active {
+    background: #ecfdf5;
+    color: #047857;
+}
+
+.zdm-licence-status-badge.is-inactive {
+    background: #fef2f2;
+    color: #b91c1c;
+}
+
+.zdm-licence-body {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.zdm-licence-input label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.zdm-licence-input-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+}
+
+.zdm-licence-input-row input[type="text"],
+.zdm-licence-input-row input[type="password"] {
+    flex: 1 1 280px;
+    min-width: 240px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    font-size: 14px;
+}
+
+.zdm-licence-input-row input[type="text"]:focus,
+.zdm-licence-input-row input[type="password"]:focus {
+    outline: none;
+    border-color: #0c80e8;
+    box-shadow: 0 0 0 2px rgba(12, 128, 232, 0.12);
+}
+
+.zdm-licence-toggle {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    padding: 0 !important;
+    border-radius: 10px !important;
+}
+
+.zdm-licence-toggle span {
+    margin: 0;
+}
+
+.zdm-licence-remove {
+    display: inline-flex !important;
+    align-items: center;
+    gap: 6px;
+    border-radius: 10px !important;
+}
+
+.zdm-licence-upgrade {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 12px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    background: #f5f3ff;
+    color: #4338ca;
+}
+
+.zdm-licence-upgrade p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.zdm-licence-upgrade a {
+    font-weight: 600;
+}
+
+.zdm-licence-steps {
+    display: grid;
+    gap: 12px;
+    margin-top: 14px;
+}
+
+.zdm-licence-step {
+    display: flex;
+    gap: 12px;
+    padding: 14px 16px;
+    border-radius: 12px;
+    border: 1px solid #e0e7ff;
+    background: #eef2ff;
+    color: #312e81;
+}
+
+.zdm-licence-step__index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 999px;
+    background: #4338ca;
+    color: #fff;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.zdm-licence-step__title {
+    display: block;
+    font-weight: 600;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.zdm-licence-step p {
+    margin: 0;
+    font-size: 13px;
+    color: #3f3d56;
+}
+
+.zdm-licence-support {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 16px;
+    padding: 12px 14px;
+    border-radius: 12px;
+    border: 1px solid #dbeafe;
+    background: #eff6ff;
+    color: #1e3a8a;
+}
+
+.zdm-licence-support p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.zdm-licence-support a {
+    font-weight: 600;
+}
+
+.zdm-licence-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px 16px;
+}
+
+.zdm-licence-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 240px;
+}
+
+.zdm-meta-label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+}
+
+.zdm-meta-value {
+    display: block;
+    font-size: 14px;
+    color: #111827;
+    margin-top: 2px;
+}
+
+@media (max-width: 782px) {
+    .zdm-licence-header {
+        flex-direction: column;
+    }
+
+    .zdm-licence-status-badge {
+        align-self: stretch;
+        justify-content: center;
+    }
+
+    .zdm-licence-input-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .zdm-licence-input-row input[type="text"],
+    .zdm-licence-input-row input[type="password"] {
+        flex: 1 1 100%;
+    }
+
+    .zdm-licence-toggle,
+    .zdm-licence-remove,
+    .zdm-licence-input-row .button-primary {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .zdm-licence-steps {
+        grid-template-columns: 1fr;
+    }
+}
+
+/********************
 Uninstall Card
 ********************/
 
