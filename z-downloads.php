@@ -24,16 +24,13 @@ define('ZDM__PATH', plugin_dir_path(__FILE__));
 define('ZDM__PLUGIN_URL', plugin_dir_url(__FILE__));
 define('ZDM__SLUG', 'z-downloads');
 define('ZDM__TITLE', 'Z-Downloads');
-define('ZDM__VERSION', '1.11.8');
+define('ZDM__VERSION', '1.12.0');
 define('ZDM__URL', 'https://code.urban-base.net/z-downloads?utm_source=zdm_backend');
 
 define('ZDM__PRO', 'Premium');
 define('ZDM__PRO_URL', 'https://urbanbase.gumroad.com/l/zdPRE');
 define('ZDM__STANDARD_USER_ROLE', 'manage_options');
 require_once(dirname(__FILE__) . '/lib/constants.php');
-
-// Neu: Version laden
-require_once(dirname(__FILE__) . '/lib/version.php');
 
 if (!get_option('zdm_options'))
     add_option('zdm_options', ZDM__OPTIONS);

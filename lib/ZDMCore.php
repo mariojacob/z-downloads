@@ -1072,6 +1072,17 @@ class ZDMCore
         // Material Icons
         wp_register_style('zdm_material_icons', 'https://fonts.googleapis.com/icon?family=Material+Icons+Outlined|Material+Icons+Round');
         wp_enqueue_style('zdm_material_icons');
+
+        // Frontend JS
+        wp_register_script('zdm_frontend_script', ZDM__PLUGIN_URL . 'public/js/zdm_frontend.js', array(), ZDM__VERSION, true);
+
+        $frontend_config = array(
+            'ajaxUrl'     => admin_url('admin-ajax.php'),
+            'trackNonce'  => wp_create_nonce('zdm-track-download')
+        );
+
+        wp_localize_script('zdm_frontend_script', 'zdmFrontend', $frontend_config);
+        wp_enqueue_script('zdm_frontend_script');
     }
 
     /**
@@ -1418,6 +1429,87 @@ class ZDMCore
             array(
                 'log' => $prepared_log
             )
+        );
+    }
+
+    /**
+     * AJAX Handler für das Tracken von Direktdownloads
+     *
+     * @return void
+     */
+    public function ajax_track_download()
+    {
+        $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+
+        if ($nonce === '' || !wp_verify_nonce($nonce, 'zdm-track-download')) {
+            wp_send_json_error(
+                array('message' => esc_html__('Security check failed.', 'zdm')),
+                403
+            );
+        }
+
+        $file_id = isset($_POST['file_id']) ? absint($_POST['file_id']) : 0;
+
+        if ($file_id <= 0) {
+            wp_send_json_error(
+                array('message' => esc_html__('Invalid file.', 'zdm')),
+                400
+            );
+        }
+
+        if (!self::check_if_file_exists($file_id)) {
+            wp_send_json_error(
+                array('message' => esc_html__('File not found.', 'zdm')),
+                404
+            );
+        }
+
+        global $wpdb;
+        $tablename_files = $wpdb->prefix . 'zdm_files';
+
+        $file_query = $wpdb->prepare(
+            "SELECT count, status FROM $tablename_files WHERE id = %d",
+            $file_id
+        );
+
+        $file = $wpdb->get_row($file_query);
+
+        if (!$file) {
+            wp_send_json_error(
+                array('message' => esc_html__('File not found.', 'zdm')),
+                404
+            );
+        }
+
+        if (isset($file->status) && $file->status === 'private') {
+            wp_send_json_error(
+                array('message' => esc_html__('File is not accessible.', 'zdm')),
+                403
+            );
+        }
+
+        $current_count = isset($file->count) ? (int) $file->count : 0;
+        $new_count = $current_count + 1;
+
+        $update_result = $wpdb->update(
+            $tablename_files,
+            array('count' => $new_count),
+            array('id' => $file_id),
+            array('%d'),
+            array('%d')
+        );
+
+        if ($update_result === false) {
+            wp_send_json_error(
+                array('message' => esc_html__('Could not update download counter.', 'zdm')),
+                500
+            );
+        }
+
+        self::log('download file', $file_id);
+
+        wp_send_json_success(
+            array('count' => $new_count)
         );
     }
 
@@ -2212,6 +2304,8 @@ class ZDMCore
         add_action('wp_ajax_zdm_upload_file', array($this, 'ajax_upload_file'));
         add_action('wp_ajax_zdm_load_logs', array($this, 'ajax_load_logs'));
         add_action('wp_ajax_zdm_load_log_detail', array($this, 'ajax_load_log_detail'));
+        add_action('wp_ajax_zdm_track_download', array($this, 'ajax_track_download'));
+        add_action('wp_ajax_nopriv_zdm_track_download', array($this, 'ajax_track_download'));
 
         // Dashboard-Widget
         add_action('wp_dashboard_setup', array($this, 'dashboard_widget'));
@@ -2544,6 +2638,8 @@ class ZDMCore
                         $type = 'zdownload_f';
                         $id = base64_encode($db_files[0]->id);
 
+                        $is_direct_pdf = ($options['file-open-in-browser-pdf'] === 'on' && $db_files[0]->file_type === 'application/pdf');
+
                         // Ausgabe
                         if ($options['download-btn-icon'] != 'none') {
                             $icon = '<span class="material-icons-round ' . $icon_class . '">' . $options['download-btn-icon'] . '</span>';
@@ -2556,9 +2652,16 @@ class ZDMCore
                         else
                             $icon_and_text = $download_text . $icon;
 
-                        $download_url = self::build_download_url($type, $id);
+                        if ($is_direct_pdf) {
+                            $download_url = ZDM__DOWNLOADS_FILES_PATH_URL . '/' . $db_files[0]->folder_path . '/' . $db_files[0]->file_name;
+                            $download_url = esc_url($download_url);
+                            $data_attributes = ' data-zdm-direct-pdf="1" data-zdm-file-id="' . (int) $db_files[0]->id . '"';
+                        } else {
+                            $download_url = self::build_download_url($type, $id);
+                            $data_attributes = '';
+                        }
 
-                        return '<a href="' . $download_url . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . self::download_button_class() . $align . '" target="_blank" rel="nofollow noopener noreferrer">' . $icon_and_text . '</a>';
+                        return '<a href="' . $download_url . '" id="zdmBtn' . htmlspecialchars($db_files[0]->id) . '" class="' . self::download_button_class() . $align . '" target="_blank" rel="nofollow noopener noreferrer"' . $data_attributes . '>' . $icon_and_text . '</a>';
                     }
                 } else {
                     // Leerer Rückgabewert, wenn Datei nicht vorhanden ist

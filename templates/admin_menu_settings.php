@@ -855,7 +855,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                                                         echo 'selected="selected"';
                                                                     } ?>><?= esc_html__('Ordered list (ol)', 'zdm') ?></option>
                                             </select>
-                                            <?= esc_html__('Specifies how the list is output.', 'zdm') ?>
+                                            <?= esc_html__('Defines how the file list is displayed.', 'zdm') ?>
                                         </td>
                                     </tr>
                                     <tr valign="top">
@@ -864,7 +864,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             <input type="checkbox" name="list-bold" <?php if ($zdm_options['list-bold'] == 'on') {
                                                                                         echo 'checked="checked"';
                                                                                     } ?>>
-                                            <?= esc_html__('Makes the text of the list items bold.', 'zdm') ?>
+                                            <?= esc_html__('Displays list item text in bold.', 'zdm') ?>
                                         </td>
                                     </tr>
                                     <tr valign="top">
@@ -873,7 +873,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             <input type="checkbox" name="list-links" <?php if ($zdm_options['list-links'] == 'on') {
                                                                                             echo 'checked="checked"';
                                                                                         } ?>>
-                                            <?= esc_html__('Each list item is a clickable link.', 'zdm') ?>
+                                            <?= esc_html__('Makes each list item a clickable link.', 'zdm') ?>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -893,6 +893,8 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             <?php ZDMCore::premium_badge(); ?>
                                         </th>
                                         <td valign="middle">
+                                            <div class="zdm-help-text"><?= esc_html__('Defines how many recent downloads are shown in the statistics. This setting applies separately to files and archives.', 'zdm') ?></div>
+                                            <br>
                                             <?php if ($zdm_licence === 0) {
                                             ?>
                                                 <input type="hidden" name="stat-single-file-last-limit" value="<?= esc_attr($zdm_options['stat-single-file-last-limit']) ?>">
@@ -905,14 +907,14 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                                                                                                                                                                             } ?>>
                                             <span class="material-icons-outlined zdm-md-1">info</span> <?= esc_html__('Setting for files', 'zdm') ?>
                                             <br>
-                                            <div class="zdm-help-text"><?= esc_html__('Determine the number of recent downloads that is displayed on the file details page in the Statistics tab.', 'zdm') ?></div>
+                                            <div class="zdm-help-text"><?= esc_html__('Number of recent file downloads displayed in the Statistics tab on the file detail page.', 'zdm') ?></div>
                                             <br>
                                             <input type="number" name="stat-single-archive-last-limit" min="1" max="500" value="<?= esc_attr($zdm_options['stat-single-archive-last-limit']) ?>" <?php if ($zdm_licence === 0) {
                                                                                                                                                                                                         echo ' disabled';
                                                                                                                                                                                                     } ?>>
                                             <span class="material-icons-outlined zdm-md-1">info</span> <?= esc_html__('Setting for archives', 'zdm') ?>
                                             <br>
-                                            <div class="zdm-help-text"><?= esc_html__('Determine the number of recent downloads that is displayed on the archive detail page in the Statistics tab.', 'zdm') ?></div>
+                                            <div class="zdm-help-text"><?= esc_html__('Number of recent archive downloads displayed in the Statistics tab on the archive detail page.', 'zdm') ?></div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -933,23 +935,23 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                                                                                     echo 'checked="checked"';
                                                                                                 } ?>>
                                             <?= esc_html__('Limits file uploads to common files.', 'zdm') ?>
-                                            <div class="zdm-help-text"><?= esc_html__('Only deactivate this option if you are sure that your uploaded files cannot cause any damage.', 'zdm') ?></div>
+                                            <div class="zdm-help-text"><?= esc_html__('Restricts uploads to safe file types. Disable only if you are sure uploaded files cannot cause harm.', 'zdm') ?></div>
                                         </td>
                                     </tr>
                                     <tr valign="top">
                                         <th scope="row"><?= esc_html__('Maximum upload size', 'zdm') ?>:</th>
                                         <td valign="middle">
                                             <input type="number" name="max-upload-size-in-mb" min="1" max="50000" value="<?= esc_attr($zdm_options['max-upload-size-in-mb']) ?>">
-                                            <?= esc_html__('Specifies the maximum file size in MB that can be uploaded.', 'zdm') ?>
+                                            <?= esc_html__('Maximum file size in MB that can be uploaded.', 'zdm') ?>
                                         </td>
                                     </tr>
                                     <tr valign="top">
-                                        <th scope="row"><?= esc_html__('Direct URL to PDFs', 'zdm') ?>:</th>
+                                        <th scope="row"><?= esc_html__('Display PDFs in browser', 'zdm') ?>:</th>
                                         <td valign="middle">
                                             <input type="checkbox" name="file-open-in-browser-pdf" <?php if ($zdm_options['file-open-in-browser-pdf'] == 'on') {
                                                                                                         echo 'checked="checked"';
                                                                                                     } ?>>
-                                            <?= esc_html__('The user is taken to the direct file path.', 'zdm') ?>
+                                            <?= esc_html__('Opens PDF files directly in the browser and exposes the direct file URL. Enable only if the URL may be publicly visible.', 'zdm') ?>
                                         </td>
                                     </tr>
                                     <tr valign="top">
@@ -958,7 +960,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             <input type="checkbox" name="secure-ip" <?php if ($zdm_options['secure-ip'] == 'on') {
                                                                                         echo 'checked="checked"';
                                                                                     } ?>>
-                                            <?= esc_html__('Censored the IP address during the download.', 'zdm') ?>
+                                            <?= esc_html__('Anonymizes the IP address in the download log.', 'zdm') ?>
                                         </td>
                                     </tr>
                                     <tr valign="top">
@@ -967,7 +969,7 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             <input type="checkbox" name="duplicate-file" <?php if ($zdm_options['duplicate-file'] == 'on') {
                                                                                                 echo 'checked="checked"';
                                                                                             } ?>>
-                                            <?= esc_html__('Allow files that have already been uploaded to be added again.', 'zdm') ?>
+                                            <?= esc_html__('Allows uploading files that already exist.', 'zdm') ?>
                                         </td>
                                     </tr>
                                     <tr valign="top">
@@ -976,13 +978,13 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                             <input type="checkbox" name="hide-html-id" <?php if ($zdm_options['hide-html-id'] == 'on') {
                                                                                             echo 'checked="checked"';
                                                                                         } ?>>
-                                            <?= esc_html__('Hides the HTML id Attribute when outputting button, audio and video.', 'zdm') ?>
+                                            <?= esc_html__('Removes the HTML ID attribute when rendering button, audio, and video.', 'zdm') ?>
                                         </td>
                                     </tr>
                                     <tr valign="top">
                                         <th scope="row"><?= esc_html__('Log', 'zdm') ?>:</th>
                                         <td valign="middle">
-                                            <a href="admin.php?page=<?= ZDM__SLUG ?>-log"><?= esc_html__('Show log', 'zdm') ?></a>
+                                            <a href="admin.php?page=<?= ZDM__SLUG ?>-log"><?= esc_html__('Show full log.', 'zdm') ?></a>
                                         </td>
                                     </tr>
                                     <tr valign="top">
@@ -990,20 +992,18 @@ if (current_user_can(ZDM__STANDARD_USER_ROLE)) {
                                         <td valign="middle">
                                             <input type="text" value="<?= $zdm_options['download-folder-token'] ?>" size="50%" disabled>&nbsp;
                                             <a href="admin.php?page=<?= ZDM__SLUG ?>-settings&new_download_folder_token=true&nonce=<?= wp_create_nonce('new_download_folder_token') ?>" class="button button-secondary"><?= esc_html__('Generate new token', 'zdm') ?></a>
-                                            <div class="zdm-help-text"><?= esc_html__('Complete folder name', 'zdm') ?>: <code>/z-downloads-<?= $zdm_options['download-folder-token'] ?>/</code></div>
-                                            <div class="zdm-help-text"><?= esc_html__('The download folder is not publicly visible unless you have activated "Direct URL" for certain files.', 'zdm') ?></div>
-                                            <div class="zdm-help-text"><?= esc_html__('You can generate the token again at any time without hesitation.', 'zdm') ?></div>
+                                            <div class="zdm-help-text"><?= esc_html__('This token is used to generate the internal download folder name', 'zdm') ?>: <code>/z-downloads-<?= $zdm_options['download-folder-token'] ?>/</code></div>
+                                            <div class="zdm-help-text"><?= esc_html__('The folder itself is not publicly accessible. Files in this folder are normally delivered only through the plugin.', 'zdm') ?></div>
+                                            <div class="zdm-help-text"><?= esc_html__('Important: If you enable “Display PDFs in browser”, the full URL to those PDFs will be visible, which also exposes the folder path.', 'zdm') ?></div>
+                                            <div class="zdm-help-text"><?= esc_html__('You can safely generate a new token at any time if you want to change the path.', 'zdm') ?></div>
                                         </td>
                                     </tr>
                                     <tr valign="top">
                                         <th scope="row"><?= esc_html__('Reset settings', 'zdm') ?>:</th>
                                         <td valign="middle">
                                             <a href="admin.php?page=<?= ZDM__SLUG ?>-settings&reset_settings=true&nonce=<?= wp_create_nonce('reset-settings') ?>" class="button button-secondary"><?= esc_html__('Reset settings', 'zdm') ?></a>
-                                            <div class="zdm-help-text"><?= esc_html__('Here you can reset all settings to factory settings..', 'zdm') ?></div>
-                                            <div class="zdm-help-text">
-                                                <?= esc_html__('This means that the premium license, button settings such as standard text, style, round corners, icons and all other settings are reset.', 'zdm') ?><br>
-                                                <?= esc_html__('The download folder token is also regenerated.', 'zdm') ?>
-                                            </div>
+                                            <div class="zdm-help-text"><?= esc_html__('Resets all plugin settings to their defaults. Premium license remains active.', 'zdm') ?></div>
+                                            <div class="zdm-help-text"><?= esc_html__('The download folder token is also regenerated.', 'zdm') ?></div>
                                         </td>
                                     </tr>
                                 </tbody>

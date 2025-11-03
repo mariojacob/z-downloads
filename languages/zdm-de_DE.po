@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2025-11-02 17:08+0100\n"
-"PO-Revision-Date: 2025-11-02 17:28+0100\n"
+"POT-Creation-Date: 2025-11-03 11:22+0100\n"
+"PO-Revision-Date: 2025-11-03 11:27+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: de_DE\n"
@@ -247,7 +247,7 @@ msgstr "Hilfeseiten"
 msgid "Files"
 msgstr "Dateien"
 
-#: lib/ZDMCore.php:47 lib/ZDMCore.php:48 lib/ZDMCore.php:1448
+#: lib/ZDMCore.php:47 lib/ZDMCore.php:48 lib/ZDMCore.php:1540
 #: templates/admin_menu_files.php:430 templates/admin_menu_files.php:897
 #: templates/admin_menu_files.php:899 templates/admin_menu_files.php:1021
 #: templates/admin_menu_help.php:47
@@ -298,7 +298,7 @@ msgstr "Hochladen..."
 msgid "Upload complete. Redirecting..."
 msgstr "Upload abgeschlossen. Weiterleitung..."
 
-#: lib/ZDMCore.php:1024 lib/ZDMCore.php:1125
+#: lib/ZDMCore.php:1024 lib/ZDMCore.php:1136
 #: templates/admin_menu_files.php:1169
 msgid "This file has already been uploaded."
 msgstr "Diese Datei wurde bereits hochgeladen."
@@ -371,179 +371,196 @@ msgstr ""
 "Der Protokolleintrag konnte nicht geladen werden. Bitte versuchen Sie es "
 "erneut."
 
-#: lib/ZDMCore.php:1086
+#: lib/ZDMCore.php:1097
 msgid "You do not have sufficient permissions to upload files."
 msgstr ""
 "Sie verfügen nicht über ausreichende Berechtigungen zum Hochladen von "
 "Dateien."
 
-#: lib/ZDMCore.php:1095 lib/ZDMCore.php:1173 lib/ZDMCore.php:1362
+#: lib/ZDMCore.php:1106 lib/ZDMCore.php:1184 lib/ZDMCore.php:1373
+#: lib/ZDMCore.php:1446
 msgid "Security check failed."
 msgstr "Sicherheitsprüfung fehlgeschlagen."
 
-#: lib/ZDMCore.php:1102
+#: lib/ZDMCore.php:1113
 msgid "No file received."
 msgstr "Es wurde keine Datei empfangen."
 
-#: lib/ZDMCore.php:1116
+#: lib/ZDMCore.php:1127
 msgid "File uploaded successfully."
 msgstr "Datei erfolgreich hochgeladen."
 
-#: lib/ZDMCore.php:1133
+#: lib/ZDMCore.php:1144
 msgid "Upload failed due to validation error."
 msgstr "Der Upload ist aufgrund eines Validierungsfehlers fehlgeschlagen."
 
-#: lib/ZDMCore.php:1144 templates/admin_menu_files.php:62
+#: lib/ZDMCore.php:1155 templates/admin_menu_files.php:62
 msgid "Upload failed."
 msgstr "Upload fehlgeschlagen."
 
-#: lib/ZDMCore.php:1164 lib/ZDMCore.php:1353 templates/admin_hidden_log.php:8
+#: lib/ZDMCore.php:1175 lib/ZDMCore.php:1364 templates/admin_hidden_log.php:8
 msgid "You do not have sufficient permissions to view logs."
 msgstr ""
 "Sie verfügen nicht über ausreichende Berechtigungen zum Anzeigen von "
 "Protokollen."
 
-#: lib/ZDMCore.php:1371
+#: lib/ZDMCore.php:1382
 msgid "Invalid log entry."
 msgstr "Ungültiger Protokolleintrag."
 
-#: lib/ZDMCore.php:1388
+#: lib/ZDMCore.php:1399
 msgid "Log entry not found."
 msgstr "Protokolleintrag nicht gefunden."
 
-#: lib/ZDMCore.php:1433
+#: lib/ZDMCore.php:1455
+msgid "Invalid file."
+msgstr "Ungültige Datei."
+
+#: lib/ZDMCore.php:1462 lib/ZDMCore.php:1479
+msgid "File not found."
+msgstr "Datei nicht gefunden."
+
+#: lib/ZDMCore.php:1486
+msgid "File is not accessible."
+msgstr "Die Datei ist nicht zugänglich."
+
+#: lib/ZDMCore.php:1504
+msgid "Could not update download counter."
+msgstr "Downloadzähler konnte nicht aktualisiert werden."
+
+#: lib/ZDMCore.php:1525
 msgid "Download archive"
 msgstr "Archiv herunterladen"
 
-#: lib/ZDMCore.php:1438 templates/admin_menu_files.php:535
+#: lib/ZDMCore.php:1530 templates/admin_menu_files.php:535
 msgid "Download file"
 msgstr "Datei Download"
 
-#: lib/ZDMCore.php:1443
+#: lib/ZDMCore.php:1535
 msgid "Add archive"
 msgstr "Archiv hinzufügen"
 
-#: lib/ZDMCore.php:1453
+#: lib/ZDMCore.php:1545
 msgid "Update archive"
 msgstr "Archiv aktualisieren"
 
-#: lib/ZDMCore.php:1458
+#: lib/ZDMCore.php:1550
 msgid "Update file"
 msgstr "Aktualisierungsdatei"
 
-#: lib/ZDMCore.php:1463 templates/admin_menu_ziparchive.php:914
+#: lib/ZDMCore.php:1555 templates/admin_menu_ziparchive.php:914
 #: templates/admin_menu_ziparchive.php:1011
 #: templates/admin_menu_ziparchive.php:1035
 msgid "Delete archive"
 msgstr "Lösche Archiv"
 
-#: lib/ZDMCore.php:1468 templates/admin_menu_files.php:1041
+#: lib/ZDMCore.php:1560 templates/admin_menu_files.php:1041
 #: templates/admin_menu_files.php:1104 templates/admin_menu_files.php:1127
 #: templates/admin_menu_files.php:1198 templates/admin_menu_files.php:1261
 #: templates/admin_menu_files.php:1284
 msgid "Delete file"
 msgstr "Datei löschen"
 
-#: lib/ZDMCore.php:1473
+#: lib/ZDMCore.php:1565
 msgid "Archive cache created"
 msgstr "Archivcache erstellt"
 
-#: lib/ZDMCore.php:1478
+#: lib/ZDMCore.php:1570
 msgid "Link file"
 msgstr "Datei verlinken"
 
-#: lib/ZDMCore.php:1483
+#: lib/ZDMCore.php:1575
 msgid "Unlink file"
 msgstr "Datei entkoppeln"
 
-#: lib/ZDMCore.php:1488 templates/admin_menu_files.php:436
+#: lib/ZDMCore.php:1580 templates/admin_menu_files.php:436
 #: templates/admin_menu_files.php:754 templates/admin_menu_files.php:763
 #: templates/admin_menu_files.php:906
 msgid "Replace file"
 msgstr "Ersetze Datei"
 
-#: lib/ZDMCore.php:1493
+#: lib/ZDMCore.php:1585
 msgid "Update settings"
 msgstr "Einstellungen aktualisieren"
 
-#: lib/ZDMCore.php:1498 templates/admin_menu_settings.php:999
-#: templates/admin_menu_settings.php:1001
+#: lib/ZDMCore.php:1590 templates/admin_menu_settings.php:1002
+#: templates/admin_menu_settings.php:1004
 msgid "Reset settings"
 msgstr "Einstellungen zurücksetzen"
 
-#: lib/ZDMCore.php:1503
+#: lib/ZDMCore.php:1595
 msgid "Error while creating ZIP"
 msgstr "Fehler beim Erstellen der ZIP-Datei"
 
-#: lib/ZDMCore.php:1508
+#: lib/ZDMCore.php:1600
 msgid "Update licence"
 msgstr "Lizenz aktualisieren"
 
-#: lib/ZDMCore.php:1513
+#: lib/ZDMCore.php:1605
 msgid "Delete licence"
 msgstr "Lizenz löschen"
 
-#: lib/ZDMCore.php:1518
+#: lib/ZDMCore.php:1610
 msgid "Plugin upgrade"
 msgstr "Plugin-Upgrade"
 
-#: lib/ZDMCore.php:1523
+#: lib/ZDMCore.php:1615
 msgid "Plugin activated"
 msgstr "Plugin deaktiviert"
 
-#: lib/ZDMCore.php:1528
+#: lib/ZDMCore.php:1620
 msgid "Plugin deactivated"
 msgstr "Plugin deaktiviert"
 
-#: lib/ZDMCore.php:1533
+#: lib/ZDMCore.php:1625
 msgid "Delete all data"
 msgstr "Alle Daten löschen"
 
-#: lib/ZDMCore.php:1538
+#: lib/ZDMCore.php:1630
 msgid "Database table created"
 msgstr "Datenbanktabelle erstellt"
 
-#: lib/ZDMCore.php:1543 templates/admin_menu_settings.php:989
+#: lib/ZDMCore.php:1635 templates/admin_menu_settings.php:991
 msgid "Download folder token"
 msgstr "Download Ordner Token"
 
-#: lib/ZDMCore.php:1550
+#: lib/ZDMCore.php:1642
 msgid "Other"
 msgstr "Andere"
 
-#: lib/ZDMCore.php:1573
+#: lib/ZDMCore.php:1665
 msgid "Temporary upload not found."
 msgstr "Temporärer Upload nicht gefunden."
 
-#: lib/ZDMCore.php:1609 templates/admin_menu_files.php:264
+#: lib/ZDMCore.php:1701 templates/admin_menu_files.php:264
 msgid "file type not allowed."
 msgstr "Dateityp nicht erlaubt."
 
-#: lib/ZDMCore.php:1613 templates/admin_menu_files.php:268
+#: lib/ZDMCore.php:1705 templates/admin_menu_files.php:268
 msgid "Maximum upload file size exceeded."
 msgstr "Maximale Upload-Dateigröße überschritten."
 
-#: lib/ZDMCore.php:1625
+#: lib/ZDMCore.php:1717
 msgid "Could not create upload folder."
 msgstr "Upload-Ordner konnte nicht erstellt werden."
 
-#: lib/ZDMCore.php:1633
+#: lib/ZDMCore.php:1725
 msgid "File could not be saved."
 msgstr "Die Datei konnte nicht gespeichert werden."
 
-#: lib/ZDMCore.php:1672
+#: lib/ZDMCore.php:1764
 msgid "Database error while saving file."
 msgstr "Datenbankfehler beim Speichern der Datei."
 
-#: lib/ZDMCore.php:2092
+#: lib/ZDMCore.php:2184
 msgid "Upgrade to Premium to unlock this exclusive feature."
 msgstr "Upgrade auf Premium, um diese exklusive Funktion freizuschalten."
 
-#: lib/ZDMCore.php:2187
+#: lib/ZDMCore.php:2279
 msgid "The following PHP modules are missing"
 msgstr "Folgende PHP Module fehlen"
 
-#: lib/ZDMCore.php:2189
+#: lib/ZDMCore.php:2281
 msgid ""
 "Please contact the administrator or web hosting provider of this website to "
 "install/activate the missing PHP modules."
@@ -551,11 +568,11 @@ msgstr ""
 "Bitte wende dich an den Administrator oder Webhosting Provider dieser "
 "Webseite um die fehlenden PHP-Module zu installieren/aktivieren."
 
-#: lib/ZDMCore.php:2394
+#: lib/ZDMCore.php:2488
 msgid "Your browser does not support HTML audio elements."
 msgstr "Dein Browser unterstützt keine HTML Audio-Elemente."
 
-#: lib/ZDMCore.php:3114
+#: lib/ZDMCore.php:3217
 msgid "Your browser does not support HTML video elements."
 msgstr "Dein Browser unterstützt keine HTML Video-Elemente."
 
@@ -1116,7 +1133,7 @@ msgstr ""
 msgid "Change settings"
 msgstr "Einstellungen ändern"
 
-#: templates/admin_menu_add_file.php:63 templates/admin_menu_settings.php:930
+#: templates/admin_menu_add_file.php:63 templates/admin_menu_settings.php:932
 msgid "Secure file uploads"
 msgstr "Sichere Datei-Uploads"
 
@@ -1789,7 +1806,7 @@ msgstr "Funktion"
 msgid "First steps"
 msgstr "Erste Schritte"
 
-#: templates/admin_menu_help.php:31 templates/admin_menu_settings.php:925
+#: templates/admin_menu_help.php:31 templates/admin_menu_settings.php:927
 msgid "Advanced"
 msgstr "Erweitert"
 
@@ -2475,149 +2492,172 @@ msgid "Ordered list (ol)"
 msgstr "Geordnete Liste (ol)"
 
 #: templates/admin_menu_settings.php:858
-msgid "Specifies how the list is output."
-msgstr "Gibt an, wie die Liste ausgegeben wird."
+msgid "Defines how the file list is displayed."
+msgstr "Legt fest, wie die Dateiliste angezeigt wird."
 
 #: templates/admin_menu_settings.php:862
 msgid "Bold text"
 msgstr "Fetter Text"
 
 #: templates/admin_menu_settings.php:867
-msgid "Makes the text of the list items bold."
-msgstr "Macht den Text der Listenelemente fett."
+msgid "Displays list item text in bold."
+msgstr "Zeigt den Text der Listenelemente in Fett an."
 
 #: templates/admin_menu_settings.php:871
 msgid "List items as links"
 msgstr "Listenelemente als Links"
 
 #: templates/admin_menu_settings.php:876
-msgid "Each list item is a clickable link."
-msgstr "Jedes Listenelement ist ein anklickbarer Link."
+msgid "Makes each list item a clickable link."
+msgstr "Macht jeden Listeneintrag zu einem anklickbaren Link."
 
 #: templates/admin_menu_settings.php:892
 msgid "Last downloads limit"
 msgstr "Letzte Downloads Limit"
 
-#: templates/admin_menu_settings.php:906
+#: templates/admin_menu_settings.php:896
+msgid ""
+"Defines how many recent downloads are shown in the statistics. This setting "
+"applies separately to files and archives."
+msgstr ""
+"Legt fest, wie viele der letzten Downloads in der Statistik angezeigt "
+"werden. Diese Einstellung gilt separat für Dateien und Archive."
+
+#: templates/admin_menu_settings.php:908
 msgid "Setting for files"
 msgstr "Einstellung für Dateien"
 
-#: templates/admin_menu_settings.php:908
+#: templates/admin_menu_settings.php:910
 msgid ""
-"Determine the number of recent downloads that is displayed on the file "
-"details page in the Statistics tab."
+"Number of recent file downloads displayed in the Statistics tab on the file "
+"detail page."
 msgstr ""
-"Bestimme die Anzahl der letzten Downloads die in der Datei-Detailseite im "
-"Tab Statistik angezeigt wird."
+"Auf der Registerkarte „Statistiken“ der Dateidetailseite wird die Anzahl der "
+"kürzlich heruntergeladenen Dateien angezeigt."
 
-#: templates/admin_menu_settings.php:913
+#: templates/admin_menu_settings.php:915
 msgid "Setting for archives"
 msgstr "Einstellung für Archive"
 
-#: templates/admin_menu_settings.php:915
+#: templates/admin_menu_settings.php:917
 msgid ""
-"Determine the number of recent downloads that is displayed on the archive "
-"detail page in the Statistics tab."
+"Number of recent archive downloads displayed in the Statistics tab on the "
+"archive detail page."
 msgstr ""
-"Bestimme die Anzahl der letzten Downloads die in der Archiv-Detailseite im "
-"Tab Statistik angezeigt wird."
+"Anzahl der kürzlich heruntergeladenen Archivdateien, angezeigt auf der "
+"Registerkarte „Statistiken“ auf der Archivdetailseite."
 
-#: templates/admin_menu_settings.php:935
+#: templates/admin_menu_settings.php:937
 msgid "Limits file uploads to common files."
 msgstr "Beschränkt das Hochladen von Dateien auf allgemeine Dateien."
 
-#: templates/admin_menu_settings.php:936
+#: templates/admin_menu_settings.php:938
 msgid ""
-"Only deactivate this option if you are sure that your uploaded files cannot "
-"cause any damage."
+"Restricts uploads to safe file types. Disable only if you are sure uploaded "
+"files cannot cause harm."
 msgstr ""
-"Deaktivieren Sie diese Option nur, wenn Sie sicher sind, dass Ihre "
-"hochgeladenen Dateien keinen Schaden anrichten können."
+"Beschränkt Uploads auf sichere Dateitypen. Deaktivieren Sie diese Funktion "
+"nur, wenn Sie sicher sind, dass die hochgeladenen Dateien keinen Schaden "
+"anrichten können."
 
-#: templates/admin_menu_settings.php:940
+#: templates/admin_menu_settings.php:942
 msgid "Maximum upload size"
 msgstr "Maximale Upload-Größe"
 
-#: templates/admin_menu_settings.php:943
-msgid "Specifies the maximum file size in MB that can be uploaded."
-msgstr "Gibt die maximale Dateigröße in MB an, die hochgeladen werden kann."
+#: templates/admin_menu_settings.php:945
+msgid "Maximum file size in MB that can be uploaded."
+msgstr "Maximale Dateigröße in MB, die hochgeladen werden kann."
 
-#: templates/admin_menu_settings.php:947
-msgid "Direct URL to PDFs"
-msgstr "Direkte URL zu PDFs"
+#: templates/admin_menu_settings.php:949
+msgid "Display PDFs in browser"
+msgstr "PDFs im Browser anzeigen"
 
-#: templates/admin_menu_settings.php:952
-msgid "The user is taken to the direct file path."
-msgstr "Der Benutzer wird zum direkten Dateipfad weitergeleitet."
+#: templates/admin_menu_settings.php:954
+msgid ""
+"Opens PDF files directly in the browser and exposes the direct file URL. "
+"Enable only if the URL may be publicly visible."
+msgstr ""
+"Öffnet PDF-Dateien direkt im Browser und zeigt die direkte Datei-URL an. "
+"Aktivieren Sie diese Funktion nur, wenn die URL öffentlich sichtbar sein "
+"könnte."
 
-#: templates/admin_menu_settings.php:956
+#: templates/admin_menu_settings.php:958
 msgid "Censor the IP address"
 msgstr "IP-Adresse zensieren"
 
-#: templates/admin_menu_settings.php:961
-msgid "Censored the IP address during the download."
-msgstr "Zensiert die IP-Adresse beim Download."
+#: templates/admin_menu_settings.php:963
+msgid "Anonymizes the IP address in the download log."
+msgstr "Anonymisiert die IP-Adresse im Download-Protokoll."
 
-#: templates/admin_menu_settings.php:965
+#: templates/admin_menu_settings.php:967
 msgid "Allow duplicates"
 msgstr "Duplikate zulassen"
 
-#: templates/admin_menu_settings.php:970
-msgid "Allow files that have already been uploaded to be added again."
-msgstr ""
-"Zulassen, dass bereits hochgeladene Dateien nochmals hinzugefügt werden."
+#: templates/admin_menu_settings.php:972
+msgid "Allows uploading files that already exist."
+msgstr "Ermöglicht das Hochladen bereits existierender Dateien."
 
-#: templates/admin_menu_settings.php:974
+#: templates/admin_menu_settings.php:976
 msgid "Hide HTML id Attribute"
 msgstr "HTML id Attribut ausblenden"
 
-#: templates/admin_menu_settings.php:979
-msgid "Hides the HTML id Attribute when outputting button, audio and video."
+#: templates/admin_menu_settings.php:981
+msgid "Removes the HTML ID attribute when rendering button, audio, and video."
 msgstr ""
-"Versteckt das HTML id Attribut bei der Ausgabe von Button, Audio und Video."
+"Entfernt das HTML-ID-Attribut beim Rendern von Schaltflächen, Audio und "
+"Video."
 
-#: templates/admin_menu_settings.php:983
+#: templates/admin_menu_settings.php:985
 msgid "Log"
 msgstr "Log"
 
-#: templates/admin_menu_settings.php:985
-msgid "Show log"
-msgstr "Zeige Log"
+#: templates/admin_menu_settings.php:987
+msgid "Show full log."
+msgstr "Vollständiges Protokoll anzeigen."
 
-#: templates/admin_menu_settings.php:992
+#: templates/admin_menu_settings.php:994
 msgid "Generate new token"
 msgstr "Neuen Token generieren"
 
-#: templates/admin_menu_settings.php:993
-msgid "Complete folder name"
-msgstr "Kompletter Ordnername"
-
-#: templates/admin_menu_settings.php:994
-msgid ""
-"The download folder is not publicly visible unless you have activated "
-"\"Direct URL\" for certain files."
-msgstr ""
-"Der Download Ordner ist nicht öffentlich sichtbar, ausser du hast \"Direkte "
-"URL\" zu gewissen Dateien aktiviert."
-
 #: templates/admin_menu_settings.php:995
-msgid "You can generate the token again at any time without hesitation."
-msgstr "Du kannst den Token jederzeit bedenkenlos neu generieren."
-
-#: templates/admin_menu_settings.php:1002
-msgid "Here you can reset all settings to factory settings.."
-msgstr "Hier kannst du alle Einstellungen auf Werkseinstellungen zurücksetzen."
-
-#: templates/admin_menu_settings.php:1004
-msgid ""
-"This means that the premium license, button settings such as standard text, "
-"style, round corners, icons and all other settings are reset."
+msgid "This token is used to generate the internal download folder name"
 msgstr ""
-"Das bedeutet, die Premium Lizenz, die Buttoneinstellungen wie Standardtext, "
-"Style, Runde Ecken, Icons und alle anderen Einstellungen werden "
-"zurückgesetzt."
+"Dieses Token wird verwendet, um den Namen des internen Download-Ordners zu "
+"generieren"
+
+#: templates/admin_menu_settings.php:996
+msgid ""
+"The folder itself is not publicly accessible. Files in this folder are "
+"normally delivered only through the plugin."
+msgstr ""
+"Der Ordner selbst ist nicht öffentlich zugänglich. Dateien in diesem Ordner "
+"werden normalerweise nur über das Plugin bereitgestellt."
+
+#: templates/admin_menu_settings.php:997
+msgid ""
+"Important: If you enable “Display PDFs in browser”, the full URL to those "
+"PDFs will be visible, which also exposes the folder path."
+msgstr ""
+"Wichtig: Wenn Sie „PDFs im Browser anzeigen“ aktivieren, wird die "
+"vollständige URL zu diesen PDFs angezeigt, wodurch auch der Ordnerpfad "
+"sichtbar wird."
+
+#: templates/admin_menu_settings.php:998
+msgid ""
+"You can safely generate a new token at any time if you want to change the "
+"path."
+msgstr ""
+"Sie können jederzeit gefahrlos ein neues Token generieren, wenn Sie den Pfad "
+"ändern möchten."
 
 #: templates/admin_menu_settings.php:1005
+msgid ""
+"Resets all plugin settings to their defaults. Premium license remains active."
+msgstr ""
+"Setzt alle Plugin-Einstellungen auf die Standardwerte zurück. Die Premium-"
+"Lizenz bleibt aktiv."
+
+#: templates/admin_menu_settings.php:1006
 msgid "The download folder token is also regenerated."
 msgstr "Auch der Download Ordner Token wird neu generiert."
 
@@ -2973,6 +3013,41 @@ msgstr "Hinterlassen Sie eine Bewertung"
 #: templates/admin_premium.php:268
 msgid "Suggestions for improvement"
 msgstr "Verbesserungsvorschläge"
+
+#~ msgid "Makes the text of the list items bold."
+#~ msgstr "Macht den Text der Listenelemente fett."
+
+#~ msgid "Direct URL to PDFs"
+#~ msgstr "Direkte URL zu PDFs"
+
+#~ msgid "The user is taken to the direct file path."
+#~ msgstr "Der Benutzer wird zum direkten Dateipfad weitergeleitet."
+
+#~ msgid "Allow files that have already been uploaded to be added again."
+#~ msgstr ""
+#~ "Zulassen, dass bereits hochgeladene Dateien nochmals hinzugefügt werden."
+
+#~ msgid "Complete folder name"
+#~ msgstr "Kompletter Ordnername"
+
+#~ msgid ""
+#~ "The download folder is not publicly visible unless you have activated "
+#~ "\"Direct URL\" for certain files."
+#~ msgstr ""
+#~ "Der Download Ordner ist nicht öffentlich sichtbar, ausser du hast "
+#~ "\"Direkte URL\" zu gewissen Dateien aktiviert."
+
+#~ msgid "Here you can reset all settings to factory settings.."
+#~ msgstr ""
+#~ "Hier kannst du alle Einstellungen auf Werkseinstellungen zurücksetzen."
+
+#~ msgid ""
+#~ "This means that the premium license, button settings such as standard "
+#~ "text, style, round corners, icons and all other settings are reset."
+#~ msgstr ""
+#~ "Das bedeutet, die Premium Lizenz, die Buttoneinstellungen wie "
+#~ "Standardtext, Style, Runde Ecken, Icons und alle anderen Einstellungen "
+#~ "werden zurückgesetzt."
 
 #~ msgid "All the benefits of Premium at a glance"
 #~ msgstr "Alle Vorteile von Premium im Überblick"

@@ -14,10 +14,8 @@ if (!defined('ZDM__PATH'))
     define('ZDM__PATH', plugin_dir_path(__FILE__));
 if (!defined('ZDM__PLUGIN_URL'))
     define('ZDM__PLUGIN_URL', plugin_dir_url(__FILE__));
-
-// Neu: Version laden
-require_once ZDM__PATH . 'lib/version.php';
-
+if (!defined('ZDM__VERSION'))
+    define('ZDM__VERSION', '1.12.0');
 if (!defined('ZDM__SLUG'))
     define('ZDM__SLUG', 'z-downloads');
 if (!defined('ZDM__TITLE'))
